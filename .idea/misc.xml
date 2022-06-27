@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable-v24/tab_icon_color_selector.xml" value="0.1265" />
+        <entry key="app/src/main/res/drawable/camera_tab_selector.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/feed_tab_selector.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/garden_tab_selector.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_camera_active.xml" value="0.2075" />
+        <entry key="app/src/main/res/drawable/ic_camera_inactive.xml" value="0.2075" />
+        <entry key="app/src/main/res/drawable/ic_my_active.xml" value="0.127" />
+        <entry key="app/src/main/res/drawable/ic_my_inactive.xml" value="0.127" />
+        <entry key="app/src/main/res/drawable/my_tab_selector.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/tab_icon_color_selector.xml" value="0.1265" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_camera.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_feed.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_garden.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_my.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_view_pager.xml" value="0.1" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
