@@ -1,19 +1,19 @@
 package com.charaminstra.pleon
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.fragment.app.FragmentManager
+import androidx.navigation.Navigation.findNavController
+import com.charaminstra.pleon.login.LoginFragment
 
 class MainActivity : AppCompatActivity() {
-    companion object {
-        lateinit var prefs: PreferenceUtil
-    }
+//    companion object {
+//        lateinit var prefs: PreferenceUtil
+//    }
     override fun onCreate(savedInstanceState: Bundle?) {
-        prefs = PreferenceUtil(applicationContext)
         super.onCreate(savedInstanceState)
-        prefs.setString("phone", "010-1234-1234")
-        prefs.setString("token", "012341234")
-//        Log.i("pleon", prefs.getString("phone",""))
         setContentView(R.layout.activity_main)
     }
 }

@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-v24/round_shape.xml" value="0.1815" />
         <entry key="app/src/main/res/drawable-v24/tab_icon_color_selector.xml" value="0.1265" />
+        <entry key="app/src/main/res/drawable/button.xml" value="0.1815" />
         <entry key="app/src/main/res/drawable/camera_tab_selector.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/feed_tab_selector.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/garden_tab_selector.xml" value="0.1" />
@@ -11,14 +13,21 @@
         <entry key="app/src/main/res/drawable/ic_camera_inactive.xml" value="0.2075" />
         <entry key="app/src/main/res/drawable/ic_my_active.xml" value="0.127" />
         <entry key="app/src/main/res/drawable/ic_my_inactive.xml" value="0.127" />
+        <entry key="app/src/main/res/drawable/input.xml" value="0.1815" />
         <entry key="app/src/main/res/drawable/my_tab_selector.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/tab_icon_color_selector.xml" value="0.1265" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_camera.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_feed.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_garden.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_my.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_nickname.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_phone.xml" value="0.22289733886718754" />
+        <entry key="app/src/main/res/layout/fragment_plant_register.xml" value="0.2772125244140625" />
         <entry key="app/src/main/res/layout/fragment_view_pager.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/list_item_people_and_plant.xml" value="0.1" />
       </map>
     </option>
   </component>

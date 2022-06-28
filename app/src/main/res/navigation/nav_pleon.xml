@@ -3,13 +3,51 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     app:startDestination="@id/view_pager_fragment">
-
     <fragment
         android:id="@+id/view_pager_fragment"
         android:name="com.charaminstra.pleon.HomeViewPagerFragment"
         tools:layout="@layout/fragment_view_pager">
         <action
-            android:id="@+id/action_view_pager_fragment_to_plant_detail_fragment" />
+            android:id="@+id/action_view_pager_fragment_to_feed_fragment"
+            app:destination="@id/feed_fragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/feed_fragment"
+        android:name="com.charaminstra.pleon.FeedFragment"
+        tools:layout="@layout/fragment_feed">
+    </fragment>
+
+    <fragment
+        android:id="@+id/login_fragment"
+        android:name="com.charaminstra.pleon.login.LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/login_fragment_to_phone_fragment"
+            app:destination="@id/phone_fragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/phone_fragment"
+        android:name="com.charaminstra.pleon.login.PhoneFragment"
+        tools:layout="@layout/fragment_phone">
+        <action
+            android:id="@+id/phone_fragment_to_nickname_fragment"
+            app:destination="@id/nickname_fragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/nickname_fragment"
+        android:name="com.charaminstra.pleon.login.NicknameFragment"
+        tools:layout="@layout/fragment_nickname">
+        <action
+            android:id="@+id/nickname_fragment_to_plant_register_fragment"
+            app:destination="@+id/plant_register_fragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/plant_register_fragment"
+        android:name="com.charaminstra.pleon.login.PlantRegisterFragment"
+        tools:layout="@layout/fragment_plant_register">
+        <action
+            android:id="@+id/plant_register_fragment_to_plant_register_fragment" />
     </fragment>
 
 </navigation>
