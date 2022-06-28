@@ -17,10 +17,10 @@ class PhoneFragment : Fragment() {
         val binding = FragmentPhoneBinding.inflate(inflater, container, false)
         val navController = Navigation.findNavController(requireActivity(), R.id.nav_host)
         binding.backBtn.setOnClickListener {
-            navController.navigate(R.id.login_fragment)
+            navController.popBackStack()
         }
         binding.checkBtn.setOnClickListener {
-            navController.navigate(R.id.nickname_fragment)
+            navController.navigate(R.id.phone_fragment_to_nickname_fragment)
         }
         return binding.root
     }

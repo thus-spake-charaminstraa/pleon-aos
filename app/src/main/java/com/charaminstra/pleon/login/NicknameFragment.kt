@@ -18,10 +18,10 @@ class NicknameFragment : Fragment() {
         val binding = FragmentNicknameBinding.inflate(inflater, container, false)
         val navController = Navigation.findNavController(requireActivity(), R.id.nav_host)
         binding.backBtn.setOnClickListener {
-            navController.navigate(R.id.phone_fragment)
+            navController.popBackStack()
         }
         binding.nextBtn.setOnClickListener {
-            navController.navigate(R.id.plant_register_fragment)
+            navController.navigate(R.id.nickname_fragment_to_plant_register_fragment)
         }
         return binding.root
     }

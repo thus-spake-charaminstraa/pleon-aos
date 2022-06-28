@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingHorizontal="20dp"
-    android:layout_marginTop="44dp"
     android:orientation="vertical"
     android:paddingTop="44dp"
     tools:context=".login.PlantRegisterFragment">

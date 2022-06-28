@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MyFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    android:paddingHorizontal="20dp"
+    android:orientation="vertical"
+    tools:context=".login.LoginFragment">
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/logout_btn"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="my" />
-
-</FrameLayout>
+        android:layout_height="50dp"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/input"
+        android:textSize="16dp"
+        android:text="@string/logout_btn" />
+</androidx.constraintlayout.widget.ConstraintLayout>
