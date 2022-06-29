@@ -18,4 +18,11 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
+    <style name="loginTitle" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">20dp</item>
+    </style>
+    <style name="loginSub" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">15dp</item>
+    </style>
 </resources>
