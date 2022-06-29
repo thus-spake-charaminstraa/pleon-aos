@@ -25,7 +25,7 @@
         android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/back_btn"
-        android:textSize="23dp"
+        style="@style/loginTitle"
         android:text="@string/plant_register_fragment_title"/>
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/nickname_et"
@@ -35,7 +35,7 @@
         android:inputType="textCapCharacters"
         android:background="@drawable/input"
         android:padding="15dp"
-        android:textSize="16dp"
+        style="@style/loginSub"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title"/>
     <androidx.appcompat.widget.AppCompatButton
@@ -46,7 +46,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nickname_et"
         android:background="@drawable/button"
-        android:textSize="16dp"
+        style="@style/loginSub"
         android:text="@string/next_btn" />
     <TextView
         android:id="@+id/skip_btn"
@@ -56,6 +56,6 @@
         android:gravity="center"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/next_btn"
-        android:textSize="16dp"
+        style="@style/loginSub"
         android:text="@string/skip_btn" />
 </androidx.constraintlayout.widget.ConstraintLayout>

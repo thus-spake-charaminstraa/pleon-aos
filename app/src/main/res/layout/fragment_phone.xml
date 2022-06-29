@@ -27,7 +27,7 @@
         android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/back_btn"
-        android:textSize="23dp"
+        style="@style/loginTitle"
         android:text="@string/phone_fragment_title"/>
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/phone_et"
@@ -37,7 +37,7 @@
         android:inputType="phone"
         android:background="@drawable/input"
         android:padding="15dp"
-        android:textSize="16dp"
+        style="@style/loginSub"
         android:hint="@string/phone_fragment_phone_hint"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title"/>
@@ -49,7 +49,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phone_et"
         android:background="@drawable/button"
-        android:textSize="16dp"
+        style="@style/loginSub"
         android:text="@string/phone_fragment_receive_btn" />
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/code_et"
@@ -59,7 +59,7 @@
         android:inputType="phone"
         android:background="@drawable/input"
         android:padding="15dp"
-        android:textSize="16dp"
+        style="@style/loginSub"
         android:hint="@string/phone_fragment_code_hint"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sns_receive_btn"/>
@@ -71,6 +71,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/code_et"
         android:background="@drawable/button"
-        android:textSize="16dp"
+        astyle="@style/loginSub"
         android:text="@string/phone_fragment_check_btn" />
 </androidx.constraintlayout.widget.ConstraintLayout>
