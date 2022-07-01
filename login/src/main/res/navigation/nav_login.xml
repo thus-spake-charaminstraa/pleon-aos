@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_login"
+    app:startDestination="@id/login_fragment">
+
+    <fragment
+        android:id="@+id/login_fragment"
+        android:name="com.charaminstra.pleon.login.LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/login_fragment_to_phone_fragment"
+            app:destination="@id/phone_fragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/phone_fragment"
+        android:name="com.charaminstra.pleon.login.PhoneFragment"
+        tools:layout="@layout/fragment_phone">
+        <action
+            android:id="@+id/phone_fragment_to_nickname_fragment"
+            app:destination="@id/nickname_fragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/nickname_fragment"
+        android:name="com.charaminstra.pleon.login.NicknameFragment"
+        tools:layout="@layout/fragment_nickname">
+        <action
+            android:id="@+id/nickname_fragment_to_plant_register_fragment"
+            app:destination="@+id/plant_register_fragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/plant_register_fragment"
+        android:name="com.charaminstra.pleon.login.PlantRegisterFragment"
+        tools:layout="@layout/fragment_plant_register">
+        <action
+            android:id="@+id/plant_register_fragment_to_jump"
+            app:popUpTo="@+id/login_fragment"
+            app:popUpToInclusive="true"
+            app:destination="@+id/view_pager_fragment"/>
+    </fragment>
+
+</navigation>

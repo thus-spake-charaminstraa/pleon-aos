@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="20dp"
+    android:orientation="vertical"
+    android:paddingTop="44dp"
+    tools:context=".PlantRegisterFragment">
+    <Button
+        android:id="@+id/back_btn"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@android:color/transparent"
+        android:scaleType="center"
+        android:src="@drawable/ic_arrow_back" />
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/back_btn"
+        style="@style/loginTitle"
+        android:text="@string/plant_register_fragment_title"/>
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/nickname_et"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:inputType="textCapCharacters"
+        android:background="@drawable/input"
+        android:padding="15dp"
+        style="@style/loginSub"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"/>
+    <Button
+        android:id="@+id/next_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nickname_et"
+        android:background="@drawable/button"
+        style="@style/loginSub"
+        android:text="@string/next_btn" />
+    <TextView
+        android:id="@+id/skip_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/next_btn"
+        style="@style/loginSub"
+        android:text="@string/skip_btn" />
+</androidx.constraintlayout.widget.ConstraintLayout>

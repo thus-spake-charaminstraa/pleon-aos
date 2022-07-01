@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="20dp"
+    android:orientation="vertical"
+    android:paddingTop="44dp"
+    tools:context=".PhoneFragment">
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/back_btn"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@android:color/transparent"
+        android:scaleType="center"
+        android:src="@drawable/ic_arrow_back" />
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/back_btn"
+        style="@style/loginTitle"
+        android:text="@string/phone_fragment_title"/>
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/phone_et"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:inputType="phone"
+        android:background="@drawable/input"
+        android:padding="15dp"
+        style="@style/loginSub"
+        android:hint="@string/phone_fragment_phone_hint"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"/>
+    <Button
+        android:id="@+id/sns_receive_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phone_et"
+        android:background="@drawable/button"
+        style="@style/loginSub"
+        android:text="@string/phone_fragment_receive_btn" />
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/code_et"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:inputType="phone"
+        android:background="@drawable/input"
+        android:padding="15dp"
+        style="@style/loginSub"
+        android:hint="@string/phone_fragment_code_hint"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sns_receive_btn"/>
+    <Button
+        android:id="@+id/check_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/code_et"
+        android:background="@drawable/button"
+        astyle="@style/loginSub"
+        android:text="@string/phone_fragment_check_btn" />
+</androidx.constraintlayout.widget.ConstraintLayout>
