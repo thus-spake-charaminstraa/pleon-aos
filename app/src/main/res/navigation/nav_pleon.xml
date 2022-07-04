@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/view_pager_fragment"
-        android:name="com.charaminstra.pleon.home.HomeViewPagerFragment"
+        android:name="com.charaminstra.pleon.HomeViewPagerFragment"
         tools:layout="@layout/fragment_view_pager">
         <action
             android:id="@+id/action_view_pager_fragment_to_login_graph"

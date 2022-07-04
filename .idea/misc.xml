@@ -16,6 +16,7 @@
         <entry key="app/src/main/res/drawable/input.xml" value="0.1815" />
         <entry key="app/src/main/res/drawable/my_tab_selector.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/tab_icon_color_selector.xml" value="0.1265" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.17844202898550723" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_camera.xml" value="0.1" />
@@ -28,6 +29,7 @@
         <entry key="app/src/main/res/layout/fragment_plant_register.xml" value="0.2772125244140625" />
         <entry key="app/src/main/res/layout/fragment_view_pager.xml" value="0.1" />
         <entry key="app/src/main/res/layout/list_item_people_and_plant.xml" value="0.1" />
+        <entry key="app/src/main/res/menu/bottom_navigation_item.xml" value="0.2677083333333333" />
         <entry key="home/src/main/res/drawable/a.xml" value="0.2245" />
         <entry key="home/src/main/res/drawable/my_tab_selector.xml" value="0.2255" />
         <entry key="home/src/main/res/drawable/tab_icon_color_selector.xml" value="0.2255" />

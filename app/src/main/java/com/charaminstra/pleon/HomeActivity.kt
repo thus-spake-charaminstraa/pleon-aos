@@ -1,7 +1,9 @@
-package com.charaminstra.pleon.home
+package com.charaminstra.pleon
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.charaminstra.pleon.R
+import dagger.hilt.android.AndroidEntryPoint
 
 class HomeActivity : AppCompatActivity() {
     //    companion object {

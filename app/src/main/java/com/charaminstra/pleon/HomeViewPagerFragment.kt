@@ -1,13 +1,12 @@
-package com.charaminstra.pleon.home
+package com.charaminstra.pleon
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
-import com.charaminstra.pleon.home.adapters.*
-import com.charaminstra.pleon.home.databinding.FragmentViewPagerBinding
+import com.charaminstra.pleon.R
+import com.charaminstra.pleon.databinding.FragmentViewPagerBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
 class HomeViewPagerFragment : Fragment() {

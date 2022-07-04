@@ -1,11 +1,7 @@
-package com.charaminstra.pleon.home.adapters
+package com.charaminstra.pleon
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.charaminstra.pleon.home.CameraFragment
-import com.charaminstra.pleon.home.FeedFragment
-import com.charaminstra.pleon.home.GardenFragment
-import com.charaminstra.pleon.home.MyFragment
 
 const val FEED_PAGE_INDEX = 0
 const val CAMERA_PAGE_INDEX = 1
