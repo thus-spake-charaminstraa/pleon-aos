@@ -19,6 +19,7 @@ class MyFragment : Fragment() {
 
         val navController = Navigation.findNavController(requireActivity(), R.id.nav_host)
         binding.logoutBtn.setOnClickListener{
+            navController.popBackStack()
             navController.navigate(com.charaminstra.pleon.login.R.id.nav_login)
 //            prefs.delete("token")
 //            if(prefs.getString("token","").isEmpty()) {

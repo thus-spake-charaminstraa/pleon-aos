@@ -6,9 +6,6 @@
         <activity
             android:name=".LoginActivity"
             android:exported="false" />
-        <activity
-            android:name=".dActivity"
-            android:exported="false" />
     </application>
 
 </manifest>

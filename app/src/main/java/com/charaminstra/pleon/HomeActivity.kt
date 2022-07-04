@@ -5,6 +5,8 @@ import android.os.Bundle
 import com.charaminstra.pleon.R
 import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
     //    companion object {
 //        lateinit var prefs: com.charaminstra.pleon.common.PreferenceUtil

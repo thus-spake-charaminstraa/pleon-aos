@@ -41,7 +41,7 @@
         android:hint="@string/phone_fragment_phone_hint"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title"/>
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/sns_receive_btn"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -63,7 +63,7 @@
         android:hint="@string/phone_fragment_code_hint"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sns_receive_btn"/>
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/check_btn"
         android:layout_width="match_parent"
         android:layout_height="50dp"
