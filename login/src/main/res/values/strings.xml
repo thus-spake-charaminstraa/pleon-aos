@@ -12,6 +12,8 @@
 
     <string name="nickname_fragment_title">닉네임을 입력해주세요.</string>
     <string name="plant_register_fragment_title">식물을 등록해주세요.</string>
+    <string name="plant_place_fragment_title">어디서 키우시나요?</string>
+    <string name="welcome_fragment_title">안녕하세요</string>
 
     <string name="species_title">식물 종류</string>
 
@@ -24,6 +26,9 @@
     <string name="water_day_title">물준날</string>
     <string name="water_day_hint">마지막으로 물을 준 날을 기입하세요.</string>
 
+
     <string name="next_btn">다음</string>
     <string name="skip_btn">건너 뛰기</string>
+    <string name="complete_btn">완료</string>
+    <string name="start_btn">시작하기</string>
 </resources>
