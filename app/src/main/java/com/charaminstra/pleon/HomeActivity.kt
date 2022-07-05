@@ -8,8 +8,8 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
-    //    companion object {
-//        lateinit var prefs: com.charaminstra.pleon.common.PreferenceUtil
+//    companion object {
+//        lateinit var prefs: PreferenceUtil
 //    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
