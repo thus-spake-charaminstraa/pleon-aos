@@ -1,4 +1,4 @@
-package com.charaminstra.pleon.my
+package com.charaminstra.camera
 
 import org.junit.Test
 

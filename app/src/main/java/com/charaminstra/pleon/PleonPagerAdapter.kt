@@ -2,6 +2,7 @@ package com.charaminstra.pleon
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.charaminstra.camera.CameraFragment
 
 const val FEED_PAGE_INDEX = 0
 const val CAMERA_PAGE_INDEX = 1

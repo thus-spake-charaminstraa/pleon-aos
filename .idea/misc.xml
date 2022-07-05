@@ -30,6 +30,8 @@
         <entry key="app/src/main/res/layout/fragment_view_pager.xml" value="0.1" />
         <entry key="app/src/main/res/layout/list_item_people_and_plant.xml" value="0.1" />
         <entry key="app/src/main/res/xml/network_security_config.xml" value="0.1" />
+        <entry key="camera/src/main/res/layout/fragment_camera.xml" value="0.1" />
+        <entry key="camera/src/main/res/layout/fragment_my.xml" value="0.1" />
         <entry key="foundation/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="foundation/src/main/res/xml/http.xml" value="0.1" />
       </map>
