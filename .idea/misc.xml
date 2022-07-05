@@ -32,6 +32,8 @@
         <entry key="app/src/main/res/xml/network_security_config.xml" value="0.1" />
         <entry key="foundation/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="foundation/src/main/res/xml/http.xml" value="0.1" />
+        <entry key="login/src/main/res/layout/fragment_nickname.xml" value="0.1" />
+        <entry key="login/src/main/res/layout/fragment_plant_register.xml" value="0.28449707031250004" />
       </map>
     </option>
   </component>

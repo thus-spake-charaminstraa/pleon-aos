@@ -22,6 +22,8 @@ class PlantRegisterFragment : Fragment() {
             //PreferenceUtil.setString("token", "01234")
             navController.navigate(R.id.plant_register_fragment_to_jump)
         }
+        binding.cameraBtn.setOnClickListener {
+        }
         return binding.root
     }
 }
