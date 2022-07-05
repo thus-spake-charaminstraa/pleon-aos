@@ -5,4 +5,9 @@
     <style name="loginSub" parent="@android:style/Widget.TextView">
         <item name="android:textSize">15dp</item>
     </style>
+
+    <style name="hello" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">30dp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
 </resources>
