@@ -5,9 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
-import com.charaminstra.pleon.MainActivity.Companion.prefs
-import com.charaminstra.pleon.adapters.*
+import com.charaminstra.pleon.R
 import com.charaminstra.pleon.databinding.FragmentViewPagerBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -27,11 +25,11 @@ class HomeViewPagerFragment : Fragment() {
             tab.setIcon(getTabIcon(position))
         }.attach()
 
-        prefs = PreferenceUtil(requireContext())
-        val navController = Navigation.findNavController(requireActivity(), R.id.nav_host)
-        if(prefs.getString("token","").isEmpty()) {
-            navController.navigate(R.id.action_view_pager_fragment_to_login_fragment)
-        }
+//        prefs = com.charaminstra.pleon.common.PreferenceUtil(requireContext())
+//        val navController = Navigation.findNavController(requireActivity(), R.id.nav_host)
+//        if(prefs.getString("token","").isEmpty()) {
+//            navController.navigate(R.id.action_view_pager_fragment_to_login_graph)
+//        }
 
         return binding.root
     }

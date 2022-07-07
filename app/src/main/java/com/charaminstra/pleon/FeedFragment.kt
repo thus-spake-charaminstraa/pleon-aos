@@ -6,8 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.Navigation
-import com.charaminstra.pleon.MainActivity.Companion.prefs
 import com.charaminstra.pleon.databinding.FragmentFeedBinding
 
 class FeedFragment : Fragment() {

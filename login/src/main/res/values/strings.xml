@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">PLeon</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login_btn">로그인</string>
+    <string name="logout_btn">로그아웃</string>
+
+    <string name="phone_fragment_title">휴대폰 번호를 입력해주세요.</string>
+    <string name="phone_fragment_phone_hint">010-XXXX-XXXX</string>
+    <string name="phone_fragment_receive_btn">인증문자 받기</string>
+    <string name="phone_fragment_code_hint">인증번호 입력</string>
+    <string name="phone_fragment_check_btn">확인</string>
+
+    <string name="nickname_fragment_title">닉네임을 입력해주세요.</string>
+    <string name="plant_register_fragment_title">식물을 등록해주세요.</string>
+    <string name="plant_place_fragment_title">어디서 키우시나요?</string>
+    <string name="welcome_fragment_title">안녕하세요</string>
+
+    <string name="species_title">식물 종류</string>
+
+    <string name="name_title">식물 이름</string>
+    <string name="name_hint">식물 이름을 지어주세요.</string>
+
+    <string name="adopt_day_title">입양일</string>
+    <string name="adopt_day_hint">식물을 데리고 온 날을 기입하세요.</string>
+
+    <string name="water_day_title">물준날</string>
+    <string name="water_day_hint">마지막으로 물을 준 날을 기입하세요.</string>
+
+
+    <string name="next_btn">다음</string>
+    <string name="skip_btn">건너 뛰기</string>
+    <string name="complete_btn">완료</string>
+    <string name="start_btn">시작하기</string>
+</resources>
