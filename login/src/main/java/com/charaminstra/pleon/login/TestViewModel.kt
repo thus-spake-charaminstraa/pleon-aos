@@ -12,8 +12,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TestViewModel @Inject constructor(private val repository: TestRepository) : ViewModel() {
-
-
     var liveData = MutableLiveData<String>("응답 없음")
 
     fun getData() = liveData
@@ -32,7 +30,7 @@ class TestViewModel @Inject constructor(private val repository: TestRepository) 
                     liveData.postValue(data.body().toString())
                 }
                 else -> {
-                    Log.i(TAG,"TEST -> ${data.body()}")
+                    Log.i(TAG,"${data.body()}")
                 }
             }
         }
