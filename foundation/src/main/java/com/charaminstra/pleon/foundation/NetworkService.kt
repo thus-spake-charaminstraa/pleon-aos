@@ -1,6 +1,6 @@
 package com.charaminstra.pleon.foundation
 
-import com.charaminstra.pleon.foundation.model.SmsModel
+import com.charaminstra.pleon.foundation.model.SmsRequestBody
 import com.charaminstra.pleon.foundation.model.SmsResponse
 import dagger.Module
 import dagger.Provides
@@ -69,7 +69,7 @@ interface APIInterface{
 //    ): Call<SmsResponse>
     @POST("auth/verify-sms")
     suspend fun test(
-        @Body smsModel: SmsModel
+        @Body smsRequestBody: SmsRequestBody
     ): Response<SmsResponse>
 }
 
