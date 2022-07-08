@@ -11,7 +11,6 @@ import androidx.navigation.fragment.findNavController
 import com.charaminstra.pleon.login.databinding.FragmentPhoneBinding
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class PhoneFragment : Fragment() {
     private lateinit var binding: FragmentPhoneBinding

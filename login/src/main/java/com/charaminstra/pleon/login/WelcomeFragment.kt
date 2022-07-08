@@ -1,5 +1,6 @@
 package com.charaminstra.pleon.login
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -18,8 +19,17 @@ class WelcomeFragment : Fragment() {
         binding.helloText.text = "마틸다 님,\n"+getString(R.string.welcome_fragment_title)
         val navController = this.findNavController()
         binding.startBtn.setOnClickListener {
-            navController.navigate(R.id.welcome_fragment_to_jump)
+            startHomeActivity()
         }
         return binding.root
+    }
+
+    private fun startHomeActivity() {
+        val intent = Intent(
+            requireContext(),
+            Class.forName("com.charaminstra.pleon.HomeActivity")
+        )
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
     }
 }
