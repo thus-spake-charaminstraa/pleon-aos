@@ -34,15 +34,18 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
-        android:inputType="phone"
+        android:inputType="numberSigned"
         android:background="@drawable/input"
         android:padding="15dp"
         style="@style/loginSub"
         android:hint="@string/phone_fragment_phone_hint"
+        android:digits="0123456789-"
+        android:maxLength="13"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title"/>
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        android:textCursorDrawable="@drawable/cursor_drawble"/>
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/sns_receive_btn"
+        android:id="@+id/phone_btn"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
@@ -62,7 +65,9 @@
         style="@style/loginSub"
         android:hint="@string/phone_fragment_code_hint"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sns_receive_btn"/>
+        app:layout_constraintTop_toBottomOf="@+id/phone_btn"
+        android:textCursorDrawable="@drawable/cursor_drawble"
+        android:visibility="gone"/>
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/check_btn"
         android:layout_width="match_parent"
@@ -72,5 +77,6 @@
         app:layout_constraintTop_toBottomOf="@+id/code_et"
         android:background="@drawable/button"
         astyle="@style/loginSub"
+        android:visibility="gone"
         android:text="@string/phone_fragment_check_btn" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,7 +24,7 @@ class SplashActivity : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             }
-        }, 3000) //딜레이 타임 조절
+        }, 1000) //딜레이 타임 조절
 
     }
 }

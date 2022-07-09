@@ -8,7 +8,6 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -59,20 +58,14 @@ object NetWorkService{
 
 
 interface APIInterface{
-//    @POST("auth/send-sms")
-//    fun test(): Call<PhoneModel>
+    @POST("auth/send-sms")
+    suspend fun postPhone(
+//        @Body phoneRequestBody: PhoneRequestBody
+        @Body phoneRequestBody: SmsRequestBody
+    ): Response<SmsResponse>
 
-    //test
-//    @POST("auth/verify-sms")
-//    fun test(
-//        @Body smsModel: SmsModel
-//    ): Call<SmsResponse>
     @POST("auth/verify-sms")
-    suspend fun test(
+    suspend fun postCode(
         @Body smsRequestBody: SmsRequestBody
     ): Response<SmsResponse>
-}
-
-interface UsersJoinLoginRepository {
-    suspend fun postSignIn(phone: String, code: String): Response<SmsResponse>
 }
