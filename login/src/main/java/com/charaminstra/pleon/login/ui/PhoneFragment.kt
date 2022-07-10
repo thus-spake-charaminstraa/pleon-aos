@@ -47,26 +47,33 @@ class PhoneFragment : Fragment() {
     }
 
     private fun initObservers(){
-//        viewModel.phoneResponse.observe(this, Observer {
-//            it.let{
-//                Log.d("PhoneResponse", it.toString())
-//                if(it.success == true){
-//                    Toast.makeText(context,"인증번호가 문자로 전송되었습니다.",Toast.LENGTH_SHORT)
-//                }
-//            }
-//        })
-//        viewModel.liveData.observe(this, Observer {
-//            it?.let{
-//                prefs.setVerifyToken(it.verify_token.toString())
-//                if(it.isExist == true){
-//                    /* 기존 회원 */
-//                    startHomeActivity()
-//                }else{
-//                    /* 신규 회원 */
-//                    navController.navigate(R.id.phone_fragment_to_nickname_fragment)
-//                }
-//            }
-//        })
+        viewModel.phoneResponse.observe(this, Observer {
+            it.let{
+                Log.d("PhoneResponse", it.toString())
+                if(it.success == true){
+                    Toast.makeText(context,"인증번호가 문자로 전송되었습니다.",Toast.LENGTH_SHORT)
+                }
+            }
+        })
+        viewModel.liveData.observe(this, Observer {
+            it?.let{
+                prefs.setVerifyToken(it.verify_token)
+                if(it.isExist == true){
+                    /* 기존 회원 */
+                    viewModel.login()
+                    startHomeActivity()
+                }else{
+                    /* 신규 회원 */
+                    navController.navigate(R.id.phone_fragment_to_nickname_fragment)
+                }
+            }
+        })
+        viewModel.tokenResponse.observe(this, Observer {
+            it?.let {
+                prefs.setRefreshToken(it.refresh_token)
+                prefs.setAccessToken(it.access_token)
+            }
+        })
     }
     private fun initListeners(){
         binding.phoneBtn.setOnClickListener {
@@ -81,7 +88,7 @@ class PhoneFragment : Fragment() {
             var code = binding.codeEt.text.toString()
             viewModel.postCode(phone,code)
             /* temp */
-            navController.navigate(R.id.phone_fragment_to_nickname_fragment)
+            //navController.navigate(R.id.phone_fragment_to_nickname_fragment)
         }
     }
 

@@ -7,5 +7,5 @@ data class SmsResponse(
 
 data class DataObject(
     var isExist: Boolean?,
-    var verify_token: String?
+    var verify_token: String
 )
