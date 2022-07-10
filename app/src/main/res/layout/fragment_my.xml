@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:paddingHorizontal="20dp"
     android:orientation="vertical"
-    tools:context=".login.LoginFragment">
+    tools:context=".login.ui.LoginFragment">
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/logout_btn"
         android:layout_width="match_parent"

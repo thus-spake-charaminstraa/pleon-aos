@@ -7,9 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
-import com.charaminstra.pleon.R
 import com.charaminstra.pleon.databinding.FragmentMyBinding
-import com.charaminstra.pleon.login.LoginActivity
+import com.charaminstra.pleon.login.ui.LoginActivity
 
 
 class MyFragment : Fragment() {

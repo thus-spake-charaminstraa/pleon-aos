@@ -8,7 +8,7 @@
     android:paddingHorizontal="20dp"
     android:orientation="vertical"
     android:paddingTop="44dp"
-    tools:context=".WelcomeFragment">
+    tools:context=".ui.WelcomeFragment">
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

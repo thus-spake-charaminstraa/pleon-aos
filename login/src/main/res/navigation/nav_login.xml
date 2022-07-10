@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/login_fragment"
-        android:name="com.charaminstra.pleon.login.LoginFragment"
+        android:name="com.charaminstra.pleon.login.ui.LoginFragment"
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/login_fragment_to_phone_fragment"
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/phone_fragment"
-        android:name="com.charaminstra.pleon.login.PhoneFragment"
+        android:name="com.charaminstra.pleon.login.ui.PhoneFragment"
         tools:layout="@layout/fragment_phone">
         <action
             android:id="@+id/phone_fragment_to_nickname_fragment"
@@ -23,7 +23,7 @@
     </fragment>
     <fragment
         android:id="@+id/nickname_fragment"
-        android:name="com.charaminstra.pleon.login.NicknameFragment"
+        android:name="com.charaminstra.pleon.login.ui.NicknameFragment"
         tools:layout="@layout/fragment_nickname">
         <action
             android:id="@+id/nickname_fragment_to_plant_register_fragment"
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/plant_register_fragment"
-        android:name="com.charaminstra.pleon.login.PlantRegisterFragment"
+        android:name="com.charaminstra.pleon.login.ui.PlantRegisterFragment"
         tools:layout="@layout/fragment_plant_register">
 <!--        <action-->
 <!--            android:id="@+id/plant_register_fragment_to_jump"-->
@@ -44,7 +44,7 @@
     </fragment>
     <fragment
         android:id="@+id/plant_place_fragment"
-        android:name="com.charaminstra.pleon.login.PlantPlaceFragment"
+        android:name="com.charaminstra.pleon.login.ui.PlantPlaceFragment"
         tools:layout="@layout/fragment_plant_place">
         <action
             android:id="@+id/plant_place_fragment_to_welcome_fragment"
@@ -52,7 +52,7 @@
     </fragment>
     <fragment
         android:id="@+id/welcome_fragment"
-        android:name="com.charaminstra.pleon.login.WelcomeFragment"
+        android:name="com.charaminstra.pleon.login.ui.WelcomeFragment"
         tools:layout="@layout/fragment_welcome">
     </fragment>
 

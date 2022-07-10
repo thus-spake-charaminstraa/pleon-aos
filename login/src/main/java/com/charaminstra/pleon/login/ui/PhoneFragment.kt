@@ -1,4 +1,4 @@
-package com.charaminstra.pleon.login
+package com.charaminstra.pleon.login.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,7 +13,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.charaminstra.pleon.login.LoginActivity.Companion.prefs
+import com.charaminstra.pleon.login.R
+import com.charaminstra.pleon.login.SmsViewModel
+import com.charaminstra.pleon.login.ui.LoginActivity.Companion.prefs
 import com.charaminstra.pleon.login.databinding.FragmentPhoneBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -45,26 +47,26 @@ class PhoneFragment : Fragment() {
     }
 
     private fun initObservers(){
-        viewModel.phoneResponse.observe(this, Observer {
-            it.let{
-                Log.d("PhoneResponse", it.toString())
-                if(it.success == true){
-                    Toast.makeText(context,"인증번호가 문자로 전송되었습니다.",Toast.LENGTH_SHORT)
-                }
-            }
-        })
-        viewModel.liveData.observe(this, Observer {
-            it?.let{
-                prefs.setVerifyToken(it.verify_token.toString())
-                if(it.isExist == true){
-                    /* 기존 회원 */
-                    startHomeActivity()
-                }else{
-                    /* 신규 회원 */
-                    navController.navigate(R.id.phone_fragment_to_nickname_fragment)
-                }
-            }
-        })
+//        viewModel.phoneResponse.observe(this, Observer {
+//            it.let{
+//                Log.d("PhoneResponse", it.toString())
+//                if(it.success == true){
+//                    Toast.makeText(context,"인증번호가 문자로 전송되었습니다.",Toast.LENGTH_SHORT)
+//                }
+//            }
+//        })
+//        viewModel.liveData.observe(this, Observer {
+//            it?.let{
+//                prefs.setVerifyToken(it.verify_token.toString())
+//                if(it.isExist == true){
+//                    /* 기존 회원 */
+//                    startHomeActivity()
+//                }else{
+//                    /* 신규 회원 */
+//                    navController.navigate(R.id.phone_fragment_to_nickname_fragment)
+//                }
+//            }
+//        })
     }
     private fun initListeners(){
         binding.phoneBtn.setOnClickListener {
@@ -72,11 +74,14 @@ class PhoneFragment : Fragment() {
             binding.codeEt.visibility = View.VISIBLE
             binding.checkBtn.visibility = View.VISIBLE
             viewModel.postPhoneNum(phone)
+            it.isClickable = false
         }
         binding.checkBtn.setOnClickListener {
             var phone = binding.phoneEt.text.toString()
             var code = binding.codeEt.text.toString()
             viewModel.postCode(phone,code)
+            /* temp */
+            navController.navigate(R.id.phone_fragment_to_nickname_fragment)
         }
     }
 

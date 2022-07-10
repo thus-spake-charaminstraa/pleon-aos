@@ -17,32 +17,31 @@ class SmsViewModel @Inject constructor(private val repository: SmsRepository) : 
     var liveData = MutableLiveData<DataObject?>()
 
     fun postPhoneNum(phone: String){
-        viewModelScope.launch {
-            val data =repository.postPhoneNum(phone)
-            Log.i(TAG,"S???-> $data")
-            when (data.isSuccessful) {
-                true -> {
-                    phoneResponse.postValue(data.body())
-                    Log.i(TAG,"SUCCESS -> ${data}")
-                }
-                else -> {
-                    Log.i(TAG,"FAIL -> ${data}")
-                }
-            }
-        }
+//        viewModelScope.launch {
+//            val data =repository.postPhoneNum(phone)
+//            when (data.isSuccessful) {
+//                true -> {
+//                    phoneResponse.postValue(data.body())
+//                    Log.i(TAG,"SUCCESS -> $data")
+//                }
+//                else -> {
+//                    Log.i(TAG,"FAIL -> $data")
+//                }
+//            }
+//        }
     }
     fun postCode(phone: String, code:String){
-        viewModelScope.launch {
-            val data = repository.postCode(phone,code)
-            when (data.isSuccessful) {
-                true -> {
-                    liveData.postValue(data.body()?.data)
-                    Log.i(TAG,"SUCCESS -> $data")
-                }
-                else -> {
-                    Log.i(TAG,"FAIL -> $data")
-                }
-            }
-        }
+//        viewModelScope.launch {
+//            val data = repository.postCode(phone,code)
+//            when (data.isSuccessful) {
+//                true -> {
+//                    liveData.postValue(data.body()?.data)
+//                    Log.i(TAG,"SUCCESS -> $data")
+//                }
+//                else -> {
+//                    Log.i(TAG,"FAIL -> $data")
+//                }
+//            }
+//        }
     }
 }
