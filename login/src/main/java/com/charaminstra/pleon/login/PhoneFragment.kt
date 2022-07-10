@@ -7,10 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.charaminstra.pleon.login.databinding.FragmentPhoneBinding
 import dagger.hilt.android.AndroidEntryPoint
-
 
 @AndroidEntryPoint
 class PhoneFragment : Fragment() {
@@ -19,42 +19,30 @@ class PhoneFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = FragmentPhoneBinding.inflate(layoutInflater)
-
-
-        viewModel.getData().observe(this) { data ->
-            data?.let {
-                Log.i("PhoneFragment", "success it?"+it)
-            }
+        initListners()
+        initObservers()
         }
 
-
-        binding.checkBtn.setOnClickListener {
-            val phone = "01011112222"
-            val code = "777777"
-//            viewModel.login(phone,code)
-//            viewModel.liveData.observe(this, {
-//                Log.d("PhoneFragment", it.toString())
-//            })
-
-        }
-
-    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentPhoneBinding.inflate(inflater, container, false)
-        val navController = this.findNavController()
-        binding.backBtn.setOnClickListener {
-            navController.popBackStack()
-        }
-        binding.checkBtn.setOnClickListener {
-            val phone = "01011112222"
-            val code = "777777"
-            navController.navigate(R.id.phone_fragment_to_nickname_fragment)
-        }
-
         return binding.root
+    }
+
+    private fun initObservers(){
+        viewModel.liveData.observe(this, Observer {
+            it?.let{
+                Log.d("PhoneFragment", it.toString())
+            }
+        })
+    }
+    private fun initListners(){
+        binding.checkBtn.setOnClickListener {
+            viewModel.login(
+                "01011112222","777777"
+            )
+        }
     }
 
 }

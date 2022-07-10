@@ -1,5 +1,6 @@
 package com.charaminstra.pleon.login
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -20,7 +21,7 @@ class PlantRegisterFragment : Fragment() {
         }
         binding.skipBtn.setOnClickListener {
             //PreferenceUtil.setString("token", "01234")
-            navController.navigate(R.id.plant_register_fragment_to_jump)
+            startHomeActivity()
         }
         binding.nextBtn.setOnClickListener {
             navController.navigate(R.id.plant_register_fragment_to_plant_place_fragment)
@@ -28,5 +29,13 @@ class PlantRegisterFragment : Fragment() {
         binding.cameraBtn.setOnClickListener {
         }
         return binding.root
+    }
+    private fun startHomeActivity() {
+        val intent = Intent(
+            requireContext(),
+            Class.forName("com.charaminstra.pleon.HomeActivity")
+        )
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
     }
 }

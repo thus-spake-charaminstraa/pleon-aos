@@ -14,42 +14,20 @@ import javax.inject.Inject
 class TestViewModel @Inject constructor(private val repository: TestRepository) : ViewModel() {
     var liveData = MutableLiveData<String>("응답 없음")
 
-    fun getData() = liveData
-
-    init {
-        loadData()
-//        login("","")
-    }
-
-    fun loadData() {
+    fun login(phone: String, code:String){
+        Log.i(TAG, "loadData: $phone $code")
         viewModelScope.launch {
-            val data = repository.postSignIn("01011112222","777777")
+            val data = repository.postSignIn(phone,code)
             Log.i(TAG, "loadData: $data")
             when (data.isSuccessful) {
                 true -> {
                     liveData.postValue(data.body().toString())
                 }
                 else -> {
-                    Log.i(TAG,"${data.body()}")
+                    Log.i(TAG,"TEST -> ${data.body()}")
                 }
             }
         }
     }
-//    fun login(phone: String, code:String){
-//        Log.i(TAG, "loadData: $phone $code")
-//        viewModelScope.launch {
-//
-//            val data = repository.postSignIn(phone,code)
-//            Log.i(TAG, "loadData: $data")
-//            when (data.isSuccessful) {
-//                true -> {
-//                    liveData.postValue(data.body().toString())
-//                }
-//                else -> {
-//                    Log.i(TAG,"TEST -> ${data.body()}")
-//                }
-//            }
-//        }
-//    }
 
 }
