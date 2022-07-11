@@ -1,4 +1,4 @@
-package com.charaminstra.pleon.login
+package com.charaminstra.pleon.login.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.charaminstra.pleon.login.databinding.FragmentWelcomeBinding
+import com.charaminstra.pleon.login.R
 
 class WelcomeFragment : Fragment() {
 
@@ -15,7 +15,7 @@ class WelcomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentWelcomeBinding.inflate(inflater, container, false)
+        val binding = com.charaminstra.pleon.login.databinding.FragmentWelcomeBinding.inflate(inflater, container, false)
         binding.helloText.text = "마틸다 님,\n"+getString(R.string.welcome_fragment_title)
         val navController = this.findNavController()
         binding.startBtn.setOnClickListener {

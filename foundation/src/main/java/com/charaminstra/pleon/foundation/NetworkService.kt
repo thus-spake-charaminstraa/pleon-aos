@@ -1,18 +1,17 @@
 package com.charaminstra.pleon.foundation
 
-import com.charaminstra.pleon.foundation.model.SmsRequestBody
-import com.charaminstra.pleon.foundation.model.SmsResponse
+import com.charaminstra.pleon.foundation.model.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
+import retrofit2.http.Header
 import retrofit2.http.POST
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
@@ -55,24 +54,4 @@ object NetWorkService{
 
     // 서비스 객체 얻기
 //    val api: APIInterface = retrofit.create(APIInterface::class.java)
-}
-
-
-interface APIInterface{
-//    @POST("auth/send-sms")
-//    fun test(): Call<PhoneModel>
-
-    //test
-//    @POST("auth/verify-sms")
-//    fun test(
-//        @Body smsModel: SmsModel
-//    ): Call<SmsResponse>
-    @POST("auth/verify-sms")
-    suspend fun test(
-        @Body smsRequestBody: SmsRequestBody
-    ): Response<SmsResponse>
-}
-
-interface UsersJoinLoginRepository {
-    suspend fun postSignIn(phone: String, code: String): Response<SmsResponse>
 }

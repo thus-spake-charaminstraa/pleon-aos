@@ -8,7 +8,7 @@
     android:paddingHorizontal="20dp"
     android:orientation="vertical"
     android:paddingTop="44dp"
-    tools:context=".NicknameFragment">
+    tools:context=".ui.NicknameFragment">
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/back_btn"
         app:layout_constraintLeft_toLeftOf="parent"

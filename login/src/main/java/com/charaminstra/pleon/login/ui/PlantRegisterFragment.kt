@@ -1,4 +1,4 @@
-package com.charaminstra.pleon.login
+package com.charaminstra.pleon.login.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.charaminstra.pleon.login.R
 import com.charaminstra.pleon.login.databinding.FragmentPlantRegisterBinding
 
 class PlantRegisterFragment : Fragment() {

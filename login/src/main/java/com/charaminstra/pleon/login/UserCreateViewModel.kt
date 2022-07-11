@@ -2,29 +2,28 @@ package com.charaminstra.pleon.login
 
 import android.content.ContentValues.TAG
 import android.util.Log
-import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.charaminstra.pleon.foundation.model.UserCreateResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class TestViewModel @Inject constructor(private val repository: TestRepository) : ViewModel() {
-    var liveData = MutableLiveData<String>("응답 없음")
+class UserCreateViewModel @Inject constructor(private val repository: UserCreateRepository) : ViewModel() {
+    val userCreateResponse = MutableLiveData<UserCreateResponse>()
 
-    fun login(phone: String, code:String){
-        Log.i(TAG, "loadData: $phone $code")
+    fun userCreate(name: String){
         viewModelScope.launch {
-            val data = repository.postSignIn(phone,code)
-            Log.i(TAG, "loadData: $data")
+            val data = repository.postNickname(name)
             when (data.isSuccessful) {
                 true -> {
-                    liveData.postValue(data.body().toString())
+                    userCreateResponse.postValue(data.body())
+                    Log.i(TAG,"SUCCESS -> $data")
                 }
                 else -> {
-                    Log.i(TAG,"TEST -> ${data.body()}")
+                    Log.i(TAG,"FAIL -> $data")
                 }
             }
         }
