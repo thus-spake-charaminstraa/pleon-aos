@@ -11,7 +11,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        val TEST = true
+        val TEST = false
 
         val handler = Handler()
         handler.postDelayed(Runnable {
