@@ -17,7 +17,6 @@ class ArFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         val intent = Intent(getActivity(), MainActivity::class.java)
         startActivity(intent)
     }
