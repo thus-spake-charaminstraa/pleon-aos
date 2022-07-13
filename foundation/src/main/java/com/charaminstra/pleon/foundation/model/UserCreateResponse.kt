@@ -1,6 +1,13 @@
 package com.charaminstra.pleon.foundation.model
 
 data class UserCreateResponse(
+    var success: Boolean?,
+    var statusCode: Int?,
+    var data: UserCreateDataObejct?
+
+)
+
+data class UserCreateDataObejct(
     var user : UserObject,
     var token : TokenObject
 )
@@ -8,7 +15,6 @@ data class UserCreateResponse(
 data class UserObject(
     var id: String,
     var nickname: String,
-    var phone: String
 )
 
 data class TokenObject(

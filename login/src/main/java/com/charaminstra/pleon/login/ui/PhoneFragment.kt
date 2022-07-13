@@ -15,12 +15,14 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.charaminstra.pleon.login.R
 import com.charaminstra.pleon.login.SmsViewModel
-import com.charaminstra.pleon.login.ui.LoginActivity.Companion.prefs
+import com.charaminstra.pleon.login.SplashActivity.Companion.prefs
 import com.charaminstra.pleon.login.databinding.FragmentPhoneBinding
+import com.charaminstra.pleon.login.startHomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class PhoneFragment : Fragment() {
+    private val TAG = javaClass.simpleName
     private lateinit var binding: FragmentPhoneBinding
     private val viewModel: SmsViewModel by viewModels()
     private lateinit var navController: NavController
@@ -57,21 +59,29 @@ class PhoneFragment : Fragment() {
         })
         viewModel.liveData.observe(this, Observer {
             it?.let{
+                Log.i("PhoneFragment",it.toString())
                 prefs.setVerifyToken(it.verify_token)
-                if(it.isExist == true){
+                Log.d(TAG, "verify token"+prefs.getVerifyToken())
+                Log.d(TAG, "access token"+prefs.getAccessToken())
+                Log.d(TAG, "refresh token"+prefs.getRefreshToken())
+                if(it.isExist){
                     /* 기존 회원 */
                     viewModel.login()
-                    startHomeActivity()
+                    startHomeActivity(requireContext())
                 }else{
                     /* 신규 회원 */
                     navController.navigate(R.id.phone_fragment_to_nickname_fragment)
                 }
             }
         })
+        /* 기존 회원 */
         viewModel.tokenResponse.observe(this, Observer {
             it?.let {
                 prefs.setRefreshToken(it.refresh_token)
                 prefs.setAccessToken(it.access_token)
+                Log.d(TAG, "verify token"+prefs.getVerifyToken())
+                Log.d(TAG, "access token"+prefs.getAccessToken())
+                Log.d(TAG, "refresh token"+prefs.getRefreshToken())
             }
         })
     }
@@ -91,14 +101,4 @@ class PhoneFragment : Fragment() {
             //navController.navigate(R.id.phone_fragment_to_nickname_fragment)
         }
     }
-
-    private fun startHomeActivity() {
-        val intent = Intent(
-            requireContext(),
-            Class.forName("com.charaminstra.pleon.HomeActivity")
-        )
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-        startActivity(intent)
-    }
-
 }

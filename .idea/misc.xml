@@ -35,13 +35,14 @@
         <entry key="camera/src/main/res/layout/fragment_my.xml" value="0.1" />
         <entry key="foundation/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="foundation/src/main/res/xml/http.xml" value="0.1" />
-        <entry key="login/src/main/res/drawable/cursor_drawble.xml" value="0.143" />
-        <entry key="login/src/main/res/drawable/input.xml" value="0.143" />
+        <entry key="login/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="login/src/main/res/layout/activity_splash.xml" value="0.1" />
         <entry key="login/src/main/res/layout/fragment_nickname.xml" value="0.1" />
         <entry key="login/src/main/res/layout/fragment_phone.xml" value="0.115625" />
         <entry key="login/src/main/res/layout/fragment_plant_register.xml" value="0.28449707031250004" />
         <entry key="login/src/main/res/layout/fragment_welcome.xml" value="0.1" />
-        <entry key="plant-ar/src/main/res/layout/fragment_camera.xml" value="0.20199275362318841" />
+        <entry key="plant-ar/src/main/res/layout-ar/camera_fragmnet.xml" value="0.21875" />
+        <entry key="plant-ar/src/main/res/layout/fragment_camera.xml" value="0.21770833333333334" />
       </map>
     </option>
   </component>

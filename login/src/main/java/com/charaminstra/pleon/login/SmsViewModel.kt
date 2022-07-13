@@ -13,8 +13,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 const val PHONE_TAG = "sms view model : phone"
-const val CODE_TAG = "sms view model : phone"
-const val LOGIN_TAG = "sms view model : phone"
+const val CODE_TAG = "sms view model : code"
+const val LOGIN_TAG = "sms view model : login"
 
 @HiltViewModel
 class SmsViewModel @Inject constructor(private val repository: SmsRepository) : ViewModel() {
@@ -43,10 +43,10 @@ class SmsViewModel @Inject constructor(private val repository: SmsRepository) : 
             when (data.isSuccessful) {
                 true -> {
                     liveData.postValue(data.body()?.data)
-                    Log.i(CODE_TAG,"SUCCESS -> $data")
+                    Log.i(CODE_TAG,"SUCCESS -> $data"+"\n"+data.body())
                 }
                 else -> {
-                    Log.i(CODE_TAG,"FAIL -> $data")
+                    Log.i(CODE_TAG,"FAIL -> $data"+"\n"+data.errorBody())
                 }
             }
         }
