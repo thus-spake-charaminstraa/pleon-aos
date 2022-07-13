@@ -5,7 +5,9 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.internal.addHeaderLenient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -20,6 +22,18 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetWorkService{
     private const val BASE_URL ="http://43.200.108.240:8000"
+
+//    fun getInterceptor(token: String): Interceptor {
+//        val interceptor = Interceptor { chain ->
+//            val request = chain.request()
+//            val newRequest = request.newBuilder()
+//                .addHeader("Authorization", "Bearer "+token)
+//                .build()
+//            chain.proceed(newRequest)
+//        }
+//        return interceptor
+//    }
+
 
     @Provides
     @Singleton
@@ -45,6 +59,7 @@ object NetWorkService{
     fun provideApiService(retrofit: Retrofit): APIInterface {
         return retrofit.create(APIInterface::class.java)
     }
+
 
     //retrofit 객체 생성
 //    val retrofit = Retrofit.Builder()
