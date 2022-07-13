@@ -32,10 +32,12 @@ class SplashActivity : AppCompatActivity() {
             if(it.isSuccessful){
                 Log.d("SplashActivity", "t.isSuccessful : "+it.isSuccessful)
                 startHomeActivity(this)
+                finish()
             }else{
                 Log.d("SplashActivity", "fail : go login")
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
+                finish()
             }
         })
 

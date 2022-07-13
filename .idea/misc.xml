@@ -35,6 +35,7 @@
         <entry key="camera/src/main/res/layout/fragment_my.xml" value="0.1" />
         <entry key="foundation/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="foundation/src/main/res/xml/http.xml" value="0.1" />
+        <entry key="login/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="login/src/main/res/layout/activity_splash.xml" value="0.1" />
         <entry key="login/src/main/res/layout/fragment_nickname.xml" value="0.1" />
         <entry key="login/src/main/res/layout/fragment_phone.xml" value="0.115625" />

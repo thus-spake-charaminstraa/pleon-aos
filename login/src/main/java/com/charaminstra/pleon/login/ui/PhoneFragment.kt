@@ -22,6 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class PhoneFragment : Fragment() {
+    private val TAG = javaClass.simpleName
     private lateinit var binding: FragmentPhoneBinding
     private val viewModel: SmsViewModel by viewModels()
     private lateinit var navController: NavController
@@ -58,9 +59,12 @@ class PhoneFragment : Fragment() {
         })
         viewModel.liveData.observe(this, Observer {
             it?.let{
-                prefs.setVerifyToken(it.verify_token)
                 Log.i("PhoneFragment",it.toString())
-                if(it.isExist == true){
+                prefs.setVerifyToken(it.verify_token)
+                Log.d(TAG, "verify token"+prefs.getVerifyToken())
+                Log.d(TAG, "access token"+prefs.getAccessToken())
+                Log.d(TAG, "refresh token"+prefs.getRefreshToken())
+                if(it.isExist){
                     /* 기존 회원 */
                     viewModel.login()
                     startHomeActivity(requireContext())
@@ -70,10 +74,14 @@ class PhoneFragment : Fragment() {
                 }
             }
         })
+        /* 기존 회원 */
         viewModel.tokenResponse.observe(this, Observer {
             it?.let {
                 prefs.setRefreshToken(it.refresh_token)
                 prefs.setAccessToken(it.access_token)
+                Log.d(TAG, "verify token"+prefs.getVerifyToken())
+                Log.d(TAG, "access token"+prefs.getAccessToken())
+                Log.d(TAG, "refresh token"+prefs.getRefreshToken())
             }
         })
     }
@@ -82,7 +90,7 @@ class PhoneFragment : Fragment() {
             var phone = binding.phoneEt.text.toString()
             binding.codeEt.visibility = View.VISIBLE
             binding.checkBtn.visibility = View.VISIBLE
-            //viewModel.postPhoneNum(phone)
+            viewModel.postPhoneNum(phone)
             it.isClickable = false
         }
         binding.checkBtn.setOnClickListener {
