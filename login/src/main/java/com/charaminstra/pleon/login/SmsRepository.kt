@@ -5,6 +5,7 @@ import com.charaminstra.pleon.foundation.model.SmsRequestBody
 import com.charaminstra.pleon.foundation.model.SmsResponse
 import com.charaminstra.pleon.foundation.model.TokenObject
 import com.charaminstra.pleon.foundation.model.UserCreateRequestBody
+import com.charaminstra.pleon.login.SplashActivity.Companion.prefs
 import com.charaminstra.pleon.login.ui.LoginActivity
 import retrofit2.Response
 import javax.inject.Inject
@@ -20,7 +21,7 @@ class SmsRepository @Inject constructor(private val service: APIInterface)  {
 
     suspend fun postLogin() : Response<TokenObject> {
         return service.postLogin(
-            verifyToken = LoginActivity.prefs.getVerifyToken()
+            verifyToken = prefs.getVerifyToken()
         )
     }
 }

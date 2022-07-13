@@ -1,4 +1,4 @@
-package com.charaminstra.pleon.foundation
+package com.charaminstra.pleon.common
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -34,7 +34,9 @@ class PreferenceUtil(context: Context) {
         return prefs.getString(REFRESH_KEY, DEFAULT).toString()
     }
 
-    fun delete(key: String) {
-        prefs.edit().remove(key).apply()
+    fun delete() {
+        prefs.edit().remove(VERIFY_KEY).apply()
+        prefs.edit().remove(ACCESS_KEY).apply()
+        prefs.edit().remove(REFRESH_KEY).apply()
     }
 }

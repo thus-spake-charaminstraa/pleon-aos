@@ -3,7 +3,7 @@ package com.charaminstra.pleon.login
 import com.charaminstra.pleon.foundation.APIInterface
 import com.charaminstra.pleon.foundation.model.UserCreateRequestBody
 import com.charaminstra.pleon.foundation.model.UserCreateResponse
-import com.charaminstra.pleon.login.ui.LoginActivity.Companion.prefs
+import com.charaminstra.pleon.login.SplashActivity.Companion.prefs
 import retrofit2.Response
 import javax.inject.Inject
 

@@ -15,8 +15,9 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.charaminstra.pleon.login.R
 import com.charaminstra.pleon.login.SmsViewModel
-import com.charaminstra.pleon.login.ui.LoginActivity.Companion.prefs
+import com.charaminstra.pleon.login.SplashActivity.Companion.prefs
 import com.charaminstra.pleon.login.databinding.FragmentPhoneBinding
+import com.charaminstra.pleon.login.startHomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -58,10 +59,11 @@ class PhoneFragment : Fragment() {
         viewModel.liveData.observe(this, Observer {
             it?.let{
                 prefs.setVerifyToken(it.verify_token)
+                Log.i("PhoneFragment",it.toString())
                 if(it.isExist == true){
                     /* 기존 회원 */
                     viewModel.login()
-                    startHomeActivity()
+                    startHomeActivity(requireContext())
                 }else{
                     /* 신규 회원 */
                     navController.navigate(R.id.phone_fragment_to_nickname_fragment)
@@ -80,7 +82,7 @@ class PhoneFragment : Fragment() {
             var phone = binding.phoneEt.text.toString()
             binding.codeEt.visibility = View.VISIBLE
             binding.checkBtn.visibility = View.VISIBLE
-            viewModel.postPhoneNum(phone)
+            //viewModel.postPhoneNum(phone)
             it.isClickable = false
         }
         binding.checkBtn.setOnClickListener {
@@ -91,14 +93,4 @@ class PhoneFragment : Fragment() {
             //navController.navigate(R.id.phone_fragment_to_nickname_fragment)
         }
     }
-
-    private fun startHomeActivity() {
-        val intent = Intent(
-            requireContext(),
-            Class.forName("com.charaminstra.pleon.HomeActivity")
-        )
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-        startActivity(intent)
-    }
-
 }
