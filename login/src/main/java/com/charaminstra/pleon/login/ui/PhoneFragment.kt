@@ -90,7 +90,7 @@ class PhoneFragment : Fragment() {
             var phone = binding.phoneEt.text.toString()
             binding.codeEt.visibility = View.VISIBLE
             binding.checkBtn.visibility = View.VISIBLE
-            viewModel.postPhoneNum(phone)
+            //viewModel.postPhoneNum(phone)
             it.isClickable = false
         }
         binding.checkBtn.setOnClickListener {

@@ -12,7 +12,7 @@ class UserCreateRepository @Inject constructor(private val service: APIInterface
     suspend fun postNickname(name: String): Response<UserCreateResponse>{
         Log.d("UserCreateRepository", "token check"+prefs.getVerifyToken())
         return service.postName(
-            verifyToken = "Bearer "+prefs.getVerifyToken(),
+            verifyToken = prefs.getVerifyToken(),
             UserCreateRequestBody(name)
         )
     }
