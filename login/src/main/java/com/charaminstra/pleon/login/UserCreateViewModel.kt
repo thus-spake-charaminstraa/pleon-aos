@@ -14,24 +14,20 @@ import javax.inject.Inject
 @HiltViewModel
 class UserCreateViewModel @Inject constructor(private val repository: UserCreateRepository, private val prefs: PleonPreference) : ViewModel() {
     private val TAG = javaClass.simpleName
-    val userCreateResponse = MutableLiveData<UserCreateDataObejct>()
+//    val userCreateResponse = MutableLiveData<UserCreateDataObejct>()
+    val userCreateSuccess = MutableLiveData<Boolean?>()
     fun userCreate(name: String){
         viewModelScope.launch {
             val data = repository.postNickname(name,prefs.getVerifyToken())
             Log.i(TAG,"data -> $data")
-            when (data.isSuccessful) {
+            userCreateSuccess.postValue(data.body()?.success)
+            when (data.body()?.success) {
                 true -> {
-                    userCreateResponse.postValue(data.body()?.data!!)
-                    Log.i(TAG,"SUCCESS -> $data")
-
+                    //userCreateResponse.postValue(data.body()?.data!!)
                     prefs.setAccessToken(data.body()?.data?.token?.access_token)
                     prefs.setRefreshToken(data.body()?.data?.token?.refresh_token)
-                    Log.d(TAG, "verify token"+prefs.getVerifyToken())
-                    Log.d(TAG, "access token"+prefs.getAccessToken())
-                    Log.d(TAG, "refresh token"+prefs.getRefreshToken())
                 }
                 else -> {
-                    Log.i(TAG,"FAIL -> $data")
                 }
             }
         }

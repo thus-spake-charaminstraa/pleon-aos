@@ -53,33 +53,25 @@ class PhoneFragment : Fragment() {
                 binding.phoneBtn.isClickable = false
             }
         })
-        viewModel.liveData.observe(this, Observer {
-            it?.let{
-                Log.i(TAG,"$it")
-//                prefs.setVerifyToken(it.verify_token)
-//                Log.d(TAG, "verify token"+prefs.getVerifyToken())
-//                Log.d(TAG, "access token"+prefs.getAccessToken())
-//                Log.d(TAG, "refresh token"+prefs.getRefreshToken())
-                if(it.isExist){
-                    /* 기존 회원 */
-                    viewModel.login()
-                    startHomeActivity(requireContext())
-                }else{
-                    /* 신규 회원 */
-                    navController.navigate(R.id.phone_fragment_to_nickname_fragment)
-                }
+        viewModel.codeResponse.observe(this, Observer {
+            Log.i(TAG,"code response : $it")
+            if(it){
+                viewModel.userExist.observe(this, Observer {
+                    Log.i(TAG,"user exist : $it")
+                    if(it){
+                        /* 기존 회원 */
+                        viewModel.postLogin()
+                        startHomeActivity(requireContext())
+                    }else{
+                        /* 신규 회원 */
+                        navController.navigate(R.id.phone_fragment_to_nickname_fragment)
+
+                    }
+                })
             }
         })
         /* 기존 회원 */
-        viewModel.tokenResponse.observe(this, Observer {
-            it?.let {
-//                prefs.setRefreshToken(it.refresh_token)
-//                prefs.setAccessToken(it.access_token)
-//                Log.d(TAG, "verify token"+prefs.getVerifyToken())
-//                Log.d(TAG, "access token"+prefs.getAccessToken())
-//                Log.d(TAG, "refresh token"+prefs.getRefreshToken())
-            }
-        })
+        viewModel.tokenResponse.observe(this, Observer {})
     }
     private fun initListeners(){
         binding.phoneBtn.setOnClickListener {

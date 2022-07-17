@@ -22,7 +22,8 @@ class SmsViewModel @Inject constructor(private val repository: SmsRepository, pr
 
     //var phoneResponse = MutableLiveData<SmsResponse>()
     var phoneResponse = MutableLiveData<Boolean>()
-    var liveData = MutableLiveData<DataObject?>()
+    var codeResponse = MutableLiveData<Boolean>()
+    var userExist = MutableLiveData<Boolean>()
     val tokenResponse = MutableLiveData<TokenObject>()
 
     fun postPhoneNum(phone: String){
@@ -43,14 +44,15 @@ class SmsViewModel @Inject constructor(private val repository: SmsRepository, pr
     fun postCode(phone: String, code:String){
         viewModelScope.launch {
             val data = repository.postCode(phone,code)
-            when (data.isSuccessful) {
+            codeResponse.postValue(data.body()?.success)
+            when (data.body()?.success) {
                 true -> {
-                    liveData.postValue(data.body()?.data)
-                    Log.i(CODE_TAG,"SUCCESS -> $data"+"\n"+data.body())
                     prefs.setVerifyToken(data.body()?.data?.verify_token)
-                    Log.d(TAG, "verify token"+prefs.getVerifyToken())
-                    Log.d(TAG, "access token"+prefs.getAccessToken())
-                    Log.d(TAG, "refresh token"+prefs.getRefreshToken())
+                    if(data.body()!!.data?.isExist == true){
+                        userExist.postValue(true)
+                    }else{
+                        userExist.postValue(false)
+                    }
                 }
                 else -> {
                     Log.i(CODE_TAG,"FAIL -> $data"+"\n"+data.errorBody())
@@ -59,19 +61,15 @@ class SmsViewModel @Inject constructor(private val repository: SmsRepository, pr
         }
     }
 
-    fun login(){
+    fun postLogin(){
         viewModelScope.launch {
             val data = repository.postLogin(prefs.getVerifyToken())
             when (data.isSuccessful) {
                 true -> {
                     tokenResponse.postValue(data.body())
                     Log.i(LOGIN_TAG,"SUCCESS -> $data")
-
                     prefs.setRefreshToken(data.body()?.refresh_token)
                     prefs.setAccessToken(data.body()?.access_token)
-                    Log.d(TAG, "verify token"+prefs.getVerifyToken())
-                    Log.d(TAG, "access token"+prefs.getAccessToken())
-                    Log.d(TAG, "refresh token"+prefs.getRefreshToken())
                 }
                 else -> {
                     Log.i(LOGIN_TAG,"FAIL -> $data")

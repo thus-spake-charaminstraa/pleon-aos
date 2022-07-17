@@ -2,11 +2,8 @@ package com.charaminstra.pleon.foundation
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.charaminstra.pleon.foundation.model.SmsRequestBody
-import com.charaminstra.pleon.foundation.model.SmsResponse
-import com.charaminstra.pleon.foundation.model.TokenObject
+import android.util.Log
 import dagger.hilt.android.qualifiers.ApplicationContext
-import retrofit2.Response
 import javax.inject.Inject
 
 const val VERIFY_KEY = "verify"
@@ -20,6 +17,7 @@ class PleonPreference @Inject constructor(@ApplicationContext context : Context)
 
     fun setVerifyToken(str: String?) {
         prefs.edit().putString(VERIFY_KEY, str).apply()
+        Log.d(VERIFY_KEY, "token set : "+ getVerifyToken() )
     }
     fun getVerifyToken(): String {
         return "Bearer "+prefs.getString(VERIFY_KEY, DEFAULT).toString()
@@ -27,6 +25,7 @@ class PleonPreference @Inject constructor(@ApplicationContext context : Context)
 
     fun setAccessToken(str: String?) {
         prefs.edit().putString(ACCESS_KEY, str).apply()
+        Log.d(ACCESS_KEY, "token set : "+ getAccessToken() )
     }
     fun getAccessToken(): String {
         return "Bearer "+prefs.getString(ACCESS_KEY, DEFAULT).toString()
@@ -34,6 +33,7 @@ class PleonPreference @Inject constructor(@ApplicationContext context : Context)
 
     fun setRefreshToken(str: String?) {
         prefs.edit().putString(REFRESH_KEY, str).apply()
+        Log.d(REFRESH_KEY, "token set : "+ getRefreshToken() )
     }
     fun getRefreshToken(): String {
         return prefs.getString(REFRESH_KEY, DEFAULT).toString()

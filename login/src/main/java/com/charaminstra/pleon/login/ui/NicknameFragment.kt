@@ -40,14 +40,8 @@ class NicknameFragment : Fragment() {
     }
 
     private fun initObservers(){
-        viewModel.userCreateResponse.observe(this, Observer {
-            it.let{
-                Log.i(TAG,"userCreateDataObject"+it.toString())
-//                prefs.setAccessToken(it.token.access_token)
-//                prefs.setRefreshToken(it.token.refresh_token)
-//                Log.d(TAG, "verify token"+prefs.getVerifyToken())
-//                Log.d(TAG, "access token"+prefs.getAccessToken())
-//                Log.d(TAG, "refresh token"+prefs.getRefreshToken())
+        viewModel.userCreateSuccess.observe(this, Observer {
+            if(it == true){
                 navController.navigate(R.id.nickname_fragment_to_plant_register_fragment)
             }
         })
@@ -60,4 +54,3 @@ class NicknameFragment : Fragment() {
         }
     }
 }
-//eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIrODIxMDY2MzI5ODcyIiwiaWF0IjoxNjU3NzAyOTc5LCJleHAiOjE2NTc3MDQ3Nzl9.kk6gOQMltdu7Ll6VoVxXe_s8BPDLF2KFfQiqS-iUZig
