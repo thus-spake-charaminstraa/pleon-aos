@@ -11,7 +11,6 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.charaminstra.pleon.login.R
-import com.charaminstra.pleon.login.SplashActivity.Companion.prefs
 import com.charaminstra.pleon.login.UserCreateViewModel
 import com.charaminstra.pleon.login.databinding.FragmentNicknameBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,11 +43,11 @@ class NicknameFragment : Fragment() {
         viewModel.userCreateResponse.observe(this, Observer {
             it.let{
                 Log.i(TAG,"userCreateDataObject"+it.toString())
-                prefs.setAccessToken(it.token.access_token)
-                prefs.setRefreshToken(it.token.refresh_token)
-                Log.d(TAG, "verify token"+prefs.getVerifyToken())
-                Log.d(TAG, "access token"+prefs.getAccessToken())
-                Log.d(TAG, "refresh token"+prefs.getRefreshToken())
+//                prefs.setAccessToken(it.token.access_token)
+//                prefs.setRefreshToken(it.token.refresh_token)
+//                Log.d(TAG, "verify token"+prefs.getVerifyToken())
+//                Log.d(TAG, "access token"+prefs.getAccessToken())
+//                Log.d(TAG, "refresh token"+prefs.getRefreshToken())
                 navController.navigate(R.id.nickname_fragment_to_plant_register_fragment)
             }
         })

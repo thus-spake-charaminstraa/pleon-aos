@@ -1,17 +1,22 @@
-package com.charaminstra.pleon.common
+package com.charaminstra.pleon.foundation
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.charaminstra.pleon.foundation.model.SmsRequestBody
+import com.charaminstra.pleon.foundation.model.SmsResponse
+import com.charaminstra.pleon.foundation.model.TokenObject
+import dagger.hilt.android.qualifiers.ApplicationContext
+import retrofit2.Response
+import javax.inject.Inject
 
 const val VERIFY_KEY = "verify"
 const val ACCESS_KEY = "access"
 const val REFRESH_KEY = "refresh"
 const val DEFAULT = "default"
 
-class PreferenceUtil(context: Context) {
+class PleonPreference @Inject constructor(@ApplicationContext context : Context){
 
-    private val prefs: SharedPreferences =
-        context.getSharedPreferences("prefs_name", Context.MODE_PRIVATE)
+    private val prefs: SharedPreferences = context.getSharedPreferences("prefs_name", Context.MODE_PRIVATE)
 
     fun setVerifyToken(str: String?) {
         prefs.edit().putString(VERIFY_KEY, str).apply()

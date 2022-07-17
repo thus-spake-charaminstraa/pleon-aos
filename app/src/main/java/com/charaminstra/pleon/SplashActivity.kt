@@ -1,21 +1,20 @@
-package com.charaminstra.pleon.login
+package com.charaminstra.pleon
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import com.charaminstra.pleon.common.PreferenceUtil
+import com.charaminstra.pleon.foundation.PleonPreference
+import com.charaminstra.pleon.login.AuthViewModel
+import com.charaminstra.pleon.login.R
+import com.charaminstra.pleon.login.startHomeActivity
 import com.charaminstra.pleon.login.ui.LoginActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SplashActivity : AppCompatActivity() {
-    companion object {
-        lateinit var prefs: PreferenceUtil
-    }
     private val TAG = javaClass.name
     private val viewModel: AuthViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,7 +22,7 @@ class SplashActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_splash)
 
-        prefs= PreferenceUtil(this)
+        val prefs=PleonPreference(applicationContext)
         Log.d(TAG, "verify token"+prefs.getVerifyToken())
         Log.d(TAG, "access token"+prefs.getAccessToken())
         Log.d(TAG, "refresh token"+prefs.getRefreshToken())
