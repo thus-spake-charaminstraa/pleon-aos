@@ -2,6 +2,7 @@ package com.charaminstra.pleon.login
 
 import android.content.ContentValues.TAG
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -20,11 +21,15 @@ const val LOGIN_TAG = "sms view model : login"
 @HiltViewModel
 class SmsViewModel @Inject constructor(private val repository: SmsRepository, private val prefs: PleonPreference) : ViewModel() {
 
-    //var phoneResponse = MutableLiveData<SmsResponse>()
-    var phoneResponse = MutableLiveData<Boolean>()
-    var codeResponse = MutableLiveData<Boolean>()
-    var userExist = MutableLiveData<Boolean>()
-    val tokenResponse = MutableLiveData<TokenObject>()
+    private var _phoneResponse = MutableLiveData<Boolean>()
+    val phoneResponse : LiveData<Boolean> = _phoneResponse
+
+    private var _codeResponse = MutableLiveData<Boolean>()
+    val codeResponse : LiveData<Boolean> = _codeResponse
+
+    private var _userExist = MutableLiveData<Boolean>()
+    val userExist : LiveData<Boolean> = _userExist
+
 
     fun postPhoneNum(phone: String){
         viewModelScope.launch {
@@ -32,11 +37,10 @@ class SmsViewModel @Inject constructor(private val repository: SmsRepository, pr
             Log.i(PHONE_TAG,"post phone num response -> $data")
             when (data.isSuccessful) {
                 true -> {
-                    phoneResponse.postValue(true)
-//                    phoneResponse.postValue(data.body())
+                    _phoneResponse.postValue(true)
                 }
                 else -> {
-                    phoneResponse.postValue(false)
+                    _phoneResponse.postValue(false)
                 }
             }
         }
@@ -44,14 +48,14 @@ class SmsViewModel @Inject constructor(private val repository: SmsRepository, pr
     fun postCode(phone: String, code:String){
         viewModelScope.launch {
             val data = repository.postCode(phone,code)
-            codeResponse.postValue(data.body()?.success)
+            _codeResponse.postValue(data.body()?.success)
             when (data.body()?.success) {
                 true -> {
                     prefs.setVerifyToken(data.body()?.data?.verify_token)
                     if(data.body()!!.data?.isExist == true){
-                        userExist.postValue(true)
+                        _userExist.postValue(true)
                     }else{
-                        userExist.postValue(false)
+                        _userExist.postValue(false)
                     }
                 }
                 else -> {
@@ -66,8 +70,6 @@ class SmsViewModel @Inject constructor(private val repository: SmsRepository, pr
             val data = repository.postLogin(prefs.getVerifyToken())
             when (data.isSuccessful) {
                 true -> {
-                    tokenResponse.postValue(data.body())
-                    Log.i(LOGIN_TAG,"SUCCESS -> $data")
                     prefs.setRefreshToken(data.body()?.refresh_token)
                     prefs.setAccessToken(data.body()?.access_token)
                 }

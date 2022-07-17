@@ -1,6 +1,7 @@
 package com.charaminstra.pleon.login
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -14,13 +15,13 @@ import javax.inject.Inject
 @HiltViewModel
 class UserCreateViewModel @Inject constructor(private val repository: UserCreateRepository, private val prefs: PleonPreference) : ViewModel() {
     private val TAG = javaClass.simpleName
-//    val userCreateResponse = MutableLiveData<UserCreateDataObejct>()
-    val userCreateSuccess = MutableLiveData<Boolean?>()
+    private var _userCreateSuccess = MutableLiveData<Boolean?>()
+    val userCreateSuccess : LiveData<Boolean?> = _userCreateSuccess
     fun userCreate(name: String){
         viewModelScope.launch {
             val data = repository.postNickname(name,prefs.getVerifyToken())
             Log.i(TAG,"data -> $data")
-            userCreateSuccess.postValue(data.body()?.success)
+            _userCreateSuccess.postValue(data.body()?.success)
             when (data.body()?.success) {
                 true -> {
                     //userCreateResponse.postValue(data.body()?.data!!)

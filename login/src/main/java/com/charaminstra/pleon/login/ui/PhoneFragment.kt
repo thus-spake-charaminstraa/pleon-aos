@@ -70,8 +70,6 @@ class PhoneFragment : Fragment() {
                 })
             }
         })
-        /* 기존 회원 */
-        viewModel.tokenResponse.observe(this, Observer {})
     }
     private fun initListeners(){
         binding.phoneBtn.setOnClickListener {

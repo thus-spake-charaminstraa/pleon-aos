@@ -1,6 +1,7 @@
 package com.charaminstra.pleon.login
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -18,7 +19,8 @@ class AuthViewModel @Inject constructor(
     private val repository: AuthRepository) : ViewModel() {
 
     private val TAG = javaClass.name
-    private val authSuccess = MutableLiveData<Boolean>()
+    private val _authSuccess = MutableLiveData<Boolean>()
+    val authSuccess : LiveData<Boolean> = _authSuccess
     fun getData() = authSuccess
 
     init {
@@ -32,11 +34,11 @@ class AuthViewModel @Inject constructor(
             Log.i(TAG, "data -> $data")
             when (data.isSuccessful) {
                 true -> {
-                    authSuccess.postValue(true)
+                    _authSuccess.postValue(true)
                     Log.i(TAG,"SUCCESS -> "+ data.toString())
                 }
                 else -> {
-                    authSuccess.postValue(false)
+                    _authSuccess.postValue(false)
                     Log.i(TAG,"FAIL -> "+ data.toString())
                 }
             }
