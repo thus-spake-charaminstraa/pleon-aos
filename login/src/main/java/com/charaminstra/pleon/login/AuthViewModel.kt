@@ -10,6 +10,9 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+
+const val SPLASH_VIEW_TIME_DURATION = 1000L
+
 @HiltViewModel
 class AuthViewModel @Inject constructor(
     private val repository: AuthRepository) : ViewModel() {
@@ -24,7 +27,7 @@ class AuthViewModel @Inject constructor(
 
     fun loadAuth(){
         viewModelScope.launch {
-            delay(1000)
+            delay(SPLASH_VIEW_TIME_DURATION)
             val data = repository.getAuth()
             Log.i(TAG, "data -> $data")
             when (data.isSuccessful) {
