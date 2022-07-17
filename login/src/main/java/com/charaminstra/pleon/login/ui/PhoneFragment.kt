@@ -50,16 +50,15 @@ class PhoneFragment : Fragment() {
 
     private fun initObservers(){
         viewModel.phoneResponse.observe(this, Observer {
-            it.let{
-                Log.d("PhoneResponse", it.toString())
-                if(it.success == true){
-                    Toast.makeText(context,"인증번호가 문자로 전송되었습니다.",Toast.LENGTH_SHORT)
-                }
+            if(it){
+                binding.codeEt.visibility = View.VISIBLE
+                binding.checkBtn.visibility = View.VISIBLE
+                binding.phoneBtn.isClickable = false
             }
         })
         viewModel.liveData.observe(this, Observer {
             it?.let{
-                Log.i("PhoneFragment",it.toString())
+                Log.i(TAG,"$it")
                 prefs.setVerifyToken(it.verify_token)
                 Log.d(TAG, "verify token"+prefs.getVerifyToken())
                 Log.d(TAG, "access token"+prefs.getAccessToken())
@@ -88,10 +87,8 @@ class PhoneFragment : Fragment() {
     private fun initListeners(){
         binding.phoneBtn.setOnClickListener {
             var phone = binding.phoneEt.text.toString()
-            binding.codeEt.visibility = View.VISIBLE
-            binding.checkBtn.visibility = View.VISIBLE
-            //viewModel.postPhoneNum(phone)
-            it.isClickable = false
+            viewModel.postPhoneNum(phone)
+
         }
         binding.checkBtn.setOnClickListener {
             var phone = binding.phoneEt.text.toString()

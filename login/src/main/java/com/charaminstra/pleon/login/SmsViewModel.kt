@@ -19,20 +19,22 @@ const val LOGIN_TAG = "sms view model : login"
 @HiltViewModel
 class SmsViewModel @Inject constructor(private val repository: SmsRepository) : ViewModel() {
 
-    var phoneResponse = MutableLiveData<SmsResponse>()
+    //var phoneResponse = MutableLiveData<SmsResponse>()
+    var phoneResponse = MutableLiveData<Boolean>()
     var liveData = MutableLiveData<DataObject?>()
     val tokenResponse = MutableLiveData<TokenObject>()
 
     fun postPhoneNum(phone: String){
         viewModelScope.launch {
             val data =repository.postPhoneNum(phone)
+            Log.i(PHONE_TAG,"post phone num response -> $data")
             when (data.isSuccessful) {
                 true -> {
-                    phoneResponse.postValue(data.body())
-                    Log.i(PHONE_TAG,"SUCCESS -> $data")
+                    phoneResponse.postValue(true)
+//                    phoneResponse.postValue(data.body())
                 }
                 else -> {
-                    Log.i(PHONE_TAG,"FAIL -> $data")
+                    phoneResponse.postValue(false)
                 }
             }
         }
