@@ -1,14 +1,14 @@
 package com.charaminstra.pleon.foundation.model
 
 data class AuthResponse(
-    var success: Boolean?,
-    var statusCode: Int?,
-    var data: authDataObejct?
+    val success: Boolean?,
+    val statusCode: Int?,
+    val data: authDataObejct?
 
 )
 
 data class authDataObejct(
-    var id: String,
-    var nickname: String,
-    var phone: String
+    val id: String?,
+    val nickname: String?,
+    val phone: String?
 )

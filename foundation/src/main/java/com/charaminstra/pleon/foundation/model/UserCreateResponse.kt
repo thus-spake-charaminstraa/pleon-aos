@@ -1,23 +1,23 @@
 package com.charaminstra.pleon.foundation.model
 
 data class UserCreateResponse(
-    var success: Boolean?,
-    var statusCode: Int?,
-    var data: UserCreateDataObejct?
+    val success: Boolean?,
+    val statusCode: Int?,
+    val data: UserCreateDataObejct?
 
 )
 
 data class UserCreateDataObejct(
-    var user : UserObject,
-    var token : TokenObject
+    val user : UserObject,
+    val token : TokenObject
 )
 
 data class UserObject(
-    var id: String,
-    var nickname: String,
+    val id: String,
+    val nickname: String,
 )
 
 data class TokenObject(
-    var access_token: String,
-    var refresh_token: String
+    val access_token: String,
+    val refresh_token: String
 )
