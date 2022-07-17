@@ -20,7 +20,6 @@
             <option value="$PROJECT_DIR$/plant-ar" />
           </set>
         </option>
-        <option name="resolveModulePerSourceSet" value="false" />
       </GradleProjectSettings>
     </option>
   </component>

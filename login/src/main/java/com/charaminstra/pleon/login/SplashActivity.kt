@@ -16,6 +16,7 @@ class SplashActivity : AppCompatActivity() {
     companion object {
         lateinit var prefs: PreferenceUtil
     }
+    private val TAG = javaClass.name
     private val viewModel: AuthViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,36 +24,20 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         prefs= PreferenceUtil(this)
-        Log.d("SplashActivity", "verify token"+prefs.getVerifyToken())
-        Log.d("SplashActivity", "access token"+prefs.getAccessToken())
-        Log.d("SplashActivity", "refresh token"+prefs.getRefreshToken())
+        Log.d(TAG, "verify token"+prefs.getVerifyToken())
+        Log.d(TAG, "access token"+prefs.getAccessToken())
+        Log.d(TAG, "refresh token"+prefs.getRefreshToken())
 
         viewModel.getData().observe(this, Observer {
-            Log.d("SplashActivity", "t.isSuccessful : "+it.isSuccessful)
-            if(it.isSuccessful){
-                Log.d("SplashActivity", "t.isSuccessful : "+it.isSuccessful)
+            Log.d(TAG, "from auth view model get data: $it")
+            if(it){
                 startHomeActivity(this)
                 finish()
             }else{
-                Log.d("SplashActivity", "fail : go login")
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
                 finish()
             }
         })
-
-//        val TEST = false
-//
-//        val handler = Handler()
-//        handler.postDelayed(Runnable {
-//            if(TEST){
-//                startHomeActivity(this)
-//            }else{
-//                val intent = Intent(this, LoginActivity::class.java)
-//                startActivity(intent)
-//                finish()
-//            }
-//        }, 1000) //딜레이 타임 조절
-
     }
 }

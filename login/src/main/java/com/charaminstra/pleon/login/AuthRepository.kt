@@ -7,5 +7,4 @@ import javax.inject.Inject
 
 class AuthRepository @Inject constructor(private val service: APIInterface)  {
     suspend fun getAuth() = service.getAuth(accessToken = prefs.getAccessToken())
-    //suspend fun getAuth() = service.getAuth(accessToken = prefs.getAccessToken())
 }
