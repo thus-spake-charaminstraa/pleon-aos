@@ -20,20 +20,8 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object NetWorkService{
+object NetWorkModule{
     private const val BASE_URL ="http://43.200.108.240:8000"
-
-//    fun getInterceptor(token: String): Interceptor {
-//        val interceptor = Interceptor { chain ->
-//            val request = chain.request()
-//            val newRequest = request.newBuilder()
-//                .addHeader("Authorization", "Bearer "+token)
-//                .build()
-//            chain.proceed(newRequest)
-//        }
-//        return interceptor
-//    }
-
 
     @Provides
     @Singleton
@@ -56,17 +44,13 @@ object NetWorkService{
 
     @Provides
     @Singleton
-    fun provideApiService(retrofit: Retrofit): APIInterface {
-        return retrofit.create(APIInterface::class.java)
+    fun provideApiService(retrofit: Retrofit): APIService {
+        return retrofit.create(APIService::class.java)
     }
 
-
-    //retrofit 객체 생성
-//    val retrofit = Retrofit.Builder()
-//        .baseUrl(BASE_URL)
-//        .addConverterFactory(GsonConverterFactory.create())
-//        .build()
-
-    // 서비스 객체 얻기
-//    val api: APIInterface = retrofit.create(APIInterface::class.java)
+    @Provides
+    @Singleton
+    fun provideAuthApiService(retrofit: Retrofit): AuthAPIService {
+        return retrofit.create(AuthAPIService::class.java)
+    }
 }

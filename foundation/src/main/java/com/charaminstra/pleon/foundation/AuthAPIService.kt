@@ -1,13 +1,16 @@
 package com.charaminstra.pleon.foundation
 
-import com.charaminstra.pleon.foundation.model.*
+import com.charaminstra.pleon.foundation.model.AuthResponse
+import com.charaminstra.pleon.foundation.model.SmsRequestBody
+import com.charaminstra.pleon.foundation.model.SmsResponse
+import com.charaminstra.pleon.foundation.model.TokenObject
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
 
-interface APIInterface{
+interface AuthAPIService {
     @GET("auth/me")
     suspend fun getAuth(
         @Header("Authorization") accessToken:String,
@@ -22,13 +25,6 @@ interface APIInterface{
     suspend fun postCode(
         @Body smsRequestBody: SmsRequestBody
     ): Response<SmsResponse>
-
-    /* create user */
-    @POST("user")
-    suspend fun postName(
-        @Header("Authorization") verifyToken:String,
-        @Body userCreateRequestBody: UserCreateRequestBody
-    ): Response<UserCreateResponse>
 
     /* login */
     @POST("auth/login")
