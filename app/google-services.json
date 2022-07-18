@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "204401391306",
+    "project_id": "pleon-android",
+    "storage_bucket": "pleon-android.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:204401391306:android:7598d98e83b6cbcdd36633",
+        "android_client_info": {
+          "package_name": "com.charaminstra.pleon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "204401391306-uvi21ttga66kt3ptf1tj6i1g4p2hq9tj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.charaminstra.pleon",
+            "certificate_hash": "a3a9b45d94ad9b3a9ee5809c02b13aae66e4d838"
+          }
+        },
+        {
+          "client_id": "204401391306-vhlh9b8rqktm48rqcrm90nld6i6rgv99.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEXtJ8W_X6Mk0f49S9tsbcfOz3u5pNTlY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "204401391306-vhlh9b8rqktm48rqcrm90nld6i6rgv99.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
