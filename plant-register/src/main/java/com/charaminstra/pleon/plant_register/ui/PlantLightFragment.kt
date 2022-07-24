@@ -1,4 +1,4 @@
-package com.charaminstra.pleon.login.ui
+package com.charaminstra.pleon.plant_register.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.charaminstra.pleon.login.R
-import com.charaminstra.pleon.login.databinding.FragmentPlantPlaceBinding
+import com.charaminstra.pleon.plant_register.R
+import com.charaminstra.pleon.plant_register.databinding.FragmentPlantLightBinding
 
 class PlantPlaceFragment : Fragment() {
 
@@ -15,11 +15,12 @@ class PlantPlaceFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentPlantPlaceBinding.inflate(inflater, container, false)
+        val binding = FragmentPlantLightBinding.inflate(inflater, container, false)
         val navController = this.findNavController()
-        binding.completeBtn.setOnClickListener {
-            navController.navigate(R.id.plant_place_fragment_to_welcome_fragment)
-        }
+
+//        binding.completeBtn.setOnClickListener {
+//            navController.navigate(R.id.plant_place_fragment_to_welcome_fragment)
+//        }
         return binding.root
     }
 

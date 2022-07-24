@@ -1,4 +1,4 @@
-package com.charaminstra.pleon.login.ui
+package com.charaminstra.pleon.plant_register.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,8 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.charaminstra.pleon.login.R
-import com.charaminstra.pleon.login.databinding.FragmentPlantRegisterBinding
+import com.charaminstra.pleon.plant_register.R
+import com.charaminstra.pleon.plant_register.databinding.FragmentPlantRegisterBinding
 
 class PlantRegisterFragment : Fragment() {
     override fun onCreateView(
@@ -21,14 +21,19 @@ class PlantRegisterFragment : Fragment() {
             navController.popBackStack()
         }
         binding.skipBtn.setOnClickListener {
-            //PreferenceUtil.setString("token", "01234")
             startHomeActivity()
         }
-        binding.nextBtn.setOnClickListener {
-            navController.navigate(R.id.plant_register_fragment_to_plant_place_fragment)
-        }
+//        binding.nextBtn.setOnClickListener {
+//            navController.navigate(R.id.plant_register_fragment_to_plant_place_fragment)
+//        }
         binding.cameraBtn.setOnClickListener {
         }
+
+        val plant_species = binding.speciesInput.text
+        val plant_name = binding.nameInput.text
+        val plant_adopt_day = binding.adoptDayInput.text
+        val plant_water_day = binding.waterDayInput.text
+
         return binding.root
     }
     private fun startHomeActivity() {

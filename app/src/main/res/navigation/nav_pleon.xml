@@ -6,6 +6,7 @@
     app:startDestination="@id/view_pager_fragment">
 
     <include app:graph="@navigation/nav_login"/>
+    <include app:graph="@navigation/nav_plant_register"/>
 
     <fragment
         android:id="@+id/view_pager_fragment"
@@ -15,6 +16,7 @@
             android:id="@+id/action_view_pager_fragment_to_login_graph"
             app:destination="@id/nav_login"/>
     </fragment>
+
 
 
 <!--    <fragment-->
