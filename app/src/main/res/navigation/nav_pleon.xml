@@ -43,7 +43,7 @@
 <!--    </fragment>-->
 <!--    <fragment-->
 <!--        android:id="@+id/plant_register_fragment"-->
-<!--        android:name="com.charaminstra.pleon.login.ui.PlantRegisterFragment"-->
+<!--        android:name="com.charaminstra.pleon.plant_register.ui.PlantRegisterFragment"-->
 <!--        tools:layout="@layout/fragment_plant_register">-->
 <!--        <action-->
 <!--            android:id="@+id/plant_register_fragment_to_jump"-->

@@ -1,8 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="loginTitle" parent="@android:style/Widget.TextView">
+    <style name="TitleText" parent="@android:style/Widget.TextView">
         <item name="android:textSize">20dp</item>
     </style>
-    <style name="loginSub" parent="@android:style/Widget.TextView">
+    <style name="SubText" parent="@android:style/Widget.TextView">
         <item name="android:textSize">15dp</item>
     </style>
 

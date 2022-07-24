@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/plant_register_fragment"
-        android:name="com.charaminstra.pleon.login.ui.PlantRegisterFragment"
+        android:name="com.charaminstra.pleon.plant_register.ui.PlantRegisterFragment"
         tools:layout="@layout/fragment_plant_register">
 <!--        <action-->
 <!--            android:id="@+id/plant_register_fragment_to_jump"-->
@@ -44,8 +44,8 @@
     </fragment>
     <fragment
         android:id="@+id/plant_place_fragment"
-        android:name="com.charaminstra.pleon.login.ui.PlantPlaceFragment"
-        tools:layout="@layout/fragment_plant_place">
+        android:name="com.charaminstra.pleon.plant_register.ui.PlantPlaceFragment"
+        tools:layout="@layout/fragment_plant_light">
         <action
             android:id="@+id/plant_place_fragment_to_welcome_fragment"
             app:destination="@+id/welcome_fragment"/>

@@ -8,7 +8,7 @@
     android:paddingHorizontal="20dp"
     android:orientation="vertical"
     android:paddingTop="44dp"
-    tools:context=".ui.PlantRegisterFragment">
+    tools:context="com.charaminstra.pleon.plant_register.ui.PlantRegisterFragment">
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/back_btn"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -48,6 +48,7 @@
         android:orientation="horizontal">
 
         <EditText
+            android:id="@+id/species_input"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="30dp"
@@ -76,14 +77,14 @@
         app:layout_constraintTop_toBottomOf="@+id/species_bt"
         android:text="@string/name_title"/>
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/name_et"
+        android:id="@+id/name_input"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="5dp"
         android:inputType="textCapCharacters"
         android:background="@drawable/input"
         android:padding="15dp"
-        style="@style/loginSub"
+        style="@style/SubText"
         android:hint="@string/name_hint"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name_title"/>
@@ -94,17 +95,17 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name_et"
+        app:layout_constraintTop_toBottomOf="@+id/name_input"
         android:text="@string/adopt_day_title"/>
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/adopt_day_et"
+        android:id="@+id/adopt_day_input"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="5dp"
         android:inputType="textCapCharacters"
         android:background="@drawable/input"
         android:padding="15dp"
-        style="@style/loginSub"
+        style="@style/SubText"
         android:hint="@string/adopt_day_hint"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/adopt_day_title"/>
@@ -115,17 +116,17 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/adopt_day_et"
+        app:layout_constraintTop_toBottomOf="@+id/adopt_day_input"
         android:text="@string/water_day_title"/>
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/water_day_et"
+        android:id="@+id/water_day_input"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="5dp"
         android:inputType="textCapCharacters"
         android:background="@drawable/input"
         android:padding="15dp"
-        style="@style/loginSub"
+        style="@style/SubText"
         android:hint="@string/water_day_hint"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/water_day_title"/>
@@ -136,9 +137,9 @@
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/water_day_et"
+        app:layout_constraintTop_toBottomOf="@+id/water_day_input"
         android:background="@drawable/button"
-        style="@style/loginSub"
+        style="@style/SubText"
         android:text="@string/next_btn" />
     <TextView
         android:id="@+id/skip_btn"
@@ -148,6 +149,6 @@
         android:gravity="center"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/next_btn"
-        style="@style/loginSub"
+        style="@style/SubText"
         android:text="@string/skip_btn" />
 </androidx.constraintlayout.widget.ConstraintLayout>
