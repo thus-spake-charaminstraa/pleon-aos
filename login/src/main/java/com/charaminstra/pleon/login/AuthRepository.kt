@@ -6,5 +6,5 @@ import com.charaminstra.pleon.foundation.PleonPreference
 import javax.inject.Inject
 
 class AuthRepository @Inject constructor(private val service: AuthAPIService, private val prefs: PleonPreference)  {
-    suspend fun getAuth() = service.getAuth(accessToken = prefs.getAccessToken())
+    suspend fun getAuth() = service.getAuth(prefs.getAccessToken())
 }
