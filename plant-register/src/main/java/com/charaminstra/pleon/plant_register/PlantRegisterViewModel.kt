@@ -29,32 +29,32 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantRe
     fun setName(value: String) {
         name.value = value
     }
-    fun getSpecies(): String? {
-        return species.value
+    fun getSpecies(): LiveData<String> {
+        return species
     }
     fun setSpecies(value: String) {
         species.value = value
     }
-    fun getWater_date(): String? {
-        return water_date.value
+    fun getWater_date(): LiveData<String> {
+        return water_date
     }
     fun setWater_date(value: String) {
         water_date.value = value
     }
-    fun getAdopt_date(): String? {
-        return adopt_date.value
+    fun getAdopt_date(): LiveData<String> {
+        return adopt_date
     }
     fun setAdopt_date(value: String) {
         adopt_date.value = value
     }
-    fun getLight(): String? {
-        return light.value
+    fun getLight(): LiveData<String> {
+        return light
     }
     fun setLight(value: String) {
         light.value = value
     }
-    fun getAir(): String? {
-        return air.value
+    fun getAir(): LiveData<String> {
+        return air
     }
     fun setAir(value: String) {
         air.value = value
@@ -63,12 +63,12 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantRe
     suspend fun postPlant(){
         viewModelScope.launch {
             val data = repository.postPlant(
-                getName().toString(),
-                getSpecies().toString(),
-                getWater_date().toString(),
-                getAdopt_date().toString(),
-                getLight().toString(),
-                getAir().toString())
+                getName().value.toString(),
+                getSpecies().value.toString(),
+                getWater_date().value.toString(),
+                getAdopt_date().value.toString(),
+                getLight().value.toString(),
+                getAir().value.toString())
             _plantRegisterSuccess.postValue(data.body()?.success)
             Log.i(TAG,"FAIL -> $data"+"\n"+data)
             when (data.body()?.success) {
