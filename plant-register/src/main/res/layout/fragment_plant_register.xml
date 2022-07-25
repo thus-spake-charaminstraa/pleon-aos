@@ -25,7 +25,7 @@
         android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/back_btn"
-        style="@style/loginTitle"
+        style="@style/TitleText"
         android:text="@string/plant_register_fragment_title"/>
     <TextView
         android:id="@+id/species_title"
@@ -54,7 +54,7 @@
             android:layout_height="30dp"
             android:inputType="textCapCharacters"
             android:background="@android:color/transparent"
-            style="@style/loginSub" />
+            style="@style/SubText" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/search_btn"
@@ -97,19 +97,17 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name_input"
         android:text="@string/adopt_day_title"/>
-    <androidx.appcompat.widget.AppCompatEditText
+    <TextView
         android:id="@+id/adopt_day_input"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="5dp"
-        android:inputType="textCapCharacters"
         android:background="@drawable/input"
         android:padding="15dp"
         style="@style/SubText"
         android:hint="@string/adopt_day_hint"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/adopt_day_title"/>
-
     <TextView
         android:id="@+id/water_day_title"
         android:layout_width="wrap_content"
@@ -118,7 +116,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/adopt_day_input"
         android:text="@string/water_day_title"/>
-    <androidx.appcompat.widget.AppCompatEditText
+    <TextView
         android:id="@+id/water_day_input"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -130,6 +128,10 @@
         android:hint="@string/water_day_hint"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/water_day_title"/>
+<!--    <CalendarView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        />-->
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/next_btn"

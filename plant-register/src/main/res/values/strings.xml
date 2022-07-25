@@ -11,13 +11,13 @@
 
     <string name="plant_register_fragment_title">식물을 등록해주세요.</string>
     <string name="plant_light_fragment_title">빛을 어떻게 받고 있나요?</string>
-    <string name="light_one">BRIGHT</string>
-    <string name="light_two">HALF_BRIGHT</string>
-    <string name="light_three">LAMP</string>
-    <string name="light_four">DARK</string>
+    <string name="light_one">bright</string>
+    <string name="light_two">half_bright</string>
+    <string name="light_three">lamp</string>
+    <string name="light_four">dark</string>
 
     <string name="plant_air_fragment_title">바람이 얼마나 통하나요?</string>
-    <string name="air_one">YES</string>
-    <string name="air_two">WINDOW</string>
-    <string name="air_three">NO</string>
+    <string name="air_one">yes</string>
+    <string name="air_two">window</string>
+    <string name="air_three">no</string>
 </resources>

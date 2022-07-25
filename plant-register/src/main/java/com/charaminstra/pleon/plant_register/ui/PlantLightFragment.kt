@@ -62,19 +62,19 @@ class PlantLightFragment : Fragment() {
     }
     fun setLihgtType() : Boolean {
         if (mCheckedId == binding.lightOne.id) {
-            viewModel.setLight(R.string.light_one.toString())
+            viewModel.setLight(getString(R.string.light_one))
             Toast.makeText(requireContext(), "type1", Toast.LENGTH_SHORT).show()
             return true
         } else if (mCheckedId == binding.lightTwo.id) {
-            viewModel.setLight(R.string.light_two.toString())
+            viewModel.setLight(getString(R.string.light_two))
             Toast.makeText(requireContext(), "type2", Toast.LENGTH_SHORT).show()
             return true
         } else if (mCheckedId == binding.lightThree.id) {
-            viewModel.setLight(R.string.light_three.toString())
+            viewModel.setLight(getString(R.string.light_three))
             Toast.makeText(requireContext(), "type3", Toast.LENGTH_SHORT).show()
             return true
         } else if (mCheckedId == binding.lightFour.id) {
-            viewModel.setLight(R.string.light_four.toString())
+            viewModel.setLight(getString(R.string.light_four))
             Toast.makeText(requireContext(), "type4", Toast.LENGTH_SHORT).show()
             return true
         } else{

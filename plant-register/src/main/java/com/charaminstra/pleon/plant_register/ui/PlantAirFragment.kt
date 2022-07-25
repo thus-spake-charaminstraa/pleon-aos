@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.charaminstra.pleon.plant_register.PlantRegisterViewModel
 import com.charaminstra.pleon.plant_register.R
@@ -37,7 +38,8 @@ class PlantAirFragment : Fragment() {
         radioGroupSet()
         binding.completeBtn.setOnClickListener {
             if(setLihgtType()){
-
+                viewModel.postPlant()
+                activity?.supportFragmentManager?.beginTransaction()?.remove(this)?.commit()
             }
         }
         return binding.root
@@ -63,15 +65,15 @@ class PlantAirFragment : Fragment() {
     }
     fun setLihgtType() : Boolean {
         if (mCheckedId == binding.airOne.id) {
-            viewModel.setAir(R.string.air_one.toString())
+            viewModel.setAir(getString(R.string.air_one))
             Toast.makeText(requireContext(), "type1", Toast.LENGTH_SHORT).show()
             return true
         } else if (mCheckedId == binding.airTwo.id) {
-            viewModel.setAir(R.string.air_two.toString())
+            viewModel.setAir(getString(R.string.air_two))
             Toast.makeText(requireContext(), "type2", Toast.LENGTH_SHORT).show()
             return true
         } else if (mCheckedId == binding.airThree.id) {
-            viewModel.setAir(R.string.air_three.toString())
+            viewModel.setAir(getString(R.string.air_three))
             Toast.makeText(requireContext(), "type3", Toast.LENGTH_SHORT).show()
             return true
         } else{

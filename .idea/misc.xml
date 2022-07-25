@@ -40,6 +40,7 @@
         <entry key="foundation/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="foundation/src/main/res/xml/http.xml" value="0.1" />
         <entry key="login/src/main/res/drawable/cursor_drawble.xml" value="0.1" />
+        <entry key="login/src/main/res/drawable/dialog_datepicker.xml" value="0.208" />
         <entry key="login/src/main/res/drawable/input.xml" value="0.1" />
         <entry key="login/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="login/src/main/res/layout/activity_splash.xml" value="0.1" />
@@ -53,6 +54,8 @@
         <entry key="plant-ar/src/main/res/layout-ar/camera_fragmnet.xml" value="0.21875" />
         <entry key="plant-ar/src/main/res/layout/fragment_camera.xml" value="0.21770833333333334" />
         <entry key="plant-register/src/main/res/drawable/choose_button.xml" value="0.1375" />
+        <entry key="plant-register/src/main/res/drawable/ic_camera.xml" value="0.1345" />
+        <entry key="plant-register/src/main/res/drawable/ic_search.xml" value="0.1345" />
         <entry key="plant-register/src/main/res/drawable/press_button.xml" value="0.1" />
         <entry key="plant-register/src/main/res/drawable/unpress_button.xml" value="0.1" />
         <entry key="plant-register/src/main/res/layout/activity_plant_register.xml" value="0.1" />

@@ -60,7 +60,7 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantRe
         air.value = value
     }
 
-    suspend fun postPlant(){
+    fun postPlant(){
         viewModelScope.launch {
             val data = repository.postPlant(
                 getName().value.toString(),
@@ -70,13 +70,14 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantRe
                 getLight().value.toString(),
                 getAir().value.toString())
             _plantRegisterSuccess.postValue(data.body()?.success)
-            Log.i(TAG,"FAIL -> $data"+"\n"+data)
-            when (data.body()?.success) {
-                true -> {
-                }
-                else -> {
-                }
-            }
+            Log.i(TAG,"DATA -> $data"+"\n"+data)
+            Log.i(TAG,"DATA.body -> $data"+"\n"+data.body())
+//            when (data.body()?.success) {
+//                true -> {
+//                }
+//                else -> {
+//                }
+//            }
         }
     }
 }

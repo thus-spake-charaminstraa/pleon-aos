@@ -36,7 +36,7 @@ class PleonPreference @Inject constructor(@ApplicationContext context : Context)
         Log.d(REFRESH_KEY, "token set : "+ getRefreshToken() )
     }
     fun getRefreshToken(): String {
-        return prefs.getString(REFRESH_KEY, DEFAULT).toString()
+        return "Bearer "+prefs.getString(REFRESH_KEY, DEFAULT).toString()
     }
 
     fun delete() {
