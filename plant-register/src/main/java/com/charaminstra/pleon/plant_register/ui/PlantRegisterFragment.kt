@@ -6,11 +6,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.charaminstra.pleon.plant_register.PlantRegisterViewModel
 import com.charaminstra.pleon.plant_register.R
 import com.charaminstra.pleon.plant_register.databinding.FragmentPlantRegisterBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class PlantRegisterFragment : Fragment() {
+    private val viewModel: PlantRegisterViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -18,30 +24,23 @@ class PlantRegisterFragment : Fragment() {
         val binding = FragmentPlantRegisterBinding.inflate(inflater, container, false)
         val navController = this.findNavController()
         binding.backBtn.setOnClickListener {
-            navController.popBackStack()
+            activity?.finish()
         }
-        binding.skipBtn.setOnClickListener {
-            startHomeActivity()
-        }
-//        binding.nextBtn.setOnClickListener {
-//            navController.navigate(R.id.plant_register_fragment_to_plant_place_fragment)
+//        binding.skipBtn.setOnClickListener {
+//            startHomeActivity()
 //        }
-        binding.cameraBtn.setOnClickListener {
+        binding.nextBtn.setOnClickListener {
+            viewModel.setName(binding.nameInput.text.toString())
+            viewModel.setSpecies(binding.speciesInput.text.toString())
+            viewModel.setAdopt_date(binding.adoptDayInput.text.toString())
+            viewModel.setWater_date(binding.waterDayInput.text.toString())
+            navController.navigate(R.id.plant_register_fragment_to_plant_light_fragment)
         }
+//        binding.cameraBtn.setOnClickListener {
+//        }
 
-        val plant_species = binding.speciesInput.text
-        val plant_name = binding.nameInput.text
-        val plant_adopt_day = binding.adoptDayInput.text
-        val plant_water_day = binding.waterDayInput.text
+
 
         return binding.root
-    }
-    private fun startHomeActivity() {
-        val intent = Intent(
-            requireContext(),
-            Class.forName("com.charaminstra.pleon.HomeActivity")
-        )
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-        startActivity(intent)
     }
 }

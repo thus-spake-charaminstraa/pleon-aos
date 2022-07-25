@@ -53,4 +53,10 @@ object NetWorkModule{
     fun provideAuthApiService(retrofit: Retrofit): AuthAPIService {
         return retrofit.create(AuthAPIService::class.java)
     }
+
+    @Provides
+    @Singleton
+    fun providePlantApiService(retrofit: Retrofit): PlantAPIService {
+        return retrofit.create(PlantAPIService::class.java)
+    }
 }

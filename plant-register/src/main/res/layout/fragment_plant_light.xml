@@ -8,7 +8,7 @@
     android:paddingHorizontal="20dp"
     android:orientation="vertical"
     android:paddingTop="44dp"
-    tools:context="com.charaminstra.pleon.plant_register.ui.PlantPlaceFragment">
+    tools:context="com.charaminstra.pleon.plant_register.ui.PlantLightFragment">
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/back_btn"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -26,7 +26,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/back_btn"
         style="@style/TitleText"
-        android:text="@string/plant_place_fragment_title"/>
+        android:text="@string/plant_light_fragment_title"/>
 
     <TableLayout
         android:layout_width="match_parent"
