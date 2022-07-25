@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.charaminstra.pleon.plant_register.PlantRegisterViewModel
+import com.charaminstra.pleon.plant_register.R
 import com.charaminstra.pleon.plant_register.databinding.FragmentPlantLightBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -30,39 +31,54 @@ class PlantLightFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val navController = this.findNavController()
-
-        binding.rg1.setOnCheckedChangeListener { radioGroup, checkedId ->
-            if (checkedId != -1 && isChecking) {
-                isChecking = false
-                binding.rg2.clearCheck()
-                mCheckedId = checkedId
-            }
-            isChecking = true
+        binding.backBtn.setOnClickListener {
+            navController.popBackStack()
         }
-        binding.rg2.setOnCheckedChangeListener { radioGroup, checkedId ->
-            if (checkedId != -1 && isChecking) {
-                isChecking = false
-                binding.rg1.clearCheck()
-                mCheckedId = checkedId
-            }
-            isChecking = true
-        }
-
+        radioGroupSet()
         binding.completeBtn.setOnClickListener {
-            showType(it)
-            //navController.navigate(R.id.plant_place_fragment_to_welcome_fragment)
+            if(setLihgtType()){
+                navController.navigate(R.id.plant_light_fragment_to_plant_air_fragment)
+            }
         }
         return binding.root
     }
-    fun showType(view: View?) {
-        if (mCheckedId === binding.lightOne.id) {
+    fun radioGroupSet(){
+        binding.lightRg1.setOnCheckedChangeListener { radioGroup, checkedId ->
+            if (checkedId != -1 && isChecking) {
+                isChecking = false
+                binding.lightRg2.clearCheck()
+                mCheckedId = checkedId
+            }
+            isChecking = true
+        }
+        binding.lightRg2.setOnCheckedChangeListener { radioGroup, checkedId ->
+            if (checkedId != -1 && isChecking) {
+                isChecking = false
+                binding.lightRg1.clearCheck()
+                mCheckedId = checkedId
+            }
+            isChecking = true
+        }
+    }
+    fun setLihgtType() : Boolean {
+        if (mCheckedId == binding.lightOne.id) {
+            viewModel.setLight(R.string.light_one.toString())
             Toast.makeText(requireContext(), "type1", Toast.LENGTH_SHORT).show()
-        } else if (mCheckedId === binding.lightTwo.id) {
+            return true
+        } else if (mCheckedId == binding.lightTwo.id) {
+            viewModel.setLight(R.string.light_two.toString())
             Toast.makeText(requireContext(), "type2", Toast.LENGTH_SHORT).show()
-        } else if (mCheckedId === binding.lightThree.id) {
+            return true
+        } else if (mCheckedId == binding.lightThree.id) {
+            viewModel.setLight(R.string.light_three.toString())
             Toast.makeText(requireContext(), "type3", Toast.LENGTH_SHORT).show()
-        } else if (mCheckedId === binding.lightFour.id) {
+            return true
+        } else if (mCheckedId == binding.lightFour.id) {
+            viewModel.setLight(R.string.light_four.toString())
             Toast.makeText(requireContext(), "type4", Toast.LENGTH_SHORT).show()
+            return true
+        } else{
+            return false
         }
     }
 }

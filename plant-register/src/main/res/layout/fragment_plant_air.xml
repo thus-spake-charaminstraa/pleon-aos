@@ -28,46 +28,56 @@
         style="@style/TitleText"
         android:text="@string/plant_air_fragment_title"/>
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <RadioGroup
+        android:id="@+id/air_rg1"
         android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title"
-        android:id="@+id/table">
-        <TableRow
-            android:layout_gravity="center"
-            android:gravity="center">
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/place_one"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_margin="10dp"
-                android:background="@drawable/input" />
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/place_two"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_margin="10dp"
-                android:background="@drawable/input" />
-        </TableRow>
-        <TableRow
-            android:layout_gravity="center"
-            android:gravity="center">
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/place_three"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:background="@drawable/input"
-                android:layout_margin="10dp" />
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/place_four"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:background="@drawable/input"
-                android:layout_margin="10dp"/>
-        </TableRow>
-    </TableLayout>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <RadioButton
+            android:id="@+id/air_one"
+            android:text="@string/air_one"
+            android:button="@android:color/transparent"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/choose_button_selector" />
+        <RadioButton
+            android:id="@+id/air_two"
+            android:text="@string/air_two"
+            android:button="@android:color/transparent"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@drawable/choose_button_selector" />
+    </RadioGroup>
+    <RadioGroup
+        android:id="@+id/air_rg2"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/air_rg1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <RadioButton
+            android:id="@+id/air_three"
+            android:text="@string/air_three"
+            android:button="@android:color/transparent"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@drawable/choose_button_selector"
+            android:layout_marginRight="10dp" />
+        <RadioButton
+            android:id="@+id/air_four"
+            android:enabled="false"
+            android:button="@android:color/transparent"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@drawable/choose_button_selector" />
+    </RadioGroup>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/complete_btn"
@@ -75,7 +85,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/table"
+        app:layout_constraintTop_toBottomOf="@+id/air_rg2"
         android:background="@drawable/button"
         style="@style/SubText"
         android:text="@string/complete_btn" />

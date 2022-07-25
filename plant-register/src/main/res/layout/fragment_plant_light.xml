@@ -29,7 +29,7 @@
         android:text="@string/plant_light_fragment_title"/>
 
     <RadioGroup
-        android:id="@+id/rg1"
+        android:id="@+id/light_rg1"
         android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -54,11 +54,11 @@
             android:background="@drawable/choose_button_selector" />
     </RadioGroup>
     <RadioGroup
-        android:id="@+id/rg2"
+        android:id="@+id/light_rg2"
         android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rg1"
+        app:layout_constraintTop_toBottomOf="@+id/light_rg1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -84,7 +84,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rg2"
+        app:layout_constraintTop_toBottomOf="@+id/light_rg2"
         android:background="@drawable/button"
         style="@style/SubText"
         android:text="@string/complete_btn" />

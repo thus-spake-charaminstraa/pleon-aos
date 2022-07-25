@@ -57,7 +57,7 @@
         <entry key="plant-register/src/main/res/drawable/unpress_button.xml" value="0.1" />
         <entry key="plant-register/src/main/res/layout/activity_plant_register.xml" value="0.1" />
         <entry key="plant-register/src/main/res/layout/fragment_plant_air.xml" value="0.1" />
-        <entry key="plant-register/src/main/res/layout/fragment_plant_light.xml" value="0.165" />
+        <entry key="plant-register/src/main/res/layout/fragment_plant_light.xml" value="0.1" />
         <entry key="plant-register/src/main/res/layout/fragment_plant_register.xml" value="0.1" />
       </map>
     </option>
