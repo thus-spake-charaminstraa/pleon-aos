@@ -1,9 +1,6 @@
 package com.charaminstra.pleon.foundation
 
-import com.charaminstra.pleon.foundation.model.AuthResponse
-import com.charaminstra.pleon.foundation.model.SmsRequestBody
-import com.charaminstra.pleon.foundation.model.SmsResponse
-import com.charaminstra.pleon.foundation.model.TokenObject
+import com.charaminstra.pleon.foundation.model.*
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -30,5 +27,5 @@ interface AuthAPIService {
     @POST("auth/login")
     suspend fun postLogin(
         @Header("Authorization") verifyToken:String,
-    ): Response<TokenObject>
+    ): Response<LoginResponse>
 }

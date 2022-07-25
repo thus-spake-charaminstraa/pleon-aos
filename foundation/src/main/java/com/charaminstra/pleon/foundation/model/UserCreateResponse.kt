@@ -4,7 +4,6 @@ data class UserCreateResponse(
     val success: Boolean?,
     val statusCode: Int?,
     val data: UserCreateDataObejct?
-
 )
 
 data class UserCreateDataObejct(

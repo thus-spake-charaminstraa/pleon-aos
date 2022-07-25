@@ -34,17 +34,17 @@ class SmsViewModel @Inject constructor(private val repository: SmsRepository, pr
     fun postPhoneNum(phone: String){
         viewModelScope.launch {
             /*test account*/
-            _phoneResponse.postValue(true)
-            //val data =repository.postPhoneNum(phone)
-            //Log.i(PHONE_TAG,"post phone num response -> $data")
-//            when (data.isSuccessful) {
-//                true -> {
-//                    _phoneResponse.postValue(true)
-//                }
-//                else -> {
-//                    _phoneResponse.postValue(false)
-//                }
-//            }
+            //_phoneResponse.postValue(true)
+            val data =repository.postPhoneNum(phone)
+            Log.i(PHONE_TAG,"post phone num response -> $data")
+            when (data.isSuccessful) {
+                true -> {
+                    _phoneResponse.postValue(true)
+                }
+                else -> {
+                    _phoneResponse.postValue(false)
+                }
+            }
         }
     }
     fun postCode(phone: String, code:String){
@@ -69,11 +69,12 @@ class SmsViewModel @Inject constructor(private val repository: SmsRepository, pr
 
     fun postLogin(){
         viewModelScope.launch {
-            val data = repository.postLogin(prefs.getVerifyToken())
+            val data = repository.postLogin()
+            Log.i(LOGIN_TAG,"post login response -> "+data.body())
             when (data.isSuccessful) {
                 true -> {
-                    prefs.setRefreshToken(data.body()?.refresh_token)
-                    prefs.setAccessToken(data.body()?.access_token)
+                    prefs.setRefreshToken(data.body()?.data?.refresh_token)
+                    prefs.setAccessToken(data.body()?.data?.access_token)
                 }
                 else -> {
                     Log.i(LOGIN_TAG,"FAIL -> $data")

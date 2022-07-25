@@ -1,6 +1,8 @@
 <?xml version ="1.0" encoding ="utf-8"?>
 <network-security-config>
     <domain-config cleartextTrafficPermitted="true">
-        <domain includeSubdomains="true">43.200.108.240</domain>
+        <domain includeSubdomains="true">43kxp4xkrk.execute-api.ap-northeast-2.amazonaws.com</domain>
     </domain-config>
 </network-security-config>
+
+<!--//<domain includeSubdomains="true">43.200.108.240</domain>-->

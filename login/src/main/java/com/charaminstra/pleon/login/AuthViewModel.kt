@@ -20,7 +20,9 @@ class AuthViewModel @Inject constructor(
 
     private val TAG = javaClass.name
     private val _authSuccess = MutableLiveData<Boolean>()
+//    private val _refreshSuccess = MutableLiveData<Boolean>()
     val authSuccess : LiveData<Boolean> = _authSuccess
+//    val refreshSuccess : LiveData<Boolean> = _refreshSuccess
     fun getData() = authSuccess
 
     init {
