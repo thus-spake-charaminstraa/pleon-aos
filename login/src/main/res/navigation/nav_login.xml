@@ -19,12 +19,15 @@
         tools:layout="@layout/fragment_phone">
         <action
             android:id="@+id/phone_fragment_to_nickname_fragment"
-            app:destination="@id/nickname_fragment"/>
+            app:destination="@+id/nickname_fragment"/>
     </fragment>
     <fragment
         android:id="@+id/nickname_fragment"
         android:name="com.charaminstra.pleon.login.ui.NicknameFragment"
         tools:layout="@layout/fragment_nickname">
+        <action
+            android:id="@+id/nickname_fragment_to_welcome_fragment"
+            app:destination="@+id/welcome_fragment"/>
     </fragment>
 
     <fragment

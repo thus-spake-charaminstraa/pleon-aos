@@ -19,6 +19,7 @@ class GardenFragment : Fragment() {
 
         binding.circleBtn.setOnClickListener {
             val intent = Intent(context, PlantRegisterActivity::class.java)
+            intent.putExtra("from","main")
             startActivity(intent)
         }
 

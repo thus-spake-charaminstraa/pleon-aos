@@ -3,7 +3,6 @@ package com.charaminstra.pleon.login.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -27,6 +26,8 @@ class NicknameFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = FragmentNicknameBinding.inflate(layoutInflater)
+
+
         initListeners()
         initObservers()
     }
@@ -56,12 +57,14 @@ class NicknameFragment : Fragment() {
 
         }
     }
-}
 
-fun startPlantRegisterActivity(context: Context) {
-    val intent = Intent(
-        context,
-        Class.forName("com.charaminstra.pleon.plant_register.ui.PlantRegisterActivity")
-    )
-    ContextCompat.startActivity(context, intent, null)
+    fun startPlantRegisterActivity(context: Context) {
+        val intent = Intent(
+            context,
+            Class.forName("com.charaminstra.pleon.plant_register.ui.PlantRegisterActivity")
+        )
+        intent.putExtra("from","login")
+        ContextCompat.startActivity(context, intent, null)
+        navController.navigate(R.id.nickname_fragment_to_welcome_fragment)
+    }
 }

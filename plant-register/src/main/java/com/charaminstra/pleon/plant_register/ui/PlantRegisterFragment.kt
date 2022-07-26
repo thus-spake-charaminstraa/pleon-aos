@@ -3,12 +3,14 @@ package com.charaminstra.pleon.plant_register.ui
 import android.app.DatePickerDialog
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import com.charaminstra.pleon.plant_register.PlantRegisterViewModel
 import com.charaminstra.pleon.plant_register.R
@@ -27,6 +29,7 @@ class PlantRegisterFragment : Fragment() {
     ): View? {
         binding = FragmentPlantRegisterBinding.inflate(inflater, container, false)
         val navController = this.findNavController()
+        checkFromActivity()
         binding.backBtn.setOnClickListener {
             activity?.finish()
         }
@@ -37,9 +40,6 @@ class PlantRegisterFragment : Fragment() {
             popUpCalendar(it as TextView)
         }
 
-//        binding.skipBtn.setOnClickListener {
-//            startHomeActivity()
-//        }
         binding.nextBtn.setOnClickListener {
             viewModel.setName(binding.nameInput.text.toString())
             viewModel.setSpecies(binding.speciesInput.text.toString())
@@ -62,5 +62,15 @@ class PlantRegisterFragment : Fragment() {
         datePickerDialog.show()
         datePickerDialog.getButton(DatePickerDialog.BUTTON_NEGATIVE).setBackgroundColor(Color.BLACK)
         datePickerDialog.getButton(DatePickerDialog.BUTTON_POSITIVE).setBackgroundColor(Color.BLACK)
+    }
+
+    fun checkFromActivity(){
+        Log.i("intent.from",activity?.intent?.getStringExtra("from").toString())
+        if(activity?.intent?.getStringExtra("from").toString()=="login"){
+            binding.skipBtn.visibility = View.VISIBLE
+            binding.skipBtn.setOnClickListener {
+                activity?.finish()
+            }
+        }
     }
 }
