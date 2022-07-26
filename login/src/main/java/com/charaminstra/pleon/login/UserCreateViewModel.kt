@@ -5,9 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.charaminstra.pleon.foundation.PleonPreference
-import com.charaminstra.pleon.foundation.model.UserCreateDataObejct
-import com.charaminstra.pleon.foundation.model.UserCreateResponse
+import com.charaminstra.pleon.foundation.api.PleonPreference
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -19,7 +17,7 @@ class UserCreateViewModel @Inject constructor(private val repository: UserCreate
     val userCreateSuccess : LiveData<Boolean?> = _userCreateSuccess
     fun userCreate(name: String){
         viewModelScope.launch {
-            val data = repository.postNickname(name,prefs.getVerifyToken())
+            val data = repository.postNickname(name)
             Log.i(TAG,"data -> $data")
             _userCreateSuccess.postValue(data.body()?.success)
             when (data.body()?.success) {

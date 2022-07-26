@@ -1,15 +1,11 @@
 package com.charaminstra.pleon.login
 
-import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.charaminstra.pleon.foundation.PleonPreference
-import com.charaminstra.pleon.foundation.model.DataObject
-import com.charaminstra.pleon.foundation.model.SmsResponse
-import com.charaminstra.pleon.foundation.model.TokenObject
+import com.charaminstra.pleon.foundation.api.PleonPreference
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -34,17 +30,17 @@ class SmsViewModel @Inject constructor(private val repository: SmsRepository, pr
     fun postPhoneNum(phone: String){
         viewModelScope.launch {
             /*test account*/
-            _phoneResponse.postValue(true)
-//            val data =repository.postPhoneNum(phone)
-//            Log.i(PHONE_TAG,"post phone num response -> $data")
-//            when (data.isSuccessful) {
-//                true -> {
-//                    _phoneResponse.postValue(true)
-//                }
-//                else -> {
-//                    _phoneResponse.postValue(false)
-//                }
-//            }
+            //_phoneResponse.postValue(true)
+            val data =repository.postPhoneNum(phone)
+            Log.i(PHONE_TAG,"post phone num response -> $data")
+            when (data.isSuccessful) {
+                true -> {
+                    _phoneResponse.postValue(true)
+                }
+                else -> {
+                    _phoneResponse.postValue(false)
+                }
+            }
         }
     }
     fun postCode(phone: String, code:String){

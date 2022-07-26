@@ -1,11 +1,8 @@
 package com.charaminstra.pleon.plant_register
 
-import android.util.Log
-import com.charaminstra.pleon.foundation.PlantAPIService
-import com.charaminstra.pleon.foundation.PleonPreference
+import com.charaminstra.pleon.foundation.api.PlantAPIService
+import com.charaminstra.pleon.foundation.api.PleonPreference
 import com.charaminstra.pleon.foundation.model.PlantRegisterRequestBody
-import com.charaminstra.pleon.foundation.model.PlantRegisterResponse
-import retrofit2.Response
 import javax.inject.Inject
 
 class PlantRegisterRepository @Inject constructor(private val service: PlantAPIService, private val prefs: PleonPreference) {

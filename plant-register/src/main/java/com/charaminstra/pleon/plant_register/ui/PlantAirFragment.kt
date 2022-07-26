@@ -39,7 +39,7 @@ class PlantAirFragment : Fragment() {
         binding.completeBtn.setOnClickListener {
             if(setLihgtType()){
                 viewModel.postPlant()
-                activity?.supportFragmentManager?.beginTransaction()?.remove(this)?.commit()
+                activity?.finish()
             }
         }
         return binding.root

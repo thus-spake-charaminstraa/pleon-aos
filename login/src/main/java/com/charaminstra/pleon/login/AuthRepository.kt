@@ -1,7 +1,7 @@
 package com.charaminstra.pleon.login
 
-import com.charaminstra.pleon.foundation.AuthAPIService
-import com.charaminstra.pleon.foundation.PleonPreference
+import com.charaminstra.pleon.foundation.api.AuthAPIService
+import com.charaminstra.pleon.foundation.api.PleonPreference
 
 import javax.inject.Inject
 

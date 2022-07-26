@@ -1,20 +1,13 @@
-package com.charaminstra.pleon.foundation
+package com.charaminstra.pleon.foundation.api
 
-import com.charaminstra.pleon.foundation.model.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.internal.addHeaderLenient
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Body
-import retrofit2.http.Header
-import retrofit2.http.POST
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 

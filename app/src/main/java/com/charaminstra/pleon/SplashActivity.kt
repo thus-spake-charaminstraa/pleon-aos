@@ -6,7 +6,7 @@ import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import com.charaminstra.pleon.foundation.PleonPreference
+import com.charaminstra.pleon.foundation.api.PleonPreference
 import com.charaminstra.pleon.login.AuthViewModel
 import com.charaminstra.pleon.login.R
 import com.charaminstra.pleon.login.startHomeActivity
@@ -22,7 +22,7 @@ class SplashActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_splash)
 
-        val prefs=PleonPreference(applicationContext)
+        val prefs= PleonPreference(applicationContext)
         Log.d(TAG, "verify token"+prefs.getVerifyToken())
         Log.d(TAG, "access token"+prefs.getAccessToken())
         Log.d(TAG, "refresh token"+prefs.getRefreshToken())

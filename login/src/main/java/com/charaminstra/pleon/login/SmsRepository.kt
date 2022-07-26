@@ -1,11 +1,10 @@
 package com.charaminstra.pleon.login
 
-import com.charaminstra.pleon.foundation.AuthAPIService
-import com.charaminstra.pleon.foundation.PleonPreference
+import com.charaminstra.pleon.foundation.api.AuthAPIService
+import com.charaminstra.pleon.foundation.api.PleonPreference
 import com.charaminstra.pleon.foundation.model.LoginResponse
 import com.charaminstra.pleon.foundation.model.SmsRequestBody
 import com.charaminstra.pleon.foundation.model.SmsResponse
-import com.charaminstra.pleon.foundation.model.TokenObject
 import retrofit2.Response
 import javax.inject.Inject
 

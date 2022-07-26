@@ -1,4 +1,4 @@
-package com.charaminstra.pleon.foundation
+package com.charaminstra.pleon.foundation.api
 
 import android.content.Context
 import android.content.SharedPreferences
