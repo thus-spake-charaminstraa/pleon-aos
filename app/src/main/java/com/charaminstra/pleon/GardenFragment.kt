@@ -39,4 +39,9 @@ class GardenFragment : Fragment() {
         return binding.root
     }
 
+    override fun onStart() {
+        super.onStart()
+        //viewmodel update
+        viewModel.loadData()
+    }
 }
