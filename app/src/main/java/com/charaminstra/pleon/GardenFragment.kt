@@ -9,8 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.charaminstra.pleon.adapter.CommonAdapter
 import com.charaminstra.pleon.databinding.FragmentGardenBinding
-import com.charaminstra.pleon.login.UserCreateViewModel
 import com.charaminstra.pleon.plant_register.ui.PlantRegisterActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,7 +23,7 @@ class GardenFragment : Fragment() {
         binding = FragmentGardenBinding.inflate(layoutInflater)
         viewModel.getData().observe(this, Observer {
             Log.i("list",it.toString())
-            val adapter = PlantAdapter(it,"GARDEN")
+            val adapter = CommonAdapter(it,"GARDEN_PLANT")
             binding.recyclerview.adapter = adapter
         })
     }
