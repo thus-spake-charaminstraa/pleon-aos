@@ -18,6 +18,7 @@ import javax.inject.Inject
 
 class ImageRepository @Inject constructor(private val service: ImageAPIService) {
     suspend fun postImage(stream: InputStream): Response<ImageUrlResponse> {
+//        Log.i("iamge path",)
         val part = MultipartBody.Part.createFormData(
             "image", "image.jpg",
             stream.readBytes()

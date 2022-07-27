@@ -1,25 +1,29 @@
 package com.charaminstra.pleon.plant_register.ui
 
+import android.Manifest
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
-import android.database.Cursor
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
+import android.provider.MediaStore
 import androidx.lifecycle.Observer
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.view.get
+import androidx.activity.result.contract.ActivityResultContract
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityCompat.requestPermissions
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -29,10 +33,13 @@ import com.charaminstra.pleon.plant_register.PlantRegisterViewModel
 import com.charaminstra.pleon.plant_register.R
 import com.charaminstra.pleon.plant_register.databinding.FragmentPlantRegisterBinding
 import dagger.hilt.android.AndroidEntryPoint
+import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
 
 const val DEFAULT_GALLERY_REQUEST_CODE = 2000
+const val REQUEST_TAKE_PHOTO = 3000
 
 @AndroidEntryPoint
 class PlantRegisterFragment : Fragment() {
@@ -41,18 +48,20 @@ class PlantRegisterFragment : Fragment() {
     private lateinit var binding: FragmentPlantRegisterBinding
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
+        binding = FragmentPlantRegisterBinding.inflate(layoutInflater)
 
-        imageViewModel.getUrl().observe(this, Observer {
-
-//            plantRegisterViewModel.setThumbnail()
-        })
+        /*카메라권한요청*/
+        requestPermissions(
+            requireActivity(),
+            arrayOf(Manifest.permission.CAMERA),
+            REQUEST_TAKE_PHOTO
+        )
 
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentPlantRegisterBinding.inflate(inflater, container, false)
         val navController = this.findNavController()
 
         checkFromActivity()
@@ -64,7 +73,14 @@ class PlantRegisterFragment : Fragment() {
             pop.menuInflater.inflate(R.menu.image_menu, pop.menu)
             pop.setOnMenuItemClickListener {
                 when(it.itemId){
-                    R.id.gallery -> openGallery()
+                    R.id.camera ->{
+                        openCamera()
+                    }
+                    R.id.gallery ->
+                        openGallery()
+                    R.id.cancel ->
+                        binding.thumbnail.setImageBitmap(null)
+
                 }
                 false
             }
@@ -92,12 +108,7 @@ class PlantRegisterFragment : Fragment() {
         return binding.root
     }
 
-    private fun openGallery(){
-        val intent = Intent()
-        intent.type = "image/*"
-        intent.action = Intent.ACTION_PICK
-        startActivityForResult(intent, DEFAULT_GALLERY_REQUEST_CODE)
-    }
+
 
     // 갤러리 화면에서 이미지를 선택한 경우 현재 화면에 보여준다.
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -119,17 +130,60 @@ class PlantRegisterFragment : Fragment() {
                     imageViewModel.postImage(it!!)
                 }
             }
-
+            REQUEST_TAKE_PHOTO -> {
+                val bitmap = data?.extras?.get("data") as Bitmap
+                binding.thumbnail.setImageBitmap(bitmap)
+                ByteArrayOutputStream().use { stream ->
+                    bitmap.compress(Bitmap.CompressFormat.JPEG,100, stream)
+                    val inputStream = ByteArrayInputStream(stream.toByteArray())
+                    imageViewModel.postImage(inputStream)
+                }
+            }
             else -> {
                 Toast.makeText(requireContext(), "사진을 가져오지 못했습니다.", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-//    private fun openCamera(){
-//        val state = Environment.getExternalStorageState()
-//        if(Environment.MEDIA_)
-//    }
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if(requestCode == REQUEST_TAKE_PHOTO){
+        }else{
+            Toast.makeText(requireContext(), "앱 실행을 위해서는 권한을 설정해야 합니다.", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
+    private fun openGallery(){
+            val intent = Intent()
+            intent.type = "image/*"
+            intent.action = Intent.ACTION_PICK
+            startActivityForResult(intent, DEFAULT_GALLERY_REQUEST_CODE)
+    }
+
+    private fun checkPermission() : Boolean {
+        val permissionCheck =ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.CAMERA)
+        if(permissionCheck == PackageManager.PERMISSION_GRANTED)
+            return true
+        else
+            return false
+
+    }
+
+    private fun openCamera(){
+        Log.i("permission",checkPermission().toString())
+        if(checkPermission()){
+            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            startActivityForResult(intent, REQUEST_TAKE_PHOTO)
+        }else{
+            Toast.makeText(context, "카메라 권한 설정이 필요합니다.", Toast.LENGTH_SHORT).show()
+        }
+    }
+
 
     fun popUpCalendar(view: TextView) {
         val cal = Calendar.getInstance()
@@ -151,21 +205,5 @@ class PlantRegisterFragment : Fragment() {
             }
         }
     }
-
-
-//    fun getRealPathFromURI(context: Context, contentUri: Uri): String? {
-//        var cursor: Cursor? = null
-//        return try {
-//            val proj = arrayOf<String>(MediaStore.Images.Media.DATA)
-//            cursor = context.getContentResolver().query(contentUri, proj, null, null, null)
-//            val column_index = cursor?.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-//            cursor?.moveToFirst()
-//            cursor?.getString(column_index!!)
-//        } finally {
-//            if (cursor != null) {
-//                cursor.close()
-//            }
-//        }
-//    }
 
 }
