@@ -22,6 +22,7 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantRe
     val adopt_date = MutableLiveData<String>()
     val light = MutableLiveData<String>()
     val air = MutableLiveData<String>()
+    val thumbnail = MutableLiveData<String>()
 
     fun getName(): LiveData<String> {
         return name
@@ -59,6 +60,12 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantRe
     fun setAir(value: String) {
         air.value = value
     }
+    fun getThumbnail(): LiveData<String>{
+        return thumbnail
+    }
+    fun setThumbnail(value: String){
+        thumbnail.value = value
+    }
 
     fun postPlant(){
         viewModelScope.launch {
@@ -67,6 +74,7 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantRe
                 getSpecies().value.toString(),
                 getWater_date().value.toString(),
                 getAdopt_date().value.toString(),
+                getThumbnail().value.toString(),
                 getLight().value.toString(),
                 getAir().value.toString())
             _plantRegisterSuccess.postValue(data.body()?.success)

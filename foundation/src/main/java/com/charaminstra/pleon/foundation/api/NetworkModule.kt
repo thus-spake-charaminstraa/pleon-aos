@@ -1,5 +1,6 @@
 package com.charaminstra.pleon.foundation.api
 
+import android.util.Log
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,7 +15,8 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetWorkModule{
-    private const val BASE_URL ="https://43kxp4xkrk.execute-api.ap-northeast-2.amazonaws.com/beta/"
+    //private const val BASE_URL ="https://43kxp4xkrk.execute-api.ap-northeast-2.amazonaws.com/beta/"
+    private const val BASE_URL ="http://43.200.108.240:8000"
 
     @Provides
     @Singleton
@@ -51,5 +53,11 @@ object NetWorkModule{
     @Singleton
     fun providePlantApiService(retrofit: Retrofit): PlantAPIService {
         return retrofit.create(PlantAPIService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideImageApiService(retrofit: Retrofit): ImageAPIService {
+        return retrofit.create(ImageAPIService::class.java)
     }
 }

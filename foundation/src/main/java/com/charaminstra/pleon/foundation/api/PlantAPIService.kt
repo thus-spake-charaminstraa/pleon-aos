@@ -1,14 +1,10 @@
 package com.charaminstra.pleon.foundation.api
 
-import com.charaminstra.pleon.foundation.model.PlantDataObject
 import com.charaminstra.pleon.foundation.model.PlantRegisterRequestBody
 import com.charaminstra.pleon.foundation.model.PlantRegisterResponse
 import com.charaminstra.pleon.foundation.model.PlantsResponse
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface PlantAPIService {
     @POST("plant")
