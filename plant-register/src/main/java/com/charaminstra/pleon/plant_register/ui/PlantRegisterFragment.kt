@@ -59,7 +59,17 @@ class PlantRegisterFragment : Fragment() {
         binding.backBtn.setOnClickListener {
             activity?.finish()
         }
-
+        binding.thumbnail.setOnClickListener {
+            val pop= PopupMenu(requireContext(),it)
+            pop.menuInflater.inflate(R.menu.image_menu, pop.menu)
+            pop.setOnMenuItemClickListener {
+                when(it.itemId){
+                    R.id.gallery -> openGallery()
+                }
+                false
+            }
+            pop.show()
+        }
         binding.adoptDayInput.setOnClickListener {
             popUpCalendar(it as TextView)
         }
