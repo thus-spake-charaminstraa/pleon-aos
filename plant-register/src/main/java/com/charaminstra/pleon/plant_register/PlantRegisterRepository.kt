@@ -21,7 +21,7 @@ class PlantRegisterRepository @Inject constructor(private val service: PlantAPIS
         )
         return service.postPlant(
             prefs.getAccessToken(),
-            PlantRegisterRequestBody(name, species, adopt_date, water_date, thumbnail, light, air)
+            PlantRegisterRequestBody(name, species, adopt_date, water_date, "https://pleon-image-main.s3.amazonaws.com/image.jpg", light, air)
         )
     }
 }

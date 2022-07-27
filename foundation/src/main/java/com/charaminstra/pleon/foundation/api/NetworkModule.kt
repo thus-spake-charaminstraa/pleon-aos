@@ -15,8 +15,8 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetWorkModule{
-    //private const val BASE_URL ="https://43kxp4xkrk.execute-api.ap-northeast-2.amazonaws.com/beta/"
-    private const val BASE_URL ="http://43.200.108.240:8000"
+    private const val BASE_URL ="https://43kxp4xkrk.execute-api.ap-northeast-2.amazonaws.com/beta/"
+    //private const val BASE_URL ="http://43.200.108.240:8000"
 
     @Provides
     @Singleton
