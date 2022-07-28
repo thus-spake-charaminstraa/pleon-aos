@@ -22,7 +22,12 @@ class AuthViewModel @Inject constructor(
 //    private val _refreshSuccess = MutableLiveData<Boolean>()
     val authSuccess : LiveData<Boolean> = _authSuccess
 //    val refreshSuccess : LiveData<Boolean> = _refreshSuccess
+
+    private val _authName = MutableLiveData<String>()
+    val authName : LiveData<String> = _authName
+
     fun getData() = authSuccess
+    fun getName() = authName
 
     init {
         loadAuth()
@@ -36,6 +41,7 @@ class AuthViewModel @Inject constructor(
             when (data.isSuccessful) {
                 true -> {
                     _authSuccess.postValue(true)
+                    _authName.postValue(data.body()?.data?.nickname!!)
                     Log.i(TAG,"SUCCESS -> "+ data.toString())
                 }
                 else -> {

@@ -1,7 +1,7 @@
 package com.charaminstra.pleon.foundation.model
 
-data class PlantRegisterResponse(
+data class PlantResponse(
     val success: Boolean,
     val statusCode: Int?,
-    val dataObject: PlantDataObject?
+    val data: PlantDataObject?
 )

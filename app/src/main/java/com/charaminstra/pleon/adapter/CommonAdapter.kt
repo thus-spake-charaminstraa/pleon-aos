@@ -1,5 +1,6 @@
 package com.charaminstra.pleon.adapter
 
+import android.util.Log
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.charaminstra.pleon.PlantViewHolderFactory
@@ -7,7 +8,8 @@ import com.charaminstra.pleon.foundation.model.PlantDataObject
 import com.charaminstra.pleon.viewholder.CommonViewHolder
 
 class CommonAdapter(private val viewItemList: List<PlantDataObject>,
-                    private val type: String): RecyclerView.Adapter<CommonViewHolder>()  {
+                    private val type: String,
+                    private val onItemClicked: (String)-> Unit): RecyclerView.Adapter<CommonViewHolder>() {
     override fun getItemViewType(position: Int): Int {
         return CommonViewType.valueOf(type).ordinal
     }
@@ -21,5 +23,6 @@ class CommonAdapter(private val viewItemList: List<PlantDataObject>,
     }
     override fun onBindViewHolder(holder: CommonViewHolder, position: Int) {
         holder.bind(viewItemList[position])
+        holder.itemView.setOnClickListener { onItemClicked(viewItemList[position].id!!) }
     }
 }

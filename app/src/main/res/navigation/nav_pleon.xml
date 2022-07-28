@@ -15,6 +15,19 @@
         <action
             android:id="@+id/action_view_pager_fragment_to_login_graph"
             app:destination="@id/nav_login"/>
+        <action
+            android:id="@+id/view_pager_fragment_to_plant_detail_fragment"
+            app:destination="@+id/plant_detail_fragment">
+            <argument
+                android:name="plantId"
+                android:value="string"/>
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/plant_detail_fragment"
+        android:name="com.charaminstra.pleon.PlantDetailFragment"
+        tools:layout="@layout/fragment_plant_detail">
     </fragment>
 
 

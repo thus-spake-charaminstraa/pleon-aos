@@ -21,7 +21,9 @@ class FeedFragment : Fragment() {
         binding = FragmentFeedBinding.inflate(layoutInflater)
         viewModel.getData().observe(this, Observer {
             Log.i("list",it.toString())
-            val adapter = CommonAdapter(it,"FEED_PLANT")
+            val adapter = CommonAdapter(it,"FEED_PLANT",onItemClicked = {
+                Log.i("feedfragment",it.toString())
+            })
             binding.filterRecyclerview.adapter = adapter
         })
     }

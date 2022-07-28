@@ -6,7 +6,7 @@ import com.charaminstra.pleon.foundation.model.PlantDataObject
 
 
 abstract class CommonViewHolder(
-    binding: ViewBinding
+    binding: ViewBinding,
 ): RecyclerView.ViewHolder(binding.root) {
     abstract fun bind(viewObject: PlantDataObject)
 }

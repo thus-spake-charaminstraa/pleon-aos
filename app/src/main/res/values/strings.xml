@@ -3,4 +3,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="feed_all_filter">all</string>
+
+    <string name="plant_detail_species_title">species</string>
+    <string name="plant_detail_adpot_day_title">adpot day</string>
+    <string name="plant_detail_d_day_title">함께한지</string>
 </resources>
