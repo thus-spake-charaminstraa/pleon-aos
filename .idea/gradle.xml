@@ -18,9 +18,9 @@
             <option value="$PROJECT_DIR$/login" />
             <option value="$PROJECT_DIR$/ml" />
             <option value="$PROJECT_DIR$/plant-ar" />
+            <option value="$PROJECT_DIR$/plant-register" />
           </set>
         </option>
-        <option name="resolveModulePerSourceSet" value="false" />
       </GradleProjectSettings>
     </option>
   </component>

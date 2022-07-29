@@ -1,11 +1,11 @@
 package com.charaminstra.pleon.foundation.model
 
 data class SmsResponse(
-    var data: DataObject?,
-    var success: Boolean?
+    val data: DataObject?,
+    val success: Boolean
 )
 
 data class DataObject(
-    var isExist: Boolean?,
-    var verify_token: String?
+    val isExist: Boolean?,
+    val verify_token: String?
 )

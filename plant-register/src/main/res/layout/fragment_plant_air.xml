@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="20dp"
+    android:orientation="vertical"
+    android:paddingTop="44dp"
+    tools:context="com.charaminstra.pleon.plant_register.ui.PlantAirFragment">
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/back_btn"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@android:color/transparent"
+        android:scaleType="center"
+        android:src="@drawable/ic_arrow_back" />
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/back_btn"
+        style="@style/TitleText"
+        android:text="@string/plant_air_fragment_title"/>
+
+    <RadioGroup
+        android:id="@+id/air_rg1"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <RadioButton
+            android:id="@+id/air_one"
+            android:text="@string/air_one"
+            android:button="@android:color/transparent"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/choose_button_selector" />
+        <RadioButton
+            android:id="@+id/air_two"
+            android:text="@string/air_two"
+            android:button="@android:color/transparent"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@drawable/choose_button_selector" />
+    </RadioGroup>
+    <RadioGroup
+        android:id="@+id/air_rg2"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/air_rg1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <RadioButton
+            android:id="@+id/air_three"
+            android:text="@string/air_three"
+            android:button="@android:color/transparent"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@drawable/choose_button_selector"
+            android:layout_marginRight="10dp" />
+        <RadioButton
+            android:id="@+id/air_four"
+            android:enabled="false"
+            android:button="@android:color/transparent"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@drawable/choose_button_selector" />
+    </RadioGroup>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/complete_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/air_rg2"
+        android:background="@drawable/button"
+        style="@style/SubText"
+        android:text="@string/complete_btn" />
+</androidx.constraintlayout.widget.ConstraintLayout>

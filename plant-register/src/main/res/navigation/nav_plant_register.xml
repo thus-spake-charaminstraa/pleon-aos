@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_plant_register"
+    app:startDestination="@id/plant_register_fragment">
+    <fragment
+        android:id="@+id/plant_register_fragment"
+        android:name="com.charaminstra.pleon.plant_register.ui.PlantRegisterFragment"
+        tools:layout="@layout/fragment_plant_register">
+        <action
+            android:id="@+id/plant_register_fragment_to_plant_light_fragment"
+            app:destination="@id/plant_light_fragment">
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/plant_light_fragment"
+        android:name="com.charaminstra.pleon.plant_register.ui.PlantLightFragment"
+        tools:layout="@layout/fragment_plant_light">
+        <action
+            android:id="@+id/plant_light_fragment_to_plant_air_fragment"
+            app:destination="@+id/plant_air_fragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/plant_air_fragment"
+        android:name="com.charaminstra.pleon.plant_register.ui.PlantAirFragment"
+        tools:layout="@layout/fragment_plant_light">
+    </fragment>
+
+</navigation>

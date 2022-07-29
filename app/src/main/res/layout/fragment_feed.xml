@@ -1,14 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".home.FeedFragment">
-
-    <!-- TODO: Update blank fragment layout -->
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".FeedFragment">
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="feed" />
-
-</FrameLayout>
+        android:id="@+id/all_filter"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:background="@drawable/round_shape"
+        android:backgroundTint="@color/input_bg"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="@string/feed_all_filter"/>
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/leon_filter"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        app:civ_border_color="@color/input_bg"
+        app:civ_border_width="2dp"
+        android:background="@drawable/round_shape"
+        android:src="@drawable/logo_img"
+        app:layout_constraintLeft_toRightOf="@id/all_filter"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="@string/feed_all_filter"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/filter_recyclerview"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_margin="10dp"
+        app:layout_constraintLeft_toRightOf="@id/leon_filter"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="test"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filter_recyclerview">
+    </TextView>
+</androidx.constraintlayout.widget.ConstraintLayout>

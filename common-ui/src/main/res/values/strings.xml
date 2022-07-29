@@ -1,0 +1,5 @@
+<resources>
+    <string name="next_btn">다음</string>
+    <string name="skip_btn">건너 뛰기</string>
+    <string name="complete_btn">완료</string>
+</resources>
