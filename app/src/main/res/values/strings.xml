@@ -7,4 +7,7 @@
     <string name="plant_detail_species_title">species</string>
     <string name="plant_detail_adpot_day_title">adpot day</string>
     <string name="plant_detail_d_day_title">함께한지</string>
+
+    <string name="edit_btn">편집</string>
+    <string name="delete_btn">삭제</string>
 </resources>

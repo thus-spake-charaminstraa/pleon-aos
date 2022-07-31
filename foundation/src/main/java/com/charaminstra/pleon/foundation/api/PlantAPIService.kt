@@ -1,5 +1,6 @@
 package com.charaminstra.pleon.foundation.api
 
+import com.charaminstra.pleon.foundation.model.PlantEditRequestBody
 import com.charaminstra.pleon.foundation.model.PlantRegisterRequestBody
 import com.charaminstra.pleon.foundation.model.PlantResponse
 import com.charaminstra.pleon.foundation.model.PlantsResponse
@@ -27,7 +28,8 @@ interface PlantAPIService {
     @PATCH("plant/{id}")
     suspend fun patchPlantId(
         @Header("Authorization") accessToken:String,
-        @Path("id") id: String
+        @Path("id") id: String,
+        @Body plantEditRequestBody: PlantEditRequestBody
     ): Response<PlantResponse>
 
     @DELETE("plant/{id}")

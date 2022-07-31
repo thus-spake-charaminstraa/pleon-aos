@@ -1,6 +1,7 @@
 package com.charaminstra.pleon
 
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
 const val FEED_PAGE_INDEX = 0
@@ -9,10 +10,11 @@ const val GARDEN_PAGE_INDEX = 2
 const val MY_PAGE_INDEX = 3
 
 class PleonPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
+
     private val tabFragmentsCreators: Map<Int, () -> Fragment> = mapOf(
         FEED_PAGE_INDEX to { FeedFragment() },
         CAMERA_PAGE_INDEX to { CameraFragment() },
-        GARDEN_PAGE_INDEX to { GardenFragment() },
+        GARDEN_PAGE_INDEX to { GardenFragment()},
         MY_PAGE_INDEX to { MyFragment() }
     )
 

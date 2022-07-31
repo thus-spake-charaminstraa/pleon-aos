@@ -5,16 +5,27 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.charaminstra.pleon.foundation.PlantIdRepository
+import com.charaminstra.pleon.foundation.model.PlantDataObject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class PlantRegisterViewModel @Inject constructor(private val repository: PlantRegisterRepository) : ViewModel() {
+class PlantRegisterViewModel @Inject constructor(private val repository: PlantIdRepository) : ViewModel() {
 
     private val TAG = javaClass.name
     private val _plantRegisterSuccess = MutableLiveData<Boolean>()
     val plantRegisterSuccess : LiveData<Boolean> = _plantRegisterSuccess
+
+    private val _data = MutableLiveData<PlantDataObject>()
+    val data: LiveData<PlantDataObject> = _data
+
+    private val _patchSuccess = MutableLiveData<Boolean>()
+    val patchSuccess: LiveData<Boolean> = _patchSuccess
+
+    private val _deleteSuccess = MutableLiveData<Boolean>()
+    val deleteSuccess: LiveData<Boolean> = _deleteSuccess
 
     val name = MutableLiveData<String>()
     val species = MutableLiveData<String>()
@@ -87,5 +98,59 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantRe
 //                }
 //            }
         }
+    }
+
+    fun loadData(id: String){
+        viewModelScope.launch {
+            val data = repository.getPlantId(id)
+            when (data.isSuccessful) {
+                true -> {
+                    _data.postValue(data.body()?.data!!)
+                    Log.i(TAG,"SUCCESS -> "+ data.body().toString())
+                }
+                else -> {
+                    Log.i(TAG,"FAIL -> "+ data.body().toString())
+                }
+            }
+        }
+    }
+
+    fun patchData(id: String){
+        viewModelScope.launch {
+            val data = repository.patchPlantId(id,
+                getName().value.toString(),
+                getSpecies().value.toString(),
+                getAdopt_date().value.toString(),
+                getThumbnail().value.toString(),
+                getLight().value.toString(),
+                getAir().value.toString())
+            Log.i(TAG, "patch DATA"+data.body())
+            when (data.isSuccessful) {
+                true -> {
+                    _patchSuccess.postValue(data.body()?.success)
+                    Log.i(TAG,"SUCCESS -> "+ data.body().toString())
+                }
+                else -> {
+                    Log.i(TAG,"FAIL -> "+ data.body().toString())
+                }
+            }
+        }
+    }
+
+    fun deleteData(id: String){
+        viewModelScope.launch {
+            val data = repository.deletePlantId(id)
+            Log.i(TAG, "delete DATA"+data.body())
+            when (data.isSuccessful) {
+                true -> {
+                    _deleteSuccess.postValue(data.body()?.success)
+                    Log.i(TAG,"SUCCESS -> "+ data.body().toString())
+                }
+                else -> {
+                    Log.i(TAG,"FAIL -> "+ data.body().toString())
+                }
+            }
+        }
+
     }
 }

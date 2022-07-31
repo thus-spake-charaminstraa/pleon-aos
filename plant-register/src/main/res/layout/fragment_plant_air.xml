@@ -26,7 +26,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/back_btn"
         style="@style/TitleText"
-        android:text="@string/plant_air_fragment_title"/>
+        android:text="@string/air_title"/>
 
     <RadioGroup
         android:id="@+id/air_rg1"

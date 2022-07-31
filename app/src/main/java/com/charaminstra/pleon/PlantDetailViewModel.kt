@@ -32,4 +32,27 @@ class PlantDetailViewModel @Inject constructor(private val repository: PlantIdRe
             }
         }
     }
+
+//    fun patchData(
+//        id: String,
+//        name : String,
+//        species: String,
+//        adopt_date: String,
+//        thumbnail: String,
+//        light: String,
+//        air: String
+//    ){
+//        viewModelScope.launch {
+//            val data = repository.patchPlantId(id,name,species,adopt_date,thumbnail,light,air)
+//            when (data.isSuccessful) {
+//                true -> {
+//                    _data.postValue(data.body()?.data!!)
+//                    Log.i(TAG,"SUCCESS -> "+ data.body().toString())
+//                }
+//                else -> {
+//                    Log.i(TAG,"FAIL -> "+ data.body().toString())
+//                }
+//            }
+//        }
+//    }
 }

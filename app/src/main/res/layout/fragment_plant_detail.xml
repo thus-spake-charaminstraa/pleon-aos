@@ -25,6 +25,16 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/back_btn"
         style="@style/TitleText"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/edit_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/edit_btn"
+        style="@style/SubText"
+        android:background="@android:color/transparent"
+        android:textColor="@color/light_blue_600"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/plant_name"/>
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/plant_image"
         android:layout_width="100dp"

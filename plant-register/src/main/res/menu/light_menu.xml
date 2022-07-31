@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/item_light_one"
+        android:title="@string/light_one"/>
+    <item
+        android:id="@+id/item_light_two"
+        android:title="@string/light_two"/>
+    <item
+        android:id="@+id/item_light_three"
+        android:title="@string/light_three"/>
+    <item
+        android:id="@+id/item_light_four"
+        android:title="@string/light_four"/>
+</menu>
