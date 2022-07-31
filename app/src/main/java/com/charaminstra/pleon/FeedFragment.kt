@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.charaminstra.pleon.adapter.CommonAdapter
 import com.charaminstra.pleon.databinding.FragmentFeedBinding
@@ -21,13 +22,14 @@ class FeedFragment : Fragment() {
     private val viewModel: PlantsViewModel by viewModels()
     private lateinit var binding : FragmentFeedBinding
     private lateinit var adapter: CommonAdapter
+    private lateinit var navController : NavController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentFeedBinding.inflate(layoutInflater)
-        //navController = this.findNavController()
+        navController = this.findNavController()
 
         return binding.root
     }
@@ -37,6 +39,9 @@ class FeedFragment : Fragment() {
         initList()
         observeViewModel()
         binding.filterRecyclerview.adapter = adapter
+        binding.writeBtn.setOnClickListener {
+            navController.navigate(R.id.view_pager_fragment_to_feed_write_fragment)
+        }
     }
 
     private fun initList() {
