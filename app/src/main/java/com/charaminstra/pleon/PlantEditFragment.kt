@@ -33,7 +33,6 @@ import com.bumptech.glide.Glide
 import com.charaminstra.pleon.databinding.FragmentPlantEditBinding
 import com.charaminstra.pleon.plant_register.ImageViewModel
 import com.charaminstra.pleon.plant_register.PlantRegisterViewModel
-import com.charaminstra.pleon.plant_register.databinding.FragmentPlantRegisterBinding
 import com.charaminstra.pleon.plant_register.ui.DEFAULT_GALLERY_REQUEST_CODE
 import com.charaminstra.pleon.plant_register.ui.REQUEST_TAKE_PHOTO
 import dagger.hilt.android.AndroidEntryPoint

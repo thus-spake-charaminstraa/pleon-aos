@@ -46,4 +46,13 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/filter_recyclerview">
     </TextView>
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/write_btn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/round_button"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:src="@drawable/ic_pencil"
+        android:layout_margin="20dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

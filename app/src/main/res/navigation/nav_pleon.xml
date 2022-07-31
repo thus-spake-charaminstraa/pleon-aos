@@ -12,13 +12,6 @@
         android:id="@+id/view_pager_fragment"
         android:name="com.charaminstra.pleon.HomeViewPagerFragment"
         tools:layout="@layout/fragment_view_pager">
-<!--        <action-->
-<!--            android:id="@+id/action_view_pager_fragment_to_garden_fragment"-->
-<!--            app:destination="@+id/garden_fragment"/>-->
-
-<!--        <action-->
-<!--            android:id="@+id/action_view_pager_fragment_to_login_graph"-->
-<!--            app:destination="@id/nav_login"/>-->
         <action
             android:id="@+id/view_pager_fragment_to_plant_detail_fragment"
             app:destination="@+id/plant_detail_fragment">
@@ -26,6 +19,16 @@
                 android:name="plantId"
                 android:value="string"/>
         </action>
+        <action
+            android:id="@+id/view_pager_fragment_to_feed_write_fragment"
+            app:destination="@+id/feed_write_fragment">
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/feed_write_fragment"
+        android:name="com.charaminstra.pleon.FeedWriteFragment"
+        tools:layout="@layout/fragment_feed_write">
+
     </fragment>
     <fragment
         android:id="@+id/plant_detail_fragment"

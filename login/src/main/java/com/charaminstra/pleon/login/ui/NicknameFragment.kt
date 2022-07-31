@@ -27,7 +27,6 @@ class NicknameFragment : Fragment() {
         super.onCreate(savedInstanceState)
         binding = FragmentNicknameBinding.inflate(layoutInflater)
 
-
         initListeners()
         initObservers()
     }

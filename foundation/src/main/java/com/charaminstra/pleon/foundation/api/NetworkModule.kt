@@ -60,4 +60,10 @@ object NetWorkModule{
     fun provideImageApiService(retrofit: Retrofit): ImageAPIService {
         return retrofit.create(ImageAPIService::class.java)
     }
+
+    @Provides
+    @Singleton
+    fun provideFeedApiService(retrofit: Retrofit): FeedAPIService {
+        return retrofit.create(FeedAPIService::class.java)
+    }
 }
