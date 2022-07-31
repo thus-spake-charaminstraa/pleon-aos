@@ -189,8 +189,11 @@ class PlantRegisterFragment : Fragment() {
         val cal = Calendar.getInstance()
         val dateFormat = SimpleDateFormat("yyyy-MM-dd")
         var datePickerDialog = DatePickerDialog(requireContext(), { _, y, m, d ->
+            cal.set(y,m,d)
             view.text = dateFormat.format(cal.time)
-        }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH))
+        }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).apply {
+            datePicker.maxDate = cal.timeInMillis
+        }
         datePickerDialog.show()
         datePickerDialog.getButton(DatePickerDialog.BUTTON_NEGATIVE).setBackgroundColor(Color.BLACK)
         datePickerDialog.getButton(DatePickerDialog.BUTTON_POSITIVE).setBackgroundColor(Color.BLACK)
