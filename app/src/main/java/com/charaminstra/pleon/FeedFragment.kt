@@ -19,7 +19,9 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class FeedFragment : Fragment() {
-    private val viewModel: PlantsViewModel by viewModels()
+    private val TAG = javaClass.name
+    private val plantsViewModel: PlantsViewModel by viewModels()
+    private val feedReadViewModel: FeedReadViewModel by viewModels()
     private lateinit var binding : FragmentFeedBinding
     private lateinit var adapter: CommonAdapter
     private lateinit var navController : NavController
@@ -55,14 +57,18 @@ class FeedFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        viewModel.plantsList.observe(viewLifecycleOwner, Observer {
+        plantsViewModel.plantsList.observe(viewLifecycleOwner, Observer {
             adapter.refreshItems(it)
+        })
+        feedReadViewModel.feedList.observe(viewLifecycleOwner, Observer {
+            Log.i(TAG, it.toString())
         })
     }
 
     override fun onResume() {
         super.onResume()
         //viewmodel update
-        viewModel.loadData()
+        plantsViewModel.loadData()
+        feedReadViewModel.loadData()
     }
 }

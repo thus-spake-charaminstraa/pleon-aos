@@ -10,4 +10,6 @@ class FeedRepository @Inject constructor(private val service: FeedAPIService, pr
 //    suspend fun postFeed() = service.postFeed(prefs.getAccessToken(),
 //    FeedRequestBody()
 //    )
+
+    suspend fun getFeed() = service.getFeed(prefs.getAccessToken())
 }
