@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class PlantRegisterViewModel @Inject constructor(private val repository: PlantIdRepository) : ViewModel() {
+class PlantIdViewModel @Inject constructor(private val repository: PlantIdRepository) : ViewModel() {
 
     private val TAG = javaClass.name
     private val _plantRegisterSuccess = MutableLiveData<Boolean>()

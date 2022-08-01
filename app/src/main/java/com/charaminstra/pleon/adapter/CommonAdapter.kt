@@ -8,15 +8,9 @@ import com.charaminstra.pleon.PlantViewHolderFactory
 import com.charaminstra.pleon.foundation.model.PlantDataObject
 import com.charaminstra.pleon.viewholder.CommonViewHolder
 
-
-//class CommonAdapter(private val type: String,
-//                    private val onItemClicked: (String)-> Unit): RecyclerView.Adapter<CommonViewHolder>() {
 class CommonAdapter(): RecyclerView.Adapter<CommonViewHolder>() {
 
-    private var lastPosition = -1
-    private lateinit var lastView: View
     var viewItemList: List<PlantDataObject> = listOf()
-    //var viewItemList  = ArrayList<PlantDataObject>()
     private lateinit var type: String
     var onItemClicked: (String)-> Unit = {}
 

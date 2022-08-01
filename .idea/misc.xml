@@ -28,7 +28,7 @@
         <entry key="app/src/main/res/layout/bottom_sheet_layout.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_camera.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_feed.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_feed_write.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_feed_write.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_garden.xml" value="0.3497222900390625" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_my.xml" value="0.1" />

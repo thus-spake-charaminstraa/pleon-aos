@@ -9,13 +9,17 @@ import com.charaminstra.pleon.R
 import com.charaminstra.pleon.databinding.ItemPlantFeedBinding
 import com.charaminstra.pleon.foundation.model.PlantDataObject
 
-class FeedPlantViewHolder(private val binding: ItemPlantFeedBinding): CommonViewHolder(binding) {
+class FeedPlantViewHolder(private val binding: ItemPlantFeedBinding,
+                          private var onItemClicked: (String) -> Unit): CommonViewHolder(binding) {
     private lateinit var lastView : View
     override fun bind(item: PlantDataObject) {
         binding.plantName.text=item.name
         Glide.with(binding.root)
             .load(item.thumbnail)
             .into(binding.plantImage)
+        binding.root.setOnClickListener {
+            onItemClicked(item.id!!)
+        }
         //binding.plantImage.isClickable=true
 //        binding.plantImage.setOnClickListener {
 //            Log.d("test", "lastposition = "+ lastPosition);

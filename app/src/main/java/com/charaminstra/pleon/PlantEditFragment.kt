@@ -11,20 +11,17 @@ import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.text.Editable
 import com.charaminstra.pleon.plant_register.R
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.PopupMenu
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.view.get
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
@@ -32,7 +29,7 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.charaminstra.pleon.databinding.FragmentPlantEditBinding
 import com.charaminstra.pleon.plant_register.ImageViewModel
-import com.charaminstra.pleon.plant_register.PlantRegisterViewModel
+import com.charaminstra.pleon.plant_register.PlantIdViewModel
 import com.charaminstra.pleon.plant_register.ui.DEFAULT_GALLERY_REQUEST_CODE
 import com.charaminstra.pleon.plant_register.ui.REQUEST_TAKE_PHOTO
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,7 +41,7 @@ import java.util.*
 @AndroidEntryPoint
 class PlantEditFragment : Fragment() {
     private val TAG = javaClass.simpleName
-    private val viewModel: PlantRegisterViewModel by viewModels()
+    private val viewModel: PlantIdViewModel by viewModels()
     private val imageViewModel : ImageViewModel by viewModels()
     private lateinit var binding : FragmentPlantEditBinding
     private lateinit var navController: NavController

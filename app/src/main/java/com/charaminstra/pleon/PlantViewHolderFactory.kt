@@ -13,7 +13,7 @@ object PlantViewHolderFactory {
     fun createViewHolder(parent: ViewGroup, viewType: Int): CommonViewHolder {
         return when (viewType){
             CommonViewType.FEED_PLANT.ordinal -> FeedPlantViewHolder(ItemPlantFeedBinding.inflate(LayoutInflater.from(parent.context),
-                parent, false))
+                parent, false)){}
             CommonViewType.GARDEN_PLANT.ordinal -> GardenPlantViewHolder(ItemPlantGardenBinding.inflate(LayoutInflater.from(parent.context),
                 parent, false)){ }
             else -> throw IllegalArgumentException("Unknown view type")

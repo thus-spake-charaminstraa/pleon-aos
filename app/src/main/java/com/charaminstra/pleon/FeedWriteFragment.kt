@@ -25,20 +25,20 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import androidx.recyclerview.widget.RecyclerView
 import com.charaminstra.pleon.foundation.model.PlantDataObject
+import com.charaminstra.pleon.plant_register.PlantIdViewModel
 
 
 @AndroidEntryPoint
 class FeedWriteFragment : Fragment() {
     private lateinit var binding : FragmentFeedWriteBinding
-    private val viewModel: PlantsViewModel by viewModels()
-    //private lateinit var viewModel: FeedWriteViewModel
-    private lateinit var bottomSheetDialog : BottomSheetDialog
+    private val plantsViewModel: PlantsViewModel by viewModels()
+    private val plantIdViewModel: PlantIdViewModel by viewModels()
     private lateinit var plant_adapter: CommonAdapter
     private lateinit var action_adapter: CommonAdapter
     private val cal = Calendar.getInstance()
     private val dateFormat = SimpleDateFormat("yyyy-MM-dd")
     private lateinit var sheetBehavior : BottomSheetBehavior<View>
-
+    private var clickCount = 0
 //    private var actionStrings = Arrays.asList("물", "통풍", "분무", "분갈이", "가지치기", "새 잎", "꽃", "영양제", "기타")
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,6 +66,7 @@ class FeedWriteFragment : Fragment() {
         //val persistenetBottomSheet: BottomSheetBehavior<View> = BottomSheetBehavior.from(bottomSheetView)
         sheetBehavior = BottomSheetBehavior.from(binding.bottomSheet.root)
         sheetBehavior.isHideable=true
+        sheetBehavior.setPeekHeight(60)
         sheetBehavior.addBottomSheetCallback(BSCB)
         binding.test.setOnClickListener(SOCL)
         binding.dateTv.text = dateFormat
@@ -172,6 +173,11 @@ class FeedWriteFragment : Fragment() {
         plant_adapter = CommonAdapter()
         plant_adapter.setType("FEED_PLANT")
         plant_adapter.onItemClicked = { plantId ->
+            plantIdViewModel.loadData(plantId)
+            clickCount++
+            if(clickCount>=2){
+                sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+            }
 //            val bundle = Bundle()
 //            bundle.putString("id", plantId)
 //            navController.navigate(R.id.view_pager_fragment_to_plant_detail_fragment, bundle)
@@ -181,30 +187,44 @@ class FeedWriteFragment : Fragment() {
         action_adapter.setType("FEED_PLANT")
         action_adapter.refreshItems(
             listOf(
-                PlantDataObject("", "물", "", "", "", "", "", ""),
-                PlantDataObject("", "통풍", "", "", "", "", "", "") ,
-                PlantDataObject("", "분무", "", "", "", "", "", ""),
-                PlantDataObject("", "분갈이", "", "", "", "", "", ""),
-                PlantDataObject("", "가지치기", "", "", "", "", "", ""),
-                PlantDataObject("", "새 잎", "", "", "", "", "", ""),
-                PlantDataObject("", "꽃", "", "", "", "", "", ""),
-                PlantDataObject("", "영양제", "", "", "", "", "", ""),
-                PlantDataObject("", "기타", "", "", "", "", "", "")
+                PlantDataObject("0", "물", "", "", "", "", "", ""),
+                PlantDataObject("1", "통풍", "", "", "", "", "", "") ,
+                PlantDataObject("2", "분무", "", "", "", "", "", ""),
+                PlantDataObject("3", "분갈이", "", "", "", "", "", ""),
+                PlantDataObject("4", "가지치기", "", "", "", "", "", ""),
+                PlantDataObject("5", "잎", "", "", "", "", "", ""),
+                PlantDataObject("6", "꽃", "", "", "", "", "", ""),
+                PlantDataObject("7", "영양제", "", "", "", "", "", ""),
+                PlantDataObject("8", "기타", "", "", "", "", "", "")
             )
         )
+        action_adapter.onItemClicked = {id ->
+            binding.actionTagEdit.setText("#"+action.values().get(id.toInt()))
+            clickCount++
+            if(clickCount>=2){
+                sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+            }
+        }
 
     }
 
     private fun observeViewModel() {
-        viewModel.plantsList.observe(viewLifecycleOwner, Observer {
+        plantsViewModel.plantsList.observe(viewLifecycleOwner, Observer {
             plant_adapter.refreshItems(it)
+        })
+        plantIdViewModel.data.observe(viewLifecycleOwner, Observer {
+            binding.plantTagEdit.setText("@"+it.name)
         })
     }
 
     override fun onResume() {
         super.onResume()
         //viewmodel update
-        viewModel.loadData()
+        plantsViewModel.loadData()
     }
 
+}
+
+enum class action{
+    물, 통풍, 분무, 분갈이, 가지치기, 잎, 꽃, 영양제, 기타
 }
