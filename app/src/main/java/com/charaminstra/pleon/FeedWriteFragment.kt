@@ -65,10 +65,12 @@ class FeedWriteFragment : Fragment() {
         // 위에서 획득한 view를 BottomSheet로 지정
         //val persistenetBottomSheet: BottomSheetBehavior<View> = BottomSheetBehavior.from(bottomSheetView)
         sheetBehavior = BottomSheetBehavior.from(binding.bottomSheet.root)
-        sheetBehavior.isHideable=true
+        sheetBehavior.isHideable=false
         sheetBehavior.setPeekHeight(60)
+        sheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
         sheetBehavior.addBottomSheetCallback(BSCB)
-        binding.test.setOnClickListener(SOCL)
+        binding.plantTagTv.setOnClickListener(SOCL)
+        binding.actionTagTv.setOnClickListener(SOCL)
         binding.dateTv.text = dateFormat
             .format(cal.time)
         binding.dateTv.setOnClickListener {
@@ -199,7 +201,7 @@ class FeedWriteFragment : Fragment() {
             )
         )
         action_adapter.onItemClicked = {id ->
-            binding.actionTagEdit.setText("#"+action.values().get(id.toInt()))
+            binding.actionTagTv.setText("#"+action.values().get(id.toInt()))
             clickCount++
             if(clickCount>=2){
                 sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
@@ -213,7 +215,7 @@ class FeedWriteFragment : Fragment() {
             plant_adapter.refreshItems(it)
         })
         plantIdViewModel.data.observe(viewLifecycleOwner, Observer {
-            binding.plantTagEdit.setText("@"+it.name)
+            binding.plantTagTv.setText("@"+it.name)
         })
     }
 
