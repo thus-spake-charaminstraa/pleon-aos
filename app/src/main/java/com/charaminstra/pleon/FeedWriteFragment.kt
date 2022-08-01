@@ -2,21 +2,25 @@ package com.charaminstra.pleon
 
 import android.app.DatePickerDialog
 import android.graphics.Color
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.lifecycle.Observer
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ListAdapter
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.charaminstra.pleon.adapter.CommonAdapter
 import com.charaminstra.pleon.databinding.FragmentFeedWriteBinding
+import com.charaminstra.pleon.foundation.model.PlantDataObject
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 @AndroidEntryPoint
 class FeedWriteFragment : Fragment() {
@@ -24,9 +28,11 @@ class FeedWriteFragment : Fragment() {
     private val viewModel: PlantsViewModel by viewModels()
     //private lateinit var viewModel: FeedWriteViewModel
     private lateinit var bottomSheetDialog : BottomSheetDialog
-    private lateinit var adapter: CommonAdapter
+    private lateinit var plant_adapter: CommonAdapter
+    private lateinit var action_adapter: CommonAdapter
     private val cal = Calendar.getInstance()
     private val dateFormat = SimpleDateFormat("yyyy-MM-dd")
+    private lateinit var sheetBehavior : BottomSheetBehavior<View>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,26 +45,61 @@ class FeedWriteFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentFeedWriteBinding.inflate(layoutInflater)
-        val bottomSheetView = layoutInflater.inflate(R.layout.bottom_sheet_layout, null)
-        //binding.bottomSheet.plantRecyclerview = adapter
-        bottomSheetDialog = BottomSheetDialog(requireContext())
-        bottomSheetDialog.setContentView(bottomSheetView)
-        bottomSheetDialog.show()
-        binding.test.setOnClickListener {
-            bottomSheetDialog.show()
-        }
-        binding.dateTv.text = dateFormat.format(cal.time)
+        //val bottomSheetView = layoutInflater.inflate(R.id.bottom_sheet, null)
+
+        //val bottomSheet = binding.bottomSheet
+        // 위에서 획득한 view를 BottomSheet로 지정
+        //val persistenetBottomSheet: BottomSheetBehavior<View> = BottomSheetBehavior.from(bottomSheetView)
+        sheetBehavior = BottomSheetBehavior.from(binding.bottomSheet.root)
+        sheetBehavior.isHideable=true
+        sheetBehavior.addBottomSheetCallback(BSCB)
+        binding.test.setOnClickListener(SOCL)
+        binding.dateTv.text = dateFormat
+            .format(cal.time)
         binding.dateTv.setOnClickListener {
             popUpCalendar(it as TextView)
         }
+
         return binding.root
+    }
+    val BSCB : BottomSheetBehavior.BottomSheetCallback = object : BottomSheetBehavior.BottomSheetCallback() {
+        override fun onStateChanged(bottomSheet: View, newState: Int) {
+            // newState = 상태값
+            when(newState) {
+                // 사용자가 BottomSheet를 위나 아래로 드래그 중인 상태
+                BottomSheetBehavior.STATE_DRAGGING -> { }
+                // 드래그 동작 후 BottomSheet가 특정 높이로 고정될 때의 상태
+                // SETTLING 후 EXPANDED, SETTLING 후 COLLAPSED, SETTLING 후 HIDDEN
+                BottomSheetBehavior.STATE_SETTLING -> {
+                    binding.bottomSheet.bottomSheetArrow.setImageResource(R.drawable.ic_bottom_sheet_up);
+                }
+                // 최대 높이로 보이는 상태
+                BottomSheetBehavior.STATE_EXPANDED -> {
+                    binding.bottomSheet.bottomSheetArrow.setImageResource(R.drawable.ic_bottom_sheet_down);
+                }
+                // peek 높이 만큼 보이는 상태
+                BottomSheetBehavior.STATE_COLLAPSED -> {
+                    binding.bottomSheet.bottomSheetArrow.setImageResource(R.drawable.ic_bottom_sheet_up);
+                }
+                // 숨김 상태
+                BottomSheetBehavior.STATE_HIDDEN -> { }
+            }
+        }
+
+        override fun onSlide(bottomSheet: View, slideOffset: Float) {}
+    }
+    val SOCL : View.OnClickListener = object : View.OnClickListener {
+        override fun onClick(p0: View?) {
+            sheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initList()
         observeViewModel()
-        //binding.bottomSheet.plantRecyclerview.adapter = adapter
+        binding.bottomSheet.plantRecyclerview.adapter = plant_adapter
+        binding.bottomSheet.actionRecyclerview.adapter= action_adapter
     }
 
 
@@ -75,18 +116,34 @@ class FeedWriteFragment : Fragment() {
     }
 
     private fun initList() {
-        adapter = CommonAdapter()
-        adapter.setType("FEED_PLANT")
-        adapter.onItemClicked = { plantId ->
+        plant_adapter = CommonAdapter()
+        plant_adapter.setType("FEED_PLANT")
+        plant_adapter.onItemClicked = { plantId ->
 //            val bundle = Bundle()
 //            bundle.putString("id", plantId)
             //navController.navigate(R.id.view_pager_fragment_to_plant_detail_fragment, bundle)
         }
+        action_adapter = CommonAdapter()
+        action_adapter.setType("FEED_PLANT")
+        action_adapter.refreshItems(
+            listOf(
+                PlantDataObject("", "물", "", "", "", "", "", ""),
+                PlantDataObject("", "통풍", "", "", "", "", "", "") ,
+                PlantDataObject("", "분무", "", "", "", "", "", ""),
+                PlantDataObject("", "분갈이", "", "", "", "", "", ""),
+                PlantDataObject("", "가지치기", "", "", "", "", "", ""),
+                PlantDataObject("", "새 잎", "", "", "", "", "", ""),
+                PlantDataObject("", "꽃", "", "", "", "", "", ""),
+                PlantDataObject("", "영양제", "", "", "", "", "", ""),
+                PlantDataObject("", "기타", "", "", "", "", "", "")
+            )
+        )
+
     }
 
     private fun observeViewModel() {
         viewModel.plantsList.observe(viewLifecycleOwner, Observer {
-            adapter.refreshItems(it)
+            plant_adapter.refreshItems(it)
         })
     }
 

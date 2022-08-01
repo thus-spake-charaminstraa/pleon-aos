@@ -13,7 +13,6 @@ class GardenPlantViewHolder(
         Glide.with(binding.root)
             .load(item.thumbnail)
             .into(binding.plantImage)
-
         binding.root.setOnClickListener {
             onItemClicked(item.id!!)
         }

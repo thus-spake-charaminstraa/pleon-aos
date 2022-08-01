@@ -10,4 +10,7 @@
 
     <string name="edit_btn">편집</string>
     <string name="delete_btn">삭제</string>
+
+    <string name="bottome_sheet_plant">식물 이름</string>
+    <string name="bottome_sheet_action">무엇을 해주셨나요?</string>
 </resources>
