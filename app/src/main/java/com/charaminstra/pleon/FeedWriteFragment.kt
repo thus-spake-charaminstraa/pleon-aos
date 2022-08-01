@@ -121,8 +121,9 @@ class FeedWriteFragment : Fragment() {
         plant_adapter.onItemClicked = { plantId ->
 //            val bundle = Bundle()
 //            bundle.putString("id", plantId)
-            //navController.navigate(R.id.view_pager_fragment_to_plant_detail_fragment, bundle)
+//            navController.navigate(R.id.view_pager_fragment_to_plant_detail_fragment, bundle)
         }
+
         action_adapter = CommonAdapter()
         action_adapter.setType("FEED_PLANT")
         action_adapter.refreshItems(

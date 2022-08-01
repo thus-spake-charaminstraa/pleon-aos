@@ -1,5 +1,7 @@
 package com.charaminstra.pleon.adapter
 
+import android.graphics.Color
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.charaminstra.pleon.PlantViewHolderFactory
@@ -11,8 +13,8 @@ import com.charaminstra.pleon.viewholder.CommonViewHolder
 //                    private val onItemClicked: (String)-> Unit): RecyclerView.Adapter<CommonViewHolder>() {
 class CommonAdapter(): RecyclerView.Adapter<CommonViewHolder>() {
 
-    //var viewItemList = mutableListOf<PlantDataObject>()
-//
+    private var lastPosition = -1
+    private lateinit var lastView: View
     var viewItemList: List<PlantDataObject> = listOf()
     //var viewItemList  = ArrayList<PlantDataObject>()
     private lateinit var type: String
@@ -33,7 +35,9 @@ class CommonAdapter(): RecyclerView.Adapter<CommonViewHolder>() {
 
     override fun onBindViewHolder(holder: CommonViewHolder, position: Int) {
         holder.bind(viewItemList[position])
-        holder.itemView.setOnClickListener { onItemClicked(viewItemList[position].id!!) }
+        holder.itemView.setOnClickListener {
+            onItemClicked(viewItemList[position].id!!)
+        }
     }
 
     fun refreshItems(viewItemList : List<PlantDataObject>) {
