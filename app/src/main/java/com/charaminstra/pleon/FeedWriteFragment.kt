@@ -2,24 +2,29 @@ package com.charaminstra.pleon
 
 import android.app.DatePickerDialog
 import android.graphics.Color
+import android.graphics.Color.BLUE
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ListAdapter
+import android.widget.ListView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.charaminstra.pleon.adapter.CommonAdapter
 import com.charaminstra.pleon.databinding.FragmentFeedWriteBinding
-import com.charaminstra.pleon.foundation.model.PlantDataObject
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import androidx.recyclerview.widget.RecyclerView
+import com.charaminstra.pleon.foundation.model.PlantDataObject
 
 
 @AndroidEntryPoint
@@ -34,8 +39,17 @@ class FeedWriteFragment : Fragment() {
     private val dateFormat = SimpleDateFormat("yyyy-MM-dd")
     private lateinit var sheetBehavior : BottomSheetBehavior<View>
 
+//    private var actionStrings = Arrays.asList("물", "통풍", "분무", "분갈이", "가지치기", "새 잎", "꽃", "영양제", "기타")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = FragmentFeedWriteBinding.inflate(layoutInflater)
+
+//        binding.bottomSheet.actionListview.choiceMode=ListView.CHOICE_MODE_SINGLE
+//        val actionAdapter: ArrayAdapter<String> = ArrayAdapter(requireContext(), R.layout.item_plant_feed, R.id.plant_name, actionStrings)
+//        binding.bottomSheet.actionListview.setAdapter(actionAdapter)
+//        binding.bottomSheet.actionListview.setItemChecked(0, true)
+        //binding.bottomSheet.actionListview.setOnItemClickListener(updateClickListener)
 
 
     }
@@ -44,7 +58,7 @@ class FeedWriteFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentFeedWriteBinding.inflate(layoutInflater)
+
         //val bottomSheetView = layoutInflater.inflate(R.id.bottom_sheet, null)
 
         //val bottomSheet = binding.bottomSheet
@@ -94,12 +108,51 @@ class FeedWriteFragment : Fragment() {
         }
     }
 
+    private val recyclerListener = object : RecyclerView.OnItemTouchListener {
+        override fun onTouchEvent(rv: RecyclerView, e: MotionEvent) {
+            //To change body of created functions use File | Settings | File Templates.
+        }
+
+        override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
+            if(e.action == MotionEvent.ACTION_MOVE){
+
+            }
+            else{
+                var child = rv.findChildViewUnder(e.getX(), e.getY())
+                if(child != null){
+                    var position = rv.getChildAdapterPosition(child)
+                    var view = rv.layoutManager?.findViewByPosition(position)
+                    view?.setBackgroundResource(R.color.button_bg)
+                    for(i in 0..rv.adapter!!.itemCount){
+                        var otherView = rv.layoutManager?.findViewByPosition(i)
+                        if(otherView != view){
+                            otherView?.setBackgroundResource(R.color.transparent)
+                        }
+                        else{
+
+                        }
+                    }
+                }
+            }
+            return false
+        }
+        override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {
+            //To change body of created functions use File | Settings | File Templates.
+        }
+
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initList()
         observeViewModel()
         binding.bottomSheet.plantRecyclerview.adapter = plant_adapter
         binding.bottomSheet.actionRecyclerview.adapter= action_adapter
+
+        /**/
+        binding.bottomSheet.plantRecyclerview.addOnItemTouchListener(recyclerListener)
+        binding.bottomSheet.actionRecyclerview.addOnItemTouchListener(recyclerListener)
+
     }
 
 

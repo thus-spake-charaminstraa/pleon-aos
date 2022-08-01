@@ -4,6 +4,7 @@
     <color name="input_bg">#F2F4F6</color>
     <color name="button_bg">#E0F1C7</color>
     <color name="garden_bg">#372B1E</color>
+    <color name="transparent">#00ff0000</color>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
