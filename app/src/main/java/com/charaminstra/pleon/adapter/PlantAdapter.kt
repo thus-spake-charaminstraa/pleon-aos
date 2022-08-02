@@ -17,16 +17,16 @@ class PlantAdapter(): RecyclerView.Adapter<CommonViewHolder>() {
     var onItemClicked: (String)-> Unit = {}
 
     override fun getItemViewType(position: Int): Int {
-        return GardenViewType.valueOf(type).ordinal
+        return PlantViewType.valueOf(type).ordinal
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommonViewHolder {
         return return when (viewType){
-            GardenViewType.FEED_PLANT.ordinal -> FeedPlantViewHolder(
+            PlantViewType.FEED_PLANT.ordinal -> FeedPlantViewHolder(
                 ItemPlantFeedBinding.inflate(
                     LayoutInflater.from(parent.context),
                 parent, false)){}
-            GardenViewType.GARDEN_PLANT.ordinal -> GardenPlantViewHolder(
+            PlantViewType.GARDEN_PLANT.ordinal -> GardenPlantViewHolder(
                 ItemPlantGardenBinding.inflate(
                     LayoutInflater.from(parent.context),
                 parent, false)){ }

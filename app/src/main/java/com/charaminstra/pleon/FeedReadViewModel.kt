@@ -16,8 +16,8 @@ class FeedReadViewModel @Inject constructor(
     private val repository: FeedRepository
 ) : ViewModel() {
     private val TAG = javaClass.name
-    private val _feedList = MutableLiveData<List<FeedDataObject?>>()
-    val feedList : LiveData<List<FeedDataObject?>> = _feedList
+    private val _feedList = MutableLiveData<List<FeedDataObject>>()
+    val feedList : LiveData<List<FeedDataObject>> = _feedList
 
     init {
         loadData()

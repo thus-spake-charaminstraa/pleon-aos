@@ -1,5 +1,5 @@
 package com.charaminstra.pleon.adapter
 
-enum class GardenViewType {
+enum class PlantViewType {
     FEED_PLANT, GARDEN_PLANT
 }

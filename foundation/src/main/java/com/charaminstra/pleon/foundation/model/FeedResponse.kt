@@ -3,7 +3,7 @@ package com.charaminstra.pleon.foundation.model
 data class FeedResponse(
     val success: Boolean?,
     val statusCode: Int?,
-    val data: List<FeedDataObject?>
+    val data: List<FeedDataObject>
 )
 
 data class FeedDataObject(
