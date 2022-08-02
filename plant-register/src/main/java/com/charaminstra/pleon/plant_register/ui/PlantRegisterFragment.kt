@@ -120,11 +120,20 @@ class PlantRegisterFragment : Fragment() {
                 data?:return
                 val uri = data.data as Uri
                 Log.i("image",uri.path.toString())
+                /*new*/
+                //imageViewModel.postImage(uri)
+
                 activity?.contentResolver?.openInputStream(uri).let {
+                    Log.i("gallery image inputstream",it.toString())
+                    val bitmap = BitmapFactory.decodeStream(it)
                     // image veiw set image bit map
-                    binding.thumbnail.setImageBitmap(BitmapFactory.decodeStream(it))
+                    binding.thumbnail.setImageBitmap(bitmap)
                     // get image url
-                    imageViewModel.postImage(it!!)
+                    ByteArrayOutputStream().use { stream ->
+                        bitmap.compress(Bitmap.CompressFormat.JPEG,100, stream)
+                        val inputStream = ByteArrayInputStream(stream.toByteArray())
+                        imageViewModel.postImage(inputStream)
+                    }
                 }
             }
             REQUEST_TAKE_PHOTO -> {
@@ -133,6 +142,7 @@ class PlantRegisterFragment : Fragment() {
                 ByteArrayOutputStream().use { stream ->
                     bitmap.compress(Bitmap.CompressFormat.JPEG,100, stream)
                     val inputStream = ByteArrayInputStream(stream.toByteArray())
+                    Log.i("photo image inputstream", inputStream.toString())
                     imageViewModel.postImage(inputStream)
                 }
             }
