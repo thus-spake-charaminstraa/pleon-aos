@@ -7,9 +7,10 @@ import com.charaminstra.pleon.foundation.model.FeedResponse
 import javax.inject.Inject
 
 class FeedRepository @Inject constructor(private val service: FeedAPIService, private val prefs: PleonPreference){
-//    suspend fun postFeed() = service.postFeed(prefs.getAccessToken(),
-//    FeedRequestBody()
-//    )
+    suspend fun postFeed(plantId : String, date: String, kind: String, content: String, url: String?) = service.postFeed(
+        prefs.getAccessToken(),
+        FeedRequestBody(plantId, date, kind, content, url))
 
     suspend fun getFeed() = service.getFeed(prefs.getAccessToken())
 }
+

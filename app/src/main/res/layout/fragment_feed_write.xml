@@ -43,25 +43,34 @@
             android:background="@drawable/button"
             style="@style/SubText"
             android:text="@string/complete_btn" />
+        <ImageView
+            android:id="@+id/image"
+            android:visibility="gone"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/date_tv"
+            android:background="@drawable/input"
+            />
         <TextView
             android:id="@+id/plant_tag_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/complete_btn"
+            app:layout_constraintTop_toBottomOf="@+id/image"
             app:layout_constraintLeft_toLeftOf="parent"
             android:gravity="top"
-            android:inputType="textPersonName"
             android:padding="10dp" />
-
         <TextView
             android:id="@+id/action_tag_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="top"
-            android:inputType="textPersonName"
             android:padding="10dp"
             app:layout_constraintLeft_toRightOf="@+id/plant_tag_tv"
             app:layout_constraintTop_toTopOf="@+id/plant_tag_tv" />
+
         <EditText
             android:id="@+id/content_edit"
             android:layout_width="match_parent"
@@ -69,13 +78,20 @@
             app:layout_constraintTop_toBottomOf="@+id/plant_tag_tv"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/test"
             android:gravity="top"
             android:hint="내용을 작성해주세요."
             android:inputType="textPersonName"
             android:padding="10dp" />
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/camera_btn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/round_button"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@drawable/ic_camera_active"
+            android:layout_margin="20dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
     <include android:id="@+id/bottom_sheet" layout="@layout/bottom_sheet_layout" />

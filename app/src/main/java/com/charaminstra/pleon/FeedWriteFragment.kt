@@ -3,6 +3,7 @@ package com.charaminstra.pleon
 import android.app.DatePickerDialog
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -11,16 +12,15 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import com.charaminstra.pleon.databinding.FragmentFeedWriteBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
 import androidx.recyclerview.widget.RecyclerView
-import com.charaminstra.pleon.adapter.ActionAdapter
-import com.charaminstra.pleon.adapter.ActionObject
-import com.charaminstra.pleon.adapter.ActionType
-import com.charaminstra.pleon.adapter.PlantAdapter
+import com.charaminstra.pleon.adapter.*
 import com.charaminstra.pleon.foundation.model.PlantDataObject
 import com.charaminstra.pleon.plant_register.PlantIdViewModel
 
@@ -28,52 +28,57 @@ import com.charaminstra.pleon.plant_register.PlantIdViewModel
 @AndroidEntryPoint
 class FeedWriteFragment : Fragment() {
     private lateinit var binding : FragmentFeedWriteBinding
+    private val TAG = javaClass.name
     private val plantsViewModel: PlantsViewModel by viewModels()
     private val plantIdViewModel: PlantIdViewModel by viewModels()
+    private val feedWriteViewModel : FeedWriteViewModel by viewModels()
+    private lateinit var navController: NavController
     private lateinit var plant_adapter: PlantAdapter
     private lateinit var action_adapter: ActionAdapter
     private val cal = Calendar.getInstance()
     private val dateFormat = SimpleDateFormat("yyyy-MM-dd")
     private lateinit var sheetBehavior : BottomSheetBehavior<View>
     private var clickCount = 0
-//    private var actionStrings = Arrays.asList("물", "통풍", "분무", "분갈이", "가지치기", "새 잎", "꽃", "영양제", "기타")
+
+    private lateinit var plantId : String
+    private lateinit var plantAction: ActionType
+    private var url : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = FragmentFeedWriteBinding.inflate(layoutInflater)
-
-//        binding.bottomSheet.actionListview.choiceMode=ListView.CHOICE_MODE_SINGLE
-//        val actionAdapter: ArrayAdapter<String> = ArrayAdapter(requireContext(), R.layout.item_plant_feed, R.id.plant_name, actionStrings)
-//        binding.bottomSheet.actionListview.setAdapter(actionAdapter)
-//        binding.bottomSheet.actionListview.setItemChecked(0, true)
-        //binding.bottomSheet.actionListview.setOnItemClickListener(updateClickListener)
-
-
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        navController = this.findNavController()
 
-        //val bottomSheetView = layoutInflater.inflate(R.id.bottom_sheet, null)
-
-        //val bottomSheet = binding.bottomSheet
-        // 위에서 획득한 view를 BottomSheet로 지정
-        //val persistenetBottomSheet: BottomSheetBehavior<View> = BottomSheetBehavior.from(bottomSheetView)
         sheetBehavior = BottomSheetBehavior.from(binding.bottomSheet.root)
         sheetBehavior.isHideable=false
         sheetBehavior.setPeekHeight(60)
         sheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
         sheetBehavior.addBottomSheetCallback(BSCB)
+
         binding.plantTagTv.setOnClickListener(SOCL)
         binding.actionTagTv.setOnClickListener(SOCL)
-        binding.dateTv.text = dateFormat
-            .format(cal.time)
+        binding.dateTv.text = dateFormat.format(cal.time).toString()
         binding.dateTv.setOnClickListener {
             popUpCalendar(it as TextView)
         }
-
+        binding.cameraBtn.setOnClickListener{
+            binding.image.visibility = View.VISIBLE
+        }
+        binding.completeBtn.setOnClickListener {
+            feedWriteViewModel.postFeed(
+                plantId,
+                binding.dateTv.text.toString(),
+                actionToKindType(plantAction).toString(),
+                binding.contentEdit.text.toString(),
+                url
+            )
+        }
         return binding.root
     }
     val BSCB : BottomSheetBehavior.BottomSheetCallback = object : BottomSheetBehavior.BottomSheetCallback() {
@@ -197,7 +202,9 @@ class FeedWriteFragment : Fragment() {
             )
         )
         action_adapter.onItemClicked = {actionType ->
-            binding.actionTagTv.setText("#"+ actionType)
+            plantAction = actionType
+            Log.i(TAG,"palntAction : "+plantAction)
+            binding.actionTagTv.text= "#"+ plantAction
             clickCount++
             if(clickCount>=2){
                 sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
@@ -212,6 +219,13 @@ class FeedWriteFragment : Fragment() {
         })
         plantIdViewModel.data.observe(viewLifecycleOwner, Observer {
             binding.plantTagTv.setText("@"+it.name)
+            plantId = it.id!!
+            Log.i(TAG,"palntId"+plantId)
+        })
+        feedWriteViewModel.postSuccess.observe(viewLifecycleOwner, Observer{
+            if(it){
+                navController.popBackStack()
+            }
         })
     }
 

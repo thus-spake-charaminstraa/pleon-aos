@@ -5,6 +5,6 @@ data class FeedRequestBody(
     val publish_date: String,
     val kind: String,
     val content: String,
-    val image_url: String
+    val image_url: String?
 )
 
