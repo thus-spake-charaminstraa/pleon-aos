@@ -17,6 +17,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
 import androidx.recyclerview.widget.RecyclerView
+import com.charaminstra.pleon.adapter.ActionAdapter
+import com.charaminstra.pleon.adapter.ActionObject
+import com.charaminstra.pleon.adapter.ActionType
 import com.charaminstra.pleon.adapter.PlantAdapter
 import com.charaminstra.pleon.foundation.model.PlantDataObject
 import com.charaminstra.pleon.plant_register.PlantIdViewModel
@@ -28,7 +31,7 @@ class FeedWriteFragment : Fragment() {
     private val plantsViewModel: PlantsViewModel by viewModels()
     private val plantIdViewModel: PlantIdViewModel by viewModels()
     private lateinit var plant_adapter: PlantAdapter
-    private lateinit var action_adapter: PlantAdapter
+    private lateinit var action_adapter: ActionAdapter
     private val cal = Calendar.getInstance()
     private val dateFormat = SimpleDateFormat("yyyy-MM-dd")
     private lateinit var sheetBehavior : BottomSheetBehavior<View>
@@ -179,23 +182,22 @@ class FeedWriteFragment : Fragment() {
 //            navController.navigate(R.id.view_pager_fragment_to_plant_detail_fragment, bundle)
         }
 
-        action_adapter = PlantAdapter()
-        action_adapter.setType("FEED_PLANT")
+        action_adapter = ActionAdapter()
         action_adapter.refreshItems(
             listOf(
-                PlantDataObject("0", "물", "", "", "", "", "", ""),
-                PlantDataObject("1", "통풍", "", "", "", "", "", "") ,
-                PlantDataObject("2", "분무", "", "", "", "", "", ""),
-                PlantDataObject("3", "분갈이", "", "", "", "", "", ""),
-                PlantDataObject("4", "가지치기", "", "", "", "", "", ""),
-                PlantDataObject("5", "잎", "", "", "", "", "", ""),
-                PlantDataObject("6", "꽃", "", "", "", "", "", ""),
-                PlantDataObject("7", "영양제", "", "", "", "", "", ""),
-                PlantDataObject("8", "기타", "", "", "", "", "", "")
+                ActionObject(ActionType.물,""),
+                ActionObject(ActionType.통풍,"") ,
+                ActionObject(ActionType.분무,""),
+                ActionObject(ActionType.분갈이,""),
+                ActionObject(ActionType.가지치기,""),
+                ActionObject(ActionType.잎,""),
+                ActionObject(ActionType.꽃,""),
+                ActionObject(ActionType.영양제,""),
+                ActionObject(ActionType.기타,"")
             )
         )
-        action_adapter.onItemClicked = {id ->
-            binding.actionTagTv.setText("#"+action.values().get(id.toInt()))
+        action_adapter.onItemClicked = {actionType ->
+            binding.actionTagTv.setText("#"+ actionType)
             clickCount++
             if(clickCount>=2){
                 sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
@@ -221,6 +223,3 @@ class FeedWriteFragment : Fragment() {
 
 }
 
-enum class action{
-    물, 통풍, 분무, 분갈이, 가지치기, 잎, 꽃, 영양제, 기타
-}

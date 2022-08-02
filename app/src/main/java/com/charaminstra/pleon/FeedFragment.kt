@@ -20,7 +20,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class FeedFragment : Fragment() {
     private val TAG = javaClass.name
     private val plantsViewModel: PlantsViewModel by viewModels()
-    private val plantIdViewModel: PlantIdViewModel by viewModels()
     private val feedReadViewModel: FeedReadViewModel by viewModels()
     private lateinit var binding : FragmentFeedBinding
     private lateinit var plantAdapter: PlantAdapter

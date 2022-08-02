@@ -8,6 +8,7 @@ import com.charaminstra.pleon.databinding.ItemPlantFeedBinding
 import com.charaminstra.pleon.databinding.ItemPlantGardenBinding
 import com.charaminstra.pleon.foundation.model.FeedDataObject
 import com.charaminstra.pleon.foundation.model.PlantDataObject
+import com.charaminstra.pleon.foundation.model.ResultObject
 import com.charaminstra.pleon.viewholder.CommonViewHolder
 import com.charaminstra.pleon.viewholder.FeedPlantViewHolder
 import com.charaminstra.pleon.viewholder.FeedViewHolder
@@ -15,7 +16,7 @@ import com.charaminstra.pleon.viewholder.GardenPlantViewHolder
 
 class FeedAdapter(): RecyclerView.Adapter<FeedViewHolder>() {
 
-    var viewItemList: List<FeedDataObject> = listOf()
+    var viewItemList: List<ResultObject> = listOf()
     var onItemClicked: (String)-> Unit = {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeedViewHolder {
@@ -33,7 +34,7 @@ class FeedAdapter(): RecyclerView.Adapter<FeedViewHolder>() {
         }
     }
 
-    fun refreshItems(viewItemList : List<FeedDataObject>) {
+    fun refreshItems(viewItemList : List<ResultObject>) {
         this.viewItemList = viewItemList
         notifyDataSetChanged() // Andoid RecyclerView DiffUtil.
     }
