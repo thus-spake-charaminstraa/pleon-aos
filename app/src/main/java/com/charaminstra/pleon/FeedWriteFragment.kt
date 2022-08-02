@@ -2,28 +2,22 @@ package com.charaminstra.pleon
 
 import android.app.DatePickerDialog
 import android.graphics.Color
-import android.graphics.Color.BLUE
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ListView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.charaminstra.pleon.adapter.CommonAdapter
 import com.charaminstra.pleon.databinding.FragmentFeedWriteBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import androidx.recyclerview.widget.RecyclerView
+import com.charaminstra.pleon.adapter.PlantAdapter
 import com.charaminstra.pleon.foundation.model.PlantDataObject
 import com.charaminstra.pleon.plant_register.PlantIdViewModel
 
@@ -33,8 +27,8 @@ class FeedWriteFragment : Fragment() {
     private lateinit var binding : FragmentFeedWriteBinding
     private val plantsViewModel: PlantsViewModel by viewModels()
     private val plantIdViewModel: PlantIdViewModel by viewModels()
-    private lateinit var plant_adapter: CommonAdapter
-    private lateinit var action_adapter: CommonAdapter
+    private lateinit var plant_adapter: PlantAdapter
+    private lateinit var action_adapter: PlantAdapter
     private val cal = Calendar.getInstance()
     private val dateFormat = SimpleDateFormat("yyyy-MM-dd")
     private lateinit var sheetBehavior : BottomSheetBehavior<View>
@@ -172,7 +166,7 @@ class FeedWriteFragment : Fragment() {
     }
 
     private fun initList() {
-        plant_adapter = CommonAdapter()
+        plant_adapter = PlantAdapter()
         plant_adapter.setType("FEED_PLANT")
         plant_adapter.onItemClicked = { plantId ->
             plantIdViewModel.loadData(plantId)
@@ -185,7 +179,7 @@ class FeedWriteFragment : Fragment() {
 //            navController.navigate(R.id.view_pager_fragment_to_plant_detail_fragment, bundle)
         }
 
-        action_adapter = CommonAdapter()
+        action_adapter = PlantAdapter()
         action_adapter.setType("FEED_PLANT")
         action_adapter.refreshItems(
             listOf(

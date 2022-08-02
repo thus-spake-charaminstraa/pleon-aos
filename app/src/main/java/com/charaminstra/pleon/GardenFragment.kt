@@ -2,7 +2,6 @@ package com.charaminstra.pleon
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.charaminstra.pleon.adapter.CommonAdapter
+import com.charaminstra.pleon.adapter.PlantAdapter
 import com.charaminstra.pleon.databinding.FragmentGardenBinding
 import com.charaminstra.pleon.login.AuthViewModel
 import com.charaminstra.pleon.plant_register.ui.PlantRegisterActivity
@@ -23,7 +22,7 @@ class GardenFragment : Fragment() {
     private val authViewModel: AuthViewModel by viewModels()
     private lateinit var binding: FragmentGardenBinding
     private lateinit var navController: NavController
-    private lateinit var adapter: CommonAdapter
+    private lateinit var adapter: PlantAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,7 +47,7 @@ class GardenFragment : Fragment() {
     }
 
     private fun initList() {
-        adapter = CommonAdapter()
+        adapter = PlantAdapter()
         adapter.setType("GARDEN_PLANT")
         adapter.onItemClicked = { plantId ->
             val bundle = Bundle()

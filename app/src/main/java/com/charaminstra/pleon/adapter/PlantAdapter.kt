@@ -1,30 +1,37 @@
 package com.charaminstra.pleon.adapter
 
-import android.graphics.Color
-import android.view.View
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.charaminstra.pleon.PlantViewHolderFactory
+import com.charaminstra.pleon.databinding.ItemPlantFeedBinding
+import com.charaminstra.pleon.databinding.ItemPlantGardenBinding
 import com.charaminstra.pleon.foundation.model.PlantDataObject
 import com.charaminstra.pleon.viewholder.CommonViewHolder
+import com.charaminstra.pleon.viewholder.FeedPlantViewHolder
+import com.charaminstra.pleon.viewholder.GardenPlantViewHolder
 
-class CommonAdapter(): RecyclerView.Adapter<CommonViewHolder>() {
+class PlantAdapter(): RecyclerView.Adapter<CommonViewHolder>() {
 
     var viewItemList: List<PlantDataObject> = listOf()
     private lateinit var type: String
     var onItemClicked: (String)-> Unit = {}
 
-
     override fun getItemViewType(position: Int): Int {
-        //viewItemList[position].viewType
-        return CommonViewType.valueOf(type).ordinal
+        return GardenViewType.valueOf(type).ordinal
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommonViewHolder {
-//        if(viewType == "gallery_thumbnail"){
-//
-//        }
-        return PlantViewHolderFactory.createViewHolder(parent, viewType)
+        return return when (viewType){
+            GardenViewType.FEED_PLANT.ordinal -> FeedPlantViewHolder(
+                ItemPlantFeedBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                parent, false)){}
+            GardenViewType.GARDEN_PLANT.ordinal -> GardenPlantViewHolder(
+                ItemPlantGardenBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                parent, false)){ }
+            else -> throw IllegalArgumentException("Unknown view type")
+        }
     }
 
     override fun getItemCount(): Int {
