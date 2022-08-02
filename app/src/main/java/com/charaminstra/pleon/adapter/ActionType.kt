@@ -22,4 +22,4 @@ class actionToKindType(val actionType: ActionType){
 
 data class ActionObject(
     val actionType: ActionType,
-    val actionImage: String)
+    val actionImage: Int)

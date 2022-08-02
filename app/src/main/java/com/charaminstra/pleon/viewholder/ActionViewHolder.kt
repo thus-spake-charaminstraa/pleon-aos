@@ -19,6 +19,7 @@ class ActionViewHolder(
         binding.root.setOnClickListener {
             onItemClicked(item.actionType)
         }
+        binding.plantImage.setImageResource(item.actionImage)
     }
 
 }

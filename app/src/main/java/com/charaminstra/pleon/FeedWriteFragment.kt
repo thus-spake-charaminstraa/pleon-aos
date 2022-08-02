@@ -190,15 +190,15 @@ class FeedWriteFragment : Fragment() {
         action_adapter = ActionAdapter()
         action_adapter.refreshItems(
             listOf(
-                ActionObject(ActionType.물,""),
-                ActionObject(ActionType.통풍,"") ,
-                ActionObject(ActionType.분무,""),
-                ActionObject(ActionType.분갈이,""),
-                ActionObject(ActionType.가지치기,""),
-                ActionObject(ActionType.잎,""),
-                ActionObject(ActionType.꽃,""),
-                ActionObject(ActionType.영양제,""),
-                ActionObject(ActionType.기타,"")
+                ActionObject(ActionType.물,R.drawable.ic_action_water),
+                ActionObject(ActionType.통풍,R.drawable.ic_action_air) ,
+                ActionObject(ActionType.분무,R.drawable.ic_action_spray),
+                ActionObject(ActionType.분갈이,R.drawable.ic_action_repot),
+                ActionObject(ActionType.가지치기,R.drawable.ic_action_prune),
+                ActionObject(ActionType.잎,R.drawable.ic_action_leaf),
+                ActionObject(ActionType.꽃,R.drawable.ic_action_flower),
+                ActionObject(ActionType.영양제,R.drawable.ic_action_fertilize),
+                ActionObject(ActionType.기타,R.drawable.ic_action_etc)
             )
         )
         action_adapter.onItemClicked = {actionType ->
