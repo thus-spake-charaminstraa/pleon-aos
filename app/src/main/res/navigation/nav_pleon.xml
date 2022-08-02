@@ -46,6 +46,7 @@
         <action
             android:id="@+id/plant_edit_fragment_delete"
             app:popUpTo="@+id/view_pager_fragment"
+            app:destination="@+id/view_pager_fragment"
             app:popUpToInclusive="true" />
     </fragment>
 
