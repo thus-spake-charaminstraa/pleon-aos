@@ -16,10 +16,14 @@ class CommonAdapter(): RecyclerView.Adapter<CommonViewHolder>() {
 
 
     override fun getItemViewType(position: Int): Int {
+        //viewItemList[position].viewType
         return CommonViewType.valueOf(type).ordinal
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommonViewHolder {
+//        if(viewType == "gallery_thumbnail"){
+//
+//        }
         return PlantViewHolderFactory.createViewHolder(parent, viewType)
     }
 
