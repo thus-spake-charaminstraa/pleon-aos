@@ -1,5 +1,6 @@
 package com.charaminstra.pleon.viewholder
 
+import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.charaminstra.pleon.databinding.ItemFeedBinding
@@ -15,6 +16,10 @@ class FeedViewHolder(
         binding.feedContent.text = item.content
         binding.plantTagTv.text = "@"+item.plant.name!!
         binding.actionTagTv.text = "#"+item.kind
+        if(item.image_url != null) {
+            binding.plantImage.visibility = View.VISIBLE
+            Glide.with(binding.root).load(item.image_url).into(binding.plantImage)
+        }
     }
 
 }

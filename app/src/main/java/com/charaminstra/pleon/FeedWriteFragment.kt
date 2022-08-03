@@ -79,6 +79,10 @@ class FeedWriteFragment : Fragment() {
     ): View? {
         navController = this.findNavController()
 
+        imageViewModel.urlResponse.observe(viewLifecycleOwner, Observer {
+            url = it
+        })
+
         sheetBehavior = BottomSheetBehavior.from(binding.bottomSheet.root)
         sheetBehavior.isHideable=false
         sheetBehavior.setPeekHeight(60)
@@ -275,10 +279,6 @@ class FeedWriteFragment : Fragment() {
             DEFAULT_GALLERY_REQUEST_CODE -> {
                 data?:return
                 val uri = data.data as Uri
-                Log.i("image",uri.path.toString())
-                /*new*/
-                //imageViewModel.postImage(uri)
-
                 activity?.contentResolver?.openInputStream(uri).let {
                     Log.i("gallery image inputstream",it.toString())
                     val bitmap = BitmapFactory.decodeStream(it)
