@@ -107,7 +107,7 @@ class FeedWriteFragment : Fragment() {
             feedWriteViewModel.postFeed(
                 plantId,
                 binding.dateTv.text.toString(),
-                actionToKindType(plantAction).toString(),
+                plantAction.action,
                 binding.contentEdit.text.toString(),
                 url
             )

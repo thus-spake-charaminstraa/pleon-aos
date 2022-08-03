@@ -42,7 +42,7 @@ class FeedFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initList()
         observeViewModel()
-        binding.filterRecyclerview.adapter = plantAdapter
+        binding.feedFilterRecyclerview.adapter = plantAdapter
         binding.feedRecyclerview.adapter = feedAdapter
         binding.writeBtn.setOnClickListener {
             navController.navigate(R.id.view_pager_fragment_to_feed_write_fragment)
