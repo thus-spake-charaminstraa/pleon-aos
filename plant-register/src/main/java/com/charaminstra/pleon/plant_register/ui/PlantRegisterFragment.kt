@@ -66,22 +66,7 @@ class PlantRegisterFragment : Fragment() {
             activity?.finish()
         }
         binding.thumbnail.setOnClickListener {
-            val pop= PopupMenu(requireContext(),it)
-            pop.menuInflater.inflate(R.menu.image_menu, pop.menu)
-            pop.setOnMenuItemClickListener {
-                when(it.itemId){
-                    R.id.camera ->{
-                        openCamera()
-                    }
-                    R.id.gallery ->
-                        openGallery()
-                    R.id.cancel ->
-                        binding.thumbnail.setImageBitmap(null)
-
-                }
-                false
-            }
-            pop.show()
+            popUpImageMenu(it)
         }
         binding.adoptDayInput.setOnClickListener {
             popUpCalendar(it as TextView)
@@ -214,6 +199,23 @@ class PlantRegisterFragment : Fragment() {
                 activity?.finish()
             }
         }
+    }
+
+    fun popUpImageMenu(view: View){
+        val pop= PopupMenu(requireContext(),view)
+        pop.menuInflater.inflate(R.menu.image_menu, pop.menu)
+        pop.setOnMenuItemClickListener {
+            when(it.itemId){
+                R.id.camera ->
+                    openCamera()
+                R.id.gallery ->
+                    openGallery()
+                R.id.cancel ->
+                    binding.thumbnail.setImageBitmap(null)
+            }
+            false
+        }
+        pop.show()
     }
 
 }

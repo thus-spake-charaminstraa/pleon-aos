@@ -1,14 +1,26 @@
 package com.charaminstra.pleon
 
+import android.Manifest
+import android.app.Activity
 import android.app.DatePickerDialog
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -22,7 +34,12 @@ import java.util.*
 import androidx.recyclerview.widget.RecyclerView
 import com.charaminstra.pleon.adapter.*
 import com.charaminstra.pleon.foundation.model.PlantDataObject
+import com.charaminstra.pleon.plant_register.ImageViewModel
 import com.charaminstra.pleon.plant_register.PlantIdViewModel
+import com.charaminstra.pleon.plant_register.ui.DEFAULT_GALLERY_REQUEST_CODE
+import com.charaminstra.pleon.plant_register.ui.REQUEST_TAKE_PHOTO
+import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
 
 
 @AndroidEntryPoint
@@ -32,6 +49,7 @@ class FeedWriteFragment : Fragment() {
     private val plantsViewModel: PlantsViewModel by viewModels()
     private val plantIdViewModel: PlantIdViewModel by viewModels()
     private val feedWriteViewModel : FeedWriteViewModel by viewModels()
+    private val imageViewModel : ImageViewModel by viewModels()
     private lateinit var navController: NavController
     private lateinit var plant_adapter: PlantAdapter
     private lateinit var action_adapter: ActionAdapter
@@ -47,6 +65,12 @@ class FeedWriteFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = FragmentFeedWriteBinding.inflate(layoutInflater)
+
+        ActivityCompat.requestPermissions(
+            requireActivity(),
+            arrayOf(Manifest.permission.CAMERA),
+            REQUEST_TAKE_PHOTO
+        )
     }
 
     override fun onCreateView(
@@ -68,7 +92,11 @@ class FeedWriteFragment : Fragment() {
             popUpCalendar(it as TextView)
         }
         binding.cameraBtn.setOnClickListener{
+            popUpImageMenu(it)
             binding.image.visibility = View.VISIBLE
+        }
+        binding.image.setOnClickListener {
+            popUpImageMenu(it)
         }
         binding.completeBtn.setOnClickListener {
             feedWriteViewModel.postFeed(
@@ -191,7 +219,7 @@ class FeedWriteFragment : Fragment() {
         action_adapter.refreshItems(
             listOf(
                 ActionObject(ActionType.물,R.drawable.ic_action_water),
-                ActionObject(ActionType.통풍,R.drawable.ic_action_air) ,
+                ActionObject(ActionType.통풍,R.drawable.ic_action_air),
                 ActionObject(ActionType.분무,R.drawable.ic_action_spray),
                 ActionObject(ActionType.분갈이,R.drawable.ic_action_repot),
                 ActionObject(ActionType.가지치기,R.drawable.ic_action_prune),
@@ -233,6 +261,107 @@ class FeedWriteFragment : Fragment() {
         super.onResume()
         //viewmodel update
         plantsViewModel.loadData()
+    }
+
+    // 갤러리 화면에서 이미지를 선택한 경우 현재 화면에 보여준다.
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode != Activity.RESULT_OK) {
+            return
+        }
+
+        when (requestCode) {
+            DEFAULT_GALLERY_REQUEST_CODE -> {
+                data?:return
+                val uri = data.data as Uri
+                Log.i("image",uri.path.toString())
+                /*new*/
+                //imageViewModel.postImage(uri)
+
+                activity?.contentResolver?.openInputStream(uri).let {
+                    Log.i("gallery image inputstream",it.toString())
+                    val bitmap = BitmapFactory.decodeStream(it)
+                    // image veiw set image bit map
+                    binding.image.setImageBitmap(bitmap)
+                    // get image url
+                    ByteArrayOutputStream().use { stream ->
+                        bitmap.compress(Bitmap.CompressFormat.JPEG,100, stream)
+                        val inputStream = ByteArrayInputStream(stream.toByteArray())
+                        imageViewModel.postImage(inputStream)
+                    }
+                }
+            }
+            REQUEST_TAKE_PHOTO -> {
+                val bitmap = data?.extras?.get("data") as Bitmap
+                binding.image.setImageBitmap(bitmap)
+                ByteArrayOutputStream().use { stream ->
+                    bitmap.compress(Bitmap.CompressFormat.JPEG,100, stream)
+                    val inputStream = ByteArrayInputStream(stream.toByteArray())
+                    Log.i("photo image inputstream", inputStream.toString())
+                    imageViewModel.postImage(inputStream)
+                }
+            }
+            else -> {
+                Toast.makeText(requireContext(), "사진을 가져오지 못했습니다.", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if(requestCode == REQUEST_TAKE_PHOTO){
+        }else{
+            Toast.makeText(requireContext(), "앱 실행을 위해서는 권한을 설정해야 합니다.", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
+    private fun openGallery(){
+        val intent = Intent()
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_PICK
+        startActivityForResult(intent, DEFAULT_GALLERY_REQUEST_CODE)
+    }
+
+    private fun checkPermission() : Boolean {
+        val permissionCheck = ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.CAMERA)
+        if(permissionCheck == PackageManager.PERMISSION_GRANTED)
+            return true
+        else
+            return false
+
+    }
+
+    private fun openCamera(){
+        Log.i("permission",checkPermission().toString())
+        if(checkPermission()){
+            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            startActivityForResult(intent, REQUEST_TAKE_PHOTO)
+        }else{
+            Toast.makeText(context, "카메라 권한 설정이 필요합니다.", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    fun popUpImageMenu(view: View){
+        val pop= PopupMenu(requireContext(),view)
+        pop.menuInflater.inflate(com.charaminstra.pleon.plant_register.R.menu.image_menu, pop.menu)
+        pop.setOnMenuItemClickListener {
+            when(it.itemId){
+                com.charaminstra.pleon.plant_register.R.id.camera ->
+                    openCamera()
+                com.charaminstra.pleon.plant_register.R.id.gallery ->
+                    openGallery()
+                com.charaminstra.pleon.plant_register.R.id.cancel ->
+                    binding.image.setImageBitmap(null)
+            }
+            false
+        }
+        pop.show()
     }
 
 }
