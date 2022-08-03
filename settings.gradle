@@ -14,7 +14,6 @@ dependencyResolutionManagement {
 }
 rootProject.name = "PLeon_AOS"
 include ':app'
-include ':home'
 include ':login'
 include ':common'
 include ':common-ui'

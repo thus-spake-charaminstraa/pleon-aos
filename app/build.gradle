@@ -41,7 +41,6 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':home')
     implementation project(path: ':login')
     implementation project(path: ':plant-ar')
     implementation project(path: ':ml')
