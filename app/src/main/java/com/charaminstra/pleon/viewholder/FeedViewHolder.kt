@@ -13,7 +13,7 @@ class FeedViewHolder(
 
     fun bind(item: ResultObject) {
         binding.feedContent.text = item.content
-        //binding.plantTagTv.text = "@"+item.plant.name!!
+        binding.plantTagTv.text = "@"+item.plant.name!!
         binding.actionTagTv.text = "#"+item.kind
     }
 

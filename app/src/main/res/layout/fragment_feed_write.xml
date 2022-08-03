@@ -14,7 +14,6 @@
         android:layout_height="match_parent">
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/back_btn"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -43,7 +42,7 @@
             android:background="@drawable/button"
             style="@style/SubText"
             android:text="@string/complete_btn" />
-        <ImageView
+        <ImageButton
             android:id="@+id/image"
             android:visibility="gone"
             android:layout_width="100dp"
@@ -52,8 +51,8 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/date_tv"
-            android:background="@drawable/input"
-            />
+            android:src="@drawable/ic_camera"
+            android:background="@drawable/image_button_selector" />
         <TextView
             android:id="@+id/plant_tag_tv"
             android:layout_width="wrap_content"
