@@ -29,7 +29,7 @@
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.1" />
         <entry key="app/src/main/res/layout/bottom_sheet_layout.xml" value="0.15" />
         <entry key="app/src/main/res/layout/fragment_camera.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_feed.xml" value="0.35991058349609373" />
+        <entry key="app/src/main/res/layout/fragment_feed.xml" value="0.2835067749023437" />
         <entry key="app/src/main/res/layout/fragment_feed_write.xml" value="0.3488998413085938" />
         <entry key="app/src/main/res/layout/fragment_garden.xml" value="0.3497222900390625" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.1" />
