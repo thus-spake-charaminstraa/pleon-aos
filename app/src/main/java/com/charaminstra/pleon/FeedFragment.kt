@@ -10,6 +10,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.charaminstra.pleon.adapter.FeedAdapter
 import com.charaminstra.pleon.adapter.PlantAdapter
 import com.charaminstra.pleon.databinding.FragmentFeedBinding
@@ -45,6 +47,7 @@ class FeedFragment : Fragment() {
         binding.writeBtn.setOnClickListener {
             navController.navigate(R.id.view_pager_fragment_to_feed_write_fragment)
         }
+        binding.feedRecyclerview.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
     }
 
     private fun initList() {

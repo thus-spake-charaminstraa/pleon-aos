@@ -19,6 +19,8 @@ class FeedViewHolder(
         if(item.image_url != null) {
             binding.plantImage.visibility = View.VISIBLE
             Glide.with(binding.root).load(item.image_url).into(binding.plantImage)
+        }else{
+            binding.plantImage.visibility = View.GONE
         }
     }
 

@@ -19,6 +19,7 @@
         <entry key="app/src/main/res/drawable/ic_my_active.xml" value="0.127" />
         <entry key="app/src/main/res/drawable/ic_my_inactive.xml" value="0.127" />
         <entry key="app/src/main/res/drawable/input.xml" value="0.1815" />
+        <entry key="app/src/main/res/drawable/line_divider.xml" value="0.115" />
         <entry key="app/src/main/res/drawable/my_tab_selector.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/round_button.xml" value="0.1605" />
         <entry key="app/src/main/res/drawable/tab_icon_color_selector.xml" value="0.1265" />
@@ -29,7 +30,7 @@
         <entry key="app/src/main/res/layout/bottom_sheet_layout.xml" value="0.15" />
         <entry key="app/src/main/res/layout/fragment_camera.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_feed.xml" value="0.35991058349609373" />
-        <entry key="app/src/main/res/layout/fragment_feed_write.xml" value="0.3894851684570313" />
+        <entry key="app/src/main/res/layout/fragment_feed_write.xml" value="0.3488998413085938" />
         <entry key="app/src/main/res/layout/fragment_garden.xml" value="0.3497222900390625" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_my.xml" value="0.1" />
@@ -40,7 +41,7 @@
         <entry key="app/src/main/res/layout/fragment_plant_register.xml" value="0.2772125244140625" />
         <entry key="app/src/main/res/layout/fragment_view_pager.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_action.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/item_feed.xml" value="0.16521739130434782" />
+        <entry key="app/src/main/res/layout/item_feed.xml" value="0.20743083124575407" />
         <entry key="app/src/main/res/layout/item_garden_plants.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_plant_feed.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_plant_garden.xml" value="0.1" />

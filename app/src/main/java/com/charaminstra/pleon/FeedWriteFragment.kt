@@ -95,6 +95,7 @@ class FeedWriteFragment : Fragment() {
         binding.dateTv.setOnClickListener {
             popUpCalendar(it as TextView)
         }
+        binding.image.visibility = View.GONE
         binding.cameraBtn.setOnClickListener{
             popUpImageMenu(it)
             binding.image.visibility = View.VISIBLE
@@ -280,7 +281,7 @@ class FeedWriteFragment : Fragment() {
                 data?:return
                 val uri = data.data as Uri
                 activity?.contentResolver?.openInputStream(uri).let {
-                    Log.i("gallery image inputstream",it.toString())
+                    Log.i("gallery image inputstream : ",it.toString())
                     val bitmap = BitmapFactory.decodeStream(it)
                     // image veiw set image bit map
                     binding.image.setImageBitmap(bitmap)
