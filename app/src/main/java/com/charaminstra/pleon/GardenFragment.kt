@@ -12,6 +12,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.charaminstra.pleon.adapter.PlantAdapter
 import com.charaminstra.pleon.databinding.FragmentGardenBinding
+import com.charaminstra.pleon.foundation.api.PleonPreference
 import com.charaminstra.pleon.login.AuthViewModel
 import com.charaminstra.pleon.plant_register.ui.PlantRegisterActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,6 +24,10 @@ class GardenFragment : Fragment() {
     private lateinit var binding: FragmentGardenBinding
     private lateinit var navController: NavController
     private lateinit var adapter: PlantAdapter
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,6 +48,7 @@ class GardenFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initList()
         observeViewModel()
+        //authViewModel.loadAuth()
         binding.recyclerview.adapter = adapter
     }
 
@@ -57,7 +63,7 @@ class GardenFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        authViewModel.getName().observe(viewLifecycleOwner, Observer {
+        authViewModel.authName.observe(viewLifecycleOwner, Observer {
             binding.gardenFragmentTitle.text = it + "님의 Garden"
         })
 

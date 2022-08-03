@@ -27,7 +27,6 @@ class AuthViewModel @Inject constructor(
     val authName : LiveData<String> = _authName
 
     fun getData() = authSuccess
-    fun getName() = authName
 
     init {
         loadAuth()

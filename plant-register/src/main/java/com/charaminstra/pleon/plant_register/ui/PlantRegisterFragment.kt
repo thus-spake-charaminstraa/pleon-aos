@@ -105,9 +105,6 @@ class PlantRegisterFragment : Fragment() {
                 data?:return
                 val uri = data.data as Uri
                 Log.i("image",uri.path.toString())
-                /*new*/
-                //imageViewModel.postImage(uri)
-
                 activity?.contentResolver?.openInputStream(uri).let {
                     Log.i("gallery image inputstream",it.toString())
                     val bitmap = BitmapFactory.decodeStream(it)

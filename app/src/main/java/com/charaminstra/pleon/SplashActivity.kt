@@ -38,5 +38,6 @@ class SplashActivity : AppCompatActivity() {
                 finish()
             }
         })
+        viewModel.loadAuth()
     }
 }

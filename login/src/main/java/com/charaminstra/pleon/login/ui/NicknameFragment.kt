@@ -46,6 +46,7 @@ class NicknameFragment : Fragment() {
         viewModel.userCreateSuccess.observe(this, Observer {
             if(it == true){
                 startPlantRegisterActivity(requireContext())
+
             }
         })
     }
