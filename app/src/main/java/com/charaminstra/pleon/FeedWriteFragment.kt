@@ -237,7 +237,7 @@ class FeedWriteFragment : Fragment() {
         action_adapter.onItemClicked = {actionType ->
             plantAction = actionType
             Log.i(TAG,"palntAction : "+plantAction)
-            binding.actionTagTv.text= "#"+ plantAction
+            binding.actionTagTv.text= resources.getString(R.string.action_tag) + plantAction
             clickCount++
             if(clickCount>=2){
                 sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
@@ -251,7 +251,7 @@ class FeedWriteFragment : Fragment() {
             plant_adapter.refreshItems(it)
         })
         plantIdViewModel.data.observe(viewLifecycleOwner, Observer {
-            binding.plantTagTv.setText("@"+it.name)
+            binding.plantTagTv.text = resources.getString(R.string.plant_tag) + it.name
             plantId = it.id!!
             Log.i(TAG,"palntId"+plantId)
         })
@@ -304,23 +304,10 @@ class FeedWriteFragment : Fragment() {
                 }
             }
             else -> {
-                Toast.makeText(requireContext(), "사진을 가져오지 못했습니다.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), resources.getString(R.string.image_error), Toast.LENGTH_SHORT).show()
             }
         }
     }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if(requestCode == REQUEST_TAKE_PHOTO){
-        }else{
-            Toast.makeText(requireContext(), "앱 실행을 위해서는 권한을 설정해야 합니다.", Toast.LENGTH_SHORT).show()
-        }
-    }
-
 
     private fun openGallery(){
         val intent = Intent()
@@ -344,7 +331,7 @@ class FeedWriteFragment : Fragment() {
             val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             startActivityForResult(intent, REQUEST_TAKE_PHOTO)
         }else{
-            Toast.makeText(context, "카메라 권한 설정이 필요합니다.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, resources.getString(R.string.camera_permission_msg), Toast.LENGTH_SHORT).show()
         }
     }
 
