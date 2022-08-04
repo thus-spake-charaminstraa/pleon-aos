@@ -34,7 +34,6 @@ class FeedFragment : Fragment() {
     ): View? {
         binding = FragmentFeedBinding.inflate(layoutInflater)
         navController = this.findNavController()
-
         return binding.root
     }
 

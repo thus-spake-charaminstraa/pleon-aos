@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.View
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.Resource
+import com.charaminstra.pleon.PlantsViewModel
 import com.charaminstra.pleon.R
 import com.charaminstra.pleon.databinding.ItemPlantFeedBinding
 import com.charaminstra.pleon.foundation.model.PlantDataObject
@@ -12,7 +13,7 @@ import com.charaminstra.pleon.foundation.model.PlantDataObject
 class FeedPlantViewHolder(private val binding: ItemPlantFeedBinding,
                           private var onItemClicked: (String) -> Unit): CommonViewHolder(binding) {
     private lateinit var lastView : View
-    override fun bind(item: PlantDataObject) {
+    override fun bind(item: PlantDataObject, itemList: List<PlantDataObject>) {
         binding.plantName.text=item.name
         Glide.with(binding.root)
             .load(item.thumbnail)
@@ -20,6 +21,7 @@ class FeedPlantViewHolder(private val binding: ItemPlantFeedBinding,
         binding.root.setOnClickListener {
             onItemClicked(item.id!!)
         }
+
         //binding.plantImage.isClickable=true
 //        binding.plantImage.setOnClickListener {
 //            Log.d("test", "lastposition = "+ lastPosition);

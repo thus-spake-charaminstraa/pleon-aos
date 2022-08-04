@@ -2,7 +2,9 @@ package com.charaminstra.pleon.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
+import com.charaminstra.pleon.PlantsViewModel
 import com.charaminstra.pleon.databinding.ItemPlantFeedBinding
 import com.charaminstra.pleon.databinding.ItemPlantGardenBinding
 import com.charaminstra.pleon.foundation.model.PlantDataObject
@@ -15,6 +17,7 @@ class PlantAdapter(): RecyclerView.Adapter<CommonViewHolder>() {
     var viewItemList: List<PlantDataObject> = listOf()
     private lateinit var type: String
     var onItemClicked: (String)-> Unit = {}
+    //private lateinit var viewModel: PlantsViewModel = viewM
 
     override fun getItemViewType(position: Int): Int {
         return PlantViewType.valueOf(type).ordinal
@@ -39,19 +42,22 @@ class PlantAdapter(): RecyclerView.Adapter<CommonViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: CommonViewHolder, position: Int) {
-        holder.bind(viewItemList[position])
+        holder.bind(viewItemList[position], viewItemList)
         holder.itemView.setOnClickListener {
             onItemClicked(viewItemList[position].id!!)
         }
     }
 
+    fun setType(type: String) {
+        this.type = type
+    }
+//    fun setViewModel(viewModel: PlantsViewModel){
+//        this.viewModel = viewModel
+//    }
+
     fun refreshItems(viewItemList : List<PlantDataObject>) {
         this.viewItemList = viewItemList
         notifyDataSetChanged() // Andoid RecyclerView DiffUtil.
-    }
-
-    fun setType(type: String) {
-        this.type = type
     }
 
 }

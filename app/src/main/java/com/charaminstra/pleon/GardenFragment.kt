@@ -55,6 +55,7 @@ class GardenFragment : Fragment() {
     private fun initList() {
         adapter = PlantAdapter()
         adapter.setType("GARDEN_PLANT")
+//        adapter.setViewModel(viewModel)
         adapter.onItemClicked = { plantId ->
             val bundle = Bundle()
             bundle.putString("id", plantId)
