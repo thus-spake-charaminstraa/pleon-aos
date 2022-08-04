@@ -100,12 +100,10 @@
         app:layout_constraintLeft_toRightOf="@id/plant_image"
         app:layout_constraintTop_toBottomOf="@+id/plant_adpot_day_title"
         style="@style/SubText"/>
-
-    <TextView
-        android:id="@+id/test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
+    <com.kizitonwose.calendarview.CalendarView
+        android:id="@+id/calendar_view"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:cv_dayViewResource="@layout/calendar_day_layout"
+        app:layout_constraintTop_toBottomOf="@+id/plant_mood"/>
 </androidx.constraintlayout.widget.ConstraintLayout >
