@@ -18,8 +18,8 @@ class PlantsViewModel @Inject constructor(
 
     private val _plantsList = MutableLiveData<List<PlantDataObject>>()
     val plantsList : LiveData<List<PlantDataObject>> = _plantsList
-
-    fun getData() = plantsList
+//
+    //fun getData() = plantsList
 
     init {
         loadData()

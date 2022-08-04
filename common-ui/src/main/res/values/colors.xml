@@ -2,6 +2,8 @@
 <resources>
     <color name="main_color">#E0F1C7</color>
     <color name="input_bg">#F2F4F6</color>
+    <color name="image_button_bg">#85F2F4F6</color>
+    <color name="image_button_press_bg">#D5F4B3</color>
     <color name="button_bg">#E0F1C7</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>

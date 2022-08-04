@@ -2,17 +2,30 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="80dp"
-    android:layout_height="80dp">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:layout_marginHorizontal="5dp"
+    android:layout_marginVertical="10dp"
+    android:layout_height="wrap_content">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        app:civ_border_color="@color/input_bg"
+        app:civ_border_width="2dp"
         android:background="@drawable/round_shape"
-        android:gravity="center"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:id="@+id/name_tv"
-        android:text="test"/>
+        android:id="@+id/plant_image"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="3dp"
+        android:padding="2dp"
+        app:layout_constraintTop_toBottomOf="@+id/plant_image"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:textColor="@color/black"
+        android:textSize="12dp"
+        android:id="@+id/plant_name"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

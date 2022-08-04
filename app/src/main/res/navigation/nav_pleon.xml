@@ -13,9 +13,43 @@
         android:name="com.charaminstra.pleon.HomeViewPagerFragment"
         tools:layout="@layout/fragment_view_pager">
         <action
-            android:id="@+id/action_view_pager_fragment_to_login_graph"
-            app:destination="@id/nav_login"/>
+            android:id="@+id/view_pager_fragment_to_plant_detail_fragment"
+            app:destination="@+id/plant_detail_fragment">
+            <argument
+                android:name="plantId"
+                android:value="string"/>
+        </action>
+        <action
+            android:id="@+id/view_pager_fragment_to_feed_write_fragment"
+            app:destination="@+id/feed_write_fragment">
+        </action>
     </fragment>
+    <fragment
+        android:id="@+id/feed_write_fragment"
+        android:name="com.charaminstra.pleon.FeedWriteFragment"
+        tools:layout="@layout/fragment_feed_write">
+
+    </fragment>
+    <fragment
+        android:id="@+id/plant_detail_fragment"
+        android:name="com.charaminstra.pleon.PlantDetailFragment"
+        tools:layout="@layout/fragment_plant_detail">
+        <action
+            android:id="@+id/plant_detail_to_plant_edit_fragment"
+            app:destination="@+id/plant_edit_fragment">
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/plant_edit_fragment"
+        android:name="com.charaminstra.pleon.PlantEditFragment"
+        tools:layout="@layout/fragment_plant_edit">
+        <action
+            android:id="@+id/plant_edit_fragment_delete"
+            app:popUpTo="@+id/view_pager_fragment"
+            app:destination="@+id/view_pager_fragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
 
 
 

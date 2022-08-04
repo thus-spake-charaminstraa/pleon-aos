@@ -3,7 +3,6 @@ package com.charaminstra.pleon.plant_register.ui
 import android.Manifest
 import android.app.Activity
 import android.app.DatePickerDialog
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -20,8 +19,6 @@ import android.view.ViewGroup
 import android.widget.PopupMenu
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContract
-import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.requestPermissions
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -29,7 +26,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.charaminstra.pleon.plant_register.ImageViewModel
-import com.charaminstra.pleon.plant_register.PlantRegisterViewModel
+import com.charaminstra.pleon.plant_register.PlantIdViewModel
 import com.charaminstra.pleon.plant_register.R
 import com.charaminstra.pleon.plant_register.databinding.FragmentPlantRegisterBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -43,7 +40,7 @@ const val REQUEST_TAKE_PHOTO = 3000
 
 @AndroidEntryPoint
 class PlantRegisterFragment : Fragment() {
-    private val plantRegisterViewModel: PlantRegisterViewModel by activityViewModels()
+    private val plantIdViewModel: PlantIdViewModel by activityViewModels()
     private val imageViewModel : ImageViewModel by viewModels()
     private lateinit var binding: FragmentPlantRegisterBinding
     override fun onCreate(savedInstanceState: Bundle?){
@@ -69,22 +66,7 @@ class PlantRegisterFragment : Fragment() {
             activity?.finish()
         }
         binding.thumbnail.setOnClickListener {
-            val pop= PopupMenu(requireContext(),it)
-            pop.menuInflater.inflate(R.menu.image_menu, pop.menu)
-            pop.setOnMenuItemClickListener {
-                when(it.itemId){
-                    R.id.camera ->{
-                        openCamera()
-                    }
-                    R.id.gallery ->
-                        openGallery()
-                    R.id.cancel ->
-                        binding.thumbnail.setImageBitmap(null)
-
-                }
-                false
-            }
-            pop.show()
+            popUpImageMenu(it)
         }
         binding.adoptDayInput.setOnClickListener {
             popUpCalendar(it as TextView)
@@ -94,12 +76,12 @@ class PlantRegisterFragment : Fragment() {
         }
 
         binding.nextBtn.setOnClickListener {
-            plantRegisterViewModel.setName(binding.nameInput.text.toString())
-            plantRegisterViewModel.setSpecies(binding.speciesInput.text.toString())
-            plantRegisterViewModel.setAdopt_date(binding.adoptDayInput.text.toString())
-            plantRegisterViewModel.setWater_date(binding.waterDayInput.text.toString())
+            plantIdViewModel.setName(binding.nameInput.text.toString())
+            plantIdViewModel.setSpecies(binding.speciesInput.text.toString())
+            plantIdViewModel.setAdopt_date(binding.adoptDayInput.text.toString())
+            plantIdViewModel.setWater_date(binding.waterDayInput.text.toString())
             imageViewModel.urlResponse.observe(viewLifecycleOwner, Observer {
-                plantRegisterViewModel.setThumbnail(it)
+                plantIdViewModel.setThumbnail(it)
                 Log.i("imageurl",it)
             })
             navController.navigate(R.id.plant_register_fragment_to_plant_light_fragment)
@@ -124,10 +106,16 @@ class PlantRegisterFragment : Fragment() {
                 val uri = data.data as Uri
                 Log.i("image",uri.path.toString())
                 activity?.contentResolver?.openInputStream(uri).let {
+                    Log.i("gallery image inputstream",it.toString())
+                    val bitmap = BitmapFactory.decodeStream(it)
                     // image veiw set image bit map
-                    binding.thumbnail.setImageBitmap(BitmapFactory.decodeStream(it))
+                    binding.thumbnail.setImageBitmap(bitmap)
                     // get image url
-                    imageViewModel.postImage(it!!)
+                    ByteArrayOutputStream().use { stream ->
+                        bitmap.compress(Bitmap.CompressFormat.JPEG,100, stream)
+                        val inputStream = ByteArrayInputStream(stream.toByteArray())
+                        imageViewModel.postImage(inputStream)
+                    }
                 }
             }
             REQUEST_TAKE_PHOTO -> {
@@ -136,6 +124,7 @@ class PlantRegisterFragment : Fragment() {
                 ByteArrayOutputStream().use { stream ->
                     bitmap.compress(Bitmap.CompressFormat.JPEG,100, stream)
                     val inputStream = ByteArrayInputStream(stream.toByteArray())
+                    Log.i("photo image inputstream", inputStream.toString())
                     imageViewModel.postImage(inputStream)
                 }
             }
@@ -189,8 +178,11 @@ class PlantRegisterFragment : Fragment() {
         val cal = Calendar.getInstance()
         val dateFormat = SimpleDateFormat("yyyy-MM-dd")
         var datePickerDialog = DatePickerDialog(requireContext(), { _, y, m, d ->
+            cal.set(y,m,d)
             view.text = dateFormat.format(cal.time)
-        }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH))
+        }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).apply {
+            datePicker.maxDate = cal.timeInMillis
+        }
         datePickerDialog.show()
         datePickerDialog.getButton(DatePickerDialog.BUTTON_NEGATIVE).setBackgroundColor(Color.BLACK)
         datePickerDialog.getButton(DatePickerDialog.BUTTON_POSITIVE).setBackgroundColor(Color.BLACK)
@@ -204,6 +196,23 @@ class PlantRegisterFragment : Fragment() {
                 activity?.finish()
             }
         }
+    }
+
+    fun popUpImageMenu(view: View){
+        val pop= PopupMenu(requireContext(),view)
+        pop.menuInflater.inflate(R.menu.image_menu, pop.menu)
+        pop.setOnMenuItemClickListener {
+            when(it.itemId){
+                R.id.camera ->
+                    openCamera()
+                R.id.gallery ->
+                    openGallery()
+                R.id.cancel ->
+                    binding.thumbnail.setImageBitmap(null)
+            }
+            false
+        }
+        pop.show()
     }
 
 }

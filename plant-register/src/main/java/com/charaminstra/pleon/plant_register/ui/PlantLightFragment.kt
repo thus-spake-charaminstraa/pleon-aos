@@ -8,14 +8,14 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.charaminstra.pleon.plant_register.PlantRegisterViewModel
+import com.charaminstra.pleon.plant_register.PlantIdViewModel
 import com.charaminstra.pleon.plant_register.R
 import com.charaminstra.pleon.plant_register.databinding.FragmentPlantLightBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class PlantLightFragment : Fragment() {
-    private val viewModel: PlantRegisterViewModel by activityViewModels()
+    private val viewModel: PlantIdViewModel by activityViewModels()
     private lateinit var binding: FragmentPlantLightBinding
     private var isChecking: Boolean = true
     private var mCheckedId: Int = 0

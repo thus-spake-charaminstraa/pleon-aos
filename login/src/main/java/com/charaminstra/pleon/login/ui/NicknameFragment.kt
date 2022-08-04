@@ -27,7 +27,6 @@ class NicknameFragment : Fragment() {
         super.onCreate(savedInstanceState)
         binding = FragmentNicknameBinding.inflate(layoutInflater)
 
-
         initListeners()
         initObservers()
     }
@@ -47,6 +46,7 @@ class NicknameFragment : Fragment() {
         viewModel.userCreateSuccess.observe(this, Observer {
             if(it == true){
                 startPlantRegisterActivity(requireContext())
+
             }
         })
     }
