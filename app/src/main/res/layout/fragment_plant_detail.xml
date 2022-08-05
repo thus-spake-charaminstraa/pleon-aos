@@ -123,9 +123,9 @@
     <TextView
         android:id="@+id/calendar_month"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="36dp"
         android:layout_marginTop="30dp"
-        style="@style/TitleText"
+        android:gravity="center"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/plant_mood" />
@@ -141,8 +141,14 @@
     <com.kizitonwose.calendarview.CalendarView
         android:id="@+id/calendar_view"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         app:cv_dayViewResource="@layout/calendar_day_layout"
-        app:layout_constraintTop_toBottomOf="@+id/calendar_month"/>
+        app:layout_constraintTop_toBottomOf="@+id/calendar_month"
+        app:cv_monthHeaderResource="@layout/calendar_header"
+        app:cv_orientation="horizontal"
+        app:cv_outDateStyle="endOfGrid"
+        app:cv_scrollMode="paged"/>
 </androidx.constraintlayout.widget.ConstraintLayout >
+
+<!--    app:cv_monthHeaderResource="@layout/calendar_header"-->
