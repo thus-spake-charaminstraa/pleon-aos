@@ -1,4 +1,4 @@
-package com.charaminstra.pleon
+package com.charaminstra.pleon.calendar
 
 import android.view.View
 import android.widget.TextView

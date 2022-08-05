@@ -1,23 +1,24 @@
 package com.charaminstra.pleon
 
-import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.charaminstra.pleon.calendar.DayViewContainer
 import com.charaminstra.pleon.databinding.FragmentPlantDetailBinding
 import com.charaminstra.pleon.plant_register.PlantIdViewModel
 import com.kizitonwose.calendarview.model.CalendarDay
-import com.kizitonwose.calendarview.model.CalendarMonth
 import com.kizitonwose.calendarview.ui.DayBinder
+import com.kizitonwose.calendarview.utils.next
+import com.kizitonwose.calendarview.utils.previous
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.YearMonth
+import java.time.format.DateTimeFormatter
 import java.time.temporal.WeekFields
 import java.util.*
 
@@ -52,6 +53,11 @@ class PlantDetailFragment : Fragment() {
         val firstDayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek
         binding.calendarView.setup(firstMonth, lastMonth, firstDayOfWeek)
         binding.calendarView.scrollToMonth(currentMonth)
+        binding.calendarMonth.text =currentMonth.toString()
+        /* month set */
+        binding.calendarView.monthScrollListener = {
+
+        }
         binding.calendarView.dayBinder = object : DayBinder<DayViewContainer> {
             // Called only when a new container is needed.
             override fun create(view: View) = DayViewContainer(view)
@@ -59,8 +65,34 @@ class PlantDetailFragment : Fragment() {
             // Called every time we need to reuse a container.
             override fun bind(container: DayViewContainer, day: CalendarDay) {
                 container.textView.text = day.date.dayOfMonth.toString()
+
+
             }
         }
+        binding.calendarMonthPrevBtn.setOnClickListener {
+            binding.calendarView.findFirstVisibleMonth()?.let {
+                binding.calendarView.smoothScrollToMonth(it.yearMonth.previous)
+            }
+        }
+        binding.calendarMonthNextBtn.setOnClickListener {
+            binding.calendarView.findFirstVisibleMonth()?.let {
+                binding.calendarView.smoothScrollToMonth(it.yearMonth.next)
+            }
+        }
+
+        val monthTitleFormatter = DateTimeFormatter.ofPattern("MMMM")
+        binding.calendarView.monthScrollListener = { month ->
+            val title = "${monthTitleFormatter.format(month.yearMonth)} ${month.yearMonth.year}"
+            binding.calendarMonth.text = title
+//            selectedDate?.let {
+//                // Clear selection if we scroll to a new month.
+//                selectedDate = null
+//                binding.exFiveCalendar.notifyDateChanged(it)
+//                updateAdapterForDate(null)
+//            }
+        }
+
+
 
         viewModel.data.observe(this, Observer {
             binding.plantName.text = it.name
@@ -70,6 +102,7 @@ class PlantDetailFragment : Fragment() {
             binding.plantSpeciesDesc.text = it.species
             binding.plantAdoptDayDesc.text = it.adopt_date
             binding.plantMood.text = "HAPPY"
+            binding.plantDDayDesc.text = it.d_day.toString()
 
         })
     }

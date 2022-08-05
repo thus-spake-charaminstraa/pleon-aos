@@ -100,10 +100,49 @@
         app:layout_constraintLeft_toRightOf="@id/plant_image"
         app:layout_constraintTop_toBottomOf="@+id/plant_adpot_day_title"
         style="@style/SubText"/>
+    <TextView
+        android:id="@+id/plant_d_day_desc"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        app:layout_constraintLeft_toRightOf="@id/plant_d_day_title"
+        app:layout_constraintTop_toBottomOf="@+id/plant_adpot_day_title"
+        style="@style/SubText"/>
+
+    <ImageView
+        android:id="@+id/calendar_month_prev_btn"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="22dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        app:tint="@color/calendar_text_grey"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/calendar_month"
+        app:srcCompat="@drawable/ic_left" />
+    <TextView
+        android:id="@+id/calendar_month"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        style="@style/TitleText"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/plant_mood" />
+    <ImageView
+        android:id="@+id/calendar_month_next_btn"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        app:tint="@color/calendar_text_grey"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/calendar_month"
+        app:srcCompat="@drawable/ic_right" />
     <com.kizitonwose.calendarview.CalendarView
         android:id="@+id/calendar_view"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:layout_marginTop="20dp"
         app:cv_dayViewResource="@layout/calendar_day_layout"
-        app:layout_constraintTop_toBottomOf="@+id/plant_mood"/>
+        app:layout_constraintTop_toBottomOf="@+id/calendar_month"/>
 </androidx.constraintlayout.widget.ConstraintLayout >

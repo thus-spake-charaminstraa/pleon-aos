@@ -8,5 +8,6 @@ data class PlantDataObject(
     val adopt_date: String?,
     val thumbnail: String?,
     val light: String?,
-    val air: String?
+    val air: String?,
+    val d_day: Int?
 )
