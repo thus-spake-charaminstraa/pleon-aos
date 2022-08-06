@@ -19,13 +19,13 @@ class FeedReadViewModel @Inject constructor(
     private val _feedList = MutableLiveData<List<ResultObject>>()
     val feedList : LiveData<List<ResultObject>> = _feedList
 
-    init {
-        loadData()
-    }
+//    init {
+//        loadData()
+//    }
 
-    fun loadData(){
+    fun loadData(plantId: String?, date: String?){
         viewModelScope.launch {
-            val data = repository.getFeed()
+            val data = repository.getFeed(plantId, date)
             Log.i(TAG, "data -> $data")
             Log.i(TAG, "data.body -> "+data.body())
             when (data.isSuccessful) {
@@ -39,4 +39,5 @@ class FeedReadViewModel @Inject constructor(
             }
         }
     }
+
 }

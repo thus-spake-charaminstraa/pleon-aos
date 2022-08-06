@@ -79,6 +79,6 @@ class FeedFragment : Fragment() {
         super.onResume()
         //viewmodel update
         plantsViewModel.loadData()
-        feedReadViewModel.loadData()
+        feedReadViewModel.loadData(null,null)
     }
 }

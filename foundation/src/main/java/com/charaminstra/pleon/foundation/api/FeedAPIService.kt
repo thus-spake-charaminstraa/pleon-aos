@@ -2,10 +2,7 @@ package com.charaminstra.pleon.foundation.api
 
 import com.charaminstra.pleon.foundation.model.*
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface FeedAPIService{
     /* post feed */
@@ -18,6 +15,13 @@ interface FeedAPIService{
     /*get feed*/
     @GET("feed")
     suspend fun getFeed(
-        @Header("Authorization") verifyToken:String
+        @Header("Authorization") verifyToken:String,
+        @Query("plant_id")  plantId:String?,
+        @Query("publish_date") date:String?
     ): Response<FeedResponse>
+
+//    @GET("feed")
+//    suspend fun getFeedIdAndDate(
+//
+//    )
 }

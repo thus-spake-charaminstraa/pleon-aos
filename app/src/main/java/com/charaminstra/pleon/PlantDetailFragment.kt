@@ -12,21 +12,29 @@ import androidx.core.view.children
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.charaminstra.pleon.calendar.DayViewContainer
+import com.charaminstra.pleon.adapter.FeedAdapter
+import com.charaminstra.pleon.adapter.PlantAdapter
 import com.charaminstra.pleon.calendar.MonthViewContainer
+import com.charaminstra.pleon.databinding.CalendarDayLayoutBinding
+import com.charaminstra.pleon.databinding.FragmentFeedBinding
 import com.charaminstra.pleon.databinding.FragmentPlantDetailBinding
 import com.charaminstra.pleon.foundation.model.ScheduleTestBody
 import com.charaminstra.pleon.plant_register.PlantIdViewModel
+import com.charaminstra.pleon.viewmodel.FeedReadViewModel
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
 import com.kizitonwose.calendarview.model.DayOwner
 import com.kizitonwose.calendarview.ui.DayBinder
 import com.kizitonwose.calendarview.ui.MonthHeaderFooterBinder
+import com.kizitonwose.calendarview.ui.ViewContainer
 import com.kizitonwose.calendarview.utils.next
 import com.kizitonwose.calendarview.utils.previous
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.DayOfWeek
+import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
 import java.time.format.TextStyle
@@ -37,12 +45,16 @@ import java.util.*
 @AndroidEntryPoint
 class PlantDetailFragment : Fragment() {
     private val viewModel: PlantIdViewModel by viewModels()
+    private val feedReadViewModel: FeedReadViewModel by viewModels()
+    private lateinit var feedAdapter: FeedAdapter
     private lateinit var binding : FragmentPlantDetailBinding
+    lateinit var plantId : String
+    private var selectedDate: LocalDate? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = FragmentPlantDetailBinding.inflate(layoutInflater)
-        lateinit var plantId : String
+
         val navController = this.findNavController()
         binding.backBtn.setOnClickListener {
             navController.popBackStack()
@@ -92,16 +104,103 @@ class PlantDetailFragment : Fragment() {
         }
 
 
-        val items=listOf(
+
+        binding.calendarMonthPrevBtn.setOnClickListener {
+            binding.calendarView.findFirstVisibleMonth()?.let {
+                binding.calendarView.smoothScrollToMonth(it.yearMonth.previous)
+            }
+        }
+        binding.calendarMonthNextBtn.setOnClickListener {
+            binding.calendarView.findFirstVisibleMonth()?.let {
+                binding.calendarView.smoothScrollToMonth(it.yearMonth.next)
+            }
+        }
+
+        val monthTitleFormatter = DateTimeFormatter.ofPattern("MMMM")
+        binding.calendarView.monthScrollListener = { month ->
+            val title = "${monthTitleFormatter.format(month.yearMonth)} ${month.yearMonth.year}"
+            binding.calendarMonth.text = title
+//            selectedDate?.let {
+//                // Clear selection if we scroll to a new month.
+//                selectedDate = null
+//                binding.exFiveCalendar.notifyDateChanged(it)
+//                updateAdapterForDate(null)
+//            }
+        }
+
+
+
+        viewModel.data.observe(this, Observer {
+            binding.plantName.text = it.name
+            Glide.with(binding.root)
+                .load(it.thumbnail)
+                .into(binding.plantImage)
+            binding.plantSpeciesDesc.text = it.species
+            binding.plantAdoptDayDesc.text = it.adopt_date
+            binding.plantMood.text = "HAPPY"
+            binding.plantDDayDesc.text = it.d_day.toString()
+
+        })
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return binding.root
+    }
+
+    fun daysOfWeekFromLocale(): Array<DayOfWeek> {
+        val firstDayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek
+        val daysOfWeek = DayOfWeek.values()
+        // Order `daysOfWeek` array so that firstDayOfWeek is at index 0.
+        // Only necessary if firstDayOfWeek is not DayOfWeek.MONDAY which has ordinal 0.
+        if (firstDayOfWeek != DayOfWeek.MONDAY) {
+            val rhs = daysOfWeek.sliceArray(firstDayOfWeek.ordinal..daysOfWeek.indices.last)
+            val lhs = daysOfWeek.sliceArray(0 until firstDayOfWeek.ordinal)
+            return rhs + lhs
+        }
+        return daysOfWeek
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initList()
+        observeViewModel()
+        binding.feedRecyclerview.adapter = feedAdapter
+        binding.feedRecyclerview.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
+
+        class DayViewContainer(view: View) : ViewContainer(view) {
+            //val textView = view.findViewById<TextView>(R.id.calendarDayText)
+
+            // With ViewBinding
+            val textView = CalendarDayLayoutBinding.bind(view).calendarDayText
+            val dot1 = CalendarDayLayoutBinding.bind(view).dot1
+            val dot2 = CalendarDayLayoutBinding.bind(view).dot2
+            val dot3 = CalendarDayLayoutBinding.bind(view).dot3
+            val dot4 = CalendarDayLayoutBinding.bind(view).dot4
+            val dot5 = CalendarDayLayoutBinding.bind(view).dot5
+            val dot6 = CalendarDayLayoutBinding.bind(view).dot6
+            lateinit var day: CalendarDay
+
+            init {
+                view.setOnClickListener {
+                    if (day.owner == DayOwner.THIS_MONTH) {
+                        selectDate(day.date)
+                    }
+                }
+            }
+        }
+        val items = listOf(
+            ScheduleTestBody("2022-06-30", listOf("water")),
             ScheduleTestBody("2022-07-31", listOf("water")),
             ScheduleTestBody("2022-08-02", listOf("water")),
-            ScheduleTestBody("2022-08-03",listOf("water","air")),
-            ScheduleTestBody("2022-08-04",listOf("water","spray")),
-            ScheduleTestBody("2022-08-08",listOf("water","air","fertilize","prune","repot","spray")),
-            ScheduleTestBody("2022-08-10",listOf("water","air","fertilize","prune","spray")),
-            ScheduleTestBody("2022-09-08",listOf("water","air","fertilize","prune","spray"))
-            )
-
+            ScheduleTestBody("2022-08-03", listOf("water","air")),
+            ScheduleTestBody("2022-08-04", listOf("water","spray")),
+            ScheduleTestBody("2022-08-08", listOf("water","air","fertilize","prune","repot","spray")),
+            ScheduleTestBody("2022-08-10", listOf("water","air","fertilize","prune","spray")),
+            ScheduleTestBody("2022-09-08", listOf("water","air","fertilize","prune","spray"))
+        )
 
         /* day binder */
         binding.calendarView.dayBinder = object : DayBinder<DayViewContainer> {
@@ -168,62 +267,31 @@ class PlantDetailFragment : Fragment() {
 
             }
         }
-        binding.calendarMonthPrevBtn.setOnClickListener {
-            binding.calendarView.findFirstVisibleMonth()?.let {
-                binding.calendarView.smoothScrollToMonth(it.yearMonth.previous)
-            }
-        }
-        binding.calendarMonthNextBtn.setOnClickListener {
-            binding.calendarView.findFirstVisibleMonth()?.let {
-                binding.calendarView.smoothScrollToMonth(it.yearMonth.next)
-            }
-        }
+    }
 
-        val monthTitleFormatter = DateTimeFormatter.ofPattern("MMMM")
-        binding.calendarView.monthScrollListener = { month ->
-            val title = "${monthTitleFormatter.format(month.yearMonth)} ${month.yearMonth.year}"
-            binding.calendarMonth.text = title
-//            selectedDate?.let {
-//                // Clear selection if we scroll to a new month.
-//                selectedDate = null
-//                binding.exFiveCalendar.notifyDateChanged(it)
-//                updateAdapterForDate(null)
-//            }
-        }
+    private fun initList() {
+        feedAdapter = FeedAdapter()
+    }
 
-
-
-        viewModel.data.observe(this, Observer {
-            binding.plantName.text = it.name
-            Glide.with(binding.root)
-                .load(it.thumbnail)
-                .into(binding.plantImage)
-            binding.plantSpeciesDesc.text = it.species
-            binding.plantAdoptDayDesc.text = it.adopt_date
-            binding.plantMood.text = "HAPPY"
-            binding.plantDDayDesc.text = it.d_day.toString()
-
+    private fun observeViewModel() {
+        feedReadViewModel.feedList.observe(viewLifecycleOwner, Observer {
+            feedAdapter.refreshItems(it)
         })
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return binding.root
+    override fun onResume() {
+        super.onResume()
+        feedReadViewModel.loadData(plantId,null)
     }
 
-    fun daysOfWeekFromLocale(): Array<DayOfWeek> {
-        val firstDayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek
-        val daysOfWeek = DayOfWeek.values()
-        // Order `daysOfWeek` array so that firstDayOfWeek is at index 0.
-        // Only necessary if firstDayOfWeek is not DayOfWeek.MONDAY which has ordinal 0.
-        if (firstDayOfWeek != DayOfWeek.MONDAY) {
-            val rhs = daysOfWeek.sliceArray(firstDayOfWeek.ordinal..daysOfWeek.indices.last)
-            val lhs = daysOfWeek.sliceArray(0 until firstDayOfWeek.ordinal)
-            return rhs + lhs
+    private fun selectDate(date: LocalDate) {
+        if (selectedDate != date) {
+            val oldDate = selectedDate
+            selectedDate = date
+            oldDate?.let { binding.calendarView.notifyDateChanged(it) }
+            binding.calendarView.notifyDateChanged(date)
+            feedReadViewModel.loadData(plantId,selectedDate.toString())
         }
-        return daysOfWeek
     }
 
 
