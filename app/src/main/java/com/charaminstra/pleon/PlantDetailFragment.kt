@@ -1,6 +1,7 @@
 package com.charaminstra.pleon
 
 import android.os.Bundle
+import android.util.Log
 import android.util.TypedValue
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,6 +16,7 @@ import com.bumptech.glide.Glide
 import com.charaminstra.pleon.calendar.DayViewContainer
 import com.charaminstra.pleon.calendar.MonthViewContainer
 import com.charaminstra.pleon.databinding.FragmentPlantDetailBinding
+import com.charaminstra.pleon.foundation.model.ScheduleTestBody
 import com.charaminstra.pleon.plant_register.PlantIdViewModel
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
@@ -89,6 +91,18 @@ class PlantDetailFragment : Fragment() {
             }
         }
 
+
+        val items=listOf(
+            ScheduleTestBody("2022-07-31", listOf("water")),
+            ScheduleTestBody("2022-08-02", listOf("water")),
+            ScheduleTestBody("2022-08-03",listOf("water","air")),
+            ScheduleTestBody("2022-08-04",listOf("water","spray")),
+            ScheduleTestBody("2022-08-08",listOf("water","air","fertilize","prune","repot","spray")),
+            ScheduleTestBody("2022-08-10",listOf("water","air","fertilize","prune","spray")),
+            ScheduleTestBody("2022-09-08",listOf("water","air","fertilize","prune","spray"))
+            )
+
+
         /* day binder */
         binding.calendarView.dayBinder = object : DayBinder<DayViewContainer> {
             // Called only when a new container is needed.
@@ -100,12 +114,58 @@ class PlantDetailFragment : Fragment() {
                 val textView = container.textView
                 textView.text = day.date.dayOfMonth.toString()
 
-                /* 해당하는 달의 글씨 색만 black */
+                Log.i("day",day.toString())
+                Log.i("day.date",day.date.toString())
+
+                /* dot 표시 */
+                for(item in items){
+                    if(item?.time == day.date.toString()){
+                        for(k in item.kind){
+                            if(k=="water"){
+                                container.dot1.visibility = View.VISIBLE
+                                container.dot1.setImageResource(R.drawable.ic_dot_water)
+                            }else if(k=="air"){
+                                container.dot2.visibility = View.VISIBLE
+                                container.dot2.setImageResource(R.drawable.ic_dot_air)
+                            }else if(k=="spray"){
+                                container.dot3.visibility = View.VISIBLE
+                                container.dot3.setImageResource(R.drawable.ic_dot_spray)
+                            }else if(k=="prune"){
+                                container.dot4.visibility = View.VISIBLE
+                                container.dot4.setImageResource(R.drawable.ic_dot_prune)
+                            }else if(k=="fertilize"){
+                                container.dot5.visibility = View.VISIBLE
+                                container.dot5.setImageResource(R.drawable.ic_dot_fertilize)
+                            }else if(k=="repot"){
+                                container.dot6.visibility = View.VISIBLE
+                                container.dot6.setImageResource(R.drawable.ic_dot_repot)
+                            }
+                        }
+
+                    }
+                }
+
+
                 if (day.owner == DayOwner.THIS_MONTH) {
+                    /* 해당하는 달의 글씨 색만 black */
                     textView.setTextColor(resources.getColor(R.color.black))
+
+
+//                    when(day.date){
+//                        items[0]?.time -> {
+//                            container.dot1.visibility = View.VISIBLE
+//                            container.dot1.setImageResource(R.drawable.ic_action_water)
+//                        }
+//
+//                    }
+
+
                 } else {
                     textView.setTextColor(resources.getColor(R.color.calendar_text_grey))
                 }
+
+
+
             }
         }
         binding.calendarMonthPrevBtn.setOnClickListener {

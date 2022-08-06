@@ -33,11 +33,12 @@ import java.text.SimpleDateFormat
 import java.util.*
 import androidx.recyclerview.widget.RecyclerView
 import com.charaminstra.pleon.adapter.*
-import com.charaminstra.pleon.foundation.model.PlantDataObject
 import com.charaminstra.pleon.plant_register.ImageViewModel
 import com.charaminstra.pleon.plant_register.PlantIdViewModel
 import com.charaminstra.pleon.plant_register.ui.DEFAULT_GALLERY_REQUEST_CODE
 import com.charaminstra.pleon.plant_register.ui.REQUEST_TAKE_PHOTO
+import com.charaminstra.pleon.viewmodel.FeedWriteViewModel
+import com.charaminstra.pleon.viewmodel.PlantsViewModel
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 

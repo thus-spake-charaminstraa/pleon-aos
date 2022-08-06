@@ -112,8 +112,8 @@
 
     <ImageView
         android:id="@+id/calendar_month_prev_btn"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginEnd="22dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         app:tint="@color/calendar_text_grey"
@@ -123,7 +123,7 @@
     <TextView
         android:id="@+id/calendar_month"
         android:layout_width="wrap_content"
-        android:layout_height="36dp"
+        android:layout_height="30dp"
         android:layout_marginTop="30dp"
         android:gravity="center"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -131,8 +131,8 @@
         app:layout_constraintTop_toBottomOf="@+id/plant_mood" />
     <ImageView
         android:id="@+id/calendar_month_next_btn"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         app:tint="@color/calendar_text_grey"
         app:layout_constraintRight_toRightOf="parent"

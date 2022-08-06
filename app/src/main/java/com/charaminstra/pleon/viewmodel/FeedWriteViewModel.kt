@@ -1,4 +1,4 @@
-package com.charaminstra.pleon
+package com.charaminstra.pleon.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData

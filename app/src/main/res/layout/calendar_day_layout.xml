@@ -6,19 +6,76 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <TextView
         android:id="@+id/calendarDayText"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="top|center"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        tools:text="22" />
-    <ImageView
-        android:id="@+id/dot"
-        android:layout_width="10dp"
-        android:layout_height="10dp"
-        android:src="@drawable/ic_dot_water"
+        tools:text="8" />
+    <LinearLayout
+        android:id="@+id/action_line1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calendarDayText"/>
+        app:layout_constraintTop_toBottomOf="@+id/calendarDayText">
+        <ImageView
+            android:id="@+id/dot1"
+            android:layout_width="5dp"
+            android:layout_height="5dp"
+            android:layout_margin="1dp"
+            android:visibility="gone"
+            android:src="@drawable/ic_dot_water" />
+        <ImageView
+            android:id="@+id/dot2"
+            android:layout_width="5dp"
+            android:layout_height="5dp"
+            android:layout_margin="1dp"
+            android:visibility="gone"
+            android:src="@drawable/ic_dot_water" />
+        <ImageView
+            android:id="@+id/dot3"
+            android:layout_width="5dp"
+            android:layout_height="5dp"
+            android:layout_margin="1dp"
+            android:visibility="gone"
+            android:src="@drawable/ic_dot_water" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/action_line2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/action_line1">
+        <ImageView
+            android:id="@+id/dot4"
+            android:layout_width="5dp"
+            android:layout_height="5dp"
+            android:layout_margin="1dp"
+            android:visibility="gone"
+            android:src="@drawable/ic_dot_water" />
+        <ImageView
+            android:id="@+id/dot5"
+            android:layout_width="5dp"
+            android:layout_height="5dp"
+            android:layout_margin="1dp"
+            android:visibility="gone"
+            android:src="@drawable/ic_dot_water" />
+        <ImageView
+            android:id="@+id/dot6"
+            android:layout_width="5dp"
+            android:layout_height="5dp"
+            android:layout_margin="1dp"
+            android:visibility="gone"
+            android:src="@drawable/ic_dot_water" />
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

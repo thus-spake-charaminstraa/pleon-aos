@@ -1,4 +1,4 @@
-package com.charaminstra.pleon
+package com.charaminstra.pleon.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.charaminstra.pleon.foundation.FeedRepository
-import com.charaminstra.pleon.foundation.model.FeedDataObject
 import com.charaminstra.pleon.foundation.model.ResultObject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

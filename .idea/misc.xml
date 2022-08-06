@@ -15,6 +15,11 @@
         <entry key="app/src/main/res/drawable/garden_tab_selector.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_camera_active.xml" value="0.2075" />
         <entry key="app/src/main/res/drawable/ic_camera_inactive.xml" value="0.2075" />
+        <entry key="app/src/main/res/drawable/ic_dot_air.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_dot_fertilize.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_dot_prune.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_dot_repot.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_dot_spray.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_dot_water.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_left.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_my_active.xml" value="0.127" />

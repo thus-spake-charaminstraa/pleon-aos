@@ -14,8 +14,8 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object NetWorkModule{
-    private const val BASE_URL ="https://43kxp4xkrk.execute-api.ap-northeast-2.amazonaws.com/beta/"
+object NetWorkModule {
+    private const val BASE_URL = "https://43kxp4xkrk.execute-api.ap-northeast-2.amazonaws.com/beta/"
     //private const val BASE_URL ="http://43.200.108.240:8000"
 
     @Provides
@@ -65,5 +65,11 @@ object NetWorkModule{
     @Singleton
     fun provideFeedApiService(retrofit: Retrofit): FeedAPIService {
         return retrofit.create(FeedAPIService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideCalendarApiService(retrofit: Retrofit): ScheduleAPIService {
+        return retrofit.create(ScheduleAPIService::class.java)
     }
 }

@@ -15,7 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.charaminstra.pleon.adapter.FeedAdapter
 import com.charaminstra.pleon.adapter.PlantAdapter
 import com.charaminstra.pleon.databinding.FragmentFeedBinding
-import com.charaminstra.pleon.plant_register.PlantIdViewModel
+import com.charaminstra.pleon.viewmodel.FeedReadViewModel
+import com.charaminstra.pleon.viewmodel.PlantsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
