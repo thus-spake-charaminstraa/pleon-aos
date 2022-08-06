@@ -57,10 +57,8 @@ class FeedWriteFragment : Fragment() {
     private val cal = Calendar.getInstance()
     private val dateFormat = SimpleDateFormat("yyyy-MM-dd")
     private lateinit var sheetBehavior : BottomSheetBehavior<View>
-    private var clickCount = 0
-
-    private lateinit var plantId : String
-    private lateinit var plantAction: ActionType
+    private var plantId : String? = null
+    private var plantAction: ActionType? = null
     private var url : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -105,13 +103,17 @@ class FeedWriteFragment : Fragment() {
             popUpImageMenu(it)
         }
         binding.completeBtn.setOnClickListener {
-            feedWriteViewModel.postFeed(
-                plantId,
-                binding.dateTv.text.toString(),
-                plantAction.action,
-                binding.contentEdit.text.toString(),
-                url
-            )
+            plantId?.let { it1 ->
+                plantAction?.let { it2 ->
+                    feedWriteViewModel.postFeed(
+                        it1,
+                        binding.dateTv.text.toString(),
+                        it2.action,
+                        binding.contentEdit.text.toString(),
+                        url
+                    )
+                }
+            }
         }
         return binding.root
     }
@@ -192,6 +194,12 @@ class FeedWriteFragment : Fragment() {
         binding.bottomSheet.plantRecyclerview.addOnItemTouchListener(recyclerListener)
         binding.bottomSheet.actionRecyclerview.addOnItemTouchListener(recyclerListener)
 
+        binding.bottomSheet.nextBtn.setOnClickListener {
+            if(plantId != null && plantAction != null){
+                sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+            }
+        }
+
     }
 
 
@@ -210,15 +218,9 @@ class FeedWriteFragment : Fragment() {
     private fun initList() {
         plant_adapter = PlantAdapter()
         plant_adapter.setType("FEED_PLANT")
-        plant_adapter.onItemClicked = { plantId ->
-            plantIdViewModel.loadData(plantId)
-            clickCount++
-            if(clickCount>=2){
-                sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-            }
-//            val bundle = Bundle()
-//            bundle.putString("id", plantId)
-//            navController.navigate(R.id.view_pager_fragment_to_plant_detail_fragment, bundle)
+        plant_adapter.onItemClicked = { Id ->
+            plantId = Id
+            plantIdViewModel.loadData(plantId!!)
         }
 
         action_adapter = ActionAdapter()
@@ -235,14 +237,10 @@ class FeedWriteFragment : Fragment() {
                 ActionObject(ActionType.기타,R.drawable.ic_action_etc)
             )
         )
-        action_adapter.onItemClicked = {actionType ->
+        action_adapter.onItemClicked = { actionType ->
             plantAction = actionType
             Log.i(TAG,"palntAction : "+plantAction)
             binding.actionTagTv.text= resources.getString(R.string.action_tag) + plantAction
-            clickCount++
-            if(clickCount>=2){
-                sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-            }
         }
 
     }
@@ -254,7 +252,6 @@ class FeedWriteFragment : Fragment() {
         plantIdViewModel.data.observe(viewLifecycleOwner, Observer {
             binding.plantTagTv.text = resources.getString(R.string.plant_tag) + it.name
             plantId = it.id!!
-            Log.i(TAG,"palntId"+plantId)
         })
         feedWriteViewModel.postSuccess.observe(viewLifecycleOwner, Observer{
             if(it){
