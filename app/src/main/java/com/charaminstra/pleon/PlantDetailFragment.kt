@@ -16,10 +16,8 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.charaminstra.pleon.adapter.FeedAdapter
-import com.charaminstra.pleon.adapter.PlantAdapter
 import com.charaminstra.pleon.calendar.MonthViewContainer
 import com.charaminstra.pleon.databinding.CalendarDayLayoutBinding
-import com.charaminstra.pleon.databinding.FragmentFeedBinding
 import com.charaminstra.pleon.databinding.FragmentPlantDetailBinding
 import com.charaminstra.pleon.foundation.model.ScheduleTestBody
 import com.charaminstra.pleon.plant_register.PlantIdViewModel
@@ -44,6 +42,7 @@ import java.util.*
 
 @AndroidEntryPoint
 class PlantDetailFragment : Fragment() {
+    private val today = LocalDate.now()
     private val viewModel: PlantIdViewModel by viewModels()
     private val feedReadViewModel: FeedReadViewModel by viewModels()
     private lateinit var feedAdapter: FeedAdapter
@@ -51,8 +50,10 @@ class PlantDetailFragment : Fragment() {
     lateinit var plantId : String
     private var selectedDate: LocalDate? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         binding = FragmentPlantDetailBinding.inflate(layoutInflater)
 
         val navController = this.findNavController()
@@ -120,47 +121,9 @@ class PlantDetailFragment : Fragment() {
         binding.calendarView.monthScrollListener = { month ->
             val title = "${monthTitleFormatter.format(month.yearMonth)} ${month.yearMonth.year}"
             binding.calendarMonth.text = title
-//            selectedDate?.let {
-//                // Clear selection if we scroll to a new month.
-//                selectedDate = null
-//                binding.exFiveCalendar.notifyDateChanged(it)
-//                updateAdapterForDate(null)
-//            }
         }
-
-
-
-        viewModel.data.observe(this, Observer {
-            binding.plantName.text = it.name
-            Glide.with(binding.root)
-                .load(it.thumbnail)
-                .into(binding.plantImage)
-            binding.plantSpeciesDesc.text = it.species
-            binding.plantAdoptDayDesc.text = it.adopt_date
-            binding.plantMood.text = "HAPPY"
-            binding.plantDDayDesc.text = it.d_day.toString()
-
-        })
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
         return binding.root
-    }
 
-    fun daysOfWeekFromLocale(): Array<DayOfWeek> {
-        val firstDayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek
-        val daysOfWeek = DayOfWeek.values()
-        // Order `daysOfWeek` array so that firstDayOfWeek is at index 0.
-        // Only necessary if firstDayOfWeek is not DayOfWeek.MONDAY which has ordinal 0.
-        if (firstDayOfWeek != DayOfWeek.MONDAY) {
-            val rhs = daysOfWeek.sliceArray(firstDayOfWeek.ordinal..daysOfWeek.indices.last)
-            val lhs = daysOfWeek.sliceArray(0 until firstDayOfWeek.ordinal)
-            return rhs + lhs
-        }
-        return daysOfWeek
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -247,22 +210,26 @@ class PlantDetailFragment : Fragment() {
 
                 if (day.owner == DayOwner.THIS_MONTH) {
                     /* 해당하는 달의 글씨 색만 black */
-                    textView.setTextColor(resources.getColor(R.color.black))
-
-
-//                    when(day.date){
-//                        items[0]?.time -> {
-//                            container.dot1.visibility = View.VISIBLE
-//                            container.dot1.setImageResource(R.drawable.ic_action_water)
-//                        }
-//
-//                    }
-
-
+                    when (day.date) {
+                        /* 오늘의 글씨색과 배경 */
+                        today -> {
+                            textView.setTextColor(resources.getColor(R.color.black))
+                            textView.setBackgroundResource(R.drawable.round_calendar_today)
+                        }
+                        /* 선택한 날짜의 글씨색과 배경 */
+                        selectedDate -> {
+                            textView.setTextColor(resources.getColor(R.color.white))
+                            textView.setBackgroundResource(R.drawable.round_calendar_clickday)
+                        }
+                        /* 그 외의의 글씨색과 배경 */
+                        else -> {
+                            textView.setTextColor(resources.getColor(R.color.black))
+                            textView.background = null
+                        }
+                    }
                 } else {
                     textView.setTextColor(resources.getColor(R.color.calendar_text_grey))
                 }
-
 
 
             }
@@ -274,6 +241,17 @@ class PlantDetailFragment : Fragment() {
     }
 
     private fun observeViewModel() {
+        viewModel.data.observe(viewLifecycleOwner, Observer {
+            binding.plantName.text = it.name
+            Glide.with(binding.root)
+                .load(it.thumbnail)
+                .into(binding.plantImage)
+            binding.plantSpeciesDesc.text = it.species
+            binding.plantAdoptDayDesc.text = it.adopt_date
+            binding.plantMood.text = "HAPPY"
+            binding.plantDDayDesc.text = it.d_day.toString()
+
+        })
         feedReadViewModel.feedList.observe(viewLifecycleOwner, Observer {
             feedAdapter.refreshItems(it)
         })
@@ -292,6 +270,19 @@ class PlantDetailFragment : Fragment() {
             binding.calendarView.notifyDateChanged(date)
             feedReadViewModel.loadData(plantId,selectedDate.toString())
         }
+    }
+
+    fun daysOfWeekFromLocale(): Array<DayOfWeek> {
+        val firstDayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek
+        val daysOfWeek = DayOfWeek.values()
+        // Order `daysOfWeek` array so that firstDayOfWeek is at index 0.
+        // Only necessary if firstDayOfWeek is not DayOfWeek.MONDAY which has ordinal 0.
+        if (firstDayOfWeek != DayOfWeek.MONDAY) {
+            val rhs = daysOfWeek.sliceArray(firstDayOfWeek.ordinal..daysOfWeek.indices.last)
+            val lhs = daysOfWeek.sliceArray(0 until firstDayOfWeek.ordinal)
+            return rhs + lhs
+        }
+        return daysOfWeek
     }
 
 

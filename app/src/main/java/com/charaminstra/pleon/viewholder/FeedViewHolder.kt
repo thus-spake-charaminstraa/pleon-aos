@@ -4,13 +4,14 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.charaminstra.pleon.databinding.ItemFeedBinding
-import com.charaminstra.pleon.databinding.ItemPlantGardenBinding
-import com.charaminstra.pleon.foundation.model.FeedDataObject
 import com.charaminstra.pleon.foundation.model.ResultObject
+import java.text.SimpleDateFormat
 
 class FeedViewHolder(
     private val binding: ItemFeedBinding,
     private var onItemClicked: (String) -> Unit): RecyclerView.ViewHolder(binding.root) {
+
+    val dateFormat = SimpleDateFormat("yyyy-MM-dd")
 
     fun bind(item: ResultObject) {
         binding.feedContent.text = item.content
@@ -22,6 +23,7 @@ class FeedViewHolder(
         }else{
             binding.plantImage.visibility = View.GONE
         }
+        binding.feedDate.text = item.publish_date
     }
 
 }

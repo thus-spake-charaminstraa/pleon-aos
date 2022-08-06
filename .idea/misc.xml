@@ -20,6 +20,9 @@
         <entry key="app/src/main/res/drawable/input.xml" value="0.1815" />
         <entry key="app/src/main/res/drawable/my_tab_selector.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/round_button.xml" value="0.1605" />
+        <entry key="app/src/main/res/drawable/round_calendar_day.xml" value="0.2185" />
+        <entry key="app/src/main/res/drawable/round_calendar_today.xml" value="0.2185" />
+        <entry key="app/src/main/res/drawable/round_shape.xml" value="0.2185" />
         <entry key="app/src/main/res/drawable/tab_icon_color_selector.xml" value="0.1265" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
