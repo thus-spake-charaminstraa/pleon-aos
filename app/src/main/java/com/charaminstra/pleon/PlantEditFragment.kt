@@ -2,7 +2,9 @@ package com.charaminstra.pleon
 
 import android.Manifest
 import android.app.Activity
+import android.app.AlertDialog
 import android.app.DatePickerDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -27,6 +29,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.charaminstra.pleon.common_ui.CustomDialog
 import com.charaminstra.pleon.databinding.FragmentPlantEditBinding
 import com.charaminstra.pleon.plant_register.ImageViewModel
 import com.charaminstra.pleon.plant_register.PlantIdViewModel
@@ -269,9 +272,16 @@ class PlantEditFragment : Fragment() {
                 binding.airInput.text.toString())
         }
         binding.deleteBtn.setOnClickListener {
-            viewModel.deleteData(id.toString())
+            val dlg = CustomDialog(requireContext())
+            dlg.setOnOKClickedListener {
+                viewModel.deleteData(id)
+            }
+            dlg.start(
+                resources.getString(com.charaminstra.pleon.common_ui.R.string.dialog_title),
+                resources.getString(com.charaminstra.pleon.common_ui.R.string.dialog_desc),
+                resources.getString(com.charaminstra.pleon.common_ui.R.string.dialog_cancel_btn),
+                resources.getString(com.charaminstra.pleon.common_ui.R.string.dialog_delete_btn)
+            )
         }
     }
-
-
 }

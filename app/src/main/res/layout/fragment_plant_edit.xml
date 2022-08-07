@@ -152,7 +152,8 @@
                 android:layout_marginTop="15dp"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/air_input"
-                android:background="@drawable/button"
+                android:background="@drawable/round_transparent"
+                android:backgroundTint="@color/main_color"
                 style="@style/SubText"
                 android:text="@string/complete_btn" />
             <androidx.appcompat.widget.AppCompatButton

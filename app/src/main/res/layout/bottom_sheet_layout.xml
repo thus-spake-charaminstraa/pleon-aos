@@ -26,7 +26,7 @@
         android:layout_marginHorizontal="5dp"
         app:layout_constraintRight_toRightOf="parent"
         android:text="@string/next_btn"
-        android:background="@drawable/button"
+        android:background="@drawable/round_transparent"
         android:backgroundTint="@color/input_bg"
         style="@style/SubText"
         app:layout_constraintTop_toBottomOf="@+id/bottom_sheet_arrow" />

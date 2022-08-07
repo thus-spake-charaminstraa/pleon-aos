@@ -148,7 +148,7 @@
         android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/water_day_input"
-        android:background="@drawable/button"
+        android:background="@drawable/button_maincolor"
         style="@style/SubText"
         android:text="@string/next_btn" />
     <TextView

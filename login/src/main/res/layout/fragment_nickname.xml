@@ -44,7 +44,7 @@
         android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nickname_et"
-        android:background="@drawable/button"
+        android:background="@drawable/button_maincolor"
         style="@style/SubText"
         android:text="@string/next_btn" />
 </androidx.constraintlayout.widget.ConstraintLayout>

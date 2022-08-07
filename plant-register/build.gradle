@@ -38,7 +38,7 @@ android {
 
 dependencies {
     implementation project(path: ':common')
-    implementation project(path: ':common-ui')
+    api project(path: ':common-ui')
 
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.appcompat:appcompat:1.4.2'
