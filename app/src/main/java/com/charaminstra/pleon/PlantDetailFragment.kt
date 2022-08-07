@@ -31,6 +31,7 @@ import com.kizitonwose.calendarview.ui.ViewContainer
 import com.kizitonwose.calendarview.utils.next
 import com.kizitonwose.calendarview.utils.previous
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.SimpleDateFormat
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.YearMonth
@@ -49,6 +50,7 @@ class PlantDetailFragment : Fragment() {
     private lateinit var binding : FragmentPlantDetailBinding
     lateinit var plantId : String
     private var selectedDate: LocalDate? = null
+    private val dateFormat = SimpleDateFormat("yyyy-MM-dd")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -247,6 +249,7 @@ class PlantDetailFragment : Fragment() {
                 .load(it.thumbnail)
                 .into(binding.plantImage)
             binding.plantSpeciesDesc.text = it.species
+            //binding.plantAdoptDayDesc.text = dateFormat.format(it.adopt_date)
             binding.plantAdoptDayDesc.text = it.adopt_date
             binding.plantMood.text = "HAPPY"
             binding.plantDDayDesc.text = it.d_day.toString()

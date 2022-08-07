@@ -33,6 +33,7 @@ import com.charaminstra.pleon.plant_register.PlantIdViewModel
 import com.charaminstra.pleon.plant_register.ui.DEFAULT_GALLERY_REQUEST_CODE
 import com.charaminstra.pleon.plant_register.ui.REQUEST_TAKE_PHOTO
 import dagger.hilt.android.AndroidEntryPoint
+import okhttp3.internal.format
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
@@ -46,6 +47,7 @@ class PlantEditFragment : Fragment() {
     private lateinit var binding : FragmentPlantEditBinding
     private lateinit var navController: NavController
     private lateinit var id: String
+    private val dateFormat = SimpleDateFormat("yyyy-MM-dd")
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         binding = FragmentPlantEditBinding.inflate(layoutInflater)
@@ -178,8 +180,11 @@ class PlantEditFragment : Fragment() {
         val cal = Calendar.getInstance()
         val dateFormat = SimpleDateFormat("yyyy-MM-dd")
         var datePickerDialog = DatePickerDialog(requireContext(), { _, y, m, d ->
+            cal.set(y,m,d)
             view.text = dateFormat.format(cal.time)
-        }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH))
+        }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).apply {
+            datePicker.maxDate = cal.timeInMillis
+        }
         datePickerDialog.show()
         datePickerDialog.getButton(DatePickerDialog.BUTTON_NEGATIVE).setBackgroundColor(Color.BLACK)
         datePickerDialog.getButton(DatePickerDialog.BUTTON_POSITIVE).setBackgroundColor(Color.BLACK)
@@ -192,7 +197,8 @@ class PlantEditFragment : Fragment() {
                 .into(binding.thumbnail)
             binding.plantNameInput.setText(it.name)
             binding.speciesInput.setText(it.species)
-            binding.adoptDayInput.setText(it.adopt_date)
+//            binding.adoptDayInput.text = dateFormat.format(it.adopt_date)
+            binding.adoptDayInput.text = it.adopt_date
             binding.lightInput.text = it.light
             binding.airInput.text = it.air
         })
@@ -235,10 +241,11 @@ class PlantEditFragment : Fragment() {
             pop.show()
         }
         binding.completeBtn.setOnClickListener{
-            viewModel.setName(binding.plantNameInput.text.toString())
-            viewModel.setAdopt_date(binding.adoptDayInput.text.toString())
-
-            viewModel.patchData(id.toString())
+            viewModel.patchData(id,
+                binding.plantNameInput.text.toString(),
+                binding.adoptDayInput.text.toString(),
+                binding.lightInput.text.toString(),
+                binding.airInput.text.toString())
         }
         binding.deleteBtn.setOnClickListener {
             viewModel.deleteData(id.toString())

@@ -9,6 +9,7 @@ import com.charaminstra.pleon.foundation.PlantIdRepository
 import com.charaminstra.pleon.foundation.model.PlantDataObject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -107,6 +108,7 @@ class PlantIdViewModel @Inject constructor(private val repository: PlantIdReposi
                 true -> {
                     _data.postValue(data.body()?.data!!)
                     setName(data.body()?.data!!.name!!)
+                    setThumbnail(data.body()?.data!!.thumbnail!!)
                     Log.i(TAG,"SUCCESS -> "+ data.body().toString())
                 }
                 else -> {
@@ -116,15 +118,11 @@ class PlantIdViewModel @Inject constructor(private val repository: PlantIdReposi
         }
     }
 
-    fun patchData(id: String){
+    fun patchData(id: String, name: String,adopt_date: String,light:String, air:String ){
         viewModelScope.launch {
-            val data = repository.patchPlantId(id,
-                getName().value.toString(),
-                getSpecies().value.toString(),
-                getAdopt_date().value.toString(),
+            val data = repository.patchPlantId(id,name,adopt_date,
                 getThumbnail().value.toString(),
-                getLight().value.toString(),
-                getAir().value.toString())
+                light,air)
             Log.i(TAG, "patch DATA"+data.body())
             when (data.isSuccessful) {
                 true -> {
