@@ -7,13 +7,13 @@ import com.charaminstra.pleon.databinding.ItemFeedBinding
 import com.charaminstra.pleon.foundation.model.ResultObject
 import java.text.SimpleDateFormat
 
-class FeedViewHolder(
+class FeedItemViewHolder(
     private val binding: ItemFeedBinding,
-    private var onItemClicked: (String) -> Unit): RecyclerView.ViewHolder(binding.root) {
+    private var onItemClicked: (String) -> Unit): FeedItemCommonViewHolder(binding) {
 
     val dateFormat = SimpleDateFormat("yyyy-MM-dd")
 
-    fun bind(item: ResultObject) {
+    override fun bind(item: ResultObject) {
         binding.feedContent.text = item.content
         binding.plantTagTv.text = "@"+item.plant.name!!
         binding.actionTagTv.text = "#"+item.kind

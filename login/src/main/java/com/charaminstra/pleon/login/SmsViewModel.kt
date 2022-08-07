@@ -69,8 +69,9 @@ class SmsViewModel @Inject constructor(private val repository: SmsRepository, pr
             Log.i(LOGIN_TAG,"post login response -> "+data.body())
             when (data.isSuccessful) {
                 true -> {
-                    prefs.setRefreshToken(data.body()?.data?.refresh_token)
-                    prefs.setAccessToken(data.body()?.data?.access_token)
+                    prefs.setRefreshToken(data.body()?.data?.token?.refresh_token)
+                    prefs.setAccessToken(data.body()?.data?.token?.access_token)
+                    prefs.setName(data.body()?.data?.user?.nickname)
                 }
                 else -> {
                     Log.i(LOGIN_TAG,"FAIL -> $data")

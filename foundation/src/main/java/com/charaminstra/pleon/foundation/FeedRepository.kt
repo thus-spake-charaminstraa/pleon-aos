@@ -11,6 +11,10 @@ class FeedRepository @Inject constructor(private val service: FeedAPIService, pr
         prefs.getAccessToken(),
         FeedRequestBody(plantId, date, kind, content, url))
 
-    suspend fun getFeed(plantId: String?, date: String?) = service.getFeed(prefs.getAccessToken(),plantId,date)
+    suspend fun getFeed(offset: Int?,plantId: String?, date: String?) = service.getFeed(
+        prefs.getAccessToken(),
+        offset,
+        plantId,
+        date)
 }
 

@@ -6,6 +6,6 @@ data class LoginResponse(
 )
 
 data class LoginDataObejct(
-    val access_token: String,
-    val refresh_token: String
-)
+    val user: UserObject,
+    val token: TokenObject
+    )

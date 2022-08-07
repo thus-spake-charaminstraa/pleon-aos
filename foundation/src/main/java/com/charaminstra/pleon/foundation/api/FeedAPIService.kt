@@ -16,6 +16,7 @@ interface FeedAPIService{
     @GET("feed")
     suspend fun getFeed(
         @Header("Authorization") verifyToken:String,
+        @Query("offset") offset:Int?,
         @Query("plant_id")  plantId:String?,
         @Query("publish_date") date:String?
     ): Response<FeedResponse>

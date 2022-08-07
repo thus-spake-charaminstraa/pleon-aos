@@ -57,24 +57,25 @@
         android:background="@color/input_bg"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/filter_scroll"
-        app:layout_constraintBottom_toTopOf="@id/feed_scroll"/>
-    <ScrollView
-        android:id="@+id/feed_scroll"
+        app:layout_constraintBottom_toTopOf="@id/feed_recyclerview"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/feed_recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/filter_scroll" >
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/feed_recyclerview"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/all_filter" />
-    </ScrollView>
+        app:layout_constraintTop_toBottomOf="@+id/filter_scroll" />
+<!--    <ScrollView-->
+<!--        android:id="@+id/feed_scroll"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/filter_scroll" >-->
+<!--        -->
+<!--    </ScrollView>-->
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/write_btn"
         android:layout_width="50dp"

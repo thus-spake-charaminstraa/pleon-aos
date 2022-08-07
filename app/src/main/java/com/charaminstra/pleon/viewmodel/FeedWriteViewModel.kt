@@ -19,6 +19,7 @@ class FeedWriteViewModel @Inject constructor(
     val postSuccess : LiveData<Boolean> = _postSuccess
 
     fun postFeed(plantId: String, date:String, kind:String, content:String, url:String?){
+        Log.i(TAG,"\n plantId : "+plantId+"\n date: "+date+"\n kind : "+kind+"\n content: "+content+"\n url: "+url)
         viewModelScope.launch {
             val data = repository.postFeed(plantId, date, kind, content, url)
             Log.i(TAG, "data -> $data")
@@ -28,7 +29,7 @@ class FeedWriteViewModel @Inject constructor(
                     Log.i(TAG,"SUCCESS -> "+ data.body().toString())
                 }
                 else -> {
-                    Log.i(TAG,"FAIL -> "+ data.body().toString())
+                    Log.i(TAG,"FAIL -> "+ data.errorBody())
                 }
             }
         }

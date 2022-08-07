@@ -38,7 +38,7 @@ class PleonPreference @Inject constructor(@ApplicationContext context : Context)
         Log.d(NAME, "name set : "+ getName() )
     }
     fun getName(): String {
-        return "Bearer "+prefs.getString(NAME, DEFAULT).toString()
+        return prefs.getString(NAME, DEFAULT).toString()
     }
 
     fun setImage(str: String?) {

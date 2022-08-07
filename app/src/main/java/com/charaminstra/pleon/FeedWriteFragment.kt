@@ -105,16 +105,14 @@ class FeedWriteFragment : Fragment() {
             popUpImageMenu(it)
         }
         binding.completeBtn.setOnClickListener {
-            plantId?.let { it1 ->
-                plantAction?.let { it2 ->
-                    feedWriteViewModel.postFeed(
-                        it1,
-                        binding.dateTv.text.toString(),
-                        it2.action,
-                        binding.contentEdit.text.toString(),
-                        url
-                    )
-                }
+            if(plantId != null && plantAction != null){
+                feedWriteViewModel.postFeed(
+                    plantId!!,
+                    binding.dateTv.text.toString(),
+                    plantAction!!.action,
+                    binding.contentEdit.text.toString(),
+                    url
+                )
             }
         }
         return binding.root
