@@ -44,7 +44,6 @@ import java.util.*
 class PlantEditFragment : Fragment() {
     private val TAG = javaClass.simpleName
     private val viewModel: PlantIdViewModel by viewModels()
-    private val imageViewModel : ImageViewModel by viewModels()
     private lateinit var binding : FragmentPlantEditBinding
     private lateinit var navController: NavController
     private lateinit var id: String
@@ -90,6 +89,26 @@ class PlantEditFragment : Fragment() {
                 }R.id.item_air_three -> {
                     binding.airInput.text = getString(R.string.air_three)
                 }
+                }
+                false
+            }
+            pop.show()
+        }
+
+        binding.lightInput.setOnClickListener {
+            val pop= PopupMenu(requireContext(),it)
+            pop.menuInflater.inflate(R.menu.light_menu, pop.menu)
+            pop.setOnMenuItemClickListener { item ->
+                when(item.itemId){
+                    R.id.item_light_one -> {
+                        binding.lightInput.text = getString(R.string.light_one)
+                    }R.id.item_light_two -> {
+                    binding.lightInput.text = getString(R.string.light_two)
+                    }R.id.item_light_three -> {
+                        binding.lightInput.text = getString(R.string.light_three)
+                    }R.id.item_light_four -> {
+                        binding.lightInput.text = getString(R.string.light_four)
+                    }
                 }
                 false
             }

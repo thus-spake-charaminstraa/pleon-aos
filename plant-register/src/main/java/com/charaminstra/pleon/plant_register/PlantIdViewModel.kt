@@ -84,6 +84,9 @@ class PlantIdViewModel @Inject constructor(private val repository: PlantIdReposi
             thumbnail.value = imageData.body()?.data?.url!!
         }
     }
+    fun setUrl(url: String){
+        thumbnail.value = url
+    }
 
     fun postPlant(){
         viewModelScope.launch {
@@ -113,6 +116,7 @@ class PlantIdViewModel @Inject constructor(private val repository: PlantIdReposi
             when (data.isSuccessful) {
                 true -> {
                     _data.postValue(data.body()?.data!!)
+                    setUrl(data.body()?.data?.thumbnail!!)
                     Log.i(TAG,"SUCCESS -> "+ data.body().toString())
                 }
                 else -> {
