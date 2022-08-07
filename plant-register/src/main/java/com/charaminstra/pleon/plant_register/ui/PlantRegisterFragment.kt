@@ -41,7 +41,6 @@ const val REQUEST_TAKE_PHOTO = 3000
 @AndroidEntryPoint
 class PlantRegisterFragment : Fragment() {
     private val plantIdViewModel: PlantIdViewModel by activityViewModels()
-    private val imageViewModel : ImageViewModel by viewModels()
     private lateinit var binding: FragmentPlantRegisterBinding
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
@@ -80,10 +79,7 @@ class PlantRegisterFragment : Fragment() {
             plantIdViewModel.setSpecies(binding.speciesInput.text.toString())
             plantIdViewModel.setAdopt_date(binding.adoptDayInput.text.toString())
             plantIdViewModel.setWater_date(binding.waterDayInput.text.toString())
-            imageViewModel.urlResponse.observe(viewLifecycleOwner, Observer {
-                plantIdViewModel.setThumbnail(it)
-                Log.i("imageurl",it)
-            })
+
             navController.navigate(R.id.plant_register_fragment_to_plant_light_fragment)
         }
 
@@ -114,7 +110,7 @@ class PlantRegisterFragment : Fragment() {
                     ByteArrayOutputStream().use { stream ->
                         bitmap.compress(Bitmap.CompressFormat.JPEG,100, stream)
                         val inputStream = ByteArrayInputStream(stream.toByteArray())
-                        imageViewModel.postImage(inputStream)
+                        plantIdViewModel.setThumbnail(inputStream)
                     }
                 }
             }
@@ -125,7 +121,7 @@ class PlantRegisterFragment : Fragment() {
                     bitmap.compress(Bitmap.CompressFormat.JPEG,100, stream)
                     val inputStream = ByteArrayInputStream(stream.toByteArray())
                     Log.i("photo image inputstream", inputStream.toString())
-                    imageViewModel.postImage(inputStream)
+                    plantIdViewModel.setThumbnail(inputStream)
                 }
             }
             else -> {

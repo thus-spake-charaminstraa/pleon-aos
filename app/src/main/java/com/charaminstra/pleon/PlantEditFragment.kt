@@ -36,6 +36,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.internal.format
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
+import java.io.InputStream
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -115,11 +116,15 @@ class PlantEditFragment : Fragment() {
                 val uri = data.data as Uri
                 Log.i("image",uri.path.toString())
                 activity?.contentResolver?.openInputStream(uri).let {
-                    //Log.i("gallerybitamtp",BitmapFactory.decodeStream(it).toString())
+                    val bitmap = BitmapFactory.decodeStream(it)
                     // image veiw set image bit map
-                    binding.thumbnail.setImageBitmap(BitmapFactory.decodeStream(it))
+                    binding.thumbnail.setImageBitmap(bitmap)
                     // get image url
-                    imageViewModel.postImage(it!!)
+                    ByteArrayOutputStream().use { stream ->
+                        bitmap.compress(Bitmap.CompressFormat.JPEG,100, stream)
+                        val inputStream = ByteArrayInputStream(stream.toByteArray())
+                        viewModel.setThumbnail(inputStream)
+                    }
                 }
             }
             REQUEST_TAKE_PHOTO -> {
@@ -128,7 +133,7 @@ class PlantEditFragment : Fragment() {
                 ByteArrayOutputStream().use { stream ->
                     bitmap.compress(Bitmap.CompressFormat.JPEG,100, stream)
                     val inputStream = ByteArrayInputStream(stream.toByteArray())
-                    imageViewModel.postImage(inputStream)
+                    viewModel.setThumbnail(inputStream)
                 }
             }
             else -> {
@@ -197,13 +202,9 @@ class PlantEditFragment : Fragment() {
                 .into(binding.thumbnail)
             binding.plantNameInput.setText(it.name)
             binding.speciesInput.setText(it.species)
-//            binding.adoptDayInput.text = dateFormat.format(it.adopt_date)
-            binding.adoptDayInput.text = it.adopt_date
+            binding.adoptDayInput.text = dateFormat.format(it.adopt_date)
             binding.lightInput.text = it.light
             binding.airInput.text = it.air
-        })
-        imageViewModel.urlResponse.observe(this, Observer {
-            viewModel.setThumbnail(it)
         })
         viewModel.patchSuccess.observe(this, Observer{
             if(it){

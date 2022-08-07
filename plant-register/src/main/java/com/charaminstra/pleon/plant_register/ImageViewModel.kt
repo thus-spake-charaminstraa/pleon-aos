@@ -24,7 +24,6 @@ class ImageViewModel @Inject constructor(
 
     fun getUrl() = urlResponse
 
-//    fun postImage(uri: Uri, realPathFromURI: String?){
     fun postImage(stream: InputStream){
         viewModelScope.launch {
             //val data =repository.postImage(uri, realPathFromURI!!)

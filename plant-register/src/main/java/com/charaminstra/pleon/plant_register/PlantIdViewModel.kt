@@ -5,15 +5,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.charaminstra.pleon.foundation.ImageRepository
 import com.charaminstra.pleon.foundation.PlantIdRepository
 import com.charaminstra.pleon.foundation.model.PlantDataObject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.io.InputStream
 import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
-class PlantIdViewModel @Inject constructor(private val repository: PlantIdRepository) : ViewModel() {
+class PlantIdViewModel @Inject constructor(private val repository: PlantIdRepository,
+                                           private val imageRepository: ImageRepository) : ViewModel() {
 
     private val TAG = javaClass.name
     private val _plantRegisterSuccess = MutableLiveData<Boolean>()
@@ -75,8 +78,11 @@ class PlantIdViewModel @Inject constructor(private val repository: PlantIdReposi
     fun getThumbnail(): LiveData<String>{
         return thumbnail
     }
-    fun setThumbnail(value: String){
-        thumbnail.value = value
+    fun setThumbnail(image_stream: InputStream){
+        viewModelScope.launch {
+            val imageData = imageRepository.postImage(image_stream)
+            thumbnail.value = imageData.body()?.data?.url!!
+        }
     }
 
     fun postPlant(){
@@ -107,8 +113,6 @@ class PlantIdViewModel @Inject constructor(private val repository: PlantIdReposi
             when (data.isSuccessful) {
                 true -> {
                     _data.postValue(data.body()?.data!!)
-                    setName(data.body()?.data!!.name!!)
-                    setThumbnail(data.body()?.data!!.thumbnail!!)
                     Log.i(TAG,"SUCCESS -> "+ data.body().toString())
                 }
                 else -> {
@@ -118,7 +122,13 @@ class PlantIdViewModel @Inject constructor(private val repository: PlantIdReposi
         }
     }
 
-    fun patchData(id: String, name: String,adopt_date: String,light:String, air:String ){
+
+
+    fun patchData(id: String,
+                  name: String,
+                  adopt_date: String,
+                  light:String,
+                  air:String ){
         viewModelScope.launch {
             val data = repository.patchPlantId(id,name,adopt_date,
                 getThumbnail().value.toString(),

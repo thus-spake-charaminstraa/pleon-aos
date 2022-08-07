@@ -7,7 +7,7 @@ data class PlantDataObject(
     val name: String?,
     val owner: String?,
     val species: String?,
-    val adopt_date: String?,
+    val adopt_date: Date?,
     val thumbnail: String?,
     val light: String?,
     val air: String?,

@@ -249,8 +249,8 @@ class PlantDetailFragment : Fragment() {
                 .load(it.thumbnail)
                 .into(binding.plantImage)
             binding.plantSpeciesDesc.text = it.species
-            //binding.plantAdoptDayDesc.text = dateFormat.format(it.adopt_date)
-            binding.plantAdoptDayDesc.text = it.adopt_date
+            binding.plantAdoptDayDesc.text = dateFormat.format(it.adopt_date)
+            //binding.plantAdoptDayDesc.text = it.adopt_date
             binding.plantMood.text = "HAPPY"
             binding.plantDDayDesc.text = it.d_day.toString()
 
