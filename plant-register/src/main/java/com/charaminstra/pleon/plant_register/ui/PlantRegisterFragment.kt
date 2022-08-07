@@ -79,7 +79,6 @@ class PlantRegisterFragment : Fragment() {
             plantIdViewModel.setSpecies(binding.speciesInput.text.toString())
             plantIdViewModel.setAdopt_date(binding.adoptDayInput.text.toString())
             plantIdViewModel.setWater_date(binding.waterDayInput.text.toString())
-
             navController.navigate(R.id.plant_register_fragment_to_plant_light_fragment)
         }
 
@@ -173,7 +172,9 @@ class PlantRegisterFragment : Fragment() {
     fun popUpCalendar(view: TextView) {
         val cal = Calendar.getInstance()
         val dateFormat = SimpleDateFormat("yyyy-MM-dd")
-        var datePickerDialog = DatePickerDialog(requireContext(), { _, y, m, d ->
+        var datePickerDialog = DatePickerDialog(requireContext(),
+            com.charaminstra.pleon.common_ui.R.style.PleonDatePickerStyle,
+            { _, y, m, d ->
             cal.set(y,m,d)
             view.text = dateFormat.format(cal.time)
         }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).apply {

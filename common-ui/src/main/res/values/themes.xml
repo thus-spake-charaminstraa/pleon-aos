@@ -15,4 +15,25 @@
         <item name="android:textSize">30dp</item>
         <item name="android:textColor">@color/black</item>
     </style>
+    <style name="PleonDatePickerStyle" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">#FFFFFF</item>
+        <!--selected Item color-->
+        <item name="colorControlActivated">#2196F3</item>
+        <!-- arrow bordercolor(<>)-->
+        <item name="android:selectableItemBackgroundBorderless">@color/white</item>
+        <!-- Highlight item color-->
+        <item name="colorControlHighlight">#d50000</item>
+        <!--Calender Background color -->
+        <item name="android:windowBackground">@color/white</item>
+        <!-- Ok Cancel Color-->
+        <item name="android:textColor">@color/black</item>
+        <!-- Week TextColor-->
+        <item name="android:textColorSecondary">@color/black</item>
+        <!-- Calender Number color arrow color (< >) -->
+        <item name="android:textColorPrimary">@color/black</item>
+        <!--day , month-->
+        <item name="android:textColorPrimaryInverse">@color/black</item>
+        <!-- year-->
+        <item name="android:textColorSecondaryInverse">#000000</item>
+    </style>
 </resources>
