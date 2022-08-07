@@ -11,6 +11,7 @@ const val ACCESS_KEY = "access"
 const val REFRESH_KEY = "refresh"
 const val DEFAULT = "default"
 const val NAME = "name"
+const val IMAGE_URL = "url"
 
 class PleonPreference @Inject constructor(@ApplicationContext context : Context){
 
@@ -32,13 +33,21 @@ class PleonPreference @Inject constructor(@ApplicationContext context : Context)
         return "Bearer "+prefs.getString(ACCESS_KEY, DEFAULT).toString()
     }
 
-//    fun setName(str: String?) {
-//        prefs.edit().putString(NAME, str).apply()
-//        Log.d(ACCESS_KEY, "name set : "+ getName() )
-//    }
-//    fun getName(): String {
-//        return "Bearer "+prefs.getString(NAME, DEFAULT).toString()
-//    }
+    fun setName(str: String?) {
+        prefs.edit().putString(NAME, str).apply()
+        Log.d(NAME, "name set : "+ getName() )
+    }
+    fun getName(): String {
+        return "Bearer "+prefs.getString(NAME, DEFAULT).toString()
+    }
+
+    fun setImage(str: String?) {
+        prefs.edit().putString(IMAGE_URL, str).apply()
+        Log.d(IMAGE_URL, "image url set : "+ getImage() )
+    }
+    fun getImage(): String {
+        return prefs.getString(IMAGE_URL, DEFAULT).toString()
+    }
 
     fun setRefreshToken(str: String?) {
         prefs.edit().putString(REFRESH_KEY, str).apply()

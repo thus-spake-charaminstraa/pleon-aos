@@ -23,7 +23,7 @@ class FeedViewHolder(
         }else{
             binding.plantImage.visibility = View.GONE
         }
-        binding.feedDate.text = item.publish_date
+        binding.feedDate.text = dateFormat.format(item.publish_date)
     }
 
 }

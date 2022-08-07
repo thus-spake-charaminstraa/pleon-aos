@@ -7,6 +7,9 @@
         <item name="android:textSize">13dp</item>
         <item name="android:textColor">@color/black</item>
     </style>
+    <style name="FeedDateText" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">12dp</item>
+    </style>
 
     <style name="hello" parent="@android:style/Widget.TextView">
         <item name="android:textSize">30dp</item>

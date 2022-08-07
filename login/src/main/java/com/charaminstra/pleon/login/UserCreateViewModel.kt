@@ -25,7 +25,7 @@ class UserCreateViewModel @Inject constructor(private val repository: UserCreate
                     //userCreateResponse.postValue(data.body()?.data!!)
                     prefs.setAccessToken(data.body()?.data?.token?.access_token)
                     prefs.setRefreshToken(data.body()?.data?.token?.refresh_token)
-//                    prefs.setName(name)
+                    prefs.setName(data.body()?.data?.user?.nickname)
                 }
                 else -> {
                 }
