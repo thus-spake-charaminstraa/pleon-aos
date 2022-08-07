@@ -57,8 +57,10 @@ class FeedWriteFragment : Fragment() {
     private val cal = Calendar.getInstance()
     private val dateFormat = SimpleDateFormat("yyyy-MM-dd")
     private lateinit var sheetBehavior : BottomSheetBehavior<View>
+
     private var plantId : String? = null
     private var plantAction: ActionType? = null
+    private var plantName : String? = null
     private var url : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -189,14 +191,14 @@ class FeedWriteFragment : Fragment() {
         observeViewModel()
         binding.bottomSheet.plantRecyclerview.adapter = plant_adapter
         binding.bottomSheet.actionRecyclerview.adapter= action_adapter
-
-        /**/
         binding.bottomSheet.plantRecyclerview.addOnItemTouchListener(recyclerListener)
         binding.bottomSheet.actionRecyclerview.addOnItemTouchListener(recyclerListener)
 
         binding.bottomSheet.nextBtn.setOnClickListener {
             if(plantId != null && plantAction != null){
                 sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+                /* 자동 완성 */
+                binding.contentEdit.setText(plantName + " (이)가 "+plantAction?.desc)
             }
         }
 
@@ -219,8 +221,7 @@ class FeedWriteFragment : Fragment() {
         plant_adapter = PlantAdapter()
         plant_adapter.setType("FEED_PLANT")
         plant_adapter.onItemClicked = { Id ->
-            plantId = Id
-            plantIdViewModel.loadData(plantId!!)
+            plantIdViewModel.loadData(Id!!)
         }
 
         action_adapter = ActionAdapter()
@@ -239,7 +240,6 @@ class FeedWriteFragment : Fragment() {
         )
         action_adapter.onItemClicked = { actionType ->
             plantAction = actionType
-            Log.i(TAG,"palntAction : "+plantAction)
             binding.actionTagTv.text= resources.getString(R.string.action_tag) + plantAction
         }
 
@@ -250,8 +250,9 @@ class FeedWriteFragment : Fragment() {
             plant_adapter.refreshItems(it)
         })
         plantIdViewModel.data.observe(viewLifecycleOwner, Observer {
-            binding.plantTagTv.text = resources.getString(R.string.plant_tag) + it.name
-            plantId = it.id!!
+            plantName = it.name
+            plantId = it.id
+            binding.plantTagTv.text = resources.getString(R.string.plant_tag) + plantName
         })
         feedWriteViewModel.postSuccess.observe(viewLifecycleOwner, Observer{
             if(it){

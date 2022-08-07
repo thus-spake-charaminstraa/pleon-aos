@@ -106,6 +106,7 @@ class PlantIdViewModel @Inject constructor(private val repository: PlantIdReposi
             when (data.isSuccessful) {
                 true -> {
                     _data.postValue(data.body()?.data!!)
+                    setName(data.body()?.data!!.name!!)
                     Log.i(TAG,"SUCCESS -> "+ data.body().toString())
                 }
                 else -> {
