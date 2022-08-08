@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
@@ -21,26 +22,30 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.charaminstra.pleon.databinding.FragmentFeedWriteBinding
-import com.google.android.material.bottomsheet.BottomSheetBehavior
-import dagger.hilt.android.AndroidEntryPoint
-import java.text.SimpleDateFormat
-import java.util.*
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.charaminstra.pleon.adapter.*
+import com.charaminstra.pleon.databinding.FragmentFeedWriteBinding
 import com.charaminstra.pleon.plant_register.ImageViewModel
 import com.charaminstra.pleon.plant_register.PlantIdViewModel
 import com.charaminstra.pleon.plant_register.ui.REQUEST_GALLERY
 import com.charaminstra.pleon.plant_register.ui.REQUEST_TAKE_PHOTO
 import com.charaminstra.pleon.viewmodel.FeedWriteViewModel
 import com.charaminstra.pleon.viewmodel.PlantsViewModel
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import dagger.hilt.android.AndroidEntryPoint
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileInputStream
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 @AndroidEntryPoint
@@ -291,14 +296,9 @@ class FeedWriteFragment : Fragment() {
                 }
             }
             REQUEST_TAKE_PHOTO -> {
-                val bitmap = data?.extras?.get("data") as Bitmap
-                binding.image.setImageBitmap(bitmap)
-                ByteArrayOutputStream().use { stream ->
-                    bitmap.compress(Bitmap.CompressFormat.JPEG,100, stream)
-                    val inputStream = ByteArrayInputStream(stream.toByteArray())
-                    Log.i("photo image inputstream", inputStream.toString())
-                    imageViewModel.postImage(inputStream)
-                }
+                Glide.with(this).load(currentPhotoPath).into(binding.image)
+                val inputStream = FileInputStream(currentPhotoPath)
+                imageViewModel.postImage(inputStream)
             }
             else -> {
                 Toast.makeText(requireContext(), resources.getString(R.string.image_error), Toast.LENGTH_SHORT).show()
@@ -326,11 +326,34 @@ class FeedWriteFragment : Fragment() {
         Log.i("permission",checkPermission().toString())
         if(checkPermission()){
             val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            startActivityForResult(intent, REQUEST_TAKE_PHOTO)
+            val photoFile = createImageFile()
+            if(photoFile != null ){
+                    val uri = FileProvider.getUriForFile(requireContext(),"com.charaminstra.pleon.fileprovider", photoFile)
+                    intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
+                    startActivityForResult(intent, REQUEST_TAKE_PHOTO)
+            }
         }else{
             Toast.makeText(context, resources.getString(R.string.camera_permission_msg), Toast.LENGTH_SHORT).show()
         }
     }
+
+    lateinit var currentPhotoPath : String
+
+    private fun createImageFile(): File {
+        // Create an image file name
+        val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+        val storageDir: File? = activity?.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        return File.createTempFile(
+            "JPEG_${timeStamp}_", /* prefix */
+            ".jpg", /* suffix */
+            storageDir /* directory */
+        ).apply {
+            // Save a file: path for use with ACTION_VIEW intents
+            currentPhotoPath = absolutePath
+        }
+    }
+
+
 
     fun popUpImageMenu(view: View){
         val pop= PopupMenu(requireContext(),view)
