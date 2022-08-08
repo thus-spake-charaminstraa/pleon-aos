@@ -63,6 +63,7 @@ class FeedWriteFragment : Fragment() {
     private var plantId : String? = null
     private var plantAction: ActionType? = null
     private var plantName : String? = null
+    private lateinit var currentPhotoPath : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -332,14 +333,10 @@ class FeedWriteFragment : Fragment() {
         }
     }
 
-    lateinit var currentPhotoPath : String
-
     private fun createImageFile(): File {
-        // Create an image file name
-        val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
         val storageDir: File? = activity?.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
         return File.createTempFile(
-            "JPEG_${timeStamp}_", /* prefix */
+            "image", /* prefix */
             ".jpg", /* suffix */
             storageDir /* directory */
         ).apply {
@@ -347,8 +344,6 @@ class FeedWriteFragment : Fragment() {
             currentPhotoPath = absolutePath
         }
     }
-
-
 
     fun popUpImageMenu(view: View){
         val pop= PopupMenu(requireContext(),view)
