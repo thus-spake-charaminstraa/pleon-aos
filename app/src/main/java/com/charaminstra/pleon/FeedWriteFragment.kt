@@ -96,12 +96,12 @@ class FeedWriteFragment : Fragment() {
         binding.dateTv.setOnClickListener {
             popUpCalendar(it as TextView)
         }
-        binding.image.visibility = View.GONE
+        binding.imageCard.visibility = View.GONE
         binding.cameraBtn.setOnClickListener{
             popUpImageMenu(it)
-            binding.image.visibility = View.VISIBLE
+            binding.imageCard.visibility = View.VISIBLE
         }
-        binding.image.setOnClickListener {
+        binding.imageCard.setOnClickListener {
             popUpImageMenu(it)
         }
         binding.completeBtn.setOnClickListener {
@@ -341,8 +341,10 @@ class FeedWriteFragment : Fragment() {
                     openCamera()
                 com.charaminstra.pleon.plant_register.R.id.gallery ->
                     openGallery()
-                com.charaminstra.pleon.plant_register.R.id.cancel ->
+                com.charaminstra.pleon.plant_register.R.id.cancel ->{
+                    binding.imageCard.visibility = View.GONE
                     binding.image.setImageBitmap(null)
+                }
             }
             false
         }
