@@ -4,12 +4,15 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.charaminstra.pleon.databinding.ItemFeedBinding
+import com.charaminstra.pleon.foundation.api.PleonPreference
 import com.charaminstra.pleon.foundation.model.ResultObject
+import dagger.hilt.internal.aggregatedroot.codegen._com_charaminstra_pleon_PleonApplication
 import java.text.SimpleDateFormat
+import kotlin.coroutines.coroutineContext
 
 class FeedItemViewHolder(
     private val binding: ItemFeedBinding,
-    private var onItemClicked: (String) -> Unit): FeedItemCommonViewHolder(binding) {
+    private var onItemClicked: (String) -> Unit): FeedItemCommonViewHolder(binding){
 
     val dateFormat = SimpleDateFormat("yyyy-MM-dd")
 

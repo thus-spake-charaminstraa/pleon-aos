@@ -2,6 +2,7 @@ package com.charaminstra.pleon.viewholder
 
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
+import com.charaminstra.pleon.foundation.api.PleonPreference
 import com.charaminstra.pleon.foundation.model.PlantDataObject
 import com.charaminstra.pleon.foundation.model.ResultObject
 
