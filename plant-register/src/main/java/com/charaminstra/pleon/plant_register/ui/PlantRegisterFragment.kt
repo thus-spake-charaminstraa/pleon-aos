@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
@@ -20,26 +21,30 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat.requestPermissions
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.charaminstra.pleon.plant_register.PlantIdViewModel
 import com.charaminstra.pleon.plant_register.R
 import com.charaminstra.pleon.plant_register.databinding.FragmentPlantRegisterBinding
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileInputStream
 import java.text.SimpleDateFormat
 import java.util.*
 
 const val REQUEST_GALLERY = 2000
 const val REQUEST_TAKE_PHOTO = 3000
-const val REQUEST_IMG_CROP = 4000
 
 @AndroidEntryPoint
 class PlantRegisterFragment : Fragment() {
     private val plantIdViewModel: PlantIdViewModel by activityViewModels()
     private lateinit var binding: FragmentPlantRegisterBinding
+    private lateinit var currentPhotoPath : String
 
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
@@ -110,26 +115,21 @@ class PlantRegisterFragment : Fragment() {
                     ByteArrayOutputStream().use { stream ->
                         bitmap.compress(Bitmap.CompressFormat.JPEG,100, stream)
                         val inputStream = ByteArrayInputStream(stream.toByteArray())
-                        plantIdViewModel.setThumbnail(inputStream)
+                        plantIdViewModel.setImgToUrl(inputStream)
                     }
                 }
             }
             REQUEST_TAKE_PHOTO -> {
-//                startCrop(data?.data as Uri)
-                val bitmap = data?.extras?.get("data") as Bitmap
-                binding.thumbnail.setImageBitmap(bitmap)
-                ByteArrayOutputStream().use { stream ->
-                    bitmap.compress(Bitmap.CompressFormat.JPEG,100, stream)
-                    val inputStream = ByteArrayInputStream(stream.toByteArray())
-                    Log.i("photo image inputstream", inputStream.toString())
-                    plantIdViewModel.setThumbnail(inputStream)
-                }
+                Glide.with(this).load(currentPhotoPath).into(binding.thumbnail)
+                val inputStream = FileInputStream(currentPhotoPath)
+                plantIdViewModel.setImgToUrl(inputStream)
             }
-//            REQUEST_IMG_CROP -> {
-//                val extras = data?.extras
-//                val bitmap = extras?.get("data") as Bitmap
-//                binding.thumbnail.setImageBitmap(bitmap)
-//            }
+            else -> {
+                Toast.makeText(
+                    requireContext(),
+                    resources.getString(com.charaminstra.pleon.common_ui.R.string.image_error),
+                    Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -150,11 +150,6 @@ class PlantRegisterFragment : Fragment() {
         val intent = Intent()
         intent.type = "image/*"
         intent.action = Intent.ACTION_PICK
-//        intent.putExtra("outputX", 280);
-//
-//        intent.putExtra("outputY", 280);
-//
-//        intent.putExtra("return-data", true);
         startActivityForResult(intent, REQUEST_GALLERY)
     }
 
@@ -171,25 +166,30 @@ class PlantRegisterFragment : Fragment() {
         Log.i("permission",checkPermission().toString())
         if(checkPermission()){
             val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            startActivityForResult(intent, REQUEST_TAKE_PHOTO)
+            val photoFile = createImageFile()
+            if(photoFile != null ){
+                val uri = FileProvider.getUriForFile(requireContext(),"com.charaminstra.pleon.fileprovider", photoFile)
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
+                startActivityForResult(intent, REQUEST_TAKE_PHOTO)
+            }
         }else{
-            Toast.makeText(context, "카메라 권한 설정이 필요합니다.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context,
+                resources.getString(com.charaminstra.pleon.common_ui.R.string.camera_permission_msg),
+                Toast.LENGTH_SHORT).show()
         }
     }
 
-//    private fun startCrop(uri : Uri){
-//        val intent = Intent("com.android.camera.action.CROP")
-//        intent.setDataAndType(uri, "image/*")
-//        intent.putExtra("crop","true")
-//        /* 정방향 */
-//        intent.putExtra("aspectX", 1)
-//        intent.putExtra("aspectY", 1)
-//
-//        intent.putExtra("scale", true)
-//        intent.putExtra("return-data", true)
-//        startActivityForResult(intent, REQUEST_IMG_CROP)
-//    }
-
+    private fun createImageFile(): File {
+        val storageDir: File? = activity?.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        return File.createTempFile(
+            "image", /* prefix */
+            ".jpg", /* suffix */
+            storageDir /* directory */
+        ).apply {
+            // Save a file: path for use with ACTION_VIEW intents
+            currentPhotoPath = absolutePath
+        }
+    }
 
     fun popUpCalendar(view: TextView) {
         val cal = Calendar.getInstance()

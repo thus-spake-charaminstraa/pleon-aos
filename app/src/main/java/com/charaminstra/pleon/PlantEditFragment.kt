@@ -9,6 +9,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
 import com.charaminstra.pleon.plant_register.R
 import android.util.Log
@@ -21,6 +22,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
@@ -34,6 +36,8 @@ import com.charaminstra.pleon.plant_register.ui.REQUEST_TAKE_PHOTO
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileInputStream
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -45,6 +49,7 @@ class PlantEditFragment : Fragment() {
     private lateinit var navController: NavController
     private lateinit var id: String
     private val dateFormat = SimpleDateFormat("yyyy-MM-dd")
+    private lateinit var currentPhotoPath : String
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         binding = FragmentPlantEditBinding.inflate(layoutInflater)
@@ -139,21 +144,20 @@ class PlantEditFragment : Fragment() {
                     ByteArrayOutputStream().use { stream ->
                         bitmap.compress(Bitmap.CompressFormat.JPEG,100, stream)
                         val inputStream = ByteArrayInputStream(stream.toByteArray())
-                        viewModel.setThumbnail(inputStream)
+                        viewModel.setImgToUrl(inputStream)
                     }
                 }
             }
             REQUEST_TAKE_PHOTO -> {
-                val bitmap = data?.extras?.get("data") as Bitmap
-                binding.thumbnail.setImageBitmap(bitmap)
-                ByteArrayOutputStream().use { stream ->
-                    bitmap.compress(Bitmap.CompressFormat.JPEG,100, stream)
-                    val inputStream = ByteArrayInputStream(stream.toByteArray())
-                    viewModel.setThumbnail(inputStream)
-                }
+                Glide.with(this).load(currentPhotoPath).into(binding.thumbnail)
+                val inputStream = FileInputStream(currentPhotoPath)
+                viewModel.setImgToUrl(inputStream)
             }
             else -> {
-                Toast.makeText(requireContext(), "사진을 가져오지 못했습니다.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    resources.getString(com.charaminstra.pleon.common_ui.R.string.image_error),
+                    Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -191,9 +195,28 @@ class PlantEditFragment : Fragment() {
         Log.i("permission",checkPermission().toString())
         if(checkPermission()){
             val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            startActivityForResult(intent, REQUEST_TAKE_PHOTO)
+            val photoFile = createImageFile()
+            if(photoFile != null ){
+                val uri = FileProvider.getUriForFile(requireContext(),"com.charaminstra.pleon.fileprovider", photoFile)
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
+                startActivityForResult(intent, REQUEST_TAKE_PHOTO)
+            }
         }else{
-            Toast.makeText(context, "카메라 권한 설정이 필요합니다.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context,
+                resources.getString(com.charaminstra.pleon.common_ui.R.string.camera_permission_msg),
+                Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun createImageFile(): File {
+        val storageDir: File? = activity?.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        return File.createTempFile(
+            "image", /* prefix */
+            ".jpg", /* suffix */
+            storageDir /* directory */
+        ).apply {
+            // Save a file: path for use with ACTION_VIEW intents
+            currentPhotoPath = absolutePath
         }
     }
 

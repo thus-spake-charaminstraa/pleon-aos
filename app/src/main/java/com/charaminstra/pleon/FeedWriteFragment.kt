@@ -297,7 +297,10 @@ class FeedWriteFragment : Fragment() {
                 feedWriteViewModel.postImage(inputStream)
             }
             else -> {
-                Toast.makeText(requireContext(), resources.getString(R.string.image_error), Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    resources.getString(com.charaminstra.pleon.common_ui.R.string.image_error),
+                    Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -329,7 +332,9 @@ class FeedWriteFragment : Fragment() {
                     startActivityForResult(intent, REQUEST_TAKE_PHOTO)
             }
         }else{
-            Toast.makeText(context, resources.getString(R.string.camera_permission_msg), Toast.LENGTH_SHORT).show()
+            Toast.makeText(context,
+                resources.getString(com.charaminstra.pleon.common_ui.R.string.camera_permission_msg),
+                Toast.LENGTH_SHORT).show()
         }
     }
 
