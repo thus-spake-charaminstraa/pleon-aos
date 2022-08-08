@@ -41,7 +41,7 @@
         <entry key="app/src/main/res/layout/fragment_nickname.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_phone.xml" value="0.22289733886718754" />
         <entry key="app/src/main/res/layout/fragment_plant_detail.xml" value="0.45" />
-        <entry key="app/src/main/res/layout/fragment_plant_edit.xml" value="0.10472232964889841" />
+        <entry key="app/src/main/res/layout/fragment_plant_edit.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_plant_register.xml" value="0.2772125244140625" />
         <entry key="app/src/main/res/layout/fragment_view_pager.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_calendar.xml" value="0.22864583333333333" />
@@ -49,7 +49,7 @@
         <entry key="app/src/main/res/layout/item_garden_plants.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_loading.xml" value="0.2265625" />
         <entry key="app/src/main/res/layout/item_plant_feed.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/item_plant_garden.xml" value="0.17647058823529413" />
+        <entry key="app/src/main/res/layout/item_plant_garden.xml" value="0.45" />
         <entry key="app/src/main/res/layout/list_item_people_and_plant.xml" value="0.1" />
         <entry key="app/src/main/res/layout/plant_edit_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/menu/light_menu.xml" value="0.1" />
@@ -58,8 +58,10 @@
         <entry key="camera/src/main/res/layout/fragment_my.xml" value="0.1" />
         <entry key="common-ui/src/main/res/drawable/button.xml" value="0.182" />
         <entry key="common-ui/src/main/res/drawable/button_grey.xml" value="0.224" />
+        <entry key="common-ui/src/main/res/drawable/cursor_drawble.xml" value="0.1" />
         <entry key="common-ui/src/main/res/drawable/ic_arrow_back.xml" value="0.1" />
         <entry key="common-ui/src/main/res/drawable/input.xml" value="0.182" />
+        <entry key="common-ui/src/main/res/drawable/round_transparent.xml" value="0.1" />
         <entry key="common-ui/src/main/res/layout/dialog_delete_layout.xml" value="0.335" />
         <entry key="foundation/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="foundation/src/main/res/xml/http.xml" value="0.1" />
@@ -80,12 +82,15 @@
         <entry key="plant-register/src/main/res/drawable/choose_button.xml" value="0.1375" />
         <entry key="plant-register/src/main/res/drawable/ic_camera.xml" value="0.1345" />
         <entry key="plant-register/src/main/res/drawable/ic_search.xml" value="0.1345" />
+        <entry key="plant-register/src/main/res/drawable/image_button.xml" value="0.1" />
+        <entry key="plant-register/src/main/res/drawable/image_button_press.xml" value="0.1" />
+        <entry key="plant-register/src/main/res/drawable/image_button_selector.xml" value="0.1" />
         <entry key="plant-register/src/main/res/drawable/press_button.xml" value="0.1" />
         <entry key="plant-register/src/main/res/drawable/unpress_button.xml" value="0.1" />
         <entry key="plant-register/src/main/res/layout/activity_plant_register.xml" value="0.1" />
         <entry key="plant-register/src/main/res/layout/fragment_plant_air.xml" value="0.1" />
         <entry key="plant-register/src/main/res/layout/fragment_plant_light.xml" value="0.1" />
-        <entry key="plant-register/src/main/res/layout/fragment_plant_register.xml" value="0.1" />
+        <entry key="plant-register/src/main/res/layout/fragment_plant_register.xml" value="0.25" />
         <entry key="plant-register/src/main/res/menu/air_menu.xml" value="0.1" />
         <entry key="plant-register/src/main/res/menu/bright_menu.xml" value="0.1" />
         <entry key="plant-register/src/main/res/menu/image_menu.xml" value="0.1" />

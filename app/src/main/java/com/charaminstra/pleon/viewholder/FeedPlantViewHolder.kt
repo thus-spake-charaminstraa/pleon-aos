@@ -14,9 +14,11 @@ class FeedPlantViewHolder(private val binding: ItemPlantFeedBinding,
     private lateinit var lastView : View
     override fun bind(item: PlantDataObject) {
         binding.plantName.text=item.name
+
         Glide.with(binding.root)
             .load(item.thumbnail)
             .into(binding.plantImage)
+        binding.plantImage.clipToOutline = true
         binding.root.setOnClickListener {
             onItemClicked(item.id!!)
         }

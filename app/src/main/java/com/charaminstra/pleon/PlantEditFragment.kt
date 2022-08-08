@@ -33,7 +33,7 @@ import com.charaminstra.pleon.common_ui.CustomDialog
 import com.charaminstra.pleon.databinding.FragmentPlantEditBinding
 import com.charaminstra.pleon.plant_register.ImageViewModel
 import com.charaminstra.pleon.plant_register.PlantIdViewModel
-import com.charaminstra.pleon.plant_register.ui.DEFAULT_GALLERY_REQUEST_CODE
+import com.charaminstra.pleon.plant_register.ui.REQUEST_GALLERY
 import com.charaminstra.pleon.plant_register.ui.REQUEST_TAKE_PHOTO
 import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.internal.format
@@ -133,7 +133,7 @@ class PlantEditFragment : Fragment() {
         }
 
         when (requestCode) {
-            DEFAULT_GALLERY_REQUEST_CODE -> {
+            REQUEST_GALLERY -> {
                 data?:return
                 val uri = data.data as Uri
                 Log.i("image",uri.path.toString())
@@ -181,7 +181,7 @@ class PlantEditFragment : Fragment() {
         val intent = Intent()
         intent.type = "image/*"
         intent.action = Intent.ACTION_PICK
-        startActivityForResult(intent, DEFAULT_GALLERY_REQUEST_CODE)
+        startActivityForResult(intent, REQUEST_GALLERY)
     }
 
     private fun checkPermission() : Boolean {

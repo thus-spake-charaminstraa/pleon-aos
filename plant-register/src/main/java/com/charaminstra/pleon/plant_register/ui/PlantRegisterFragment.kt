@@ -35,13 +35,15 @@ import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
 
-const val DEFAULT_GALLERY_REQUEST_CODE = 2000
+const val REQUEST_GALLERY = 2000
 const val REQUEST_TAKE_PHOTO = 3000
+const val REQUEST_IMG_CROP = 4000
 
 @AndroidEntryPoint
 class PlantRegisterFragment : Fragment() {
     private val plantIdViewModel: PlantIdViewModel by activityViewModels()
     private lateinit var binding: FragmentPlantRegisterBinding
+
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         binding = FragmentPlantRegisterBinding.inflate(layoutInflater)
@@ -96,10 +98,12 @@ class PlantRegisterFragment : Fragment() {
         }
 
         when (requestCode) {
-            DEFAULT_GALLERY_REQUEST_CODE -> {
+            REQUEST_GALLERY -> {
+//                startCrop(data?.data as Uri)
                 data?:return
                 val uri = data.data as Uri
                 Log.i("image",uri.path.toString())
+                /**/
                 activity?.contentResolver?.openInputStream(uri).let {
                     Log.i("gallery image inputstream",it.toString())
                     val bitmap = BitmapFactory.decodeStream(it)
@@ -114,6 +118,7 @@ class PlantRegisterFragment : Fragment() {
                 }
             }
             REQUEST_TAKE_PHOTO -> {
+//                startCrop(data?.data as Uri)
                 val bitmap = data?.extras?.get("data") as Bitmap
                 binding.thumbnail.setImageBitmap(bitmap)
                 ByteArrayOutputStream().use { stream ->
@@ -123,9 +128,11 @@ class PlantRegisterFragment : Fragment() {
                     plantIdViewModel.setThumbnail(inputStream)
                 }
             }
-            else -> {
-                Toast.makeText(requireContext(), "사진을 가져오지 못했습니다.", Toast.LENGTH_SHORT).show()
-            }
+//            REQUEST_IMG_CROP -> {
+//                val extras = data?.extras
+//                val bitmap = extras?.get("data") as Bitmap
+//                binding.thumbnail.setImageBitmap(bitmap)
+//            }
         }
     }
 
@@ -143,10 +150,15 @@ class PlantRegisterFragment : Fragment() {
 
 
     private fun openGallery(){
-            val intent = Intent()
-            intent.type = "image/*"
-            intent.action = Intent.ACTION_PICK
-            startActivityForResult(intent, DEFAULT_GALLERY_REQUEST_CODE)
+        val intent = Intent()
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_PICK
+//        intent.putExtra("outputX", 280);
+//
+//        intent.putExtra("outputY", 280);
+//
+//        intent.putExtra("return-data", true);
+        startActivityForResult(intent, REQUEST_GALLERY)
     }
 
     private fun checkPermission() : Boolean {
@@ -167,6 +179,19 @@ class PlantRegisterFragment : Fragment() {
             Toast.makeText(context, "카메라 권한 설정이 필요합니다.", Toast.LENGTH_SHORT).show()
         }
     }
+
+//    private fun startCrop(uri : Uri){
+//        val intent = Intent("com.android.camera.action.CROP")
+//        intent.setDataAndType(uri, "image/*")
+//        intent.putExtra("crop","true")
+//        /* 정방향 */
+//        intent.putExtra("aspectX", 1)
+//        intent.putExtra("aspectY", 1)
+//
+//        intent.putExtra("scale", true)
+//        intent.putExtra("return-data", true)
+//        startActivityForResult(intent, REQUEST_IMG_CROP)
+//    }
 
 
     fun popUpCalendar(view: TextView) {

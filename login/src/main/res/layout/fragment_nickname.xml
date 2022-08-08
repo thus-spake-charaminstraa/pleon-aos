@@ -35,6 +35,7 @@
         android:background="@drawable/input"
         android:padding="15dp"
         style="@style/SubText"
+        android:textCursorDrawable="@drawable/cursor_drawble"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title"/>
     <androidx.appcompat.widget.AppCompatButton
