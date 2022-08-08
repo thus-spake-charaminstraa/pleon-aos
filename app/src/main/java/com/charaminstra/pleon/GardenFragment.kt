@@ -20,7 +20,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class GardenFragment : Fragment() {
     private val viewModel: PlantsViewModel by viewModels()
-    private val authViewModel: AuthViewModel by viewModels()
     private lateinit var binding: FragmentGardenBinding
     private lateinit var navController: NavController
     private lateinit var adapter: PlantAdapter
@@ -35,6 +34,7 @@ class GardenFragment : Fragment() {
     ): View? {
         binding = FragmentGardenBinding.inflate(layoutInflater)
         navController = this.findNavController()
+        binding.gardenFragmentTitle.text = "Garden"
 
         binding.circleBtn.setOnClickListener {
             val intent = Intent(context, PlantRegisterActivity::class.java)
@@ -63,10 +63,6 @@ class GardenFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        authViewModel.authName.observe(viewLifecycleOwner, Observer {
-            binding.gardenFragmentTitle.text = it + "님의 Garden"
-        })
-
         viewModel.plantsList.observe(viewLifecycleOwner, Observer {
             adapter.refreshItems(it)
         })

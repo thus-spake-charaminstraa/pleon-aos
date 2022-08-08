@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:background="?attr/selectableItemBackgroundBorderless"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_gravity="center"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <TextView
         android:id="@+id/calendarDayText"
