@@ -20,6 +20,6 @@ data class ResultObject(
     val publish_date: Date,
     val kind: String,
     val content: String,
-    val image_url: String,
+    val image_url: String?,
     val plant: PlantDataObject
 )
