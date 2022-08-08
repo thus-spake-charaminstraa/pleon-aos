@@ -6,22 +6,28 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.charaminstra.pleon.foundation.FeedRepository
+import com.charaminstra.pleon.foundation.ImageRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.io.InputStream
 import javax.inject.Inject
 
 @HiltViewModel
 class FeedWriteViewModel @Inject constructor(
-    private val repository: FeedRepository
+    private val repository: FeedRepository,
+    private val imageRepository: ImageRepository
 ): ViewModel() {
     private val TAG = javaClass.name
     private val _postSuccess = MutableLiveData<Boolean>()
     val postSuccess : LiveData<Boolean> = _postSuccess
 
-    fun postFeed(plantId: String, date:String, kind:String, content:String, url:String?){
-        Log.i(TAG,"\n plantId : "+plantId+"\n date: "+date+"\n kind : "+kind+"\n content: "+content+"\n url: "+url)
+    private val _urlResponse = MutableLiveData<String?>()
+    val urlResponse : LiveData<String?> = _urlResponse
+
+    fun postFeed(plantId: String, date:String, kind:String, content:String){
+        Log.i(TAG,"\n plantId : "+plantId+"\n date: "+date+"\n kind : "+kind+"\n content: "+content+"\n url: "+urlResponse.value)
         viewModelScope.launch {
-            val data = repository.postFeed(plantId, date, kind, content, url)
+            val data = repository.postFeed(plantId, date, kind, content, urlResponse.value)
             Log.i(TAG, "data -> $data")
             when (data.isSuccessful) {
                 true -> {
@@ -30,6 +36,23 @@ class FeedWriteViewModel @Inject constructor(
                 }
                 else -> {
                     Log.i(TAG,"FAIL -> "+ data.errorBody())
+                }
+            }
+        }
+    }
+
+    fun postImage(stream: InputStream){
+        viewModelScope.launch {
+            //val data =repository.postImage(uri, realPathFromURI!!)
+            val data =imageRepository.postImage(stream)
+            Log.i(TAG,"data -> $data")
+            when (data.isSuccessful) {
+                true -> {
+                    Log.i(TAG,"data.body -> "+data.body())
+                    _urlResponse.postValue(data.body()?.data?.url)
+                }
+                else -> {
+                    Log.i(TAG,"FAIL-> ")
                 }
             }
         }

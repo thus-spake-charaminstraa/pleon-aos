@@ -32,7 +32,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.charaminstra.pleon.adapter.*
 import com.charaminstra.pleon.databinding.FragmentFeedWriteBinding
-import com.charaminstra.pleon.plant_register.ImageViewModel
 import com.charaminstra.pleon.plant_register.PlantIdViewModel
 import com.charaminstra.pleon.plant_register.ui.REQUEST_GALLERY
 import com.charaminstra.pleon.plant_register.ui.REQUEST_TAKE_PHOTO
@@ -55,18 +54,15 @@ class FeedWriteFragment : Fragment() {
     private val plantsViewModel: PlantsViewModel by viewModels()
     private val plantIdViewModel: PlantIdViewModel by viewModels()
     private val feedWriteViewModel : FeedWriteViewModel by viewModels()
-    private val imageViewModel : ImageViewModel by viewModels()
     private lateinit var navController: NavController
     private lateinit var plant_adapter: PlantAdapter
     private lateinit var action_adapter: ActionAdapter
     private val cal = Calendar.getInstance()
     private val dateFormat = SimpleDateFormat("yyyy-MM-dd")
     private lateinit var sheetBehavior : BottomSheetBehavior<View>
-
     private var plantId : String? = null
     private var plantAction: ActionType? = null
     private var plantName : String? = null
-    private var url : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,9 +81,9 @@ class FeedWriteFragment : Fragment() {
     ): View? {
         navController = this.findNavController()
 
-        imageViewModel.urlResponse.observe(viewLifecycleOwner, Observer {
-            url = it
-        })
+//        imageViewModel.urlResponse.observe(viewLifecycleOwner, Observer {
+//            url = it
+//        })
 
         sheetBehavior = BottomSheetBehavior.from(binding.bottomSheet.root)
         sheetBehavior.isHideable=false
@@ -115,8 +111,7 @@ class FeedWriteFragment : Fragment() {
                     plantId!!,
                     binding.dateTv.text.toString(),
                     plantAction!!.action,
-                    binding.contentEdit.text.toString(),
-                    url
+                    binding.contentEdit.text.toString()
                 )
             }
         }
@@ -291,14 +286,14 @@ class FeedWriteFragment : Fragment() {
                     ByteArrayOutputStream().use { stream ->
                         bitmap.compress(Bitmap.CompressFormat.JPEG,100, stream)
                         val inputStream = ByteArrayInputStream(stream.toByteArray())
-                        imageViewModel.postImage(inputStream)
+                        feedWriteViewModel.postImage(inputStream)
                     }
                 }
             }
             REQUEST_TAKE_PHOTO -> {
                 Glide.with(this).load(currentPhotoPath).into(binding.image)
                 val inputStream = FileInputStream(currentPhotoPath)
-                imageViewModel.postImage(inputStream)
+                feedWriteViewModel.postImage(inputStream)
             }
             else -> {
                 Toast.makeText(requireContext(), resources.getString(R.string.image_error), Toast.LENGTH_SHORT).show()
