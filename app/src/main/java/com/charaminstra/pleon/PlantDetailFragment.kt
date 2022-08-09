@@ -50,13 +50,14 @@ class PlantDetailFragment : Fragment() {
     private lateinit var binding : FragmentPlantDetailBinding
     lateinit var plantId : String
     private var selectedDate: LocalDate? = null
-    private val dateFormat = SimpleDateFormat("yyyy-MM-dd")
+    private lateinit var dateFormat: SimpleDateFormat
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentPlantDetailBinding.inflate(layoutInflater)
+        dateFormat = SimpleDateFormat(resources.getString(com.charaminstra.pleon.common_ui.R.string.date_format))
 
         val navController = this.findNavController()
         binding.backBtn.setOnClickListener {

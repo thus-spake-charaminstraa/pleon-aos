@@ -58,7 +58,7 @@ class FeedWriteFragment : Fragment() {
     private lateinit var plant_adapter: PlantAdapter
     private lateinit var action_adapter: ActionAdapter
     private val cal = Calendar.getInstance()
-    private val dateFormat = SimpleDateFormat("yyyy-MM-dd")
+    private lateinit var dateFormat: SimpleDateFormat
     private lateinit var sheetBehavior : BottomSheetBehavior<View>
     private var plantId : String? = null
     private var plantAction: ActionType? = null
@@ -80,6 +80,7 @@ class FeedWriteFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        dateFormat = SimpleDateFormat(resources.getString(com.charaminstra.pleon.common_ui.R.string.date_format))
         navController = this.findNavController()
 
 //        imageViewModel.urlResponse.observe(viewLifecycleOwner, Observer {

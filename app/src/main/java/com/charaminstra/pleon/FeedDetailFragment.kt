@@ -16,6 +16,7 @@ import com.charaminstra.pleon.databinding.FragmentFeedDetailBinding
 import com.charaminstra.pleon.databinding.FragmentPlantDetailBinding
 import com.charaminstra.pleon.viewmodel.FeedDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.SimpleDateFormat
 
 @AndroidEntryPoint
 class FeedDetailFragment : Fragment() {
@@ -24,6 +25,7 @@ class FeedDetailFragment : Fragment() {
     private lateinit var feedId : String
     private lateinit var binding : FragmentFeedDetailBinding
     private lateinit var navController: NavController
+    private lateinit var dateFormat: SimpleDateFormat
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,6 +39,8 @@ class FeedDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        dateFormat = SimpleDateFormat(resources.getString(com.charaminstra.pleon.common_ui.R.string.date_format))
+
         navController = this.findNavController()
         /*feed Id*/
         arguments?.getString("id")?.let {
@@ -76,6 +80,7 @@ class FeedDetailFragment : Fragment() {
                     .load(it.image_url)
                     .into(binding.plantImage)
             }
+            binding.feedDate.text = dateFormat.format(it.publish_date)
 
         })
 

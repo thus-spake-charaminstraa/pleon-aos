@@ -45,6 +45,7 @@ class PlantRegisterFragment : Fragment() {
     private val plantIdViewModel: PlantIdViewModel by activityViewModels()
     private lateinit var binding: FragmentPlantRegisterBinding
     private lateinit var currentPhotoPath : String
+    private lateinit var dateFormat: SimpleDateFormat
 
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
@@ -193,7 +194,7 @@ class PlantRegisterFragment : Fragment() {
 
     fun popUpCalendar(view: TextView) {
         val cal = Calendar.getInstance()
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd")
+        dateFormat = SimpleDateFormat(resources.getString(com.charaminstra.pleon.common_ui.R.string.date_format))
         var datePickerDialog = DatePickerDialog(requireContext(),
             com.charaminstra.pleon.common_ui.R.style.PleonDatePickerStyle,
             { _, y, m, d ->

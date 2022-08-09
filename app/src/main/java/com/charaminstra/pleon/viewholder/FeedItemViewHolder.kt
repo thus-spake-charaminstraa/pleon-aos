@@ -13,10 +13,10 @@ import kotlin.coroutines.coroutineContext
 class FeedItemViewHolder(
     private val binding: ItemFeedBinding,
     private var onItemClicked: (String) -> Unit): FeedItemCommonViewHolder(binding){
-
-    val dateFormat = SimpleDateFormat("yyyy-MM-dd")
+    private lateinit var dateFormat: SimpleDateFormat
 
     override fun bind(item: FeedObject) {
+        dateFormat = SimpleDateFormat(binding.root.context.resources.getString(com.charaminstra.pleon.common_ui.R.string.date_format))
         binding.feedContent.text = item.content
         binding.plantTagTv.text = binding.root.context.resources.getString(R.string.plant_tag)+item.plant.name!!
         binding.actionTagTv.text = binding.root.context.resources.getString(R.string.action_tag)+item.kind
