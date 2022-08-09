@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.charaminstra.pleon.databinding.ItemFeedBinding
 import com.charaminstra.pleon.foundation.api.PleonPreference
-import com.charaminstra.pleon.foundation.model.ResultObject
+import com.charaminstra.pleon.foundation.model.FeedObject
 import java.text.SimpleDateFormat
 import kotlin.coroutines.coroutineContext
 
@@ -15,7 +15,7 @@ class FeedItemViewHolder(
 
     val dateFormat = SimpleDateFormat("yyyy-MM-dd")
 
-    override fun bind(item: ResultObject) {
+    override fun bind(item: FeedObject) {
         binding.feedContent.text = item.content
         binding.plantTagTv.text = "@"+item.plant.name!!
         binding.actionTagTv.text = "#"+item.kind

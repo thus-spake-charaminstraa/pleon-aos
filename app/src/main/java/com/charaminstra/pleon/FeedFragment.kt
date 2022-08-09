@@ -62,13 +62,13 @@ class FeedFragment : Fragment() {
         plantAdapter = PlantAdapter()
         plantAdapter.setType("FEED_PLANT")
         plantAdapter.onItemClicked = { plantId ->
-//            val bundle = Bundle()
-//            bundle.putString("id", plantId)
-            //navController.navigate(R.id.view_pager_fragment_to_plant_detail_fragment, bundle)
+
         }
         feedAdapter = FeedAdapter()
         feedAdapter.onItemClicked = { feedId ->
-
+            val bundle = Bundle()
+            bundle.putString("id", feedId)
+            navController.navigate(R.id.view_pager_fragment_to_feed_detail_fragment, bundle)
         }
     }
 

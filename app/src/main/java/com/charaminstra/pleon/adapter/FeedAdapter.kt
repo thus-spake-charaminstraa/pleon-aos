@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.charaminstra.pleon.databinding.ItemFeedBinding
 import com.charaminstra.pleon.databinding.ItemLoadingBinding
-import com.charaminstra.pleon.foundation.model.ResultObject
+import com.charaminstra.pleon.foundation.model.FeedObject
 import com.charaminstra.pleon.viewholder.*
 
 class FeedAdapter(): RecyclerView.Adapter<FeedItemCommonViewHolder>() {
@@ -16,7 +16,7 @@ class FeedAdapter(): RecyclerView.Adapter<FeedItemCommonViewHolder>() {
         private const val VIEW_TYPE_LOADING = 1
     }
 
-    var viewItemList: List<ResultObject> = listOf()
+    var viewItemList: List<FeedObject> = listOf()
     var onItemClicked: (String)-> Unit = {}
 
     override fun getItemViewType(position: Int): Int {
@@ -46,12 +46,12 @@ class FeedAdapter(): RecyclerView.Adapter<FeedItemCommonViewHolder>() {
         return viewItemList.size
     }
 
-    fun refreshItems(viewItemList : List<ResultObject>) {
+    fun refreshItems(viewItemList : List<FeedObject>) {
         this.viewItemList = viewItemList
         notifyDataSetChanged() // Andoid RecyclerView DiffUtil.
     }
 
-    fun addItems(newViewItemList : List<ResultObject>?){
+    fun addItems(newViewItemList : List<FeedObject>?){
         this.viewItemList += newViewItemList!!
     }
 }

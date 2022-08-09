@@ -2,19 +2,19 @@ package com.charaminstra.pleon.foundation.model
 
 import java.util.*
 
-data class FeedResponse(
+data class FeedListResponse(
     val success: Boolean?,
     val statusCode: Int?,
-    val data: FeedDataObject?
+    val data: FeedListDataObject?
 )
 
-data class FeedDataObject(
-    val result: ArrayList<ResultObject>,
+data class FeedListDataObject(
+    val result: List<FeedObject>,
     val count: Int?,
     val next_offset: Int?
 )
 
-data class ResultObject(
+data class FeedObject(
     val id: String,
     val plant_id: String,
     val publish_date: Date,

@@ -10,7 +10,7 @@ interface FeedAPIService{
     suspend fun postFeed(
         @Header("Authorization") verifyToken:String,
         @Body feedRequestBody: FeedRequestBody
-    ): Response<FeedResponse>
+    ): Response<FeedIdResponse>
 
     /*get feed*/
     @GET("feed")
@@ -19,13 +19,19 @@ interface FeedAPIService{
         @Query("offset") offset:Int?,
         @Query("plant_id")  plantId:String?,
         @Query("publish_date") date:String?
-    ): Response<FeedResponse>
+    ): Response<FeedListResponse>
+
+    @GET("feed/{id}")
+    suspend fun getFeedId(
+        @Header("Authorization") accessToken:String,
+        @Path("id") id: String
+    ): Response<FeedIdResponse>
 
     @DELETE("feed/{id}")
     suspend fun deleteFeedId(
         @Header("Authorization") accessToken:String,
         @Path("id") id: String
-    ): Response<FeedResponse>
+    ): Response<FeedListResponse>
 
 //    @GET("feed")
 //    suspend fun getFeedIdAndDate(
