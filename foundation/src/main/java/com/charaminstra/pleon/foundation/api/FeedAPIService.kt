@@ -21,6 +21,12 @@ interface FeedAPIService{
         @Query("publish_date") date:String?
     ): Response<FeedResponse>
 
+    @DELETE("feed/{id}")
+    suspend fun deleteFeedId(
+        @Header("Authorization") accessToken:String,
+        @Path("id") id: String
+    ): Response<FeedResponse>
+
 //    @GET("feed")
 //    suspend fun getFeedIdAndDate(
 //

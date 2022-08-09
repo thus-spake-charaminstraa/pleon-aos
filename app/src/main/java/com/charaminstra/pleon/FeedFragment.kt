@@ -1,13 +1,10 @@
 package com.charaminstra.pleon
 
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -15,11 +12,10 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.charaminstra.pleon.adapter.FeedAdapter
 import com.charaminstra.pleon.adapter.PlantAdapter
 import com.charaminstra.pleon.databinding.FragmentFeedBinding
-import com.charaminstra.pleon.viewmodel.FeedReadViewModel
+import com.charaminstra.pleon.viewmodel.FeedViewModel
 import com.charaminstra.pleon.viewmodel.PlantsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,7 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class FeedFragment : Fragment() {
     private val TAG = javaClass.name
     private val plantsViewModel: PlantsViewModel by viewModels()
-    private val feedReadViewModel: FeedReadViewModel by viewModels()
+    private val feedViewModel: FeedViewModel by viewModels()
     private lateinit var binding : FragmentFeedBinding
     private lateinit var plantAdapter: PlantAdapter
     private lateinit var feedAdapter: FeedAdapter
@@ -59,15 +55,15 @@ class FeedFragment : Fragment() {
         super.onResume()
         //viewmodel update
         plantsViewModel.loadData()
-        feedReadViewModel.loadData(null,null)
+        feedViewModel.loadData(null,null)
     }
 
     private fun initList() {
         plantAdapter = PlantAdapter()
         plantAdapter.setType("FEED_PLANT")
         plantAdapter.onItemClicked = { plantId ->
-            val bundle = Bundle()
-            bundle.putString("id", plantId)
+//            val bundle = Bundle()
+//            bundle.putString("id", plantId)
             //navController.navigate(R.id.view_pager_fragment_to_plant_detail_fragment, bundle)
         }
         feedAdapter = FeedAdapter()
@@ -80,8 +76,7 @@ class FeedFragment : Fragment() {
         plantsViewModel.plantsList.observe(viewLifecycleOwner, Observer {
             plantAdapter.refreshItems(it)
         })
-        feedReadViewModel.feedList.observe(viewLifecycleOwner, Observer {
-            Log.i(TAG, it.toString())
+        feedViewModel.feedList.observe(viewLifecycleOwner, Observer {
             feedAdapter.refreshItems(it)
         })
     }

@@ -16,5 +16,10 @@ class FeedRepository @Inject constructor(private val service: FeedAPIService, pr
         offset,
         plantId,
         date)
+
+    suspend fun deleteFeed(feedId: String) = service.deleteFeedId(
+        prefs.getAccessToken(),
+        feedId
+    )
 }
 

@@ -21,7 +21,7 @@ import com.charaminstra.pleon.databinding.CalendarDayLayoutBinding
 import com.charaminstra.pleon.databinding.FragmentPlantDetailBinding
 import com.charaminstra.pleon.foundation.model.ScheduleTestBody
 import com.charaminstra.pleon.plant_register.PlantIdViewModel
-import com.charaminstra.pleon.viewmodel.FeedReadViewModel
+import com.charaminstra.pleon.viewmodel.FeedViewModel
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
 import com.kizitonwose.calendarview.model.DayOwner
@@ -45,7 +45,7 @@ import java.util.*
 class PlantDetailFragment : Fragment() {
     private val today = LocalDate.now()
     private val viewModel: PlantIdViewModel by viewModels()
-    private val feedReadViewModel: FeedReadViewModel by viewModels()
+    private val feedReadViewModel: FeedViewModel by viewModels()
     private lateinit var feedAdapter: FeedAdapter
     private lateinit var binding : FragmentPlantDetailBinding
     lateinit var plantId : String

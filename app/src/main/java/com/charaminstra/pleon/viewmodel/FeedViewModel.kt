@@ -12,18 +12,17 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class FeedReadViewModel @Inject constructor(
+class FeedViewModel @Inject constructor(
     private val repository: FeedRepository
 ) : ViewModel() {
     private val TAG = javaClass.name
     private val _feedList = MutableLiveData<List<ResultObject>>()
     val feedList : LiveData<List<ResultObject>> = _feedList
 
-    var offset: Int = 0
+    private val _feedDeleteSuccess = MutableLiveData<Boolean?>()
+    val feedDeleteSuccess : LiveData<Boolean?> = _feedDeleteSuccess
 
-//    init {
-//        loadData()
-//    }
+    var offset: Int = 0
 
     fun loadData(plantId: String?, date: String?){
         viewModelScope.launch {
@@ -33,6 +32,21 @@ class FeedReadViewModel @Inject constructor(
             when (data.isSuccessful) {
                 true -> {
                     _feedList.postValue(data.body()?.data?.result)
+                    Log.i(TAG,"SUCCESS -> "+ data.body().toString())
+                }
+                else -> {
+                    Log.i(TAG,"FAIL -> "+ data.body().toString())
+                }
+            }
+        }
+    }
+
+    fun deleteFeed(feedId: String){
+        viewModelScope.launch {
+            val data = repository.deleteFeed(feedId)
+            when (data.isSuccessful) {
+                true -> {
+                    _feedDeleteSuccess.postValue(data.body()?.success)
                     Log.i(TAG,"SUCCESS -> "+ data.body().toString())
                 }
                 else -> {
