@@ -17,6 +17,9 @@
     <string name="plant_tag">\@</string>
     <string name="action_tag">#</string>
 
+    <string name="item_more_edit">편집하기</string>
+    <string name="item_more_delete">삭제하기</string>
+
 
 
 

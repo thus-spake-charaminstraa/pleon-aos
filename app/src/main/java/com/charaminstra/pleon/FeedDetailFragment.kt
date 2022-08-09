@@ -6,8 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.charaminstra.pleon.databinding.FragmentFeedDetailBinding
 import com.charaminstra.pleon.databinding.FragmentPlantDetailBinding
@@ -20,6 +23,7 @@ class FeedDetailFragment : Fragment() {
     private val viewModel: FeedDetailViewModel by viewModels()
     private lateinit var feedId : String
     private lateinit var binding : FragmentFeedDetailBinding
+    private lateinit var navController: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,17 +31,37 @@ class FeedDetailFragment : Fragment() {
     ): View? {
         binding = FragmentFeedDetailBinding.inflate(layoutInflater)
 
-        /*plant Id*/
-        arguments?.getString("id")?.let {
-            feedId = it
-            viewModel.loadFeed(feedId)
-        }
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        navController = this.findNavController()
+        /*feed Id*/
+        arguments?.getString("id")?.let {
+            feedId = it
+            viewModel.loadFeed(feedId)
+        }
         observeViewModel()
+
+        binding.moreBtn.setOnClickListener{
+            val pop=PopupMenu(requireContext(),it)
+            pop.menuInflater.inflate(R.menu.more_menu, pop.menu)
+            pop.setOnMenuItemClickListener { item ->
+                when(item.itemId){
+                    R.id.item_more_edit -> {
+                        //feed 수정
+                    }R.id.item_more_delete -> {
+                        //feed 삭제
+                        viewModel.deleteFeed(feedId)
+                        navController.popBackStack()
+                    }
+                }
+                false
+            }
+            pop.show()
+        }
     }
 
     private fun observeViewModel() {
