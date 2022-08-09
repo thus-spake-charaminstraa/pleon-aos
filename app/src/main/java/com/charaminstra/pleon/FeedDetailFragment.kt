@@ -6,24 +6,55 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.charaminstra.pleon.viewmodel.FeedViewModel
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import com.bumptech.glide.Glide
+import com.charaminstra.pleon.databinding.FragmentFeedDetailBinding
+import com.charaminstra.pleon.databinding.FragmentPlantDetailBinding
+import com.charaminstra.pleon.viewmodel.FeedDetailViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FeedDetailFragment : Fragment() {
 
-    private lateinit var viewModel: FeedViewModel
-    lateinit var feedId : String
+    private val viewModel: FeedDetailViewModel by viewModels()
+    private lateinit var feedId : String
+    private lateinit var binding : FragmentFeedDetailBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        binding = FragmentFeedDetailBinding.inflate(layoutInflater)
 
         /*plant Id*/
         arguments?.getString("id")?.let {
             feedId = it
-            //viewModel.loadData(feedId)
+            viewModel.loadFeed(feedId)
         }
-        return inflater.inflate(R.layout.fragment_feed_detail, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        observeViewModel()
+    }
+
+    private fun observeViewModel() {
+        viewModel.feedData.observe(viewLifecycleOwner, Observer {
+            binding.feedContent.text = it.content
+//            binding.plantTagTv.text = resources.getString(R.string.plant_tag)+it.plant.name
+            binding.actionTagTv.text = resources.getString(R.string.action_tag)+it.kind
+            if(it.image_url == null){
+                binding.plantImage.visibility = View.GONE
+            }else{
+                Glide.with(binding.root)
+                    .load(it.image_url)
+                    .into(binding.plantImage)
+            }
+
+        })
+
     }
 
 

@@ -19,14 +19,11 @@ class FeedViewModel @Inject constructor(
     private val _feedList = MutableLiveData<List<FeedObject>>()
     val feedList : LiveData<List<FeedObject>> = _feedList
 
-    private val _feedDeleteSuccess = MutableLiveData<Boolean?>()
-    val feedDeleteSuccess : LiveData<Boolean?> = _feedDeleteSuccess
-
     var offset: Int = 0
 
     fun loadData(plantId: String?, date: String?){
         viewModelScope.launch {
-            val data = repository.getFeed(offset, plantId, date)
+            val data = repository.getFeedList(offset, plantId, date)
             Log.i(TAG, "data -> $data")
             Log.i(TAG, "data.body -> "+data.body())
             when (data.isSuccessful) {
@@ -43,19 +40,6 @@ class FeedViewModel @Inject constructor(
 
 
 
-    fun deleteFeed(feedId: String){
-        viewModelScope.launch {
-            val data = repository.deleteFeed(feedId)
-            when (data.isSuccessful) {
-                true -> {
-                    _feedDeleteSuccess.postValue(data.body()?.success)
-                    Log.i(TAG,"SUCCESS -> "+ data.body().toString())
-                }
-                else -> {
-                    Log.i(TAG,"FAIL -> "+ data.body().toString())
-                }
-            }
-        }
-    }
+
 
 }
