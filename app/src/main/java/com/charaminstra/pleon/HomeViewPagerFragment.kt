@@ -31,7 +31,7 @@ class HomeViewPagerFragment : Fragment() {
     private fun getTabIcon(position: Int): Int {
         return when (position) {
             FEED_PAGE_INDEX -> R.drawable.feed_tab_selector
-            CAMERA_PAGE_INDEX -> R.drawable.camera_tab_selector
+            CHAT_PAGE_INDEX -> R.drawable.chat_tab_selector
             GARDEN_PAGE_INDEX -> R.drawable.garden_tab_selector
             MY_PAGE_INDEX -> R.drawable.my_tab_selector
             else -> throw IndexOutOfBoundsException()

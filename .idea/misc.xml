@@ -11,10 +11,20 @@
         <entry key="app/src/main/res/drawable/bottom_sheet_background.xml" value="0.1725" />
         <entry key="app/src/main/res/drawable/button.xml" value="0.1815" />
         <entry key="app/src/main/res/drawable/camera_tab_selector.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/chat_tab_selector.xml" value="0.2255" />
         <entry key="app/src/main/res/drawable/feed_tab_selector.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/garden_tab_selector.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_camera_active.xml" value="0.2075" />
         <entry key="app/src/main/res/drawable/ic_camera_inactive.xml" value="0.2075" />
+        <entry key="app/src/main/res/drawable/ic_chat_inactive.xml" value="0.2255" />
+        <entry key="app/src/main/res/drawable/ic_feed_active.xml" value="0.2255" />
+        <entry key="app/src/main/res/drawable/ic_feed_inactive.xml" value="0.2255" />
+        <entry key="app/src/main/res/drawable/ic_garden_active.xml" value="0.2255" />
+        <entry key="app/src/main/res/drawable/ic_garden_inactive.xml" value="0.2255" />
+        <entry key="app/src/main/res/drawable/ic_home_active.xml" value="0.2255" />
+        <entry key="app/src/main/res/drawable/ic_home_inactive.xml" value="0.2255" />
+        <entry key="app/src/main/res/drawable/ic_home_ㅑnactive.xml" value="0.2255" />
+        <entry key="app/src/main/res/drawable/ic_more.xml" value="0.2255" />
         <entry key="app/src/main/res/drawable/ic_my_active.xml" value="0.127" />
         <entry key="app/src/main/res/drawable/ic_my_inactive.xml" value="0.127" />
         <entry key="app/src/main/res/drawable/input.xml" value="0.1815" />
@@ -32,6 +42,7 @@
         <entry key="app/src/main/res/layout/calendar_day_layout.xml" value="0.21770833333333334" />
         <entry key="app/src/main/res/layout/dialog_delete_layout.xml" value="0.2671875" />
         <entry key="app/src/main/res/layout/fragment_camera.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_chat.xml" value="0.2625" />
         <entry key="app/src/main/res/layout/fragment_feed.xml" value="0.25308641975308643" />
         <entry key="app/src/main/res/layout/fragment_feed_detail.xml" value="0.2671875" />
         <entry key="app/src/main/res/layout/fragment_feed_write.xml" value="0.25" />
