@@ -58,9 +58,6 @@ class FeedWriteFragment : Fragment() {
     private val cal = Calendar.getInstance()
     private lateinit var dateFormat: SimpleDateFormat
     private lateinit var sheetBehavior : BottomSheetBehavior<View>
-    private var plantId : String? = null
-    private var plantAction: ActionType? = null
-    private var plantName : String? = null
     private lateinit var currentPhotoPath : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -102,11 +99,10 @@ class FeedWriteFragment : Fragment() {
             popUpImageMenu(it)
         }
         binding.completeBtn.setOnClickListener {
-            if(plantId != null && plantAction != null){
+            if(feedWriteViewModel.plantId?.value != null &&
+                feedWriteViewModel.kind.value != null){
                 feedWriteViewModel.postFeed(
-                    plantId!!,
                     binding.dateTv.text.toString(),
-                    plantAction!!.action,
                     binding.contentEdit.text.toString()
                 )
             }
@@ -189,10 +185,12 @@ class FeedWriteFragment : Fragment() {
         binding.bottomSheet.actionRecyclerview.addOnItemTouchListener(recyclerListener)
 
         binding.bottomSheet.nextBtn.setOnClickListener {
-            if(plantId != null && plantAction != null){
+            if(feedWriteViewModel.plantId.value != null &&
+                feedWriteViewModel.kind.value != null){
                 sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
                 /* 자동 완성 */
-                binding.contentEdit.setText(plantName + " (이)가 "+plantAction?.desc)
+                binding.contentEdit.setText(feedWriteViewModel.plantName.value + " (이)가 "+
+                        feedWriteViewModel.plantActionDesc.value)
             }
         }
 
@@ -215,8 +213,8 @@ class FeedWriteFragment : Fragment() {
         plant_adapter = PlantAdapter()
         plant_adapter.setType("FEED_PLANT")
         plant_adapter.onItemClicked = { Id ->
-            plantId = Id
-            feedWriteViewModel.getPlantName(plantId!!)
+            //plantId = Id
+            feedWriteViewModel.setPlantId(Id)
         }
 
         action_adapter = ActionAdapter()
@@ -234,8 +232,8 @@ class FeedWriteFragment : Fragment() {
             )
         )
         action_adapter.onItemClicked = { actionType ->
-            plantAction = actionType
-            binding.actionTagTv.text= resources.getString(R.string.action_tag) + plantAction
+            feedWriteViewModel.setPlantAction(actionType)
+            binding.actionTagTv.text= resources.getString(R.string.action_tag) + actionType.toString()
         }
 
     }
@@ -244,9 +242,11 @@ class FeedWriteFragment : Fragment() {
         plantsViewModel.plantsList.observe(viewLifecycleOwner, Observer {
             plant_adapter.refreshItems(it)
         })
+        feedWriteViewModel.plantId.observe(viewLifecycleOwner, Observer {
+            feedWriteViewModel.getPlantName()
+        })
         feedWriteViewModel.plantName.observe(viewLifecycleOwner, Observer {
-            plantName = it
-            binding.plantTagTv.text = resources.getString(R.string.plant_tag) + plantName
+            binding.plantTagTv.text = resources.getString(R.string.plant_tag) + feedWriteViewModel.plantName.value
         })
         feedWriteViewModel.postSuccess.observe(viewLifecycleOwner, Observer{
             if(it){

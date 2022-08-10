@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.charaminstra.pleon.adapter.ActionType
 import com.charaminstra.pleon.foundation.FeedRepository
 import com.charaminstra.pleon.foundation.ImageRepository
 import com.charaminstra.pleon.foundation.PlantIdRepository
@@ -29,11 +30,20 @@ class FeedWriteViewModel @Inject constructor(
     private val _plantName = MutableLiveData<String>()
     val plantName : LiveData<String> = _plantName
 
+    private val _plantId = MutableLiveData<String>()
+    val plantId : LiveData<String> = _plantId
 
-    fun postFeed(plantId: String, date:String, kind:String, content:String){
+    private val _kind = MutableLiveData<String>()
+    val kind : LiveData<String> = _kind
+
+    private val _plantActionDesc = MutableLiveData<String>()
+    val plantActionDesc : LiveData<String> = _plantActionDesc
+
+
+    fun postFeed(date:String, content:String){
         Log.i(TAG,"\n plantId : "+plantId+"\n date: "+date+"\n kind : "+kind+"\n content: "+content+"\n url: "+urlResponse.value)
         viewModelScope.launch {
-            val data = repository.postFeed(plantId, date, kind, content, urlResponse.value)
+            val data = repository.postFeed(plantId.value!!, date, kind.value!!, content, urlResponse.value)
             Log.i(TAG, "data -> $data")
             when (data.isSuccessful) {
                 true -> {
@@ -64,9 +74,9 @@ class FeedWriteViewModel @Inject constructor(
         }
     }
 
-    fun getPlantName(plantId: String){
+    fun getPlantName(){
         viewModelScope.launch {
-            val data = plantRepository.getPlantId(plantId)
+            val data = plantRepository.getPlantId(plantId.value!!)
             Log.i(TAG,"data -> $data")
             when (data.isSuccessful) {
                 true -> {
@@ -78,6 +88,15 @@ class FeedWriteViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    fun setPlantId(plantId: String){
+        _plantId.postValue(plantId)
+    }
+
+    fun setPlantAction(plantAction: ActionType){
+        _kind.postValue(plantAction.action)
+        _plantActionDesc.postValue(plantAction.desc)
     }
 
 }
