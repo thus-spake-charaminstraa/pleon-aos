@@ -318,7 +318,6 @@ class FeedWriteFragment : Fragment() {
             return true
         else
             return false
-
     }
 
     private fun openCamera(){
@@ -326,11 +325,9 @@ class FeedWriteFragment : Fragment() {
         if(checkPermission()){
             val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             val photoFile = createImageFile()
-            if(photoFile != null ){
-                    val uri = FileProvider.getUriForFile(requireContext(),"com.charaminstra.pleon.fileprovider", photoFile)
-                    intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
-                    startActivityForResult(intent, REQUEST_TAKE_PHOTO)
-            }
+            val uri = FileProvider.getUriForFile(requireContext(),"com.charaminstra.pleon.fileprovider", photoFile)
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
+            startActivityForResult(intent, REQUEST_TAKE_PHOTO)
         }else{
             Toast.makeText(context,
                 resources.getString(com.charaminstra.pleon.common_ui.R.string.camera_permission_msg),
