@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.charaminstra.pleon.foundation.FeedRepository
 import com.charaminstra.pleon.foundation.ImageRepository
+import com.charaminstra.pleon.foundation.PlantIdRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.io.InputStream
@@ -15,7 +16,8 @@ import javax.inject.Inject
 @HiltViewModel
 class FeedWriteViewModel @Inject constructor(
     private val repository: FeedRepository,
-    private val imageRepository: ImageRepository
+    private val imageRepository: ImageRepository,
+    private val plantRepository: PlantIdRepository
 ): ViewModel() {
     private val TAG = javaClass.name
     private val _postSuccess = MutableLiveData<Boolean>()
@@ -23,6 +25,10 @@ class FeedWriteViewModel @Inject constructor(
 
     private val _urlResponse = MutableLiveData<String?>()
     val urlResponse : LiveData<String?> = _urlResponse
+
+    private val _plantName = MutableLiveData<String>()
+    val plantName : LiveData<String> = _plantName
+
 
     fun postFeed(plantId: String, date:String, kind:String, content:String){
         Log.i(TAG,"\n plantId : "+plantId+"\n date: "+date+"\n kind : "+kind+"\n content: "+content+"\n url: "+urlResponse.value)
@@ -50,6 +56,22 @@ class FeedWriteViewModel @Inject constructor(
                 true -> {
                     Log.i(TAG,"data.body -> "+data.body())
                     _urlResponse.postValue(data.body()?.data?.url)
+                }
+                else -> {
+                    Log.i(TAG,"FAIL-> ")
+                }
+            }
+        }
+    }
+
+    fun getPlantName(plantId: String){
+        viewModelScope.launch {
+            val data = plantRepository.getPlantId(plantId)
+            Log.i(TAG,"data -> $data")
+            when (data.isSuccessful) {
+                true -> {
+                    Log.i(TAG,"data.body -> "+data.body())
+                    _plantName.postValue(data.body()?.data?.name!!)
                 }
                 else -> {
                     Log.i(TAG,"FAIL-> ")

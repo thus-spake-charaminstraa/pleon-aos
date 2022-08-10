@@ -32,7 +32,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.charaminstra.pleon.adapter.*
 import com.charaminstra.pleon.databinding.FragmentFeedWriteBinding
-import com.charaminstra.pleon.plant_register.PlantIdViewModel
 import com.charaminstra.pleon.plant_register.ui.REQUEST_GALLERY
 import com.charaminstra.pleon.plant_register.ui.REQUEST_TAKE_PHOTO
 import com.charaminstra.pleon.viewmodel.FeedWriteViewModel
@@ -52,7 +51,6 @@ class FeedWriteFragment : Fragment() {
     private lateinit var binding : FragmentFeedWriteBinding
     private val TAG = javaClass.name
     private val plantsViewModel: PlantsViewModel by viewModels()
-    private val plantIdViewModel: PlantIdViewModel by viewModels()
     private val feedWriteViewModel : FeedWriteViewModel by viewModels()
     private lateinit var navController: NavController
     private lateinit var plant_adapter: PlantAdapter
@@ -82,10 +80,6 @@ class FeedWriteFragment : Fragment() {
     ): View? {
         dateFormat = SimpleDateFormat(resources.getString(com.charaminstra.pleon.common_ui.R.string.date_format))
         navController = this.findNavController()
-
-//        imageViewModel.urlResponse.observe(viewLifecycleOwner, Observer {
-//            url = it
-//        })
 
         sheetBehavior = BottomSheetBehavior.from(binding.bottomSheet.root)
         sheetBehavior.isHideable=false
@@ -221,7 +215,8 @@ class FeedWriteFragment : Fragment() {
         plant_adapter = PlantAdapter()
         plant_adapter.setType("FEED_PLANT")
         plant_adapter.onItemClicked = { Id ->
-            plantIdViewModel.loadData(Id!!)
+            plantId = Id
+            feedWriteViewModel.getPlantName(plantId!!)
         }
 
         action_adapter = ActionAdapter()
@@ -249,9 +244,8 @@ class FeedWriteFragment : Fragment() {
         plantsViewModel.plantsList.observe(viewLifecycleOwner, Observer {
             plant_adapter.refreshItems(it)
         })
-        plantIdViewModel.data.observe(viewLifecycleOwner, Observer {
-            plantName = it.name
-            plantId = it.id
+        feedWriteViewModel.plantName.observe(viewLifecycleOwner, Observer {
+            plantName = it
             binding.plantTagTv.text = resources.getString(R.string.plant_tag) + plantName
         })
         feedWriteViewModel.postSuccess.observe(viewLifecycleOwner, Observer{
