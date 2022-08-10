@@ -71,7 +71,7 @@ class FeedDetailFragment : Fragment() {
     private fun observeViewModel() {
         viewModel.feedData.observe(viewLifecycleOwner, Observer {
             binding.feedContent.text = it.content
-//            binding.plantTagTv.text = resources.getString(R.string.plant_tag)+it.plant.name
+            binding.plantTagTv.text = resources.getString(R.string.plant_tag)+it.plant.name
             binding.actionTagTv.text = resources.getString(R.string.action_tag)+it.kind
             if(it.image_url == null){
                 binding.plantImage.visibility = View.GONE

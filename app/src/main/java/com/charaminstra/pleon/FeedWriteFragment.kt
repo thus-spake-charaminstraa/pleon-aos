@@ -189,7 +189,7 @@ class FeedWriteFragment : Fragment() {
                 feedWriteViewModel.kind.value != null){
                 sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
                 /* 자동 완성 */
-                binding.contentEdit.setText(feedWriteViewModel.plantName.value + " (이)가 "+
+                binding.contentEdit.setText(feedWriteViewModel.plantName.value +
                         feedWriteViewModel.plantActionDesc.value)
             }
         }
@@ -274,10 +274,15 @@ class FeedWriteFragment : Fragment() {
                 data?:return
                 val uri = data.data as Uri
                 activity?.contentResolver?.openInputStream(uri).let {
-                    Log.i("gallery image inputstream : ",it.toString())
                     val bitmap = BitmapFactory.decodeStream(it)
+                    binding.image.setImageBitmap(bitmap)
                     // image veiw set image bit map
                     binding.image.setImageBitmap(bitmap)
+                    Log.i("inputstream",it.toString())
+                    feedWriteViewModel.postImage(it!!)
+                    Log.i("gallery image inputstream : ",it.toString())
+                    // image veiw set image bit map
+
                     // get image url
                     ByteArrayOutputStream().use { stream ->
                         bitmap.compress(Bitmap.CompressFormat.JPEG,100, stream)
