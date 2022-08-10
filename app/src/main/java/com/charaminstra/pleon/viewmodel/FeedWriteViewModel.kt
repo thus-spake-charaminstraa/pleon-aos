@@ -30,20 +30,13 @@ class FeedWriteViewModel @Inject constructor(
     private val _plantName = MutableLiveData<String>()
     val plantName : LiveData<String> = _plantName
 
-    private val _plantId = MutableLiveData<String>()
-    val plantId : LiveData<String> = _plantId
-
-    private val _kind = MutableLiveData<String>()
-    val kind : LiveData<String> = _kind
-
-    private val _plantActionDesc = MutableLiveData<String>()
-    val plantActionDesc : LiveData<String> = _plantActionDesc
-
+    var plantId : String? = null
+    var plantAction : ActionType? = null
 
     fun postFeed(date:String, content:String){
-        Log.i(TAG,"\n plantId : "+plantId+"\n date: "+date+"\n kind : "+kind+"\n content: "+content+"\n url: "+urlResponse.value)
+        Log.i(TAG,"\n plantId : "+plantId+"\n date: "+date+"\n kind : "+plantAction?.action!!+"\n content: "+content+"\n url: "+urlResponse.value)
         viewModelScope.launch {
-            val data = repository.postFeed(plantId.value!!, date, kind.value!!, content, urlResponse.value)
+            val data = repository.postFeed(plantId!!, date, plantAction?.action!!, content, urlResponse.value)
             Log.i(TAG, "data -> $data")
             when (data.isSuccessful) {
                 true -> {
@@ -76,7 +69,7 @@ class FeedWriteViewModel @Inject constructor(
 
     fun getPlantName(){
         viewModelScope.launch {
-            val data = plantRepository.getPlantId(plantId.value!!)
+            val data = plantRepository.getPlantId(plantId!!)
             Log.i(TAG,"data -> $data")
             when (data.isSuccessful) {
                 true -> {
@@ -89,14 +82,4 @@ class FeedWriteViewModel @Inject constructor(
             }
         }
     }
-
-    fun setPlantId(plantId: String){
-        _plantId.postValue(plantId)
-    }
-
-    fun setPlantAction(plantAction: ActionType){
-        _kind.postValue(plantAction.action)
-        _plantActionDesc.postValue(plantAction.desc)
-    }
-
 }
