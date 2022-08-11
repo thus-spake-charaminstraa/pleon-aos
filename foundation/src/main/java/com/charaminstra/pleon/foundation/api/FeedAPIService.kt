@@ -8,18 +8,23 @@ interface FeedAPIService{
     /* post feed */
     @POST("feed")
     suspend fun postFeed(
-        @Header("Authorization") verifyToken:String,
+        @Header("Authorization") accessToken:String,
         @Body feedRequestBody: FeedRequestBody
     ): Response<FeedIdResponse>
 
     /*get feed*/
     @GET("feed")
     suspend fun getFeed(
-        @Header("Authorization") verifyToken:String,
+        @Header("Authorization") accessToken:String,
         @Query("offset") offset:Int?,
         @Query("plant_id")  plantId:String?,
         @Query("publish_date") date:String?
     ): Response<FeedListResponse>
+
+    @GET("feed/list")
+    suspend fun getFeedTabList(
+        @Header("Authorization") accessToken:String,
+    ): Response<FeedTabListResponse>
 
     @GET("feed/{id}")
     suspend fun getFeedId(

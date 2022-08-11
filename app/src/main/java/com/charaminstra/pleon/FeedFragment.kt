@@ -12,7 +12,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.charaminstra.pleon.adapter.FeedAdapter
+import com.charaminstra.pleon.adapter.FeedTabAdapter
 import com.charaminstra.pleon.adapter.PlantAdapter
 import com.charaminstra.pleon.databinding.FragmentFeedBinding
 import com.charaminstra.pleon.viewmodel.FeedViewModel
@@ -26,7 +26,8 @@ class FeedFragment : Fragment() {
     private val feedViewModel: FeedViewModel by viewModels()
     private lateinit var binding : FragmentFeedBinding
     private lateinit var plantAdapter: PlantAdapter
-    private lateinit var feedAdapter: FeedAdapter
+//    private lateinit var feedAdapter: FeedAdapter
+    private lateinit var feedAdapter: FeedTabAdapter
     private lateinit var navController : NavController
 
     override fun onCreateView(
@@ -55,7 +56,8 @@ class FeedFragment : Fragment() {
         super.onResume()
         //viewmodel update
         plantsViewModel.loadData()
-        feedViewModel.loadData(null,null)
+        //feedViewModel.loadData(null,null)
+        feedViewModel.feedTabList()
     }
 
     private fun initList() {
@@ -64,7 +66,13 @@ class FeedFragment : Fragment() {
         plantAdapter.onItemClicked = { plantId ->
 
         }
-        feedAdapter = FeedAdapter()
+//        feedAdapter = FeedAdapter()
+//        feedAdapter.onItemClicked = { feedId ->
+//            val bundle = Bundle()
+//            bundle.putString("id", feedId)
+//            navController.navigate(R.id.view_pager_fragment_to_feed_detail_fragment, bundle)
+//        }
+        feedAdapter = FeedTabAdapter()
         feedAdapter.onItemClicked = { feedId ->
             val bundle = Bundle()
             bundle.putString("id", feedId)
@@ -76,7 +84,10 @@ class FeedFragment : Fragment() {
         plantsViewModel.plantsList.observe(viewLifecycleOwner, Observer {
             plantAdapter.refreshItems(it)
         })
-        feedViewModel.feedList.observe(viewLifecycleOwner, Observer {
+//        feedViewModel.feedList.observe(viewLifecycleOwner, Observer {
+//            feedAdapter.refreshItems(it)
+//        })
+        feedViewModel.feedTabList.observe(viewLifecycleOwner, Observer {
             feedAdapter.refreshItems(it)
         })
     }

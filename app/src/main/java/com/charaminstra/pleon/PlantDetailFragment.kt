@@ -15,7 +15,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.charaminstra.pleon.adapter.FeedAdapter
 import com.charaminstra.pleon.calendar.MonthViewContainer
 import com.charaminstra.pleon.databinding.CalendarDayLayoutBinding
 import com.charaminstra.pleon.databinding.FragmentPlantDetailBinding
@@ -46,7 +45,7 @@ class PlantDetailFragment : Fragment() {
     private val today = LocalDate.now()
     private val viewModel: PlantIdViewModel by viewModels()
     private val feedReadViewModel: FeedViewModel by viewModels()
-    private lateinit var feedAdapter: FeedAdapter
+    //private lateinit var feedAdapter: FeedAdapter
     private lateinit var binding : FragmentPlantDetailBinding
     lateinit var plantId : String
     private var selectedDate: LocalDate? = null
@@ -133,7 +132,7 @@ class PlantDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initList()
         observeViewModel()
-        binding.feedRecyclerview.adapter = feedAdapter
+        //binding.feedRecyclerview.adapter = feedAdapter
         binding.feedRecyclerview.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
 
         class DayViewContainer(view: View) : ViewContainer(view) {
@@ -240,7 +239,7 @@ class PlantDetailFragment : Fragment() {
     }
 
     private fun initList() {
-        feedAdapter = FeedAdapter()
+        //feedAdapter = FeedAdapter()
     }
 
     private fun observeViewModel() {
@@ -257,7 +256,7 @@ class PlantDetailFragment : Fragment() {
 
         })
         feedReadViewModel.feedList.observe(viewLifecycleOwner, Observer {
-            feedAdapter.refreshItems(it)
+            //feedAdapter.refreshItems(it)
         })
     }
 

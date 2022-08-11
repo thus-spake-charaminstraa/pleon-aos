@@ -5,6 +5,7 @@ import androidx.viewbinding.ViewBinding
 import com.charaminstra.pleon.foundation.api.PleonPreference
 import com.charaminstra.pleon.foundation.model.FeedObject
 import com.charaminstra.pleon.foundation.model.PlantDataObject
+import com.charaminstra.pleon.foundation.model.ViewObject
 
 
 abstract class CommonViewHolder(
@@ -14,9 +15,16 @@ abstract class CommonViewHolder(
 }
 
 
-abstract class FeedItemCommonViewHolder(
+//abstract class FeedItemCommonViewHolder(
+//    binding: ViewBinding,
+//): RecyclerView.ViewHolder(binding.root) {
+//    abstract fun bind(viewObject: FeedObject)
+//}
+
+abstract class FeedTabCommonViewHolder(
     binding: ViewBinding,
 ): RecyclerView.ViewHolder(binding.root) {
-    abstract fun bind(viewObject: FeedObject)
+    abstract fun bind(viewObject: ViewObject)
 }
+
 

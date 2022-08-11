@@ -18,3 +18,4 @@ data class PlantEditRequestBody(
     val air: String
 )
 
+class PlantId
