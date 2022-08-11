@@ -74,6 +74,7 @@ class FeedFragment : Fragment() {
 //        }
         feedAdapter = FeedTabAdapter()
         feedAdapter.onItemClicked = { feedId ->
+            Log.i("feed id in fragment", feedId)
             val bundle = Bundle()
             bundle.putString("id", feedId)
             navController.navigate(R.id.view_pager_fragment_to_feed_detail_fragment, bundle)

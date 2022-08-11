@@ -1,20 +1,15 @@
 package com.charaminstra.pleon.viewholder
 
-import android.content.res.Resources
+import android.util.Log
 import android.view.View
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.charaminstra.pleon.R
 import com.charaminstra.pleon.databinding.ItemFeedBinding
-import com.charaminstra.pleon.foundation.model.FeedObject
-import com.charaminstra.pleon.foundation.model.ResultObject
 import com.charaminstra.pleon.foundation.model.ViewObject
 import java.text.SimpleDateFormat
-import kotlin.coroutines.coroutineContext
 
 class FeedItemViewHolder(
     private val binding: ItemFeedBinding,
-//    private var onItemClicked: (String) -> Unit): FeedItemCommonViewHolder(binding){
     private var onItemClicked: (String) -> Unit): FeedTabCommonViewHolder(binding){
     private lateinit var dateFormat: SimpleDateFormat
 
@@ -31,6 +26,11 @@ class FeedItemViewHolder(
             binding.plantImage.visibility = View.GONE
         }
         binding.feedDate.text = dateFormat.format(item.publish_date)
+
+        binding.root.setOnClickListener {
+            Log.i("feed id in viewholder", item.id)
+            onItemClicked(item.id)
+        }
     }
 
 }

@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat
 
 class NotiItemViewHolder (
     private val binding: ItemNotiBinding,
-) : FeedTabCommonViewHolder(binding){
+    private var onItemClicked: (String) -> Unit): FeedTabCommonViewHolder(binding){
     override fun bind(item: ViewObject) {
 
     }

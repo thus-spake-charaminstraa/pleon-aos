@@ -2,6 +2,7 @@ package com.charaminstra.pleon
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -56,6 +57,7 @@ class GardenFragment : Fragment() {
         adapter = PlantAdapter()
         adapter.setType("GARDEN_PLANT")
         adapter.onItemClicked = { plantId ->
+            Log.i("plant id", plantId)
             val bundle = Bundle()
             bundle.putString("id", plantId)
             navController.navigate(R.id.view_pager_fragment_to_plant_detail_fragment, bundle)
