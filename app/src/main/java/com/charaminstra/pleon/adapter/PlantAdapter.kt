@@ -21,7 +21,7 @@ class PlantAdapter(): RecyclerView.Adapter<CommonViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommonViewHolder {
-        return return when (viewType){
+        return when (viewType){
             PlantViewType.FEED_PLANT.ordinal -> FeedPlantViewHolder(
                 ItemPlantFeedBinding.inflate(
                     LayoutInflater.from(parent.context),

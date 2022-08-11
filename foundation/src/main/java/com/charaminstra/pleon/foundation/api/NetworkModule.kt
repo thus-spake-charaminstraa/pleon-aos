@@ -72,4 +72,10 @@ object NetWorkModule {
     fun provideCalendarApiService(retrofit: Retrofit): ScheduleAPIService {
         return retrofit.create(ScheduleAPIService::class.java)
     }
+
+    @Provides
+    @Singleton
+    fun provideCommentApiService(retrofit: Retrofit): CommentAPIService {
+        return retrofit.create(CommentAPIService::class.java)
+    }
 }

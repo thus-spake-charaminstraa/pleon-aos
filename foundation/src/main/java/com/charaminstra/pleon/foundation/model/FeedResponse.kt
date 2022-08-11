@@ -21,5 +21,17 @@ data class FeedObject(
     val kind: String,
     val content: String,
     val image_url: String?,
-    val plant: PlantDataObject
+    val plant: PlantDataObject,
+    val comments: List<CommentObject>?
+)
+
+data class CommentObject(
+    val id: String?,
+    val feed_id: String?,
+    val user_id: String?,
+    val plant_id: String?,
+    val author_kind: String?,
+    val content: String?,
+    val created_at: Date?,
+    val updated_at: Date?
 )

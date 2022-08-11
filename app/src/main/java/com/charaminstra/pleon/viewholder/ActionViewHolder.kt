@@ -9,7 +9,8 @@ import com.charaminstra.pleon.databinding.ItemPlantFeedBinding
 
 class ActionViewHolder(
     private val binding: ItemPlantFeedBinding,
-    private var onItemClicked: (ActionType) -> Unit): RecyclerView.ViewHolder(binding.root) {
+    private var onItemClicked: (ActionType) -> Unit
+): RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: ActionObject) {
         //binding.plantImage

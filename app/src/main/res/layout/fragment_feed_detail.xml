@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingTop="10dp"
@@ -58,6 +59,7 @@
         android:id="@+id/plant_image"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:visibility="gone"
         app:layout_constraintDimensionRatio="H,1:1"
         android:scaleType="centerCrop"
         android:layout_marginTop="6dp"
@@ -91,38 +93,15 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/plant_tag_tv"
         app:layout_constraintLeft_toLeftOf="@id/user_image" />
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/comment_user_image"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
-        android:padding="10dp"
-        android:layout_marginTop="10dp"
-        app:civ_border_color="@color/input_bg"
-        app:civ_border_width="2dp"
-        android:background="@drawable/round_shape"
-        android:backgroundTint="@color/input_bg"
-        app:layout_constraintTop_toBottomOf="@+id/feed_content"
-        app:layout_constraintLeft_toLeftOf="@id/user_image" />
-    <TextView
-        android:id="@+id/comment_user_name"
-        android:layout_width="wrap_content"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/comments_recyclerview"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="식물"
-        style="@style/SubText"
-        android:layout_marginLeft="3dp"
-        app:layout_constraintLeft_toRightOf="@+id/comment_user_image"
-        app:layout_constraintTop_toTopOf="@+id/comment_user_image"
-        app:layout_constraintBottom_toBottomOf="@+id/comment_user_image"/>
-    <TextView
-        android:id="@+id/comment_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="안녕하세요~~~"
-        style="@style/SubText"
-        android:layout_marginLeft="10dp"
-        app:layout_constraintLeft_toRightOf="@+id/comment_user_name"
-        app:layout_constraintTop_toTopOf="@+id/comment_user_image"
-        app:layout_constraintBottom_toBottomOf="@+id/comment_user_image"/>
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintLeft_toLeftOf="@id/user_image"
+        app:layout_constraintTop_toBottomOf="@+id/feed_content" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -130,7 +109,7 @@
         android:layout_marginTop="15dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/comment_text">
+        app:layout_constraintTop_toBottomOf="@+id/comments_recyclerview">
         <androidx.appcompat.widget.AppCompatEditText
             android:layout_width="match_parent"
             android:layout_height="45dp"
