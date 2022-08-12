@@ -31,4 +31,13 @@
 
     <string name="noti_later_btn">나중에</string>
     <string name="noti_complete_btn">완료</string>
+
+    <string name="dot_water">물</string>
+    <string name="dot_air">통풍</string>
+    <string name="dot_spray">분무</string>
+
+    <string name="dot_prune">가지치기</string>
+    <string name="dot_fertillize">영양제</string>
+    <string name="dot_repot">분갈이</string>
+
 </resources>

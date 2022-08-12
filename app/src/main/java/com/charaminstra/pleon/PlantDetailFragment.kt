@@ -185,7 +185,7 @@ class PlantDetailFragment : Fragment() {
 
 //                Log.i("day",day.toString())
 //                Log.i("day.date",day.date.toString())
-                Log.i(TAG,"schedule List \n"+scheduleList.toString())
+                Log.i(TAG, "schedule List \n$scheduleList")
 
                 /* dot 표시 */
                 for(item in scheduleList){
@@ -257,8 +257,7 @@ class PlantDetailFragment : Fragment() {
                 .into(binding.plantImage)
             binding.plantSpeciesDesc.text = it.species
             binding.plantAdoptDayDesc.text = dateFormat.format(it.adopt_date)
-            //binding.plantAdoptDayDesc.text = it.adopt_date
-            binding.plantMood.text = "HAPPY"
+            //binding.plantMood.text = it.mood
             binding.plantDDayDesc.text = it.d_day.toString()
 
         })

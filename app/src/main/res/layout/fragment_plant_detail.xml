@@ -68,6 +68,7 @@
                 android:gravity="center"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:visibility="gone"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/plant_card"
                 style="@style/SubText"/>
@@ -129,8 +130,8 @@
                 style="@style/SubText"/>
             <ImageView
                 android:id="@+id/calendar_month_prev_btn"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_marginEnd="22dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 app:tint="@color/calendar_text_grey"
@@ -140,16 +141,17 @@
             <TextView
                 android:id="@+id/calendar_month"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_marginTop="30dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="15dp"
                 android:gravity="center"
+                style="@style/SubText"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/plant_mood" />
             <ImageView
                 android:id="@+id/calendar_month_next_btn"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 app:tint="@color/calendar_text_grey"
                 app:layout_constraintRight_toRightOf="parent"
@@ -166,6 +168,100 @@
                 app:cv_orientation="horizontal"
                 app:cv_outDateStyle="endOfGrid"
                 app:cv_scrollMode="paged"/>
+            <LinearLayout
+                android:id="@+id/action_line1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/calendar_view">
+                <ImageView
+                    android:id="@+id/dot1"
+                    android:layout_width="5dp"
+                    android:layout_height="5dp"
+                    android:layout_margin="1dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_dot_water" />
+                <TextView
+                    android:layout_width="50dp"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dot_water"
+                    style="@style/CalendarLabelText"/>
+                <ImageView
+                    android:id="@+id/dot2"
+                    android:layout_width="5dp"
+                    android:layout_height="5dp"
+                    android:layout_margin="1dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_dot_air" />
+                <TextView
+                    android:layout_width="50dp"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dot_air"
+                    style="@style/CalendarLabelText"/>
+                <ImageView
+                    android:id="@+id/dot3"
+                    android:layout_width="5dp"
+                    android:layout_height="5dp"
+                    android:layout_margin="1dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_dot_spray" />
+                <TextView
+                    android:layout_width="50dp"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dot_spray"
+                    style="@style/CalendarLabelText"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/action_line2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/action_line1">
+                <ImageView
+                    android:id="@+id/dot4"
+                    android:layout_width="5dp"
+                    android:layout_height="5dp"
+                    android:layout_margin="1dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_dot_prune" />
+                <TextView
+                    android:layout_width="50dp"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dot_prune"
+                    style="@style/CalendarLabelText"/>
+                <ImageView
+                    android:id="@+id/dot5"
+                    android:layout_width="5dp"
+                    android:layout_height="5dp"
+                    android:layout_margin="1dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_dot_fertilize" />
+                <TextView
+                    android:layout_width="50dp"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dot_fertillize"
+                    style="@style/CalendarLabelText"/>
+                <ImageView
+                    android:id="@+id/dot6"
+                    android:layout_width="5dp"
+                    android:layout_height="5dp"
+                    android:layout_margin="1dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_dot_repot" />
+                <TextView
+                    android:layout_width="50dp"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dot_repot"
+                    style="@style/CalendarLabelText"/>
+            </LinearLayout>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/feed_recyclerview"
                 android:layout_width="match_parent"
@@ -174,7 +270,7 @@
                 android:nestedScrollingEnabled="false"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/calendar_view" />
+                app:layout_constraintTop_toBottomOf="@+id/action_line2" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout >
