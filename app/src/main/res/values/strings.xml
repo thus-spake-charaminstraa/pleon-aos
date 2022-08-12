@@ -28,4 +28,7 @@
     <string name="waiting_desc2">조금만 기다려주세요</string>
 
     <string name="comment_enter_btn">enter</string>
+
+    <string name="noti_later_btn">나중에</string>
+    <string name="noti_complete_btn">완료</string>
 </resources>

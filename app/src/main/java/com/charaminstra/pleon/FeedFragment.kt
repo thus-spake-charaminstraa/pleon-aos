@@ -19,6 +19,9 @@ import com.charaminstra.pleon.viewmodel.FeedViewModel
 import com.charaminstra.pleon.viewmodel.PlantsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
+const val NOTI_LATER = "noti_later"
+const val NOTI_COMPLETE = "noti_complete"
+
 @AndroidEntryPoint
 class FeedFragment : Fragment() {
     private val TAG = javaClass.name
@@ -74,10 +77,16 @@ class FeedFragment : Fragment() {
 //        }
         feedAdapter = FeedTabAdapter()
         feedAdapter.onItemClicked = { feedId ->
-            Log.i("feed id in fragment", feedId)
-            val bundle = Bundle()
-            bundle.putString("id", feedId)
-            navController.navigate(R.id.view_pager_fragment_to_feed_detail_fragment, bundle)
+            Log.i(TAG, "feed id in fragment >> $feedId")
+            when(feedId){
+                NOTI_LATER -> {}
+                NOTI_COMPLETE-> {}
+                else -> {
+                    val bundle = Bundle()
+                    bundle.putString("id", feedId)
+                    navController.navigate(R.id.view_pager_fragment_to_feed_detail_fragment, bundle)
+                }
+            }
         }
     }
 

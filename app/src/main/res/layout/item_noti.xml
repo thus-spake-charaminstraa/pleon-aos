@@ -32,6 +32,8 @@
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingVertical="10dp"
+        style="@style/SubText"
         app:layout_constraintTop_toBottomOf="@id/pleon_image"/>
     <LinearLayout
         android:layout_width="wrap_content"
@@ -43,19 +45,23 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent">
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button1"
+            android:id="@+id/later_btn"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:background="@drawable/noti_rounded_corner"
-            android:backgroundTint="@color/white"/>
+            style="@style/SubText"
+            android:backgroundTint="@color/white"
+            android:text="@string/noti_later_btn"/>
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button2"
+            android:id="@+id/complete_btn"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginLeft="20dp"
+            style="@style/SubText"
             android:backgroundTint="@color/main_color"
-            android:background="@drawable/noti_rounded_corner" />
+            android:background="@drawable/noti_rounded_corner"
+            android:text="@string/noti_complete_btn"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
