@@ -1,6 +1,6 @@
 package com.charaminstra.pleon.adapter
 
-enum class FeedTabViewType {
+enum class FeedViewType {
     noti,
     feed
 }

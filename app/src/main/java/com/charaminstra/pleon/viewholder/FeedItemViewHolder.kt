@@ -9,7 +9,7 @@ import com.charaminstra.pleon.foundation.model.ViewObject
 import java.text.SimpleDateFormat
 
 class FeedItemViewHolder(
-    private val binding: ItemFeedBinding): FeedTabCommonViewHolder(binding){
+    private val binding: ItemFeedBinding): FeedCommonViewHolder(binding){
     private lateinit var dateFormat: SimpleDateFormat
 
 //    override fun bind(item: FeedObject) {

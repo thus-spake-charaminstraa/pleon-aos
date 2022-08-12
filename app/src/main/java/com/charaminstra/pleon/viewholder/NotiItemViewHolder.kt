@@ -6,7 +6,7 @@ import com.charaminstra.pleon.databinding.ItemNotiBinding
 import com.charaminstra.pleon.foundation.model.ViewObject
 
 class NotiItemViewHolder (
-    private val binding: ItemNotiBinding): FeedTabCommonViewHolder(binding){
+    private val binding: ItemNotiBinding): FeedCommonViewHolder(binding){
     override fun bind(item: ViewObject, onItemClicked: (String) -> Unit) {
         binding.notiTv.text= item.content
         binding.laterBtn.setOnClickListener {

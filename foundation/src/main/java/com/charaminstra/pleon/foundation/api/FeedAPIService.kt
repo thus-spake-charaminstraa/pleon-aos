@@ -14,7 +14,7 @@ interface FeedAPIService{
 
     /*get feed*/
     @GET("feed")
-    suspend fun getFeed(
+    suspend fun getOnlyFeed(
         @Header("Authorization") accessToken:String,
         @Query("offset") offset:Int?,
         @Query("plant_id")  plantId:String?,
@@ -22,9 +22,9 @@ interface FeedAPIService{
     ): Response<FeedListResponse>
 
     @GET("feed/list")
-    suspend fun getFeedTabList(
+    suspend fun getFeedList(
         @Header("Authorization") accessToken:String,
-    ): Response<FeedTabListResponse>
+    ): Response<FeedListResponse>
 
     @GET("feed/{id}")
     suspend fun getFeedId(

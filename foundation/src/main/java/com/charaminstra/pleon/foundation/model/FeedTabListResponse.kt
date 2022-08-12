@@ -2,13 +2,13 @@ package com.charaminstra.pleon.foundation.model
 
 import java.util.*
 
-data class FeedTabListResponse(
+data class FeedListResponse(
     val success: Boolean?,
     val statusCode: Int?,
-    val data: FeedTabDataObject
+    val data: FeedDataObject
 )
 
-data class FeedTabDataObject(
+data class FeedDataObject(
  val result: List<ResultObject>,
  val count: Int,
  val next_offset: Int
@@ -29,4 +29,13 @@ data class ViewObject(
     val plant: PlantDataObject
 )
 
-
+data class FeedObject(
+    val id: String,
+    val plant_id: String,
+    val publish_date: Date,
+    val kind: String,
+    val content: String,
+    val image_url: String?,
+    val plant: PlantDataObject,
+    val comments: List<CommentObject>?
+)
