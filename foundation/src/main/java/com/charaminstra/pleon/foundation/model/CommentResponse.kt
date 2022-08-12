@@ -5,3 +5,9 @@ data class CommentResponse(
     val statusCode: Int?,
     val data: List<CommentObject>?
 )
+
+data class CommentPostResponse(
+    val success: Boolean?,
+    val statusCode: Int?,
+    val data: CommentObject?
+)

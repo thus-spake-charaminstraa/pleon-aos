@@ -1,9 +1,6 @@
 package com.charaminstra.pleon.foundation.api
 
-import com.charaminstra.pleon.foundation.model.CommentRequestBody
-import com.charaminstra.pleon.foundation.model.CommentResponse
-import com.charaminstra.pleon.foundation.model.ScheduleRequestBody
-import com.charaminstra.pleon.foundation.model.ScheduleResponse
+import com.charaminstra.pleon.foundation.model.*
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -12,7 +9,7 @@ interface CommentAPIService {
     suspend fun postComment(
         @Header("Authorization") accessToken: String,
         @Body commentRequestBody: CommentRequestBody
-    ): Response<CommentResponse>
+    ): Response<CommentPostResponse>
 
     @GET("comment/feed/{feed_id}")
     suspend fun getComment(

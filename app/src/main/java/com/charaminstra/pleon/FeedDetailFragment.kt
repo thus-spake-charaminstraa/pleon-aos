@@ -50,11 +50,9 @@ class FeedDetailFragment : Fragment() {
 
 
         initList()
+        initListeners()
         observeViewModel()
         binding.commentsRecyclerview.adapter = commentsAdapter
-
-
-
 
         binding.moreBtn.setOnClickListener{
             val pop=PopupMenu(requireContext(),it)
@@ -74,11 +72,14 @@ class FeedDetailFragment : Fragment() {
         }
     }
 
-
-
     private fun initList(){
         commentsAdapter = CommentsAdapter()
+    }
 
+    private fun initListeners(){
+        binding.commentEnterBtn.setOnClickListener {
+            viewModel.postComment(binding.commentEt.text.toString())
+        }
     }
 
     private fun observeViewModel() {
@@ -98,6 +99,10 @@ class FeedDetailFragment : Fragment() {
         })
         viewModel.feedComments.observe(viewLifecycleOwner, Observer {
             commentsAdapter.refreshItems(it)
+        })
+        viewModel.postCommentSuccess.observe(viewLifecycleOwner, Observer {
+            viewModel.getCommentList()
+            binding.commentEt.text?.clear()
         })
         viewModel.feedDeleteSuccess.observe(viewLifecycleOwner, Observer {
             if (it) {
