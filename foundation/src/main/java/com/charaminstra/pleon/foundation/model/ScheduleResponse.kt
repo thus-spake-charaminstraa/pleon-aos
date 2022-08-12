@@ -1,22 +1,14 @@
 package com.charaminstra.pleon.foundation.model
 
+import java.util.*
+
 data class ScheduleResponse (
     val success: Boolean,
     val statusCode: Int,
-    val data: ScheduleDataObject
+    val data: List<ScheduleDataObject>
 )
 
 data class ScheduleDataObject (
-    val id: String,
-    val plant_id: String,
-    val timestamp: String,
-    val kind: String
+    val timestamp: Date,
+    val kinds: List<String>
 )
-
-/*
-* "id": {},
-      "plant_id": {},
-      "timestamp": "2022-08-05T12:04:53.620Z",
-      "kind": "water"
-*
-* */

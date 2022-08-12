@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.core.view.children
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,9 +19,11 @@ import com.bumptech.glide.Glide
 import com.charaminstra.pleon.calendar.MonthViewContainer
 import com.charaminstra.pleon.databinding.CalendarDayLayoutBinding
 import com.charaminstra.pleon.databinding.FragmentPlantDetailBinding
+import com.charaminstra.pleon.foundation.model.ScheduleDataObject
 import com.charaminstra.pleon.foundation.model.ScheduleTestBody
 import com.charaminstra.pleon.plant_register.PlantIdViewModel
 import com.charaminstra.pleon.viewmodel.FeedViewModel
+import com.charaminstra.pleon.viewmodel.PlantDetailViewModel
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
 import com.kizitonwose.calendarview.model.DayOwner
@@ -42,14 +45,18 @@ import java.util.*
 
 @AndroidEntryPoint
 class PlantDetailFragment : Fragment() {
+    private val TAG = javaClass.name
     private val today = LocalDate.now()
     private val viewModel: PlantIdViewModel by viewModels()
     private val feedReadViewModel: FeedViewModel by viewModels()
+    private val plantDetailViewModel: PlantDetailViewModel by viewModels()
     //private lateinit var feedAdapter: FeedAdapter
     private lateinit var binding : FragmentPlantDetailBinding
     lateinit var plantId : String
     private var selectedDate: LocalDate? = null
     private lateinit var dateFormat: SimpleDateFormat
+    private var scheduleList: List<ScheduleDataObject> = listOf()
+    private lateinit var navController: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,14 +64,25 @@ class PlantDetailFragment : Fragment() {
     ): View? {
         binding = FragmentPlantDetailBinding.inflate(layoutInflater)
         dateFormat = SimpleDateFormat(resources.getString(com.charaminstra.pleon.common_ui.R.string.date_format))
-
-        val navController = this.findNavController()
+        navController = this.findNavController()
         binding.backBtn.setOnClickListener {
             navController.popBackStack()
         }
+        return binding.root
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initList()
+        observeViewModel()
+        //binding.feedRecyclerview.adapter = feedAdapter
+        binding.feedRecyclerview.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
 
         /*plant Id*/
         arguments?.getString("id")?.let {
+            plantDetailViewModel.plantId = it
+            /**/
             plantId = it
             viewModel.loadData(plantId)
             binding.editBtn.setOnClickListener {
@@ -82,10 +100,7 @@ class PlantDetailFragment : Fragment() {
         binding.calendarView.setup(firstMonth, lastMonth, firstDayOfWeek)
         binding.calendarView.scrollToMonth(currentMonth)
         binding.calendarMonth.text =currentMonth.toString()
-        /* month set */
-        binding.calendarView.monthScrollListener = {
-
-        }
+        plantDetailViewModel.getSchedule(currentMonth.year,currentMonth.monthValue)
 
         val daysOfWeek=daysOfWeekFromLocale()
         /* month binder*/
@@ -106,16 +121,16 @@ class PlantDetailFragment : Fragment() {
             }
         }
 
-
-
         binding.calendarMonthPrevBtn.setOnClickListener {
             binding.calendarView.findFirstVisibleMonth()?.let {
                 binding.calendarView.smoothScrollToMonth(it.yearMonth.previous)
+                plantDetailViewModel.getSchedule(it.year,it.month-1)
             }
         }
         binding.calendarMonthNextBtn.setOnClickListener {
             binding.calendarView.findFirstVisibleMonth()?.let {
                 binding.calendarView.smoothScrollToMonth(it.yearMonth.next)
+                plantDetailViewModel.getSchedule(it.year,it.month+1)
             }
         }
 
@@ -124,16 +139,6 @@ class PlantDetailFragment : Fragment() {
             val title = "${monthTitleFormatter.format(month.yearMonth)} ${month.yearMonth.year}"
             binding.calendarMonth.text = title
         }
-        return binding.root
-
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initList()
-        observeViewModel()
-        //binding.feedRecyclerview.adapter = feedAdapter
-        binding.feedRecyclerview.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
 
         class DayViewContainer(view: View) : ViewContainer(view) {
             //val textView = view.findViewById<TextView>(R.id.calendarDayText)
@@ -156,16 +161,16 @@ class PlantDetailFragment : Fragment() {
                 }
             }
         }
-        val items = listOf(
-            ScheduleTestBody("2022-06-30", listOf("water")),
-            ScheduleTestBody("2022-07-31", listOf("water")),
-            ScheduleTestBody("2022-08-02", listOf("water")),
-            ScheduleTestBody("2022-08-03", listOf("water","air")),
-            ScheduleTestBody("2022-08-04", listOf("water","spray")),
-            ScheduleTestBody("2022-08-08", listOf("water","air","fertilize","prune","repot","spray")),
-            ScheduleTestBody("2022-08-10", listOf("water","air","fertilize","prune","spray")),
-            ScheduleTestBody("2022-09-08", listOf("water","air","fertilize","prune","spray"))
-        )
+//        val items = listOf(
+//            ScheduleTestBody("2022-06-30", listOf("water")),
+//            ScheduleTestBody("2022-07-31", listOf("water")),
+//            ScheduleTestBody("2022-08-02", listOf("water")),
+//            ScheduleTestBody("2022-08-03", listOf("water","air")),
+//            ScheduleTestBody("2022-08-04", listOf("water","spray")),
+//            ScheduleTestBody("2022-08-08", listOf("water","air","fertilize","prune","repot","spray")),
+//            ScheduleTestBody("2022-08-10", listOf("water","air","fertilize","prune","spray")),
+//            ScheduleTestBody("2022-09-08", listOf("water","air","fertilize","prune","spray"))
+//        )
 
         /* day binder */
         binding.calendarView.dayBinder = object : DayBinder<DayViewContainer> {
@@ -178,13 +183,15 @@ class PlantDetailFragment : Fragment() {
                 val textView = container.textView
                 textView.text = day.date.dayOfMonth.toString()
 
-                Log.i("day",day.toString())
-                Log.i("day.date",day.date.toString())
+//                Log.i("day",day.toString())
+//                Log.i("day.date",day.date.toString())
+                Log.i(TAG,"schedule List \n"+scheduleList.toString())
 
                 /* dot 표시 */
-                for(item in items){
-                    if(item?.time == day.date.toString()){
-                        for(k in item.kind){
+                for(item in scheduleList){
+                    val date = dateFormat.format(item.timestamp)
+                    if(date == day.date.toString()){
+                        for(k in item.kinds){
                             if(k=="water"){
                                 container.dot1.visibility = View.VISIBLE
                                 container.dot1.setImageResource(R.drawable.ic_dot_water)
@@ -257,6 +264,9 @@ class PlantDetailFragment : Fragment() {
         })
         feedReadViewModel.feedList.observe(viewLifecycleOwner, Observer {
             //feedAdapter.refreshItems(it)
+        })
+        plantDetailViewModel.scheduleData.observe(viewLifecycleOwner, Observer {
+            scheduleList = it
         })
     }
 
