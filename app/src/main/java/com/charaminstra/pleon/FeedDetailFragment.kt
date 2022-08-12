@@ -1,5 +1,6 @@
 package com.charaminstra.pleon
 
+import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.PopupMenu
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -118,8 +120,4 @@ class FeedDetailFragment : Fragment() {
         viewModel.loadFeed()
         viewModel.getCommentList()
     }
-
-
-
-
 }

@@ -45,7 +45,7 @@
         <entry key="app/src/main/res/layout/fragment_camera.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_chat.xml" value="0.2625" />
         <entry key="app/src/main/res/layout/fragment_feed.xml" value="0.25308641975308643" />
-        <entry key="app/src/main/res/layout/fragment_feed_detail.xml" value="0.145587158203125" />
+        <entry key="app/src/main/res/layout/fragment_feed_detail.xml" value="0.2604501607717042" />
         <entry key="app/src/main/res/layout/fragment_feed_write.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_garden.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.1" />
@@ -74,6 +74,7 @@
         <entry key="camera/src/main/res/layout/fragment_my.xml" value="0.1" />
         <entry key="common-ui/src/main/res/drawable/button.xml" value="0.182" />
         <entry key="common-ui/src/main/res/drawable/button_grey.xml" value="0.224" />
+        <entry key="common-ui/src/main/res/drawable/button_maincolor.xml" value="0.1" />
         <entry key="common-ui/src/main/res/drawable/cursor_drawble.xml" value="0.1" />
         <entry key="common-ui/src/main/res/drawable/ic_arrow_back.xml" value="0.1" />
         <entry key="common-ui/src/main/res/drawable/input.xml" value="0.182" />
