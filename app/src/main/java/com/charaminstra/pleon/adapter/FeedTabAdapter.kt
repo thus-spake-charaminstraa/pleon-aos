@@ -19,8 +19,8 @@ class FeedTabAdapter(): RecyclerView.Adapter<FeedTabCommonViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeedTabCommonViewHolder {
         return when(viewType){
-            FeedTabViewType.feed.ordinal -> FeedItemViewHolder(ItemFeedBinding.inflate(LayoutInflater.from(parent.context), parent, false)){}
-            FeedTabViewType.noti.ordinal -> NotiItemViewHolder(ItemNotiBinding.inflate(LayoutInflater.from(parent.context), parent, false)){}
+            FeedTabViewType.feed.ordinal -> FeedItemViewHolder(ItemFeedBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+            FeedTabViewType.noti.ordinal -> NotiItemViewHolder(ItemNotiBinding.inflate(LayoutInflater.from(parent.context), parent, false))
             else -> throw IllegalArgumentException("Unknown view type")
         }
     }
@@ -29,10 +29,10 @@ class FeedTabAdapter(): RecyclerView.Adapter<FeedTabCommonViewHolder>() {
         return viewItemList.size
     }
     override fun onBindViewHolder(holder: FeedTabCommonViewHolder, position: Int) {
-        holder.bind(viewItemList[position].viewObject)
-        holder.itemView.setOnClickListener {
-            onItemClicked(viewItemList[position]?.viewObject!!.id)
-        }
+        holder.bind(viewItemList[position].viewObject, onItemClicked)
+//        holder.itemView.setOnClickListener {
+//            onItemClicked(viewItemList[position]?.viewObject!!.id)
+//        }
     }
 
     fun refreshItems(viewItemList : List<ResultObject>) {

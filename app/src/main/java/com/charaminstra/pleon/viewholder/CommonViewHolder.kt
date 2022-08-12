@@ -22,9 +22,9 @@ abstract class CommonViewHolder(
 //}
 
 abstract class FeedTabCommonViewHolder(
-    binding: ViewBinding,
+    binding: ViewBinding
 ): RecyclerView.ViewHolder(binding.root) {
-    abstract fun bind(viewObject: ViewObject)
+    abstract fun bind(viewObject: ViewObject, onItemClicked: (String) -> Unit)
 }
 
 
