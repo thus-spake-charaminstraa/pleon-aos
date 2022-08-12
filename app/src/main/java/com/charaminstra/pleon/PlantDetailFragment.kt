@@ -16,14 +16,13 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.charaminstra.pleon.adapter.ActionObject
 import com.charaminstra.pleon.adapter.FeedAdapter
 import com.charaminstra.pleon.calendar.MonthViewContainer
 import com.charaminstra.pleon.databinding.CalendarDayLayoutBinding
 import com.charaminstra.pleon.databinding.FragmentPlantDetailBinding
 import com.charaminstra.pleon.foundation.model.ScheduleDataObject
-import com.charaminstra.pleon.foundation.model.ScheduleTestBody
 import com.charaminstra.pleon.plant_register.PlantIdViewModel
-import com.charaminstra.pleon.viewmodel.FeedViewModel
 import com.charaminstra.pleon.viewmodel.PlantDetailViewModel
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
@@ -55,8 +54,12 @@ class PlantDetailFragment : Fragment() {
     lateinit var plantId : String
     private var selectedDate: LocalDate? = null
     private lateinit var dateFormat: SimpleDateFormat
-    private var scheduleList: List<ScheduleDataObject> = listOf()
     private lateinit var navController: NavController
+    private var scheduleList : List<ScheduleDataObject> = listOf()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -76,6 +79,7 @@ class PlantDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initList()
         observeViewModel()
+
         binding.feedRecyclerview.adapter = feedAdapter
         binding.feedRecyclerview.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
 
@@ -100,6 +104,7 @@ class PlantDetailFragment : Fragment() {
         binding.calendarView.setup(firstMonth, lastMonth, firstDayOfWeek)
         binding.calendarView.scrollToMonth(currentMonth)
         binding.calendarMonth.text =currentMonth.toString()
+        plantDetailViewModel.getSchedule(currentMonth.year,currentMonth.monthValue)
 
 
         val daysOfWeek=daysOfWeekFromLocale()
@@ -120,36 +125,28 @@ class PlantDetailFragment : Fragment() {
                 }
             }
         }
-        plantDetailViewModel.getSchedule(currentMonth.year,currentMonth.monthValue)
 
         binding.calendarMonthPrevBtn.setOnClickListener {
-            binding.calendarView.findFirstVisibleMonth()?.let {
+            binding.calendarView.findLastVisibleMonth()?.let {
                 binding.calendarView.smoothScrollToMonth(it.yearMonth.previous)
-                plantDetailViewModel.getSchedule(it.year,it.month-1)
             }
         }
         binding.calendarMonthNextBtn.setOnClickListener {
-            binding.calendarView.findFirstVisibleMonth()?.let {
+            binding.calendarView.findLastVisibleMonth()?.let {
                 binding.calendarView.smoothScrollToMonth(it.yearMonth.next)
-                plantDetailViewModel.getSchedule(it.year,it.month+1)
             }
         }
 
         val monthTitleFormatter = DateTimeFormatter.ofPattern("MMMM")
         binding.calendarView.monthScrollListener = { month ->
             val title = "${monthTitleFormatter.format(month.yearMonth)} ${month.yearMonth.year}"
+            plantDetailViewModel.getSchedule(month.yearMonth.year,month.yearMonth.monthValue)
             binding.calendarMonth.text = title
         }
 
         class DayViewContainer(view: View) : ViewContainer(view) {
             // With ViewBinding
-            val textView = CalendarDayLayoutBinding.bind(view).calendarDayText
-            val dot1 = CalendarDayLayoutBinding.bind(view).dot1
-            val dot2 = CalendarDayLayoutBinding.bind(view).dot2
-            val dot3 = CalendarDayLayoutBinding.bind(view).dot3
-            val dot4 = CalendarDayLayoutBinding.bind(view).dot4
-            val dot5 = CalendarDayLayoutBinding.bind(view).dot5
-            val dot6 = CalendarDayLayoutBinding.bind(view).dot6
+            val binding = CalendarDayLayoutBinding.bind(view)
             lateinit var day: CalendarDay
 
             init {
@@ -169,12 +166,11 @@ class PlantDetailFragment : Fragment() {
             // Called every time we need to reuse a container.
             override fun bind(container: DayViewContainer, day: CalendarDay) {
                 container.day = day
-                val textView = container.textView
-                textView.text = day.date.dayOfMonth.toString()
+                container.binding.calendarDayText.text = day.date.dayOfMonth.toString()
 
-//                Log.i("day",day.toString())
-//                Log.i("day.date",day.date.toString())
-                Log.i(TAG, "schedule List \n$scheduleList")
+                Log.i("day",day.toString())
+                Log.i("day.date",day.date.toString())
+                Log.i("scheduleList",scheduleList.toString())
 
                 /* dot 표시 */
                 for(item in scheduleList){
@@ -182,23 +178,23 @@ class PlantDetailFragment : Fragment() {
                     if(date == day.date.toString()){
                         for(k in item.kinds){
                             if(k=="water"){
-                                container.dot1.visibility = View.VISIBLE
-                                container.dot1.setImageResource(R.drawable.ic_dot_water)
+                                container.binding.dot1.visibility = View.VISIBLE
+                                container.binding.dot1.setImageResource(R.drawable.ic_dot_water)
                             }else if(k=="air"){
-                                container.dot2.visibility = View.VISIBLE
-                                container.dot2.setImageResource(R.drawable.ic_dot_air)
+                                container.binding.dot2.visibility = View.VISIBLE
+                                container.binding.dot2.setImageResource(R.drawable.ic_dot_air)
                             }else if(k=="spray"){
-                                container.dot3.visibility = View.VISIBLE
-                                container.dot3.setImageResource(R.drawable.ic_dot_spray)
+                                container.binding.dot3.visibility = View.VISIBLE
+                                container.binding.dot3.setImageResource(R.drawable.ic_dot_spray)
                             }else if(k=="prune"){
-                                container.dot4.visibility = View.VISIBLE
-                                container.dot4.setImageResource(R.drawable.ic_dot_prune)
+                                container.binding.dot4.visibility = View.VISIBLE
+                                container.binding.dot4.setImageResource(R.drawable.ic_dot_prune)
                             }else if(k=="fertilize"){
-                                container.dot5.visibility = View.VISIBLE
-                                container.dot5.setImageResource(R.drawable.ic_dot_fertilize)
+                                container.binding.dot5.visibility = View.VISIBLE
+                                container.binding.dot5.setImageResource(R.drawable.ic_dot_fertilize)
                             }else if(k=="repot"){
-                                container.dot6.visibility = View.VISIBLE
-                                container.dot6.setImageResource(R.drawable.ic_dot_repot)
+                                container.binding.dot6.visibility = View.VISIBLE
+                                container.binding.dot6.setImageResource(R.drawable.ic_dot_repot)
                             }
                         }
 
@@ -211,22 +207,22 @@ class PlantDetailFragment : Fragment() {
                     when (day.date) {
                         /* 오늘의 글씨색과 배경 */
                         today -> {
-                            textView.setTextColor(resources.getColor(R.color.black))
-                            textView.setBackgroundResource(R.drawable.round_calendar_today)
+                            container.binding.calendarDayText.setTextColor(resources.getColor(R.color.black))
+                            container.binding.calendarDayText.setBackgroundResource(R.drawable.round_calendar_today)
                         }
                         /* 선택한 날짜의 글씨색과 배경 */
                         selectedDate -> {
-                            textView.setTextColor(resources.getColor(R.color.white))
-                            textView.setBackgroundResource(R.drawable.round_calendar_clickday)
+                            container.binding.calendarDayText.setTextColor(resources.getColor(R.color.white))
+                            container.binding.calendarDayText.setBackgroundResource(R.drawable.round_calendar_clickday)
                         }
                         /* 그 외의의 글씨색과 배경 */
                         else -> {
-                            textView.setTextColor(resources.getColor(R.color.black))
-                            textView.background = null
+                            container.binding.calendarDayText.setTextColor(resources.getColor(R.color.black))
+                            container.binding.calendarDayText.background = null
                         }
                     }
                 } else {
-                    textView.setTextColor(resources.getColor(R.color.calendar_text_grey))
+                    container.binding.calendarDayText.setTextColor(resources.getColor(R.color.calendar_text_grey))
                 }
             }
         }
@@ -249,7 +245,7 @@ class PlantDetailFragment : Fragment() {
 
         })
         plantDetailViewModel.scheduleData.observe(viewLifecycleOwner, Observer {
-            scheduleList = it
+            refreshScheduleList(it)
         })
         plantDetailViewModel.feedList.observe(viewLifecycleOwner, Observer {
             feedAdapter.refreshItems(it)
@@ -258,7 +254,7 @@ class PlantDetailFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        plantDetailViewModel.getFeed(plantId,null)
+        plantDetailViewModel.getFeed(null)
     }
 
     private fun selectDate(date: LocalDate) {
@@ -268,6 +264,9 @@ class PlantDetailFragment : Fragment() {
             oldDate?.let { binding.calendarView.notifyDateChanged(it) }
             binding.calendarView.notifyDateChanged(date)
         }
+    }
+    private fun refreshScheduleList(newSchedule : List<ScheduleDataObject>) {
+        this.scheduleList = newSchedule
     }
 
     fun daysOfWeekFromLocale(): Array<DayOfWeek> {
@@ -282,6 +281,7 @@ class PlantDetailFragment : Fragment() {
         }
         return daysOfWeek
     }
+
 
 
 }

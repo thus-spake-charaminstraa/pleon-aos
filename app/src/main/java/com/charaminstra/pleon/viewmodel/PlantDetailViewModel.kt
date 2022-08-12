@@ -30,7 +30,7 @@ class PlantDetailViewModel @Inject constructor(
     var plantId: String? = null
     var offset: Int = 0
 
-    fun getFeed(plantId: String?, date: String?){
+    fun getFeed(date: String?){
         viewModelScope.launch {
             val data = feedRepository.getOnlyFeed(offset, plantId, date)
             Log.i(TAG, "data -> $data")
@@ -49,8 +49,7 @@ class PlantDetailViewModel @Inject constructor(
 
     fun getSchedule(year:Int, month: Int) {
         viewModelScope.launch {
-            val data = scheduleRepository.getSchedule(
-                plantId!!,year,month)
+            val data = scheduleRepository.getSchedule(plantId!!,year,month)
             when(data.isSuccessful){
                 true -> {
                     _scheduleData.postValue(data.body()?.data)
