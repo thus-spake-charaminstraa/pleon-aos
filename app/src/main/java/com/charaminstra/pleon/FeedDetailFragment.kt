@@ -98,8 +98,6 @@ class FeedDetailFragment : Fragment() {
         })
         viewModel.feedComments.observe(viewLifecycleOwner, Observer {
             commentsAdapter.refreshItems(it)
-            Log.i("comments", it.toString())
-            Log.i("comments >>", it.get(0).content!!)
         })
         viewModel.feedDeleteSuccess.observe(viewLifecycleOwner, Observer {
             if (it) {
