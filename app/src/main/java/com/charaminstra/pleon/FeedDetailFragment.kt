@@ -24,7 +24,7 @@ import java.text.SimpleDateFormat
 class FeedDetailFragment : Fragment() {
 
     private val viewModel: FeedDetailViewModel by viewModels()
-    private lateinit var feedId : String
+    //private lateinit var feedId : String
     private lateinit var binding : FragmentFeedDetailBinding
     private lateinit var navController: NavController
     private lateinit var dateFormat: SimpleDateFormat
@@ -36,7 +36,7 @@ class FeedDetailFragment : Fragment() {
     ): View? {
         binding = FragmentFeedDetailBinding.inflate(layoutInflater)
         arguments?.getString("id")?.let {
-            feedId = it
+            viewModel.feedId = it
         }
 
         return binding.root
@@ -65,7 +65,7 @@ class FeedDetailFragment : Fragment() {
                         //feed 수정
                     }R.id.item_more_delete -> {
                         //feed 삭제
-                        viewModel.deleteFeed(feedId)
+                        viewModel.deleteFeed()
                     }
                 }
                 false
@@ -112,8 +112,8 @@ class FeedDetailFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.loadFeed(feedId)
-        viewModel.getCommentList(feedId)
+        viewModel.loadFeed()
+        viewModel.getCommentList()
     }
 
 

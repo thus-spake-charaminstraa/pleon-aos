@@ -13,4 +13,9 @@ class CommentRepository @Inject constructor(private val service: CommentAPIServi
         prefs.getAccessToken(),
         feedId
     )
+
+    suspend fun postComment(feedId: String, content: String ) = service.postComment(
+        prefs.getAccessToken(),
+        CommentRequestBody(feedId,"user",content)
+    )
 }
