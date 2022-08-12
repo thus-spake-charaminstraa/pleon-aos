@@ -25,13 +25,12 @@ class PlantIdRepository @Inject constructor(private val service: PlantAPIService
 
     suspend fun patchPlantId(id: String,
                              name : String,
-                             species: String,
                              adopt_date: String,
                              thumbnail: String,
                              light: String,
                              air: String)
     = service.patchPlantId(prefs.getAccessToken(), id,
-        PlantEditRequestBody(name,species,adopt_date,thumbnail,light,air)
+        PlantEditRequestBody(name,adopt_date,thumbnail,light,air)
     )
 
     suspend fun deletePlantId(id: String) = service.deletePlantId(prefs.getAccessToken(),id)

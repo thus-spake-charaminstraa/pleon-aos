@@ -8,7 +8,6 @@
     android:paddingHorizontal="20dp"
     android:paddingTop="44dp"
     tools:context=".FeedWriteFragment">
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -36,25 +35,32 @@
             android:layout_height="30dp"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@+id/back_btn"
-            android:background="@drawable/button"
+            android:background="@drawable/round_transparent"
             style="@style/SubText"
             android:text="@string/complete_btn" />
-        <ImageButton
-            android:id="@+id/image"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/image_card"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="20dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/date_tv"
-            android:layout_marginTop="30dp"
-            android:src="@drawable/ic_camera"
-            android:background="@drawable/image_button_selector" />
+            app:layout_constraintTop_toBottomOf="@+id/date_tv">
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_camera"
+                android:background="@drawable/image_button_selector"/>
+        </androidx.cardview.widget.CardView>
         <TextView
             android:id="@+id/plant_tag_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            app:layout_constraintTop_toBottomOf="@+id/image"
+            app:layout_constraintTop_toBottomOf="@+id/image_card"
             app:layout_constraintLeft_toLeftOf="parent"
             android:gravity="top"
             android:padding="10dp" />
@@ -66,18 +72,20 @@
             android:padding="10dp"
             app:layout_constraintLeft_toRightOf="@+id/plant_tag_tv"
             app:layout_constraintTop_toTopOf="@+id/plant_tag_tv" />
-
         <EditText
             android:id="@+id/content_edit"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintTop_toBottomOf="@+id/plant_tag_tv"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             android:gravity="top"
+            android:textCursorDrawable="@drawable/cursor_drawble"
             android:hint="내용을 작성해주세요."
-            android:inputType="textPersonName"
+            android:inputType="textMultiLine"
             android:background="@android:color/transparent"
+            android:textSize="15dp"
             android:padding="10dp" />
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/camera_btn"

@@ -2,6 +2,7 @@ package com.charaminstra.pleon
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,15 +13,14 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.charaminstra.pleon.adapter.PlantAdapter
 import com.charaminstra.pleon.databinding.FragmentGardenBinding
-import com.charaminstra.pleon.foundation.api.PleonPreference
 import com.charaminstra.pleon.login.AuthViewModel
 import com.charaminstra.pleon.plant_register.ui.PlantRegisterActivity
+import com.charaminstra.pleon.viewmodel.PlantsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class GardenFragment : Fragment() {
     private val viewModel: PlantsViewModel by viewModels()
-    private val authViewModel: AuthViewModel by viewModels()
     private lateinit var binding: FragmentGardenBinding
     private lateinit var navController: NavController
     private lateinit var adapter: PlantAdapter
@@ -35,6 +35,7 @@ class GardenFragment : Fragment() {
     ): View? {
         binding = FragmentGardenBinding.inflate(layoutInflater)
         navController = this.findNavController()
+        binding.gardenFragmentTitle.text = "Garden"
 
         binding.circleBtn.setOnClickListener {
             val intent = Intent(context, PlantRegisterActivity::class.java)
@@ -57,6 +58,7 @@ class GardenFragment : Fragment() {
         adapter.setType("GARDEN_PLANT")
 //        adapter.setViewModel(viewModel)
         adapter.onItemClicked = { plantId ->
+            Log.i("plant id", plantId)
             val bundle = Bundle()
             bundle.putString("id", plantId)
             navController.navigate(R.id.view_pager_fragment_to_plant_detail_fragment, bundle)
@@ -64,10 +66,6 @@ class GardenFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        authViewModel.authName.observe(viewLifecycleOwner, Observer {
-            binding.gardenFragmentTitle.text = it + "님의 Garden"
-        })
-
         viewModel.plantsList.observe(viewLifecycleOwner, Observer {
             adapter.refreshItems(it)
         })

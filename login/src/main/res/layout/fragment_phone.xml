@@ -51,7 +51,7 @@
         android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phone_et"
-        android:background="@drawable/button"
+        android:background="@drawable/button_maincolor"
         style="@style/SubText"
         android:text="@string/phone_fragment_receive_btn" />
     <androidx.appcompat.widget.AppCompatEditText
@@ -75,7 +75,7 @@
         android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/code_et"
-        android:background="@drawable/button"
+        android:background="@drawable/button_maincolor"
         astyle="@style/SubText"
         android:visibility="gone"
         android:text="@string/phone_fragment_check_btn" />

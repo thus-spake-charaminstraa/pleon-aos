@@ -12,10 +12,10 @@ data class PlantRegisterRequestBody(
 
 data class PlantEditRequestBody(
     val name: String,
-    val species: String,
     val adopt_date: String,
     val thumbnail: String,
     val light: String,
     val air: String
 )
 
+class PlantId

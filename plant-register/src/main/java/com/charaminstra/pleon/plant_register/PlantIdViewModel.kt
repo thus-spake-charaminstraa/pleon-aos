@@ -5,14 +5,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.charaminstra.pleon.foundation.ImageRepository
 import com.charaminstra.pleon.foundation.PlantIdRepository
 import com.charaminstra.pleon.foundation.model.PlantDataObject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.io.InputStream
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
-class PlantIdViewModel @Inject constructor(private val repository: PlantIdRepository) : ViewModel() {
+class PlantIdViewModel @Inject constructor(private val repository: PlantIdRepository,
+                                           private val imageRepository: ImageRepository) : ViewModel() {
 
     private val TAG = javaClass.name
     private val _plantRegisterSuccess = MutableLiveData<Boolean>()
@@ -33,7 +37,9 @@ class PlantIdViewModel @Inject constructor(private val repository: PlantIdReposi
     val adopt_date = MutableLiveData<String>()
     val light = MutableLiveData<String>()
     val air = MutableLiveData<String>()
-    val thumbnail = MutableLiveData<String>()
+    //val thumbnail = MutableLiveData<String>()
+    private val _urlResponse = MutableLiveData<String?>()
+    val urlResponse : LiveData<String?> = _urlResponse
 
     fun getName(): LiveData<String> {
         return name
@@ -71,11 +77,23 @@ class PlantIdViewModel @Inject constructor(private val repository: PlantIdReposi
     fun setAir(value: String) {
         air.value = value
     }
-    fun getThumbnail(): LiveData<String>{
-        return thumbnail
+    fun setImgToUrl(image_stream: InputStream){
+        viewModelScope.launch {
+            val data =imageRepository.postImage(image_stream)
+            Log.i(TAG,"data -> $data")
+            when (data.isSuccessful) {
+                true -> {
+                    Log.i(TAG,"data.body -> "+data.body())
+                    _urlResponse.postValue(data.body()?.data?.url)
+                }
+                else -> {
+                    Log.i(TAG,"FAIL-> ")
+                }
+            }
+        }
     }
-    fun setThumbnail(value: String){
-        thumbnail.value = value
+    fun setUrl(url: String){
+        _urlResponse.value = url
     }
 
     fun postPlant(){
@@ -85,18 +103,12 @@ class PlantIdViewModel @Inject constructor(private val repository: PlantIdReposi
                 getSpecies().value.toString(),
                 getWater_date().value.toString(),
                 getAdopt_date().value.toString(),
-                getThumbnail().value.toString(),
+                urlResponse.value.toString(),
                 getLight().value.toString(),
                 getAir().value.toString())
             _plantRegisterSuccess.postValue(data.body()?.success)
             Log.i(TAG,"DATA -> $data"+"\n"+data)
             Log.i(TAG,"DATA.body -> $data"+"\n"+data.body())
-//            when (data.body()?.success) {
-//                true -> {
-//                }
-//                else -> {
-//                }
-//            }
         }
     }
 
@@ -106,6 +118,7 @@ class PlantIdViewModel @Inject constructor(private val repository: PlantIdReposi
             when (data.isSuccessful) {
                 true -> {
                     _data.postValue(data.body()?.data!!)
+                    setUrl(data.body()?.data?.thumbnail!!)
                     Log.i(TAG,"SUCCESS -> "+ data.body().toString())
                 }
                 else -> {
@@ -115,15 +128,15 @@ class PlantIdViewModel @Inject constructor(private val repository: PlantIdReposi
         }
     }
 
-    fun patchData(id: String){
+    fun patchData(id: String,
+                  name: String,
+                  adopt_date: String,
+                  light:String,
+                  air:String ){
         viewModelScope.launch {
-            val data = repository.patchPlantId(id,
-                getName().value.toString(),
-                getSpecies().value.toString(),
-                getAdopt_date().value.toString(),
-                getThumbnail().value.toString(),
-                getLight().value.toString(),
-                getAir().value.toString())
+            val data = repository.patchPlantId(id,name,adopt_date,
+                urlResponse.value.toString(),
+                light,air)
             Log.i(TAG, "patch DATA"+data.body())
             when (data.isSuccessful) {
                 true -> {

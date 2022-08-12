@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
@@ -21,25 +22,28 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.charaminstra.pleon.adapter.*
 import com.charaminstra.pleon.databinding.FragmentFeedWriteBinding
+import com.charaminstra.pleon.plant_register.ui.REQUEST_GALLERY
+import com.charaminstra.pleon.plant_register.ui.REQUEST_TAKE_PHOTO
+import com.charaminstra.pleon.viewmodel.FeedWriteViewModel
+import com.charaminstra.pleon.viewmodel.PlantsViewModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import dagger.hilt.android.AndroidEntryPoint
-import java.text.SimpleDateFormat
-import java.util.*
-import androidx.recyclerview.widget.RecyclerView
-import com.charaminstra.pleon.adapter.*
-import com.charaminstra.pleon.foundation.model.PlantDataObject
-import com.charaminstra.pleon.plant_register.ImageViewModel
-import com.charaminstra.pleon.plant_register.PlantIdViewModel
-import com.charaminstra.pleon.plant_register.ui.DEFAULT_GALLERY_REQUEST_CODE
-import com.charaminstra.pleon.plant_register.ui.REQUEST_TAKE_PHOTO
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileInputStream
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 @AndroidEntryPoint
@@ -47,20 +51,14 @@ class FeedWriteFragment : Fragment() {
     private lateinit var binding : FragmentFeedWriteBinding
     private val TAG = javaClass.name
     private val plantsViewModel: PlantsViewModel by viewModels()
-    private val plantIdViewModel: PlantIdViewModel by viewModels()
     private val feedWriteViewModel : FeedWriteViewModel by viewModels()
-    private val imageViewModel : ImageViewModel by viewModels()
     private lateinit var navController: NavController
     private lateinit var plant_adapter: PlantAdapter
     private lateinit var action_adapter: ActionAdapter
     private val cal = Calendar.getInstance()
-    private val dateFormat = SimpleDateFormat("yyyy-MM-dd")
+    private lateinit var dateFormat: SimpleDateFormat
     private lateinit var sheetBehavior : BottomSheetBehavior<View>
-    private var clickCount = 0
-
-    private lateinit var plantId : String
-    private lateinit var plantAction: ActionType
-    private var url : String? = null
+    private lateinit var currentPhotoPath : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,11 +75,8 @@ class FeedWriteFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        dateFormat = SimpleDateFormat(resources.getString(com.charaminstra.pleon.common_ui.R.string.date_format))
         navController = this.findNavController()
-
-        imageViewModel.urlResponse.observe(viewLifecycleOwner, Observer {
-            url = it
-        })
 
         sheetBehavior = BottomSheetBehavior.from(binding.bottomSheet.root)
         sheetBehavior.isHideable=false
@@ -95,22 +90,22 @@ class FeedWriteFragment : Fragment() {
         binding.dateTv.setOnClickListener {
             popUpCalendar(it as TextView)
         }
-        binding.image.visibility = View.GONE
+        binding.imageCard.visibility = View.GONE
         binding.cameraBtn.setOnClickListener{
             popUpImageMenu(it)
-            binding.image.visibility = View.VISIBLE
+            binding.imageCard.visibility = View.VISIBLE
         }
-        binding.image.setOnClickListener {
+        binding.imageCard.setOnClickListener {
             popUpImageMenu(it)
         }
         binding.completeBtn.setOnClickListener {
-            feedWriteViewModel.postFeed(
-                plantId,
-                binding.dateTv.text.toString(),
-                plantAction.action,
-                binding.contentEdit.text.toString(),
-                url
-            )
+            if(feedWriteViewModel.plantId != null &&
+                feedWriteViewModel.plantAction != null){
+                feedWriteViewModel.postFeed(
+                    binding.dateTv.text.toString(),
+                    binding.contentEdit.text.toString()
+                )
+            }
         }
         return binding.root
     }
@@ -186,10 +181,18 @@ class FeedWriteFragment : Fragment() {
         observeViewModel()
         binding.bottomSheet.plantRecyclerview.adapter = plant_adapter
         binding.bottomSheet.actionRecyclerview.adapter= action_adapter
-
-        /**/
         binding.bottomSheet.plantRecyclerview.addOnItemTouchListener(recyclerListener)
         binding.bottomSheet.actionRecyclerview.addOnItemTouchListener(recyclerListener)
+
+        binding.bottomSheet.nextBtn.setOnClickListener {
+            if(feedWriteViewModel.plantId != null &&
+                feedWriteViewModel.plantAction != null){
+                sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+                /* 자동 완성 */
+                binding.contentEdit.setText(feedWriteViewModel.plantName.value +
+                        feedWriteViewModel.plantAction?.desc!!)
+            }
+        }
 
     }
 
@@ -209,15 +212,10 @@ class FeedWriteFragment : Fragment() {
     private fun initList() {
         plant_adapter = PlantAdapter()
         plant_adapter.setType("FEED_PLANT")
-        plant_adapter.onItemClicked = { plantId ->
-            plantIdViewModel.loadData(plantId)
-            clickCount++
-            if(clickCount>=2){
-                sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-            }
-//            val bundle = Bundle()
-//            bundle.putString("id", plantId)
-//            navController.navigate(R.id.view_pager_fragment_to_plant_detail_fragment, bundle)
+        plant_adapter.onItemClicked = { Id ->
+            //plantId = Id
+            feedWriteViewModel.plantId = Id
+            feedWriteViewModel.getPlantName()
         }
 
         action_adapter = ActionAdapter()
@@ -234,14 +232,9 @@ class FeedWriteFragment : Fragment() {
                 ActionObject(ActionType.기타,R.drawable.ic_action_etc)
             )
         )
-        action_adapter.onItemClicked = {actionType ->
-            plantAction = actionType
-            Log.i(TAG,"palntAction : "+plantAction)
-            binding.actionTagTv.text= resources.getString(R.string.action_tag) + plantAction
-            clickCount++
-            if(clickCount>=2){
-                sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-            }
+        action_adapter.onItemClicked = { actionType ->
+            feedWriteViewModel.plantAction = actionType
+            binding.actionTagTv.text= resources.getString(R.string.action_tag) + actionType.toString()
         }
 
     }
@@ -250,10 +243,8 @@ class FeedWriteFragment : Fragment() {
         plantsViewModel.plantsList.observe(viewLifecycleOwner, Observer {
             plant_adapter.refreshItems(it)
         })
-        plantIdViewModel.data.observe(viewLifecycleOwner, Observer {
-            binding.plantTagTv.text = resources.getString(R.string.plant_tag) + it.name
-            plantId = it.id!!
-            Log.i(TAG,"palntId"+plantId)
+        feedWriteViewModel.plantName.observe(viewLifecycleOwner, Observer {
+            binding.plantTagTv.text = resources.getString(R.string.plant_tag) + feedWriteViewModel.plantName.value
         })
         feedWriteViewModel.postSuccess.observe(viewLifecycleOwner, Observer{
             if(it){
@@ -277,34 +268,37 @@ class FeedWriteFragment : Fragment() {
         }
 
         when (requestCode) {
-            DEFAULT_GALLERY_REQUEST_CODE -> {
+            REQUEST_GALLERY -> {
                 data?:return
                 val uri = data.data as Uri
                 activity?.contentResolver?.openInputStream(uri).let {
-                    Log.i("gallery image inputstream : ",it.toString())
                     val bitmap = BitmapFactory.decodeStream(it)
+                    binding.image.setImageBitmap(bitmap)
                     // image veiw set image bit map
                     binding.image.setImageBitmap(bitmap)
+                    Log.i("inputstream",it.toString())
+                    feedWriteViewModel.postImage(it!!)
+                    Log.i("gallery image inputstream : ",it.toString())
+                    // image veiw set image bit map
+
                     // get image url
                     ByteArrayOutputStream().use { stream ->
                         bitmap.compress(Bitmap.CompressFormat.JPEG,100, stream)
                         val inputStream = ByteArrayInputStream(stream.toByteArray())
-                        imageViewModel.postImage(inputStream)
+                        feedWriteViewModel.postImage(inputStream)
                     }
                 }
             }
             REQUEST_TAKE_PHOTO -> {
-                val bitmap = data?.extras?.get("data") as Bitmap
-                binding.image.setImageBitmap(bitmap)
-                ByteArrayOutputStream().use { stream ->
-                    bitmap.compress(Bitmap.CompressFormat.JPEG,100, stream)
-                    val inputStream = ByteArrayInputStream(stream.toByteArray())
-                    Log.i("photo image inputstream", inputStream.toString())
-                    imageViewModel.postImage(inputStream)
-                }
+                Glide.with(this).load(currentPhotoPath).into(binding.image)
+                val inputStream = FileInputStream(currentPhotoPath)
+                feedWriteViewModel.postImage(inputStream)
             }
             else -> {
-                Toast.makeText(requireContext(), resources.getString(R.string.image_error), Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    resources.getString(com.charaminstra.pleon.common_ui.R.string.image_error),
+                    Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -313,7 +307,7 @@ class FeedWriteFragment : Fragment() {
         val intent = Intent()
         intent.type = "image/*"
         intent.action = Intent.ACTION_PICK
-        startActivityForResult(intent, DEFAULT_GALLERY_REQUEST_CODE)
+        startActivityForResult(intent, REQUEST_GALLERY)
     }
 
     private fun checkPermission() : Boolean {
@@ -322,16 +316,32 @@ class FeedWriteFragment : Fragment() {
             return true
         else
             return false
-
     }
 
     private fun openCamera(){
         Log.i("permission",checkPermission().toString())
         if(checkPermission()){
             val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            val photoFile = createImageFile()
+            val uri = FileProvider.getUriForFile(requireContext(),"com.charaminstra.pleon.fileprovider", photoFile)
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
             startActivityForResult(intent, REQUEST_TAKE_PHOTO)
         }else{
-            Toast.makeText(context, resources.getString(R.string.camera_permission_msg), Toast.LENGTH_SHORT).show()
+            Toast.makeText(context,
+                resources.getString(com.charaminstra.pleon.common_ui.R.string.camera_permission_msg),
+                Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun createImageFile(): File {
+        val storageDir: File? = activity?.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        return File.createTempFile(
+            "image", /* prefix */
+            ".jpg", /* suffix */
+            storageDir /* directory */
+        ).apply {
+            // Save a file: path for use with ACTION_VIEW intents
+            currentPhotoPath = absolutePath
         }
     }
 
@@ -344,8 +354,10 @@ class FeedWriteFragment : Fragment() {
                     openCamera()
                 com.charaminstra.pleon.plant_register.R.id.gallery ->
                     openGallery()
-                com.charaminstra.pleon.plant_register.R.id.cancel ->
+                com.charaminstra.pleon.plant_register.R.id.cancel ->{
+                    binding.imageCard.visibility = View.GONE
                     binding.image.setImageBitmap(null)
+                }
             }
             false
         }

@@ -11,5 +11,4 @@
             android:name=".ui.PlantRegisterActivity"
             android:exported="true" />
     </application>
-
 </manifest>

@@ -15,7 +15,7 @@ object PlantViewHolderFactory {
             PlantViewType.FEED_PLANT.ordinal -> FeedPlantViewHolder(ItemPlantFeedBinding.inflate(LayoutInflater.from(parent.context),
                 parent, false)){}
             PlantViewType.GARDEN_PLANT.ordinal -> GardenPlantViewHolder(ItemPlantGardenBinding.inflate(LayoutInflater.from(parent.context),
-                parent, false)){ }
+                parent, false)){}
             else -> throw IllegalArgumentException("Unknown view type")
         }
     }

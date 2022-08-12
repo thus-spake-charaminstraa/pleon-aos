@@ -3,11 +3,8 @@ package com.charaminstra.pleon.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.charaminstra.pleon.databinding.ItemFeedBinding
 import com.charaminstra.pleon.databinding.ItemPlantFeedBinding
-import com.charaminstra.pleon.foundation.model.FeedDataObject
 import com.charaminstra.pleon.viewholder.ActionViewHolder
-import com.charaminstra.pleon.viewholder.FeedViewHolder
 
 class ActionAdapter(): RecyclerView.Adapter<ActionViewHolder>() {
 

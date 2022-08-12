@@ -15,20 +15,33 @@
         <action
             android:id="@+id/view_pager_fragment_to_plant_detail_fragment"
             app:destination="@+id/plant_detail_fragment">
-            <argument
-                android:name="plantId"
-                android:value="string"/>
         </action>
         <action
             android:id="@+id/view_pager_fragment_to_feed_write_fragment"
             app:destination="@+id/feed_write_fragment">
         </action>
+        <action
+            android:id="@+id/view_pager_fragment_to_my_edit_fragment"
+            app:destination="@+id/my_edit_fragment">
+        </action>
+        <action
+            android:id="@+id/view_pager_fragment_to_feed_detail_fragment"
+            app:destination="@+id/feed_detail_fragment">
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/feed_detail_fragment"
+        android:name="com.charaminstra.pleon.FeedDetailFragment"
+        tools:layout="@layout/fragment_feed_detail"/>
+    <fragment
+        android:id="@+id/my_edit_fragment"
+        android:name="com.charaminstra.pleon.MyEditFragment"
+        tools:layout="@layout/fragment_my_edit">
     </fragment>
     <fragment
         android:id="@+id/feed_write_fragment"
         android:name="com.charaminstra.pleon.FeedWriteFragment"
         tools:layout="@layout/fragment_feed_write">
-
     </fragment>
     <fragment
         android:id="@+id/plant_detail_fragment"
