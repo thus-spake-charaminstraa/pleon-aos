@@ -5,13 +5,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.charaminstra.pleon.foundation.UserRepository
 import com.charaminstra.pleon.foundation.api.PleonPreference
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class UserCreateViewModel @Inject constructor(private val repository: UserCreateRepository, private val prefs: PleonPreference) : ViewModel() {
+class UserCreateViewModel @Inject constructor(private val repository: UserRepository, private val prefs: PleonPreference) : ViewModel() {
     private val TAG = javaClass.simpleName
     private var _userCreateSuccess = MutableLiveData<Boolean?>()
     val userCreateSuccess : LiveData<Boolean?> = _userCreateSuccess

@@ -44,7 +44,6 @@ class MyFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initObservers()
-        viewModel.getUserData()
     }
 
     private fun initObservers(){
@@ -69,6 +68,11 @@ class MyFragment : Fragment() {
                 }
             })
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getUserData()
     }
 }
 

@@ -36,8 +36,16 @@ class MyEditFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        initListeners()
         initObservers()
         viewModel.getUserData()
+    }
+
+    private fun initListeners(){
+        binding.completeBtn.setOnClickListener {
+            viewModel.updateUserData(binding.userNameInput.text.toString(), "")
+        }
     }
 
     private fun initObservers(){
@@ -60,6 +68,12 @@ class MyEditFragment : Fragment() {
                     .into(binding.editUserImage)
             }
         })
+        viewModel.updateUserDataSuccess.observe(viewLifecycleOwner, Observer {
+            if(it){
+                findNavController().popBackStack()
+            }else{
+                /* 수정 실패 */
+            }
+        })
     }
-
 }

@@ -46,7 +46,6 @@ class NicknameFragment : Fragment() {
         viewModel.userCreateSuccess.observe(this, Observer {
             if(it == true){
                 startPlantRegisterActivity(requireContext())
-
             }
         })
     }
@@ -54,7 +53,6 @@ class NicknameFragment : Fragment() {
     private fun initListeners(){
         binding.nextBtn.setOnClickListener {
             viewModel.userCreate(binding.nicknameEt.text.toString())
-
         }
     }
 
