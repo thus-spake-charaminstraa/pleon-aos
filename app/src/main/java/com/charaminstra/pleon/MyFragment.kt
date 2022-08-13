@@ -52,8 +52,7 @@ class MyFragment : Fragment() {
                 binding.userName.text = it
             }
         })
-        viewModel.userImgUrl.observe(viewLifecycleOwner, Observer{
-            viewModel.userImgUrl.observe(viewLifecycleOwner, Observer{
+        viewModel.urlResponse.observe(viewLifecycleOwner, Observer{
                 if(it == ""){
                     Log.i(TAG, "userImgUrl is null $it")
                     Glide.with(binding.root)
@@ -65,7 +64,6 @@ class MyFragment : Fragment() {
                         .load(it)
                         .into(binding.userImg)
                 }
-            })
         })
     }
 

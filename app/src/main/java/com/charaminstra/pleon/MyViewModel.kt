@@ -5,26 +5,29 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.charaminstra.pleon.foundation.ImageRepository
 import com.charaminstra.pleon.foundation.UserRepository
 import com.charaminstra.pleon.login.AuthRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.io.InputStream
 import javax.inject.Inject
 
 @HiltViewModel
 class MyViewModel @Inject constructor(
     private val authRepository: AuthRepository,
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val imageRepository: ImageRepository
 ): ViewModel() {
     private val TAG = javaClass.name
     private val _userName =  MutableLiveData<String>()
     val userName : LiveData<String> = _userName
 
-    private val _userImgUrl =  MutableLiveData<String>()
-    val userImgUrl : LiveData<String> = _userImgUrl
-
     private val _updateUserDataSuccess =  MutableLiveData<Boolean>()
     val updateUserDataSuccess : LiveData<Boolean> = _updateUserDataSuccess
+
+    private val _urlResponse = MutableLiveData<String?>()
+    val urlResponse : LiveData<String?> = _urlResponse
 
     fun getUserData(){
         viewModelScope.launch {
@@ -32,7 +35,7 @@ class MyViewModel @Inject constructor(
             when (data.isSuccessful) {
                 true -> {
                     _userName.postValue(data.body()?.data?.nickname!!)
-                    _userImgUrl.postValue(data.body()?.data?.thumbnail!!)
+                    _urlResponse.value=data.body()?.data?.thumbnail!!
                     Log.i(TAG,"SUCCESS -> "+ data.body().toString())
                 }
                 else -> {
@@ -42,9 +45,9 @@ class MyViewModel @Inject constructor(
         }
     }
 
-    fun updateUserData(name: String, thumbnail: String){
+    fun updateUserData(name: String){
         viewModelScope.launch {
-            val data = userRepository.patchUserData(name,thumbnail)
+            val data = userRepository.patchUserData(name,urlResponse.value.toString())
             Log.i(TAG, "patch DATA"+data.body())
             when (data.isSuccessful) {
                 true -> {
@@ -57,5 +60,23 @@ class MyViewModel @Inject constructor(
                 }
             }
         }
+    }
+    fun setImgToUrl(image_stream: InputStream){
+        viewModelScope.launch {
+            val data =imageRepository.postImage(image_stream)
+            Log.i(TAG,"data -> $data")
+            when (data.isSuccessful) {
+                true -> {
+                    Log.i(TAG,"data.body -> "+data.body())
+                    _urlResponse.postValue(data.body()?.data?.url)
+                }
+                else -> {
+                    Log.i(TAG,"FAIL-> ")
+                }
+            }
+        }
+    }
+    fun setNoImg(){
+        _urlResponse.postValue("")
     }
 }
