@@ -51,7 +51,7 @@ class FeedFragment : Fragment() {
         binding.writeBtn.setOnClickListener {
             navController.navigate(R.id.view_pager_fragment_to_feed_write_fragment)
         }
-        binding.feedRecyclerview.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
+        //binding.feedRecyclerview.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
     }
 
     override fun onResume() {

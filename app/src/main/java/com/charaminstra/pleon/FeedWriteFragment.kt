@@ -193,9 +193,7 @@ class FeedWriteFragment : Fragment() {
                         feedWriteViewModel.plantAction?.desc!!)
             }
         }
-
     }
-
 
     fun popUpCalendar(view: TextView) {
         var datePickerDialog = DatePickerDialog(requireContext(), { _, y, m, d ->

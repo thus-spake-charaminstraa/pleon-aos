@@ -41,11 +41,30 @@ class FeedItemViewHolder(
         //comment
         val count = item.comments?.size
         if(count == 0) {
-            binding.feedCommentCount.visibility = View.GONE
+            binding.feedCommentCount.text = "no comment"
+            //binding.feedCommentCount.visibility = View.GONE
+            binding.firstCommentText.visibility = View.GONE
+            binding.firstCommentUserName.visibility = View.GONE
+            binding.firstCommentUserImage.visibility = View.GONE
         }else{
             binding.feedCommentCount.visibility = View.VISIBLE
-            binding.feedCommentCount.text = "댓글 "+count.toString()+"개 더보기"
+            binding.feedCommentCount.text = "댓글 "+count.toString()+"개 모두 보기"
+
+            //first comment
+            binding.firstCommentText.text = item.comments?.get(0)?.content
+            if(item.comments?.get(0)?.author_kind == "user"){
+                binding.firstCommentUserName.text = item.comments?.get(0)?.user?.nickname
+                Glide.with(binding.root)
+                    .load(item.user?.thumbnail)
+                    .into(binding.firstCommentUserImage)
+            }else{
+                binding.firstCommentUserName.text = item.plant?.name
+                Glide.with(binding.root)
+                    .load(item.plant?.thumbnail)
+                    .into(binding.firstCommentUserImage)
+            }
         }
+
 
         binding.root.setOnClickListener {
             Log.i("feed id in feed viewholder", item.id)

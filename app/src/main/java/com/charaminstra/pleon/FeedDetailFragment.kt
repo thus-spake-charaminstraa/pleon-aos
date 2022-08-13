@@ -40,7 +40,8 @@ class FeedDetailFragment : Fragment() {
         arguments?.getString("id")?.let {
             viewModel.feedId = it
         }
-
+        binding.commentEt.showKeyboard()
+        binding.commentEt.isCursorVisible = true
         return binding.root
     }
 
@@ -129,5 +130,10 @@ class FeedDetailFragment : Fragment() {
         super.onResume()
         viewModel.loadFeed()
         viewModel.getCommentList()
+    }
+
+    private fun View.showKeyboard() {
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
     }
 }
