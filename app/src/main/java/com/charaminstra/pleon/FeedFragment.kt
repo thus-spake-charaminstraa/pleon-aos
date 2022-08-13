@@ -45,6 +45,7 @@ class FeedFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initList()
+        initListeners()
         observeViewModel()
         binding.feedFilterRecyclerview.adapter = plantAdapter
         binding.feedRecyclerview.adapter = feedAdapter
@@ -58,14 +59,15 @@ class FeedFragment : Fragment() {
         super.onResume()
         //viewmodel update
         plantsViewModel.loadData()
-        feedViewModel.getFeedList()
+        feedViewModel.getFeedList(null)
     }
 
     private fun initList() {
         plantAdapter = PlantAdapter()
         plantAdapter.setType("FEED_PLANT")
         plantAdapter.onItemClicked = { plantId ->
-
+            Log.i(TAG, "plant id in fragment >> $plantId")
+            feedViewModel.getFeedList(plantId)
         }
         feedAdapter = FeedAdapter()
         feedAdapter.onClickFeed = { Id ->
@@ -85,6 +87,12 @@ class FeedFragment : Fragment() {
                 }
                 else -> { }
             }
+        }
+    }
+
+    private fun initListeners(){
+        binding.allFilter.setOnClickListener {
+            feedViewModel.getFeedList(null)
         }
     }
 

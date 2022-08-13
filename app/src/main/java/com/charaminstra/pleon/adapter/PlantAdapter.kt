@@ -25,11 +25,11 @@ class PlantAdapter(): RecyclerView.Adapter<CommonViewHolder>() {
             PlantViewType.FEED_PLANT.ordinal -> FeedPlantViewHolder(
                 ItemPlantFeedBinding.inflate(
                     LayoutInflater.from(parent.context),
-                parent, false)){}
+                parent, false))
             PlantViewType.GARDEN_PLANT.ordinal -> GardenPlantViewHolder(
                 ItemPlantGardenBinding.inflate(
                     LayoutInflater.from(parent.context),
-                parent, false)){ }
+                parent, false))
             else -> throw IllegalArgumentException("Unknown view type")
         }
     }
@@ -39,10 +39,7 @@ class PlantAdapter(): RecyclerView.Adapter<CommonViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: CommonViewHolder, position: Int) {
-        holder.bind(viewItemList[position])
-        holder.itemView.setOnClickListener {
-            onItemClicked(viewItemList[position].id!!)
-        }
+        holder.bind(viewItemList[position],onItemClicked)
     }
 
     fun refreshItems(viewItemList : List<PlantDataObject>) {

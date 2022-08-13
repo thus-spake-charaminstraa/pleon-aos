@@ -24,6 +24,7 @@ interface FeedAPIService{
     @GET("feed/list")
     suspend fun getFeedList(
         @Header("Authorization") accessToken:String,
+        @Query("plant_id")  plantId:String?
     ): Response<FeedListResponse>
 
     @GET("feed/{id}")

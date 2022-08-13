@@ -31,9 +31,6 @@ class FeedAdapter(): RecyclerView.Adapter<FeedCommonViewHolder>() {
     }
     override fun onBindViewHolder(holder: FeedCommonViewHolder, position: Int) {
         holder.bind(viewItemList[position].viewObject, onClickFeed, onClickNoti)
-//        holder.itemView.setOnClickListener {
-//            onItemClicked(viewItemList[position]?.viewObject!!.id)
-//        }
     }
 
     fun refreshItems(viewItemList : List<ResultObject>) {

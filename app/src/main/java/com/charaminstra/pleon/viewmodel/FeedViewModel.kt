@@ -26,9 +26,9 @@ class FeedViewModel @Inject constructor(
 //    private val _notiClickSuccess = MutableLiveData<Boolean>()
 //    val notiClickSuccess : LiveData<Boolean> = _notiClickSuccess
 
-    fun getFeedList(){
+    fun getFeedList(plant_Id: String?){
         viewModelScope.launch {
-            val data = feedRepository.getFeedList()
+            val data = feedRepository.getFeedList(plant_Id)
             when (data.isSuccessful) {
                 true -> {
                     _feedList.postValue(data.body()?.data?.result)
@@ -47,7 +47,7 @@ class FeedViewModel @Inject constructor(
             val data = notiRepository.postNotiAction(notiId, type)
             when (data.isSuccessful) {
                 true -> {
-                    getFeedList()
+                    getFeedList(null)
                     Log.i(TAG,"SUCCESS -> "+ data.body().toString())
                 }
                 else -> {

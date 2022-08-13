@@ -5,10 +5,9 @@ import com.charaminstra.pleon.databinding.ItemPlantGardenBinding
 import com.charaminstra.pleon.foundation.model.PlantDataObject
 
 class GardenPlantViewHolder(
-    private val binding: ItemPlantGardenBinding,
-    private var onItemClicked: (String) -> Unit): CommonViewHolder(binding) {
+    private val binding: ItemPlantGardenBinding): CommonViewHolder(binding) {
 
-    override fun bind(item: PlantDataObject) {
+    override fun bind(item: PlantDataObject, onItemClicked: (String) -> Unit) {
         binding.plantName.text=item.name
         Glide.with(binding.root)
             .load(item.thumbnail)

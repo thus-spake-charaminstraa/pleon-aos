@@ -3,6 +3,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="feed_all_filter">all</string>
+    <string name="feed_all_filter_title">모두보기</string>
 
     <string name="plant_detail_species_title">species</string>
     <string name="plant_detail_adpot_day_title">adpot day</string>
