@@ -61,9 +61,10 @@ class FeedDetailFragment : Fragment() {
             pop.menuInflater.inflate(R.menu.more_menu, pop.menu)
             pop.setOnMenuItemClickListener { item ->
                 when(item.itemId){
-                    R.id.item_more_edit -> {
+                    //R.id.item_more_edit -> {
                         //feed 수정
-                    }R.id.item_more_delete -> {
+                    //}
+                    R.id.item_more_delete -> {
                         //feed 삭제
                         viewModel.deleteFeed()
                     }
