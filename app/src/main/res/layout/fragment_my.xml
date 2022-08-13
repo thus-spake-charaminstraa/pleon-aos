@@ -14,8 +14,8 @@
         android:layout_height="90dp"
         android:padding="10dp"
         android:layout_marginTop="50dp"
-        app:civ_border_color="@color/input_bg"
-        app:civ_border_width="2dp"
+        android:background="@drawable/round_shape"
+        android:backgroundTint="@color/input_bg"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
     <TextView
@@ -25,7 +25,6 @@
         app:layout_constraintLeft_toRightOf="@id/user_img"
         app:layout_constraintTop_toTopOf="@id/user_img"
         android:padding="10dp"
-        android:text="유랄라"
         style="@style/TitleText"/>
     <TextView
         android:id="@+id/edit_btn"

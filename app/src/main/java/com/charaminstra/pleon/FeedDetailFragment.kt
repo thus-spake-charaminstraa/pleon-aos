@@ -98,6 +98,15 @@ class FeedDetailFragment : Fragment() {
                     .into(binding.plantImage)
             }
             binding.feedDate.text = dateFormat.format(it.publish_date)
+            //user data
+            binding.userName.text = it.user.nickname
+            if(it.user.thumbnail == ""){
+                Glide.with(binding.root)
+                    .load(R.drawable.ic_user)
+                    .into(binding.userImage)
+            }else{
+                Glide.with(binding.root).load(it.user.thumbnail).into(binding.userImage)
+            }
         })
         viewModel.feedComments.observe(viewLifecycleOwner, Observer {
             commentsAdapter.refreshItems(it)

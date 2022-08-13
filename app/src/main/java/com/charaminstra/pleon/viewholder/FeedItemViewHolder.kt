@@ -26,6 +26,17 @@ class FeedItemViewHolder(
         }
         binding.feedDate.text = dateFormat.format(item.publish_date)
 
+        //user data
+        binding.userName.text = item.user.nickname
+        if(item.user.thumbnail == ""){
+            Glide.with(binding.root)
+                .load(R.drawable.ic_user)
+                .into(binding.userImage)
+        }else{
+            Glide.with(binding.root).load(item.user.thumbnail).into(binding.userImage)
+        }
+
+
         binding.root.setOnClickListener {
             Log.i("feed id in feed viewholder", item.id)
             onClickFeed(item.id)

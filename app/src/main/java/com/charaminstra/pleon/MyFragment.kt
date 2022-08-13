@@ -59,7 +59,6 @@ class MyFragment : Fragment() {
                     Glide.with(binding.root)
                         .load(R.drawable.ic_user)
                         .into(binding.userImg)
-
                 }else{
                     Log.i(TAG, "userImgUrl is not !! null $it")
                     Glide.with(binding.root)

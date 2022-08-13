@@ -26,7 +26,8 @@ data class ViewObject(
     val kind: String,
     val content: String,
     val image_url: String?,
-    val plant: PlantDataObject
+    val plant: PlantDataObject,
+    val user: UserDataObject,
 )
 
 data class FeedObject(
@@ -37,5 +38,5 @@ data class FeedObject(
     val content: String,
     val image_url: String?,
     val plant: PlantDataObject,
-    val comments: List<CommentObject>?
+    val comments: List<CommentObject>?,
 )
