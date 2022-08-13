@@ -53,6 +53,9 @@ class PlantEditFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         binding = FragmentPlantEditBinding.inflate(layoutInflater)
+        binding.backBtn.setOnClickListener {
+            navController.popBackStack()
+        }
         dateFormat = SimpleDateFormat(resources.getString(com.charaminstra.pleon.common_ui.R.string.date_format))
         id = arguments?.getString("id")!!
 

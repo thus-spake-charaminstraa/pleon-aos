@@ -63,6 +63,9 @@ class FeedWriteFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = FragmentFeedWriteBinding.inflate(layoutInflater)
+        binding.backBtn.setOnClickListener {
+            navController.popBackStack()
+        }
 
         ActivityCompat.requestPermissions(
             requireActivity(),

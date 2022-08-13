@@ -40,6 +40,9 @@ class FeedDetailFragment : Fragment() {
         arguments?.getString("id")?.let {
             viewModel.feedId = it
         }
+        binding.backBtn.setOnClickListener {
+            navController.popBackStack()
+        }
         binding.commentEt.showKeyboard()
         binding.commentEt.isCursorVisible = true
         return binding.root
