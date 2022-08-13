@@ -14,13 +14,6 @@ abstract class CommonViewHolder(
     abstract fun bind(viewObject: PlantDataObject)
 }
 
-
-//abstract class FeedItemCommonViewHolder(
-//    binding: ViewBinding,
-//): RecyclerView.ViewHolder(binding.root) {
-//    abstract fun bind(viewObject: FeedObject)
-//}
-
 abstract class FeedCommonViewHolder(
     binding: ViewBinding
 ): RecyclerView.ViewHolder(binding.root) {

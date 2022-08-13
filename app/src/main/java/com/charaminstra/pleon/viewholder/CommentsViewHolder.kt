@@ -2,6 +2,7 @@ package com.charaminstra.pleon.viewholder
 
 import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.charaminstra.pleon.databinding.ItemCommentBinding
 import com.charaminstra.pleon.foundation.model.CommentObject
 
@@ -10,7 +11,18 @@ class CommentViewHolder(
 )  : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: CommentObject){
-        Log.i("CommentsViewHolder", "bind: $item")
         binding.commentText.text = item.content
+
+        if(item.author_kind == "user"){
+            binding.commentUserName.text = item.user?.nickname
+            Glide.with(binding.root)
+                .load(item.user?.thumbnail)
+                .into(binding.commentUserImage)
+        }else{
+            binding.commentUserName.text = item.plant?.name
+            Glide.with(binding.root)
+                .load(item.plant?.thumbnail)
+                .into(binding.commentUserImage)
+        }
     }
 }

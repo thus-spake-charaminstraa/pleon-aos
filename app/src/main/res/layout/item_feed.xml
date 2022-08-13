@@ -17,7 +17,6 @@
         android:id="@+id/user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="유랄라"
         style="@style/SubText"
         android:layout_marginLeft="10dp"
         app:layout_constraintLeft_toRightOf="@+id/user_image"

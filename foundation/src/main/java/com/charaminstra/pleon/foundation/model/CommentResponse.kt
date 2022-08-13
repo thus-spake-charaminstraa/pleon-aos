@@ -22,5 +22,7 @@ data class CommentObject(
     val author_kind: String?,
     val content: String?,
     val created_at: Date?,
-    val updated_at: Date?
+    val updated_at: Date?,
+    val user: UserDataObject?,
+    val plant: PlantDataObject?
 )
