@@ -2,6 +2,7 @@ package com.charaminstra.pleon.viewholder
 
 import android.util.Log
 import android.view.View
+import androidx.core.view.setPadding
 import com.bumptech.glide.Glide
 import com.charaminstra.pleon.R
 import com.charaminstra.pleon.databinding.ItemFeedBinding
@@ -32,8 +33,10 @@ class FeedItemViewHolder(
             Glide.with(binding.root)
                 .load(R.drawable.ic_user)
                 .into(binding.userImage)
+            binding.userImage.setPadding(3)
         }else{
             Glide.with(binding.root).load(item.user.thumbnail).into(binding.userImage)
+            binding.userImage.setPadding(0)
         }
 
 

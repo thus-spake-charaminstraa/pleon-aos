@@ -21,6 +21,7 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import androidx.core.view.setPadding
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -107,12 +108,13 @@ class MyEditFragment : Fragment() {
                 Glide.with(binding.root)
                     .load(R.drawable.ic_user)
                     .into(binding.editUserImage)
-
+                binding.editUserImage.setPadding(10)
             }else{
                 Log.i(TAG, "userImgUrl is not !! null $it")
                 Glide.with(binding.root)
                     .load(it)
                     .into(binding.editUserImage)
+                binding.editUserImage.setPadding(0)
             }
         })
         viewModel.updateUserDataSuccess.observe(viewLifecycleOwner, Observer {
