@@ -51,6 +51,9 @@
             android:id="@+id/plant_detail_to_plant_edit_fragment"
             app:destination="@+id/plant_edit_fragment">
         </action>
+        <action
+            android:id="@+id/plant_detail_to_feed_detail_fragment"
+            app:destination="@+id/feed_detail_fragment"/>
     </fragment>
     <fragment
         android:id="@+id/plant_edit_fragment"
