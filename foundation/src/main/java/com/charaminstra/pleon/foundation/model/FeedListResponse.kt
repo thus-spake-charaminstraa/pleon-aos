@@ -28,6 +28,7 @@ data class ViewObject(
     val image_url: String?,
     val plant: PlantDataObject,
     val user: UserDataObject,
+    val comments: List<CommentObject>?,
 )
 
 data class FeedObject(

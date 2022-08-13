@@ -13,7 +13,6 @@ class FeedItemViewHolder(
     private val binding: ItemFeedBinding): FeedCommonViewHolder(binding){
     private lateinit var dateFormat: SimpleDateFormat
 
-//    override fun bind(item: FeedObject) {
     override fun bind(item: ViewObject, onClickFeed: (String) -> Unit, onClickNoti: (String, String) -> Unit)  {
         dateFormat = SimpleDateFormat(binding.root.context.resources.getString(com.charaminstra.pleon.common_ui.R.string.date_format))
         binding.feedContent.text = item.content
@@ -39,6 +38,14 @@ class FeedItemViewHolder(
             binding.userImage.setPadding(0)
         }
 
+        //comment
+        val count = item.comments?.size
+        if(count == 0) {
+            binding.feedCommentCount.visibility = View.GONE
+        }else{
+            binding.feedCommentCount.visibility = View.VISIBLE
+            binding.feedCommentCount.text = "댓글 "+count.toString()+"개 더보기"
+        }
 
         binding.root.setOnClickListener {
             Log.i("feed id in feed viewholder", item.id)
