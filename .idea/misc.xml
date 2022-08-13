@@ -30,6 +30,9 @@
         <entry key="app/src/main/res/drawable/ic_my_inactive.xml" value="0.127" />
         <entry key="app/src/main/res/drawable/input.xml" value="0.1815" />
         <entry key="app/src/main/res/drawable/my_tab_selector.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/noti_complete_button_selector.xml" value="0.2145" />
+        <entry key="app/src/main/res/drawable/noti_later_button_selector.xml" value="0.2145" />
+        <entry key="app/src/main/res/drawable/noti_rounded_corner.xml" value="0.2145" />
         <entry key="app/src/main/res/drawable/round_button.xml" value="0.1605" />
         <entry key="app/src/main/res/drawable/round_calendar_day.xml" value="0.2185" />
         <entry key="app/src/main/res/drawable/round_calendar_today.xml" value="0.2185" />
@@ -62,6 +65,7 @@
         <entry key="app/src/main/res/layout/item_feed.xml" value="0.3251121076233184" />
         <entry key="app/src/main/res/layout/item_garden_plants.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_loading.xml" value="0.2265625" />
+        <entry key="app/src/main/res/layout/item_noti.xml" value="0.2171875" />
         <entry key="app/src/main/res/layout/item_plant_feed.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_plant_garden.xml" value="0.45" />
         <entry key="app/src/main/res/layout/list_item_people_and_plant.xml" value="0.1" />
@@ -102,6 +106,7 @@
         <entry key="plant-register/src/main/res/drawable/image_button_selector.xml" value="0.1" />
         <entry key="plant-register/src/main/res/drawable/press_button.xml" value="0.1" />
         <entry key="plant-register/src/main/res/drawable/unpress_button.xml" value="0.1" />
+        <entry key="plant-register/src/main/res/drawable/white_button.xml" value="0.2145" />
         <entry key="plant-register/src/main/res/layout/activity_plant_register.xml" value="0.1" />
         <entry key="plant-register/src/main/res/layout/fragment_plant_air.xml" value="0.1" />
         <entry key="plant-register/src/main/res/layout/fragment_plant_light.xml" value="0.1" />

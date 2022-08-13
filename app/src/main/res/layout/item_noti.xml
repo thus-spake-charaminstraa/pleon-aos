@@ -30,7 +30,7 @@
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingVertical="10dp"
+        android:paddingVertical="7dp"
         style="@style/SubText"
         app:layout_constraintTop_toBottomOf="@id/pleon_image"/>
     <LinearLayout
@@ -46,8 +46,9 @@
             android:id="@+id/later_btn"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="40dp"
-            android:background="@drawable/noti_rounded_corner"
+            android:layout_height="35dp"
+            android:layout_margin="2dp"
+            android:background="@drawable/noti_later_button_selector"
             style="@style/SubText"
             android:backgroundTint="@color/white"
             android:text="@string/noti_later_btn"/>
@@ -55,11 +56,14 @@
             android:id="@+id/complete_btn"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="40dp"
-            android:layout_marginLeft="20dp"
+            android:layout_height="35dp"
             style="@style/SubText"
             android:backgroundTint="@color/main_color"
-            android:background="@drawable/noti_rounded_corner"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginBottom="2dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/noti_complete_button_selector"
             android:text="@string/noti_complete_btn"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
