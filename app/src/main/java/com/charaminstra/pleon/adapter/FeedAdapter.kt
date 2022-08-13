@@ -11,7 +11,8 @@ import com.charaminstra.pleon.viewholder.*
 class FeedAdapter(): RecyclerView.Adapter<FeedCommonViewHolder>() {
 
     var viewItemList: List<ResultObject> = listOf()
-    var onItemClicked: (String)-> Unit = {}
+    var onClickFeed: (String)-> Unit = {}
+    var onClickNoti: (String, String)-> Unit = { feedId: String, button: String -> }
 
     override fun getItemViewType(position: Int): Int {
         return FeedViewType.valueOf(viewItemList[position].viewType).ordinal
@@ -29,7 +30,7 @@ class FeedAdapter(): RecyclerView.Adapter<FeedCommonViewHolder>() {
         return viewItemList.size
     }
     override fun onBindViewHolder(holder: FeedCommonViewHolder, position: Int) {
-        holder.bind(viewItemList[position].viewObject, onItemClicked)
+        holder.bind(viewItemList[position].viewObject, onClickFeed, onClickNoti)
 //        holder.itemView.setOnClickListener {
 //            onItemClicked(viewItemList[position]?.viewObject!!.id)
 //        }

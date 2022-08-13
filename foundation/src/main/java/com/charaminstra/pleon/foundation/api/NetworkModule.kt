@@ -78,4 +78,10 @@ object NetWorkModule {
     fun provideCommentApiService(retrofit: Retrofit): CommentAPIService {
         return retrofit.create(CommentAPIService::class.java)
     }
+
+    @Provides
+    @Singleton
+    fun provideNotiApiService(retrofit: Retrofit): NotiAPIService {
+        return retrofit.create(NotiAPIService::class.java)
+    }
 }

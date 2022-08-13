@@ -24,7 +24,9 @@ abstract class CommonViewHolder(
 abstract class FeedCommonViewHolder(
     binding: ViewBinding
 ): RecyclerView.ViewHolder(binding.root) {
-    abstract fun bind(viewObject: ViewObject, onItemClicked: (String) -> Unit)
+    abstract fun bind(viewObject: ViewObject,
+                      onClickFeed: (String) -> Unit,
+                      onClickNoti: (String, String) -> Unit)
 }
 
 
