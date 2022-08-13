@@ -2,6 +2,7 @@ package com.charaminstra.pleon
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MyEditFragment : Fragment() {
+    private val TAG = javaClass.name
     private val viewModel: MyViewModel by viewModels()
     private lateinit var binding : FragmentMyEditBinding
 
@@ -34,10 +36,8 @@ class MyEditFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initObservers()
-        viewModel.getUserName()
-        viewModel.getUserImgUrl()
+        viewModel.getUserData()
     }
 
     private fun initObservers(){
@@ -47,12 +47,14 @@ class MyEditFragment : Fragment() {
             }
         })
         viewModel.userImgUrl.observe(viewLifecycleOwner, Observer{
-            if(it == DEFAULT){
+            if(it == ""){
+                Log.i(TAG, "userImgUrl is null $it")
                 Glide.with(binding.root)
                     .load(R.drawable.ic_user)
                     .into(binding.editUserImage)
 
             }else{
+                Log.i(TAG, "userImgUrl is not !! null $it")
                 Glide.with(binding.root)
                     .load(it)
                     .into(binding.editUserImage)

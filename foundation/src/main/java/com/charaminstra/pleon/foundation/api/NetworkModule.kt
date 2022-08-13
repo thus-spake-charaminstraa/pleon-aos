@@ -1,6 +1,5 @@
 package com.charaminstra.pleon.foundation.api
 
-import android.util.Log
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -39,8 +38,8 @@ object NetWorkModule {
 
     @Provides
     @Singleton
-    fun provideApiService(retrofit: Retrofit): APIService {
-        return retrofit.create(APIService::class.java)
+    fun provideUserApiService(retrofit: Retrofit): UserAPIService {
+        return retrofit.create(UserAPIService::class.java)
     }
 
     @Provides

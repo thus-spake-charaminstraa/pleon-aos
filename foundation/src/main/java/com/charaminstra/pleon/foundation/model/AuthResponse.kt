@@ -10,5 +10,6 @@ data class AuthResponse(
 data class authDataObejct(
     val id: String?,
     val nickname: String?,
-    val phone: String?
+    val phone: String?,
+    val thumbnail: String?
 )
