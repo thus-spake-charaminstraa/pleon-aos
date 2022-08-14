@@ -74,6 +74,8 @@
         <entry key="app/src/main/res/layout/plant_edit_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/menu/light_menu.xml" value="0.1" />
         <entry key="app/src/main/res/menu/more_menu.xml" value="0.22708333333333333" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.224" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.224" />
         <entry key="app/src/main/res/xml/network_security_config.xml" value="0.1" />
         <entry key="camera/src/main/res/layout/fragment_camera.xml" value="0.1" />
         <entry key="camera/src/main/res/layout/fragment_my.xml" value="0.1" />

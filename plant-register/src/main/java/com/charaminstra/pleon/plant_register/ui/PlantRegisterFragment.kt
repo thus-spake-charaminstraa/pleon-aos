@@ -8,6 +8,7 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -22,6 +23,7 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat.requestPermissions
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -42,6 +44,7 @@ const val REQUEST_TAKE_PHOTO = 3000
 
 @AndroidEntryPoint
 class PlantRegisterFragment : Fragment() {
+    private val TAG = javaClass.name
     private val plantIdViewModel: PlantIdViewModel by activityViewModels()
     private lateinit var binding: FragmentPlantRegisterBinding
     private lateinit var currentPhotoPath : String
@@ -83,11 +86,24 @@ class PlantRegisterFragment : Fragment() {
         }
 
         binding.nextBtn.setOnClickListener {
-            plantIdViewModel.setName(binding.nameInput.text.toString())
-            plantIdViewModel.setSpecies(binding.speciesBtn.text.toString())
-            plantIdViewModel.setAdopt_date(binding.adoptDayInput.text.toString())
-            plantIdViewModel.setWater_date(binding.waterDayInput.text.toString())
-            navController.navigate(R.id.plant_register_fragment_to_plant_light_fragment)
+            Log.i(TAG, "species Btn : "+binding.speciesBtn.text.isNullOrBlank().toString())
+            if(plantIdViewModel.urlResponse.value.isNullOrBlank()){
+                Toast.makeText(activity,R.string.thumbnail_hint,Toast.LENGTH_LONG).show()
+            }else if(binding.speciesBtn.text.isNullOrBlank()){
+                Toast.makeText(activity,R.string.species_hint,Toast.LENGTH_LONG).show()
+            }else if(binding.nameInput.text.isNullOrBlank()){
+                Toast.makeText(activity,R.string.name_hint,Toast.LENGTH_LONG).show()
+            }else if(binding.adoptDayInput.text.isNullOrBlank()){
+                Toast.makeText(activity,R.string.adopt_day_hint,Toast.LENGTH_LONG).show()
+            }else if(binding.waterDayInput.text.isNullOrBlank()){
+                Toast.makeText(activity,R.string.water_day_hint,Toast.LENGTH_LONG).show()
+            }else{
+                plantIdViewModel.setName(binding.nameInput.text.toString())
+                plantIdViewModel.setSpecies(binding.speciesBtn.text.toString())
+                plantIdViewModel.setAdopt_date(binding.adoptDayInput.text.toString())
+                plantIdViewModel.setWater_date(binding.waterDayInput.text.toString())
+                navController.navigate(R.id.plant_register_fragment_to_plant_light_fragment)
+            }
         }
 
         return binding.root
@@ -229,8 +245,10 @@ class PlantRegisterFragment : Fragment() {
                     openCamera()
                 R.id.gallery ->
                     openGallery()
-                R.id.cancel ->
-                    binding.thumbnail.setImageBitmap(null)
+                R.id.cancel ->{
+                    binding.thumbnail.setImageDrawable(resources.getDrawable(R.drawable.ic_plant))
+                    plantIdViewModel.setNoImg()
+                }
             }
             false
         }

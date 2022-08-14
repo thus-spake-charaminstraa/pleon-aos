@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -42,7 +43,6 @@ class PlantLightFragment : Fragment() {
         binding.lightFour.text = resources.getString(LightType.DARK.descId)
 
         radioGroupSet()
-        setLightType()
         binding.completeBtn.setOnClickListener {
             if(setLightType())
                 navController.navigate(R.id.plant_light_fragment_to_plant_air_fragment)
@@ -80,8 +80,11 @@ class PlantLightFragment : Fragment() {
         } else if (mCheckedId == binding.lightFour.id) {
             viewModel.setLight(LightType.DARK.apiString)
             return true
-        }else
+        }else{
+            Toast.makeText(activity,R.string.choose_msg, Toast.LENGTH_LONG).show()
             return false
+        }
+
     }
 }
 

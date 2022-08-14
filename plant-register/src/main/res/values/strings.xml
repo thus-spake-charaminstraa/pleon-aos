@@ -1,6 +1,7 @@
 <resources>
     <string name="species_title">식물 종류</string>
 
+    <string name="species_hint">식물의 종류를 기입해주세요.</string>
     <string name="name_title">식물 이름</string>
     <string name="name_hint">식물 이름을 지어주세요.</string>
     <string name="adopt_day_title">입양일</string>
@@ -8,12 +9,14 @@
     <string name="water_day_title">물준날</string>
     <string name="water_day_hint">마지막으로 물을 준 날을 기입하세요.</string>
 
+    <string name="thumbnail_hint">식물의 사진을 등록해주세요.</string>
+
     <string name="plant_register_fragment_title">식물을 등록해주세요.</string>
     <string name="img_menu_gallery">사진 선택</string>
     <string name="img_menu_camera">사진 찍기</string>
     <string name="img_menu_cancel">취소</string>
 
-
+    <string name="choose_msg">하나를 선택해주세요.</string>
     <string name="light_title">빛을 어떻게 받고 있나요?</string>
     <string name="light_one">창문 가까이 직사광선을 받아요</string>
     <string name="light_two">창문 안쪽에서 간접광을 받아요</string>

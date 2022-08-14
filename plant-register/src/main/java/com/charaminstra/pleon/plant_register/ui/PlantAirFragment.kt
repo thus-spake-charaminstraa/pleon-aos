@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.charaminstra.pleon.plant_register.AirType
 import com.charaminstra.pleon.plant_register.PlantIdViewModel
+import com.charaminstra.pleon.plant_register.R
 import com.charaminstra.pleon.plant_register.databinding.FragmentPlantAirBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -77,7 +79,8 @@ class PlantAirFragment : Fragment() {
         } else if (mCheckedId == binding.airThree.id) {
             viewModel.setAir(AirType.NO.apiString)
             return true
-        } else{
+        }else{
+            Toast.makeText(activity, R.string.choose_msg, Toast.LENGTH_LONG).show()
             return false
         }
     }

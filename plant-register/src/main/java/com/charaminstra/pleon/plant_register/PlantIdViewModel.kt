@@ -164,6 +164,9 @@ class PlantIdViewModel @Inject constructor(private val repository: PlantIdReposi
                 }
             }
         }
+    }
 
+    fun setNoImg(){
+        _urlResponse.postValue(null)
     }
 }
