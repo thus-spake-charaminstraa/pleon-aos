@@ -8,6 +8,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.charaminstra.pleon.plant_register.AirType
+import com.charaminstra.pleon.plant_register.LightType
 import com.charaminstra.pleon.plant_register.PlantIdViewModel
 import com.charaminstra.pleon.plant_register.R
 import com.charaminstra.pleon.plant_register.databinding.FragmentPlantAirBinding
@@ -34,9 +36,15 @@ class PlantAirFragment : Fragment() {
         binding.backBtn.setOnClickListener {
             navController.popBackStack()
         }
+
+        /* bright, half_bright, lamp, dark */
+        binding.airOne.text = AirType.YES.desc
+        binding.airTwo.text = AirType.WINDOW.desc
+        binding.airThree.text = AirType.NO.desc
+
         radioGroupSet()
         binding.completeBtn.setOnClickListener {
-            if(setLihgtType()){
+            if(setAirType()){
                 viewModel.postPlant()
                 activity?.finish()
             }
@@ -62,18 +70,15 @@ class PlantAirFragment : Fragment() {
             isChecking = true
         }
     }
-    fun setLihgtType() : Boolean {
+    fun setAirType() : Boolean {
         if (mCheckedId == binding.airOne.id) {
-            viewModel.setAir(getString(R.string.air_one))
-            Toast.makeText(requireContext(), "type1", Toast.LENGTH_SHORT).show()
+            viewModel.setAir(AirType.YES.apiString)
             return true
         } else if (mCheckedId == binding.airTwo.id) {
-            viewModel.setAir(getString(R.string.air_two))
-            Toast.makeText(requireContext(), "type2", Toast.LENGTH_SHORT).show()
+            viewModel.setAir(AirType.WINDOW.apiString)
             return true
         } else if (mCheckedId == binding.airThree.id) {
-            viewModel.setAir(getString(R.string.air_three))
-            Toast.makeText(requireContext(), "type3", Toast.LENGTH_SHORT).show()
+            viewModel.setAir(AirType.NO.apiString)
             return true
         } else{
             return false

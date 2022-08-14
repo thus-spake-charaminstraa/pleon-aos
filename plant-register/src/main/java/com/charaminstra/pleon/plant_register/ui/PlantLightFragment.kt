@@ -36,6 +36,12 @@ class PlantLightFragment : Fragment() {
             navController.popBackStack()
         }
 
+        /* bright, half_bright, lamp, dark */
+        binding.lightOne.text = LightType.BRIGHT.desc
+        binding.lightTwo.text = LightType.HALF_BRIGHT.desc
+        binding.lightThree.text = LightType.LAMP.desc
+        binding.lightFour.text = LightType.DARK.desc
+
         radioGroupSet()
         setLightType()
         binding.completeBtn.setOnClickListener {
