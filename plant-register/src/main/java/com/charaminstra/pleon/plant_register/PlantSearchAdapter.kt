@@ -20,7 +20,7 @@ class PlantSearchAdapter() : RecyclerView.Adapter<PlantSearchViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: PlantSearchViewHolder, position: Int) {
-        holder.bind(viewItemList[position])
+        holder.bind(viewItemList[position], onItemClicked)
     }
 
     fun refreshItems(viewItemList : List<PlantSpeciesDataObject>) {
@@ -37,7 +37,11 @@ class PlantSearchViewHolder(
     private var onItemClicked: (String) -> Unit
 ): RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(item: PlantSpeciesDataObject) {
+    fun bind(item: PlantSpeciesDataObject, onItemClicked: (String) -> Unit) {
         binding.plantSpecies.text= item.name
+        binding.root.setOnClickListener {
+            onItemClicked(item.name)
+        }
     }
+
 }

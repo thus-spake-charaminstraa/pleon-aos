@@ -69,7 +69,7 @@ class PlantRegisterFragment : Fragment() {
         binding.backBtn.setOnClickListener {
             activity?.finish()
         }
-        binding.speciesTv.setOnClickListener{
+        binding.speciesBtn.setOnClickListener{
             navController.navigate(R.id.plant_register_fragment_to_plant_search_fragment)
         }
         binding.thumbnail.setOnClickListener {
@@ -84,7 +84,7 @@ class PlantRegisterFragment : Fragment() {
 
         binding.nextBtn.setOnClickListener {
             plantIdViewModel.setName(binding.nameInput.text.toString())
-            plantIdViewModel.setSpecies(binding.speciesTv.text.toString())
+            plantIdViewModel.setSpecies(binding.speciesBtn.text.toString())
             plantIdViewModel.setAdopt_date(binding.adoptDayInput.text.toString())
             plantIdViewModel.setWater_date(binding.waterDayInput.text.toString())
             navController.navigate(R.id.plant_register_fragment_to_plant_light_fragment)
@@ -163,7 +163,6 @@ class PlantRegisterFragment : Fragment() {
             return true
         else
             return false
-
     }
 
     private fun openCamera(){
@@ -236,6 +235,14 @@ class PlantRegisterFragment : Fragment() {
             false
         }
         pop.show()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>("plant_species")?.
+                observe(viewLifecycleOwner){
+                    binding.speciesBtn.text = it
+        }
     }
 
 }

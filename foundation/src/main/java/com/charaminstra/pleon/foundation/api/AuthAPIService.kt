@@ -20,7 +20,7 @@ interface AuthAPIService {
 
     @POST("auth/verify-sms")
     suspend fun postCode(
-        @Body smsRequestBody: SmsRequestBody
+        @Body smsRequestBody: SmsCodeRequestBody
     ): Response<SmsResponse>
 
     /* login */

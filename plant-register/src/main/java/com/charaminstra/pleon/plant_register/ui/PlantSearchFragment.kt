@@ -6,13 +6,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.charaminstra.pleon.foundation.model.PlantSpeciesDataObject
 import com.charaminstra.pleon.plant_register.PlantSearchAdapter
 import com.charaminstra.pleon.plant_register.databinding.FragmentPlantSearchBinding
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
+import kotlin.collections.ArrayList
 
 @AndroidEntryPoint
 class PlantSearchFragment : Fragment() {
@@ -38,16 +43,27 @@ class PlantSearchFragment : Fragment() {
         viewModel.getPlantSpecies()
         binding.plantSpeciesRecyclerview.adapter = adapter
 
+        binding.searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            //확인 누르면
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return false
+            }
+
+            //글자 칠때 마다 변함
+            override fun onQueryTextChange(newText: String): Boolean {
+                viewModel.searchFilter(newText)
+                return true
+            }
+        })
+
         return binding.root
     }
 
     private fun initList() {
         adapter = PlantSearchAdapter()
         adapter.onItemClicked = { name ->
-            Log.i("plant name", name)
-            val bundle = Bundle()
-            bundle.putString("id", name)
-            //navController.bac
+            navController.previousBackStackEntry?.savedStateHandle?.set("plant_species", name)
+            navController.popBackStack()
         }
     }
 
@@ -55,6 +71,8 @@ class PlantSearchFragment : Fragment() {
         viewModel.plantSpeciesList.observe(viewLifecycleOwner, Observer {
             adapter.refreshItems(it)
         })
+        viewModel.searchResult.observe(viewLifecycleOwner, Observer {
+            adapter.refreshItems(it)
+        })
     }
-
 }
