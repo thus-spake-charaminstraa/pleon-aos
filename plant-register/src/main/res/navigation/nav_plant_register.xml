@@ -13,7 +13,14 @@
             android:id="@+id/plant_register_fragment_to_plant_light_fragment"
             app:destination="@id/plant_light_fragment">
         </action>
+        <action
+            android:id="@+id/plant_register_fragment_to_plant_search_fragment"
+            app:destination="@+id/plant_search_fragment"></action>
     </fragment>
+    <fragment
+            android:id="@+id/plant_search_fragment"
+            android:name="com.charaminstra.pleon.plant_register.ui.PlantSearchFragment"
+            tools:layout="@layout/fragment_plant_search"></fragment>
     <fragment
         android:id="@+id/plant_light_fragment"
         android:name="com.charaminstra.pleon.plant_register.ui.PlantLightFragment"

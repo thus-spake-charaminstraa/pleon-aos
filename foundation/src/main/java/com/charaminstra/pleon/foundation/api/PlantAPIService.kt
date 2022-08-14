@@ -1,9 +1,6 @@
 package com.charaminstra.pleon.foundation.api
 
-import com.charaminstra.pleon.foundation.model.PlantEditRequestBody
-import com.charaminstra.pleon.foundation.model.PlantRegisterRequestBody
-import com.charaminstra.pleon.foundation.model.PlantResponse
-import com.charaminstra.pleon.foundation.model.PlantsResponse
+import com.charaminstra.pleon.foundation.model.*
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -37,4 +34,9 @@ interface PlantAPIService {
         @Header("Authorization") accessToken:String,
         @Path("id") id: String
     ): Response<PlantResponse>
+
+    @GET("plant/species")
+    suspend fun getPlantSpecies(
+        @Header("Authorization") accessToken:String
+    ): Response<PlantSpeciesResponse>
 }

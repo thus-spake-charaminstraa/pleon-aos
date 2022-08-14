@@ -6,4 +6,6 @@ import javax.inject.Inject
 
 class PlantsRepository @Inject constructor(private val service: PlantAPIService, private val prefs: PleonPreference)  {
     suspend fun getPlants() = service.getPlants(prefs.getAccessToken())
+
+    suspend fun getPlantSpecies() = service.getPlantSpecies(prefs.getAccessToken())
 }

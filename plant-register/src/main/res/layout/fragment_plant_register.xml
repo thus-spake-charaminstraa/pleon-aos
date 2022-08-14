@@ -64,8 +64,8 @@
         android:paddingHorizontal="15dp"
         android:gravity="center"
         android:orientation="horizontal">
-        <EditText
-            android:id="@+id/species_input"
+        <TextView
+            android:id="@+id/species_tv"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="30dp"
@@ -78,11 +78,11 @@
             android:layout_height="24dp"
             android:layout_marginHorizontal="10dp"
             android:background="@drawable/ic_search" />
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/camera_btn"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:background="@drawable/ic_camera" />
+<!--        <androidx.appcompat.widget.AppCompatButton-->
+<!--            android:id="@+id/camera_btn"-->
+<!--            android:layout_width="24dp"-->
+<!--            android:layout_height="24dp"-->
+<!--            android:background="@drawable/ic_camera" />-->
     </LinearLayout>
     <TextView
         android:id="@+id/name_title"

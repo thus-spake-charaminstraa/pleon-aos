@@ -56,7 +56,7 @@
         <entry key="app/src/main/res/layout/fragment_my_edit.xml" value="0.228125" />
         <entry key="app/src/main/res/layout/fragment_nickname.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_phone.xml" value="0.22289733886718754" />
-        <entry key="app/src/main/res/layout/fragment_plant_detail.xml" value="0.3013182674199623" />
+        <entry key="app/src/main/res/layout/fragment_plant_detail.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_plant_edit.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_plant_register.xml" value="0.2772125244140625" />
         <entry key="app/src/main/res/layout/fragment_view_pager.xml" value="0.1" />
@@ -111,6 +111,8 @@
         <entry key="plant-register/src/main/res/layout/fragment_plant_air.xml" value="0.1" />
         <entry key="plant-register/src/main/res/layout/fragment_plant_light.xml" value="0.1" />
         <entry key="plant-register/src/main/res/layout/fragment_plant_register.xml" value="0.25" />
+        <entry key="plant-register/src/main/res/layout/fragment_plant_search.xml" value="0.1" />
+        <entry key="plant-register/src/main/res/layout/item_plant_search.xml" value="0.10597826086956522" />
         <entry key="plant-register/src/main/res/menu/air_menu.xml" value="0.1" />
         <entry key="plant-register/src/main/res/menu/bright_menu.xml" value="0.1" />
         <entry key="plant-register/src/main/res/menu/image_menu.xml" value="0.1" />
