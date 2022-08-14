@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.charaminstra.pleon.plant_register.LightType
 import com.charaminstra.pleon.plant_register.PlantIdViewModel
 import com.charaminstra.pleon.plant_register.R
 import com.charaminstra.pleon.plant_register.databinding.FragmentPlantLightBinding
@@ -34,11 +35,12 @@ class PlantLightFragment : Fragment() {
         binding.backBtn.setOnClickListener {
             navController.popBackStack()
         }
+
         radioGroupSet()
+        setLightType()
         binding.completeBtn.setOnClickListener {
-            if(setLihgtType()){
+            if(setLightType())
                 navController.navigate(R.id.plant_light_fragment_to_plant_air_fragment)
-            }
         }
         return binding.root
     }
@@ -60,26 +62,21 @@ class PlantLightFragment : Fragment() {
             isChecking = true
         }
     }
-    fun setLihgtType() : Boolean {
+    private fun setLightType(): Boolean{
         if (mCheckedId == binding.lightOne.id) {
-            viewModel.setLight(getString(R.string.light_one))
-            Toast.makeText(requireContext(), "type1", Toast.LENGTH_SHORT).show()
+            viewModel.setLight(LightType.BRIGHT.apiString)
             return true
         } else if (mCheckedId == binding.lightTwo.id) {
-            viewModel.setLight(getString(R.string.light_two))
-            Toast.makeText(requireContext(), "type2", Toast.LENGTH_SHORT).show()
+            viewModel.setLight(LightType.HALF_BRIGHT.apiString)
             return true
         } else if (mCheckedId == binding.lightThree.id) {
-            viewModel.setLight(getString(R.string.light_three))
-            Toast.makeText(requireContext(), "type3", Toast.LENGTH_SHORT).show()
+            viewModel.setLight(LightType.LAMP.apiString)
             return true
         } else if (mCheckedId == binding.lightFour.id) {
-            viewModel.setLight(getString(R.string.light_four))
-            Toast.makeText(requireContext(), "type4", Toast.LENGTH_SHORT).show()
+            viewModel.setLight(LightType.DARK.apiString)
             return true
-        } else{
+        }else
             return false
-        }
     }
 }
 
