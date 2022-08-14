@@ -28,13 +28,11 @@
         <entry key="app/src/main/res/drawable/ic_more.xml" value="0.2255" />
         <entry key="app/src/main/res/drawable/ic_my_active.xml" value="0.127" />
         <entry key="app/src/main/res/drawable/ic_my_inactive.xml" value="0.127" />
+        <entry key="app/src/main/res/drawable/ic_user.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/input.xml" value="0.1815" />
         <entry key="app/src/main/res/drawable/my_tab_selector.xml" value="0.1" />
-        <entry key="app/src/main/res/drawable/noti_complete_button_selector.xml" value="0.2145" />
-        <entry key="app/src/main/res/drawable/noti_later_button_selector.xml" value="0.2145" />
-        <entry key="app/src/main/res/drawable/noti_rounded_corner.xml" value="0.2145" />
+        <entry key="app/src/main/res/drawable/noti_rounded_corner.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/round_button.xml" value="0.1605" />
-        <entry key="app/src/main/res/drawable/round_button_selector.xml" value="0.1015" />
         <entry key="app/src/main/res/drawable/round_calendar_day.xml" value="0.2185" />
         <entry key="app/src/main/res/drawable/round_calendar_today.xml" value="0.2185" />
         <entry key="app/src/main/res/drawable/round_shape.xml" value="0.2185" />
@@ -45,29 +43,30 @@
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.1" />
         <entry key="app/src/main/res/layout/bottom_sheet_layout.xml" value="0.5" />
         <entry key="app/src/main/res/layout/calendar_day_layout.xml" value="0.21770833333333334" />
+        <entry key="app/src/main/res/layout/calendar_header.xml" value="0.12259371833839919" />
         <entry key="app/src/main/res/layout/dialog_delete_layout.xml" value="0.2671875" />
         <entry key="app/src/main/res/layout/fragment_camera.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_chat.xml" value="0.2625" />
-        <entry key="app/src/main/res/layout/fragment_feed.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_feed_detail.xml" value="0.40370370370370373" />
+        <entry key="app/src/main/res/layout/fragment_feed.xml" value="0.496996996996997" />
+        <entry key="app/src/main/res/layout/fragment_feed_detail.xml" value="0.2681564245810056" />
         <entry key="app/src/main/res/layout/fragment_feed_write.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_garden.xml" value="0.3497222900390625" />
+        <entry key="app/src/main/res/layout/fragment_garden.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_my.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_my.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_my_edit.xml" value="0.228125" />
         <entry key="app/src/main/res/layout/fragment_nickname.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_phone.xml" value="0.22289733886718754" />
-        <entry key="app/src/main/res/layout/fragment_plant_detail.xml" value="0.1004566210045662" />
+        <entry key="app/src/main/res/layout/fragment_plant_detail.xml" value="0.3013182674199623" />
         <entry key="app/src/main/res/layout/fragment_plant_edit.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_plant_register.xml" value="0.2772125244140625" />
         <entry key="app/src/main/res/layout/fragment_view_pager.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_calendar.xml" value="0.22864583333333333" />
-        <entry key="app/src/main/res/layout/item_comment.xml" value="0.2625" />
-        <entry key="app/src/main/res/layout/item_feed.xml" value="0.3251121076233184" />
+        <entry key="app/src/main/res/layout/item_comment.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/item_feed.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_garden_plants.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_loading.xml" value="0.2265625" />
-        <entry key="app/src/main/res/layout/item_noti.xml" value="0.2171875" />
-        <entry key="app/src/main/res/layout/item_plant_feed.xml" value="0.45" />
+        <entry key="app/src/main/res/layout/item_noti.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/item_plant_feed.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_plant_garden.xml" value="0.45" />
         <entry key="app/src/main/res/layout/list_item_people_and_plant.xml" value="0.1" />
         <entry key="app/src/main/res/layout/plant_edit_fragment.xml" value="0.1" />
@@ -78,6 +77,7 @@
         <entry key="camera/src/main/res/layout/fragment_my.xml" value="0.1" />
         <entry key="common-ui/src/main/res/drawable/button.xml" value="0.182" />
         <entry key="common-ui/src/main/res/drawable/button_grey.xml" value="0.224" />
+        <entry key="common-ui/src/main/res/drawable/button_maincolor.xml" value="0.1" />
         <entry key="common-ui/src/main/res/drawable/cursor_drawble.xml" value="0.1" />
         <entry key="common-ui/src/main/res/drawable/ic_arrow_back.xml" value="0.1" />
         <entry key="common-ui/src/main/res/drawable/input.xml" value="0.182" />
@@ -107,7 +107,6 @@
         <entry key="plant-register/src/main/res/drawable/image_button_selector.xml" value="0.1" />
         <entry key="plant-register/src/main/res/drawable/press_button.xml" value="0.1" />
         <entry key="plant-register/src/main/res/drawable/unpress_button.xml" value="0.1" />
-        <entry key="plant-register/src/main/res/drawable/white_button.xml" value="0.2145" />
         <entry key="plant-register/src/main/res/layout/activity_plant_register.xml" value="0.1" />
         <entry key="plant-register/src/main/res/layout/fragment_plant_air.xml" value="0.1" />
         <entry key="plant-register/src/main/res/layout/fragment_plant_light.xml" value="0.1" />
