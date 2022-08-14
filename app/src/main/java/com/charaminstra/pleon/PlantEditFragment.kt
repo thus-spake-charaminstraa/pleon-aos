@@ -7,22 +7,21 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.hardware.lights.Light
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
-import com.charaminstra.pleon.plant_register.R
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.PopupMenu
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import androidx.core.view.get
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
@@ -30,7 +29,8 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.charaminstra.pleon.common_ui.CustomDialog
 import com.charaminstra.pleon.databinding.FragmentPlantEditBinding
-import com.charaminstra.pleon.plant_register.PlantIdViewModel
+import com.charaminstra.pleon.plant_register.*
+import com.charaminstra.pleon.R
 import com.charaminstra.pleon.plant_register.ui.REQUEST_GALLERY
 import com.charaminstra.pleon.plant_register.ui.REQUEST_TAKE_PHOTO
 import dagger.hilt.android.AndroidEntryPoint
@@ -59,6 +59,8 @@ class PlantEditFragment : Fragment() {
         dateFormat = SimpleDateFormat(resources.getString(com.charaminstra.pleon.common_ui.R.string.date_format))
         id = arguments?.getString("id")!!
 
+
+
         initListeners()
         initObservers()
 
@@ -81,50 +83,16 @@ class PlantEditFragment : Fragment() {
     ): View? {
         navController = this.findNavController()
 
+        /* spinner */
+        val lightItems = resources.getStringArray(R.array.light_list)
+        val airItems = resources.getStringArray(R.array.air_list)
+        val lightAdapter = ArrayAdapter(requireContext(), R.layout.item_spinner, lightItems)
+        val airAdapter = ArrayAdapter(requireContext(), R.layout.item_spinner, airItems)
+        binding.lightInput.adapter = lightAdapter
+        binding.airInput.adapter = airAdapter
+
         viewModel.loadData(id)
-
-        binding.airInput.setOnClickListener {
-            val pop= PopupMenu(requireContext(),it)
-            pop.menuInflater.inflate(R.menu.air_menu, pop.menu)
-            pop.setOnMenuItemClickListener { item ->
-                when(item.itemId){
-                    R.id.item_air_one -> {
-                        binding.airInput.text = getString(R.string.air_one)
-                    }R.id.item_air_two -> {
-                    binding.airInput.text = getString(R.string.air_two)
-                }R.id.item_air_three -> {
-                    binding.airInput.text = getString(R.string.air_three)
-                }
-                }
-                false
-            }
-            pop.show()
-        }
-
-        binding.lightInput.setOnClickListener {
-            val pop= PopupMenu(requireContext(),it)
-            pop.menuInflater.inflate(R.menu.light_menu, pop.menu)
-            pop.setOnMenuItemClickListener { item ->
-                when(item.itemId){
-                    R.id.item_light_one -> {
-                        binding.lightInput.text = getString(R.string.light_one)
-                    }R.id.item_light_two -> {
-                    binding.lightInput.text = getString(R.string.light_two)
-                    }R.id.item_light_three -> {
-                        binding.lightInput.text = getString(R.string.light_three)
-                    }R.id.item_light_four -> {
-                        binding.lightInput.text = getString(R.string.light_four)
-                    }
-                }
-                false
-            }
-            pop.show()
-        }
-
-
         return binding.root
-
-
     }
 
     // 갤러리 화면에서 이미지를 선택한 경우 현재 화면에 보여준다.
@@ -246,8 +214,20 @@ class PlantEditFragment : Fragment() {
             binding.plantNameInput.setText(it.name)
             binding.speciesInput.setText(it.species)
             binding.adoptDayInput.text = dateFormat.format(it.adopt_date)
-            binding.lightInput.text = it.light
-            binding.airInput.text = it.air
+
+            when(it.light){
+                LightType.BRIGHT.apiString -> binding.lightInput.setSelection(0)
+                LightType.HALF_BRIGHT.apiString -> binding.lightInput.setSelection(1)
+                LightType.LAMP.apiString -> binding.lightInput.setSelection(2)
+                LightType.DARK.apiString -> binding.lightInput.setSelection(3)
+            }
+
+            when(it.air){
+                AirType.YES.apiString -> binding.airInput.setSelection(0)
+                AirType.WINDOW.apiString -> binding.airInput.setSelection(1)
+                AirType.NO.apiString -> binding.airInput.setSelection(2)
+            }
+
         })
         viewModel.patchSuccess.observe(this, Observer{
             if(it){
@@ -266,17 +246,50 @@ class PlantEditFragment : Fragment() {
     }
 
     private fun initListeners(){
+        binding.airInput.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
+                // An item was selected. You can retrieve the selected item using
+                // parent.getItemAtPosition(pos)
+                when(pos){
+                    0 -> viewModel.setAir("yes")
+                    1 -> viewModel.setAir("window")
+                    2 -> viewModel.setAir("no")
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // Another interface callback
+            }
+        }
+        binding.lightInput.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
+                // An item was selected. You can retrieve the selected item using
+                // parent.getItemAtPosition(pos)
+                when(pos){
+                    0 -> viewModel.setLight("bright")
+                    1 -> viewModel.setLight("half_bright")
+                    2 -> viewModel.setLight("lamp")
+                    3 -> viewModel.setLight("dark")
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // Another interface callback
+            }
+        }
         binding.thumbnail.setOnClickListener {
             val pop= PopupMenu(requireContext(),it)
-            pop.menuInflater.inflate(R.menu.image_menu, pop.menu)
+            pop.menuInflater.inflate(com.charaminstra.pleon.plant_register.R.menu.image_menu, pop.menu)
             pop.setOnMenuItemClickListener {
                 when(it.itemId){
-                    R.id.camera ->{
+                    com.charaminstra.pleon.plant_register.R.id.camera ->{
                         openCamera()
                     }
-                    R.id.gallery ->
+                    com.charaminstra.pleon.plant_register.R.id.gallery ->
                         openGallery()
-                    R.id.cancel ->
+                    com.charaminstra.pleon.plant_register.R.id.cancel ->
                         binding.thumbnail.setImageBitmap(null)
 
                 }
@@ -285,11 +298,10 @@ class PlantEditFragment : Fragment() {
             pop.show()
         }
         binding.completeBtn.setOnClickListener{
-            viewModel.patchData(id,
+            viewModel.patchData(
+                id,
                 binding.plantNameInput.text.toString(),
-                binding.adoptDayInput.text.toString(),
-                binding.lightInput.text.toString(),
-                binding.airInput.text.toString())
+                binding.adoptDayInput.text.toString())
         }
         binding.deleteBtn.setOnClickListener {
             val dlg = CustomDialog(requireContext())

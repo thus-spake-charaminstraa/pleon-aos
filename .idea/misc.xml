@@ -69,6 +69,7 @@
         <entry key="app/src/main/res/layout/item_noti.xml" value="0.2171875" />
         <entry key="app/src/main/res/layout/item_plant_feed.xml" value="0.45" />
         <entry key="app/src/main/res/layout/item_plant_garden.xml" value="0.45" />
+        <entry key="app/src/main/res/layout/item_spinner.xml" value="0.11043566362715299" />
         <entry key="app/src/main/res/layout/list_item_people_and_plant.xml" value="0.1" />
         <entry key="app/src/main/res/layout/plant_edit_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/menu/light_menu.xml" value="0.1" />

@@ -131,13 +131,12 @@ class PlantIdViewModel @Inject constructor(private val repository: PlantIdReposi
 
     fun patchData(id: String,
                   name: String,
-                  adopt_date: String,
-                  light:String,
-                  air:String ){
+                  adopt_date: String){
         viewModelScope.launch {
             val data = repository.patchPlantId(id,name,adopt_date,
                 urlResponse.value.toString(),
-                light,air)
+                getLight().value.toString(),
+                getAir().value.toString())
             Log.i(TAG, "patch DATA"+data.body())
             when (data.isSuccessful) {
                 true -> {

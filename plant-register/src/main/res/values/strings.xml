@@ -15,13 +15,13 @@
 
 
     <string name="light_title">빛을 어떻게 받고 있나요?</string>
-    <string name="light_one">bright</string>
-    <string name="light_two">half_bright</string>
-    <string name="light_three">lamp</string>
-    <string name="light_four">dark</string>
+    <string name="light_one">창문 가까이 직사광선을 받아요</string>
+    <string name="light_two">창문 안쪽에서 간접광을 받아요</string>
+    <string name="light_three">식물 조명 빛을 받아요</string>
+    <string name="light_four">해를 못 받아요</string>
 
     <string name="air_title">바람이 얼마나 통하나요?</string>
-    <string name="air_one">yes</string>
-    <string name="air_two">window</string>
-    <string name="air_three">no</string>
+    <string name="air_one">항상 잘 통해요</string>
+    <string name="air_two">창문을 열면 잘 통해요</string>
+    <string name="air_three">바람이 아예 안통해요</string>
 </resources>

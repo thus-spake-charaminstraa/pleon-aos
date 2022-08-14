@@ -1,8 +1,8 @@
 package com.charaminstra.pleon.plant_register
 
-enum class LightType(val apiString: String,val desc: String){
-    BRIGHT("bright", "창문 가까이 직사광선을 받아요"),
-    HALF_BRIGHT("half_bright","창문 안쪽에서 간접광을 받아요"),
-    LAMP("lamp","식물 조명 빛을 받아요"),
-    DARK("dark","해를 못 받아요")
+enum class LightType(val apiString: String,val descId: Int){
+    BRIGHT("bright", R.string.light_one),
+    HALF_BRIGHT("half_bright",R.string.light_two),
+    LAMP("lamp",R.string.light_three),
+    DARK("dark",R.string.light_four),;
 }
