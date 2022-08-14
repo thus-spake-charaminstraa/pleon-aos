@@ -29,6 +29,10 @@ class PlantSearchFragment : Fragment() {
         binding = FragmentPlantSearchBinding.inflate(layoutInflater)
         navController = this.findNavController()
 
+        binding.backBtn.setOnClickListener{
+            navController.popBackStack()
+        }
+
         initList()
         observeViewModel()
         viewModel.getPlantSpecies()
