@@ -3,6 +3,7 @@ package com.charaminstra.pleon
 import android.Manifest
 import android.app.Activity
 import android.app.DatePickerDialog
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -17,6 +18,7 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.PopupMenu
 import android.widget.TextView
 import android.widget.Toast
@@ -83,6 +85,7 @@ class FeedWriteFragment : Fragment() {
 
         sheetBehavior = BottomSheetBehavior.from(binding.bottomSheet.root)
         sheetBehavior.isHideable=false
+        sheetBehavior.isDraggable = false
         sheetBehavior.setPeekHeight(60)
         sheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
         sheetBehavior.addBottomSheetCallback(BSCB)
@@ -103,13 +106,10 @@ class FeedWriteFragment : Fragment() {
             popUpImageMenu(it)
         }
         binding.completeBtn.setOnClickListener {
-            if(feedWriteViewModel.plantId != null &&
-                feedWriteViewModel.plantAction != null){
-                feedWriteViewModel.postFeed(
-                    binding.dateTv.text.toString(),
-                    binding.contentEdit.text.toString()
-                )
-            }
+            feedWriteViewModel.postFeed(
+                binding.dateTv.text.toString(),
+                binding.contentEdit.text.toString()
+            )
         }
         return binding.root
     }
@@ -125,6 +125,8 @@ class FeedWriteFragment : Fragment() {
                 }
                 // 최대 높이로 보이는 상태
                 BottomSheetBehavior.STATE_EXPANDED -> {
+                    binding.contentEdit.hideKeyboard()
+                    binding.contentEdit.visibility = View.GONE
                 }
                 // peek 높이 만큼 보이는 상태
                 BottomSheetBehavior.STATE_COLLAPSED -> {
@@ -156,7 +158,7 @@ class FeedWriteFragment : Fragment() {
                 if(child != null){
                     var position = rv.getChildAdapterPosition(child)
                     var view = rv.layoutManager?.findViewByPosition(position)
-                    view?.setBackgroundResource(R.color.button_bg)
+                    view?.setBackgroundResource(com.charaminstra.pleon.plant_register.R.drawable.check_button)
                     for(i in 0..rv.adapter!!.itemCount){
                         var otherView = rv.layoutManager?.findViewByPosition(i)
                         if(otherView != view){
@@ -186,13 +188,17 @@ class FeedWriteFragment : Fragment() {
         binding.bottomSheet.actionRecyclerview.addOnItemTouchListener(recyclerListener)
 
         binding.bottomSheet.nextBtn.setOnClickListener {
-            if(feedWriteViewModel.plantId != null &&
-                feedWriteViewModel.plantAction != null){
-                sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-                /* 자동 완성 */
+            if(feedWriteViewModel.plantId.isNullOrBlank()){
+                Toast.makeText(activity, R.string.bottom_sheet_plant_msg,Toast.LENGTH_SHORT).show()
+            }else if(feedWriteViewModel.plantAction == null){
+                Toast.makeText(activity, R.string.bottom_sheet_action_msg,Toast.LENGTH_SHORT).show()
+            }else{
                 binding.contentEdit.setText(feedWriteViewModel.plantName.value +
                         feedWriteViewModel.plantAction?.desc!!)
+                sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
                 binding.editTv.visibility = View.VISIBLE
+                binding.contentEdit.visibility = View.VISIBLE
+                binding.contentEdit.showKeyboard()
             }
         }
     }
@@ -219,6 +225,10 @@ class FeedWriteFragment : Fragment() {
         }
 
         action_adapter = ActionAdapter()
+        action_adapter.onItemClicked = { actionType ->
+            feedWriteViewModel.plantAction = actionType
+            binding.actionTagTv.text= resources.getString(R.string.action_tag) + actionType.name
+        }
         action_adapter.refreshItems(
             listOf(
                 ActionObject(ActionType.물,R.drawable.ic_action_water),
@@ -232,10 +242,6 @@ class FeedWriteFragment : Fragment() {
                 ActionObject(ActionType.기타,R.drawable.ic_action_etc)
             )
         )
-        action_adapter.onItemClicked = { actionType ->
-            feedWriteViewModel.plantAction = actionType
-            binding.actionTagTv.text= resources.getString(R.string.action_tag) + actionType.name
-        }
 
     }
 
@@ -362,6 +368,16 @@ class FeedWriteFragment : Fragment() {
             false
         }
         pop.show()
+    }
+
+    private fun View.hideKeyboard() {
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm?.hideSoftInputFromWindow(view?.windowToken, 0)
+    }
+
+    private fun View.showKeyboard() {
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
     }
 
 }

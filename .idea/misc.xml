@@ -45,7 +45,7 @@
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/bottom_sheet_layout.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/bottom_sheet_layout.xml" value="0.40384615384615385" />
         <entry key="app/src/main/res/layout/calendar_day_layout.xml" value="0.21770833333333334" />
         <entry key="app/src/main/res/layout/dialog_delete_layout.xml" value="0.2671875" />
         <entry key="app/src/main/res/layout/fragment_camera.xml" value="0.1" />

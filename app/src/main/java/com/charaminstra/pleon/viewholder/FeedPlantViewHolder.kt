@@ -1,5 +1,6 @@
 package com.charaminstra.pleon.viewholder
 
+import android.util.Log
 import com.bumptech.glide.Glide
 import com.charaminstra.pleon.databinding.ItemPlantFeedBinding
 import com.charaminstra.pleon.foundation.model.PlantDataObject
@@ -12,6 +13,7 @@ class FeedPlantViewHolder(private val binding: ItemPlantFeedBinding): CommonView
             .circleCrop()
             .into(binding.plantImage)
         binding.plantImage.setOnClickListener {
+            Log.i("ha plant","click click")
             onItemClicked(item.id!!)
         }
     }

@@ -81,15 +81,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:layout_marginTop="10dp"
         style="@style/SubText"
         app:layout_constraintTop_toBottomOf="@+id/action_title"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"/>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

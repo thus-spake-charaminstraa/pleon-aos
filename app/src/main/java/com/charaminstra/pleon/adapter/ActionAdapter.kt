@@ -12,7 +12,7 @@ class ActionAdapter(): RecyclerView.Adapter<ActionViewHolder>() {
     var onItemClicked: (ActionType)-> Unit = {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActionViewHolder {
-        return ActionViewHolder((ItemPlantFeedBinding.inflate(LayoutInflater.from(parent.context), parent, false))){}
+        return ActionViewHolder((ItemPlantFeedBinding.inflate(LayoutInflater.from(parent.context), parent, false)))
     }
 
     override fun getItemCount(): Int {
@@ -20,10 +20,7 @@ class ActionAdapter(): RecyclerView.Adapter<ActionViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ActionViewHolder, position: Int) {
-        holder.bind(viewItemList[position])
-        holder.itemView.setOnClickListener {
-            onItemClicked(viewItemList[position].actionType)
-        }
+        holder.bind(viewItemList[position], onItemClicked)
     }
 
     fun refreshItems(viewItemList : List<ActionObject>) {
