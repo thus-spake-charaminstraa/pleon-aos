@@ -28,15 +28,8 @@ class FeedItemViewHolder(
 
         //user data
         binding.userName.text = item.user.nickname
-        if(item.user.thumbnail == ""){
-            Glide.with(binding.root)
-                .load(R.drawable.ic_user)
-                .into(binding.userImage)
-            binding.userImage.setPadding(3)
-        }else{
-            Glide.with(binding.root).load(item.user.thumbnail).into(binding.userImage)
-            binding.userImage.setPadding(0)
-        }
+        Glide.with(binding.root).load(item.user.thumbnail).into(binding.userImage)
+        binding.userImage.setPadding(0)
 
         //comment
         val count = item.comments?.size
