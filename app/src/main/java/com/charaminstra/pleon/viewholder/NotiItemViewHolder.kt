@@ -1,7 +1,6 @@
 package com.charaminstra.pleon.viewholder
 
-import com.charaminstra.pleon.NOTI_COMPLETE
-import com.charaminstra.pleon.NOTI_LATER
+import com.charaminstra.pleon.view.NOTI_LATER
 import com.charaminstra.pleon.databinding.ItemNotiBinding
 import com.charaminstra.pleon.foundation.model.ViewObject
 

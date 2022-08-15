@@ -1,7 +1,6 @@
-package com.charaminstra.pleon
+package com.charaminstra.pleon.view
 
 import android.content.Intent
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -13,9 +12,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
+import com.charaminstra.pleon.MyViewModel
+import com.charaminstra.pleon.R
 import com.charaminstra.pleon.databinding.FragmentMyBinding
-import com.charaminstra.pleon.databinding.FragmentMyEditBinding
-import com.charaminstra.pleon.foundation.api.DEFAULT
 import com.charaminstra.pleon.login.ui.LoginActivity
 import dagger.hilt.android.AndroidEntryPoint
 

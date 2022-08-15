@@ -1,4 +1,4 @@
-package com.charaminstra.pleon
+package com.charaminstra.pleon.view
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,9 +11,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.charaminstra.pleon.R
 import com.charaminstra.pleon.adapter.PlantAdapter
 import com.charaminstra.pleon.databinding.FragmentGardenBinding
-import com.charaminstra.pleon.login.AuthViewModel
 import com.charaminstra.pleon.plant_register.ui.PlantRegisterActivity
 import com.charaminstra.pleon.viewmodel.PlantsViewModel
 import dagger.hilt.android.AndroidEntryPoint

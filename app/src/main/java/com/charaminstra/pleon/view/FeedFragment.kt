@@ -1,4 +1,4 @@
-package com.charaminstra.pleon
+package com.charaminstra.pleon.view
 
 import android.os.Bundle
 import android.util.Log
@@ -10,8 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
+import com.charaminstra.pleon.R
 import com.charaminstra.pleon.adapter.FeedAdapter
 import com.charaminstra.pleon.adapter.PlantAdapter
 import com.charaminstra.pleon.databinding.FragmentFeedBinding
@@ -82,7 +81,7 @@ class FeedFragment : Fragment() {
                 NOTI_LATER -> {
                     feedViewModel.postNotiClick(notiId, "later")
                 }
-                NOTI_COMPLETE-> {
+                NOTI_COMPLETE -> {
                     feedViewModel.postNotiClick(notiId, "complete")
                 }
                 else -> { }

@@ -31,21 +31,21 @@
     </fragment>
     <fragment
         android:id="@+id/feed_detail_fragment"
-        android:name="com.charaminstra.pleon.FeedDetailFragment"
+        android:name="com.charaminstra.pleon.view.FeedDetailFragment"
         tools:layout="@layout/fragment_feed_detail"/>
     <fragment
         android:id="@+id/my_edit_fragment"
-        android:name="com.charaminstra.pleon.MyEditFragment"
+        android:name="com.charaminstra.pleon.view.MyEditFragment"
         tools:layout="@layout/fragment_my_edit">
     </fragment>
     <fragment
         android:id="@+id/feed_write_fragment"
-        android:name="com.charaminstra.pleon.FeedWriteFragment"
+        android:name="com.charaminstra.pleon.view.FeedWriteFragment"
         tools:layout="@layout/fragment_feed_write">
     </fragment>
     <fragment
         android:id="@+id/plant_detail_fragment"
-        android:name="com.charaminstra.pleon.PlantDetailFragment"
+        android:name="com.charaminstra.pleon.view.PlantDetailFragment"
         tools:layout="@layout/fragment_plant_detail">
         <action
             android:id="@+id/plant_detail_to_plant_edit_fragment"
@@ -57,7 +57,7 @@
     </fragment>
     <fragment
         android:id="@+id/plant_edit_fragment"
-        android:name="com.charaminstra.pleon.PlantEditFragment"
+        android:name="com.charaminstra.pleon.view.PlantEditFragment"
         tools:layout="@layout/fragment_plant_edit">
         <action
             android:id="@+id/plant_edit_fragment_delete"

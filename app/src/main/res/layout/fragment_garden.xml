@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/garden_bg"
-    tools:context=".GardenFragment">
+    tools:context=".view.GardenFragment">
     <TextView
         android:id="@+id/garden_fragment_title"
         android:layout_marginTop="80dp"

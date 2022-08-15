@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#FCFCFC"
-    tools:context=".ChatFragment">
+    tools:context=".view.ChatFragment">
     <ImageView
         android:id="@+id/waiting_img"
         android:layout_width="150dp"

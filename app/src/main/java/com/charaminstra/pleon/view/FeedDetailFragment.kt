@@ -1,9 +1,7 @@
-package com.charaminstra.pleon
+package com.charaminstra.pleon.view
 
 import android.content.Context
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,9 +13,9 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.charaminstra.pleon.R
 import com.charaminstra.pleon.adapter.CommentsAdapter
 import com.charaminstra.pleon.databinding.FragmentFeedDetailBinding
-import com.charaminstra.pleon.databinding.FragmentPlantDetailBinding
 import com.charaminstra.pleon.viewmodel.FeedDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat

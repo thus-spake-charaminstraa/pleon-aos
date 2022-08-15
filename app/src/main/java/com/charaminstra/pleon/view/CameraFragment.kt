@@ -1,4 +1,4 @@
-package com.charaminstra.pleon
+package com.charaminstra.pleon.view
 
 import android.os.Bundle
 import android.os.Handler

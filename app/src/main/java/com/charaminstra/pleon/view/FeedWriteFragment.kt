@@ -1,4 +1,4 @@
-package com.charaminstra.pleon
+package com.charaminstra.pleon.view
 
 import android.Manifest
 import android.app.Activity
@@ -32,6 +32,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.charaminstra.pleon.R
 import com.charaminstra.pleon.adapter.*
 import com.charaminstra.pleon.databinding.FragmentFeedWriteBinding
 import com.charaminstra.pleon.plant_register.ui.REQUEST_GALLERY
@@ -236,15 +237,15 @@ class FeedWriteFragment : Fragment() {
         }
         action_adapter.refreshItems(
             listOf(
-                ActionObject(ActionType.물,R.drawable.ic_action_water),
-                ActionObject(ActionType.통풍,R.drawable.ic_action_air),
-                ActionObject(ActionType.분무,R.drawable.ic_action_spray),
-                ActionObject(ActionType.분갈이,R.drawable.ic_action_repot),
-                ActionObject(ActionType.가지치기,R.drawable.ic_action_prune),
-                ActionObject(ActionType.잎,R.drawable.ic_action_leaf),
-                ActionObject(ActionType.꽃,R.drawable.ic_action_flower),
-                ActionObject(ActionType.영양제,R.drawable.ic_action_fertilize),
-                ActionObject(ActionType.기타,R.drawable.ic_action_etc)
+                ActionObject(ActionType.물, R.drawable.ic_action_water),
+                ActionObject(ActionType.통풍, R.drawable.ic_action_air),
+                ActionObject(ActionType.분무, R.drawable.ic_action_spray),
+                ActionObject(ActionType.분갈이, R.drawable.ic_action_repot),
+                ActionObject(ActionType.가지치기, R.drawable.ic_action_prune),
+                ActionObject(ActionType.잎, R.drawable.ic_action_leaf),
+                ActionObject(ActionType.꽃, R.drawable.ic_action_flower),
+                ActionObject(ActionType.영양제, R.drawable.ic_action_fertilize),
+                ActionObject(ActionType.기타, R.drawable.ic_action_etc)
             )
         )
 
