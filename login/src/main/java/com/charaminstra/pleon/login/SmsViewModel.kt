@@ -30,17 +30,17 @@ class SmsViewModel @Inject constructor(private val repository: SmsRepository, pr
     fun postPhoneNum(phone: String){
         viewModelScope.launch {
             /*test account*/
-            _phoneResponse.postValue(true)
-            //val data =repository.postPhoneNum(phone)
-//            Log.i(PHONE_TAG,"post phone num response -> $data")
-//            when (data.isSuccessful) {
-//                true -> {
-//                    _phoneResponse.postValue(true)
-//                }
-//                else -> {
-//                    _phoneResponse.postValue(false)
-//                }
-//            }
+           // _phoneResponse.postValue(true)
+            val data =repository.postPhoneNum(phone)
+            Log.i(PHONE_TAG,"post phone num response -> $data")
+            when (data.isSuccessful) {
+                true -> {
+                    _phoneResponse.postValue(true)
+                }
+                else -> {
+                    _phoneResponse.postValue(false)
+                }
+            }
         }
     }
     fun postCode(phone: String, code:String){

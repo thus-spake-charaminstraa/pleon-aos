@@ -128,19 +128,8 @@ class PlantDetailFragment : Fragment() {
         }
 
         setCalendarView()
-        val monthTitleFormatter = DateTimeFormatter.ofPattern("MMMM")
-        binding.calendarView.monthScrollListener = { month ->
-            val title = "${monthTitleFormatter.format(month.yearMonth)} ${month.yearMonth.year}"
-            plantDetailViewModel.getSchedule(month.yearMonth.year,month.yearMonth.monthValue)
-            binding.calendarMonth.text = title
-        }
-
-
-
-
 
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -150,6 +139,14 @@ class PlantDetailFragment : Fragment() {
 
         binding.feedRecyclerview.adapter = feedAdapter
         binding.feedRecyclerview.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
+
+        val monthTitleFormatter = DateTimeFormatter.ofPattern("MMMM")
+        binding.calendarView.monthScrollListener = { month ->
+            val title = "${monthTitleFormatter.format(month.yearMonth)} ${month.yearMonth.year}"
+            plantDetailViewModel.getSchedule(month.yearMonth.year,month.yearMonth.monthValue)
+            binding.calendarMonth.text = title
+            selectDate(month.yearMonth.atDay(1))
+        }
 
     }
 
@@ -175,7 +172,7 @@ class PlantDetailFragment : Fragment() {
 
         })
         plantDetailViewModel.scheduleData.observe(viewLifecycleOwner, Observer {
-            //scheduleList = it
+            scheduleList = it
             //binding.calendarView.notify
         })
         plantDetailViewModel.feedList.observe(viewLifecycleOwner, Observer {
@@ -220,6 +217,7 @@ class PlantDetailFragment : Fragment() {
             binding.calendarView.setup(firstMonth, lastMonth, firstDayOfWeek)
             binding.calendarView.scrollToMonth(currentMonth)
 
+            selectDate(today)
 
             /* day binder */
             binding.calendarView.dayBinder = object : DayBinder<DayViewContainer> {
@@ -231,8 +229,10 @@ class PlantDetailFragment : Fragment() {
                     container.day = day
                     container.binding.calendarDayText.text = day.date.dayOfMonth.toString()
 
+                    /* day click */
                     container.binding.root.setOnClickListener {
                         plantDetailViewModel.getFeed(day.date.toString())
+                        selectDate(day.date)
                     }
 
                     Log.i("day", day.toString())
