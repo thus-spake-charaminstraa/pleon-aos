@@ -50,6 +50,7 @@ class PlantDetailViewModel @Inject constructor(
 
     fun getSchedule(year:Int, month: Int) {
         viewModelScope.launch {
+            Log.i(TAG, plantId!!)
             val data = scheduleRepository.getSchedule(plantId!!,year,month)
             when(data.isSuccessful){
                 true -> {

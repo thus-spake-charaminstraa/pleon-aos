@@ -22,6 +22,7 @@ import com.charaminstra.pleon.adapter.FeedAdapter
 import com.charaminstra.pleon.calendar.MonthViewContainer
 import com.charaminstra.pleon.databinding.CalendarDayLayoutBinding
 import com.charaminstra.pleon.databinding.FragmentPlantDetailBinding
+import com.charaminstra.pleon.foundation.ScheduleRepository
 import com.charaminstra.pleon.foundation.model.ScheduleDataObject
 import com.charaminstra.pleon.plant_register.PlantIdViewModel
 import com.charaminstra.pleon.viewmodel.PlantDetailViewModel
@@ -35,6 +36,7 @@ import com.kizitonwose.calendarview.utils.next
 import com.kizitonwose.calendarview.utils.previous
 import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.internal.notify
+import okhttp3.internal.notifyAll
 import java.text.SimpleDateFormat
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -53,13 +55,10 @@ class PlantDetailFragment : Fragment() {
     private val plantDetailViewModel: PlantDetailViewModel by viewModels()
     private lateinit var feedAdapter: FeedAdapter
     private lateinit var binding : FragmentPlantDetailBinding
-    lateinit var plantId : String
     private var selectedDate: LocalDate? = null
     private lateinit var dateFormat: SimpleDateFormat
     private lateinit var navController: NavController
     private var scheduleList : List<ScheduleDataObject> = listOf()
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,17 +66,16 @@ class PlantDetailFragment : Fragment() {
         navController = this.findNavController()
         binding = FragmentPlantDetailBinding.inflate(layoutInflater)
         /*plant Id*/
-        arguments?.getString("id")?.let {
-            plantDetailViewModel.plantId = it
-            /**/
-            plantId = it
-            viewModel.loadData(plantId)
+        arguments?.getString("id")?.let { id ->
+            plantDetailViewModel.plantId = id
+            viewModel.loadData(id)
             binding.editBtn.setOnClickListener {
                 val bundle = Bundle()
-                bundle.putString("id",plantId)
+                bundle.putString("id",id)
                 navController.navigate(R.id.plant_detail_to_plant_edit_fragment,bundle)
             }
         }
+
     }
 
     override fun onCreateView(
@@ -85,17 +83,20 @@ class PlantDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-
         binding.backBtn.setOnClickListener {
             navController.popBackStack()
         }
 
+        /*calendar date start*/
+        val currentMonth = YearMonth.now()
+        val firstMonth = currentMonth.minusMonths(10)
+        val lastMonth = currentMonth.plusMonths(10)
+        val firstDayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek
 
-        //binding.calendarMonth.text =currentMonth.toString()
-        //plantDetailViewModel.getSchedule(currentMonth.year,currentMonth.monthValue)
-//        plantDetailViewModel.getSchedule(2022,8)
-//        Log.i("주목주목",plantDetailViewModel.scheduleData.value.toString())
+        binding.calendarView.setup(firstMonth, lastMonth, firstDayOfWeek)
+        binding.calendarView.scrollToMonth(currentMonth)
 
+        selectDate(today)
 
         val daysOfWeek=daysOfWeekFromLocale()
         /* month binder*/
@@ -127,15 +128,18 @@ class PlantDetailFragment : Fragment() {
             }
         }
 
-        setCalendarView()
+
+
 
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initList()
+
         observeViewModel()
+        plantDetailViewModel.getSchedule(2022,8)
+        initList()
 
         binding.feedRecyclerview.adapter = feedAdapter
         binding.feedRecyclerview.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
@@ -143,10 +147,12 @@ class PlantDetailFragment : Fragment() {
         val monthTitleFormatter = DateTimeFormatter.ofPattern("MMMM")
         binding.calendarView.monthScrollListener = { month ->
             val title = "${monthTitleFormatter.format(month.yearMonth)} ${month.yearMonth.year}"
-            plantDetailViewModel.getSchedule(month.yearMonth.year,month.yearMonth.monthValue)
+            Log.i(TAG,"get schedule"+month.yearMonth.year +"년"+ month.yearMonth.monthValue+"월")
+           plantDetailViewModel.getSchedule(month.yearMonth.year,month.yearMonth.monthValue)
             binding.calendarMonth.text = title
-            selectDate(month.yearMonth.atDay(1))
+
         }
+        setCalendarView()
 
     }
 
@@ -173,6 +179,7 @@ class PlantDetailFragment : Fragment() {
         })
         plantDetailViewModel.scheduleData.observe(viewLifecycleOwner, Observer {
             scheduleList = it
+            setCalendarView()
             //binding.calendarView.notify
         })
         plantDetailViewModel.feedList.observe(viewLifecycleOwner, Observer {
@@ -183,6 +190,7 @@ class PlantDetailFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         plantDetailViewModel.getFeed(null)
+        setCalendarView()
     }
 
     private fun selectDate(date: LocalDate) {
@@ -207,17 +215,7 @@ class PlantDetailFragment : Fragment() {
     }
 
     private fun setCalendarView(){
-        with(binding.calendarView){
-            /*calendar date start*/
-            val currentMonth = YearMonth.now()
-            val firstMonth = currentMonth.minusMonths(10)
-            val lastMonth = currentMonth.plusMonths(10)
-            val firstDayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek
 
-            binding.calendarView.setup(firstMonth, lastMonth, firstDayOfWeek)
-            binding.calendarView.scrollToMonth(currentMonth)
-
-            selectDate(today)
 
             /* day binder */
             binding.calendarView.dayBinder = object : DayBinder<DayViewContainer> {
@@ -293,7 +291,7 @@ class PlantDetailFragment : Fragment() {
                     }
                 }
             }
-        }
+
     }
 }
 
