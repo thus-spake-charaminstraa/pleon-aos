@@ -1,4 +1,4 @@
-package com.charaminstra.pleon
+package com.charaminstra.pleon.view
 
 import android.os.Bundle
 import android.util.Log
@@ -16,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.charaminstra.pleon.R
 import com.charaminstra.pleon.adapter.ActionObject
 import com.charaminstra.pleon.adapter.FeedAdapter
 import com.charaminstra.pleon.calendar.MonthViewContainer
@@ -33,6 +34,7 @@ import com.kizitonwose.calendarview.ui.ViewContainer
 import com.kizitonwose.calendarview.utils.next
 import com.kizitonwose.calendarview.utils.previous
 import dagger.hilt.android.AndroidEntryPoint
+import okhttp3.internal.notify
 import java.text.SimpleDateFormat
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -57,32 +59,13 @@ class PlantDetailFragment : Fragment() {
     private lateinit var navController: NavController
     private var scheduleList : List<ScheduleDataObject> = listOf()
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentPlantDetailBinding.inflate(layoutInflater)
         dateFormat = SimpleDateFormat(resources.getString(com.charaminstra.pleon.common_ui.R.string.date_format))
         navController = this.findNavController()
-        binding.backBtn.setOnClickListener {
-            navController.popBackStack()
-        }
-        return binding.root
-
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initList()
-        observeViewModel()
-
-        binding.feedRecyclerview.adapter = feedAdapter
-        binding.feedRecyclerview.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
-
+        binding = FragmentPlantDetailBinding.inflate(layoutInflater)
         /*plant Id*/
         arguments?.getString("id")?.let {
             plantDetailViewModel.plantId = it
@@ -95,16 +78,23 @@ class PlantDetailFragment : Fragment() {
                 navController.navigate(R.id.plant_detail_to_plant_edit_fragment,bundle)
             }
         }
+    }
 
-        /*calendar date start*/
-        val currentMonth = YearMonth.now()
-        val firstMonth = currentMonth.minusMonths(10)
-        val lastMonth = currentMonth.plusMonths(10)
-        val firstDayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek
-        binding.calendarView.setup(firstMonth, lastMonth, firstDayOfWeek)
-        binding.calendarView.scrollToMonth(currentMonth)
-        binding.calendarMonth.text =currentMonth.toString()
-        plantDetailViewModel.getSchedule(currentMonth.year,currentMonth.monthValue)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+
+
+        binding.backBtn.setOnClickListener {
+            navController.popBackStack()
+        }
+
+
+        //binding.calendarMonth.text =currentMonth.toString()
+        //plantDetailViewModel.getSchedule(currentMonth.year,currentMonth.monthValue)
+//        plantDetailViewModel.getSchedule(2022,8)
+//        Log.i("주목주목",plantDetailViewModel.scheduleData.value.toString())
 
 
         val daysOfWeek=daysOfWeekFromLocale()
@@ -137,6 +127,7 @@ class PlantDetailFragment : Fragment() {
             }
         }
 
+        setCalendarView()
         val monthTitleFormatter = DateTimeFormatter.ofPattern("MMMM")
         binding.calendarView.monthScrollListener = { month ->
             val title = "${monthTitleFormatter.format(month.yearMonth)} ${month.yearMonth.year}"
@@ -144,88 +135,22 @@ class PlantDetailFragment : Fragment() {
             binding.calendarMonth.text = title
         }
 
-        class DayViewContainer(view: View) : ViewContainer(view) {
-            // With ViewBinding
-            val binding = CalendarDayLayoutBinding.bind(view)
-            lateinit var day: CalendarDay
-
-            init {
-                view.setOnClickListener {
-                    if (day.owner == DayOwner.THIS_MONTH) {
-                        selectDate(day.date)
-                    }
-                }
-            }
-        }
-
-        /* day binder */
-        binding.calendarView.dayBinder = object : DayBinder<DayViewContainer> {
-            // Called only when a new container is needed.
-            override fun create(view: View) = DayViewContainer(view)
-
-            // Called every time we need to reuse a container.
-            override fun bind(container: DayViewContainer, day: CalendarDay) {
-                container.day = day
-                container.binding.calendarDayText.text = day.date.dayOfMonth.toString()
-
-                Log.i("day",day.toString())
-                Log.i("day.date",day.date.toString())
-                Log.i("scheduleList",scheduleList.toString())
-
-                /* dot 표시 */
-                for(item in scheduleList){
-                    val date = dateFormat.format(item.timestamp)
-                    if(date == day.date.toString()){
-                        for(k in item.kinds){
-                            if(k=="water"){
-                                container.binding.dot1.visibility = View.VISIBLE
-                                container.binding.dot1.setImageResource(R.drawable.ic_dot_water)
-                            }else if(k=="air"){
-                                container.binding.dot2.visibility = View.VISIBLE
-                                container.binding.dot2.setImageResource(R.drawable.ic_dot_air)
-                            }else if(k=="spray"){
-                                container.binding.dot3.visibility = View.VISIBLE
-                                container.binding.dot3.setImageResource(R.drawable.ic_dot_spray)
-                            }else if(k=="prune"){
-                                container.binding.dot4.visibility = View.VISIBLE
-                                container.binding.dot4.setImageResource(R.drawable.ic_dot_prune)
-                            }else if(k=="fertilize"){
-                                container.binding.dot5.visibility = View.VISIBLE
-                                container.binding.dot5.setImageResource(R.drawable.ic_dot_fertilize)
-                            }else if(k=="repot"){
-                                container.binding.dot6.visibility = View.VISIBLE
-                                container.binding.dot6.setImageResource(R.drawable.ic_dot_repot)
-                            }
-                        }
-
-                    }
-                }
 
 
-                if (day.owner == DayOwner.THIS_MONTH) {
-                    /* 해당하는 달의 글씨 색만 black */
-                    when (day.date) {
-                        /* 오늘의 글씨색과 배경 */
-                        today -> {
-                            container.binding.calendarDayText.setTextColor(resources.getColor(R.color.black))
-                            container.binding.calendarDayText.setBackgroundResource(R.drawable.round_calendar_today)
-                        }
-                        /* 선택한 날짜의 글씨색과 배경 */
-                        selectedDate -> {
-                            container.binding.calendarDayText.setTextColor(resources.getColor(R.color.white))
-                            container.binding.calendarDayText.setBackgroundResource(R.drawable.round_calendar_clickday)
-                        }
-                        /* 그 외의의 글씨색과 배경 */
-                        else -> {
-                            container.binding.calendarDayText.setTextColor(resources.getColor(R.color.black))
-                            container.binding.calendarDayText.background = null
-                        }
-                    }
-                } else {
-                    container.binding.calendarDayText.setTextColor(resources.getColor(R.color.calendar_text_grey))
-                }
-            }
-        }
+
+
+        return binding.root
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initList()
+        observeViewModel()
+
+        binding.feedRecyclerview.adapter = feedAdapter
+        binding.feedRecyclerview.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
+
     }
 
     private fun initList() {
@@ -250,7 +175,8 @@ class PlantDetailFragment : Fragment() {
 
         })
         plantDetailViewModel.scheduleData.observe(viewLifecycleOwner, Observer {
-            refreshScheduleList(it)
+            //scheduleList = it
+            //binding.calendarView.notify
         })
         plantDetailViewModel.feedList.observe(viewLifecycleOwner, Observer {
             feedAdapter.refreshItems(it)
@@ -270,10 +196,6 @@ class PlantDetailFragment : Fragment() {
             binding.calendarView.notifyDateChanged(date)
         }
     }
-    private fun refreshScheduleList(newSchedule : List<ScheduleDataObject>) {
-        this.scheduleList = newSchedule
-    }
-
     fun daysOfWeekFromLocale(): Array<DayOfWeek> {
         val firstDayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek
         val daysOfWeek = DayOfWeek.values()
@@ -287,6 +209,105 @@ class PlantDetailFragment : Fragment() {
         return daysOfWeek
     }
 
+    private fun setCalendarView(){
+        with(binding.calendarView){
+            /*calendar date start*/
+            val currentMonth = YearMonth.now()
+            val firstMonth = currentMonth.minusMonths(10)
+            val lastMonth = currentMonth.plusMonths(10)
+            val firstDayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek
+
+            binding.calendarView.setup(firstMonth, lastMonth, firstDayOfWeek)
+            binding.calendarView.scrollToMonth(currentMonth)
 
 
+            /* day binder */
+            binding.calendarView.dayBinder = object : DayBinder<DayViewContainer> {
+                // Called only when a new container is needed.
+                override fun create(view: View) = DayViewContainer(view)
+
+                // Called every time we need to reuse a container.
+                override fun bind(container: DayViewContainer, day: CalendarDay) {
+                    container.day = day
+                    container.binding.calendarDayText.text = day.date.dayOfMonth.toString()
+
+                    container.binding.root.setOnClickListener {
+                        plantDetailViewModel.getFeed(day.date.toString())
+                    }
+
+                    Log.i("day", day.toString())
+                    Log.i("day.date", day.date.toString())
+                    //Log.i("scheduleList",scheduleList.toString())
+
+                    /* dot 표시 */
+                    for (item in scheduleList) {
+                        val date = dateFormat.format(item.timestamp)
+                        if (date == day.date.toString()) {
+                            for (k in item.kinds) {
+                                if (k == "water") {
+                                    container.binding.dot1.visibility = View.VISIBLE
+                                    container.binding.dot1.setImageResource(R.drawable.ic_dot_water)
+                                } else if (k == "air") {
+                                    container.binding.dot2.visibility = View.VISIBLE
+                                    container.binding.dot2.setImageResource(R.drawable.ic_dot_air)
+                                } else if (k == "spray") {
+                                    container.binding.dot3.visibility = View.VISIBLE
+                                    container.binding.dot3.setImageResource(R.drawable.ic_dot_spray)
+                                } else if (k == "prune") {
+                                    container.binding.dot4.visibility = View.VISIBLE
+                                    container.binding.dot4.setImageResource(R.drawable.ic_dot_prune)
+                                } else if (k == "fertilize") {
+                                    container.binding.dot5.visibility = View.VISIBLE
+                                    container.binding.dot5.setImageResource(R.drawable.ic_dot_fertilize)
+                                } else if (k == "repot") {
+                                    container.binding.dot6.visibility = View.VISIBLE
+                                    container.binding.dot6.setImageResource(R.drawable.ic_dot_repot)
+                                }
+                            }
+
+                        }
+                    }
+
+
+                    if (day.owner == DayOwner.THIS_MONTH) {
+                        /* 해당하는 달의 글씨 색만 black */
+                        when (day.date) {
+                            /* 오늘의 글씨색과 배경 */
+                            today -> {
+                                container.binding.calendarDayText.setTextColor(resources.getColor(R.color.black))
+                                container.binding.calendarDayText.setBackgroundResource(R.drawable.round_calendar_today)
+                            }
+                            /* 선택한 날짜의 글씨색과 배경 */
+                            selectedDate -> {
+                                container.binding.calendarDayText.setTextColor(resources.getColor(R.color.white))
+                                container.binding.calendarDayText.setBackgroundResource(R.drawable.round_calendar_clickday)
+                            }
+                            /* 그 외의의 글씨색과 배경 */
+                            else -> {
+                                container.binding.calendarDayText.setTextColor(resources.getColor(R.color.black))
+                                container.binding.calendarDayText.background = null
+                            }
+                        }
+                    } else {
+                        container.binding.calendarDayText.setTextColor(resources.getColor(R.color.calendar_text_grey))
+                    }
+                }
+            }
+        }
+    }
 }
+
+class DayViewContainer(view: View) : ViewContainer(view) {
+    // With ViewBinding
+    val binding = CalendarDayLayoutBinding.bind(view)
+    lateinit var day: CalendarDay
+
+//    init {
+//        view.setOnClickListener {
+//            if (day.owner == DayOwner.THIS_MONTH) {
+//                selectDate(day.date)
+//            }
+//        }
+//    }
+}
+

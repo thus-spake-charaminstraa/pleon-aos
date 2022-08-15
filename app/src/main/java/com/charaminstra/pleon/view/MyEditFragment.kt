@@ -102,19 +102,20 @@ class MyEditFragment : Fragment() {
             }
         })
         viewModel.urlResponse.observe(viewLifecycleOwner, Observer{
-            if(it == ""){
-                Log.i(TAG, "userImgUrl is null $it")
-                Glide.with(binding.root)
-                    .load(R.drawable.ic_user)
-                    .into(binding.editUserImage)
-                binding.editUserImage.setPadding(10)
-            }else{
-                Log.i(TAG, "userImgUrl is not !! null $it")
-                Glide.with(binding.root)
-                    .load(it)
-                    .into(binding.editUserImage)
-                binding.editUserImage.setPadding(0)
-            }
+            Glide.with(binding.root)
+                .load(it)
+                .into(binding.editUserImage)
+//            if(it == ""){
+//                Log.i(TAG, "userImgUrl is null $it")
+//                Glide.with(binding.root)
+//                    .load(R.drawable.ic_user)
+//                    .into(binding.editUserImage)
+//                binding.editUserImage.setPadding(10)
+//            }else{
+//                Log.i(TAG, "userImgUrl is not !! null $it")
+//
+//                binding.editUserImage.setPadding(0)
+//            }
         })
         viewModel.updateUserDataSuccess.observe(viewLifecycleOwner, Observer {
             if(it){

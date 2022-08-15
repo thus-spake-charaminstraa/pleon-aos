@@ -15,6 +15,7 @@ import com.charaminstra.pleon.R
 import com.charaminstra.pleon.adapter.PlantAdapter
 import com.charaminstra.pleon.databinding.FragmentGardenBinding
 import com.charaminstra.pleon.plant_register.ui.PlantRegisterActivity
+import com.charaminstra.pleon.viewmodel.PlantDetailViewModel
 import com.charaminstra.pleon.viewmodel.PlantsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 

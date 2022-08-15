@@ -53,19 +53,20 @@ class MyFragment : Fragment() {
             }
         })
         viewModel.urlResponse.observe(viewLifecycleOwner, Observer{
-                if(it == ""){
-                    Log.i(TAG, "userImgUrl is null $it")
-                    Glide.with(binding.root)
-                        .load(R.drawable.ic_user)
-                        .into(binding.userImg)
-                    binding.userImg.setPadding(10)
-                }else{
-                    Log.i(TAG, "userImgUrl is not !! null $it")
-                    Glide.with(binding.root)
-                        .load(it)
-                        .into(binding.userImg)
-                    binding.userImg.setPadding(0)
-                }
+            Glide.with(binding.root)
+                .load(it)
+                .into(binding.userImg)
+            binding.userImg.setPadding(0)
+//                if(it == ""){
+//                    Log.i(TAG, "userImgUrl is null $it")
+//                    Glide.with(binding.root)
+//                        .load(R.drawable.ic_user)
+//                        .into(binding.userImg)
+//                    binding.userImg.setPadding(10)
+//                }else{
+//                    Log.i(TAG, "userImgUrl is not !! null $it")
+//
+//                }
         })
     }
 
