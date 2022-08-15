@@ -5,13 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingHorizontal="20dp"
     android:paddingTop="44dp"
     tools:context=".view.PlantDetailFragment">
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/back_btn"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="15dp"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:background="@android:color/transparent"
@@ -34,6 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 style="@style/TitleText"/>
@@ -53,7 +54,7 @@
                 android:layout_height="110dp"
                 android:layout_marginTop="20dp"
                 app:cardCornerRadius="20dp"
-                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintLeft_toLeftOf="@+id/plant_name"
                 app:layout_constraintTop_toBottomOf="@+id/plant_name">
                 <ImageView
                     android:id="@+id/plant_image"
@@ -135,7 +136,7 @@
                 android:layout_marginEnd="22dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 app:tint="@color/calendar_text_grey"
-                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintLeft_toLeftOf="@+id/plant_name"
                 app:layout_constraintTop_toTopOf="@+id/calendar_month"
                 app:srcCompat="@drawable/ic_left" />
             <TextView
@@ -152,6 +153,7 @@
                 android:id="@+id/calendar_month_next_btn"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
+                android:layout_marginRight="20dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 app:tint="@color/calendar_text_grey"
                 app:layout_constraintRight_toRightOf="parent"
@@ -162,6 +164,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="10dp"
                 app:cv_dayViewResource="@layout/calendar_day_layout"
                 app:layout_constraintTop_toBottomOf="@+id/calendar_month"
                 app:cv_monthHeaderResource="@layout/calendar_header"
@@ -173,6 +176,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginRight="20dp"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/calendar_view">
                 <ImageView
@@ -220,6 +224,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginRight="20dp"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/action_line1">
                 <ImageView

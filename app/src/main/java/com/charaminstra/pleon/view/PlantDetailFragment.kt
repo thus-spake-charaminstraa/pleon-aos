@@ -95,6 +95,7 @@ class PlantDetailFragment : Fragment() {
 
         binding.calendarView.setup(firstMonth, lastMonth, firstDayOfWeek)
         binding.calendarView.scrollToMonth(currentMonth)
+        binding.calendarView.itemAnimator = null
 
         selectDate(today)
 
