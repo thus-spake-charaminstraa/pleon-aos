@@ -15,7 +15,7 @@ class WelcomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = com.charaminstra.pleon.login.databinding.FragmentWelcomeBinding.inflate(inflater, container, false)
-        binding.helloText.text = "마틸다 님,\n"+getString(R.string.welcome_fragment_title)
+        binding.helloText.text = "안녕하세요."
         binding.startBtn.setOnClickListener {
             startHomeActivity(requireContext())
         }

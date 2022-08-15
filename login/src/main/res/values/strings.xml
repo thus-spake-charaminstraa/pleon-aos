@@ -16,4 +16,6 @@
 
 
     <string name="start_btn">시작하기</string>
+    <string name="hello_msg1">안녕하세요 :)</string>
+    <string name="hello_msg2">당신의 반려식물 케어를 도와줄 Pleon 입니다.</string>
 </resources>

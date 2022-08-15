@@ -102,7 +102,7 @@
         <entry key="login/src/main/res/layout/fragment_plant_air.xml" value="0.1" />
         <entry key="login/src/main/res/layout/fragment_plant_place.xml" value="0.1" />
         <entry key="login/src/main/res/layout/fragment_plant_register.xml" value="0.1" />
-        <entry key="login/src/main/res/layout/fragment_welcome.xml" value="0.55" />
+        <entry key="login/src/main/res/layout/fragment_welcome.xml" value="0.375" />
         <entry key="plant-ar/src/main/res/layout-ar/camera_fragmnet.xml" value="0.21875" />
         <entry key="plant-ar/src/main/res/layout/fragment_camera.xml" value="0.21770833333333334" />
         <entry key="plant-register/src/main/res/drawable/choose_button.xml" value="0.1375" />

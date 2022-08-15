@@ -28,6 +28,7 @@ class PlantSearchViewModel  @Inject constructor(
     fun getPlantSpecies(){
         viewModelScope.launch {
             val data = plantsRepository.getPlantSpecies()
+            Log.i(TAG,"data -> "+ data.body().toString())
             when (data.isSuccessful) {
                 true -> {
                     _plantSpeciesList.postValue(data.body()?.data!!)

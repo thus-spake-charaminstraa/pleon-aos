@@ -51,7 +51,7 @@ class NicknameFragment : Fragment() {
     }
 
     private fun initListeners(){
-        binding.nextBtn.setOnClickListener {
+        binding.registerBtn.setOnClickListener {
             viewModel.userCreate(binding.nicknameEt.text.toString())
         }
     }

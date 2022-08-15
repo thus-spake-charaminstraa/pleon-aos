@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_login"
     app:startDestination="@id/login_fragment">
+
     <fragment
         android:id="@+id/login_fragment"
         android:name="com.charaminstra.pleon.login.ui.LoginFragment"
@@ -34,5 +35,6 @@
         android:name="com.charaminstra.pleon.login.ui.WelcomeFragment"
         tools:layout="@layout/fragment_welcome">
     </fragment>
+
 
 </navigation>
