@@ -18,7 +18,7 @@ class ActionViewHolder(
         binding.root.setOnClickListener {
             onItemClicked(item.actionType)
         }
-        binding.plantImage.setImageResource(item.actionImage)
+        Glide.with(binding.root).load(item.actionImage).circleCrop().into(binding.plantImage)
     }
 
 }

@@ -89,6 +89,7 @@ class FeedWriteFragment : Fragment() {
 
         binding.plantTagTv.setOnClickListener(SOCL)
         binding.actionTagTv.setOnClickListener(SOCL)
+        binding.editTv.setOnClickListener(SOCL)
         binding.dateTv.text = dateFormat.format(cal.time).toString()
         binding.dateTv.setOnClickListener {
             popUpCalendar(it as TextView)
@@ -121,15 +122,12 @@ class FeedWriteFragment : Fragment() {
                 // 드래그 동작 후 BottomSheet가 특정 높이로 고정될 때의 상태
                 // SETTLING 후 EXPANDED, SETTLING 후 COLLAPSED, SETTLING 후 HIDDEN
                 BottomSheetBehavior.STATE_SETTLING -> {
-                    binding.bottomSheet.bottomSheetArrow.setImageResource(R.drawable.ic_bottom_sheet_up);
                 }
                 // 최대 높이로 보이는 상태
                 BottomSheetBehavior.STATE_EXPANDED -> {
-                    binding.bottomSheet.bottomSheetArrow.setImageResource(R.drawable.ic_bottom_sheet_down);
                 }
                 // peek 높이 만큼 보이는 상태
                 BottomSheetBehavior.STATE_COLLAPSED -> {
-                    binding.bottomSheet.bottomSheetArrow.setImageResource(R.drawable.ic_bottom_sheet_up);
                 }
                 // 숨김 상태
                 BottomSheetBehavior.STATE_HIDDEN -> { }
@@ -194,6 +192,7 @@ class FeedWriteFragment : Fragment() {
                 /* 자동 완성 */
                 binding.contentEdit.setText(feedWriteViewModel.plantName.value +
                         feedWriteViewModel.plantAction?.desc!!)
+                binding.editTv.visibility = View.VISIBLE
             }
         }
     }
@@ -235,7 +234,7 @@ class FeedWriteFragment : Fragment() {
         )
         action_adapter.onItemClicked = { actionType ->
             feedWriteViewModel.plantAction = actionType
-            binding.actionTagTv.text= resources.getString(R.string.action_tag) + actionType.toString()
+            binding.actionTagTv.text= resources.getString(R.string.action_tag) + actionType.name
         }
 
     }
