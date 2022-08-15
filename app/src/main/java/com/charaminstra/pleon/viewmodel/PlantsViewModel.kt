@@ -18,6 +18,9 @@ class PlantsViewModel @Inject constructor(
 
     private val _plantsList = MutableLiveData<List<PlantDataObject>>()
     val plantsList : LiveData<List<PlantDataObject>> = _plantsList
+
+    private val _plantsCount = MutableLiveData<Int>()
+    val plantsCount : LiveData<Int> = _plantsCount
 //
     //fun getData() = plantsList
 
@@ -32,6 +35,7 @@ class PlantsViewModel @Inject constructor(
             Log.i(TAG, "data.body -> "+data.body())
             when (data.isSuccessful) {
                 true -> {
+                    _plantsCount.postValue(data.body()?.data?.size)
                     _plantsList.postValue(data.body()?.data!!)
                     Log.i(TAG,"SUCCESS -> "+ data.body().toString())
                 }

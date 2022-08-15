@@ -23,6 +23,9 @@ class FeedViewModel @Inject constructor(
     private val _feedList = MutableLiveData<List<ResultObject>>()
     val feedList : LiveData<List<ResultObject>> = _feedList
 
+    private val _feedCount = MutableLiveData<Int>()
+    val feedCount : LiveData<Int> = _feedCount
+
 //    private val _notiClickSuccess = MutableLiveData<Boolean>()
 //    val notiClickSuccess : LiveData<Boolean> = _notiClickSuccess
 
@@ -32,6 +35,7 @@ class FeedViewModel @Inject constructor(
             when (data.isSuccessful) {
                 true -> {
                     _feedList.postValue(data.body()?.data?.result)
+                    _feedCount.postValue(data.body()?.data?.result?.size)
                     Log.i(TAG,"SUCCESS -> "+ data.body().toString())
                 }
                 else -> {

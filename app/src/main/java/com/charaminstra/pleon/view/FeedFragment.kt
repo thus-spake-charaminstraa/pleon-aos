@@ -1,5 +1,6 @@
 package com.charaminstra.pleon.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,6 +15,7 @@ import com.charaminstra.pleon.R
 import com.charaminstra.pleon.adapter.FeedAdapter
 import com.charaminstra.pleon.adapter.PlantAdapter
 import com.charaminstra.pleon.databinding.FragmentFeedBinding
+import com.charaminstra.pleon.plant_register.ui.PlantRegisterActivity
 import com.charaminstra.pleon.viewmodel.FeedViewModel
 import com.charaminstra.pleon.viewmodel.PlantsViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -52,6 +54,11 @@ class FeedFragment : Fragment() {
             navController.navigate(R.id.view_pager_fragment_to_feed_write_fragment)
         }
         //binding.feedRecyclerview.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
+        binding.noPlantButton.setOnClickListener {
+            val intent = Intent(context, PlantRegisterActivity::class.java)
+            intent.putExtra("from", "main")
+            startActivity(intent)
+        }
     }
 
     override fun onResume() {
@@ -101,6 +108,21 @@ class FeedFragment : Fragment() {
         })
         feedViewModel.feedList.observe(viewLifecycleOwner, Observer {
             feedAdapter.refreshItems(it)
+        })
+        feedViewModel.feedCount.observe(viewLifecycleOwner, Observer{
+            if(it == 0){
+                binding.noFeedTv.visibility = View.VISIBLE
+            }else{
+                binding.noFeedTv.visibility = View.GONE
+            }
+        })
+        plantsViewModel.plantsCount.observe(viewLifecycleOwner, Observer{
+            if(it == 0) {
+                binding.noFeedTv.visibility = View.GONE
+                binding.noPlantButton.visibility = View.VISIBLE
+            }else{
+                binding.noPlantButton.visibility = View.GONE
+            }
         })
     }
 }

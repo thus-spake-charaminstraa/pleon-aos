@@ -21,7 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class GardenFragment : Fragment() {
-    private val viewModel: PlantsViewModel by viewModels()
+    private val plantsViewModel: PlantsViewModel by viewModels()
     private lateinit var binding: FragmentGardenBinding
     private lateinit var navController: NavController
     private lateinit var adapter: PlantAdapter
@@ -39,6 +39,11 @@ class GardenFragment : Fragment() {
         binding.gardenFragmentTitle.text = "Garden"
 
         binding.circleBtn.setOnClickListener {
+            val intent = Intent(context, PlantRegisterActivity::class.java)
+            intent.putExtra("from", "main")
+            startActivity(intent)
+        }
+        binding.noPlantButton.setOnClickListener {
             val intent = Intent(context, PlantRegisterActivity::class.java)
             intent.putExtra("from", "main")
             startActivity(intent)
@@ -66,14 +71,19 @@ class GardenFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        viewModel.plantsList.observe(viewLifecycleOwner, Observer {
+        plantsViewModel.plantsList.observe(viewLifecycleOwner, Observer {
             adapter.refreshItems(it)
+        })
+        plantsViewModel.plantsCount.observe(viewLifecycleOwner, Observer{
+            if(it == 0) {
+                binding.noPlantButton.visibility = View.VISIBLE
+            }
         })
     }
 
     override fun onResume() {
         super.onResume()
         //viewmodel update
-        viewModel.loadData()
+        plantsViewModel.loadData()
     }
 }
