@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide
 import com.charaminstra.pleon.MyViewModel
 import com.charaminstra.pleon.R
 import com.charaminstra.pleon.databinding.FragmentMyBinding
+import com.charaminstra.pleon.foundation.api.PleonPreference
 import com.charaminstra.pleon.login.ui.LoginActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -33,6 +34,7 @@ class MyFragment : Fragment() {
             navController.navigate(R.id.view_pager_fragment_to_my_edit_fragment)
         }
         binding.logoutBtn.setOnClickListener{
+            viewModel.deletePreference()
             activity?.finish()
             val intent = Intent(activity, LoginActivity::class.java)
             startActivity(intent)

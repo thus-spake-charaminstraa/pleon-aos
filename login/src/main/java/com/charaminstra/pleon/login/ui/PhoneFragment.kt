@@ -7,12 +7,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.charaminstra.pleon.login.PhoneViewModel
 import com.charaminstra.pleon.login.R
-import com.charaminstra.pleon.login.SmsViewModel
 import com.charaminstra.pleon.login.databinding.FragmentPhoneBinding
 import com.charaminstra.pleon.login.startHomeActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,7 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class PhoneFragment : Fragment() {
     private val TAG = javaClass.simpleName
     private lateinit var binding: FragmentPhoneBinding
-    private val viewModel: SmsViewModel by viewModels()
+    private val viewModel: PhoneViewModel by viewModels()
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,18 +57,21 @@ class PhoneFragment : Fragment() {
         viewModel.codeResponse.observe(this, Observer {
             Log.i(TAG,"code response : $it")
             if(it){
-                viewModel.userExist.observe(this, Observer {
-                    Log.i(TAG,"user exist : $it")
-                    if(it){
-                        /* 기존 회원 */
-                        viewModel.postLogin()
-                        startHomeActivity(requireContext())
-                    }else{
-                        /* 신규 회원 */
-                        navController.navigate(R.id.phone_fragment_to_nickname_fragment)
 
-                    }
-                })
+            }else{
+                Toast.makeText(activity, R.string.code_error_msg, Toast.LENGTH_SHORT).show()
+            }
+        })
+        viewModel.userExist.observe(this, Observer {
+            Log.i(TAG,"user exist : $it")
+            if(it){
+                /* 기존 회원 */
+                viewModel.postLogin()
+                startHomeActivity(requireContext())
+            }else{
+                /* 신규 회원 */
+                navController.navigate(R.id.phone_fragment_to_nickname_fragment)
+
             }
         })
     }

@@ -32,7 +32,6 @@ class PleonPreference @Inject constructor(@ApplicationContext context : Context)
     fun getAccessToken(): String {
         return "Bearer "+prefs.getString(ACCESS_KEY, DEFAULT).toString()
     }
-
     fun setName(str: String?) {
         prefs.edit().putString(NAME, str).apply()
         Log.d(NAME, "name set : "+ getName() )
@@ -40,15 +39,6 @@ class PleonPreference @Inject constructor(@ApplicationContext context : Context)
     fun getName(): String {
         return prefs.getString(NAME, DEFAULT).toString()
     }
-
-    fun setImage(str: String?) {
-        prefs.edit().putString(IMAGE_URL, str).apply()
-        Log.d(IMAGE_URL, "image url set : "+ getImage() )
-    }
-    fun getImage(): String {
-        return prefs.getString(IMAGE_URL, DEFAULT).toString()
-    }
-
     fun setRefreshToken(str: String?) {
         prefs.edit().putString(REFRESH_KEY, str).apply()
         Log.d(REFRESH_KEY, "token set : "+ getRefreshToken() )

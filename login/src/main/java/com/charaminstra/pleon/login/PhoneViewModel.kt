@@ -15,7 +15,7 @@ const val CODE_TAG = "sms view model : code"
 const val LOGIN_TAG = "sms view model : login"
 
 @HiltViewModel
-class SmsViewModel @Inject constructor(private val repository: SmsRepository, private val prefs: PleonPreference) : ViewModel() {
+class PhoneViewModel @Inject constructor(private val repository: AuthRepository, private val prefs: PleonPreference) : ViewModel() {
 
     private var _phoneResponse = MutableLiveData<Boolean>()
     val phoneResponse : LiveData<Boolean> = _phoneResponse
@@ -46,18 +46,16 @@ class SmsViewModel @Inject constructor(private val repository: SmsRepository, pr
     fun postCode(phone: String, code:String){
         viewModelScope.launch {
             val data = repository.postCode(phone,code)
-            _codeResponse.postValue(data.body()?.success)
-            when (data.body()?.success) {
+            Log.i(CODE_TAG,"data -> $data"+"\n"+data)
+            when(data.isSuccessful){
                 true -> {
+                    _codeResponse.postValue(data.body()?.success)
                     prefs.setVerifyToken(data.body()?.data?.verify_token)
-                    if(data.body()!!.data?.isExist == true){
-                        _userExist.postValue(true)
-                    }else{
-                        _userExist.postValue(false)
-                    }
+                    _userExist.postValue(data.body()?.data?.isExist!!)
                 }
                 else -> {
-                    Log.i(CODE_TAG,"FAIL -> $data"+"\n"+data.errorBody())
+                    _codeResponse.postValue(false)
+                    Log.i(CODE_TAG,"FAIL-> ")
                 }
             }
         }

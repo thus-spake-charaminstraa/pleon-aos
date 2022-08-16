@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.charaminstra.pleon.foundation.ImageRepository
 import com.charaminstra.pleon.foundation.UserRepository
+import com.charaminstra.pleon.foundation.api.PleonPreference
 import com.charaminstra.pleon.login.AuthRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -17,7 +18,8 @@ import javax.inject.Inject
 class MyViewModel @Inject constructor(
     private val authRepository: AuthRepository,
     private val userRepository: UserRepository,
-    private val imageRepository: ImageRepository
+    private val imageRepository: ImageRepository,
+    private val prefs : PleonPreference
 ): ViewModel() {
     private val TAG = javaClass.name
     private val _userName =  MutableLiveData<String>()
@@ -78,5 +80,9 @@ class MyViewModel @Inject constructor(
     }
     fun setNoImg(){
         _urlResponse.postValue("")
+    }
+
+    fun deletePreference(){
+        prefs.delete()
     }
 }
