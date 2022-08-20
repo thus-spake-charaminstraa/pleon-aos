@@ -11,6 +11,8 @@ import com.charaminstra.pleon.login.AuthViewModel
 import com.charaminstra.pleon.login.R
 import com.charaminstra.pleon.login.startHomeActivity
 import com.charaminstra.pleon.login.ui.LoginActivity
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -21,6 +23,8 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_splash)
+
+        getFirebaseToken()
 
         val prefs= PleonPreference(applicationContext)
         Log.d(TAG, "verify token"+prefs.getVerifyToken())
@@ -39,5 +43,17 @@ class SplashActivity : AppCompatActivity() {
             }
         })
         viewModel.loadAuth()
+    }
+
+    private fun getFirebaseToken() {
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.d(TAG,"Fetching FCM registration token failed ${task.exception}")
+                return@OnCompleteListener
+            }
+
+            val token = task.result
+            Log.d(TAG,"token=${token}")
+        })
     }
 }
