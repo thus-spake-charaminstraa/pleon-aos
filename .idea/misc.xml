@@ -44,7 +44,7 @@
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_splash.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_splash.xml" value="0.3816131591796875" />
         <entry key="app/src/main/res/layout/bottom_sheet_layout.xml" value="0.40384615384615385" />
         <entry key="app/src/main/res/layout/calendar_day_layout.xml" value="0.21770833333333334" />
         <entry key="app/src/main/res/layout/dialog_delete_layout.xml" value="0.2671875" />
@@ -82,6 +82,8 @@
         <entry key="app/src/main/res/xml/network_security_config.xml" value="0.1" />
         <entry key="camera/src/main/res/layout/fragment_camera.xml" value="0.1" />
         <entry key="camera/src/main/res/layout/fragment_my.xml" value="0.1" />
+        <entry key="chat/src/main/res/drawable/dd.xml" value="0.142" />
+        <entry key="chat/src/main/res/layout/fragment_chat.xml" value="0.16032608695652173" />
         <entry key="common-ui/src/main/res/drawable/button.xml" value="0.182" />
         <entry key="common-ui/src/main/res/drawable/button_grey.xml" value="0.224" />
         <entry key="common-ui/src/main/res/drawable/cursor_drawble.xml" value="0.1" />

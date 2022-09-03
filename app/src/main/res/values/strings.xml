@@ -25,9 +25,6 @@
     <string name="user_edit_btn">내 정보 수정하기</string>
     <string name="user_name_title">이름</string>
 
-    <string name="waiting_desc1">반려식물과의 채팅 기능을 개발중이에요</string>
-    <string name="waiting_desc2">조금만 기다려주세요</string>
-
     <string name="comment_enter_btn">enter</string>
 
     <string name="noti_later_btn">나중에</string>

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="tab">#F9F9F9</color>
+    <color name="main_green_color">#35c97a</color>
+
+
     <color name="input_bg">#F2F4F6</color>
     <color name="input_border">#AEB6A2</color>
-    <color name="waiting_color">#282A2C</color>
     <color name="button_bg">#E0F1C7</color>
     <color name="garden_bg">#372B1E</color>
     <color name="calendar_text_grey">#bdbdbd</color>

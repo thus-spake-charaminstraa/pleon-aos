@@ -2,7 +2,7 @@ package com.charaminstra.pleon
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.charaminstra.pleon.view.ChatFragment
+import com.charaminstra.pleon.chat.ChatFragment
 import com.charaminstra.pleon.view.FeedFragment
 import com.charaminstra.pleon.view.GardenFragment
 import com.charaminstra.pleon.view.MyFragment
