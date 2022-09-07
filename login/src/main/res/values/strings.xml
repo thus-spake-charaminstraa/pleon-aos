@@ -4,11 +4,16 @@
     <string name="login_btn">로그인</string>
     <string name="logout_btn">로그아웃</string>
 
-    <string name="phone_fragment_title">휴대폰 번호를 입력해주세요.</string>
+    <string name="phone_fragment_title">본인인증을 위해\n휴대폰번호를 입력해주세요.</string>
     <string name="phone_fragment_phone_hint">010-XXXX-XXXX</string>
-    <string name="phone_fragment_receive_btn">인증문자 받기</string>
-    <string name="phone_fragment_code_hint">인증번호 입력</string>
-    <string name="phone_fragment_check_btn">확인</string>
+    <string name="phone_fragment_btn">인증문자 보내기</string>
+
+    <string name="phone_fragment_code_title">인증 번호를 입력해주세요.</string>
+    <string name="phone_fragment_code_hint">인증 번호 입력</string>
+    <string name="phone_fragment_code_btn">인증 확인</string>
+
+    <string name="phone_fragment_help_text">인증번호를 받지 못하셨나요?</string>
+    <string name="phone_fragment_resend">인증문자 다시 보내기</string>
 
     <string name="nickname_fragment_title">닉네임을 입력해주세요.</string>
 
@@ -18,6 +23,4 @@
     <string name="start_btn">시작하기</string>
     <string name="hello_msg1">안녕하세요 :)</string>
     <string name="hello_msg2">당신의 반려식물 케어를 도와줄 Pleon 입니다.</string>
-
-    <string name="code_error_msg">인증번호가 틀렸습니다.</string>
 </resources>

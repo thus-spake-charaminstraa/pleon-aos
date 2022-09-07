@@ -1,13 +1,17 @@
 package com.charaminstra.pleon.login.ui
 
+import android.app.Activity
 import android.os.Bundle
 import android.telephony.PhoneNumberFormattingTextWatcher
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.charaminstra.pleon.common_ui.showErrorToast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
@@ -15,6 +19,7 @@ import androidx.navigation.fragment.findNavController
 import com.charaminstra.pleon.login.PhoneViewModel
 import com.charaminstra.pleon.login.R
 import com.charaminstra.pleon.login.databinding.FragmentPhoneBinding
+import com.charaminstra.pleon.login.showKeyboard
 import com.charaminstra.pleon.login.startHomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,6 +33,10 @@ class PhoneFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = FragmentPhoneBinding.inflate(layoutInflater)
+        /* auto keyboard set*/
+        showKeyboard(requireContext())
+        binding.phoneEt.requestFocus()
+
         initListeners()
         initObservers()
     }
@@ -43,15 +52,31 @@ class PhoneFragment : Fragment() {
         }
         /* 자동 하이픈 */
         binding.phoneEt.addTextChangedListener(PhoneNumberFormattingTextWatcher())
+        /* code */
+        binding.codeEt.addTextChangedListener (object: TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if(s?.length == 6){
+                    binding.phoneBtn.visibility = View.GONE
+                    binding.codeBtn.visibility = View.VISIBLE
+                }else{
+                    binding.phoneBtn.visibility = View.VISIBLE
+                    binding.codeBtn.visibility = View.GONE
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+        })
         return binding.root
     }
 
     private fun initObservers(){
         viewModel.phoneResponse.observe(this, Observer {
             if(it){
-                binding.codeEt.visibility = View.VISIBLE
-                binding.checkBtn.visibility = View.VISIBLE
-                binding.phoneBtn.isClickable = false
+
             }
         })
         viewModel.codeResponse.observe(this, Observer {
@@ -59,7 +84,8 @@ class PhoneFragment : Fragment() {
             if(it){
 
             }else{
-                Toast.makeText(activity, R.string.code_error_msg, Toast.LENGTH_SHORT).show()
+                Toast(activity).showErrorToast(resources.getString(com.charaminstra.pleon.common_ui.R.string.code_error_msg),binding.codeEt.y,requireActivity())
+                binding.codeEt.setTextColor(resources.getColor(com.charaminstra.pleon.common_ui.R.color.error_text_color))
             }
         })
         viewModel.userExist.observe(this, Observer {
@@ -71,22 +97,31 @@ class PhoneFragment : Fragment() {
             }else{
                 /* 신규 회원 */
                 navController.navigate(R.id.phone_fragment_to_nickname_fragment)
-
             }
         })
     }
     private fun initListeners(){
         binding.phoneBtn.setOnClickListener {
-            var phone = binding.phoneEt.text.toString()
-            viewModel.postPhoneNum(phone)
-
+            viewModel.setPhoneNum(binding.phoneEt.text.toString())
+            viewModel.postPhoneNum()
+            binding.phoneBtn.isClickable = false
+            binding.phoneBtn.background = resources.getDrawable(com.charaminstra.pleon.common_ui.R.drawable.button_inactive)
+            binding.phoneTitle.visibility = View.GONE
+            binding.phoneEt.visibility = View.GONE
+            binding.codeTitle.visibility = View.VISIBLE
+            binding.codeEt.visibility = View.VISIBLE
+            binding.codeEt.requestFocus()
+            binding.helpTv.visibility = View.VISIBLE
         }
-        binding.checkBtn.setOnClickListener {
-            var phone = binding.phoneEt.text.toString()
-            var code = binding.codeEt.text.toString()
-            viewModel.postCode(phone,code)
-            /* temp */
-            //navController.navigate(R.id.phone_fragment_to_nickname_fragment)
+        binding.helpTv.setOnClickListener {
+            binding.phoneBtn.visibility = View.VISIBLE
+            binding.codeBtn.visibility = View.GONE
+            binding.phoneBtn.isClickable = true
+            binding.phoneBtn.background = resources.getDrawable(com.charaminstra.pleon.common_ui.R.drawable.button_active)
+            binding.phoneBtn.text = getString(R.string.phone_fragment_resend)
+        }
+        binding.codeBtn.setOnClickListener {
+            viewModel.postCode(binding.codeEt.text.toString())
         }
     }
 }

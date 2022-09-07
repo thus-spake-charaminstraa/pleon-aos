@@ -26,12 +26,20 @@ class PhoneViewModel @Inject constructor(private val repository: AuthRepository,
     private var _userExist = MutableLiveData<Boolean>()
     val userExist : LiveData<Boolean> = _userExist
 
+    private val phoneNum = MutableLiveData<String>()
+    fun setPhoneNum(phone: String){
+        phoneNum.value = phone
+    }
+    fun getPhoneNum(): LiveData<String>{
+        return phoneNum
+    }
 
-    fun postPhoneNum(phone: String){
+    fun postPhoneNum(){
         viewModelScope.launch {
             /*test account*/
            // _phoneResponse.postValue(true)
-            val data =repository.postPhoneNum(phone)
+            Log.i("phone num",getPhoneNum().value.toString())
+            val data =repository.postPhoneNum(getPhoneNum().value.toString())
             Log.i(PHONE_TAG,"post phone num response -> $data")
             when (data.isSuccessful) {
                 true -> {
@@ -43,9 +51,9 @@ class PhoneViewModel @Inject constructor(private val repository: AuthRepository,
             }
         }
     }
-    fun postCode(phone: String, code:String){
+    fun postCode(code:String){
         viewModelScope.launch {
-            val data = repository.postCode(phone,code)
+            val data = repository.postCode(getPhoneNum().value.toString(),code)
             Log.i(CODE_TAG,"data -> $data"+"\n"+data)
             when(data.isSuccessful){
                 true -> {

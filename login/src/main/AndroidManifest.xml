@@ -6,6 +6,7 @@
 
         <activity
             android:name=".ui.LoginActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize"
             android:exported="false" />
     </application>
 

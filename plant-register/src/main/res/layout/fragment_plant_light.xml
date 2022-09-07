@@ -91,7 +91,7 @@
         android:layout_height="50dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/light_rg2"
-        android:background="@drawable/button_maincolor"
+        android:background="@drawable/button_active"
         style="@style/SubText"
         android:text="@string/complete_btn" />
 </androidx.constraintlayout.widget.ConstraintLayout>

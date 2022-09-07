@@ -5,15 +5,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingHorizontal="20dp"
-    android:paddingTop="44dp"
+    android:layout_marginHorizontal="16dp"
     tools:context=".ui.NicknameFragment">
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/back_btn"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/title"
         android:layout_width="30dp"
         android:layout_height="30dp"
+        android:layout_marginVertical="14dp"
         android:background="@android:color/transparent"
         android:scaleType="center"
         android:src="@drawable/ic_arrow_back" />
@@ -47,7 +48,7 @@
         android:layout_marginHorizontal="2dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nickname_et"
-        android:background="@drawable/button_maincolor"
+        android:background="@drawable/button_active"
         style="@style/SubText"
         android:text="@string/register_btn" />
 </androidx.constraintlayout.widget.ConstraintLayout>

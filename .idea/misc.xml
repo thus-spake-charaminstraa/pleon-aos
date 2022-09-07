@@ -86,11 +86,17 @@
         <entry key="chat/src/main/res/layout/fragment_chat.xml" value="0.16032608695652173" />
         <entry key="common-ui/src/main/res/drawable/button.xml" value="0.182" />
         <entry key="common-ui/src/main/res/drawable/button_grey.xml" value="0.224" />
+        <entry key="common-ui/src/main/res/drawable/button_inactive.xml" value="0.127" />
+        <entry key="common-ui/src/main/res/drawable/button_maincolor.xml" value="0.127" />
         <entry key="common-ui/src/main/res/drawable/cursor_drawble.xml" value="0.1" />
         <entry key="common-ui/src/main/res/drawable/ic_arrow_back.xml" value="0.1" />
         <entry key="common-ui/src/main/res/drawable/input.xml" value="0.182" />
+        <entry key="common-ui/src/main/res/drawable/msg_error.xml" value="0.1" />
         <entry key="common-ui/src/main/res/drawable/round_transparent.xml" value="0.1" />
+        <entry key="common-ui/src/main/res/drawable/toast_error.xml" value="0.12" />
+        <entry key="common-ui/src/main/res/layout/custom_toast_error_layout.xml" value="0.19664268585131894" />
         <entry key="common-ui/src/main/res/layout/dialog_delete_layout.xml" value="0.335" />
+        <entry key="common-ui/src/main/res/layout/toast_error.xml" value="0.6759323120117189" />
         <entry key="foundation/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="foundation/src/main/res/xml/http.xml" value="0.1" />
         <entry key="login/src/main/res/drawable/cursor_drawble.xml" value="0.1" />
@@ -100,7 +106,7 @@
         <entry key="login/src/main/res/layout/activity_splash.xml" value="0.1" />
         <entry key="login/src/main/res/layout/fragment_login.xml" value="0.1" />
         <entry key="login/src/main/res/layout/fragment_nickname.xml" value="0.375" />
-        <entry key="login/src/main/res/layout/fragment_phone.xml" value="0.115625" />
+        <entry key="login/src/main/res/layout/fragment_phone.xml" value="0.1" />
         <entry key="login/src/main/res/layout/fragment_plant_air.xml" value="0.1" />
         <entry key="login/src/main/res/layout/fragment_plant_place.xml" value="0.1" />
         <entry key="login/src/main/res/layout/fragment_plant_register.xml" value="0.1" />
