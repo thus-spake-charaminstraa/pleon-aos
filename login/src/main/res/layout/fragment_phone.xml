@@ -33,19 +33,18 @@
         android:text="@string/phone_fragment_title"/>
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/phone_et"
-        android:background="@android:color/transparent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="numberSigned"
         style="@style/LoginEditText"
-        android:hint="@string/phone_fragment_phone_hint"
-        android:digits="0123456789-"
-        android:maxLength="13"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phone_title"
         app:layout_constraintBottom_toTopOf="@+id/phone_btn"
-        android:textCursorDrawable="@drawable/cursor_drawble"/>
+        android:textCursorDrawable="@drawable/cursor_drawable"
+        android:inputType="numberSigned"
+        android:hint="@string/phone_fragment_phone_hint"
+        android:digits="0123456789-"
+        android:maxLength="13"/>
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/phone_btn"
         android:layout_width="match_parent"
@@ -74,7 +73,6 @@
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/code_et"
         android:visibility="gone"
-        android:background="@android:color/transparent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -88,7 +86,7 @@
         app:layout_constraintTop_toBottomOf="@+id/code_title"
         app:layout_constraintBottom_toTopOf="@+id/phone_btn"
         app:layout_goneMarginBottom="72dp"
-        android:textCursorDrawable="@drawable/cursor_drawble"/>
+        android:textCursorDrawable="@drawable/cursor_drawable"/>
     <TextView
         android:id="@+id/help_tv"
         android:visibility="gone"

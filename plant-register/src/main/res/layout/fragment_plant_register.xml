@@ -82,7 +82,7 @@
         android:layout_marginHorizontal="2dp"
         android:inputType="textCapCharacters"
         android:background="@drawable/input"
-        android:textCursorDrawable="@drawable/cursor_drawble"
+        android:textCursorDrawable="@drawable/cursor_drawable"
         android:padding="15dp"
         style="@style/SubText"
         android:hint="@string/name_hint"

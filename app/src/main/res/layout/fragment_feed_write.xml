@@ -95,7 +95,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             android:gravity="top"
-            android:textCursorDrawable="@drawable/cursor_drawble"
+            android:textCursorDrawable="@drawable/cursor_drawable"
             android:hint="내용을 작성해주세요."
             android:inputType="textMultiLine"
             android:background="@android:color/transparent"

@@ -15,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import com.charaminstra.pleon.login.R
 import com.charaminstra.pleon.login.UserCreateViewModel
 import com.charaminstra.pleon.login.databinding.FragmentNicknameBinding
+import com.charaminstra.pleon.login.showKeyboard
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,6 +27,10 @@ class NicknameFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = FragmentNicknameBinding.inflate(layoutInflater)
+        /* auto keyboard set*/
+        showKeyboard(binding.nicknameEt,requireContext())
+        binding.nicknameEt.requestFocus()
+
 
         initListeners()
         initObservers()
@@ -36,7 +41,7 @@ class NicknameFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         navController = this.findNavController()
-        binding.backBtn.setOnClickListener {
+        binding.nicknameBackBtn.setOnClickListener {
             navController.popBackStack()
         }
         return binding.root
@@ -51,7 +56,7 @@ class NicknameFragment : Fragment() {
     }
 
     private fun initListeners(){
-        binding.registerBtn.setOnClickListener {
+        binding.nicknameRegisterBtn.setOnClickListener {
             viewModel.userCreate(binding.nicknameEt.text.toString())
         }
     }

@@ -8,14 +8,15 @@
     <string name="phone_fragment_phone_hint">010-XXXX-XXXX</string>
     <string name="phone_fragment_btn">인증문자 보내기</string>
 
-    <string name="phone_fragment_code_title">인증 번호를 입력해주세요.</string>
+    <string name="phone_fragment_code_title">본인인증을 위해\n인증 번호를 입력해주세요.</string>
     <string name="phone_fragment_code_hint">인증 번호 입력</string>
     <string name="phone_fragment_code_btn">인증 확인</string>
 
     <string name="phone_fragment_help_text">인증번호를 받지 못하셨나요?</string>
     <string name="phone_fragment_resend">인증문자 다시 보내기</string>
 
-    <string name="nickname_fragment_title">닉네임을 입력해주세요.</string>
+    <string name="nickname_fragment_title">사용하실 닉네임을\n입력해주세요 :) </string>
+    <string name="nickname_fragment_hint">닉네임 입력</string>
 
     <string name="welcome_fragment_title">안녕하세요</string>
 

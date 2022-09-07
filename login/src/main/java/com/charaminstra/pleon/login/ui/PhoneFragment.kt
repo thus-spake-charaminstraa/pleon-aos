@@ -34,7 +34,7 @@ class PhoneFragment : Fragment() {
         super.onCreate(savedInstanceState)
         binding = FragmentPhoneBinding.inflate(layoutInflater)
         /* auto keyboard set*/
-        showKeyboard(requireContext())
+        showKeyboard(binding.phoneEt,requireContext())
         binding.phoneEt.requestFocus()
 
         initListeners()
