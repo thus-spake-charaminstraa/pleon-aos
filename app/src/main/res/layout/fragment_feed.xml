@@ -24,7 +24,7 @@
                 android:layout_marginHorizontal="15dp"
                 android:gravity="center"
                 android:background="@drawable/round_button"
-                android:backgroundTint="@color/input_bg"
+                android:backgroundTint="@color/blank_color"
                 app:layout_constraintRight_toLeftOf="@+id/feed_filter_recyclerview"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -93,7 +93,7 @@
         android:id="@+id/border"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/input_bg"
+        android:background="@color/blank_color"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/filter_scroll"
         app:layout_constraintBottom_toTopOf="@id/feed_recyclerview"/>

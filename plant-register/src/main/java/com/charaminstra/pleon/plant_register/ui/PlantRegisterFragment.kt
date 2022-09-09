@@ -8,7 +8,6 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -23,12 +22,11 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat.requestPermissions
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
-import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.charaminstra.pleon.plant_register.PlantIdViewModel
+import com.charaminstra.pleon.plant_register.PlantRegisterViewModel
 import com.charaminstra.pleon.plant_register.R
 import com.charaminstra.pleon.plant_register.databinding.FragmentPlantRegisterBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -45,7 +43,7 @@ const val REQUEST_TAKE_PHOTO = 3000
 @AndroidEntryPoint
 class PlantRegisterFragment : Fragment() {
     private val TAG = javaClass.name
-    private val plantIdViewModel: PlantIdViewModel by activityViewModels()
+    private val plantRegisterViewModel: PlantRegisterViewModel by activityViewModels()
     private lateinit var binding: FragmentPlantRegisterBinding
     private lateinit var currentPhotoPath : String
     private lateinit var dateFormat: SimpleDateFormat
@@ -87,8 +85,8 @@ class PlantRegisterFragment : Fragment() {
 
         binding.nextBtn.setOnClickListener {
             Log.i(TAG, "species Btn : "+binding.speciesBtn.text.isNullOrBlank().toString())
-            if(plantIdViewModel.urlResponse.value.isNullOrBlank()){
-                Toast.makeText(activity,R.string.thumbnail_hint,Toast.LENGTH_LONG).show()
+            if(plantRegisterViewModel.urlResponse.value.isNullOrBlank()){
+                //Toast.makeText(activity,R.string.thumbnail_hint,Toast.LENGTH_LONG).show()
             }else if(binding.speciesBtn.text.isNullOrBlank()){
                 Toast.makeText(activity,R.string.species_hint,Toast.LENGTH_LONG).show()
             }else if(binding.nameInput.text.isNullOrBlank()){
@@ -98,10 +96,10 @@ class PlantRegisterFragment : Fragment() {
             }else if(binding.waterDayInput.text.isNullOrBlank()){
                 Toast.makeText(activity,R.string.water_day_hint,Toast.LENGTH_LONG).show()
             }else{
-                plantIdViewModel.setName(binding.nameInput.text.toString())
-                plantIdViewModel.setSpecies(binding.speciesBtn.text.toString())
-                plantIdViewModel.setAdopt_date(binding.adoptDayInput.text.toString())
-                plantIdViewModel.setWater_date(binding.waterDayInput.text.toString())
+                plantRegisterViewModel.setName(binding.nameInput.text.toString())
+                plantRegisterViewModel.setSpecies(binding.speciesBtn.text.toString())
+                plantRegisterViewModel.setAdopt_date(binding.adoptDayInput.text.toString())
+                plantRegisterViewModel.setWater_date(binding.waterDayInput.text.toString())
                 navController.navigate(R.id.plant_register_fragment_to_plant_light_fragment)
             }
         }
@@ -135,14 +133,14 @@ class PlantRegisterFragment : Fragment() {
                     ByteArrayOutputStream().use { stream ->
                         bitmap.compress(Bitmap.CompressFormat.JPEG,100, stream)
                         val inputStream = ByteArrayInputStream(stream.toByteArray())
-                        plantIdViewModel.setImgToUrl(inputStream)
+                        plantRegisterViewModel.setImgToUrl(inputStream)
                     }
                 }
             }
             REQUEST_TAKE_PHOTO -> {
                 Glide.with(this).load(currentPhotoPath).into(binding.thumbnail)
                 val inputStream = FileInputStream(currentPhotoPath)
-                plantIdViewModel.setImgToUrl(inputStream)
+                plantRegisterViewModel.setImgToUrl(inputStream)
             }
             else -> {
                 Toast.makeText(
@@ -247,7 +245,7 @@ class PlantRegisterFragment : Fragment() {
                     openGallery()
                 R.id.cancel ->{
                     binding.thumbnail.setImageDrawable(resources.getDrawable(R.drawable.ic_plant))
-                    plantIdViewModel.setNoImg()
+                    plantRegisterViewModel.setNoImg()
                 }
             }
             false

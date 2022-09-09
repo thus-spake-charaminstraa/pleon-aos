@@ -4,7 +4,7 @@
 
 
 
-    <color name="input_bg">#F2F4F6</color>
+    <color name="blank_color">#F2F4F6</color>
     <color name="input_border">#AEB6A2</color>
     <color name="button_bg">#E0F1C7</color>
     <color name="garden_bg">#372B1E</color>

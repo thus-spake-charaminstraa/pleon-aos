@@ -21,6 +21,36 @@
         <item name="android:textColor">@color/error_text_color</item>
     </style>
 
+    <style name="SearchText" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">15dp</item>
+    </style>
+
+    <style name="BubbleText" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">11dp</item>
+        <item name="android:textColor">@color/main_green_color</item>
+    </style>
+
+    <!--    dialog-->
+    <style name="DialogTitleText" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">18dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#313337</item>
+    </style>
+    <style name="DialogSubText" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">14dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">#313337</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:lineSpacingExtra">8sp</item>
+    </style>
+    <style name="DialogButtonCancelText" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">15dp</item>
+        <item name="android:textColor">@color/black_sub_color</item>
+    </style>
+    <style name="DialogButtonOKText" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">15dp</item>
+        <item name="android:textColor">@color/error_text_color</item>
+    </style>
 
 
     <style name="TitleText" parent="@android:style/Widget.TextView">
@@ -46,11 +76,6 @@
     </style>
     <style name="FeedDateText" parent="@android:style/Widget.TextView">
         <item name="android:textSize">12dp</item>
-    </style>
-
-    <style name="SearchText" parent="@android:style/Widget.TextView">
-        <item name="android:textSize">16dp</item>
-        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="hello" parent="@android:style/Widget.TextView">

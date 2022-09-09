@@ -42,7 +42,7 @@ import java.util.*
 @AndroidEntryPoint
 class PlantEditFragment : Fragment() {
     private val TAG = javaClass.simpleName
-    private val viewModel: PlantIdViewModel by viewModels()
+    private val viewModel: PlantRegisterViewModel by viewModels()
     private lateinit var binding : FragmentPlantEditBinding
     private lateinit var navController: NavController
     private lateinit var id: String

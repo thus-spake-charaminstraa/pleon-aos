@@ -41,7 +41,7 @@
             android:layout_width="110dp"
             android:layout_height="110dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_plant"
+            android:src="@drawable/ic_potted_plant"
             android:background="@drawable/image_button_selector"/>
     </androidx.cardview.widget.CardView>
     <TextView

@@ -1,49 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="230dp"
+    android:layout_width="312dp"
     android:layout_height="wrap_content"
-    android:paddingVertical="22dp"
-    android:paddingHorizontal="20dp"
-    android:background="@drawable/round_transparent"
-    android:backgroundTint="@color/white"
+    android:layout_gravity="center"
+    android:background="@drawable/dialog_bg"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <TextView
         android:id="@+id/dialog_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        style="@style/TitleText" />
+        style="@style/DialogTitleText" />
     <TextView
         android:id="@+id/dialog_desc"
+        android:padding="30dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        style="@style/SubText"
-        android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@id/dialog_title"
-        app:layout_constraintLeft_toLeftOf="parent"/>
-    <Button
-        android:id="@+id/cancel_btn"
-        android:layout_width="90dp"
-        android:layout_height="40dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/dialog_desc"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        style="@style/DialogSubText"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_title"
+        app:layout_constraintBottom_toTopOf="@+id/dialog_button"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/line_color"
+        app:layout_constraintBottom_toTopOf="@+id/dialog_button" />
+    <LinearLayout
+        android:id="@+id/dialog_button"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:textColor="@color/black"
-        android:background="@drawable/round_transparent"
-        style="@style/SubText" />
-    <Button
-        android:id="@+id/ok_btn"
-        android:layout_width="90dp"
-        android:layout_height="40dp"
-        app:layout_constraintTop_toTopOf="@+id/cancel_btn"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:background="@drawable/round_transparent"
-        android:textColor="@color/red"
-        style="@style/SubText" />
+        android:orientation="horizontal">
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/cancel_btn"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+            android:background="@null"
+            style="@style/DialogButtonCancelText" />
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/line_color"
+            app:layout_constraintBottom_toTopOf="@+id/dialog_button" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/ok_btn"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:background="@null"
+            style="@style/DialogButtonOKText" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

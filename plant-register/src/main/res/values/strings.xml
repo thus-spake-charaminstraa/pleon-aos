@@ -1,4 +1,25 @@
 <resources>
+    <!--    button  -->
+    <string name="plant_register_skip_btn">건너뛰기</string>
+    <string name="plant_register_next_btn">다음</string>
+
+    <!--    dialog  -->
+    <string name="plant_register_skip_dialog_title">건너뛰기</string>
+    <string name="plant_register_skip_dialog_desc">식물 등록을 건너 뛰겠습니까?</string>
+    <string name="plant_register_skip_dialog_cancel_btn">취소</string>
+    <string name="plant_register_skip_dialog_skip_btn">건너뛰기</string>
+
+    <!--    plant thumbnail fragment-->
+    <string name="plant_thumbnail_title">반려식물의 예쁜 모습이 담긴\n사진을 설정해주세요 :)</string>
+
+    <!--    plant species fragment-->
+    <string name="plant_species_fragment_title">반려식물의 종을\n입력해주세요 !</string>
+    <string name="plant_species_fragment_search_hint">종 검색하기</string>
+    <string name="plant_species_fragment_image_search">\u0020사진으로 검색</string>
+    <string name="plant_species_fragment_image_search_help">식물의 종을 모르신다면 식별을 도와드릴게요!</string>
+    <string name="plant_species_fragment_hint">종 입력</string>
+
+
     <string name="species_title">식물 종류</string>
 
     <string name="species_hint">식물의 종류를 기입해주세요.</string>
@@ -9,7 +30,7 @@
     <string name="water_day_title">물준날</string>
     <string name="water_day_hint">마지막으로 물을 준 날을 기입하세요.</string>
 
-    <string name="thumbnail_hint">식물의 사진을 등록해주세요.</string>
+    <string name="thumbnail_error">식물의 사진을 등록해주세요.</string>
 
     <string name="plant_register_fragment_title">식물을 등록해주세요.</string>
     <string name="img_menu_gallery">사진 선택</string>
@@ -27,4 +48,6 @@
     <string name="air_one">항상 잘 통해요</string>
     <string name="air_two">창문을 열면 잘 통해요</string>
     <string name="air_three">바람이 아예 안통해요</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

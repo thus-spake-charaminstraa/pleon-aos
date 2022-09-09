@@ -1,0 +1,37 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <vector
+            android:width="235dp"
+            android:height="59dp"
+            android:viewportWidth="235"
+            android:viewportHeight="59">
+            <group android:translateY="2">
+                <path
+                    android:pathData="m117.5,48.382 l-4.552,-9.105 -0.139,-0.277L17.5,39C12.264,39 8,34.74 8,29.5L8,15.5C8,10.262 12.264,6 17.5,6h200c5.239,0 9.5,4.262 9.5,9.5v14c0,5.239 -4.261,9.5 -9.5,9.5h-95.309l-0.138,0.277 -4.552,9.105z"
+                    android:fillColor="#29b1b1b1"
+                    android:strokeColor="#29b1b1b1"/>
+                <path
+                    android:pathData="M117.5,47.264 L121.883,38.5h95.619c4.962,0 9,-4.037 9,-9L226.502,15.5c0,-4.963 -4.038,-9 -9,-9L17.5,6.5c-4.963,0 -9,4.037 -9,9v14c0,4.963 4.037,9 9,9h95.617l4.383,8.764M117.5,49.5l-5,-10L17.5,39.5C11.978,39.5 7.5,35.023 7.5,29.5L7.5,15.5C7.5,9.977 11.978,5.5 17.5,5.5h200c5.522,0 10,4.477 10,10v14c0,5.523 -4.478,10 -10,10h-95l-5,10z"
+                    android:fillColor="#29b1b1b1"
+                    android:strokeColor="#29b1b1b1"/>
+            </group>
+        </vector>
+    </item>
+
+    <item>
+        <vector
+            android:width="235dp"
+            android:height="59dp"
+            android:viewportWidth="235"
+            android:viewportHeight="59">
+            <path
+                android:pathData="m117.5,48.382 l-4.552,-9.105 -0.139,-0.277L17.5,39C12.264,39 8,34.74 8,29.5L8,15.5C8,10.262 12.264,6 17.5,6h200c5.239,0 9.5,4.262 9.5,9.5v14c0,5.239 -4.261,9.5 -9.5,9.5h-95.309l-0.138,0.277 -4.552,9.105z"
+                android:fillColor="#fff"
+                android:strokeColor="#00000000"/>
+            <path
+                android:pathData="M117.5,47.264 L121.883,38.5h95.619c4.962,0 9,-4.037 9,-9L226.502,15.5c0,-4.963 -4.038,-9 -9,-9L17.5,6.5c-4.963,0 -9,4.037 -9,9v14c0,4.963 4.037,9 9,9h95.617l4.383,8.764M117.5,49.5l-5,-10L17.5,39.5C11.978,39.5 7.5,35.023 7.5,29.5L7.5,15.5C7.5,9.977 11.978,5.5 17.5,5.5h200c5.522,0 10,4.477 10,10v14c0,5.523 -4.478,10 -10,10h-95l-5,10z"
+                android:fillColor="#f4f6f9"
+                android:strokeColor="#00000000"/>
+        </vector>
+    </item>
+</layer-list>

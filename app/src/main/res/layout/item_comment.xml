@@ -10,7 +10,7 @@
         android:layout_height="30dp"
         android:layout_marginLeft="15dp"
         android:background="@drawable/round_shape"
-        android:backgroundTint="@color/input_bg"
+        android:backgroundTint="@color/blank_color"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     <TextView

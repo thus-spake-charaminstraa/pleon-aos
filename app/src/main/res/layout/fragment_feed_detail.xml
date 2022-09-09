@@ -29,11 +29,11 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="15dp"
-                app:civ_border_color="@color/input_bg"
+                app:civ_border_color="@color/blank_color"
                 app:civ_border_width="2dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/round_shape"
-                android:backgroundTint="@color/input_bg"
+                android:backgroundTint="@color/blank_color"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent" />
             <TextView

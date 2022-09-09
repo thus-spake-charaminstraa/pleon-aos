@@ -6,8 +6,9 @@
     <TextView
         android:id="@+id/plant_species"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:padding="5dp"
+        android:layout_height="wrap_content"
+        android:paddingVertical="15dp"
+        android:paddingHorizontal="20dp"
         android:gravity="center_vertical"
         style="@style/SearchText"
         app:layout_constraintTop_toTopOf="parent"

@@ -50,5 +50,14 @@ class PlantSearchViewModel  @Inject constructor(
         }
         _searchResult.postValue(filteredList)
     }
+    fun searchFilterTest(filterQuery: CharSequence){
+        val filteredList = ArrayList<PlantSpeciesDataObject>()
+        for (current in plantSpeciesList.value!!) {
+            if (current.name.toLowerCase(Locale.getDefault()).contains(filterQuery)) {
+                filteredList.add(current)
+            }
+        }
+        _searchResult.postValue(filteredList)
+    }
 
 }

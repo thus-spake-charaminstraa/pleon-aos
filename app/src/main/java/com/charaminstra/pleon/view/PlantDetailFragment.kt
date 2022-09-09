@@ -17,14 +17,12 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.charaminstra.pleon.R
-import com.charaminstra.pleon.adapter.ActionObject
 import com.charaminstra.pleon.adapter.FeedAdapter
 import com.charaminstra.pleon.calendar.MonthViewContainer
 import com.charaminstra.pleon.databinding.CalendarDayLayoutBinding
 import com.charaminstra.pleon.databinding.FragmentPlantDetailBinding
-import com.charaminstra.pleon.foundation.ScheduleRepository
 import com.charaminstra.pleon.foundation.model.ScheduleDataObject
-import com.charaminstra.pleon.plant_register.PlantIdViewModel
+import com.charaminstra.pleon.plant_register.PlantRegisterViewModel
 import com.charaminstra.pleon.viewmodel.PlantDetailViewModel
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
@@ -35,8 +33,6 @@ import com.kizitonwose.calendarview.ui.ViewContainer
 import com.kizitonwose.calendarview.utils.next
 import com.kizitonwose.calendarview.utils.previous
 import dagger.hilt.android.AndroidEntryPoint
-import okhttp3.internal.notify
-import okhttp3.internal.notifyAll
 import java.text.SimpleDateFormat
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -51,7 +47,7 @@ import java.util.*
 class PlantDetailFragment : Fragment() {
     private val TAG = javaClass.name
     private val today = LocalDate.now()
-    private val viewModel: PlantIdViewModel by viewModels()
+    private val viewModel: PlantRegisterViewModel by viewModels()
     private val plantDetailViewModel: PlantDetailViewModel by viewModels()
     private lateinit var feedAdapter: FeedAdapter
     private lateinit var binding : FragmentPlantDetailBinding

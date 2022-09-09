@@ -15,8 +15,8 @@ import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
-class PlantIdViewModel @Inject constructor(private val repository: PlantIdRepository,
-                                           private val imageRepository: ImageRepository) : ViewModel() {
+class PlantRegisterViewModel @Inject constructor(private val repository: PlantIdRepository,
+                                                 private val imageRepository: ImageRepository) : ViewModel() {
 
     private val TAG = javaClass.name
     private val _plantRegisterSuccess = MutableLiveData<Boolean>()
