@@ -71,7 +71,7 @@ class PlantRegisterFragment : Fragment() {
             activity?.finish()
         }
         binding.speciesBtn.setOnClickListener{
-            navController.navigate(R.id.plant_register_fragment_to_plant_search_fragment)
+            //navController.navigate(R.id.plant_register_fragment_to_plant_search_fragment)
         }
         binding.thumbnail.setOnClickListener {
             popUpImageMenu(it)
@@ -100,7 +100,7 @@ class PlantRegisterFragment : Fragment() {
                 plantRegisterViewModel.setSpecies(binding.speciesBtn.text.toString())
                 plantRegisterViewModel.setAdopt_date(binding.adoptDayInput.text.toString())
                 plantRegisterViewModel.setWater_date(binding.waterDayInput.text.toString())
-                navController.navigate(R.id.plant_register_fragment_to_plant_light_fragment)
+                //navController.navigate(R.id.plant_register_fragment_to_plant_light_fragment)
             }
         }
 

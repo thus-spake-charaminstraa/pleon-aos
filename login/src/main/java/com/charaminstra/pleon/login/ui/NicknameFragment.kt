@@ -19,10 +19,10 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.charaminstra.pleon.common.showKeyboard
 import com.charaminstra.pleon.login.R
 import com.charaminstra.pleon.login.UserCreateViewModel
 import com.charaminstra.pleon.login.databinding.FragmentNicknameBinding
-import com.charaminstra.pleon.login.showKeyboard
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream

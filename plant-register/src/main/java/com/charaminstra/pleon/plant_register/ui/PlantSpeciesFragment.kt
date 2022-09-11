@@ -35,6 +35,10 @@ class PlantSpeciesFragment : Fragment() {
         binding = FragmentPlantSpeciesBinding.inflate(layoutInflater)
         val navController = this.findNavController()
 
+        binding.plantSpeciesBackBtn.setOnClickListener {
+            navController.popBackStack()
+        }
+
         initList()
         observeViewModel()
         searchViewModel.getPlantSpecies()
@@ -62,10 +66,12 @@ class PlantSpeciesFragment : Fragment() {
         })
 
         binding.plantSpeciesNextBtn.setOnClickListener {
+            //test
             navController.navigate(R.id.plant_species_fragment_to_plant_name_fragment)
-            if(viewModel.urlResponse.value.isNullOrBlank()){
+            if(binding.plantSpeciesEt.text.isNullOrBlank()){
                 Toast(activity).showErrorToast(resources.getString(R.string.plant_species_fragment_error),binding.plantSpeciesEt.y,requireActivity())
             }else{
+                viewModel.setSpecies(binding.plantSpeciesEt.text.toString())
                 //test
                 //navController.navigate(R.id.plant_register_fragment_to_plant_light_fragment)
             }

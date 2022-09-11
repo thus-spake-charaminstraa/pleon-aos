@@ -13,15 +13,17 @@ import com.charaminstra.pleon.common_ui.CustomDialog
 import com.charaminstra.pleon.common_ui.showErrorToast
 import com.charaminstra.pleon.plant_register.PlantRegisterViewModel
 import com.charaminstra.pleon.plant_register.R
+import com.charaminstra.pleon.plant_register.databinding.FragmentPlantAdoptBinding
 import com.charaminstra.pleon.plant_register.databinding.FragmentPlantNameBinding
 import com.charaminstra.pleon.plant_register.databinding.FragmentPlantRegisterBinding
+import com.charaminstra.pleon.plant_register.databinding.FragmentPlantWaterBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class PlantNameFragment : Fragment() {
+class PlantAdoptFragment : Fragment() {
     private val TAG = javaClass.name
     private val viewModel: PlantRegisterViewModel by activityViewModels()
-    private lateinit var binding: FragmentPlantNameBinding
+    private lateinit var binding: FragmentPlantAdoptBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,29 +33,29 @@ class PlantNameFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentPlantNameBinding.inflate(layoutInflater)
+        binding = FragmentPlantAdoptBinding.inflate(layoutInflater)
         val navController = this.findNavController()
 
-        showKeyboard(binding.plantNameEt,requireContext())
-        binding.plantNameEt.requestFocus()
+        showKeyboard(binding.plantAdoptEt,requireContext())
+        binding.plantAdoptEt.requestFocus()
 
-        binding.plantNameBackBtn.setOnClickListener {
+        binding.plantAdoptBackBtn.setOnClickListener {
             navController.popBackStack()
         }
 
-        binding.plantNameNextBtn.setOnClickListener {
+        binding.plantAdoptNextBtn.setOnClickListener {
             //test
-            navController.navigate(R.id.plant_name_fragment_to_plant_adopt_fragment)
-            if(binding.plantNameEt.text.isNullOrBlank()){
-                Toast(activity).showErrorToast(resources.getString(R.string.plant_name_fragment_error),binding.plantNameEt.y,requireActivity())
+            navController.navigate(R.id.plant_adopt_fragment_to_plant_water_fragment)
+            if(binding.plantAdoptEt.text.isNullOrBlank()){
+                Toast(activity).showErrorToast(resources.getString(R.string.plant_adopt_fragment_error),binding.plantAdoptEt.y,requireActivity())
             }else{
-                viewModel.setName(binding.plantNameEt.text.toString())
+                viewModel.setAdopt_date(binding.plantAdoptEt.text.toString())
                 //test
                 //navController.navigate(R.id.plant_register_fragment_to_plant_light_fragment)
             }
         }
 
-        binding.plantNameSkipBtn.setOnClickListener {
+        binding.plantAdoptSkipBtn.setOnClickListener {
             val dlg = CustomDialog(requireContext())
             dlg.setOnOKClickedListener {
                 activity?.finish()

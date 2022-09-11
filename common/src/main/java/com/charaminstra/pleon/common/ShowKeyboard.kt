@@ -1,4 +1,4 @@
-package com.charaminstra.pleon.login
+package com.charaminstra.pleon.common
 
 import android.content.Context
 import android.view.View

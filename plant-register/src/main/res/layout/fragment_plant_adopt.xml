@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingHorizontal="20dp">
     <ImageView
-        android:id="@+id/plant_name_back_btn"
+        android:id="@+id/plant_adopt_back_btn"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         android:paddingVertical="5dp"
@@ -17,7 +17,7 @@
         android:background="@android:color/transparent"
         android:src="@drawable/ic_arrow_back" />
     <TextView
-        android:id="@+id/plant_name_title"
+        android:id="@+id/plant_adopt_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -26,10 +26,10 @@
         android:letterSpacing="-0.02"
         android:lineSpacingExtra="8sp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/plant_name_back_btn"
-        android:text="@string/plant_name_fragment_title"/>
+        app:layout_constraintTop_toBottomOf="@+id/plant_adopt_back_btn"
+        android:text="@string/plant_adopt_fragment_title"/>
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/plant_name_et"
+        android:id="@+id/plant_adopt_et"
         android:background="@android:color/transparent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,19 +38,19 @@
         android:textCursorDrawable="@drawable/cursor_drawable"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/plant_name_title"
-        app:layout_constraintBottom_toTopOf="@+id/plant_name_btns"
+        app:layout_constraintTop_toBottomOf="@+id/plant_adopt_title"
+        app:layout_constraintBottom_toTopOf="@+id/plant_adopt_btns"
         android:inputType="textNoSuggestions"
-        android:hint="@string/plant_name_fragment_hint" />
+        android:hint="@string/plant_adopt_fragment_hint" />
     <LinearLayout
-        android:id="@+id/plant_name_btns"
+        android:id="@+id/plant_adopt_btns"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         android:orientation="horizontal">
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/plant_name_skip_btn"
+            android:id="@+id/plant_adopt_skip_btn"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="52dp"
@@ -60,7 +60,7 @@
             style="@style/LoginButtonText"
             android:text="@string/plant_register_skip_btn" />
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/plant_name_next_btn"
+            android:id="@+id/plant_adopt_next_btn"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="52dp"

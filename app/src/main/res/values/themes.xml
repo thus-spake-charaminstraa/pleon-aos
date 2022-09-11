@@ -1,10 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="cursorColor" parent="Widget.AppCompat.AutoCompleteTextView">
-        <item name="android:textCursorDrawable">@drawable/cursor_drawable</item>
-    </style>
     <!-- Base application theme. -->
     <style name="Theme.PLeon_AOS" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <item name="autoCompleteTextViewStyle">@style/cursorColor</item>
+        <item name="colorAccent">@color/main_green_color</item>
         <item name="android:listDivider">@drawable/recyclerview_divider</item>
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/tab</item>

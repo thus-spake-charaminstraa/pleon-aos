@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.charaminstra.pleon.common.showKeyboard
 import com.charaminstra.pleon.common_ui.CustomDialog
 import com.charaminstra.pleon.common_ui.showErrorToast
 import com.charaminstra.pleon.plant_register.PlantRegisterViewModel
@@ -29,6 +30,10 @@ class PlantThumbnailFragment : Fragment() {
     ): View? {
         binding = FragmentPlantThumbnailBinding.inflate(layoutInflater)
         val navController = this.findNavController()
+
+        binding.plantThumbnailBackBtn.setOnClickListener {
+            activity?.finish()
+        }
 
         binding.plantRegisterSkipBtn.setOnClickListener {
             val dlg = CustomDialog(requireContext())

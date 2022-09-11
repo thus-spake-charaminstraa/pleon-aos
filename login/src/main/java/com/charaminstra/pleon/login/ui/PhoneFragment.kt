@@ -19,7 +19,7 @@ import androidx.navigation.fragment.findNavController
 import com.charaminstra.pleon.login.PhoneViewModel
 import com.charaminstra.pleon.login.R
 import com.charaminstra.pleon.login.databinding.FragmentPhoneBinding
-import com.charaminstra.pleon.login.showKeyboard
+import com.charaminstra.pleon.common.showKeyboard
 import com.charaminstra.pleon.login.startHomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 

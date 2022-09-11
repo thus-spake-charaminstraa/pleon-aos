@@ -27,23 +27,29 @@
         android:id="@+id/plant_name_fragment"
         android:name="com.charaminstra.pleon.plant_register.ui.PlantNameFragment"
         tools:layout="@layout/fragment_plant_name">
+        <action
+            android:id="@+id/plant_name_fragment_to_plant_adopt_fragment"
+            app:destination="@id/plant_adopt_fragment">
+        </action>
     </fragment>
     <fragment
-        android:id="@+id/plant_register_fragment"
-        android:name="com.charaminstra.pleon.plant_register.ui.PlantRegisterFragment"
-        tools:layout="@layout/fragment_plant_register">
+        android:id="@+id/plant_adopt_fragment"
+        android:name="com.charaminstra.pleon.plant_register.ui.PlantAdoptFragment"
+        tools:layout="@layout/fragment_plant_adopt">
         <action
-            android:id="@+id/plant_register_fragment_to_plant_light_fragment"
+            android:id="@+id/plant_adopt_fragment_to_plant_water_fragment"
+            app:destination="@id/plant_water_fragment">
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/plant_water_fragment"
+        android:name="com.charaminstra.pleon.plant_register.ui.PlantWaterFragment"
+        tools:layout="@layout/fragment_plant_water">
+        <action
+            android:id="@+id/plant_water_fragment_to_plant_light_fragment"
             app:destination="@id/plant_light_fragment">
         </action>
-        <action
-            android:id="@+id/plant_register_fragment_to_plant_search_fragment"
-            app:destination="@+id/plant_search_fragment"></action>
     </fragment>
-    <fragment
-            android:id="@+id/plant_search_fragment"
-            android:name="com.charaminstra.pleon.plant_register.ui.PlantSearchFragment"
-            tools:layout="@layout/fragment_plant_search"></fragment>
     <fragment
         android:id="@+id/plant_light_fragment"
         android:name="com.charaminstra.pleon.plant_register.ui.PlantLightFragment"
@@ -57,5 +63,36 @@
         android:name="com.charaminstra.pleon.plant_register.ui.PlantAirFragment"
         tools:layout="@layout/fragment_plant_light">
     </fragment>
+
+
+<!--    <fragment-->
+<!--        android:id="@+id/plant_register_fragment"-->
+<!--        android:name="com.charaminstra.pleon.plant_register.ui.PlantRegisterFragment"-->
+<!--        tools:layout="@layout/fragment_plant_register">-->
+<!--        <action-->
+<!--            android:id="@+id/plant_register_fragment_to_plant_light_fragment"-->
+<!--            app:destination="@id/plant_light_fragment">-->
+<!--        </action>-->
+<!--        <action-->
+<!--            android:id="@+id/plant_register_fragment_to_plant_search_fragment"-->
+<!--            app:destination="@+id/plant_search_fragment"></action>-->
+<!--    </fragment>-->
+<!--    <fragment-->
+<!--            android:id="@+id/plant_search_fragment"-->
+<!--            android:name="com.charaminstra.pleon.plant_register.ui.PlantSearchFragment"-->
+<!--            tools:layout="@layout/fragment_plant_search"></fragment>-->
+<!--    <fragment-->
+<!--        android:id="@+id/plant_light_fragment"-->
+<!--        android:name="com.charaminstra.pleon.plant_register.ui.PlantLightFragment"-->
+<!--        tools:layout="@layout/fragment_plant_light">-->
+<!--        <action-->
+<!--            android:id="@+id/plant_light_fragment_to_plant_air_fragment"-->
+<!--            app:destination="@+id/plant_air_fragment"/>-->
+<!--    </fragment>-->
+<!--    <fragment-->
+<!--        android:id="@+id/plant_air_fragment"-->
+<!--        android:name="com.charaminstra.pleon.plant_register.ui.PlantAirFragment"-->
+<!--        tools:layout="@layout/fragment_plant_light">-->
+<!--    </fragment>-->
 
 </navigation>

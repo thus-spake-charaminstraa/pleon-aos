@@ -117,11 +117,14 @@
         <entry key="plant-register/src/main/res/drawable/unpress_button.xml" value="0.1" />
         <entry key="plant-register/src/main/res/drawable/white_button.xml" value="0.2145" />
         <entry key="plant-register/src/main/res/layout/activity_plant_register.xml" value="0.1" />
+        <entry key="plant-register/src/main/res/layout/fragment_plant_adopt.xml" value="0.1" />
         <entry key="plant-register/src/main/res/layout/fragment_plant_air.xml" value="0.1" />
         <entry key="plant-register/src/main/res/layout/fragment_plant_light.xml" value="0.45" />
         <entry key="plant-register/src/main/res/layout/fragment_plant_name.xml" value="0.4234375" />
         <entry key="plant-register/src/main/res/layout/fragment_plant_register.xml" value="0.25" />
+        <entry key="plant-register/src/main/res/layout/fragment_plant_search.xml" value="0.1598731884057971" />
         <entry key="plant-register/src/main/res/layout/fragment_plant_species.xml" value="0.4234375" />
+        <entry key="plant-register/src/main/res/layout/fragment_plant_water.xml" value="0.2171875" />
         <entry key="plant-register/src/main/res/menu/air_menu.xml" value="0.1" />
         <entry key="plant-register/src/main/res/menu/bright_menu.xml" value="0.1" />
         <entry key="plant-register/src/main/res/menu/image_menu.xml" value="0.1" />
