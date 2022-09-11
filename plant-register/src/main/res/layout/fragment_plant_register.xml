@@ -106,7 +106,6 @@
         android:background="@drawable/input"
         android:padding="15dp"
         style="@style/SubText"
-        android:hint="@string/adopt_day_hint"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/adopt_day_title"/>
     <TextView
@@ -128,7 +127,6 @@
         android:background="@drawable/input"
         android:padding="15dp"
         style="@style/SubText"
-        android:hint="@string/water_day_hint"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/water_day_title"/>
     <androidx.appcompat.widget.AppCompatButton

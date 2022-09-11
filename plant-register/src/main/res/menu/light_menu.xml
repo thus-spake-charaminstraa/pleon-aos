@@ -2,14 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/item_light_one"
-        android:title="@string/light_one"/>
+        android:title="@string/plant_light_fragment_one"/>
     <item
         android:id="@+id/item_light_two"
-        android:title="@string/light_two"/>
+        android:title="@string/plant_light_fragment_two"/>
     <item
         android:id="@+id/item_light_three"
-        android:title="@string/light_three"/>
+        android:title="@string/plant_light_fragment_three"/>
     <item
         android:id="@+id/item_light_four"
-        android:title="@string/light_four"/>
+        android:title="@string/plant_light_fragment_four"/>
 </menu>

@@ -110,7 +110,7 @@
                 style="@style/SubText"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/adopt_day_input"
-                android:text="@string/light_title"/>
+                android:text="@string/plant_light_fragment_title"/>
             <Spinner
                 android:id="@+id/light_input"
                 android:layout_width="match_parent"
@@ -130,7 +130,7 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/light_input"
                 style="@style/SubText"
-                android:text="@string/air_title"/>
+                android:text="@string/plant_air_fragment_title"/>
             <Spinner
                 android:id="@+id/air_input"
                 style="@style/SubText"

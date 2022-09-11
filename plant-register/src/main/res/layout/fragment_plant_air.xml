@@ -26,7 +26,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/back_btn"
         style="@style/TitleText"
-        android:text="@string/air_title"/>
+        android:text="@string/plant_air_fragment_title"/>
 
     <RadioGroup
         android:id="@+id/air_rg1"
@@ -40,7 +40,7 @@
         android:orientation="horizontal">
         <RadioButton
             android:id="@+id/air_one"
-            android:text="@string/air_one"
+            android:text="@string/plant_air_fragment_one"
             android:button="@android:color/transparent"
             android:layout_width="150dp"
             android:layout_height="150dp"
@@ -50,7 +50,7 @@
             android:background="@drawable/choose_button_selector" />
         <RadioButton
             android:id="@+id/air_two"
-            android:text="@string/air_two"
+            android:text="@string/plant_air_fragment_two"
             android:button="@android:color/transparent"
             android:layout_width="150dp"
             android:layout_height="150dp"
@@ -70,7 +70,7 @@
         android:orientation="horizontal">
         <RadioButton
             android:id="@+id/air_three"
-            android:text="@string/air_three"
+            android:text="@string/plant_air_fragment_three"
             android:button="@android:color/transparent"
             android:layout_width="150dp"
             android:layout_height="150dp"

@@ -80,7 +80,7 @@ class PlantAirFragment : Fragment() {
             viewModel.setAir(AirType.NO.apiString)
             return true
         }else{
-            Toast.makeText(activity, R.string.choose_msg, Toast.LENGTH_LONG).show()
+            Toast.makeText(activity, R.string.plant_light_fragment_error, Toast.LENGTH_LONG).show()
             return false
         }
     }

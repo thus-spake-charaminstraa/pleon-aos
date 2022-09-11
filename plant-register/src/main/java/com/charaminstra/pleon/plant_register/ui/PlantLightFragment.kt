@@ -32,7 +32,7 @@ class PlantLightFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val navController = this.findNavController()
-        binding.backBtn.setOnClickListener {
+        binding.plantLightBackBtn.setOnClickListener {
             navController.popBackStack()
         }
 
@@ -81,7 +81,7 @@ class PlantLightFragment : Fragment() {
             viewModel.setLight(LightType.DARK.apiString)
             return true
         }else{
-            Toast.makeText(activity,R.string.choose_msg, Toast.LENGTH_LONG).show()
+            Toast.makeText(activity,R.string.plant_light_fragment_error, Toast.LENGTH_LONG).show()
             return false
         }
 

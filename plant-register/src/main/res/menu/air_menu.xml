@@ -2,11 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/item_air_one"
-        android:title="@string/air_one"/>
+        android:title="@string/plant_air_fragment_one"/>
     <item
         android:id="@+id/item_air_two"
-        android:title="@string/air_two"/>
+        android:title="@string/plant_air_fragment_two"/>
     <item
         android:id="@+id/item_air_three"
-        android:title="@string/air_three"/>
+        android:title="@string/plant_air_fragment_three"/>
 </menu>
