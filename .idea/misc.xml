@@ -84,25 +84,12 @@
         <entry key="camera/src/main/res/layout/fragment_my.xml" value="0.1" />
         <entry key="common-ui/src/main/res/drawable/button.xml" value="0.182" />
         <entry key="common-ui/src/main/res/drawable/button_grey.xml" value="0.224" />
-        <entry key="common-ui/src/main/res/drawable/button_image_search.xml" value="0.1195" />
-        <entry key="common-ui/src/main/res/drawable/button_inactive.xml" value="0.1195" />
-        <entry key="common-ui/src/main/res/drawable/button_skip.xml" value="0.1275" />
         <entry key="common-ui/src/main/res/drawable/cursor_drawable.xml" value="0.1715" />
         <entry key="common-ui/src/main/res/drawable/cursor_drawble.xml" value="0.1" />
-        <entry key="common-ui/src/main/res/drawable/dialog_bg.xml" value="0.1085" />
-        <entry key="common-ui/src/main/res/drawable/dialog_button.xml" value="0.1185" />
         <entry key="common-ui/src/main/res/drawable/ic_arrow_back.xml" value="0.1" />
-        <entry key="common-ui/src/main/res/drawable/ic_bubble.xml" value="0.1" />
-        <entry key="common-ui/src/main/res/drawable/ic_camera_active.xml" value="0.1195" />
-        <entry key="common-ui/src/main/res/drawable/ic_search.xml" value="0.1205" />
         <entry key="common-ui/src/main/res/drawable/input.xml" value="0.182" />
-        <entry key="common-ui/src/main/res/drawable/round_shape.xml" value="0.129" />
         <entry key="common-ui/src/main/res/drawable/round_transparent.xml" value="0.1" />
-        <entry key="common-ui/src/main/res/drawable/search_background.xml" value="0.129" />
-        <entry key="common-ui/src/main/res/drawable/shadow.xml" value="0.1" />
-        <entry key="common-ui/src/main/res/drawable/test.xml" value="0.1" />
-        <entry key="common-ui/src/main/res/layout/dialog_delete_layout.xml" value="0.20437956204379562" />
-        <entry key="common-ui/src/main/res/layout/dialog_skip_layout.xml" value="0.25" />
+        <entry key="common-ui/src/main/res/layout/dialog_delete_layout.xml" value="0.335" />
         <entry key="foundation/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="foundation/src/main/res/xml/http.xml" value="0.1" />
         <entry key="login/src/main/res/drawable/cursor_drawble.xml" value="0.1" />
@@ -127,17 +114,14 @@
         <entry key="plant-register/src/main/res/drawable/image_button_press.xml" value="0.1" />
         <entry key="plant-register/src/main/res/drawable/image_button_selector.xml" value="0.1" />
         <entry key="plant-register/src/main/res/drawable/press_button.xml" value="0.1" />
-        <entry key="plant-register/src/main/res/drawable/recyclerview_divicer.xml" value="0.1" />
         <entry key="plant-register/src/main/res/drawable/unpress_button.xml" value="0.1" />
         <entry key="plant-register/src/main/res/drawable/white_button.xml" value="0.2145" />
         <entry key="plant-register/src/main/res/layout/activity_plant_register.xml" value="0.1" />
         <entry key="plant-register/src/main/res/layout/fragment_plant_air.xml" value="0.1" />
         <entry key="plant-register/src/main/res/layout/fragment_plant_light.xml" value="0.45" />
+        <entry key="plant-register/src/main/res/layout/fragment_plant_name.xml" value="0.4234375" />
         <entry key="plant-register/src/main/res/layout/fragment_plant_register.xml" value="0.25" />
-        <entry key="plant-register/src/main/res/layout/fragment_plant_search.xml" value="0.1" />
-        <entry key="plant-register/src/main/res/layout/fragment_plant_species.xml" value="0.3180437932248976" />
-        <entry key="plant-register/src/main/res/layout/fragment_plant_thumbnail.xml" value="0.21421966552734378" />
-        <entry key="plant-register/src/main/res/layout/item_plant_search.xml" value="0.10833333333333334" />
+        <entry key="plant-register/src/main/res/layout/fragment_plant_species.xml" value="0.4234375" />
         <entry key="plant-register/src/main/res/menu/air_menu.xml" value="0.1" />
         <entry key="plant-register/src/main/res/menu/bright_menu.xml" value="0.1" />
         <entry key="plant-register/src/main/res/menu/image_menu.xml" value="0.1" />

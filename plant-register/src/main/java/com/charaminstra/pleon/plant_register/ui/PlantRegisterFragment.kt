@@ -88,13 +88,13 @@ class PlantRegisterFragment : Fragment() {
             if(plantRegisterViewModel.urlResponse.value.isNullOrBlank()){
                 //Toast.makeText(activity,R.string.thumbnail_hint,Toast.LENGTH_LONG).show()
             }else if(binding.speciesBtn.text.isNullOrBlank()){
-                Toast.makeText(activity,R.string.species_hint,Toast.LENGTH_LONG).show()
+                //Toast.makeText(activity,R.string.species_hint,Toast.LENGTH_LONG).show()
             }else if(binding.nameInput.text.isNullOrBlank()){
-                Toast.makeText(activity,R.string.name_hint,Toast.LENGTH_LONG).show()
+                //Toast.makeText(activity,R.string.name_hint,Toast.LENGTH_LONG).show()
             }else if(binding.adoptDayInput.text.isNullOrBlank()){
-                Toast.makeText(activity,R.string.adopt_day_hint,Toast.LENGTH_LONG).show()
+                //Toast.makeText(activity,R.string.adopt_day_hint,Toast.LENGTH_LONG).show()
             }else if(binding.waterDayInput.text.isNullOrBlank()){
-                Toast.makeText(activity,R.string.water_day_hint,Toast.LENGTH_LONG).show()
+                //;.Toast.makeText(activity,R.string.water_day_hint,Toast.LENGTH_LONG).show()
             }else{
                 plantRegisterViewModel.setName(binding.nameInput.text.toString())
                 plantRegisterViewModel.setSpecies(binding.speciesBtn.text.toString())

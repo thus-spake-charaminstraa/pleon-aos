@@ -4,14 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.charaminstra.pleon.common_ui.CustomDialog
+import com.charaminstra.pleon.common_ui.showErrorToast
+import com.charaminstra.pleon.plant_register.PlantRegisterViewModel
 import com.charaminstra.pleon.plant_register.PlantSearchAdapter
 import com.charaminstra.pleon.plant_register.R
 import com.charaminstra.pleon.plant_register.databinding.FragmentPlantSpeciesBinding
@@ -21,7 +25,8 @@ import dagger.hilt.android.AndroidEntryPoint
 class PlantSpeciesFragment : Fragment() {
     private lateinit var binding: FragmentPlantSpeciesBinding
     private lateinit var adapter: PlantSearchAdapter
-    private val viewModel: PlantSearchViewModel by viewModels()
+    private val searchViewModel: PlantSearchViewModel by viewModels()
+    private val viewModel: PlantRegisterViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +37,7 @@ class PlantSpeciesFragment : Fragment() {
 
         initList()
         observeViewModel()
-        viewModel.getPlantSpecies()
+        searchViewModel.getPlantSpecies()
         binding.plantSpeciesRecyclerview.adapter = adapter
         binding.plantSpeciesRecyclerview.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
 
@@ -51,10 +56,20 @@ class PlantSpeciesFragment : Fragment() {
                     binding.plantSpeciesEt.visibility = View.GONE
                     binding.plantSpeciesRecyclerview.visibility = View.VISIBLE
                 }
-                viewModel.searchFilter(newText)
+                searchViewModel.searchFilter(newText)
                 return true
             }
         })
+
+        binding.plantSpeciesNextBtn.setOnClickListener {
+            navController.navigate(R.id.plant_species_fragment_to_plant_name_fragment)
+            if(viewModel.urlResponse.value.isNullOrBlank()){
+                Toast(activity).showErrorToast(resources.getString(R.string.plant_species_fragment_error),binding.plantSpeciesEt.y,requireActivity())
+            }else{
+                //test
+                //navController.navigate(R.id.plant_register_fragment_to_plant_light_fragment)
+            }
+        }
 
         binding.plantSpeciesSkipBtn.setOnClickListener {
             val dlg = CustomDialog(requireContext())
@@ -82,10 +97,10 @@ class PlantSpeciesFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        viewModel.plantSpeciesList.observe(viewLifecycleOwner, Observer {
+        searchViewModel.plantSpeciesList.observe(viewLifecycleOwner, Observer {
             adapter.refreshItems(it)
         })
-        viewModel.searchResult.observe(viewLifecycleOwner, Observer {
+        searchViewModel.searchResult.observe(viewLifecycleOwner, Observer {
             adapter.refreshItems(it)
         })
     }

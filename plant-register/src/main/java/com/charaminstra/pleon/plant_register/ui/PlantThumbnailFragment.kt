@@ -46,7 +46,7 @@ class PlantThumbnailFragment : Fragment() {
         binding.plantRegisterNextBtn.setOnClickListener {
             navController.navigate(R.id.plant_thumbnail_fragment_to_plant_species_fragment)
             if(viewModel.urlResponse.value.isNullOrBlank()){
-                Toast(activity).showErrorToast(resources.getString(R.string.thumbnail_error),binding.plantThumbnailAddImg.y,requireActivity())
+                Toast(activity).showErrorToast(resources.getString(R.string.plant_thumbnail_fragment_error),binding.plantThumbnailAddImg.y,requireActivity())
             }else{
                 //test
                 //navController.navigate(R.id.plant_register_fragment_to_plant_light_fragment)

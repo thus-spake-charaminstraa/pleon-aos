@@ -12,6 +12,8 @@
     <!--    plant thumbnail fragment-->
     <string name="plant_thumbnail_title">반려식물의 예쁜 모습이 담긴\n사진을 설정해주세요 :)</string>
 
+    <string name="plant_thumbnail_fragment_error">식물의 사진을 등록해주세요.</string>
+
     <!--    plant species fragment-->
     <string name="plant_species_fragment_title">반려식물의 종을\n입력해주세요 !</string>
     <string name="plant_species_fragment_search_hint">종 검색하기</string>
@@ -19,20 +21,37 @@
     <string name="plant_species_fragment_image_search_help">식물의 종을 모르신다면 식별을 도와드릴게요!</string>
     <string name="plant_species_fragment_hint">종 입력</string>
 
+    <string name="plant_species_fragment_error">식물의 종류를 기입해주세요.</string>
 
-    <string name="species_title">식물 종류</string>
 
-    <string name="species_hint">식물의 종류를 기입해주세요.</string>
-    <string name="name_title">식물 이름</string>
+    <!--    plant name fragment-->
+    <string name="plant_name_fragment_title">반려식물의 이름을\n입력해주세요 !</string>
+    <string name="plant_name_fragment_hint">이름 입력</string>
+
     <string name="name_hint">식물 이름을 지어주세요.</string>
-    <string name="adopt_day_title">입양일</string>
+
+    <!--    plant adopt fragment-->
+    <string name="plant_adopt_fragment_title">반려식물의 데려온 날을\n입력해주세요 !</string>
+    <string name="plant_adopt_fragment_hint">2022.01.01</string>
+
     <string name="adopt_day_hint">식물을 데리고 온 날을 기입하세요.</string>
-    <string name="water_day_title">물준날</string>
+
+    <!--    plant water fragment-->
+    <string name="plant_water_fragment_title">마지막으로 물 준 날짜를\n입력해주세요 !</string>
+    <string name="plant_water_fragment_hint">2022.01.01</string>
+
     <string name="water_day_hint">마지막으로 물을 준 날을 기입하세요.</string>
 
-    <string name="thumbnail_error">식물의 사진을 등록해주세요.</string>
+
+<!--    trash-->
+    <string name="species_title">식물 종류</string>
+    <string name="name_title">식물 이름</string>
+    <string name="adopt_day_title">입양일</string>
+    <string name="water_day_title">물준날</string>
 
     <string name="plant_register_fragment_title">식물을 등록해주세요.</string>
+<!--    trash-->
+
     <string name="img_menu_gallery">사진 선택</string>
     <string name="img_menu_camera">사진 찍기</string>
     <string name="img_menu_cancel">취소</string>

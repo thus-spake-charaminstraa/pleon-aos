@@ -18,8 +18,16 @@
         android:id="@+id/plant_species_fragment"
         android:name="com.charaminstra.pleon.plant_register.ui.PlantSpeciesFragment"
         tools:layout="@layout/fragment_plant_species">
+        <action
+            android:id="@+id/plant_species_fragment_to_plant_name_fragment"
+            app:destination="@id/plant_name_fragment">
+        </action>
     </fragment>
-
+    <fragment
+        android:id="@+id/plant_name_fragment"
+        android:name="com.charaminstra.pleon.plant_register.ui.PlantNameFragment"
+        tools:layout="@layout/fragment_plant_name">
+    </fragment>
     <fragment
         android:id="@+id/plant_register_fragment"
         android:name="com.charaminstra.pleon.plant_register.ui.PlantRegisterFragment"
