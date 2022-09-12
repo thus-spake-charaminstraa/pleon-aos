@@ -1,102 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingHorizontal="20dp"
-    android:orientation="vertical"
-    android:paddingTop="44dp"
-    tools:context="com.charaminstra.pleon.plant_register.ui.PlantAirFragment">
-    <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/back_btn"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+    android:background="@color/sub_background_color"
+    android:paddingHorizontal="20dp">
+    <ImageView
+        android:id="@+id/plant_air_back_btn"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="20dp"
         android:background="@android:color/transparent"
-        android:scaleType="center"
-        android:src="@drawable/ic_arrow_back" />
+        android:paddingVertical="5dp"
+        android:scaleType="fitStart"
+        android:src="@drawable/ic_arrow_back"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/back_btn"
         style="@style/TitleText"
-        android:text="@string/plant_air_fragment_title"/>
-
-    <RadioGroup
-        android:id="@+id/air_rg1"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <RadioButton
-            android:id="@+id/air_one"
+        android:layout_marginTop="20dp"
+        android:text="@string/plant_air_fragment_title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/plant_air_back_btn" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/air_one_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="12dp"
+        android:background="@drawable/choose_button_selector"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:padding="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/air_two_btn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title">
+
+        <ImageView
+            android:id="@+id/air_one_img"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:src="@drawable/img_wind_01"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/air_one_txt"
+            style="@style/ChooseText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
             android:text="@string/plant_air_fragment_one"
-            android:button="@android:color/transparent"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:padding="10dp"
-            android:gravity="center"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/choose_button_selector" />
-        <RadioButton
-            android:id="@+id/air_two"
-            android:text="@string/plant_air_fragment_two"
-            android:button="@android:color/transparent"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:padding="10dp"
-            android:gravity="center"
-            android:background="@drawable/choose_button_selector" />
-    </RadioGroup>
-    <RadioGroup
-        android:id="@+id/air_rg2"
-        android:layout_marginTop="20dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/air_one_img" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/air_two_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/choose_button_selector"
+        android:clickable="true"
+        android:focusable="true"
         android:gravity="center"
+        android:padding="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/air_one_btn"
+        app:layout_constraintTop_toTopOf="@+id/air_one_btn">
+        <ImageView
+            android:id="@+id/air_two_img"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:src="@drawable/img_wind_01"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/air_two_txt"
+            style="@style/ChooseText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="@string/plant_air_fragment_two"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/air_two_img" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/air_three_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:background="@drawable/choose_button_selector"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:padding="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/air_four_btn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/air_one_btn">
+        <ImageView
+            android:id="@+id/air_three_img"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:src="@drawable/img_wind_01"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/air_three_txt"
+            style="@style/ChooseText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="@string/plant_air_fragment_three"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/air_three_img" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/air_four_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/sub_background_color"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:padding="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/air_three_btn"
+        app:layout_constraintTop_toTopOf="@+id/air_three_btn">
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/air_next_btn"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginVertical="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/air_rg1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <RadioButton
-            android:id="@+id/air_three"
-            android:text="@string/plant_air_fragment_three"
-            android:button="@android:color/transparent"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:padding="10dp"
-            android:gravity="center"
-            android:background="@drawable/choose_button_selector"
-            android:layout_marginRight="10dp" />
-        <RadioButton
-            android:id="@+id/air_four"
-            android:enabled="false"
-            android:button="@android:color/transparent"
-            android:padding="10dp"
-            android:gravity="center"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:background="@color/white" />
-    </RadioGroup>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/complete_btn"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/air_rg2"
         android:background="@drawable/button_active"
-        style="@style/SubText"
-        android:text="@string/complete_btn" />
+        style="@style/LoginButtonText"
+        android:text="@string/plant_register_btn" />
 </androidx.constraintlayout.widget.ConstraintLayout>

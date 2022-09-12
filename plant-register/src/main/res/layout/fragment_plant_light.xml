@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/sub_background_color"
     android:paddingHorizontal="20dp">
-
     <ImageView
         android:id="@+id/plant_light_back_btn"
         android:layout_width="28dp"

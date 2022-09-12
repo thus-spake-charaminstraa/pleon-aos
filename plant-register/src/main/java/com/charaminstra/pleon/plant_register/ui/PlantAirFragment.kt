@@ -8,7 +8,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.charaminstra.pleon.common_ui.showErrorToast
 import com.charaminstra.pleon.plant_register.AirType
+import com.charaminstra.pleon.plant_register.LightType
 import com.charaminstra.pleon.plant_register.PlantRegisterViewModel
 import com.charaminstra.pleon.plant_register.R
 import com.charaminstra.pleon.plant_register.databinding.FragmentPlantAirBinding
@@ -18,13 +20,11 @@ import dagger.hilt.android.AndroidEntryPoint
 class PlantAirFragment : Fragment() {
     private val viewModel: PlantRegisterViewModel by activityViewModels()
     private lateinit var binding: FragmentPlantAirBinding
-    private var isChecking: Boolean = true
-    private var mCheckedId: Int = 0
+    private var isChecking: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding=FragmentPlantAirBinding.inflate(layoutInflater)
-
+        binding= FragmentPlantAirBinding.inflate(layoutInflater)
     }
 
     override fun onCreateView(
@@ -32,18 +32,14 @@ class PlantAirFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val navController = this.findNavController()
-        binding.backBtn.setOnClickListener {
+        binding.plantAirBackBtn.setOnClickListener {
             navController.popBackStack()
         }
-
-        /* bright, half_bright, lamp, dark */
-        binding.airOne.text = resources.getString(AirType.YES.descId)
-        binding.airTwo.text = resources.getString(AirType.WINDOW.descId)
-        binding.airThree.text = resources.getString(AirType.NO.descId)
-
-        radioGroupSet()
-        binding.completeBtn.setOnClickListener {
-            if(setAirType()){
+        buttonCheck()
+        binding.airNextBtn.setOnClickListener {
+            if(!isChecking){
+                Toast(activity).showErrorToast(resources.getString(R.string.plant_air_fragment_error),binding.airThreeBtn.y+binding.airThreeBtn.height,requireActivity())
+            }else{
                 viewModel.postPlant()
                 activity?.finish()
             }
@@ -51,38 +47,40 @@ class PlantAirFragment : Fragment() {
         return binding.root
     }
 
-    fun radioGroupSet(){
-        binding.airRg1.setOnCheckedChangeListener { radioGroup, checkedId ->
-            if (checkedId != -1 && isChecking) {
-                isChecking = false
-                binding.airRg2.clearCheck()
-                mCheckedId = checkedId
-            }
+    fun buttonCheck(){
+        /* button selector */
+        binding.airOneBtn.setOnClickListener {
+            viewModel.setAir(AirType.YES.apiString)
             isChecking = true
+            binding.airOneBtn.isSelected = true
+            binding.airTwoBtn.isSelected = false
+            binding.airThreeBtn.isSelected = false
         }
-        binding.airRg2.setOnCheckedChangeListener { radioGroup, checkedId ->
-            if (checkedId != -1 && isChecking) {
-                isChecking = false
-                binding.airRg1.clearCheck()
-                mCheckedId = checkedId
-            }
+        binding.airTwoBtn.setOnClickListener {
             isChecking = true
+            viewModel.setAir(AirType.WINDOW.apiString)
+            binding.airOneBtn.isSelected = false
+            binding.airTwoBtn.isSelected = true
+            binding.airThreeBtn.isSelected = false
+        }
+        binding.airThreeBtn.setOnClickListener {
+            isChecking = true
+            viewModel.setAir(AirType.NO.apiString)
+            binding.airOneBtn.isSelected = false
+            binding.airTwoBtn.isSelected = false
+            binding.airThreeBtn.isSelected = true
+
         }
     }
-    fun setAirType() : Boolean {
-        if (mCheckedId == binding.airOne.id) {
-            viewModel.setAir(AirType.YES.apiString)
-            return true
-        } else if (mCheckedId == binding.airTwo.id) {
-            viewModel.setAir(AirType.WINDOW.apiString)
-            return true
-        } else if (mCheckedId == binding.airThree.id) {
-            viewModel.setAir(AirType.NO.apiString)
-            return true
-        }else{
-            Toast.makeText(activity, R.string.plant_light_fragment_error, Toast.LENGTH_LONG).show()
-            return false
-        }
+
+    /* bright, half_bright, lamp, dark */
+//        binding.airOne.text = resources.getString(LightType.BRIGHT.descId)
+//        binding.airTwo.text = resources.getString(LightType.HALF_BRIGHT.descId)
+//        binding.airThree.text = resources.getString(LightType.LAMP.descId)
+//        binding.airFour.text = resources.getString(LightType.DARK.descId)
+
+    override fun onResume() {
+        super.onResume()
     }
 }
 

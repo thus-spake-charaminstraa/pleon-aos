@@ -56,5 +56,5 @@
         app:layout_constraintRight_toRightOf="parent"
         android:background="@drawable/button_active"
         style="@style/LoginButtonText"
-        android:text="@string/register_btn" />
+        android:text="@string/user_register_btn" />
 </androidx.constraintlayout.widget.ConstraintLayout>
