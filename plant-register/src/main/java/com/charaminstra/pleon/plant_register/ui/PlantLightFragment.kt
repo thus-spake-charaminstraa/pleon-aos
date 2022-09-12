@@ -51,34 +51,35 @@ class PlantLightFragment : Fragment() {
         binding.lightOneBtn.setOnClickListener {
             viewModel.setLight(LightType.BRIGHT.apiString)
             isChecking = true
-            binding.lightOneBtn.background = resources.getDrawable(R.drawable.check_button)
-            binding.lightTwoBtn.background = resources.getDrawable(R.drawable.uncheck_button)
-            binding.lightThreeBtn.background = resources.getDrawable(R.drawable.uncheck_button)
-            binding.lightFourBtn.background = resources.getDrawable(R.drawable.uncheck_button)
+            binding.lightOneBtn.isSelected = true
+            binding.lightTwoBtn.isSelected = false
+            binding.lightThreeBtn.isSelected = false
+            binding.lightFourBtn.isSelected = false
         }
         binding.lightTwoBtn.setOnClickListener {
             isChecking = true
             viewModel.setLight(LightType.HALF_BRIGHT.apiString)
-            binding.lightOneBtn.background = resources.getDrawable(R.drawable.uncheck_button)
-            binding.lightTwoBtn.background = resources.getDrawable(R.drawable.check_button)
-            binding.lightThreeBtn.background = resources.getDrawable(R.drawable.uncheck_button)
-            binding.lightFourBtn.background = resources.getDrawable(R.drawable.uncheck_button)
+            binding.lightOneBtn.isSelected = false
+            binding.lightTwoBtn.isSelected = true
+            binding.lightThreeBtn.isSelected = false
+            binding.lightFourBtn.isSelected = false
         }
         binding.lightThreeBtn.setOnClickListener {
             isChecking = true
             viewModel.setLight(LightType.LAMP.apiString)
-            binding.lightOneBtn.background = resources.getDrawable(R.drawable.uncheck_button)
-            binding.lightTwoBtn.background = resources.getDrawable(R.drawable.uncheck_button)
-            binding.lightThreeBtn.background = resources.getDrawable(R.drawable.check_button)
-            binding.lightFourBtn.background = resources.getDrawable(R.drawable.uncheck_button)
+            binding.lightOneBtn.isSelected = false
+            binding.lightTwoBtn.isSelected = false
+            binding.lightThreeBtn.isSelected = true
+            binding.lightFourBtn.isSelected = false
+
         }
         binding.lightFourBtn.setOnClickListener {
             isChecking = true
             viewModel.setLight(LightType.DARK.apiString)
-            binding.lightOneBtn.background = resources.getDrawable(R.drawable.uncheck_button)
-            binding.lightTwoBtn.background = resources.getDrawable(R.drawable.uncheck_button)
-            binding.lightThreeBtn.background = resources.getDrawable(R.drawable.uncheck_button)
-            binding.lightFourBtn.background = resources.getDrawable(R.drawable.check_button)
+            binding.lightOneBtn.isSelected = false
+            binding.lightTwoBtn.isSelected = false
+            binding.lightThreeBtn.isSelected = false
+            binding.lightFourBtn.isSelected = true
         }
     }
 
