@@ -1,95 +1,181 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/sub_background_color"
     android:paddingHorizontal="20dp">
+
     <ImageView
         android:id="@+id/plant_light_back_btn"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:paddingVertical="5dp"
         android:layout_width="28dp"
         android:layout_height="28dp"
-        android:scaleType="fitStart"
         android:layout_marginTop="20dp"
         android:background="@android:color/transparent"
-        android:src="@drawable/ic_arrow_back" />
+        android:paddingVertical="5dp"
+        android:scaleType="fitStart"
+        android:src="@drawable/ic_arrow_back"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/plant_light_back_btn"
         style="@style/TitleText"
-        android:text="@string/plant_light_fragment_title"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/plant_light_fragment_title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/plant_light_back_btn" />
 
-    <RadioGroup
-        android:id="@+id/light_rg1"
-        android:layout_marginTop="20dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title"
-        android:gravity="center"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/light_one_btn"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <RadioButton
-            android:id="@+id/light_one"
-            android:button="@android:color/transparent"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:padding="10dp"
-            android:gravity="center"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/choose_button_selector" />
-        <RadioButton
-            android:id="@+id/light_two"
-            android:button="@android:color/transparent"
-            android:padding="10dp"
-            android:gravity="center"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:background="@drawable/choose_button_selector" />
-    </RadioGroup>
-    <RadioGroup
-        android:id="@+id/light_rg2"
-        android:layout_marginTop="20dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/light_rg1"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="12dp"
+        android:background="@drawable/choose_button_selector"
+        android:clickable="true"
+        android:focusable="true"
         android:gravity="center"
-        android:layout_width="wrap_content"
+        android:padding="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/light_two_btn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title">
+
+        <ImageView
+            android:id="@+id/light_one_img"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:src="@drawable/img_light_01"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/light_one_txt"
+            style="@style/ChooseText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="@string/plant_light_fragment_one"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/light_one_img" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/light_two_btn"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <RadioButton
-            android:id="@+id/light_three"
-            android:button="@android:color/transparent"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:padding="10dp"
+        android:background="@drawable/choose_button_selector"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:padding="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/light_one_btn"
+        app:layout_constraintTop_toTopOf="@+id/light_one_btn">
+        <ImageView
+            android:id="@+id/light_two_img"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:src="@drawable/img_light_01"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/light_two_txt"
+            style="@style/ChooseText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:gravity="center"
-            android:background="@drawable/choose_button_selector"
-            android:layout_marginRight="10dp" />
-        <RadioButton
-            android:id="@+id/light_four"
-            android:button="@android:color/transparent"
-            android:padding="10dp"
+            android:text="@string/plant_light_fragment_two"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/light_two_img" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/light_three_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:background="@drawable/choose_button_selector"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:padding="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/light_four_btn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/light_one_btn">
+        <ImageView
+            android:id="@+id/light_three_img"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:src="@drawable/img_light_01"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/light_three_txt"
+            style="@style/ChooseText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:gravity="center"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:background="@drawable/choose_button_selector" />
-    </RadioGroup>
+            android:text="@string/plant_light_fragment_three"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/light_three_img" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/light_four_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/choose_button_selector"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:padding="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/light_three_btn"
+        app:layout_constraintTop_toTopOf="@+id/light_three_btn">
+        <ImageView
+            android:id="@+id/light_four_img"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:src="@drawable/img_light_01"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/light_four_txt"
+            style="@style/ChooseText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="@string/plant_light_fragment_four"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/light_four_img" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/complete_btn"
-        android:layout_marginTop="20dp"
+        android:id="@+id/light_next_btn"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="52dp"
+        android:layout_marginVertical="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/light_rg2"
+        app:layout_constraintRight_toRightOf="parent"
         android:background="@drawable/button_active"
-        style="@style/SubText"
-        android:text="@string/complete_btn" />
+        style="@style/LoginButtonText"
+        android:text="@string/next_btn" />
 </androidx.constraintlayout.widget.ConstraintLayout>

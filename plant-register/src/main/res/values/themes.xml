@@ -1,0 +1,8 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="ChooseText" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:lineSpacingExtra">5sp</item>
+        <item name="android:letterSpacing">-0.02</item>
+    </style>
+</resources>

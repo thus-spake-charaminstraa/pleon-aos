@@ -4,6 +4,8 @@
     <color name="button_inactive_color">#c4c4c4</color>
     <color name="black_sub_color">#3a3a3a</color>
 
+    <color name="sub_background_color">#FFF6F6F6</color>
+
     <color name="help_color">#6b98ff</color>
     <color name="error_background_color">#ffeeee</color>
     <color name="error_text_color">#ff5252</color>

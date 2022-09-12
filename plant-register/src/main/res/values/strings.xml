@@ -45,10 +45,10 @@
     <!--    plant light fragment-->
 
     <string name="plant_light_fragment_title">현재 식물이\n빛을 어떻게 받고있나요?</string>
-    <string name="plant_light_fragment_one">창문 가까이 직사광선을 받아요</string>
-    <string name="plant_light_fragment_two">창문 안쪽에서 간접광을 받아요</string>
-    <string name="plant_light_fragment_three">식물 조명 빛을 받아요</string>
-    <string name="plant_light_fragment_four">해를 못 받아요</string>
+    <string name="plant_light_fragment_one">창문 가까이\n직사광선을 받아요</string>
+    <string name="plant_light_fragment_two">창문 안쪽에서\n간접광을 받아요</string>
+    <string name="plant_light_fragment_three">실내에서\n식물 조명 빛을 받아요</string>
+    <string name="plant_light_fragment_four">실내에서\n해를 못 받아요</string>
 
     <string name="plant_light_fragment_error">하나를 선택해주세요.</string>
 
