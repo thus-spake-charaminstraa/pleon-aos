@@ -47,9 +47,18 @@
         <item name="android:textSize">15dp</item>
         <item name="android:textColor">@color/black_sub_color</item>
     </style>
-    <style name="DialogButtonOKText" parent="@android:style/Widget.TextView">
+    <style name="DialogButtonDeleteText" parent="@android:style/Widget.TextView">
         <item name="android:textSize">15dp</item>
         <item name="android:textColor">@color/error_text_color</item>
+    </style>
+    <style name="DialogButtonOkText" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">15dp</item>
+        <item name="android:textColor">@color/main_green_color</item>
+    </style>
+
+    <!--    datepicker dialog-->
+    <style name="AppTheme.NumberPicker" parent="Theme.PLeon_AOS">
+        <item name="colorControlNormal">@color/main_green_color</item>
     </style>
 
 
@@ -83,25 +92,13 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/black</item>
     </style>
+    <style name="MySpinnerDatePickerStyle" parent="android:Theme.Material.Dialog">
+
+    </style>
     <style name="PleonDatePickerStyle" parent="Theme.AppCompat.Light.Dialog">
-        <item name="colorAccent">#FFFFFF</item>
-        <!--selected Item color-->
-        <item name="colorControlActivated">#2196F3</item>
-        <!-- arrow bordercolor(<>)-->
-        <item name="android:selectableItemBackgroundBorderless">@color/white</item>
-        <!-- Highlight item color-->
-        <item name="colorControlHighlight">#d50000</item>
-        <!--Calender Background color -->
-        <item name="android:windowBackground">@color/white</item>
-        <!-- Ok Cancel Color-->
-        <item name="android:textColor">@color/black</item>
-        <!-- Week TextColor-->
-        <item name="android:textColorSecondary">@color/black</item>
-        <!-- Calender Number color arrow color (< >) -->
-        <item name="android:textColorPrimary">@color/black</item>
-        <!--day , month-->
-        <item name="android:textColorPrimaryInverse">@color/black</item>
-        <!-- year-->
-        <item name="android:textColorSecondaryInverse">#000000</item>
+        <item name="android:datePickerStyle">@style/PleonSpinnerDatePicker</item>
+    </style>
+    <style name="PleonSpinnerDatePicker" parent="android:Widget.Material.DatePicker">
+        <item name="android:datePickerMode">spinner</item>
     </style>
 </resources>

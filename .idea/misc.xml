@@ -101,6 +101,7 @@
         <entry key="common-ui/src/main/res/drawable/search_background.xml" value="0.129" />
         <entry key="common-ui/src/main/res/drawable/shadow.xml" value="0.1" />
         <entry key="common-ui/src/main/res/drawable/test.xml" value="0.1" />
+        <entry key="common-ui/src/main/res/layout/dialog_datepicker.xml" value="0.38109756097560976" />
         <entry key="common-ui/src/main/res/layout/dialog_delete_layout.xml" value="0.20437956204379562" />
         <entry key="common-ui/src/main/res/layout/dialog_skip_layout.xml" value="0.25" />
         <entry key="foundation/src/main/res/layout/activity_main.xml" value="0.1" />
@@ -133,6 +134,7 @@
         <entry key="plant-register/src/main/res/drawable/unpress_button.xml" value="0.1" />
         <entry key="plant-register/src/main/res/drawable/white_button.xml" value="0.2145" />
         <entry key="plant-register/src/main/res/layout/activity_plant_register.xml" value="0.1" />
+        <entry key="plant-register/src/main/res/layout/fragment_plant_adopt.xml" value="0.1" />
         <entry key="plant-register/src/main/res/layout/fragment_plant_air.xml" value="0.28031768798828127" />
         <entry key="plant-register/src/main/res/layout/fragment_plant_light.xml" value="0.19707386551271888" />
         <entry key="plant-register/src/main/res/layout/fragment_plant_register.xml" value="0.25" />

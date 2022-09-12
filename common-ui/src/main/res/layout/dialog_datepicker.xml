@@ -1,30 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="312dp"
     android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:background="@drawable/dialog_bg"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <TextView
-        android:id="@+id/dialog_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:gravity="center"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <NumberPicker
+        android:id="@+id/year_datepicker"
+        android:layout_width="63dp"
+        android:layout_height="124dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        style="@style/DialogTitleText" />
-    <TextView
-        android:id="@+id/dialog_desc"
-        android:padding="30dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        style="@style/DialogSubText"
-        app:layout_constraintTop_toBottomOf="@+id/dialog_title"
         app:layout_constraintBottom_toTopOf="@+id/dialog_button"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        android:theme="@style/AppTheme.NumberPicker"/>
+    <NumberPicker
+        android:id="@+id/month_datepicker"
+        android:layout_width="63dp"
+        android:layout_height="124dp"
+        android:layout_marginStart="50dp"
+        app:layout_constraintStart_toEndOf="@+id/year_datepicker"
+        app:layout_constraintTop_toTopOf="parent"
+        android:theme="@style/AppTheme.NumberPicker"/>
+    <NumberPicker
+        android:id="@+id/day_datepicker"
+        android:layout_width="63dp"
+        android:layout_height="124dp"
+        android:layout_marginStart="50dp"
+        app:layout_constraintStart_toEndOf="@+id/month_datepicker"
+        app:layout_constraintTop_toTopOf="parent"
+        android:theme="@style/AppTheme.NumberPicker"/>
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -44,7 +47,8 @@
             android:layout_height="match_parent"
             android:textColor="@color/black"
             android:background="@null"
-            style="@style/DialogButtonCancelText" />
+            style="@style/DialogButtonCancelText"
+            android:text="@string/dialog_cancel_btn"/>
         <View
             android:layout_width="1dp"
             android:layout_height="match_parent"
@@ -56,6 +60,7 @@
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:background="@null"
-            style="@style/DialogButtonDeleteText" />
+            style="@style/DialogButtonOkText"
+            android:text="@string/dialog_ok_btn"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

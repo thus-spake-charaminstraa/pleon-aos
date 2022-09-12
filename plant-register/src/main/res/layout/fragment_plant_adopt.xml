@@ -35,12 +35,11 @@
         android:layout_height="wrap_content"
         style="@style/LoginEditText"
         android:gravity="center"
-        android:textCursorDrawable="@drawable/cursor_drawable"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/plant_adopt_title"
         app:layout_constraintBottom_toTopOf="@+id/plant_adopt_btns"
-        android:inputType="textNoSuggestions"
+        android:focusable="false"
         android:hint="@string/plant_adopt_fragment_hint" />
     <LinearLayout
         android:id="@+id/plant_adopt_btns"
