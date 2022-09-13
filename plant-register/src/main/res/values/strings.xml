@@ -36,11 +36,15 @@
 
     <string name="plant_adopt_fragment_error">식물을 데리고 온 날을 기입하세요.</string>
 
+    <string name="plant_adopt_dialog_title">입양날짜 선택</string>
+
     <!--    plant water fragment-->
     <string name="plant_water_fragment_title">마지막으로 물 준 날짜를\n입력해주세요 !</string>
     <string name="plant_water_fragment_hint">2022.01.01</string>
 
     <string name="plant_water_fragment_error">마지막으로 물을 준 날을 기입하세요.</string>
+
+    <string name="plant_water_dialog_title">마지막 물 준 날짜 선택</string>
 
     <!--    plant light fragment-->
 

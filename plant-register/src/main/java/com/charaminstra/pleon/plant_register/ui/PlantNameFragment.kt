@@ -9,12 +9,11 @@ import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.charaminstra.pleon.common.showKeyboard
-import com.charaminstra.pleon.common_ui.CustomDialog
+import com.charaminstra.pleon.common_ui.PLeonMsgDialog
 import com.charaminstra.pleon.common_ui.showErrorToast
 import com.charaminstra.pleon.plant_register.PlantRegisterViewModel
 import com.charaminstra.pleon.plant_register.R
 import com.charaminstra.pleon.plant_register.databinding.FragmentPlantNameBinding
-import com.charaminstra.pleon.plant_register.databinding.FragmentPlantRegisterBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -54,7 +53,7 @@ class PlantNameFragment : Fragment() {
         }
 
         binding.plantNameSkipBtn.setOnClickListener {
-            val dlg = CustomDialog(requireContext())
+            val dlg = PLeonMsgDialog(requireContext())
             dlg.setOnOKClickedListener {
                 activity?.finish()
             }

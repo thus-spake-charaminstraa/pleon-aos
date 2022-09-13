@@ -25,7 +25,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.charaminstra.pleon.common_ui.CustomDialog
+import com.charaminstra.pleon.common_ui.PLeonMsgDialog
 import com.charaminstra.pleon.databinding.FragmentPlantEditBinding
 import com.charaminstra.pleon.plant_register.*
 import com.charaminstra.pleon.R
@@ -302,7 +302,7 @@ class PlantEditFragment : Fragment() {
                 binding.adoptDayInput.text.toString())
         }
         binding.deleteBtn.setOnClickListener {
-            val dlg = CustomDialog(requireContext())
+            val dlg = PLeonMsgDialog(requireContext())
             dlg.setOnOKClickedListener {
                 viewModel.deleteData(id)
             }

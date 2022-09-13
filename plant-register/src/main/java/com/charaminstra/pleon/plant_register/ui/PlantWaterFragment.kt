@@ -9,20 +9,20 @@ import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.charaminstra.pleon.common.showKeyboard
-import com.charaminstra.pleon.common_ui.CustomDialog
+import com.charaminstra.pleon.common_ui.PLeonMsgDialog
 import com.charaminstra.pleon.common_ui.showErrorToast
 import com.charaminstra.pleon.plant_register.PlantRegisterViewModel
 import com.charaminstra.pleon.plant_register.R
-import com.charaminstra.pleon.plant_register.databinding.FragmentPlantNameBinding
-import com.charaminstra.pleon.plant_register.databinding.FragmentPlantRegisterBinding
 import com.charaminstra.pleon.plant_register.databinding.FragmentPlantWaterBinding
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.SimpleDateFormat
 
 @AndroidEntryPoint
 class PlantWaterFragment : Fragment() {
     private val TAG = javaClass.name
     private val viewModel: PlantRegisterViewModel by activityViewModels()
     private lateinit var binding: FragmentPlantWaterBinding
+    private lateinit var dateFormat: SimpleDateFormat
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +33,7 @@ class PlantWaterFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentPlantWaterBinding.inflate(layoutInflater)
+        dateFormat = SimpleDateFormat(resources.getString(com.charaminstra.pleon.common_ui.R.string.date_view_format))
         val navController = this.findNavController()
 
         showKeyboard(binding.plantWaterEt,requireContext())
@@ -40,6 +41,30 @@ class PlantWaterFragment : Fragment() {
 
         binding.plantWaterBackBtn.setOnClickListener {
             navController.popBackStack()
+        }
+
+
+        /* date picker */
+        binding.plantWaterEt.setOnClickListener {
+            binding.plantWaterDatePickerDialog.visibility=View.VISIBLE
+
+            binding.root.setBackgroundColor(resources.getColor(com.charaminstra.pleon.common_ui.R.color.black_sub_color))
+            binding.plantWaterBtns.visibility = View.GONE
+        }
+        binding.plantWaterDatePickerCancelBtn.setOnClickListener {
+            binding.plantWaterDatePickerDialog.visibility=View.GONE
+
+            binding.root.setBackgroundColor(resources.getColor(com.charaminstra.pleon.common_ui.R.color.white))
+            binding.plantWaterBtns.visibility = View.VISIBLE
+        }
+        binding.plantWaterDatePickerOkBtn.setOnClickListener {
+            binding.plantWaterEt.setText(dateFormat.format(dateFormat.parse(binding.plantWaterDatePicker.date)))
+            binding.plantWaterDatePickerDialog.visibility=View.GONE
+            binding.root.setBackgroundColor(resources.getColor(com.charaminstra.pleon.common_ui.R.color.white))
+            binding.plantWaterBtns.visibility = View.VISIBLE
+
+            binding.root.setBackgroundColor(resources.getColor(com.charaminstra.pleon.common_ui.R.color.white))
+            binding.plantWaterNextBtn.isClickable = true
         }
 
         binding.plantWaterNextBtn.setOnClickListener {
@@ -55,7 +80,7 @@ class PlantWaterFragment : Fragment() {
         }
 
         binding.plantWaterSkipBtn.setOnClickListener {
-            val dlg = CustomDialog(requireContext())
+            val dlg = PLeonMsgDialog(requireContext())
             dlg.setOnOKClickedListener {
                 activity?.finish()
             }

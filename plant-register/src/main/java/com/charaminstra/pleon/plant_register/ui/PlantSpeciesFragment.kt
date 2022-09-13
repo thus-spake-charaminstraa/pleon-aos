@@ -13,7 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.charaminstra.pleon.common_ui.CustomDialog
+import com.charaminstra.pleon.common_ui.PLeonMsgDialog
 import com.charaminstra.pleon.common_ui.showErrorToast
 import com.charaminstra.pleon.plant_register.PlantRegisterViewModel
 import com.charaminstra.pleon.plant_register.PlantSearchAdapter
@@ -78,7 +78,7 @@ class PlantSpeciesFragment : Fragment() {
         }
 
         binding.plantSpeciesSkipBtn.setOnClickListener {
-            val dlg = CustomDialog(requireContext())
+            val dlg = PLeonMsgDialog(requireContext())
             dlg.setOnOKClickedListener {
                 activity?.finish()
             }
