@@ -106,7 +106,8 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
                 urlResponse.value.toString(),
                 getLight().value.toString(),
                 getAir().value.toString())
-            Log.i("plant post","\n light:  ${getLight().value.toString()}")
+            Log.i("plant post:: ","\n"+getName().value.toString()+"\n"+getSpecies().value.toString()+"\n"+ getWater_date().value.toString()+"\n"+getAdopt_date().value.toString()+"\n"+
+                    urlResponse.value.toString()+"\n"+getLight().value.toString()+"\n"+getAir().value.toString())
             _plantRegisterSuccess.postValue(data.body()?.success)
             Log.i(TAG,"DATA -> $data"+"\n"+data)
             Log.i(TAG,"DATA.body -> $data"+"\n"+data.body())

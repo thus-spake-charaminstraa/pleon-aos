@@ -42,13 +42,12 @@ class PlantNameFragment : Fragment() {
 
         binding.plantNameNextBtn.setOnClickListener {
             //test
-            navController.navigate(R.id.plant_name_fragment_to_plant_adopt_fragment)
+            //navController.navigate(R.id.plant_name_fragment_to_plant_adopt_fragment)
             if(binding.plantNameEt.text.isNullOrBlank()){
                 Toast(activity).showErrorToast(resources.getString(R.string.plant_name_fragment_error),binding.plantNameEt.y,requireActivity())
             }else{
                 viewModel.setName(binding.plantNameEt.text.toString())
-                //test
-                //navController.navigate(R.id.plant_register_fragment_to_plant_light_fragment)
+                navController.navigate(R.id.plant_name_fragment_to_plant_adopt_fragment)
             }
         }
 

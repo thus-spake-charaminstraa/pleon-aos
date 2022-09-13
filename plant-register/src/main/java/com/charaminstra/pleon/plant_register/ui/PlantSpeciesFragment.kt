@@ -66,14 +66,11 @@ class PlantSpeciesFragment : Fragment() {
         })
 
         binding.plantSpeciesNextBtn.setOnClickListener {
-            //test
-            navController.navigate(R.id.plant_species_fragment_to_plant_name_fragment)
             if(binding.plantSpeciesEt.text.isNullOrBlank()){
                 Toast(activity).showErrorToast(resources.getString(R.string.plant_species_fragment_error),binding.plantSpeciesEt.y,requireActivity())
             }else{
                 viewModel.setSpecies(binding.plantSpeciesEt.text.toString())
-                //test
-                //navController.navigate(R.id.plant_register_fragment_to_plant_light_fragment)
+                navController.navigate(R.id.plant_species_fragment_to_plant_name_fragment)
             }
         }
 

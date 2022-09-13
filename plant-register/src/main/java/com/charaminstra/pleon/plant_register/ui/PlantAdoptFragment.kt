@@ -66,12 +66,10 @@ class PlantAdoptFragment : Fragment() {
 
 
         binding.plantAdoptNextBtn.setOnClickListener {
-            //test
-            //navController.navigate(R.id.plant_adopt_fragment_to_plant_water_fragment)
             if(binding.plantAdoptEt.text.isNullOrBlank()){
                 Toast(activity).showErrorToast(resources.getString(R.string.plant_adopt_fragment_error),binding.plantAdoptEt.y,requireActivity())
             }else{
-                viewModel.setWater_date(DateUtils(requireContext()).viewToSendServer(binding.plantAdoptEt.text.toString()))
+                viewModel.setAdopt_date(DateUtils(requireContext()).viewToSendServer(binding.plantAdoptEt.text.toString()))
                 navController.navigate(R.id.plant_adopt_fragment_to_plant_water_fragment)
             }
         }

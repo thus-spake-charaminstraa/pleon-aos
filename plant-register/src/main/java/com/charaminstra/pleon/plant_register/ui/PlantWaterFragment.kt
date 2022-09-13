@@ -71,8 +71,6 @@ class PlantWaterFragment : Fragment() {
         }
 
         binding.plantWaterNextBtn.setOnClickListener {
-            //test
-            //navController.navigate(R.id.plant_water_fragment_to_plant_light_fragment)
             if(binding.plantWaterEt.text.isNullOrBlank()){
                 Toast(activity).showErrorToast(resources.getString(R.string.plant_water_fragment_error),binding.plantWaterEt.y,requireActivity())
             }else{
