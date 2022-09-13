@@ -30,13 +30,6 @@ class PopUpImageMenu(val context: Context){
        // dlg.window?.setLayout(binding.imageMenuRoot.width,binding.imageMenuRoot.height)
         dlg.setContentView(binding.root)     //다이얼로그에 사용할 xml 파일을 불러옴
 
-
-
-        binding.cancelBtn.setOnClickListener {
-            it.setBackgroundColor(Color.BLACK)
-            dlg.dismiss()
-        }
-
         binding.cameraBtn.setOnClickListener{
             cameraListener.onCameraClicked()
             dlg.dismiss()
