@@ -54,7 +54,7 @@ class PlantEditFragment : Fragment() {
         binding.backBtn.setOnClickListener {
             navController.popBackStack()
         }
-        dateFormat = SimpleDateFormat(resources.getString(com.charaminstra.pleon.common_ui.R.string.date_format))
+        dateFormat = SimpleDateFormat(resources.getString(com.charaminstra.pleon.common_ui.R.string.date_send_format))
         id = arguments?.getString("id")!!
 
 

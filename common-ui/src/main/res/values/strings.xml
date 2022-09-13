@@ -15,6 +15,6 @@
 
     <string name="camera_permission_msg">카메라 권한 설정이 필요합니다.</string>
     <string name="image_error">사진을 가져오지 못했습니다.</string>
-    <string name="date_format">"yyyy-MM-dd"</string>
-    <string name="date_view_format">"yyyy.MM.dd"</string>
+    <string name="date_send_format">yyyy-MM-dd</string>
+    <string name="date_view_format">yyyy.MM.dd</string>
 </resources>

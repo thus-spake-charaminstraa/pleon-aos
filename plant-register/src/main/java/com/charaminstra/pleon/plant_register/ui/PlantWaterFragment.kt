@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.charaminstra.pleon.common.showKeyboard
+import com.charaminstra.pleon.common_ui.DateUtils
 import com.charaminstra.pleon.common_ui.PLeonMsgDialog
 import com.charaminstra.pleon.common_ui.showErrorToast
 import com.charaminstra.pleon.plant_register.PlantRegisterViewModel
@@ -57,8 +58,10 @@ class PlantWaterFragment : Fragment() {
             binding.root.setBackgroundColor(resources.getColor(com.charaminstra.pleon.common_ui.R.color.white))
             binding.plantWaterBtns.visibility = View.VISIBLE
         }
+        //확인버튼
         binding.plantWaterDatePickerOkBtn.setOnClickListener {
-            binding.plantWaterEt.setText(dateFormat.format(dateFormat.parse(binding.plantWaterDatePicker.date)))
+            binding.plantWaterEt.setText(DateUtils(requireContext()).datePickerToView(binding.plantWaterDatePicker.date))
+
             binding.plantWaterDatePickerDialog.visibility=View.GONE
             binding.root.setBackgroundColor(resources.getColor(com.charaminstra.pleon.common_ui.R.color.white))
             binding.plantWaterBtns.visibility = View.VISIBLE
@@ -69,13 +72,12 @@ class PlantWaterFragment : Fragment() {
 
         binding.plantWaterNextBtn.setOnClickListener {
             //test
-            navController.navigate(R.id.plant_water_fragment_to_plant_light_fragment)
+            //navController.navigate(R.id.plant_water_fragment_to_plant_light_fragment)
             if(binding.plantWaterEt.text.isNullOrBlank()){
                 Toast(activity).showErrorToast(resources.getString(R.string.plant_water_fragment_error),binding.plantWaterEt.y,requireActivity())
             }else{
-                viewModel.setWater_date(binding.plantWaterEt.text.toString())
-                //test
-                //navController.navigate(R.id.plant_register_fragment_to_plant_light_fragment)
+                viewModel.setWater_date(DateUtils(requireContext()).viewToSendServer(binding.plantWaterEt.text.toString()))
+                navController.navigate((R.id.plant_water_fragment_to_plant_light_fragment))
             }
         }
 

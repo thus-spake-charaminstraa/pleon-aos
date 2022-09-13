@@ -5,7 +5,7 @@ import android.view.Gravity
 import android.widget.TextView
 import android.widget.Toast
 
-fun Toast.showErrorToast(message: String,relativeLocation: Float, activity: Activity)
+fun Toast.showErrorToast(message: String, relativeLocation: Float, activity: Activity)
 {
     val layout = activity.layoutInflater.inflate (
         R.layout.custom_toast_error_layout,
@@ -19,7 +19,7 @@ fun Toast.showErrorToast(message: String,relativeLocation: Float, activity: Acti
     // use the application extension function
     this.apply {
         setGravity(Gravity.TOP, 0, relativeLocation.toInt()+150)
-        duration = Toast.LENGTH_LONG
+        duration = Toast.LENGTH_SHORT
         view = layout
         show()
     }

@@ -1,7 +1,6 @@
 package com.charaminstra.pleon.plant_register.ui
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.charaminstra.pleon.common.showKeyboard
+import com.charaminstra.pleon.common_ui.DateUtils
 import com.charaminstra.pleon.common_ui.PLeonMsgDialog
 import com.charaminstra.pleon.common_ui.showErrorToast
 import com.charaminstra.pleon.plant_register.PlantRegisterViewModel
@@ -23,18 +23,13 @@ class PlantAdoptFragment : Fragment() {
     private val TAG = javaClass.name
     private val viewModel: PlantRegisterViewModel by activityViewModels()
     private lateinit var binding: FragmentPlantAdoptBinding
-    private lateinit var dateFormat: SimpleDateFormat
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentPlantAdoptBinding.inflate(layoutInflater)
-        dateFormat = SimpleDateFormat(resources.getString(com.charaminstra.pleon.common_ui.R.string.date_view_format))
+
         val navController = this.findNavController()
 
         showKeyboard(binding.plantAdoptEt,requireContext())
@@ -57,8 +52,10 @@ class PlantAdoptFragment : Fragment() {
             binding.root.setBackgroundColor(resources.getColor(com.charaminstra.pleon.common_ui.R.color.white))
             binding.plantAdoptBtns.visibility = View.VISIBLE
         }
+        //확인 버튼
         binding.plantAdoptDatePickerOkBtn.setOnClickListener {
-            binding.plantAdoptEt.setText(dateFormat.format(dateFormat.parse(binding.plantAdoptDatePicker.date)))
+            binding.plantAdoptEt.setText(DateUtils(requireContext()).datePickerToView(binding.plantAdoptDatePicker.date))
+
             binding.plantAdoptDatePickerDialog.visibility=View.GONE
             binding.root.setBackgroundColor(resources.getColor(com.charaminstra.pleon.common_ui.R.color.white))
             binding.plantAdoptBtns.visibility = View.VISIBLE
@@ -70,13 +67,12 @@ class PlantAdoptFragment : Fragment() {
 
         binding.plantAdoptNextBtn.setOnClickListener {
             //test
-            navController.navigate(R.id.plant_adopt_fragment_to_plant_water_fragment)
+            //navController.navigate(R.id.plant_adopt_fragment_to_plant_water_fragment)
             if(binding.plantAdoptEt.text.isNullOrBlank()){
                 Toast(activity).showErrorToast(resources.getString(R.string.plant_adopt_fragment_error),binding.plantAdoptEt.y,requireActivity())
             }else{
-                viewModel.setAdopt_date(binding.plantAdoptEt.text.toString())
-                //test
-                //navController.navigate(R.id.plant_register_fragment_to_plant_light_fragment)
+                viewModel.setWater_date(DateUtils(requireContext()).viewToSendServer(binding.plantAdoptEt.text.toString()))
+                navController.navigate(R.id.plant_adopt_fragment_to_plant_water_fragment)
             }
         }
 

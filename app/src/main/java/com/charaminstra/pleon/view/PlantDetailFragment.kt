@@ -58,7 +58,7 @@ class PlantDetailFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        dateFormat = SimpleDateFormat(resources.getString(com.charaminstra.pleon.common_ui.R.string.date_format))
+        dateFormat = SimpleDateFormat(resources.getString(com.charaminstra.pleon.common_ui.R.string.date_send_format))
         navController = this.findNavController()
         binding = FragmentPlantDetailBinding.inflate(layoutInflater)
         /*plant Id*/

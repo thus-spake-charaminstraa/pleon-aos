@@ -1,6 +1,5 @@
 package com.charaminstra.pleon.login.ui
 
-import android.app.Activity
 import android.os.Bundle
 import android.telephony.PhoneNumberFormattingTextWatcher
 import android.text.Editable

@@ -81,7 +81,7 @@ class FeedWriteFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dateFormat = SimpleDateFormat(resources.getString(com.charaminstra.pleon.common_ui.R.string.date_format))
+        dateFormat = SimpleDateFormat(resources.getString(com.charaminstra.pleon.common_ui.R.string.date_send_format))
         navController = this.findNavController()
 
         sheetBehavior = BottomSheetBehavior.from(binding.bottomSheet.root)
@@ -207,7 +207,7 @@ class FeedWriteFragment : Fragment() {
 
     fun popUpCalendar(view: TextView) {
         val cal = Calendar.getInstance()
-        dateFormat = SimpleDateFormat(resources.getString(com.charaminstra.pleon.common_ui.R.string.date_format))
+        dateFormat = SimpleDateFormat(resources.getString(com.charaminstra.pleon.common_ui.R.string.date_send_format))
         var datePickerDialog = DatePickerDialog(requireContext(),
             com.charaminstra.pleon.common_ui.R.style.PleonDatePickerStyle,
             { _, y, m, d ->
