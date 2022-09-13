@@ -17,7 +17,6 @@
         android:src="@drawable/ic_arrow_back"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/title"
         style="@style/TitleText"
@@ -48,11 +47,10 @@
             android:id="@+id/air_one_img"
             android:layout_width="match_parent"
             android:layout_height="110dp"
-            android:src="@drawable/img_wind_01"
+            android:src="@drawable/ic_img_wind_01"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
             android:id="@+id/air_one_txt"
             style="@style/ChooseText"
@@ -82,7 +80,7 @@
             android:id="@+id/air_two_img"
             android:layout_width="match_parent"
             android:layout_height="110dp"
-            android:src="@drawable/img_wind_01"
+            android:src="@drawable/ic_img_wind_02"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -117,7 +115,7 @@
             android:id="@+id/air_three_img"
             android:layout_width="match_parent"
             android:layout_height="110dp"
-            android:src="@drawable/img_wind_01"
+            android:src="@drawable/ic_img_wind_03"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
