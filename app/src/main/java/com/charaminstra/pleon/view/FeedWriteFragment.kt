@@ -359,14 +359,14 @@ class FeedWriteFragment : Fragment() {
 
     fun popUpImageMenu(view: View){
         val pop= PopupMenu(requireContext(),view)
-        pop.menuInflater.inflate(com.charaminstra.pleon.plant_register.R.menu.image_menu, pop.menu)
+        pop.menuInflater.inflate(com.charaminstra.pleon.common_ui.R.menu.image_menu, pop.menu)
         pop.setOnMenuItemClickListener {
             when(it.itemId){
-                com.charaminstra.pleon.plant_register.R.id.camera ->
+                com.charaminstra.pleon.common_ui.R.id.camera ->
                     openCamera()
-                com.charaminstra.pleon.plant_register.R.id.gallery ->
+                com.charaminstra.pleon.common_ui.R.id.gallery ->
                     openGallery()
-                com.charaminstra.pleon.plant_register.R.id.cancel ->{
+                com.charaminstra.pleon.common_ui.R.id.cancel ->{
                     binding.imageCard.visibility = View.GONE
                     binding.image.setImageBitmap(null)
                 }

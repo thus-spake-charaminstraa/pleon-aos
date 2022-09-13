@@ -5,6 +5,8 @@
     <color name="button_inactive_color">#c4c4c4</color>
     <color name="black_sub_color">#3a3a3a</color>
 
+    <color name="button_click_color">#173A3A3A</color>
+
     <color name="sub_background_color">#FFF6F6F6</color>
 
     <color name="help_color">#6b98ff</color>

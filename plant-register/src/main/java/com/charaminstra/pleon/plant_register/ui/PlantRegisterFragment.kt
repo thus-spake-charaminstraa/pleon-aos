@@ -74,7 +74,7 @@ class PlantRegisterFragment : Fragment() {
             //navController.navigate(R.id.plant_register_fragment_to_plant_search_fragment)
         }
         binding.thumbnail.setOnClickListener {
-            popUpImageMenu(it)
+            //popUpImageMenu(it)
         }
         binding.adoptDayInput.setOnClickListener {
             popUpCalendar(it as TextView)
@@ -119,11 +119,9 @@ class PlantRegisterFragment : Fragment() {
 
         when (requestCode) {
             REQUEST_GALLERY -> {
-//                startCrop(data?.data as Uri)
                 data?:return
                 val uri = data.data as Uri
                 Log.i("image",uri.path.toString())
-                /**/
                 activity?.contentResolver?.openInputStream(uri).let {
                     Log.i("gallery image inputstream",it.toString())
                     val bitmap = BitmapFactory.decodeStream(it)
@@ -234,24 +232,24 @@ class PlantRegisterFragment : Fragment() {
         }
     }
 
-    fun popUpImageMenu(view: View){
-        val pop= PopupMenu(requireContext(),view)
-        pop.menuInflater.inflate(R.menu.image_menu, pop.menu)
-        pop.setOnMenuItemClickListener {
-            when(it.itemId){
-                R.id.camera ->
-                    openCamera()
-                R.id.gallery ->
-                    openGallery()
-                R.id.cancel ->{
-                    binding.thumbnail.setImageDrawable(resources.getDrawable(R.drawable.ic_plant))
-                    plantRegisterViewModel.setNoImg()
-                }
-            }
-            false
-        }
-        pop.show()
-    }
+//    fun popUpImageMenu(view: View){
+//        val pop= PopupMenu(requireContext(),view)
+//        pop.menuInflater.inflate(R.menu.image_menu, pop.menu)
+//        pop.setOnMenuItemClickListener {
+//            when(it.itemId){
+//                R.id.camera ->
+//                    openCamera()
+//                R.id.gallery ->
+//                    openGallery()
+//                R.id.cancel ->{
+//                    binding.thumbnail.setImageDrawable(resources.getDrawable(R.drawable.ic_plant))
+//                    plantRegisterViewModel.setNoImg()
+//                }
+//            }
+//            false
+//        }
+//        pop.show()
+//    }
 
     override fun onResume() {
         super.onResume()

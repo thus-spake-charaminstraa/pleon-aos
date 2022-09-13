@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/camera"
+        android:title="@string/img_menu_camera"
+        android:actionLayout="@layout/image_menu_layout"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_camera"
+         />
+    <item
+        android:id="@+id/gallery"
+        android:title="@string/img_menu_gallery"
+        android:icon="@drawable/ic_gallery"
+        android:actionLayout="@layout/image_menu_layout"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/cancel"
+        android:title="@string/img_menu_cancel"
+        android:icon="@drawable/ic_cancel"
+        android:actionLayout="@layout/image_menu_layout"
+        app:showAsAction="always"/>
+</menu>

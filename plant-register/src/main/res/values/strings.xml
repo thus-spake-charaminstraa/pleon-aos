@@ -71,9 +71,6 @@
     <string name="water_day_title">물준날</string>
     <string name="plant_register_fragment_title">식물을 등록해주세요.</string>
     <!--    trash-->
-    <string name="img_menu_gallery">사진 선택</string>
-    <string name="img_menu_camera">사진 찍기</string>
-    <string name="img_menu_cancel">취소</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
