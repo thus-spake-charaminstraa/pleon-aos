@@ -64,6 +64,8 @@
 
     <string name="plant_air_fragment_error">하나를 선택해주세요.</string>
 
+    <string name="post_plant_error">식물 등록을 실패했습니다.</string>
+
     <!--    trash-->
     <string name="species_title">식물 종류</string>
     <string name="name_title">식물 이름</string>

@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.charaminstra.pleon.common_ui.ErrorToast
 import com.charaminstra.pleon.plant_register.AirType
@@ -31,6 +31,8 @@ class PlantAirFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val navController = this.findNavController()
+        initObservers()
+
         binding.plantAirBackBtn.setOnClickListener {
             navController.popBackStack()
         }
@@ -40,7 +42,6 @@ class PlantAirFragment : Fragment() {
                 ErrorToast(requireContext()).showMsg(resources.getString(R.string.plant_air_fragment_error),binding.airThreeBtn.y+binding.airThreeBtn.height)
             }else{
                 viewModel.postPlant()
-                activity?.finish()
             }
         }
         return binding.root
@@ -78,8 +79,14 @@ class PlantAirFragment : Fragment() {
 //        binding.airThree.text = resources.getString(LightType.LAMP.descId)
 //        binding.airFour.text = resources.getString(LightType.DARK.descId)
 
-    override fun onResume() {
-        super.onResume()
+    private fun initObservers(){
+        viewModel.plantRegisterSuccess.observe(viewLifecycleOwner, Observer{
+            if(it){
+                activity?.finish()
+            }else{
+                ErrorToast(requireContext()).showMsg(resources.getString(R.string.post_plant_error),binding.airThreeBtn.y+binding.airThreeBtn.height)
+            }
+        })
     }
 }
 
