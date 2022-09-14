@@ -10,8 +10,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.charaminstra.pleon.common.showKeyboard
 import com.charaminstra.pleon.common_ui.DateUtils
+import com.charaminstra.pleon.common_ui.ErrorToast
 import com.charaminstra.pleon.common_ui.PLeonMsgDialog
-import com.charaminstra.pleon.common_ui.showErrorToast
 import com.charaminstra.pleon.plant_register.PlantRegisterViewModel
 import com.charaminstra.pleon.plant_register.R
 import com.charaminstra.pleon.plant_register.databinding.FragmentPlantWaterBinding
@@ -72,7 +72,7 @@ class PlantWaterFragment : Fragment() {
 
         binding.plantWaterNextBtn.setOnClickListener {
             if(binding.plantWaterEt.text.isNullOrBlank()){
-                Toast(activity).showErrorToast(resources.getString(R.string.plant_water_fragment_error),binding.plantWaterEt.y,requireActivity())
+                ErrorToast(requireContext()).showMsg(resources.getString(R.string.plant_water_fragment_error),binding.plantWaterEt.y)
             }else{
                 viewModel.setWater_date(DateUtils(requireContext()).viewToSendServer(binding.plantWaterEt.text.toString()))
                 navController.navigate((R.id.plant_water_fragment_to_plant_light_fragment))

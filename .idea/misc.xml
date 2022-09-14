@@ -92,6 +92,8 @@
         <entry key="common-ui/src/main/res/drawable/dialog_btn_bottom_round_active.xml" value="0.116" />
         <entry key="common-ui/src/main/res/drawable/dialog_btn_bottom_round_selector.xml" value="0.1" />
         <entry key="common-ui/src/main/res/drawable/dialog_btn_inactive.xml" value="0.1" />
+        <entry key="common-ui/src/main/res/drawable/dialog_btn_left_round_active.xml" value="0.162" />
+        <entry key="common-ui/src/main/res/drawable/dialog_btn_right_round_active.xml" value="0.162" />
         <entry key="common-ui/src/main/res/drawable/dialog_btn_selector.xml" value="0.1455" />
         <entry key="common-ui/src/main/res/drawable/dialog_btn_top_right_round_active.xml" value="0.116" />
         <entry key="common-ui/src/main/res/drawable/dialog_btn_top_right_round_selector.xml" value="0.116" />

@@ -1,26 +1,32 @@
 package com.charaminstra.pleon.common_ui
 
-import android.app.Activity
+import android.content.Context
 import android.view.Gravity
-import android.widget.TextView
+import android.view.LayoutInflater
 import android.widget.Toast
+import com.charaminstra.pleon.common_ui.databinding.CustomToastErrorLayoutBinding
 
-fun Toast.showErrorToast(message: String, relativeLocation: Float, activity: Activity)
-{
-    val layout = activity.layoutInflater.inflate (
-        R.layout.custom_toast_error_layout,
-        activity.findViewById(R.id.toast_container)
-    )
+class ErrorToast(val context: Context) {
+    val binding = CustomToastErrorLayoutBinding.inflate(LayoutInflater.from(context))
 
-    // set the text of the TextView of the message
-    val textView = layout.findViewById<TextView>(R.id.toast_text)
-    textView.text = message
+    fun showMsg(message: String, relativeLocation: Float) {
+        binding.toastText.text = message
+        Toast(context).apply {
+            setGravity(Gravity.TOP, 0, relativeLocation.toInt()+150)
+            duration = Toast.LENGTH_SHORT
+            view = binding.root
+            show()
+        }
+    }
 
-    // use the application extension function
-    this.apply {
-        setGravity(Gravity.TOP, 0, relativeLocation.toInt()+150)
-        duration = Toast.LENGTH_SHORT
-        view = layout
-        show()
+    fun showCameraPermission() {
+        binding.toastText.text = context.resources.getString(R.string.camera_permission_msg)
+        // use the application extension function
+        Toast(context).apply {
+            setGravity(Gravity.CENTER, 0, 400)
+            duration = Toast.LENGTH_SHORT
+            view = binding.root
+            show()
+        }
     }
 }

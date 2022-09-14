@@ -13,8 +13,8 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.charaminstra.pleon.common_ui.ErrorToast
 import com.charaminstra.pleon.common_ui.PLeonMsgDialog
-import com.charaminstra.pleon.common_ui.showErrorToast
 import com.charaminstra.pleon.plant_register.PlantRegisterViewModel
 import com.charaminstra.pleon.plant_register.PlantSearchAdapter
 import com.charaminstra.pleon.plant_register.R
@@ -67,7 +67,7 @@ class PlantSpeciesFragment : Fragment() {
 
         binding.plantSpeciesNextBtn.setOnClickListener {
             if(binding.plantSpeciesEt.text.isNullOrBlank()){
-                Toast(activity).showErrorToast(resources.getString(R.string.plant_species_fragment_error),binding.plantSpeciesEt.y,requireActivity())
+                ErrorToast(requireContext()).showMsg(resources.getString(R.string.plant_species_fragment_error),binding.plantSpeciesEt.y)
             }else{
                 viewModel.setSpecies(binding.plantSpeciesEt.text.toString())
                 navController.navigate(R.id.plant_species_fragment_to_plant_name_fragment)

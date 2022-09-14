@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.charaminstra.pleon.common_ui.showErrorToast
+import com.charaminstra.pleon.common_ui.ErrorToast
 import com.charaminstra.pleon.plant_register.AirType
 import com.charaminstra.pleon.plant_register.PlantRegisterViewModel
 import com.charaminstra.pleon.plant_register.R
@@ -37,7 +37,7 @@ class PlantAirFragment : Fragment() {
         buttonCheck()
         binding.airNextBtn.setOnClickListener {
             if(!isChecking){
-                Toast(activity).showErrorToast(resources.getString(R.string.plant_air_fragment_error),binding.airThreeBtn.y+binding.airThreeBtn.height,requireActivity())
+                ErrorToast(requireContext()).showMsg(resources.getString(R.string.plant_air_fragment_error),binding.airThreeBtn.y+binding.airThreeBtn.height)
             }else{
                 viewModel.postPlant()
                 activity?.finish()

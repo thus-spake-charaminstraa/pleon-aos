@@ -9,8 +9,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import com.charaminstra.pleon.common_ui.showErrorToast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
@@ -19,6 +17,7 @@ import com.charaminstra.pleon.login.PhoneViewModel
 import com.charaminstra.pleon.login.R
 import com.charaminstra.pleon.login.databinding.FragmentPhoneBinding
 import com.charaminstra.pleon.common.showKeyboard
+import com.charaminstra.pleon.common_ui.ErrorToast
 import com.charaminstra.pleon.login.startHomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -83,7 +82,7 @@ class PhoneFragment : Fragment() {
             if(it){
 
             }else{
-                Toast(activity).showErrorToast(resources.getString(com.charaminstra.pleon.common_ui.R.string.code_error_msg),binding.codeEt.y,requireActivity())
+                ErrorToast(requireContext()).showMsg(resources.getString(com.charaminstra.pleon.common_ui.R.string.code_error_msg),binding.codeEt.y)
                 binding.codeEt.setTextColor(resources.getColor(com.charaminstra.pleon.common_ui.R.color.error_text_color))
             }
         })

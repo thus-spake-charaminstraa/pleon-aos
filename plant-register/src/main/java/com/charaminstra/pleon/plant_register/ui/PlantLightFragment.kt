@@ -4,11 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.charaminstra.pleon.common_ui.showErrorToast
+import com.charaminstra.pleon.common_ui.ErrorToast
 import com.charaminstra.pleon.plant_register.LightType
 import com.charaminstra.pleon.plant_register.PlantRegisterViewModel
 import com.charaminstra.pleon.plant_register.R
@@ -37,7 +36,7 @@ class PlantLightFragment : Fragment() {
         buttonCheck()
         binding.lightNextBtn.setOnClickListener {
             if(!isChecking){
-                Toast(activity).showErrorToast(resources.getString(R.string.plant_light_fragment_error),binding.lightThreeBtn.y+binding.lightThreeBtn.height,requireActivity())
+                ErrorToast(requireContext()).showMsg(resources.getString(R.string.plant_light_fragment_error),binding.lightThreeBtn.y+binding.lightThreeBtn.height)
             }else{
                 navController.navigate(R.id.plant_light_fragment_to_plant_air_fragment)
             }

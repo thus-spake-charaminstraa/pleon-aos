@@ -5,18 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.charaminstra.pleon.common.showKeyboard
 import com.charaminstra.pleon.common_ui.DateUtils
+import com.charaminstra.pleon.common_ui.ErrorToast
 import com.charaminstra.pleon.common_ui.PLeonMsgDialog
-import com.charaminstra.pleon.common_ui.showErrorToast
 import com.charaminstra.pleon.plant_register.PlantRegisterViewModel
 import com.charaminstra.pleon.plant_register.R
 import com.charaminstra.pleon.plant_register.databinding.FragmentPlantAdoptBinding
 import dagger.hilt.android.AndroidEntryPoint
-import java.text.SimpleDateFormat
 
 @AndroidEntryPoint
 class PlantAdoptFragment : Fragment() {
@@ -67,7 +65,7 @@ class PlantAdoptFragment : Fragment() {
 
         binding.plantAdoptNextBtn.setOnClickListener {
             if(binding.plantAdoptEt.text.isNullOrBlank()){
-                Toast(activity).showErrorToast(resources.getString(R.string.plant_adopt_fragment_error),binding.plantAdoptEt.y,requireActivity())
+                ErrorToast(requireContext()).showMsg(resources.getString(R.string.plant_adopt_fragment_error),binding.plantAdoptEt.y)
             }else{
                 viewModel.setAdopt_date(DateUtils(requireContext()).viewToSendServer(binding.plantAdoptEt.text.toString()))
                 navController.navigate(R.id.plant_adopt_fragment_to_plant_water_fragment)

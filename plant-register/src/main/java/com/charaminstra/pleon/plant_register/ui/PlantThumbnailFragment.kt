@@ -22,9 +22,7 @@ import androidx.core.content.FileProvider
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.charaminstra.pleon.common_ui.PLeonMsgDialog
-import com.charaminstra.pleon.common_ui.PopUpImageMenu
-import com.charaminstra.pleon.common_ui.showErrorToast
+import com.charaminstra.pleon.common_ui.*
 import com.charaminstra.pleon.plant_register.PlantRegisterViewModel
 import com.charaminstra.pleon.plant_register.R
 import com.charaminstra.pleon.plant_register.databinding.FragmentPlantThumbnailBinding
@@ -37,9 +35,16 @@ class PlantThumbnailFragment : Fragment() {
     private lateinit var binding: FragmentPlantThumbnailBinding
     private val viewModel: PlantRegisterViewModel by activityViewModels()
     private lateinit var currentPhotoPath : String
+    private lateinit var permissionMsg: ErrorToast
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        /*카메라권한요청*/
+        ActivityCompat.requestPermissions(
+            requireActivity(),
+            arrayOf(Manifest.permission.CAMERA),
+            REQUEST_TAKE_PHOTO
+        )
     }
 
     override fun onCreateView(
@@ -47,6 +52,7 @@ class PlantThumbnailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentPlantThumbnailBinding.inflate(layoutInflater)
+        permissionMsg = ErrorToast(requireContext())
         val navController = this.findNavController()
 
         binding.plantThumbnailBackBtn.setOnClickListener {
@@ -56,13 +62,12 @@ class PlantThumbnailFragment : Fragment() {
         binding.plantThumbnailImg.setOnClickListener {
             val dlg = PopUpImageMenu(requireContext())
             dlg.setOnCameraClickedListener {
-                /*카메라권한요청*/
-                ActivityCompat.requestPermissions(
-                    requireActivity(),
-                    arrayOf(Manifest.permission.CAMERA),
-                    REQUEST_TAKE_PHOTO
-                )
-                openCamera()
+                Log.i("permission",checkPermission().toString())
+                if(checkPermission()){
+                    openCamera()
+                }else{
+                    ErrorToast(requireContext()).showCameraPermission()
+                }
             }
 
             dlg.setOnGalleryClickedListener {
@@ -87,7 +92,7 @@ class PlantThumbnailFragment : Fragment() {
         binding.plantRegisterNextBtn.setOnClickListener {
             //navController.navigate(R.id.plant_thumbnail_fragment_to_plant_species_fragment)
             if(viewModel.urlResponse.value.isNullOrBlank()){
-                Toast(activity).showErrorToast(resources.getString(R.string.plant_thumbnail_fragment_error),binding.plantThumbnailAddImg.y,requireActivity())
+                ErrorToast(requireContext()).showMsg(resources.getString(R.string.plant_thumbnail_fragment_error),binding.plantThumbnailAddImg.y)
             }else{
                 //test
                 navController.navigate(R.id.plant_thumbnail_fragment_to_plant_species_fragment)
@@ -139,19 +144,6 @@ class PlantThumbnailFragment : Fragment() {
         }
     }
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if(requestCode == REQUEST_TAKE_PHOTO){
-        }else{
-            Toast.makeText(requireContext(), "앱 실행을 위해서는 권한을 설정해야 합니다.", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-
     private fun openGallery(){
         val intent = Intent()
         intent.type = "image/*"
@@ -167,22 +159,15 @@ class PlantThumbnailFragment : Fragment() {
             return false
     }
 
-    private fun openCamera(){
-        Log.i("permission",checkPermission().toString())
-        if(checkPermission()){
-            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            val photoFile = createImageFile()
-            if(photoFile != null ){
-                val uri = FileProvider.getUriForFile(requireContext(),"com.charaminstra.pleon.fileprovider", photoFile)
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
-                startActivityForResult(intent, REQUEST_TAKE_PHOTO)
-            }
-        }else{
-            Toast.makeText(context,
-                resources.getString(com.charaminstra.pleon.common_ui.R.string.camera_permission_msg),
-                Toast.LENGTH_SHORT).show()
-        }
-    }
+    fun openCamera(){
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        val photoFile = createImageFile()
+        if(photoFile != null ){
+            val uri = FileProvider.getUriForFile(requireContext(),"com.charaminstra.pleon.fileprovider", photoFile)
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
+            startActivityForResult(intent, REQUEST_TAKE_PHOTO)
+        }}
+
 
     private fun createImageFile(): File {
         val storageDir: File? = activity?.getExternalFilesDir(Environment.DIRECTORY_PICTURES)

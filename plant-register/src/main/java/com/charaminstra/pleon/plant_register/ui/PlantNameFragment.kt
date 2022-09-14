@@ -9,8 +9,8 @@ import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.charaminstra.pleon.common.showKeyboard
+import com.charaminstra.pleon.common_ui.ErrorToast
 import com.charaminstra.pleon.common_ui.PLeonMsgDialog
-import com.charaminstra.pleon.common_ui.showErrorToast
 import com.charaminstra.pleon.plant_register.PlantRegisterViewModel
 import com.charaminstra.pleon.plant_register.R
 import com.charaminstra.pleon.plant_register.databinding.FragmentPlantNameBinding
@@ -44,7 +44,7 @@ class PlantNameFragment : Fragment() {
             //test
             //navController.navigate(R.id.plant_name_fragment_to_plant_adopt_fragment)
             if(binding.plantNameEt.text.isNullOrBlank()){
-                Toast(activity).showErrorToast(resources.getString(R.string.plant_name_fragment_error),binding.plantNameEt.y,requireActivity())
+                ErrorToast(requireContext()).showMsg(resources.getString(R.string.plant_name_fragment_error),binding.plantNameEt.y)
             }else{
                 viewModel.setName(binding.plantNameEt.text.toString())
                 navController.navigate(R.id.plant_name_fragment_to_plant_adopt_fragment)
