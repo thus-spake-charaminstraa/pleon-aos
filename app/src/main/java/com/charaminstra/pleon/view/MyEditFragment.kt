@@ -27,9 +27,9 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.charaminstra.pleon.MyViewModel
 import com.charaminstra.pleon.R
+import com.charaminstra.pleon.common.REQUEST_GALLERY
+import com.charaminstra.pleon.common.REQUEST_TAKE_PHOTO
 import com.charaminstra.pleon.databinding.FragmentMyEditBinding
-import com.charaminstra.pleon.plant_register.ui.REQUEST_GALLERY
-import com.charaminstra.pleon.plant_register.ui.REQUEST_TAKE_PHOTO
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream

@@ -26,6 +26,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.charaminstra.pleon.common.REQUEST_GALLERY
+import com.charaminstra.pleon.common.REQUEST_TAKE_PHOTO
 import com.charaminstra.pleon.plant_register.PlantRegisterViewModel
 import com.charaminstra.pleon.plant_register.R
 import com.charaminstra.pleon.plant_register.databinding.FragmentPlantRegisterBinding
@@ -36,9 +38,6 @@ import java.io.File
 import java.io.FileInputStream
 import java.text.SimpleDateFormat
 import java.util.*
-
-const val REQUEST_GALLERY = 2000
-const val REQUEST_TAKE_PHOTO = 3000
 
 @AndroidEntryPoint
 class PlantRegisterFragment : Fragment() {

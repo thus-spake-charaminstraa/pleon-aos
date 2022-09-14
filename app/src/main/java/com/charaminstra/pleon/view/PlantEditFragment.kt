@@ -29,8 +29,8 @@ import com.charaminstra.pleon.common_ui.PLeonMsgDialog
 import com.charaminstra.pleon.databinding.FragmentPlantEditBinding
 import com.charaminstra.pleon.plant_register.*
 import com.charaminstra.pleon.R
-import com.charaminstra.pleon.plant_register.ui.REQUEST_GALLERY
-import com.charaminstra.pleon.plant_register.ui.REQUEST_TAKE_PHOTO
+import com.charaminstra.pleon.common.REQUEST_GALLERY
+import com.charaminstra.pleon.common.REQUEST_TAKE_PHOTO
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream

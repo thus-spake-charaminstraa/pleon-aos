@@ -34,9 +34,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.charaminstra.pleon.R
 import com.charaminstra.pleon.adapter.*
+import com.charaminstra.pleon.common.REQUEST_GALLERY
+import com.charaminstra.pleon.common.REQUEST_TAKE_PHOTO
 import com.charaminstra.pleon.databinding.FragmentFeedWriteBinding
-import com.charaminstra.pleon.plant_register.ui.REQUEST_GALLERY
-import com.charaminstra.pleon.plant_register.ui.REQUEST_TAKE_PHOTO
 import com.charaminstra.pleon.viewmodel.FeedWriteViewModel
 import com.charaminstra.pleon.viewmodel.PlantsViewModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
