@@ -114,14 +114,14 @@ class PlantEditFragment : Fragment() {
                     ByteArrayOutputStream().use { stream ->
                         bitmap.compress(Bitmap.CompressFormat.JPEG,100, stream)
                         val inputStream = ByteArrayInputStream(stream.toByteArray())
-                        viewModel.setImgToUrl(inputStream)
+                        //viewModel.setImgToUrl(inputStream)
                     }
                 }
             }
             REQUEST_TAKE_PHOTO -> {
                 Glide.with(this).load(currentPhotoPath).into(binding.thumbnail)
                 val inputStream = FileInputStream(currentPhotoPath)
-                viewModel.setImgToUrl(inputStream)
+                //viewModel.setImgToUrl(inputStream)
             }
             else -> {
                 Toast.makeText(

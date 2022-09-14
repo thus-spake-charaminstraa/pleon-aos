@@ -1,15 +1,21 @@
 package com.charaminstra.pleon.plant_register
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.charaminstra.pleon.common.PLeonImageFile
 import com.charaminstra.pleon.foundation.ImageRepository
 import com.charaminstra.pleon.foundation.PlantIdRepository
 import com.charaminstra.pleon.foundation.model.PlantDataObject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
+import java.io.FileInputStream
 import java.io.InputStream
 import java.util.*
 import javax.inject.Inject
@@ -77,9 +83,9 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
     fun setAir(value: String) {
         air.value = value
     }
-    fun setImgToUrl(image_stream: InputStream){
+    fun cameraToUrl(inputStream: InputStream){
         viewModelScope.launch {
-            val data =imageRepository.postImage(image_stream)
+            val data =imageRepository.postImage(inputStream)
             Log.i(TAG,"data -> $data")
             when (data.isSuccessful) {
                 true -> {
@@ -88,6 +94,25 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
                 }
                 else -> {
                     Log.i(TAG,"FAIL-> ")
+                }
+            }
+        }
+    }
+    fun galleryToUrl(bitmap: Bitmap){
+        viewModelScope.launch {
+            ByteArrayOutputStream().use { stream ->
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+                val inputStream = ByteArrayInputStream(stream.toByteArray())
+                val data = imageRepository.postImage(inputStream)
+                Log.i(TAG,"data -> $data")
+                when (data.isSuccessful) {
+                    true -> {
+                        Log.i(TAG,"data.body -> "+data.body())
+                        _urlResponse.postValue(data.body()?.data?.url)
+                    }
+                    else -> {
+                        Log.i(TAG,"FAIL-> ")
+                    }
                 }
             }
         }

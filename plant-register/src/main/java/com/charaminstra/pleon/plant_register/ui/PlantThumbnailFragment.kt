@@ -2,12 +2,10 @@ package com.charaminstra.pleon.plant_register.ui
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -21,8 +19,6 @@ import com.charaminstra.pleon.common_ui.*
 import com.charaminstra.pleon.plant_register.PlantRegisterViewModel
 import com.charaminstra.pleon.plant_register.R
 import com.charaminstra.pleon.plant_register.databinding.FragmentPlantThumbnailBinding
-import java.io.ByteArrayInputStream
-import java.io.ByteArrayOutputStream
 import java.io.FileInputStream
 
 class PlantThumbnailFragment : Fragment() {
@@ -104,24 +100,15 @@ class PlantThumbnailFragment : Fragment() {
             REQUEST_GALLERY -> {
                 data ?: return
                 val uri = data.data as Uri
-                Log.i("image", uri.path.toString())
                 activity?.contentResolver?.openInputStream(uri).let {
-                    Log.i("gallery image inputstream", it.toString())
                     val bitmap = BitmapFactory.decodeStream(it)
-                    // image veiw set image bit map
                     binding.plantThumbnailImg.setImageBitmap(bitmap)
-                    // get image url
-                    ByteArrayOutputStream().use { stream ->
-                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
-                        val inputStream = ByteArrayInputStream(stream.toByteArray())
-                        viewModel.setImgToUrl(inputStream)
-                    }
+                    viewModel.galleryToUrl(bitmap)
                 }
             }
             REQUEST_TAKE_PHOTO -> {
                 Glide.with(this).load(photoFile.currentPhotoPath).into(binding.plantThumbnailImg)
-                val inputStream = FileInputStream(photoFile.currentPhotoPath)
-                viewModel.setImgToUrl(inputStream)
+                viewModel.cameraToUrl(FileInputStream(photoFile.currentPhotoPath))
             }
             else -> {
                 ErrorToast(requireContext()).showMsg(
