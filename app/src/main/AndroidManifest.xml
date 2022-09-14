@@ -7,7 +7,7 @@
     <application
         android:name=".PleonApplication"
         android:allowBackup="true"
-        android:icon="@drawable/logo_img"
+        android:icon="@drawable/img_logo"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -37,7 +37,7 @@
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/logo_img"/>
+            android:resource="@drawable/img_logo"/>
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/main_color"/>

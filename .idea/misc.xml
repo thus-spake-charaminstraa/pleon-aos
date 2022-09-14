@@ -125,7 +125,7 @@
         <entry key="login/src/main/res/drawable/input.xml" value="0.1" />
         <entry key="login/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="login/src/main/res/layout/activity_splash.xml" value="0.1" />
-        <entry key="login/src/main/res/layout/fragment_login.xml" value="0.5" />
+        <entry key="login/src/main/res/layout/fragment_login.xml" value="0.25" />
         <entry key="login/src/main/res/layout/fragment_nickname.xml" value="0.375" />
         <entry key="login/src/main/res/layout/fragment_phone.xml" value="0.115625" />
         <entry key="login/src/main/res/layout/fragment_plant_air.xml" value="0.1" />

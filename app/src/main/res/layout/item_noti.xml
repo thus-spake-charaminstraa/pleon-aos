@@ -10,7 +10,7 @@
         android:id="@+id/pleon_image"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:src="@drawable/logo_img"
+        android:src="@drawable/img_logo"
         android:background="@drawable/round_inactive"
         android:backgroundTint="@color/blank_color"
         app:layout_constraintTop_toTopOf="parent"
