@@ -42,11 +42,9 @@ class PlantThumbnailFragment : Fragment() {
         permissionMsg = ErrorToast(requireContext())
         val navController = this.findNavController()
 
-
         binding.plantThumbnailBackBtn.setOnClickListener {
             activity?.finish()
         }
-
         binding.plantThumbnailImg.setOnClickListener {
             val imageMenuDlg = PopUpImageMenu(requireContext())
             imageMenuDlg.setOnCameraClickedListener {
@@ -86,16 +84,18 @@ class PlantThumbnailFragment : Fragment() {
         }
         return binding.root
     }
-
+//    private fun initObservers(){
+//        viewModel.urlResponse.observe(viewLifecycleOwner, Observer{
+//            Glide.with(this).load(it).into(binding.plantThumbnailImg)
+//        })
+//    }
 
     // 갤러리 화면에서 이미지를 선택한 경우 현재 화면에 보여준다.
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
         if (resultCode != Activity.RESULT_OK) {
             return
         }
-
         when (requestCode) {
             REQUEST_GALLERY -> {
                 data ?: return
@@ -124,7 +124,6 @@ class PlantThumbnailFragment : Fragment() {
         intent.action = Intent.ACTION_PICK
         startActivityForResult(intent, REQUEST_GALLERY)
     }
-
     private fun openCamera() {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         photoFile = PLeonImageFile(requireActivity())
@@ -136,5 +135,4 @@ class PlantThumbnailFragment : Fragment() {
         intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
         startActivityForResult(intent, REQUEST_TAKE_PHOTO)
     }
-
 }

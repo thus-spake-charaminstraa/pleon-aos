@@ -9,7 +9,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginLeft="15dp"
-        android:background="@drawable/round_shape"
+        android:background="@drawable/round_inactive"
         android:backgroundTint="@color/blank_color"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent" />
@@ -77,7 +77,7 @@
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_marginTop="3dp"
-        android:background="@drawable/round_shape"
+        android:background="@drawable/round_inactive"
         android:backgroundTint="@color/blank_color"
         app:layout_constraintLeft_toLeftOf="@+id/user_image"
         app:layout_constraintTop_toBottomOf="@+id/feed_comment_count"/>

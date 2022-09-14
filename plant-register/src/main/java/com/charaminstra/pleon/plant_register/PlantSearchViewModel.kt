@@ -1,4 +1,4 @@
-package com.charaminstra.pleon.plant_register.ui
+package com.charaminstra.pleon.plant_register
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -38,9 +38,8 @@ class PlantSearchViewModel  @Inject constructor(
                     Log.i(TAG,"FAIL -> "+ data.body().toString())
                 }
             }
-        }
+            }
     }
-
     fun searchFilter(filterQuery: String){
         val filteredList = ArrayList<PlantSpeciesDataObject>()
         for (current in plantSpeciesList.value!!) {
@@ -50,5 +49,4 @@ class PlantSearchViewModel  @Inject constructor(
         }
         _searchResult.postValue(filteredList)
     }
-
 }

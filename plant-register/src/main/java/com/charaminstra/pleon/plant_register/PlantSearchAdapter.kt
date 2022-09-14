@@ -27,10 +27,7 @@ class PlantSearchAdapter() : RecyclerView.Adapter<PlantSearchViewHolder>() {
         this.viewItemList = viewItemList
         notifyDataSetChanged() // Andoid RecyclerView DiffUtil.
     }
-
 }
-
-
 
 class PlantSearchViewHolder(
     private val binding: ItemPlantSearchBinding,

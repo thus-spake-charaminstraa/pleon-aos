@@ -93,6 +93,7 @@
         <entry key="common-ui/src/main/res/drawable/dialog_btn_bottom_round_selector.xml" value="0.1" />
         <entry key="common-ui/src/main/res/drawable/dialog_btn_inactive.xml" value="0.1" />
         <entry key="common-ui/src/main/res/drawable/dialog_btn_left_round_active.xml" value="0.162" />
+        <entry key="common-ui/src/main/res/drawable/dialog_btn_left_round_selector.xml" value="0.162" />
         <entry key="common-ui/src/main/res/drawable/dialog_btn_right_round_active.xml" value="0.162" />
         <entry key="common-ui/src/main/res/drawable/dialog_btn_selector.xml" value="0.1455" />
         <entry key="common-ui/src/main/res/drawable/dialog_btn_top_right_round_active.xml" value="0.116" />
@@ -101,6 +102,8 @@
         <entry key="common-ui/src/main/res/drawable/ic_cancel.xml" value="0.2335" />
         <entry key="common-ui/src/main/res/drawable/image_menu_bg.xml" value="0.2335" />
         <entry key="common-ui/src/main/res/drawable/input.xml" value="0.182" />
+        <entry key="common-ui/src/main/res/drawable/round_active.xml" value="0.162" />
+        <entry key="common-ui/src/main/res/drawable/round_click_selector.xml" value="0.162" />
         <entry key="common-ui/src/main/res/drawable/round_shape.xml" value="0.129" />
         <entry key="common-ui/src/main/res/drawable/round_transparent.xml" value="0.1" />
         <entry key="common-ui/src/main/res/layout/custom_toast_error_layout.xml" value="0.27760416666666665" />
@@ -128,6 +131,7 @@
         <entry key="plant-register/src/main/res/drawable/choose_button.xml" value="0.1375" />
         <entry key="plant-register/src/main/res/drawable/choose_button_selector.xml" value="0.272" />
         <entry key="plant-register/src/main/res/drawable/ic_camera.xml" value="0.1345" />
+        <entry key="plant-register/src/main/res/drawable/ic_plant.xml" value="0.1" />
         <entry key="plant-register/src/main/res/drawable/ic_search.xml" value="0.1345" />
         <entry key="plant-register/src/main/res/drawable/image_button.xml" value="0.1" />
         <entry key="plant-register/src/main/res/drawable/image_button_press.xml" value="0.1" />
@@ -145,6 +149,7 @@
         <entry key="plant-register/src/main/res/layout/fragment_plant_species.xml" value="0.4234375" />
         <entry key="plant-register/src/main/res/layout/fragment_plant_thumbnail.xml" value="0.55" />
         <entry key="plant-register/src/main/res/layout/fragment_plant_water.xml" value="0.2171875" />
+        <entry key="plant-register/src/main/res/layout/item_plant_search.xml" value="0.20592705167173253" />
         <entry key="plant-register/src/main/res/menu/air_menu.xml" value="0.1" />
         <entry key="plant-register/src/main/res/menu/bright_menu.xml" value="0.1" />
         <entry key="plant-register/src/main/res/menu/image_menu.xml" value="0.1" />

@@ -9,7 +9,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginLeft="15dp"
-        android:background="@drawable/round_shape"
+        android:background="@drawable/round_inactive"
         android:backgroundTint="@color/blank_color"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

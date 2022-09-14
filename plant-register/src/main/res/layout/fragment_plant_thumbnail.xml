@@ -38,8 +38,9 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/plant_thumbnail_title"
         app:layout_constraintBottom_toTopOf="@+id/plant_thumbnail_btn"
-        android:background="@drawable/round_shape"
-        android:backgroundTint="@color/blank_color">
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/round_click_selector">
     </de.hdodenhof.circleimageview.CircleImageView>
     <ImageView
         android:id="@+id/plant_thumbnail_add_img"
