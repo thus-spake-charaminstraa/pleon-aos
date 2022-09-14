@@ -25,9 +25,19 @@
         <item name="android:textSize">15dp</item>
     </style>
 
-    <style name="BubbleText" parent="@android:style/Widget.TextView">
+    <style name="BubbleGreenText" parent="@android:style/Widget.TextView">
         <item name="android:textSize">11dp</item>
         <item name="android:textColor">@color/main_green_color</item>
+        <item name="android:lineSpacingExtra">5dp</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:fontWeight">700</item>
+    </style>
+    <style name="BubbleBlackText" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">13dp</item>
+        <item name="android:textColor">@color/black_sub_color</item>
+        <item name="android:lineSpacingExtra">5dp</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:fontWeight">700</item>
     </style>
 
     <!--    dialog-->

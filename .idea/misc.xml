@@ -112,6 +112,7 @@
         <entry key="common-ui/src/main/res/layout/image_menu_layout.xml" value="0.335" />
         <entry key="common-ui/src/main/res/menu/air_menu.xml" value="0.24895833333333334" />
         <entry key="common-ui/src/main/res/menu/image_menu.xml" value="0.2361111111111111" />
+        <entry key="feed/src/main/res/layout/fragment_feed.xml" value="0.17889492753623187" />
         <entry key="foundation/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="foundation/src/main/res/xml/http.xml" value="0.1" />
         <entry key="login/src/main/res/drawable/cursor_drawble.xml" value="0.1" />
@@ -141,7 +142,7 @@
         <entry key="plant-register/src/main/res/drawable/white_button.xml" value="0.2145" />
         <entry key="plant-register/src/main/res/layout/activity_plant_register.xml" value="0.1" />
         <entry key="plant-register/src/main/res/layout/fragment_plant_adopt.xml" value="0.39154929577464787" />
-        <entry key="plant-register/src/main/res/layout/fragment_plant_air.xml" value="0.1" />
+        <entry key="plant-register/src/main/res/layout/fragment_plant_air.xml" value="0.5" />
         <entry key="plant-register/src/main/res/layout/fragment_plant_light.xml" value="0.45" />
         <entry key="plant-register/src/main/res/layout/fragment_plant_name.xml" value="0.4234375" />
         <entry key="plant-register/src/main/res/layout/fragment_plant_register.xml" value="0.25" />

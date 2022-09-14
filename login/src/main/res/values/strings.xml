@@ -18,10 +18,7 @@
     <string name="nickname_fragment_title">사용하실 닉네임을\n입력해주세요 :) </string>
     <string name="nickname_fragment_hint">닉네임 입력</string>
 
-    <string name="welcome_fragment_title">안녕하세요</string>
 
-
-    <string name="start_btn">시작하기</string>
-    <string name="hello_msg1">안녕하세요 :)</string>
-    <string name="hello_msg2">당신의 반려식물 케어를 도와줄 Pleon 입니다.</string>
+    <string name="welcome_fragment_btn">시작하기</string>
+    <string name="welcome_fragment_bubble_txt">안녕하세요!\n당신의 반려식물 케어를 도와줄 PLeon입니다 :)</string>
 </resources>

@@ -71,7 +71,7 @@
         android:paddingTop="10dp"
         android:paddingBottom="22dp"
         android:paddingHorizontal="20dp"
-        style="@style/BubbleText"
+        style="@style/BubbleGreenText"
         android:background="@drawable/shadow_bubble"
         android:gravity="center"
         app:layout_constraintLeft_toLeftOf="parent"
