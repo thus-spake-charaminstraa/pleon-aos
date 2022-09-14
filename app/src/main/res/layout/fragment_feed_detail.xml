@@ -150,7 +150,7 @@
             android:layout_height="30dp"
             android:layout_marginVertical="10dp"
             android:layout_marginRight="5dp"
-            android:background="@drawable/button_active"
+            android:background="@drawable/button_main_green"
             android:text="@string/comment_enter_btn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"

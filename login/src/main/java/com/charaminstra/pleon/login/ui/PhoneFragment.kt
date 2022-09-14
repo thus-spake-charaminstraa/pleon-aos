@@ -115,7 +115,7 @@ class PhoneFragment : Fragment() {
             binding.phoneBtn.visibility = View.VISIBLE
             binding.codeBtn.visibility = View.GONE
             binding.phoneBtn.isClickable = true
-            binding.phoneBtn.background = resources.getDrawable(com.charaminstra.pleon.common_ui.R.drawable.button_active)
+            binding.phoneBtn.background = resources.getDrawable(com.charaminstra.pleon.common_ui.R.drawable.button_main_green)
             binding.phoneBtn.text = getString(R.string.phone_fragment_resend)
         }
         binding.codeBtn.setOnClickListener {

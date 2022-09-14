@@ -38,7 +38,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:background="@drawable/button_active"
+        android:background="@drawable/button_green_selector"
         style="@style/LoginButtonText"
         android:text="@string/welcome_fragment_btn" />
 </androidx.constraintlayout.widget.ConstraintLayout>

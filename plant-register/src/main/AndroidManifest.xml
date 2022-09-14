@@ -9,6 +9,7 @@
     <application>
         <activity
             android:name=".ui.PlantRegisterActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize"
             android:exported="true" />
     </application>
 </manifest>

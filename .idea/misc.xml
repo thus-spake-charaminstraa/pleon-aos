@@ -83,8 +83,12 @@
         <entry key="camera/src/main/res/layout/fragment_camera.xml" value="0.1" />
         <entry key="camera/src/main/res/layout/fragment_my.xml" value="0.1" />
         <entry key="common-ui/src/main/res/drawable/button.xml" value="0.182" />
+        <entry key="common-ui/src/main/res/drawable/button_active.xml" value="0.2125" />
         <entry key="common-ui/src/main/res/drawable/button_grey.xml" value="0.224" />
+        <entry key="common-ui/src/main/res/drawable/button_inactive.xml" value="0.2125" />
+        <entry key="common-ui/src/main/res/drawable/button_selector.xml" value="0.2125" />
         <entry key="common-ui/src/main/res/drawable/button_skip.xml" value="0.129" />
+        <entry key="common-ui/src/main/res/drawable/button_sub_green.xml" value="0.2125" />
         <entry key="common-ui/src/main/res/drawable/cursor_drawable.xml" value="0.1715" />
         <entry key="common-ui/src/main/res/drawable/cursor_drawble.xml" value="0.1" />
         <entry key="common-ui/src/main/res/drawable/dialog_bg.xml" value="0.129" />
@@ -95,6 +99,7 @@
         <entry key="common-ui/src/main/res/drawable/dialog_btn_left_round_active.xml" value="0.162" />
         <entry key="common-ui/src/main/res/drawable/dialog_btn_left_round_selector.xml" value="0.162" />
         <entry key="common-ui/src/main/res/drawable/dialog_btn_right_round_active.xml" value="0.162" />
+        <entry key="common-ui/src/main/res/drawable/dialog_btn_right_round_selector.xml" value="0.2125" />
         <entry key="common-ui/src/main/res/drawable/dialog_btn_selector.xml" value="0.1455" />
         <entry key="common-ui/src/main/res/drawable/dialog_btn_top_right_round_active.xml" value="0.116" />
         <entry key="common-ui/src/main/res/drawable/dialog_btn_top_right_round_selector.xml" value="0.116" />
@@ -120,7 +125,7 @@
         <entry key="login/src/main/res/drawable/input.xml" value="0.1" />
         <entry key="login/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="login/src/main/res/layout/activity_splash.xml" value="0.1" />
-        <entry key="login/src/main/res/layout/fragment_login.xml" value="0.1" />
+        <entry key="login/src/main/res/layout/fragment_login.xml" value="0.5" />
         <entry key="login/src/main/res/layout/fragment_nickname.xml" value="0.375" />
         <entry key="login/src/main/res/layout/fragment_phone.xml" value="0.115625" />
         <entry key="login/src/main/res/layout/fragment_plant_air.xml" value="0.1" />
@@ -148,7 +153,7 @@
         <entry key="plant-register/src/main/res/layout/fragment_plant_register.xml" value="0.25" />
         <entry key="plant-register/src/main/res/layout/fragment_plant_search.xml" value="0.1598731884057971" />
         <entry key="plant-register/src/main/res/layout/fragment_plant_species.xml" value="0.4234375" />
-        <entry key="plant-register/src/main/res/layout/fragment_plant_thumbnail.xml" value="0.55" />
+        <entry key="plant-register/src/main/res/layout/fragment_plant_thumbnail.xml" value="0.1" />
         <entry key="plant-register/src/main/res/layout/fragment_plant_water.xml" value="0.2171875" />
         <entry key="plant-register/src/main/res/layout/item_plant_search.xml" value="0.20592705167173253" />
         <entry key="plant-register/src/main/res/menu/air_menu.xml" value="0.1" />

@@ -31,10 +31,11 @@ class PlantNameFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentPlantNameBinding.inflate(layoutInflater)
-        val navController = this.findNavController()
-
+        /* auto keyboard set*/
         showKeyboard(binding.plantNameEt,requireContext())
         binding.plantNameEt.requestFocus()
+
+        val navController = this.findNavController()
 
         binding.plantNameBackBtn.setOnClickListener {
             navController.popBackStack()

@@ -55,7 +55,8 @@
     <LinearLayout
         android:id="@+id/plant_thumbnail_btn"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="52dp"
+        android:layout_marginVertical="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         android:orientation="horizontal">
@@ -63,9 +64,8 @@
             android:id="@+id/plant_register_skip_btn"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="52dp"
-            android:layout_marginVertical="20dp"
-            android:layout_marginHorizontal="4dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
             android:background="@drawable/button_skip"
             style="@style/LoginButtonText"
             android:text="@string/plant_register_skip_btn" />
@@ -73,10 +73,8 @@
             android:id="@+id/plant_register_next_btn"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="52dp"
-            android:layout_marginVertical="20dp"
-            android:layout_marginHorizontal="4dp"
-            android:background="@drawable/button_active"
+            android:layout_height="match_parent"
+            android:background="@drawable/button_green_selector"
             style="@style/LoginButtonText"
             android:text="@string/plant_register_next_btn" />
     </LinearLayout>

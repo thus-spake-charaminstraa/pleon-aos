@@ -19,11 +19,12 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/login_btn"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginBottom="30dp"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_height="52dp"
+        android:layout_marginVertical="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@drawable/button_active"
-        style="@style/SubText"
-        android:text="@string/login_btn" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:background="@drawable/button_green_selector"
+        style="@style/LoginButtonText"
+        android:text="@string/welcome_fragment_btn" />
 </androidx.constraintlayout.widget.ConstraintLayout>
