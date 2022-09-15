@@ -2,20 +2,29 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabs"
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:background="@drawable/tab_bg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabIconTint="@drawable/tab_icon_color_selector" />
-    </LinearLayout>
+            app:labelVisibilityMode="labeled"
+            app:itemTextColor="@drawable/tab_label_color_selector"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:elevation="10dp"
+            app:menu="@menu/bottom_navigation">
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

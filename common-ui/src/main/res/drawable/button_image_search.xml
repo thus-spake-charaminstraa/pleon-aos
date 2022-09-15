@@ -4,5 +4,5 @@
     <solid android:color="@android:color/transparent" />
     <stroke
         android:width="0.5dp"
-        android:color="@color/search_button_color" />
+        android:color="@color/black_sub2_color" />
 </shape>

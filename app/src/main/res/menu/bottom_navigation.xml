@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/feed"
+        android:icon="@drawable/tab_selector_feed"
+        android:title="@string/bottom_nav_feed" />
+    <item
+        android:id="@+id/chat"
+        android:icon="@drawable/tab_selector_chat"
+        android:title="@string/bottom_nav_chat" />
+    <item
+        android:id="@+id/doctor"
+        android:icon="@drawable/tab_selector_doctor"
+        android:title="@string/bottom_nav_doctor" />
+    <item
+        android:id="@+id/garden"
+        android:icon="@drawable/tab_selector_garden"
+        android:title="@string/bottom_nav_garden" />
+    <item
+        android:id="@+id/my"
+        android:icon="@drawable/tab_selector_my"
+        android:title="@string/bottom_nav_my" />
+</menu>

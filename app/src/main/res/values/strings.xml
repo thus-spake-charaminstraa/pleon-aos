@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">PLeon</string>
+    <string name="bottom_nav_feed">Feed</string>
+    <string name="bottom_nav_chat">Chat</string>
+    <string name="bottom_nav_doctor">Doctor</string>
+    <string name="bottom_nav_garden">Garden</string>
+    <string name="bottom_nav_my">My</string>
+
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="feed_all_filter">all</string>
