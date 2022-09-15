@@ -50,6 +50,7 @@
         <entry key="app/src/main/res/drawable/tab_selector_chat.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/tab_selector_feed.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/white_button.xml" value="0.2245" />
+        <entry key="app/src/main/res/layout/_fragment_feed.xml" value="0.13796296296296295" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
@@ -116,6 +117,8 @@
         <entry key="common-ui/src/main/res/layout/dialog_datepicker.xml" value="0.38109756097560976" />
         <entry key="common-ui/src/main/res/layout/dialog_delete_layout.xml" value="0.20437956204379562" />
         <entry key="common-ui/src/main/res/layout/dialog_skip_layout.xml" value="0.25" />
+        <entry key="feed/src/main/res/drawable/noti_bg.xml" value="0.2245" />
+        <entry key="feed/src/main/res/layout/fragment_feed.xml" value="0.24791666666666667" />
         <entry key="foundation/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="foundation/src/main/res/xml/http.xml" value="0.1" />
         <entry key="login/src/main/res/drawable/cursor_drawble.xml" value="0.1" />
