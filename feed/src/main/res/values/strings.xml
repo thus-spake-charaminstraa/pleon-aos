@@ -1,4 +1,4 @@
 <resources>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="feed_fragment_title">피드를 통해\n식물들과 이야기를 나눠보세요 :)</string>
+    <string name="feed_fragment_all_filter">all</string>
 </resources>

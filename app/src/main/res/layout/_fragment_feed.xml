@@ -45,19 +45,6 @@
                 app:layout_constraintLeft_toLeftOf="@+id/all_filter"
                 app:layout_constraintRight_toRightOf="@+id/all_filter"
                 app:layout_constraintTop_toBottomOf="@+id/all_filter" />
-            <!--            <de.hdodenhof.circleimageview.CircleImageView-->
-            <!--                android:id="@+id/leon_filter"-->
-            <!--                android:layout_width="65dp"-->
-            <!--                android:layout_height="65dp"-->
-            <!--                android:layout_margin="10dp"-->
-            <!--                android:gravity="center"-->
-            <!--                app:civ_border_color="@color/input_bg"-->
-            <!--                app:civ_border_width="2dp"-->
-            <!--                android:background="@drawable/round_shape"-->
-            <!--                android:src="@drawable/logo_img"-->
-            <!--                app:layout_constraintLeft_toRightOf="@id/all_filter"-->
-            <!--                app:layout_constraintTop_toTopOf="parent"-->
-            <!--                android:text="@string/feed_all_filter"/>-->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/feed_filter_recyclerview"
                 android:layout_width="0dp"

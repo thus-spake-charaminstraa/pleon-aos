@@ -14,12 +14,12 @@ abstract class CommonViewHolder(
     abstract fun bind(viewObject: PlantDataObject, onItemClicked: (String) -> Unit)
 }
 
-abstract class FeedCommonViewHolder(
-    binding: ViewBinding
-): RecyclerView.ViewHolder(binding.root) {
-    abstract fun bind(viewObject: ViewObject,
-                      onClickFeed: (String) -> Unit,
-                      onClickNoti: (String, String) -> Unit)
-}
-
+//abstract class FeedCommonViewHolder(
+//    binding: ViewBinding
+//): RecyclerView.ViewHolder(binding.root) {
+//    abstract fun bind(viewObject: ViewObject,
+//                      onClickFeed: (String) -> Unit,
+//                      onClickNoti: (String, String) -> Unit)
+//}
+//
 

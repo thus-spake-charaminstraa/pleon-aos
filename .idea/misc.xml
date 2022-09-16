@@ -69,7 +69,7 @@
         <entry key="app/src/main/res/layout/fragment_my_edit.xml" value="0.228125" />
         <entry key="app/src/main/res/layout/fragment_nickname.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_phone.xml" value="0.22289733886718754" />
-        <entry key="app/src/main/res/layout/fragment_plant_detail.xml" value="0.45" />
+        <entry key="app/src/main/res/layout/fragment_plant_detail.xml" value="0.2839506172839506" />
         <entry key="app/src/main/res/layout/fragment_plant_edit.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_plant_register.xml" value="0.2772125244140625" />
         <entry key="app/src/main/res/layout/fragment_view_pager.xml" value="0.1" />
@@ -117,8 +117,18 @@
         <entry key="common-ui/src/main/res/layout/dialog_datepicker.xml" value="0.38109756097560976" />
         <entry key="common-ui/src/main/res/layout/dialog_delete_layout.xml" value="0.20437956204379562" />
         <entry key="common-ui/src/main/res/layout/dialog_skip_layout.xml" value="0.25" />
+        <entry key="common-ui/src/main/res/layout/item_feed.xml" value="0.1" />
+        <entry key="common-ui/src/main/res/layout/item_plant_garden.xml" value="0.11347517730496454" />
+        <entry key="common/src/main/res/layout/item_feed.xml" value="0.13500506585612967" />
+        <entry key="common/src/main/res/layout/item_noti.xml" value="0.1" />
+        <entry key="common/src/main/res/layout/item_plant_feed.xml" value="0.128419452887538" />
+        <entry key="common/src/main/res/layout/item_plant_garden.xml" value="0.134375" />
         <entry key="feed/src/main/res/drawable/noti_bg.xml" value="0.2245" />
-        <entry key="feed/src/main/res/layout/fragment_feed.xml" value="0.24791666666666667" />
+        <entry key="feed/src/main/res/drawable/plant_bg.xml" value="0.2185" />
+        <entry key="feed/src/main/res/layout/fragment_feed.xml" value="0.274582560296846" />
+        <entry key="feed/src/main/res/layout/item_plant.xml" value="0.2640625" />
+        <entry key="feed/src/main/res/layout/item_plant_feed.xml" value="0.7513399705819205" />
+        <entry key="feed/src/main/res/layout/item_plant_filter.xml" value="0.1" />
         <entry key="foundation/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="foundation/src/main/res/xml/http.xml" value="0.1" />
         <entry key="login/src/main/res/drawable/cursor_drawble.xml" value="0.1" />

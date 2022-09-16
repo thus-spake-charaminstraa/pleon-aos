@@ -12,8 +12,6 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.charaminstra.pleon.R
-import com.charaminstra.pleon.adapter.FeedAdapter
-import com.charaminstra.pleon.adapter.PlantAdapter
 import com.charaminstra.pleon.databinding.FragmentFeedBinding
 import com.charaminstra.pleon.plant_register.ui.PlantRegisterActivity
 import com.charaminstra.pleon.viewmodel.FeedViewModel
@@ -27,10 +25,10 @@ const val NOTI_COMPLETE = "noti_complete"
 class FeedFragment : Fragment() {
     private val TAG = javaClass.name
     private val plantsViewModel: PlantsViewModel by viewModels()
-    private val feedViewModel: FeedViewModel by viewModels()
+//    private val feedViewModel: FeedViewModel by viewModels()
     private lateinit var binding : FragmentFeedBinding
-    private lateinit var plantAdapter: PlantAdapter
-    private lateinit var feedAdapter: FeedAdapter
+    //private lateinit var plantAdapter: PlantAdapter
+    //private lateinit var feedAdapter: FeedAdapter
     private lateinit var navController : NavController
 
     override fun onCreateView(
@@ -47,8 +45,8 @@ class FeedFragment : Fragment() {
         initList()
         initListeners()
         observeViewModel()
-        binding.feedFilterRecyclerview.adapter = plantAdapter
-        binding.feedRecyclerview.adapter = feedAdapter
+        //binding.feedFilterRecyclerview.adapter = plantAdapter
+        //binding.feedRecyclerview.adapter = feedAdapter
         binding.writeBtn.setOnClickListener {
             navController.navigate(R.id.view_pager_fragment_to_feed_write_fragment)
         }
@@ -64,57 +62,57 @@ class FeedFragment : Fragment() {
         super.onResume()
         //viewmodel update
         plantsViewModel.loadData()
-        feedViewModel.getFeedList(null)
+        //feedViewModel.getFeedList(null)
     }
 
     private fun initList() {
-        plantAdapter = PlantAdapter()
-        plantAdapter.setType("FEED_PLANT")
-        plantAdapter.onItemClicked = { plantId ->
-            Log.i(TAG, "plant id in fragment >> $plantId")
-            feedViewModel.getFeedList(plantId)
-        }
-        feedAdapter = FeedAdapter()
-        feedAdapter.onClickFeed = { Id ->
-            Log.i(TAG, "feed id in fragment >> $Id")
-            val bundle = Bundle()
-            bundle.putString("id", Id)
-            navController.navigate(R.id.view_pager_fragment_to_feed_detail_fragment, bundle)
-        }
-        feedAdapter.onClickNoti = {notiId, button ->
-            Log.i(TAG, "noti id in fragment >> $notiId ,, $button")
-            when(button){
-                NOTI_LATER -> {
-                    feedViewModel.postNotiClick(notiId, "later")
-                }
-                NOTI_COMPLETE -> {
-                    feedViewModel.postNotiClick(notiId, "complete")
-                }
-                else -> { }
-            }
-        }
+        //plantAdapter = PlantAdapter()
+//        plantAdapter.setType("FEED_PLANT")
+//        plantAdapter.onItemClicked = { plantId ->
+//            Log.i(TAG, "plant id in fragment >> $plantId")
+//            feedViewModel.getFeedList(plantId)
+//        }
+//        feedAdapter = FeedAdapter()
+//        feedAdapter.onClickFeed = { Id ->
+//            Log.i(TAG, "feed id in fragment >> $Id")
+//            val bundle = Bundle()
+//            bundle.putString("id", Id)
+//            navController.navigate(R.id.view_pager_fragment_to_feed_detail_fragment, bundle)
+//        }
+//        feedAdapter.onClickNoti = {notiId, button ->
+//            Log.i(TAG, "noti id in fragment >> $notiId ,, $button")
+//            when(button){
+//                NOTI_LATER -> {
+//                    feedViewModel.postNotiClick(notiId, "later")
+//                }
+//                NOTI_COMPLETE -> {
+//                    feedViewModel.postNotiClick(notiId, "complete")
+//                }
+//                else -> { }
+//            }
+//        }
     }
 
     private fun initListeners(){
-        binding.allFilter.setOnClickListener {
-            feedViewModel.getFeedList(null)
-        }
+//        binding.allFilter.setOnClickListener {
+//            feedViewModel.getFeedList(null)
+//        }
     }
 
     private fun observeViewModel() {
-        plantsViewModel.plantsList.observe(viewLifecycleOwner, Observer {
-            plantAdapter.refreshItems(it)
-        })
-        feedViewModel.feedList.observe(viewLifecycleOwner, Observer {
-            feedAdapter.refreshItems(it)
-        })
-        feedViewModel.feedCount.observe(viewLifecycleOwner, Observer{
-            if(it == 0){
-                binding.noFeedTv.visibility = View.VISIBLE
-            }else{
-                binding.noFeedTv.visibility = View.GONE
-            }
-        })
+//        plantsViewModel.plantsList.observe(viewLifecycleOwner, Observer {
+//            plantAdapter.refreshItems(it)
+//        })
+//        feedViewModel.feedList.observe(viewLifecycleOwner, Observer {
+//            feedAdapter.refreshItems(it)
+//        })
+//        feedViewModel.feedCount.observe(viewLifecycleOwner, Observer{
+//            if(it == 0){
+//                binding.noFeedTv.visibility = View.VISIBLE
+//            }else{
+//                binding.noFeedTv.visibility = View.GONE
+//            }
+//        })
         plantsViewModel.plantsCount.observe(viewLifecycleOwner, Observer{
             if(it == 0) {
                 binding.noFeedTv.visibility = View.GONE
