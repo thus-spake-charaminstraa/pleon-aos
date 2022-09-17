@@ -61,7 +61,7 @@ class FeedFragment : Fragment() {
 
     private fun initList() {
         feedPlantAdapter = FeedPlantAdapter()
-        feedPlantAdapter.setType("FEED_PLANT")
+//        feedPlantAdapter.setType("FEED_PLANT")
         feedPlantAdapter.onItemClicked = { plantId ->
 //            Log.i(TAG, "plant id in fragment >> $plantId")
 //            feedViewModel.getFeedList(plantId)

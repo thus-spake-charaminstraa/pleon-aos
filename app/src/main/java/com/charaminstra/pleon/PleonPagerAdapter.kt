@@ -5,7 +5,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.charaminstra.pleon.chat.ChatFragment
 import com.charaminstra.pleon.view.CameraFragment
 import com.charaminstra.pleon.feed.FeedFragment
-import com.charaminstra.pleon.view.GardenFragment
+import com.charaminstra.pleon.garden.GardenFragment
 import com.charaminstra.pleon.view.MyFragment
 
 const val FEED_PAGE_INDEX = 0

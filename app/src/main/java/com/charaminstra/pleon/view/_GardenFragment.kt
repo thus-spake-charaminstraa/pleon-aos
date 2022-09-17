@@ -19,9 +19,9 @@ import com.charaminstra.pleon.viewmodel.PlantDetailViewModel
 import com.charaminstra.pleon.viewmodel.PlantsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
-class GardenFragment : Fragment() {
-    private val plantsViewModel: PlantsViewModel by viewModels()
+//@AndroidEntryPoint
+class _GardenFragment : Fragment() {
+//    private val plantsViewModel: PlantsViewModel by viewModels()
     private lateinit var binding: FragmentGardenBinding
     private lateinit var navController: NavController
     private lateinit var adapter: PlantAdapter
@@ -72,19 +72,19 @@ class GardenFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        plantsViewModel.plantsList.observe(viewLifecycleOwner, Observer {
-            adapter.refreshItems(it)
-        })
-        plantsViewModel.plantsCount.observe(viewLifecycleOwner, Observer{
-            if(it == 0) {
-                binding.noPlantButton.visibility = View.VISIBLE
-            }
-        })
+//        plantsViewModel.plantsList.observe(viewLifecycleOwner, Observer {
+//            adapter.refreshItems(it)
+//        })
+//        plantsViewModel.plantsCount.observe(viewLifecycleOwner, Observer{
+//            if(it == 0) {
+//                binding.noPlantButton.visibility = View.VISIBLE
+//            }
+//        })
     }
 
     override fun onResume() {
         super.onResume()
         //viewmodel update
-        plantsViewModel.loadData()
+//        plantsViewModel.loadData()
     }
 }
