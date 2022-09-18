@@ -47,7 +47,7 @@ class HomeActivity : AppCompatActivity() {
                 R.id.nav_garden -> {
                     navController.navigate(R.id.nav_garden_init)
                 }
-                R.id.my -> {
+                R.id.nav_my -> {
 
                 }
             }

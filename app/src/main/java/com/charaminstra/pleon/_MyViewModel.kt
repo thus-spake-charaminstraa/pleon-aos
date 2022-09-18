@@ -8,14 +8,14 @@ import androidx.lifecycle.viewModelScope
 import com.charaminstra.pleon.foundation.ImageRepository
 import com.charaminstra.pleon.foundation.UserRepository
 import com.charaminstra.pleon.foundation.api.PleonPreference
-import com.charaminstra.pleon.login.AuthRepository
+import com.charaminstra.pleon.foundation.AuthRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.io.InputStream
 import javax.inject.Inject
 
 @HiltViewModel
-class MyViewModel @Inject constructor(
+class _MyViewModel @Inject constructor(
     private val authRepository: AuthRepository,
     private val userRepository: UserRepository,
     private val imageRepository: ImageRepository,

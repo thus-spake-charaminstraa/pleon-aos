@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.charaminstra.pleon.foundation.AuthRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -15,7 +16,8 @@ const val SPLASH_VIEW_TIME_DURATION = 1000L
 
 @HiltViewModel
 class AuthViewModel @Inject constructor(
-    private val repository: AuthRepository) : ViewModel() {
+    private val repository: AuthRepository
+) : ViewModel() {
 
     private val TAG = javaClass.name
     private val _authSuccess = MutableLiveData<Boolean>()

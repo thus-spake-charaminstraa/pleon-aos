@@ -1,4 +1,4 @@
-package com.charaminstra.pleon.login
+package com.charaminstra.pleon.foundation
 
 import com.charaminstra.pleon.foundation.api.AuthAPIService
 import com.charaminstra.pleon.foundation.api.PleonPreference

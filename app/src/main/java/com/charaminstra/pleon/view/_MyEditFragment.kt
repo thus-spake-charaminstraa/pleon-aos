@@ -20,12 +20,11 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
-import androidx.core.view.setPadding
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.charaminstra.pleon.MyViewModel
+import com.charaminstra.pleon._MyViewModel
 import com.charaminstra.pleon.R
 import com.charaminstra.pleon.common.REQUEST_GALLERY
 import com.charaminstra.pleon.common.REQUEST_TAKE_PHOTO
@@ -37,9 +36,9 @@ import java.io.File
 import java.io.FileInputStream
 
 @AndroidEntryPoint
-class MyEditFragment : Fragment() {
+class _MyEditFragment : Fragment() {
     private val TAG = javaClass.name
-    private val viewModel: MyViewModel by viewModels()
+    private val viewModel: _MyViewModel by viewModels()
     private lateinit var binding : FragmentMyEditBinding
     private lateinit var currentPhotoPath : String
 
@@ -84,7 +83,7 @@ class MyEditFragment : Fragment() {
                         openGallery()
                     com.charaminstra.pleon.common_ui.R.id.cancel ->{
                         Glide.with(binding.root)
-                            .load(R.drawable.ic_user)
+                            .load(R.drawable._ic_user)
                             .into(binding.editUserImage)
                         viewModel.setNoImg()
                     }

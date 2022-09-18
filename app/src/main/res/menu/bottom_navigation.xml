@@ -17,7 +17,7 @@
         android:icon="@drawable/tab_selector_garden"
         android:title="@string/bottom_nav_garden" />
     <item
-        android:id="@+id/my"
+        android:id="@+id/nav_my"
         android:icon="@drawable/tab_selector_my"
         android:title="@string/bottom_nav_my" />
 </menu>

@@ -32,6 +32,7 @@
         <entry key="app/src/main/res/drawable/ic_more.xml" value="0.2255" />
         <entry key="app/src/main/res/drawable/ic_my_active.xml" value="0.127" />
         <entry key="app/src/main/res/drawable/ic_my_inactive.xml" value="0.127" />
+        <entry key="app/src/main/res/drawable/ic_user.xml" value="0.422" />
         <entry key="app/src/main/res/drawable/input.xml" value="0.1815" />
         <entry key="app/src/main/res/drawable/item_feed_write_action.xml" value="0.165" />
         <entry key="app/src/main/res/drawable/my_tab_selector.xml" value="0.1" />
@@ -111,6 +112,7 @@
         <entry key="common-ui/src/main/res/drawable/ic_bubble.xml" value="0.1" />
         <entry key="common-ui/src/main/res/drawable/ic_camera_active.xml" value="0.1195" />
         <entry key="common-ui/src/main/res/drawable/ic_search.xml" value="0.1205" />
+        <entry key="common-ui/src/main/res/drawable/ic_user.xml" value="0.422" />
         <entry key="common-ui/src/main/res/drawable/input.xml" value="0.182" />
         <entry key="common-ui/src/main/res/drawable/round_shape.xml" value="0.129" />
         <entry key="common-ui/src/main/res/drawable/round_transparent.xml" value="0.1" />
@@ -156,6 +158,8 @@
         <entry key="login/src/main/res/layout/fragment_plant_place.xml" value="0.1" />
         <entry key="login/src/main/res/layout/fragment_plant_register.xml" value="0.1" />
         <entry key="login/src/main/res/layout/fragment_welcome.xml" value="0.375" />
+        <entry key="my/src/main/res/layout/fragment_my.xml" value="0.24895833333333334" />
+        <entry key="my/src/main/res/layout/fragment_my_edit.xml" value="0.4234375" />
         <entry key="plant-ar/src/main/res/layout-ar/camera_fragmnet.xml" value="0.21875" />
         <entry key="plant-ar/src/main/res/layout/fragment_camera.xml" value="0.21770833333333334" />
         <entry key="plant-register/src/main/res/drawable/check_button.xml" value="0.1685" />

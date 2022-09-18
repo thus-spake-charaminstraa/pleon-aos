@@ -9,76 +9,10 @@
     <include app:graph="@navigation/nav_plant_register"/>
     <include app:graph="@navigation/nav_garden"/>
     <include app:graph="@navigation/nav_feed"/>
+    <include app:graph="@navigation/nav_my"/>
     <action
         android:id="@+id/nav_garden_init"
         app:popUpTo="@+id/garden_fragment"
         app:destination="@+id/nav_garden"
         app:popUpToInclusive="true" />
-
-<!--    <fragment-->
-<!--        android:id="@+id/view_pager_fragment"-->
-<!--        android:name="com.charaminstra.pleon.HomeViewPagerFragment"-->
-<!--        tools:layout="@layout/fragment_view_pager">-->
-<!--        <action-->
-<!--            android:id="@+id/to_garden"-->
-<!--            app:destination="@+id/nav_garden"/>-->
-<!--        <action-->
-<!--            android:id="@+id/view_pager_fragment_to_plant_detail_fragment"-->
-<!--            app:destination="@+id/plant_detail_fragment">-->
-<!--        </action>-->
-<!--        <action-->
-<!--            android:id="@+id/view_pager_fragment_to_feed_write_fragment"-->
-<!--            app:destination="@+id/feed_write_fragment">-->
-<!--        </action>-->
-<!--        <action-->
-<!--            android:id="@+id/view_pager_fragment_to_my_edit_fragment"-->
-<!--            app:destination="@+id/my_edit_fragment">-->
-<!--        </action>-->
-<!--        <action-->
-<!--            android:id="@+id/view_pager_fragment_to_feed_detail_fragment"-->
-<!--            app:destination="@+id/feed_detail_fragment">-->
-<!--        </action>-->
-<!--    </fragment>-->
-
-<!--    <fragment-->
-<!--        android:id="@+id/garden_fragment"-->
-<!--        android:name="com.charaminstra.pleon.garden.GardenFragment"-->
-<!--        tools:layout="@layout/fragment_garden"/>-->
-
-<!--    <fragment-->
-<!--        android:id="@+id/feed_detail_fragment"-->
-<!--        android:name="com.charaminstra.pleon.view.FeedDetailFragment"-->
-<!--        tools:layout="@layout/fragment_feed_detail"/>-->
-<!--    <fragment-->
-<!--        android:id="@+id/my_edit_fragment"-->
-<!--        android:name="com.charaminstra.pleon.view.MyEditFragment"-->
-<!--        tools:layout="@layout/fragment_my_edit">-->
-<!--    </fragment>-->
-<!--    <fragment-->
-<!--        android:id="@+id/feed_write_fragment"-->
-<!--        android:name="com.charaminstra.pleon.view.FeedWriteFragment"-->
-<!--        tools:layout="@layout/fragment_feed_write">-->
-<!--    </fragment>-->
-<!--    <fragment-->
-<!--        android:id="@+id/plant_detail_fragment"-->
-<!--        android:name="com.charaminstra.pleon.view.PlantDetailFragment"-->
-<!--        tools:layout="@layout/_fragment_plant_detail">-->
-<!--        <action-->
-<!--            android:id="@+id/plant_detail_to_plant_edit_fragment"-->
-<!--            app:destination="@+id/plant_edit_fragment">-->
-<!--        </action>-->
-<!--        <action-->
-<!--            android:id="@+id/plant_detail_to_feed_detail_fragment"-->
-<!--            app:destination="@+id/feed_detail_fragment"/>-->
-<!--    </fragment>-->
-<!--    <fragment-->
-<!--        android:id="@+id/plant_edit_fragment"-->
-<!--        android:name="com.charaminstra.pleon.view.PlantEditFragment"-->
-<!--        tools:layout="@layout/fragment_plant_edit">-->
-<!--        <action-->
-<!--            android:id="@+id/plant_edit_fragment_delete"-->
-<!--            app:popUpTo="@+id/view_pager_fragment"-->
-<!--            app:destination="@+id/view_pager_fragment"-->
-<!--            app:popUpToInclusive="true" />-->
-<!--    </fragment>-->
 </navigation>

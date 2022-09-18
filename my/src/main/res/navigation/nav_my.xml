@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_my"
+    app:startDestination="@id/my_fragment">
+    <fragment
+        android:id="@+id/my_fragment"
+        android:name="com.charaminstra.pleon.my.MyFragment"
+        tools:layout="@layout/fragment_my">
+        <action
+            android:id="@+id/my_fragment_to_my_edit_fragment"
+            app:destination="@id/my_edit_fragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/my_edit_fragment"
+        android:name="com.charaminstra.pleon.my.MyEditFragment"
+        tools:layout="@layout/fragment_my_edit">
+    </fragment>
+</navigation>
