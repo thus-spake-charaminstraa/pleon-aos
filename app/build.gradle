@@ -71,6 +71,10 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:30.2.0')
     implementation 'com.google.firebase:firebase-analytics-ktx'
 
+    //nav
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.2'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.5.2'
+
     //hilt
     implementation "com.google.dagger:hilt-android:2.42"
     kapt "com.google.dagger:hilt-android-compiler:2.42"

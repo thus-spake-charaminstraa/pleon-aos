@@ -48,7 +48,7 @@ class FeedFragment : Fragment() {
         //binding.feedFilterRecyclerview.adapter = plantAdapter
         //binding.feedRecyclerview.adapter = feedAdapter
         binding.writeBtn.setOnClickListener {
-            navController.navigate(R.id.view_pager_fragment_to_feed_write_fragment)
+            //navController.navigate(R.id.view_pager_fragment_to_feed_write_fragment)
         }
         //binding.feedRecyclerview.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
         binding.noPlantButton.setOnClickListener {

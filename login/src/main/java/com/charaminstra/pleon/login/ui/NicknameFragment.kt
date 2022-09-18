@@ -61,7 +61,7 @@ class NicknameFragment : Fragment() {
     private fun initObservers(){
         viewModel.userCreateSuccess.observe(this, Observer {
             if(it == true){
-                startPlantRegisterActivity(requireContext())
+                startPlantRegisterActivityForResult(requireContext())
             }
         })
     }
@@ -72,12 +72,11 @@ class NicknameFragment : Fragment() {
         }
     }
 
-    fun startPlantRegisterActivity(context: Context) {
+    fun startPlantRegisterActivityForResult(context: Context) {
         val intent = Intent(
             context,
             Class.forName("com.charaminstra.pleon.plant_register.ui.PlantRegisterActivity")
         )
-        intent.putExtra("from","login")
         startActivityForResult(intent, FROM_LOGIN_TO_PLANT_REGISTER)
     }
 

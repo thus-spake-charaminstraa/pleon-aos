@@ -7,17 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.charaminstra.pleon.R
 import com.charaminstra.pleon.adapter.PlantAdapter
 import com.charaminstra.pleon.databinding.FragmentGardenBinding
 import com.charaminstra.pleon.plant_register.ui.PlantRegisterActivity
-import com.charaminstra.pleon.viewmodel.PlantDetailViewModel
-import com.charaminstra.pleon.viewmodel.PlantsViewModel
-import dagger.hilt.android.AndroidEntryPoint
 
 //@AndroidEntryPoint
 class _GardenFragment : Fragment() {
@@ -67,7 +62,7 @@ class _GardenFragment : Fragment() {
             Log.i("plant id", plantId)
             val bundle = Bundle()
             bundle.putString("id", plantId)
-            navController.navigate(R.id.view_pager_fragment_to_plant_detail_fragment, bundle)
+            //navController.navigate(R.id.view_pager_fragment_to_plant_detail_fragment, bundle)
         }
     }
 

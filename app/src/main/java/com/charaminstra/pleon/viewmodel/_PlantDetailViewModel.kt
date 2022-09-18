@@ -16,7 +16,7 @@ import java.time.LocalDate
 import javax.inject.Inject
 
 @HiltViewModel
-class PlantDetailViewModel @Inject constructor(
+class _PlantDetailViewModel @Inject constructor(
     private val scheduleRepository: ScheduleRepository,
     private val feedRepository: FeedRepository
 ): ViewModel() {

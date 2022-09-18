@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_garden"
+    app:startDestination="@id/garden_fragment">
+    <fragment
+        android:id="@+id/garden_fragment"
+        android:name="com.charaminstra.pleon.garden.GardenFragment"
+        tools:layout="@layout/fragment_garden">
+        <action
+            android:id="@+id/garden_fragment_to_plant_detail_fragment"
+            app:destination="@id/plant_detail_fragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/plant_detail_fragment"
+        android:name="com.charaminstra.pleon.garden.PlantDetailFragment"
+        tools:layout="@layout/fragment_plant_detail">
+        <action
+            android:id="@+id/plant_detail_to_plant_edit_fragment"
+            app:destination="@id/plant_edit_fragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/plant_edit_fragment"
+        android:name="com.charaminstra.pleon.garden.PlantEditFragment"
+        tools:layout="@layout/_fragment_plant_edit">
+        <action
+            android:id="@+id/plant_edit_fragment_delete"
+            app:popUpTo="@+id/garden_fragment"
+            app:destination="@+id/garden_fragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+<!--    <action-->
+<!--        android:id="@+id/garden_fragment"-->
+<!--        app:popUpTo="@+id/view_pager_fragment"-->
+<!--        app:destination="@+id/view_pager_fragment"-->
+<!--        app:popUpToInclusive="true" />-->
+</navigation>

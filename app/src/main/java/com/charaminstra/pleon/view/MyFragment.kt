@@ -29,9 +29,9 @@ class MyFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentMyBinding.inflate(inflater, container, false)
-        val navController = Navigation.findNavController(requireActivity(), R.id.nav_host)
+        //val navController = Navigation.findNavController(requireActivity(), R.id.nav_host)
         binding.editBtn.setOnClickListener {
-            navController.navigate(R.id.view_pager_fragment_to_my_edit_fragment)
+            //navController.navigate(R.id.view_pager_fragment_to_my_edit_fragment)
         }
         binding.logoutBtn.setOnClickListener{
             viewModel.deletePreference()

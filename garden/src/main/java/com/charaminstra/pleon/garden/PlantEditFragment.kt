@@ -1,4 +1,4 @@
-package com.charaminstra.pleon.view
+package com.charaminstra.pleon.garden
 
 import android.Manifest
 import android.app.Activity
@@ -26,11 +26,9 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.charaminstra.pleon.common_ui.PLeonMsgDialog
-import com.charaminstra.pleon.databinding.FragmentPlantEditBinding
-import com.charaminstra.pleon.plant_register.*
-import com.charaminstra.pleon.R
 import com.charaminstra.pleon.common.REQUEST_GALLERY
 import com.charaminstra.pleon.common.REQUEST_TAKE_PHOTO
+import com.charaminstra.pleon.garden.databinding.FragmentPlantEditBinding
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
@@ -42,7 +40,7 @@ import java.util.*
 @AndroidEntryPoint
 class PlantEditFragment : Fragment() {
     private val TAG = javaClass.simpleName
-    private val viewModel: PlantRegisterViewModel by viewModels()
+    private val viewModel: PlantDetailViewModel by viewModels()
     private lateinit var binding : FragmentPlantEditBinding
     private lateinit var navController: NavController
     private lateinit var id: String
@@ -82,14 +80,14 @@ class PlantEditFragment : Fragment() {
         navController = this.findNavController()
 
         /* spinner */
-        val lightItems = resources.getStringArray(R.array.light_list)
-        val airItems = resources.getStringArray(R.array.air_list)
-        val lightAdapter = ArrayAdapter(requireContext(), R.layout.item_spinner, lightItems)
-        val airAdapter = ArrayAdapter(requireContext(), R.layout.item_spinner, airItems)
-        binding.lightInput.adapter = lightAdapter
-        binding.airInput.adapter = airAdapter
+//        val lightItems = resources.getStringArray(R.array.light_list)
+//        val airItems = resources.getStringArray(R.array.air_list)
+//        val lightAdapter = ArrayAdapter(requireContext(), R.layout.item_spinner, lightItems)
+//        val airAdapter = ArrayAdapter(requireContext(), R.layout.item_spinner, airItems)
+//        binding.lightInput.adapter = lightAdapter
+//        binding.airInput.adapter = airAdapter
 
-        viewModel.loadData(id)
+        viewModel.getPlantData(id)
         return binding.root
     }
 
@@ -205,7 +203,7 @@ class PlantEditFragment : Fragment() {
     }
 
     private fun initObservers(){
-        viewModel.data.observe(this, Observer { it ->
+        viewModel.plantData.observe(this, Observer { it ->
             Glide.with(binding.root)
                 .load(it.thumbnail)
                 .into(binding.thumbnail)
@@ -213,18 +211,18 @@ class PlantEditFragment : Fragment() {
             binding.speciesInput.setText(it.species)
             binding.adoptDayInput.text = dateFormat.format(it.adopt_date)
 
-            when(it.light){
-                LightType.BRIGHT.apiString -> binding.lightInput.setSelection(0)
-                LightType.HALF_BRIGHT.apiString -> binding.lightInput.setSelection(1)
-                LightType.LAMP.apiString -> binding.lightInput.setSelection(2)
-                LightType.DARK.apiString -> binding.lightInput.setSelection(3)
-            }
-
-            when(it.air){
-                AirType.YES.apiString -> binding.airInput.setSelection(0)
-                AirType.WINDOW.apiString -> binding.airInput.setSelection(1)
-                AirType.NO.apiString -> binding.airInput.setSelection(2)
-            }
+//            when(it.light){
+//                LightType.BRIGHT.apiString -> binding.lightInput.setSelection(0)
+//                LightType.HALF_BRIGHT.apiString -> binding.lightInput.setSelection(1)
+//                LightType.LAMP.apiString -> binding.lightInput.setSelection(2)
+//                LightType.DARK.apiString -> binding.lightInput.setSelection(3)
+//            }
+//
+//            when(it.air){
+//                AirType.YES.apiString -> binding.airInput.setSelection(0)
+//                AirType.WINDOW.apiString -> binding.airInput.setSelection(1)
+//                AirType.NO.apiString -> binding.airInput.setSelection(2)
+//            }
 
         })
         viewModel.patchSuccess.observe(this, Observer{
@@ -236,7 +234,7 @@ class PlantEditFragment : Fragment() {
         })
         viewModel.deleteSuccess.observe(this, Observer{
             if(it){
-                navController.navigate(com.charaminstra.pleon.R.id.plant_edit_fragment_delete)
+                //navController.navigate(com.charaminstra.pleon.R.id.plant_edit_fragment_delete)
             }else{
                 Toast.makeText(requireContext(),"삭제에 실패하였습니다.",Toast.LENGTH_SHORT)
             }
@@ -305,6 +303,7 @@ class PlantEditFragment : Fragment() {
             val dlg = PLeonMsgDialog(requireContext())
             dlg.setOnOKClickedListener {
                 viewModel.deleteData(id)
+                navController.navigate(R.id.plant_edit_fragment_delete)
             }
             dlg.start(
                 resources.getString(com.charaminstra.pleon.common_ui.R.string.dialog_title),

@@ -19,10 +19,10 @@ import com.bumptech.glide.Glide
 import com.charaminstra.pleon.R
 import com.charaminstra.pleon.calendar.MonthViewContainer
 import com.charaminstra.pleon.databinding.CalendarDayLayoutBinding
-import com.charaminstra.pleon.databinding.FragmentPlantDetailBinding
 import com.charaminstra.pleon.foundation.model.ScheduleDataObject
+import com.charaminstra.pleon.garden.databinding.FragmentPlantDetailBinding
 import com.charaminstra.pleon.plant_register.PlantRegisterViewModel
-import com.charaminstra.pleon.viewmodel.PlantDetailViewModel
+import com.charaminstra.pleon.viewmodel._PlantDetailViewModel
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
 import com.kizitonwose.calendarview.model.DayOwner
@@ -47,7 +47,7 @@ class PlantDetailFragment : Fragment() {
     private val TAG = javaClass.name
     private val today = LocalDate.now()
     private val viewModel: PlantRegisterViewModel by viewModels()
-    private val plantDetailViewModel: PlantDetailViewModel by viewModels()
+    private val plantDetailViewModel: _PlantDetailViewModel by viewModels()
 //    private lateinit var feedAdapter: FeedAdapter
     private lateinit var binding : FragmentPlantDetailBinding
     private var selectedDate: LocalDate? = null
@@ -67,7 +67,7 @@ class PlantDetailFragment : Fragment() {
             binding.editBtn.setOnClickListener {
                 val bundle = Bundle()
                 bundle.putString("id",id)
-                navController.navigate(R.id.plant_detail_to_plant_edit_fragment,bundle)
+                //navController.navigate(R.id.plant_detail_to_plant_edit_fragment,bundle)
             }
         }
 
@@ -283,7 +283,7 @@ class PlantDetailFragment : Fragment() {
                             }
                         }
                     } else {
-                        container.binding.calendarDayText.setTextColor(resources.getColor(R.color.calendar_text_grey))
+                        //container.binding.calendarDayText.setTextColor(resources.getColor(R.color.calendar_text_grey))
                     }
                 }
             }
