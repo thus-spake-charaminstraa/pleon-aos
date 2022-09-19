@@ -2,7 +2,6 @@ package com.charaminstra.pleon.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,10 +10,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.charaminstra.pleon.R
 import com.charaminstra.pleon.databinding.FragmentFeedBinding
 import com.charaminstra.pleon.plant_register.ui.PlantRegisterActivity
-import com.charaminstra.pleon.viewmodel.FeedViewModel
 import com.charaminstra.pleon.viewmodel.PlantsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 

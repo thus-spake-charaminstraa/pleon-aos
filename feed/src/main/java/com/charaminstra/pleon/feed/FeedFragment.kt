@@ -9,9 +9,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.charaminstra.pleon.common.FeedViewModel
+import com.charaminstra.pleon.feed_common.FeedViewModel
 import com.charaminstra.pleon.common.PlantsViewModel
-import com.charaminstra.pleon.common.feed.FeedAdapter
+import com.charaminstra.pleon.feed_common.FeedAdapter
 import com.charaminstra.pleon.feed.databinding.FragmentFeedBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,9 +19,9 @@ import dagger.hilt.android.AndroidEntryPoint
 class FeedFragment : Fragment() {
     private lateinit var binding : FragmentFeedBinding
     private lateinit var feedPlantAdapter: FeedPlantAdapter
-    private lateinit var feedAdapter: FeedAdapter
+    private lateinit var feedAdapter: com.charaminstra.pleon.feed_common.FeedAdapter
     private val plantsViewModel: PlantsViewModel by viewModels()
-    private val feedViewModel: FeedViewModel by viewModels()
+    private val feedViewModel: com.charaminstra.pleon.feed_common.FeedViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,7 +67,7 @@ class FeedFragment : Fragment() {
         feedPlantAdapter.onItemClicked = { plantId ->
             feedViewModel.getFeedList(plantId)
         }
-        feedAdapter = FeedAdapter()
+        feedAdapter = com.charaminstra.pleon.feed_common.FeedAdapter()
 //        feedAdapter.onClickFeed = { Id ->
 //            Log.i(TAG, "feed id in fragment >> $Id")
 //            val bundle = Bundle()

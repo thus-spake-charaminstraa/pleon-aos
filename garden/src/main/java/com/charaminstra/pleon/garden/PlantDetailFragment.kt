@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.charaminstra.pleon.calendar.MonthViewContainer
-import com.charaminstra.pleon.common.feed.FeedAdapter
+import com.charaminstra.pleon.feed_common.FeedAdapter
 import com.charaminstra.pleon.garden.databinding.CalendarDayLayoutBinding
 import com.charaminstra.pleon.foundation.model.ScheduleDataObject
 import com.charaminstra.pleon.garden.databinding.FragmentPlantDetailBinding
@@ -45,7 +45,7 @@ class PlantDetailFragment : Fragment() {
     private val TAG = javaClass.name
     private val today = LocalDate.now()
     private val viewModel: PlantDetailViewModel by viewModels()
-    private lateinit var feedAdapter: FeedAdapter
+    private lateinit var feedAdapter: com.charaminstra.pleon.feed_common.FeedAdapter
     private lateinit var binding : FragmentPlantDetailBinding
     private var selectedDate: LocalDate? = null
     private lateinit var dateFormat: SimpleDateFormat
@@ -150,7 +150,7 @@ class PlantDetailFragment : Fragment() {
     }
 
     private fun initList() {
-        feedAdapter = FeedAdapter()
+        feedAdapter = com.charaminstra.pleon.feed_common.FeedAdapter()
         feedAdapter.onClickFeed = { feedId ->
             val bundle = Bundle()
             bundle.putString("id", feedId)
