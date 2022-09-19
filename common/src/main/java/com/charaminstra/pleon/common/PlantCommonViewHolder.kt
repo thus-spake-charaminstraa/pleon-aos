@@ -8,7 +8,7 @@ import com.charaminstra.pleon.foundation.model.PlantDataObject
 import com.charaminstra.pleon.foundation.model.ViewObject
 
 
-abstract class CommonViewHolder(
+abstract class PlantCommonViewHolder(
     binding: ViewBinding,
 ): RecyclerView.ViewHolder(binding.root) {
     abstract fun bind(viewObject: PlantDataObject, onItemClicked: (String) -> Unit)

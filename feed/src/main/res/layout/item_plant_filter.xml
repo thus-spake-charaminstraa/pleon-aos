@@ -7,7 +7,7 @@
     android:layout_marginHorizontal="5dp"
     android:layout_marginVertical="10dp"
     android:layout_gravity="center"
-    android:background="@drawable/plant_bg"
+    android:background="@drawable/plant_off"
     android:elevation="1dp"
     android:id="@+id/plant_filter_root">
     <ImageView

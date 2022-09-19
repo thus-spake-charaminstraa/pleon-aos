@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.charaminstra.pleon.calendar.MonthViewContainer
+import com.charaminstra.pleon.common.feed.FeedAdapter
 import com.charaminstra.pleon.garden.databinding.CalendarDayLayoutBinding
 import com.charaminstra.pleon.foundation.model.ScheduleDataObject
 import com.charaminstra.pleon.garden.databinding.FragmentPlantDetailBinding
@@ -43,9 +44,8 @@ import java.util.*
 class PlantDetailFragment : Fragment() {
     private val TAG = javaClass.name
     private val today = LocalDate.now()
-//    private val viewModel: PlantRegisterViewModel by viewModels()
     private val viewModel: PlantDetailViewModel by viewModels()
-//    private lateinit var feedAdapter: FeedAdapter
+    private lateinit var feedAdapter: FeedAdapter
     private lateinit var binding : FragmentPlantDetailBinding
     private var selectedDate: LocalDate? = null
     private lateinit var dateFormat: SimpleDateFormat
@@ -134,7 +134,7 @@ class PlantDetailFragment : Fragment() {
         viewModel.getSchedule(2022,8)
         initList()
 
-//        binding.feedRecyclerview.adapter = feedAdapter
+        binding.feedRecyclerview.adapter = feedAdapter
         binding.feedRecyclerview.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
 
         val monthTitleFormatter = DateTimeFormatter.ofPattern("MMMM")
@@ -150,12 +150,12 @@ class PlantDetailFragment : Fragment() {
     }
 
     private fun initList() {
-//        feedAdapter = FeedAdapter()
-//        feedAdapter.onClickFeed = { feedId ->
-//            val bundle = Bundle()
-//            bundle.putString("id", feedId)
+        feedAdapter = FeedAdapter()
+        feedAdapter.onClickFeed = { feedId ->
+            val bundle = Bundle()
+            bundle.putString("id", feedId)
 //            navController.navigate(R.id.plant_detail_to_feed_detail_fragment,bundle)
-//        }
+        }
     }
 
     private fun observeViewModel() {
@@ -175,9 +175,9 @@ class PlantDetailFragment : Fragment() {
             setCalendarView()
             //binding.calendarView.notify
         })
-//        plantDetailViewModel.feedList.observe(viewLifecycleOwner, Observer {
-//            feedAdapter.refreshItems(it)
-//        })
+        viewModel.feedList.observe(viewLifecycleOwner, Observer {
+            feedAdapter.refreshItems(it)
+        })
     }
 
     override fun onResume() {
@@ -296,13 +296,5 @@ class DayViewContainer(view: View) : ViewContainer(view) {
     // With ViewBinding
     val binding = CalendarDayLayoutBinding.bind(view)
     lateinit var day: CalendarDay
-
-//    init {
-//        view.setOnClickListener {
-//            if (day.owner == DayOwner.THIS_MONTH) {
-//                selectDate(day.date)
-//            }
-//        }
-//    }
 }
 

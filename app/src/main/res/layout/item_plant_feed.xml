@@ -5,7 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_gravity="center"
     android:layout_margin="5dp"
-    android:background="@drawable/plant_bg"
+    android:background="@drawable/plant_selector"
     android:elevation="2dp"
     android:layout_marginVertical="10dp"
     android:layout_height="wrap_content">

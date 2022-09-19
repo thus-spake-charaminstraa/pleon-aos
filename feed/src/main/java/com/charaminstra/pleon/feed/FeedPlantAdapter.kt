@@ -3,17 +3,17 @@ package com.charaminstra.pleon.feed
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.charaminstra.pleon.common.CommonViewHolder
+import com.charaminstra.pleon.common.PlantCommonViewHolder
 import com.charaminstra.pleon.feed.databinding.ItemPlantFilterBinding
 import com.charaminstra.pleon.foundation.model.PlantDataObject
 
-class FeedPlantAdapter(): RecyclerView.Adapter<CommonViewHolder>() {
+class FeedPlantAdapter(): RecyclerView.Adapter<PlantCommonViewHolder>() {
 
     var viewItemList: List<PlantDataObject> = listOf()
 //    private lateinit var type: String
     var onItemClicked: (String)-> Unit = {}
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommonViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlantCommonViewHolder {
         return FeedPlantViewHolder(
             ItemPlantFilterBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -26,7 +26,7 @@ class FeedPlantAdapter(): RecyclerView.Adapter<CommonViewHolder>() {
         return viewItemList.size
     }
 
-    override fun onBindViewHolder(holder: CommonViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PlantCommonViewHolder, position: Int) {
         holder.bind(viewItemList[position],onItemClicked)
     }
 

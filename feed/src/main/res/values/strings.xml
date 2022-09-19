@@ -1,4 +1,4 @@
 <resources>
-    <string name="feed_fragment_title">피드를 통해\n식물들과 이야기를 나눠보세요 :)</string>
+    <string name="feed_fragment_title">피드를 통해\n식물의 하루를 기록하세요 :)</string>
     <string name="feed_fragment_all_filter">all</string>
 </resources>

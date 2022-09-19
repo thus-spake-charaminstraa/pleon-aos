@@ -1,13 +1,13 @@
 package com.charaminstra.pleon.garden
 
 import com.bumptech.glide.Glide
-import com.charaminstra.pleon.common.CommonViewHolder
+import com.charaminstra.pleon.common.PlantCommonViewHolder
 import com.charaminstra.pleon.foundation.model.PlantDataObject
 import com.charaminstra.pleon.garden.databinding.ItemGardenPlantBinding
 
 class GardenPlantViewHolder(
     private val binding: ItemGardenPlantBinding
-): CommonViewHolder(binding) {
+): PlantCommonViewHolder(binding) {
 
     override fun bind(item: PlantDataObject, onItemClicked: (String) -> Unit) {
         binding.plantName.text=item.name

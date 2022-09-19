@@ -7,8 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.charaminstra.pleon.common.FeedViewModel
 import com.charaminstra.pleon.common.PlantsViewModel
+import com.charaminstra.pleon.common.feed.FeedAdapter
 import com.charaminstra.pleon.feed.databinding.FragmentFeedBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -40,11 +43,10 @@ class FeedFragment : Fragment() {
         observeViewModel()
         binding.feedFilterRecyclerview.adapter = feedPlantAdapter
         binding.feedRecyclerview.adapter = feedAdapter
-//        binding.feedRecyclerview.adapter = feedAdapter
 //        binding.writeBtn.setOnClickListener {
 //            navController.navigate(R.id.view_pager_fragment_to_feed_write_fragment)
 //        }
-        //binding.feedRecyclerview.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
+        binding.feedRecyclerview.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
 //        binding.noPlantButton.setOnClickListener {
 //            val intent = Intent(context, PlantRegisterActivity::class.java)
 //            intent.putExtra("from", "main")
@@ -63,8 +65,7 @@ class FeedFragment : Fragment() {
         feedPlantAdapter = FeedPlantAdapter()
 //        feedPlantAdapter.setType("FEED_PLANT")
         feedPlantAdapter.onItemClicked = { plantId ->
-//            Log.i(TAG, "plant id in fragment >> $plantId")
-//            feedViewModel.getFeedList(plantId)
+            feedViewModel.getFeedList(plantId)
         }
         feedAdapter = FeedAdapter()
 //        feedAdapter.onClickFeed = { Id ->
@@ -88,9 +89,9 @@ class FeedFragment : Fragment() {
     }
 
     private fun initListeners(){
-//        binding.allFilter.setOnClickListener {
-//            feedViewModel.getFeedList(null)
-//        }
+        binding.allFilter.setOnClickListener {
+            feedViewModel.getFeedList(null)
+        }
     }
 
     private fun observeViewModel() {
@@ -116,6 +117,4 @@ class FeedFragment : Fragment() {
 //            }
 //        })
     }
-
-
 }

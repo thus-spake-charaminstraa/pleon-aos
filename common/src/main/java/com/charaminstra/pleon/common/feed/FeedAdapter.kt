@@ -1,4 +1,4 @@
-package com.charaminstra.pleon.feed
+package com.charaminstra.pleon.common.feed
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

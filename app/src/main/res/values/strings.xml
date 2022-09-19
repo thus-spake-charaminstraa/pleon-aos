@@ -27,8 +27,10 @@
     <string name="bottome_sheet_plant">식물 이름</string>
     <string name="bottome_sheet_action">무엇을 해주셨나요?</string>
 
+<!--    trash-->
     <string name="plant_tag">\@</string>
     <string name="action_tag">#</string>
+<!--    trash-->
 
     <string name="item_more_edit">편집하기</string>
     <string name="item_more_delete">삭제하기</string>
