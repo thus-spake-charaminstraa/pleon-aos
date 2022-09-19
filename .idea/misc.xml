@@ -103,6 +103,7 @@
         <entry key="common-ui/src/main/res/drawable/button_image_search.xml" value="0.1195" />
         <entry key="common-ui/src/main/res/drawable/button_inactive.xml" value="0.1195" />
         <entry key="common-ui/src/main/res/drawable/button_skip.xml" value="0.1275" />
+        <entry key="common-ui/src/main/res/drawable/button_sub_green.xml" value="0.1715" />
         <entry key="common-ui/src/main/res/drawable/cursor_drawable.xml" value="0.1715" />
         <entry key="common-ui/src/main/res/drawable/cursor_drawble.xml" value="0.1" />
         <entry key="common-ui/src/main/res/drawable/dialog_bg.xml" value="0.1085" />
@@ -140,14 +141,16 @@
         <entry key="feed/src/main/res/layout/item_plant_filter.xml" value="0.1" />
         <entry key="foundation/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="foundation/src/main/res/xml/http.xml" value="0.1" />
+        <entry key="garden/src/main/res/drawable/bg_mood.xml" value="0.1715" />
         <entry key="garden/src/main/res/drawable/ic_dot_air.xml" value="0.1585" />
         <entry key="garden/src/main/res/drawable/round_calendar_clickday.xml" value="0.1" />
         <entry key="garden/src/main/res/layout/_fragment_plant_edit.xml" value="0.12407407407407407" />
         <entry key="garden/src/main/res/layout/calendar_day_legend.xml" value="0.20592705167173253" />
         <entry key="garden/src/main/res/layout/calendar_header.xml" value="0.20592705167173253" />
-        <entry key="garden/src/main/res/layout/fragment_garden.xml" value="0.55" />
+        <entry key="garden/src/main/res/layout/fragment_garden.xml" value="0.5042158516020236" />
         <entry key="garden/src/main/res/layout/fragment_garden_host.xml" value="0.1281661600810537" />
         <entry key="garden/src/main/res/layout/fragment_plant_detail.xml" value="0.19021739130434784" />
+        <entry key="garden/src/main/res/layout/item_garden_plant.xml" value="0.23777173913043478" />
         <entry key="garden/src/main/res/layout/item_plant_garden.xml" value="0.13500506585612967" />
         <entry key="login/src/main/res/drawable/cursor_drawble.xml" value="0.1" />
         <entry key="login/src/main/res/drawable/dialog_datepicker.xml" value="0.208" />

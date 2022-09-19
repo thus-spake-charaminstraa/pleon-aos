@@ -23,7 +23,7 @@
     <fragment
         android:id="@+id/plant_edit_fragment"
         android:name="com.charaminstra.pleon.garden.PlantEditFragment"
-        tools:layout="@layout/_fragment_plant_edit">
+        tools:layout="@layout/fragment_plant_edit">
         <action
             android:id="@+id/plant_edit_fragment_delete"
             app:popUpTo="@+id/garden_fragment"

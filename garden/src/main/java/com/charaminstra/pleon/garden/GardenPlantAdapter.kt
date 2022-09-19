@@ -10,8 +10,7 @@ import com.charaminstra.pleon.garden.databinding.ItemGardenPlantBinding
 class GardenPlantAdapter(): RecyclerView.Adapter<PlantCommonViewHolder>() {
 
     var viewItemList: List<PlantDataObject> = listOf()
-//    private lateinit var type: String
-    var onItemClicked: (String)-> Unit = {}
+    var onItemClicked: (String) -> Unit = {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlantCommonViewHolder {
         return GardenPlantViewHolder(
@@ -27,16 +26,11 @@ class GardenPlantAdapter(): RecyclerView.Adapter<PlantCommonViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: PlantCommonViewHolder, position: Int) {
-        holder.bind(viewItemList[position],onItemClicked)
+        holder.bind(viewItemList[position], onItemClicked)
     }
 
-    fun refreshItems(viewItemList : List<PlantDataObject>) {
+    fun refreshItems(viewItemList: List<PlantDataObject>) {
         this.viewItemList = viewItemList
         notifyDataSetChanged() // Andoid RecyclerView DiffUtil.
     }
-
-//    fun setType(type: String) {
-//        this.type = type
-//    }
-
 }

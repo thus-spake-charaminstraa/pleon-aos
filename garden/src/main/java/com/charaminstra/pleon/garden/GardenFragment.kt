@@ -3,7 +3,6 @@ package com.charaminstra.pleon.garden
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -48,7 +47,6 @@ class GardenFragment : Fragment() {
 
     private fun initList() {
         adapter = GardenPlantAdapter()
-//        adapter.setType("GARDEN_PLANT")
         adapter.onItemClicked = { plantId ->
             val bundle = Bundle()
             bundle.putString("id", plantId)
