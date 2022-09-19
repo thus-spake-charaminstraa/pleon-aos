@@ -19,6 +19,7 @@
         <entry key="app/src/main/res/drawable/ic_camera_active.xml" value="0.2075" />
         <entry key="app/src/main/res/drawable/ic_camera_inactive.xml" value="0.2075" />
         <entry key="app/src/main/res/drawable/ic_chat_inactive.xml" value="0.2255" />
+        <entry key="app/src/main/res/drawable/ic_dot_water.xml" value="0.2745" />
         <entry key="app/src/main/res/drawable/ic_feed_active.xml" value="0.2255" />
         <entry key="app/src/main/res/drawable/ic_feed_inactive.xml" value="0.2255" />
         <entry key="app/src/main/res/drawable/ic_garden_active.xml" value="0.2255" />
@@ -26,6 +27,7 @@
         <entry key="app/src/main/res/drawable/ic_home_active.xml" value="0.2255" />
         <entry key="app/src/main/res/drawable/ic_home_inactive.xml" value="0.2255" />
         <entry key="app/src/main/res/drawable/ic_home_ㅑnactive.xml" value="0.2255" />
+        <entry key="app/src/main/res/drawable/ic_left.xml" value="0.2745" />
         <entry key="app/src/main/res/drawable/ic_main_my.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_main_my_off.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_main_my_on.xml" value="0.1" />
@@ -52,8 +54,10 @@
         <entry key="app/src/main/res/drawable/tab_selector_chat.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/tab_selector_feed.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/white_button.xml" value="0.2245" />
+        <entry key="app/src/main/res/layout/_calendar_day_legend.xml" value="0.23641304347826086" />
         <entry key="app/src/main/res/layout/_fragment_feed.xml" value="0.13796296296296295" />
         <entry key="app/src/main/res/layout/_fragment_garden.xml" value="0.20592705167173253" />
+        <entry key="app/src/main/res/layout/_fragment_plant_detail.xml" value="0.38768115942028986" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
@@ -99,11 +103,13 @@
         <entry key="camera/src/main/res/layout/fragment_camera.xml" value="0.1" />
         <entry key="camera/src/main/res/layout/fragment_my.xml" value="0.1" />
         <entry key="common-ui/src/main/res/drawable/button.xml" value="0.182" />
+        <entry key="common-ui/src/main/res/drawable/button_green_selector.xml" value="0.2345" />
         <entry key="common-ui/src/main/res/drawable/button_grey.xml" value="0.224" />
         <entry key="common-ui/src/main/res/drawable/button_image_search.xml" value="0.1195" />
         <entry key="common-ui/src/main/res/drawable/button_inactive.xml" value="0.1195" />
         <entry key="common-ui/src/main/res/drawable/button_skip.xml" value="0.1275" />
         <entry key="common-ui/src/main/res/drawable/button_sub_green.xml" value="0.1715" />
+        <entry key="common-ui/src/main/res/drawable/circle_button.xml" value="0.2345" />
         <entry key="common-ui/src/main/res/drawable/cursor_drawable.xml" value="0.1715" />
         <entry key="common-ui/src/main/res/drawable/cursor_drawble.xml" value="0.1" />
         <entry key="common-ui/src/main/res/drawable/dialog_bg.xml" value="0.1085" />
@@ -115,6 +121,7 @@
         <entry key="common-ui/src/main/res/drawable/ic_search.xml" value="0.1205" />
         <entry key="common-ui/src/main/res/drawable/ic_user.xml" value="0.422" />
         <entry key="common-ui/src/main/res/drawable/input.xml" value="0.182" />
+        <entry key="common-ui/src/main/res/drawable/round_click_selector.xml" value="0.2345" />
         <entry key="common-ui/src/main/res/drawable/round_shape.xml" value="0.129" />
         <entry key="common-ui/src/main/res/drawable/round_transparent.xml" value="0.1" />
         <entry key="common-ui/src/main/res/drawable/search_background.xml" value="0.129" />
@@ -136,7 +143,7 @@
         <entry key="feed/src/main/res/drawable/plant_bg.xml" value="0.2185" />
         <entry key="feed/src/main/res/drawable/plant_select.xml" value="0.2545" />
         <entry key="feed/src/main/res/drawable/plant_unclick.xml" value="0.2535" />
-        <entry key="feed/src/main/res/layout/fragment_feed.xml" value="0.5572625698324022" />
+        <entry key="feed/src/main/res/layout/fragment_feed.xml" value="0.1464226289517471" />
         <entry key="feed/src/main/res/layout/item_plant.xml" value="0.2640625" />
         <entry key="feed/src/main/res/layout/item_plant_feed.xml" value="0.7513399705819205" />
         <entry key="feed/src/main/res/layout/item_plant_filter.xml" value="0.1" />
@@ -144,16 +151,26 @@
         <entry key="feed_common/src/main/res/layout/item_feed.xml" value="0.27760416666666665" />
         <entry key="foundation/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="foundation/src/main/res/xml/http.xml" value="0.1" />
+        <entry key="garden/src/main/res/drawable/add_btn_selector.xml" value="0.2345" />
+        <entry key="garden/src/main/res/drawable/bg_action_label.xml" value="0.171" />
         <entry key="garden/src/main/res/drawable/bg_mood.xml" value="0.1715" />
+        <entry key="garden/src/main/res/drawable/bg_plant_detail.xml" value="0.1575" />
+        <entry key="garden/src/main/res/drawable/ic_btn_calendar_next.xml" value="0.171" />
+        <entry key="garden/src/main/res/drawable/ic_btn_floating_add.xml" value="0.2345" />
+        <entry key="garden/src/main/res/drawable/ic_btn_floating_add_press.xml" value="0.2345" />
         <entry key="garden/src/main/res/drawable/ic_dot_air.xml" value="0.1585" />
+        <entry key="garden/src/main/res/drawable/ic_left.xml" value="0.2745" />
         <entry key="garden/src/main/res/drawable/round_calendar_clickday.xml" value="0.1" />
+        <entry key="garden/src/main/res/drawable/round_calendar_today.xml" value="0.171" />
         <entry key="garden/src/main/res/layout/_fragment_plant_edit.xml" value="0.12407407407407407" />
+        <entry key="garden/src/main/res/layout/calendar_day_layout.xml" value="1.0" />
         <entry key="garden/src/main/res/layout/calendar_day_legend.xml" value="0.20592705167173253" />
         <entry key="garden/src/main/res/layout/calendar_header.xml" value="0.20592705167173253" />
-        <entry key="garden/src/main/res/layout/fragment_garden.xml" value="0.5042158516020236" />
+        <entry key="garden/src/main/res/layout/fragment_garden.xml" value="0.165" />
         <entry key="garden/src/main/res/layout/fragment_garden_host.xml" value="0.1281661600810537" />
-        <entry key="garden/src/main/res/layout/fragment_plant_detail.xml" value="0.19021739130434784" />
-        <entry key="garden/src/main/res/layout/item_garden_plant.xml" value="0.23777173913043478" />
+        <entry key="garden/src/main/res/layout/fragment_plant_detail.xml" value="0.4076607387140903" />
+        <entry key="garden/src/main/res/layout/fragment_plant_edit.xml" value="0.13500506585612967" />
+        <entry key="garden/src/main/res/layout/item_garden_plant.xml" value="0.55" />
         <entry key="garden/src/main/res/layout/item_plant_garden.xml" value="0.13500506585612967" />
         <entry key="login/src/main/res/drawable/cursor_drawble.xml" value="0.1" />
         <entry key="login/src/main/res/drawable/dialog_datepicker.xml" value="0.208" />

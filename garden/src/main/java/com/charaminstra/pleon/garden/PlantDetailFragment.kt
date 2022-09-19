@@ -61,7 +61,7 @@ class PlantDetailFragment : Fragment() {
         arguments?.getString("id")?.let { id ->
             viewModel.plantId = id
             viewModel.getPlantData(id)
-            binding.editBtn.setOnClickListener {
+            binding.plantDetailEditBtn.setOnClickListener {
                 val bundle = Bundle()
                 bundle.putString("id",id)
                 navController.navigate(R.id.plant_detail_to_plant_edit_fragment,bundle)
@@ -75,7 +75,7 @@ class PlantDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        binding.backBtn.setOnClickListener {
+        binding.plantDetailBackBtn.setOnClickListener {
             navController.popBackStack()
         }
 
@@ -160,14 +160,15 @@ class PlantDetailFragment : Fragment() {
 
     private fun observeViewModel() {
         viewModel.plantData.observe(viewLifecycleOwner, Observer {
-            binding.plantName.text = it.name
+            binding.plantDetailName.text = it.name
             Glide.with(binding.root)
                 .load(it.thumbnail)
-                .into(binding.plantImage)
-            binding.plantSpeciesDesc.text = it.species
-            binding.plantAdoptDayDesc.text = dateFormat.format(it.adopt_date)
+                .circleCrop()
+                .into(binding.plantDetailImage)
+            binding.plantDetailSpecies.text = it.species
+            binding.plantDetailAdoptDay.text = dateFormat.format(it.adopt_date) + " 입양"
             //binding.plantMood.text = it.mood
-            binding.plantDDayDesc.text = it.d_day.toString()
+            binding.plantDetailDday.text = "함께한지 "+it.d_day.toString() + "일째"
 
         })
         viewModel.scheduleData.observe(viewLifecycleOwner, Observer {
@@ -266,20 +267,20 @@ class PlantDetailFragment : Fragment() {
                             /* 오늘의 글씨색과 배경 */
                             today -> {
                                 container.binding.calendarDayText.setTextColor(resources.getColor(
-                                    com.charaminstra.pleon.common_ui.R.color.black))
-                                container.binding.calendarDayText.setBackgroundResource(R.drawable.round_calendar_today)
+                                    com.charaminstra.pleon.common_ui.R.color.main_green_color))
+                                container.binding.calendarDayRoot.setBackgroundResource(R.drawable.round_calendar_today)
                             }
                             /* 선택한 날짜의 글씨색과 배경 */
                             selectedDate -> {
                                 container.binding.calendarDayText.setTextColor(resources.getColor(
                                     com.charaminstra.pleon.common_ui.R.color.white))
-                                container.binding.calendarDayText.setBackgroundResource(R.drawable.round_calendar_clickday)
+                                container.binding.calendarDayRoot.setBackgroundResource(R.drawable.round_calendar_clickday)
                             }
                             /* 그 외의의 글씨색과 배경 */
                             else -> {
                                 container.binding.calendarDayText.setTextColor(resources.getColor(
                                     com.charaminstra.pleon.common_ui.R.color.black))
-                                container.binding.calendarDayText.background = null
+                                container.binding.calendarDayRoot.background = null
                             }
                         }
                     } else {
@@ -287,9 +288,7 @@ class PlantDetailFragment : Fragment() {
                     }
                 }
             }
-
     }
-
 }
 
 class DayViewContainer(view: View) : ViewContainer(view) {

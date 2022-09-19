@@ -54,9 +54,9 @@ class _MyEditFragment : Fragment() {
             arrayOf(Manifest.permission.CAMERA),
             REQUEST_TAKE_PHOTO
         )
-        binding.backBtn.setOnClickListener {
-            navController.popBackStack()
-        }
+//        binding.backBtn.setOnClickListener {
+//            navController.popBackStack()
+//        }
         return binding.root
     }
 

@@ -21,4 +21,7 @@
     <string name="img_menu_gallery">사진 선택</string>
     <string name="img_menu_camera">사진 찍기</string>
     <string name="img_menu_cancel">취소</string>
+
+    <string name="edit_btn">편집</string>
+    <string name="delete_btn">삭제</string>
 </resources>

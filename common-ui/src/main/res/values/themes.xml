@@ -91,6 +91,7 @@
 
 
 
+
 <!--    trash-->
     <style name="TitleText" parent="@android:style/Widget.TextView">
         <item name="android:textSize">20dp</item>
@@ -109,14 +110,9 @@
         <item name="android:textSize">13dp</item>
         <item name="android:textColor">@color/blue</item>
     </style>
-    <style name="CalendarLabelText" parent="@android:style/Widget.TextView">
-        <item name="android:textSize">10dp</item>
-        <item name="android:textColor">@color/black</item>
-    </style>
     <style name="FeedDateText" parent="@android:style/Widget.TextView">
         <item name="android:textSize">12dp</item>
     </style>
-
     <style name="hello" parent="@android:style/Widget.TextView">
         <item name="android:textSize">17dp</item>
         <item name="android:textStyle">bold</item>

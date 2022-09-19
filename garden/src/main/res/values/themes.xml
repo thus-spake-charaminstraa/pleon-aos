@@ -3,10 +3,26 @@
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/white</item>
     </style>
+    <style name="PlantEditBtnText" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black_sub_color</item>
+    </style>
+    <style name="PlantSubText" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/black_sub2_color</item>
+    </style>
     <style name="MoodText" parent="@android:style/Widget.TextView">
         <item name="android:textSize">9sp</item>
-        <item name="android:textColor">@color/black_sub_color</item>
+        <item name="android:textColor">@color/black_sub2_color</item>
         <item name="android:lineSpacingExtra">19sp</item>
         <item name="android:letterSpacing">-0.02</item>
+    </style>
+    <style name="CalendarMonthText" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/black_sub_color</item>
+    </style>
+    <style name="CalendarLabelText" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">9sp</item>
+        <item name="android:textColor">@color/black_sub_color</item>
     </style>
 </resources>

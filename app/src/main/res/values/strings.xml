@@ -13,16 +13,11 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="feed_all_filter">all</string>
     <string name="feed_all_filter_title">모두보기</string>
-    <!--    trash-->
-
-
-
     <string name="plant_detail_species_title">species</string>
     <string name="plant_detail_adpot_day_title">adpot day</string>
     <string name="plant_detail_d_day_title">함께한지</string>
+    <!--    trash-->
 
-    <string name="edit_btn">편집</string>
-    <string name="delete_btn">삭제</string>
 
     <string name="bottome_sheet_plant">식물 이름</string>
     <string name="bottome_sheet_action">무엇을 해주셨나요?</string>
@@ -30,6 +25,14 @@
 <!--    trash-->
     <string name="plant_tag">\@</string>
     <string name="action_tag">#</string>
+    <string name="edit_btn">편집</string>
+    <string name="delete_btn">삭제</string>
+    <string name="dot_water">물</string>
+    <string name="dot_air">통풍</string>
+    <string name="dot_spray">분무</string>
+    <string name="dot_prune">가지치기</string>
+    <string name="dot_fertillize">영양제</string>
+    <string name="dot_repot">분갈이</string>
 <!--    trash-->
 
     <string name="item_more_edit">편집하기</string>
@@ -44,13 +47,7 @@
     <string name="noti_later_btn">나중에</string>
     <string name="noti_complete_btn">완료</string>
 
-    <string name="dot_water">물</string>
-    <string name="dot_air">통풍</string>
-    <string name="dot_spray">분무</string>
 
-    <string name="dot_prune">가지치기</string>
-    <string name="dot_fertillize">영양제</string>
-    <string name="dot_repot">분갈이</string>
 
     <string name="bottom_sheet_plant_msg">식물을 선택해주세요.</string>
     <string name="bottom_sheet_action_msg">무엇을 해주셨는지 선택해주세요</string>

@@ -39,7 +39,7 @@ class FeedDetailFragment : Fragment() {
         arguments?.getString("id")?.let {
             viewModel.feedId = it
         }
-        binding.backBtn.setOnClickListener {
+        binding.feedDetailBackBtn.setOnClickListener {
             navController.popBackStack()
         }
         binding.commentEt.showKeyboard()
