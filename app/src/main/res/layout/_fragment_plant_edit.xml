@@ -49,8 +49,7 @@
                 android:layout_marginTop="15dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/plant_card"
-                style="@style/SubText"
-                android:text="@string/species_title"/>
+                style="@style/SubText" />
             <EditText
                 android:id="@+id/species_input"
                 android:layout_width="match_parent"
@@ -67,8 +66,7 @@
                 android:layout_marginTop="15dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/species_input"
-                style="@style/SubText"
-                android:text="@string/name_title"/>
+                style="@style/SubText" />
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/plant_name_input"
                 android:layout_width="match_parent"
@@ -89,8 +87,7 @@
                 android:layout_marginTop="15dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/plant_name_input"
-                style="@style/SubText"
-                android:text="@string/adopt_day_title"/>
+                style="@style/SubText" />
             <TextView
                 android:id="@+id/adopt_day_input"
                 style="@style/SubText"
@@ -109,8 +106,7 @@
                 android:layout_marginTop="15dp"
                 style="@style/SubText"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/adopt_day_input"
-                android:text="@string/plant_light_fragment_title"/>
+                app:layout_constraintTop_toBottomOf="@+id/adopt_day_input"/>
             <Spinner
                 android:id="@+id/light_input"
                 android:layout_width="match_parent"
@@ -129,8 +125,7 @@
                 android:layout_marginTop="15dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/light_input"
-                style="@style/SubText"
-                android:text="@string/plant_air_fragment_title"/>
+                style="@style/SubText" />
             <Spinner
                 android:id="@+id/air_input"
                 style="@style/SubText"

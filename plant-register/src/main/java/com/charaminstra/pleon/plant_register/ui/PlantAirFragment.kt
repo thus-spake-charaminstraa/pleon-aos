@@ -9,7 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.charaminstra.pleon.common_ui.ErrorToast
-import com.charaminstra.pleon.plant_register.AirType
+import com.charaminstra.pleon.common.AirType
 import com.charaminstra.pleon.plant_register.PlantRegisterViewModel
 import com.charaminstra.pleon.plant_register.R
 import com.charaminstra.pleon.plant_register.databinding.FragmentPlantAirBinding

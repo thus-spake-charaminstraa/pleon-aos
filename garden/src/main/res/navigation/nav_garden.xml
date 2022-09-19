@@ -6,7 +6,7 @@
     app:startDestination="@id/garden_fragment">
     <fragment
         android:id="@+id/garden_fragment"
-        android:name="com.charaminstra.pleon.garden.GardenFragment"
+        android:name="com.charaminstra.pleon.garden.ui.GardenFragment"
         tools:layout="@layout/fragment_garden">
         <action
             android:id="@+id/garden_fragment_to_plant_detail_fragment"
@@ -22,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/plant_edit_fragment"
-        android:name="com.charaminstra.pleon.garden.PlantEditFragment"
+        android:name="com.charaminstra.pleon.garden.ui.PlantEditFragment"
         tools:layout="@layout/fragment_plant_edit">
         <action
             android:id="@+id/plant_edit_fragment_delete"

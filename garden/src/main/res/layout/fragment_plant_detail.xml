@@ -27,7 +27,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/plant_detail_back_btn"
-        android:text="@string/plant_edit_title"
+        android:text="@string/plant_detail_title"
         style="@style/MainTitleText"/>
     <TextView
         android:id="@+id/plant_detail_edit_btn"
@@ -35,7 +35,7 @@
         android:layout_height="28dp"
         android:paddingLeft="15dp"
         android:text="@string/edit_btn"
-        style="@style/PlantEditBtnText"
+        style="@style/PlantSub1Text"
         android:gravity="center_vertical"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/plant_detail_title"/>
@@ -114,7 +114,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/plant_detail_name"
                     app:layout_constraintBottom_toTopOf="@+id/plant_detail_dday"
                     android:text="벤자민"
-                    style="@style/PlantSubText"/>
+                    style="@style/PlantSub2Text"/>
                 <View
                     android:id="@+id/line"
                     android:layout_width="1dp"
@@ -133,7 +133,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/plant_detail_species"
                     app:layout_constraintLeft_toRightOf="@+id/plant_detail_species"
                     android:text="2022.01.12 입양"
-                    style="@style/PlantSubText"/>
+                    style="@style/PlantSub2Text"/>
                 <TextView
                     android:id="@+id/plant_detail_dday"
                     android:layout_width="wrap_content"
@@ -144,7 +144,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/plant_detail_species"
                     app:layout_constraintBottom_toBottomOf="@+id/plant_detail_image"
                     android:textColor="@color/main_green_color"
-                    style="@style/PlantSubText"/>
+                    style="@style/PlantSub2Text"/>
                 <ImageView
                     android:layout_width="12dp"
                     android:layout_height="12dp"

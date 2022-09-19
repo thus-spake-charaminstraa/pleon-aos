@@ -8,4 +8,4 @@
     app:layout_constraintLeft_toLeftOf="parent"
     android:gravity="center"
     android:paddingHorizontal="15dp"
-    style="@style/SubText" />
+    style="@style/PlantSub1Text" />

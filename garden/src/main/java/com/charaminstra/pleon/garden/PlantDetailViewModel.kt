@@ -1,11 +1,13 @@
 package com.charaminstra.pleon.garden
 
+import android.graphics.Bitmap
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.charaminstra.pleon.foundation.FeedRepository
+import com.charaminstra.pleon.foundation.ImageRepository
 import com.charaminstra.pleon.foundation.PlantIdRepository
 import com.charaminstra.pleon.foundation.ScheduleRepository
 import com.charaminstra.pleon.foundation.model.FeedObject
@@ -14,6 +16,9 @@ import com.charaminstra.pleon.foundation.model.ResultObject
 import com.charaminstra.pleon.foundation.model.ScheduleDataObject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
+import java.io.InputStream
 import java.time.LocalDate
 import javax.inject.Inject
 
@@ -21,7 +26,8 @@ import javax.inject.Inject
 class PlantDetailViewModel @Inject constructor(
     private val repository: PlantIdRepository,
     private val scheduleRepository: ScheduleRepository,
-    private val feedRepository: FeedRepository
+    private val feedRepository: FeedRepository,
+    private val imageRepository: ImageRepository
 ): ViewModel() {
     private val TAG = javaClass.name
 
@@ -138,6 +144,40 @@ class PlantDetailViewModel @Inject constructor(
             }
         }
 
+    }
+    fun cameraToUrl(inputStream: InputStream){
+        viewModelScope.launch {
+            val data =imageRepository.postImage(inputStream)
+            Log.i(TAG,"data -> $data")
+            when (data.isSuccessful) {
+                true -> {
+                    Log.i(TAG,"data.body -> "+data.body())
+                    _urlResponse.postValue(data.body()?.data?.url)
+                }
+                else -> {
+                    Log.i(TAG,"FAIL-> ")
+                }
+            }
+        }
+    }
+    fun galleryToUrl(bitmap: Bitmap){
+        viewModelScope.launch {
+            ByteArrayOutputStream().use { stream ->
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+                val inputStream = ByteArrayInputStream(stream.toByteArray())
+                val data = imageRepository.postImage(inputStream)
+                Log.i(TAG,"data -> $data")
+                when (data.isSuccessful) {
+                    true -> {
+                        Log.i(TAG,"data.body -> "+data.body())
+                        _urlResponse.postValue(data.body()?.data?.url)
+                    }
+                    else -> {
+                        Log.i(TAG,"FAIL-> ")
+                    }
+                }
+            }
+        }
     }
 
     fun patchData(id: String,

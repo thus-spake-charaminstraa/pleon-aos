@@ -45,7 +45,7 @@ class PlantDetailFragment : Fragment() {
     private val TAG = javaClass.name
     private val today = LocalDate.now()
     private val viewModel: PlantDetailViewModel by viewModels()
-    private lateinit var feedAdapter: com.charaminstra.pleon.feed_common.FeedAdapter
+    private lateinit var feedAdapter: FeedAdapter
     private lateinit var binding : FragmentPlantDetailBinding
     private var selectedDate: LocalDate? = null
     private lateinit var dateFormat: SimpleDateFormat
@@ -67,7 +67,6 @@ class PlantDetailFragment : Fragment() {
                 navController.navigate(R.id.plant_detail_to_plant_edit_fragment,bundle)
             }
         }
-
     }
 
     override fun onCreateView(
@@ -289,6 +288,7 @@ class PlantDetailFragment : Fragment() {
                 }
             }
     }
+
 }
 
 class DayViewContainer(view: View) : ViewContainer(view) {

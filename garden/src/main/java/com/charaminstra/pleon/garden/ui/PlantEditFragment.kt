@@ -1,23 +1,17 @@
-package com.charaminstra.pleon.view
+package com.charaminstra.pleon.garden.ui
 
 import android.Manifest
 import android.app.Activity
-import android.app.DatePickerDialog
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
 import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -25,191 +19,168 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.charaminstra.pleon.common.*
 import com.charaminstra.pleon.common_ui.PLeonMsgDialog
-import com.charaminstra.pleon.databinding.FragmentPlantEditBinding
-import com.charaminstra.pleon.plant_register.*
-import com.charaminstra.pleon.common.AirType
-import com.charaminstra.pleon.common.LightType
-import com.charaminstra.pleon.common.REQUEST_GALLERY
-import com.charaminstra.pleon.common.REQUEST_TAKE_PHOTO
+import com.charaminstra.pleon.common_ui.ErrorToast
+import com.charaminstra.pleon.common_ui.PopUpImageMenu
+import com.charaminstra.pleon.garden.PlantDetailViewModel
+import com.charaminstra.pleon.garden.R
+import com.charaminstra.pleon.garden.databinding.FragmentPlantEditBinding
 import dagger.hilt.android.AndroidEntryPoint
-import java.io.ByteArrayInputStream
-import java.io.ByteArrayOutputStream
-import java.io.File
 import java.io.FileInputStream
 import java.text.SimpleDateFormat
-import java.util.*
 
 @AndroidEntryPoint
-class _PlantEditFragment : Fragment() {
+class PlantEditFragment : Fragment() {
     private val TAG = javaClass.simpleName
-    private val viewModel: PlantRegisterViewModel by viewModels()
+    private val viewModel: PlantDetailViewModel by viewModels()
     private lateinit var binding : FragmentPlantEditBinding
     private lateinit var navController: NavController
     private lateinit var id: String
     private lateinit var dateFormat: SimpleDateFormat
-    private lateinit var currentPhotoPath : String
+    lateinit var photoFile: PLeonImageFile
+    private lateinit var permissionMsg: ErrorToast
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
-        binding = FragmentPlantEditBinding.inflate(layoutInflater)
-//        binding.backBtn.setOnClickListener {
-//            navController.popBackStack()
-//        }
-        dateFormat = SimpleDateFormat(resources.getString(com.charaminstra.pleon.common_ui.R.string.date_send_format))
-        id = arguments?.getString("id")!!
-
-
-
-        initListeners()
-        initObservers()
-
         /*카메라권한요청*/
-        ActivityCompat.requestPermissions(
-            requireActivity(),
-            arrayOf(Manifest.permission.CAMERA),
-            REQUEST_TAKE_PHOTO
-        )
-        binding.speciesInput.isEnabled=false
-        binding.adoptDayInput.setOnClickListener {
-            popUpCalendar(it as TextView)
-        }
-
+        RequestPermission.requestPermission(requireActivity())
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        binding = FragmentPlantEditBinding.inflate(layoutInflater)
+        permissionMsg = ErrorToast(requireContext())
+        binding.plantEditBackBtn.setOnClickListener {
+            navController.popBackStack()
+        }
+        dateFormat = SimpleDateFormat(resources.getString(com.charaminstra.pleon.common_ui.R.string.date_send_format))
+        id = arguments?.getString("id")!!
+
+        initListeners()
+        initObservers()
+
+        binding.speciesInput.isEnabled=false
+        binding.adoptDayInput.setOnClickListener {
+            popUpCalendar()
+        }
         navController = this.findNavController()
 
         /* spinner */
-//        val lightItems = resources.getStringArray(R.array.light_list)
-//        val airItems = resources.getStringArray(R.array.air_list)
-//        val lightAdapter = ArrayAdapter(requireContext(), R.layout.item_spinner, lightItems)
-//        val airAdapter = ArrayAdapter(requireContext(), R.layout.item_spinner, airItems)
-//        binding.lightInput.adapter = lightAdapter
-//        binding.airInput.adapter = airAdapter
+        val lightItems = resources.getStringArray(R.array.light_list)
+        val airItems = resources.getStringArray(R.array.air_list)
+        val lightAdapter = ArrayAdapter(requireContext(), R.layout.item_spinner, lightItems)
+        val airAdapter = ArrayAdapter(requireContext(), R.layout.item_spinner, airItems)
+        binding.lightInput.adapter = lightAdapter
+        binding.airInput.adapter = airAdapter
 
-        viewModel.loadData(id)
+        viewModel.getPlantData(id)
         return binding.root
     }
 
     // 갤러리 화면에서 이미지를 선택한 경우 현재 화면에 보여준다.
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
         if (resultCode != Activity.RESULT_OK) {
             return
         }
-
         when (requestCode) {
             REQUEST_GALLERY -> {
-                data?:return
+                data ?: return
                 val uri = data.data as Uri
-                Log.i("image",uri.path.toString())
                 activity?.contentResolver?.openInputStream(uri).let {
                     val bitmap = BitmapFactory.decodeStream(it)
-                    // image veiw set image bit map
-                    binding.thumbnail.setImageBitmap(bitmap)
-                    // get image url
-                    ByteArrayOutputStream().use { stream ->
-                        bitmap.compress(Bitmap.CompressFormat.JPEG,100, stream)
-                        val inputStream = ByteArrayInputStream(stream.toByteArray())
-                        //viewModel.setImgToUrl(inputStream)
-                    }
+                    binding.plantEditImg.setImageBitmap(bitmap)
+                    viewModel.galleryToUrl(bitmap)
                 }
             }
             REQUEST_TAKE_PHOTO -> {
-                Glide.with(this).load(currentPhotoPath).into(binding.thumbnail)
-                val inputStream = FileInputStream(currentPhotoPath)
-                //viewModel.setImgToUrl(inputStream)
+                Glide.with(this).load(photoFile.currentPhotoPath).into(binding.plantEditImg)
+                viewModel.cameraToUrl(FileInputStream(photoFile.currentPhotoPath))
             }
             else -> {
-                Toast.makeText(
-                    requireContext(),
+                ErrorToast(requireContext()).showMsg(
                     resources.getString(com.charaminstra.pleon.common_ui.R.string.image_error),
-                    Toast.LENGTH_SHORT).show()
+                    binding.plantEditAddImg.y
+                )
             }
         }
     }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if(requestCode == REQUEST_TAKE_PHOTO){
-        }else{
-            Toast.makeText(requireContext(), "앱 실행을 위해서는 권한을 설정해야 합니다.", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-
-    private fun openGallery(){
+    private fun openGallery() {
         val intent = Intent()
         intent.type = "image/*"
         intent.action = Intent.ACTION_PICK
         startActivityForResult(intent, REQUEST_GALLERY)
     }
-
-    private fun checkPermission() : Boolean {
-        val permissionCheck = ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.CAMERA)
-        if(permissionCheck == PackageManager.PERMISSION_GRANTED)
-            return true
-        else
-            return false
-
+    private fun openCamera() {
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        photoFile = PLeonImageFile(requireActivity())
+        val uri = FileProvider.getUriForFile(
+            requireContext(),
+            "com.charaminstra.pleon.fileprovider",
+            photoFile.create()
+        )
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
+        startActivityForResult(intent, REQUEST_TAKE_PHOTO)
     }
 
-    private fun openCamera(){
-        Log.i("permission",checkPermission().toString())
-        if(checkPermission()){
-            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            val photoFile = createImageFile()
-            if(photoFile != null ){
-                val uri = FileProvider.getUriForFile(requireContext(),"com.charaminstra.pleon.fileprovider", photoFile)
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
-                startActivityForResult(intent, REQUEST_TAKE_PHOTO)
-            }
-        }else{
-            Toast.makeText(context,
-                resources.getString(com.charaminstra.pleon.common_ui.R.string.camera_permission_msg),
-                Toast.LENGTH_SHORT).show()
-        }
-    }
+    fun popUpCalendar() {
+        binding.plantEditDatePickerDialog.visibility=View.VISIBLE
 
-    private fun createImageFile(): File {
-        val storageDir: File? = activity?.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-        return File.createTempFile(
-            "image", /* prefix */
-            ".jpg", /* suffix */
-            storageDir /* directory */
-        ).apply {
-            // Save a file: path for use with ACTION_VIEW intents
-            currentPhotoPath = absolutePath
-        }
-    }
+        binding.root.setBackgroundColor(resources.getColor(com.charaminstra.pleon.common_ui.R.color.black_sub_color))
+        binding.plantEditBtns.visibility = View.GONE
 
-    fun popUpCalendar(view: TextView) {
-        val cal = Calendar.getInstance()
-        var datePickerDialog = DatePickerDialog(requireContext(),
-            com.charaminstra.pleon.common_ui.R.style.PleonDatePickerStyle, { _, y, m, d ->
-            cal.set(y,m,d)
-            view.text = dateFormat.format(cal.time)
-        }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).apply {
-            datePicker.maxDate = cal.timeInMillis
+        binding.plantEditAddImg.visibility = View.GONE
+        binding.plantEditImg.visibility = View.GONE
+        binding.speciesInput.visibility = View.GONE
+        binding.plantNameInput.visibility = View.GONE
+        binding.adoptDayInput.visibility = View.GONE
+        binding.airInput.visibility = View.GONE
+        binding.lightInput.visibility = View.GONE
+
+
+        binding.plantEditDatePickerCancelBtn.setOnClickListener {
+            binding.plantEditDatePickerDialog.visibility=View.GONE
+
+            binding.root.setBackgroundColor(resources.getColor(com.charaminstra.pleon.common_ui.R.color.white))
+            binding.plantEditBtns.visibility = View.VISIBLE
+
+            binding.plantEditAddImg.visibility = View.VISIBLE
+            binding.plantEditImg.visibility = View.VISIBLE
+            binding.speciesInput.visibility = View.VISIBLE
+            binding.plantNameInput.visibility = View.VISIBLE
+            binding.adoptDayInput.visibility = View.VISIBLE
+            binding.airInput.visibility = View.VISIBLE
+            binding.lightInput.visibility = View.VISIBLE
         }
-        datePickerDialog.show()
-        datePickerDialog.getButton(DatePickerDialog.BUTTON_NEGATIVE)
-        datePickerDialog.getButton(DatePickerDialog.BUTTON_POSITIVE)
+        //확인 버튼
+        binding.plantEditDatePickerOkBtn.setOnClickListener {
+            binding.adoptDayInput.setText(DateUtils(requireContext()).datePickerToView(binding.plantEditDatePicker.date))
+
+            binding.plantEditDatePickerDialog.visibility=View.GONE
+            binding.root.setBackgroundColor(resources.getColor(com.charaminstra.pleon.common_ui.R.color.white))
+            binding.plantEditBtns.visibility = View.VISIBLE
+
+            binding.root.setBackgroundColor(resources.getColor(com.charaminstra.pleon.common_ui.R.color.white))
+            binding.completeBtn.isClickable = true
+
+            binding.plantEditAddImg.visibility = View.VISIBLE
+            binding.plantEditImg.visibility = View.VISIBLE
+            binding.speciesInput.visibility = View.VISIBLE
+            binding.plantNameInput.visibility = View.VISIBLE
+            binding.adoptDayInput.visibility = View.VISIBLE
+            binding.airInput.visibility = View.VISIBLE
+            binding.lightInput.visibility = View.VISIBLE
+        }
     }
 
     private fun initObservers(){
-        viewModel.data.observe(this, Observer { it ->
+        viewModel.plantData.observe(viewLifecycleOwner, Observer { it ->
             Glide.with(binding.root)
                 .load(it.thumbnail)
-                .into(binding.thumbnail)
+                .circleCrop()
+                .into(binding.plantEditImg)
             binding.plantNameInput.setText(it.name)
             binding.speciesInput.setText(it.species)
             binding.adoptDayInput.text = dateFormat.format(it.adopt_date)
@@ -228,14 +199,14 @@ class _PlantEditFragment : Fragment() {
             }
 
         })
-        viewModel.patchSuccess.observe(this, Observer{
+        viewModel.patchSuccess.observe(viewLifecycleOwner, Observer{
             if(it){
                 navController.popBackStack()
             }else{
                 Toast.makeText(requireContext(),"수정에 실패하였습니다.",Toast.LENGTH_SHORT)
             }
         })
-        viewModel.deleteSuccess.observe(this, Observer{
+        viewModel.deleteSuccess.observe(viewLifecycleOwner, Observer{
             if(it){
                 //navController.navigate(com.charaminstra.pleon.R.id.plant_edit_fragment_delete)
             }else{
@@ -246,7 +217,6 @@ class _PlantEditFragment : Fragment() {
 
     private fun initListeners(){
         binding.airInput.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
-
             override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
                 // An item was selected. You can retrieve the selected item using
                 // parent.getItemAtPosition(pos)
@@ -256,13 +226,11 @@ class _PlantEditFragment : Fragment() {
                     2 -> viewModel.setAir("no")
                 }
             }
-
             override fun onNothingSelected(parent: AdapterView<*>) {
                 // Another interface callback
             }
         }
         binding.lightInput.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
-
             override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
                 // An item was selected. You can retrieve the selected item using
                 // parent.getItemAtPosition(pos)
@@ -273,39 +241,35 @@ class _PlantEditFragment : Fragment() {
                     3 -> viewModel.setLight("dark")
                 }
             }
-
             override fun onNothingSelected(parent: AdapterView<*>) {
                 // Another interface callback
             }
         }
-        binding.thumbnail.setOnClickListener {
-            val pop= PopupMenu(requireContext(),it)
-            pop.menuInflater.inflate(com.charaminstra.pleon.common_ui.R.menu.image_menu, pop.menu)
-            pop.setOnMenuItemClickListener {
-                when(it.itemId){
-                    com.charaminstra.pleon.common_ui.R.id.camera ->{
-                        openCamera()
-                    }
-                    com.charaminstra.pleon.common_ui.R.id.gallery ->
-                        openGallery()
-                    com.charaminstra.pleon.common_ui.R.id.cancel ->
-                        binding.thumbnail.setImageBitmap(null)
-
+        binding.plantEditImg.setOnClickListener {
+            val imageMenuDlg = PopUpImageMenu(requireContext())
+            imageMenuDlg.setOnCameraClickedListener {
+                if (RequestPermission.checkPermission(requireActivity())) {
+                    openCamera()
+                } else {
+                    ErrorToast(requireContext()).showCameraPermission()
                 }
-                false
             }
-            pop.show()
+            imageMenuDlg.setOnGalleryClickedListener {
+                openGallery()
+            }
+            imageMenuDlg.start()
         }
         binding.completeBtn.setOnClickListener{
             viewModel.patchData(
                 id,
                 binding.plantNameInput.text.toString(),
-                binding.adoptDayInput.text.toString())
+                DateUtils(requireContext()).viewToSendServer(binding.adoptDayInput.text.toString()))
         }
         binding.deleteBtn.setOnClickListener {
             val dlg = PLeonMsgDialog(requireContext())
             dlg.setOnOKClickedListener {
                 viewModel.deleteData(id)
+                navController.navigate(R.id.plant_edit_fragment_delete)
             }
             dlg.start(
                 resources.getString(com.charaminstra.pleon.common_ui.R.string.dialog_title),

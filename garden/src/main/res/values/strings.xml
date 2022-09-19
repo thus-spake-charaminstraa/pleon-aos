@@ -9,5 +9,13 @@
     <string name="dot_fertillize">영양제</string>
     <string name="dot_repot">분갈이</string>
 
-    <string name="plant_edit_title">상세정보</string>
+    <string name="plant_detail_title">상세정보</string>
+
+    <!--    plant edit fragment-->
+    <string name="plant_edit_fragment_title">상세정보 수정하기</string>
+    <string name="plant_edit_fragment_species_title">식물 종</string>
+    <string name="plant_edit_fragment_name_title">애칭</string>
+    <string name="plant_edit_fragment_adopt_title">입양일</string>
+    <string name="plant_edit_fragment_light_title">빛</string>
+    <string name="plant_edit_fragment_air_title">바람</string>
 </resources>

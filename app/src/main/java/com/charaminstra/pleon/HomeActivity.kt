@@ -2,20 +2,10 @@ package com.charaminstra.pleon
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.util.SparseArray
 import android.view.LayoutInflater
-import androidx.core.view.get
-import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.MutableLiveData
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.charaminstra.pleon.databinding.ActivityHomeBinding
-import com.charaminstra.pleon.garden.GardenFragment
-import com.charaminstra.pleon.view.FeedFragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
