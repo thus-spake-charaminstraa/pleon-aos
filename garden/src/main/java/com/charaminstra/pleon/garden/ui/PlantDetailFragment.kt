@@ -59,8 +59,8 @@ class PlantDetailFragment : Fragment() {
         binding = FragmentPlantDetailBinding.inflate(layoutInflater)
         /*plant Id*/
         arguments?.getString("id")?.let { id ->
-            viewModel.plantId = id
-            viewModel.getPlantData(id)
+            viewModel.setPlantId(id)
+            //viewModel.getPlantData()
             binding.plantDetailEditBtn.setOnClickListener {
                 val bundle = Bundle()
                 bundle.putString("id",id)
@@ -68,7 +68,6 @@ class PlantDetailFragment : Fragment() {
             }
         }
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -120,9 +119,6 @@ class PlantDetailFragment : Fragment() {
             }
         }
 
-
-
-
         return binding.root
     }
 
@@ -146,6 +142,13 @@ class PlantDetailFragment : Fragment() {
         }
         setCalendarView()
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getFeed(null)
+        viewModel.getPlantData()
+        setCalendarView()
     }
 
     private fun initList() {
@@ -180,12 +183,6 @@ class PlantDetailFragment : Fragment() {
         })
     }
 
-    override fun onResume() {
-        super.onResume()
-        viewModel.getFeed(null)
-        setCalendarView()
-    }
-
     private fun selectDate(date: LocalDate) {
         if (selectedDate != date) {
             val oldDate = selectedDate
@@ -208,8 +205,6 @@ class PlantDetailFragment : Fragment() {
     }
 
     private fun setCalendarView(){
-
-
             /* day binder */
             binding.calendarView.dayBinder = object : DayBinder<DayViewContainer> {
                 // Called only when a new container is needed.
@@ -288,7 +283,6 @@ class PlantDetailFragment : Fragment() {
                 }
             }
     }
-
 }
 
 class DayViewContainer(view: View) : ViewContainer(view) {

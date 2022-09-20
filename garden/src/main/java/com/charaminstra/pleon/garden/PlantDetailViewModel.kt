@@ -40,12 +40,20 @@ class PlantDetailViewModel @Inject constructor(
     private val _feedList = MutableLiveData<List<ResultObject>>()
     val feedList : LiveData<List<ResultObject>> = _feedList
 
-    var plantId: String? = null
+    private val _plantId = MutableLiveData<String>()
+    val plantId : LiveData<String> = _plantId
+
     var offset: Int = 0
 
-    fun getPlantData(id: String){
+    fun setPlantId(id: String){
+         viewModelScope.launch {
+             _plantId.value = id
+         }
+    }
+
+    fun getPlantData(){
         viewModelScope.launch {
-            val data = repository.getPlantId(id)
+            val data = repository.getPlantId(plantId.value.toString())
             when (data.isSuccessful) {
                 true -> {
                     _plantData.postValue(data.body()?.data!!)
@@ -60,7 +68,7 @@ class PlantDetailViewModel @Inject constructor(
 
     fun getFeed(date: String?){
         viewModelScope.launch {
-            val data = feedRepository.getOnlyFeed(offset, plantId, date)
+            val data = feedRepository.getOnlyFeed(offset, plantId.value.toString(), date)
             Log.i(TAG, "data -> $data")
             Log.i(TAG, "data.body -> "+data.body())
             when (data.isSuccessful) {
@@ -77,8 +85,7 @@ class PlantDetailViewModel @Inject constructor(
 
     fun getSchedule(year:Int, month: Int) {
         viewModelScope.launch {
-            Log.i(TAG, plantId!!)
-            val data = scheduleRepository.getSchedule(plantId!!,year,month)
+            val data = scheduleRepository.getSchedule(plantId.value.toString(),year,month)
             when(data.isSuccessful){
                 true -> {
                     _scheduleData.postValue(data.body()?.data)
