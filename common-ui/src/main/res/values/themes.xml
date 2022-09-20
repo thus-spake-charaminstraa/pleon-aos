@@ -88,6 +88,14 @@
         <item name="android:textColor">@color/black_sub_color</item>
         <item name="android:lineSpacingExtra">3sp</item>
     </style>
+    <style name="PlantSub1Text" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black_sub_color</item>
+    </style>
+    <style name="PlantSub2Text" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/black_sub2_color</item>
+    </style>
 
 
 

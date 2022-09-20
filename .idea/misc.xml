@@ -190,7 +190,7 @@
         <entry key="login/src/main/res/layout/fragment_welcome.xml" value="0.375" />
         <entry key="my/src/main/res/drawable/bg_edit_btn.xml" value="0.1" />
         <entry key="my/src/main/res/layout/fragment_my.xml" value="0.11059112548828126" />
-        <entry key="my/src/main/res/layout/fragment_my_edit.xml" value="0.4234375" />
+        <entry key="my/src/main/res/layout/fragment_my_edit.xml" value="0.2037735849056604" />
         <entry key="plant-ar/src/main/res/layout-ar/camera_fragmnet.xml" value="0.21875" />
         <entry key="plant-ar/src/main/res/layout/fragment_camera.xml" value="0.21770833333333334" />
         <entry key="plant-register/src/main/res/drawable/check_button.xml" value="0.1685" />
@@ -208,7 +208,7 @@
         <entry key="plant-register/src/main/res/drawable/white_button.xml" value="0.2145" />
         <entry key="plant-register/src/main/res/layout/activity_plant_register.xml" value="0.1" />
         <entry key="plant-register/src/main/res/layout/fragment_plant_adopt.xml" value="0.1" />
-        <entry key="plant-register/src/main/res/layout/fragment_plant_air.xml" value="0.28031768798828127" />
+        <entry key="plant-register/src/main/res/layout/fragment_plant_air.xml" value="0.2600732600732601" />
         <entry key="plant-register/src/main/res/layout/fragment_plant_light.xml" value="0.19707386551271888" />
         <entry key="plant-register/src/main/res/layout/fragment_plant_register.xml" value="0.25" />
         <entry key="plant-register/src/main/res/layout/fragment_plant_search.xml" value="0.1" />

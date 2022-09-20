@@ -15,12 +15,12 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:text="@string/my_title"
+        android:text="@string/my_fragment_title"
         style="@style/MainTitleText"/>
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/user_img"
-        android:layout_width="76dp"
-        android:layout_height="76dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:layout_marginTop="60dp"
         android:background="@drawable/round_inactive"
         android:backgroundTint="@color/blank_color"

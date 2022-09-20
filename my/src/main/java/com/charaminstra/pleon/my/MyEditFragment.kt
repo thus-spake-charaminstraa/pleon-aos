@@ -52,7 +52,7 @@ class MyEditFragment : Fragment() {
             arrayOf(Manifest.permission.CAMERA),
             REQUEST_TAKE_PHOTO
         )
-        binding.backBtn.setOnClickListener {
+        binding.myEditBackBtn.setOnClickListener {
             navController.popBackStack()
         }
         return binding.root
@@ -66,7 +66,7 @@ class MyEditFragment : Fragment() {
     }
 
     private fun initListeners(){
-        binding.completeBtn.setOnClickListener {
+        binding.myEditCompleteBtn.setOnClickListener {
             viewModel.updateUserData(binding.userNameInput.text.toString())
         }
         binding.editUserImage.setOnClickListener{

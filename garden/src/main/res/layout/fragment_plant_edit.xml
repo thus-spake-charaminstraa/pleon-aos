@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingHorizontal="20dp">
+    android:paddingHorizontal="20dp"
+    android:paddingBottom="50dp">
     <ImageView
         android:id="@+id/plant_edit_back_btn"
         android:layout_width="28dp"
@@ -164,7 +165,7 @@
         android:id="@+id/plant_edit_btns"
         android:layout_width="match_parent"
         android:layout_height="52dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         android:orientation="horizontal">
         <androidx.appcompat.widget.AppCompatButton
@@ -183,7 +184,7 @@
             android:layout_height="match_parent"
             android:background="@drawable/button_main_green"
             style="@style/LoginButtonText"
-            android:text="@string/plant_edit_fragment_complete_btn" />
+            android:text="@string/edit_complete_btn" />
     </LinearLayout>
     <!--    datepicker-->
     <androidx.constraintlayout.widget.ConstraintLayout
