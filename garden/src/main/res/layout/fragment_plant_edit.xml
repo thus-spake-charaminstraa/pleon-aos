@@ -63,7 +63,7 @@
                 style="@style/PlantSub1Text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="48dp"
+                android:layout_marginTop="40dp"
                 android:text="@string/plant_edit_fragment_species_title"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/plant_edit_img" />
@@ -184,7 +184,7 @@
             android:layout_height="match_parent"
             android:background="@drawable/button_main_green"
             style="@style/LoginButtonText"
-            android:text="@string/complete_btn" />
+            android:text="@string/plant_edit_fragment_complete_btn" />
     </LinearLayout>
 
     <!--    datepicker-->
