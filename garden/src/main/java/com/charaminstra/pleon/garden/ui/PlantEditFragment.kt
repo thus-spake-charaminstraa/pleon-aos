@@ -1,6 +1,5 @@
 package com.charaminstra.pleon.garden.ui
 
-import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.graphics.BitmapFactory
@@ -11,7 +10,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -24,6 +22,7 @@ import com.charaminstra.pleon.common_ui.PLeonMsgDialog
 import com.charaminstra.pleon.common_ui.ErrorToast
 import com.charaminstra.pleon.common_ui.PopUpImageMenu
 import com.charaminstra.pleon.garden.PlantDetailViewModel
+import com.charaminstra.pleon.garden.PlantEditViewModel
 import com.charaminstra.pleon.garden.R
 import com.charaminstra.pleon.garden.databinding.FragmentPlantEditBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,7 +32,7 @@ import java.text.SimpleDateFormat
 @AndroidEntryPoint
 class PlantEditFragment : Fragment() {
     private val TAG = javaClass.simpleName
-    private val viewModel: PlantDetailViewModel by viewModels()
+    private val viewModel: PlantEditViewModel by viewModels()
     private lateinit var binding : FragmentPlantEditBinding
     private lateinit var navController: NavController
     private lateinit var id: String
@@ -260,10 +259,14 @@ class PlantEditFragment : Fragment() {
             imageMenuDlg.start()
         }
         binding.completeBtn.setOnClickListener{
-            viewModel.patchData(
-                id,
-                binding.plantNameInput.text.toString(),
-                DateUtils(requireContext()).viewToSendServer(binding.adoptDayInput.text.toString()))
+            if(binding.plantNameInput.text.isNullOrEmpty()){
+                ErrorToast(requireContext()).showMsg(resources.getString(R.string.plant_edit_fragment_name_error),binding.plantNameInput.y)
+            }else{
+                viewModel.patchData(
+                    id,
+                    binding.plantNameInput.text.toString(),
+                    DateUtils(requireContext()).viewToSendServer(binding.adoptDayInput.text.toString()))
+            }
         }
         binding.deleteBtn.setOnClickListener {
             val dlg = PLeonMsgDialog(requireContext())

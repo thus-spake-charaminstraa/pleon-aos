@@ -18,4 +18,6 @@
     <string name="plant_edit_fragment_adopt_title">입양일</string>
     <string name="plant_edit_fragment_light_title">빛</string>
     <string name="plant_edit_fragment_air_title">바람</string>
+
+    <string name="plant_edit_fragment_name_error">식물 이름을 지어주세요.</string>
 </resources>
