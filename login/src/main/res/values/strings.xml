@@ -2,7 +2,6 @@
     <string name="app_name">PLeon</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="login_btn">로그인</string>
-    <string name="logout_btn">로그아웃</string>
 
     <string name="phone_fragment_title">본인인증을 위해\n휴대폰번호를 입력해주세요.</string>
     <string name="phone_fragment_phone_hint">010-XXXX-XXXX</string>

@@ -56,7 +56,6 @@ class MyFragment : Fragment() {
             Glide.with(binding.root)
                 .load(it)
                 .into(binding.userImg)
-            binding.userImg.setPadding(0)
         })
     }
 

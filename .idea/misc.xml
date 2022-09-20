@@ -57,6 +57,7 @@
         <entry key="app/src/main/res/layout/_calendar_day_legend.xml" value="0.23641304347826086" />
         <entry key="app/src/main/res/layout/_fragment_feed.xml" value="0.13796296296296295" />
         <entry key="app/src/main/res/layout/_fragment_garden.xml" value="0.20592705167173253" />
+        <entry key="app/src/main/res/layout/_fragment_my.xml" value="0.1" />
         <entry key="app/src/main/res/layout/_fragment_plant_detail.xml" value="0.38768115942028986" />
         <entry key="app/src/main/res/layout/_fragment_plant_edit.xml" value="0.14444444444444443" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.1" />
@@ -169,7 +170,7 @@
         <entry key="garden/src/main/res/layout/calendar_header.xml" value="0.20592705167173253" />
         <entry key="garden/src/main/res/layout/fragment_garden.xml" value="0.165" />
         <entry key="garden/src/main/res/layout/fragment_garden_host.xml" value="0.1281661600810537" />
-        <entry key="garden/src/main/res/layout/fragment_plant_detail.xml" value="0.4076607387140903" />
+        <entry key="garden/src/main/res/layout/fragment_plant_detail.xml" value="0.1" />
         <entry key="garden/src/main/res/layout/fragment_plant_edit.xml" value="0.20757825370675453" />
         <entry key="garden/src/main/res/layout/item_garden_plant.xml" value="0.55" />
         <entry key="garden/src/main/res/layout/item_plant_garden.xml" value="0.13500506585612967" />
@@ -187,7 +188,8 @@
         <entry key="login/src/main/res/layout/fragment_plant_place.xml" value="0.1" />
         <entry key="login/src/main/res/layout/fragment_plant_register.xml" value="0.1" />
         <entry key="login/src/main/res/layout/fragment_welcome.xml" value="0.375" />
-        <entry key="my/src/main/res/layout/fragment_my.xml" value="0.24895833333333334" />
+        <entry key="my/src/main/res/drawable/bg_edit_btn.xml" value="0.1" />
+        <entry key="my/src/main/res/layout/fragment_my.xml" value="0.11059112548828126" />
         <entry key="my/src/main/res/layout/fragment_my_edit.xml" value="0.4234375" />
         <entry key="plant-ar/src/main/res/layout-ar/camera_fragmnet.xml" value="0.21875" />
         <entry key="plant-ar/src/main/res/layout/fragment_camera.xml" value="0.21770833333333334" />
