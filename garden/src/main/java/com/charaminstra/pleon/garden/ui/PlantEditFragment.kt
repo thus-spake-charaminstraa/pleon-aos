@@ -138,7 +138,6 @@ class PlantEditFragment : Fragment() {
         binding.airInput.visibility = View.GONE
         binding.lightInput.visibility = View.GONE
 
-
         binding.plantEditDatePickerCancelBtn.setOnClickListener {
             binding.plantEditDatePickerDialog.visibility=View.GONE
 

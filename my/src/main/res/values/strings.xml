@@ -4,4 +4,6 @@
     <string name="user_edit_btn">내 정보 수정</string>
     <string name="user_name_title">닉네임</string>
     <string name="logout_btn">로그아웃</string>
+
+    <string name="my_edit_fragment_name_error">닉네임을 적어주세요.</string>
 </resources>
