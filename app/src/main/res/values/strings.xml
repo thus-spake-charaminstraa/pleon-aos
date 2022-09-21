@@ -41,9 +41,6 @@
 
     <string name="comment_enter_btn">enter</string>
 
-    <string name="noti_later_btn">나중에</string>
-    <string name="noti_complete_btn">완료</string>
-
 
 
     <string name="bottom_sheet_plant_msg">식물을 선택해주세요.</string>

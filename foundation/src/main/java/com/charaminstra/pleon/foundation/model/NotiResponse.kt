@@ -6,6 +6,12 @@ data class NotiResponse(
     val success: Boolean?
 )
 
+data class NotiListResponse(
+    val data: List<NotiData>,
+    val statusCode: Int?,
+    val success: Boolean?
+)
+
 data class NotiData(
     val content: String?,
     val image_url: String?,

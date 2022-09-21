@@ -9,7 +9,6 @@ import com.charaminstra.pleon.foundation.model.PlantDataObject
 class FeedPlantViewHolder(private val binding: ItemPlantFilterBinding): PlantCommonViewHolder(binding) {
     override fun bind(item: PlantDataObject, onItemClicked: (String) -> Unit) {
         binding.plantName.text=item.name
-
         Glide.with(binding.plantImage.context)
             .load(item.thumbnail)
             .circleCrop()

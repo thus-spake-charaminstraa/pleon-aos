@@ -60,6 +60,7 @@
         <entry key="app/src/main/res/layout/_fragment_my.xml" value="0.1" />
         <entry key="app/src/main/res/layout/_fragment_plant_detail.xml" value="0.38768115942028986" />
         <entry key="app/src/main/res/layout/_fragment_plant_edit.xml" value="0.14444444444444443" />
+        <entry key="app/src/main/res/layout/_item_noti.xml" value="0.11277173913043478" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
@@ -141,11 +142,14 @@
         <entry key="common/src/main/res/layout/item_plant_feed.xml" value="0.128419452887538" />
         <entry key="common/src/main/res/layout/item_plant_garden.xml" value="0.134375" />
         <entry key="feed-common/src/main/res/layout/item_feed.xml" value="0.4234375" />
+        <entry key="feed/src/main/res/drawable/bg_noti_complete.xml" value="0.1465" />
+        <entry key="feed/src/main/res/drawable/bg_noti_later.xml" value="0.1465" />
         <entry key="feed/src/main/res/drawable/noti_bg.xml" value="0.2245" />
         <entry key="feed/src/main/res/drawable/plant_bg.xml" value="0.2185" />
         <entry key="feed/src/main/res/drawable/plant_select.xml" value="0.2545" />
         <entry key="feed/src/main/res/drawable/plant_unclick.xml" value="0.2535" />
         <entry key="feed/src/main/res/layout/fragment_feed.xml" value="0.1464226289517471" />
+        <entry key="feed/src/main/res/layout/item_noti.xml" value="0.6841318766276042" />
         <entry key="feed/src/main/res/layout/item_plant.xml" value="0.2640625" />
         <entry key="feed/src/main/res/layout/item_plant_feed.xml" value="0.7513399705819205" />
         <entry key="feed/src/main/res/layout/item_plant_filter.xml" value="0.1" />

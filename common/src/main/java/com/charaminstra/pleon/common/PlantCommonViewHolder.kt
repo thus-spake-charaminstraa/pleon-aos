@@ -11,5 +11,3 @@ abstract class PlantCommonViewHolder(
 }
 
 
-
-

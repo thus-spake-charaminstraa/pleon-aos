@@ -1,4 +1,4 @@
-package com.charaminstra.pleon.feed_common
+package com.charaminstra.pleon.feed
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.charaminstra.pleon.foundation.FeedRepository
 import com.charaminstra.pleon.foundation.NotiRepository
+import com.charaminstra.pleon.foundation.model.NotiData
 import com.charaminstra.pleon.foundation.model.ResultObject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -21,6 +22,9 @@ class FeedViewModel @Inject constructor(
 
     private val _feedList = MutableLiveData<List<ResultObject>>()
     val feedList : LiveData<List<ResultObject>> = _feedList
+
+    private val _notiList = MutableLiveData<List<NotiData>>()
+    val notiList : LiveData<List<NotiData>> = _notiList
 
     private val _feedCount = MutableLiveData<Int>()
     val feedCount : LiveData<Int> = _feedCount
@@ -45,6 +49,20 @@ class FeedViewModel @Inject constructor(
                 }
             }
 
+        }
+    }
+
+    fun getNotiList(){
+        viewModelScope.launch {
+            val data = notiRepository.getNotiList()
+            when(data.isSuccessful){
+                true -> {
+                    _notiList.postValue(data.body()?.data)
+                    Log.i(TAG,"SUCCESS -> "+ data.body().toString())
+                }else -> {
+                    Log.i(TAG,"FAIL -> "+ data.body().toString())
+                }
+            }
         }
     }
 

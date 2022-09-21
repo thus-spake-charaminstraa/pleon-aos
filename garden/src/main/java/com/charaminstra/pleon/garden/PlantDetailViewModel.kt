@@ -26,8 +26,7 @@ import javax.inject.Inject
 class PlantDetailViewModel @Inject constructor(
     private val repository: PlantIdRepository,
     private val scheduleRepository: ScheduleRepository,
-    private val feedRepository: FeedRepository,
-    private val imageRepository: ImageRepository
+    private val feedRepository: FeedRepository
 ): ViewModel() {
     private val TAG = javaClass.name
 

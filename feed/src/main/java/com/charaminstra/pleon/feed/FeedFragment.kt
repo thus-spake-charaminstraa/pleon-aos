@@ -9,19 +9,20 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.charaminstra.pleon.feed_common.FeedViewModel
 import com.charaminstra.pleon.common.PlantsViewModel
-import com.charaminstra.pleon.feed_common.FeedAdapter
 import com.charaminstra.pleon.feed.databinding.FragmentFeedBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class FeedFragment : Fragment() {
     private lateinit var binding : FragmentFeedBinding
+
     private lateinit var feedPlantAdapter: FeedPlantAdapter
+    private lateinit var notiAdapter: NotiAdapter
     private lateinit var feedAdapter: com.charaminstra.pleon.feed_common.FeedAdapter
+
     private val plantsViewModel: PlantsViewModel by viewModels()
-    private val feedViewModel: com.charaminstra.pleon.feed_common.FeedViewModel by viewModels()
+    private val feedViewModel: FeedViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +42,8 @@ class FeedFragment : Fragment() {
         initList()
         initListeners()
         observeViewModel()
+
+        binding.notiRecyclerview.adapter = notiAdapter
         binding.feedFilterRecyclerview.adapter = feedPlantAdapter
         binding.feedRecyclerview.adapter = feedAdapter
 //        binding.writeBtn.setOnClickListener {
@@ -59,6 +62,7 @@ class FeedFragment : Fragment() {
         //viewmodel update
         plantsViewModel.loadData()
         feedViewModel.getFeedList(null)
+        feedViewModel.getNotiList()
     }
 
     private fun initList() {
@@ -68,6 +72,7 @@ class FeedFragment : Fragment() {
             feedViewModel.getFeedList(plantId)
         }
         feedAdapter = com.charaminstra.pleon.feed_common.FeedAdapter()
+        notiAdapter = NotiAdapter()
 //        feedAdapter.onClickFeed = { Id ->
 //            Log.i(TAG, "feed id in fragment >> $Id")
 //            val bundle = Bundle()
@@ -100,6 +105,9 @@ class FeedFragment : Fragment() {
         })
         feedViewModel.feedList.observe(viewLifecycleOwner, Observer {
             feedAdapter.refreshItems(it)
+        })
+        feedViewModel.notiList.observe(viewLifecycleOwner, Observer {
+            notiAdapter.refreshItems(it)
         })
 //        feedViewModel.feedCount.observe(viewLifecycleOwner, Observer{
 //            if(it == 0){
