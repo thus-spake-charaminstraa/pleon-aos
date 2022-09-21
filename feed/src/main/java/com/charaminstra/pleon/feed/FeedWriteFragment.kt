@@ -1,4 +1,4 @@
-package com.charaminstra.pleon.view
+package com.charaminstra.pleon.feed
 
 import android.Manifest
 import android.app.Activity
@@ -32,13 +32,8 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.charaminstra.pleon.R
-import com.charaminstra.pleon.adapter.*
-import com.charaminstra.pleon.common.REQUEST_GALLERY
-import com.charaminstra.pleon.common.REQUEST_TAKE_PHOTO
-import com.charaminstra.pleon.databinding.FragmentFeedWriteBinding
-import com.charaminstra.pleon.viewmodel.FeedWriteViewModel
-import com.charaminstra.pleon.viewmodel.PlantsViewModel
+import com.charaminstra.pleon.common.*
+import com.charaminstra.pleon.feed.databinding.FragmentFeedWriteBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.ByteArrayInputStream
@@ -160,11 +155,11 @@ class FeedWriteFragment : Fragment() {
                 if(child != null){
                     var position = rv.getChildAdapterPosition(child)
                     var view = rv.layoutManager?.findViewByPosition(position)
-                    view?.setBackgroundResource(com.charaminstra.pleon.plant_register.R.drawable.check_button)
+                    //view?.setBackgroundResource(com.charaminstra.pleon.plant_register.R.drawable.check_button)
                     for(i in 0..rv.adapter!!.itemCount){
                         var otherView = rv.layoutManager?.findViewByPosition(i)
                         if(otherView != view){
-                            otherView?.setBackgroundResource(R.color.transparent)
+                            //otherView?.setBackgroundResource(R.color.transparent)
                         }
                         else{
 
@@ -233,7 +228,7 @@ class FeedWriteFragment : Fragment() {
         action_adapter = ActionAdapter()
         action_adapter.onItemClicked = { actionType ->
             feedWriteViewModel.plantAction = actionType
-            binding.actionTagTv.text= resources.getString(R.string.action_tag) + actionType.name
+            binding.actionTagTv.text= resources.getString(com.charaminstra.pleon.feed_common.R.string.action_tag) + actionType.name
         }
         action_adapter.refreshItems(
             listOf(
@@ -256,7 +251,7 @@ class FeedWriteFragment : Fragment() {
 //            plant_adapter.refreshItems(it)
 //        })
         feedWriteViewModel.plantName.observe(viewLifecycleOwner, Observer {
-            binding.plantTagTv.text = resources.getString(R.string.plant_tag) + feedWriteViewModel.plantName.value
+            binding.plantTagTv.text = resources.getString(com.charaminstra.pleon.feed_common.R.string.plant_tag) + feedWriteViewModel.plantName.value
         })
         feedWriteViewModel.postSuccess.observe(viewLifecycleOwner, Observer{
             if(it){

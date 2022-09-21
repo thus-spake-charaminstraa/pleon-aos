@@ -16,6 +16,7 @@
         <entry key="app/src/main/res/drawable/comment_rounded_corner_edittext.xml" value="0.131" />
         <entry key="app/src/main/res/drawable/feed_tab_selector.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/garden_tab_selector.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_bar.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_camera_active.xml" value="0.2075" />
         <entry key="app/src/main/res/drawable/ic_camera_inactive.xml" value="0.2075" />
         <entry key="app/src/main/res/drawable/ic_chat_inactive.xml" value="0.2255" />
@@ -148,6 +149,8 @@
         <entry key="feed/src/main/res/drawable/bg_noti_complete.xml" value="0.1465" />
         <entry key="feed/src/main/res/drawable/bg_noti_complete_select.xml" value="0.117" />
         <entry key="feed/src/main/res/drawable/bg_noti_later.xml" value="0.1465" />
+        <entry key="feed/src/main/res/drawable/feed_write_btn_selector.xml" value="0.21" />
+        <entry key="feed/src/main/res/drawable/ic_btn_feed_write_press.xml" value="0.1" />
         <entry key="feed/src/main/res/drawable/noti_bg.xml" value="0.2245" />
         <entry key="feed/src/main/res/drawable/noti_later_on.xml" value="0.1" />
         <entry key="feed/src/main/res/drawable/noti_later_selector.xml" value="0.1" />
@@ -155,6 +158,7 @@
         <entry key="feed/src/main/res/drawable/plant_select.xml" value="0.2545" />
         <entry key="feed/src/main/res/drawable/plant_unclick.xml" value="0.2535" />
         <entry key="feed/src/main/res/drawable/selector_noti_complete.xml" value="0.117" />
+        <entry key="feed/src/main/res/layout/bottom_sheet_layout.xml" value="0.20878623188405798" />
         <entry key="feed/src/main/res/layout/fragment_feed.xml" value="0.20102651839178784" />
         <entry key="feed/src/main/res/layout/item_noti.xml" value="0.1" />
         <entry key="feed/src/main/res/layout/item_plant.xml" value="0.2640625" />

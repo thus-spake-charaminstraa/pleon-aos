@@ -1,11 +1,11 @@
-package com.charaminstra.pleon.viewmodel
+package com.charaminstra.pleon.feed
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.charaminstra.pleon.adapter.ActionType
+import com.charaminstra.pleon.common.ActionType
 import com.charaminstra.pleon.foundation.FeedRepository
 import com.charaminstra.pleon.foundation.ImageRepository
 import com.charaminstra.pleon.foundation.PlantIdRepository

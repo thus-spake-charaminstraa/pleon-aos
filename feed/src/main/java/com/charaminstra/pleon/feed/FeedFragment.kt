@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
@@ -26,6 +28,8 @@ class FeedFragment : Fragment() {
     private val feedViewModel: FeedViewModel by viewModels()
     val pageSnap= PagerSnapHelper()
 
+    lateinit var navController: NavController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -41,6 +45,8 @@ class FeedFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        navController = findNavController()
         initList()
         initListeners()
         observeViewModel()
@@ -51,9 +57,9 @@ class FeedFragment : Fragment() {
 
         binding.feedFilterRecyclerview.adapter = feedPlantAdapter
         binding.feedRecyclerview.adapter = feedAdapter
-//        binding.writeBtn.setOnClickListener {
-//            navController.navigate(R.id.view_pager_fragment_to_feed_write_fragment)
-//        }
+        binding.feedAddBtn.setOnClickListener {
+            navController.navigate(R.id.feed_fragment_to_feed_write_fragment)
+        }
         binding.feedRecyclerview.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
 //        binding.noPlantButton.setOnClickListener {
 //            val intent = Intent(context, PlantRegisterActivity::class.java)

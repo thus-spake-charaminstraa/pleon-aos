@@ -8,5 +8,13 @@
         android:id="@+id/feed_fragment"
         android:name="com.charaminstra.pleon.feed.FeedFragment"
         tools:layout="@layout/fragment_feed">
+        <action
+            android:id="@+id/feed_fragment_to_feed_write_fragment"
+            app:destination="@id/feed_write_fragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/feed_write_fragment"
+        android:name="com.charaminstra.pleon.feed.FeedWriteFragment"
+        tools:layout="@layout/fragment_feed_write">
     </fragment>
 </navigation>

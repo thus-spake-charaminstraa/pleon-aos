@@ -54,12 +54,12 @@
         android:paddingBottom="60dp"/>
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/garden_add_btn"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:elevation="2dp"
         android:background="@drawable/add_btn_selector"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="75dp"
+        android:layout_marginBottom="65dp"
         android:layout_marginRight="16dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

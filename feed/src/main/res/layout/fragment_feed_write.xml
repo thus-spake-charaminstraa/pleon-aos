@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingHorizontal="20dp"
-    android:paddingTop="44dp"
-    tools:context=".view.FeedWriteFragment">
+    android:paddingTop="44dp">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -53,8 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_camera"
-                android:background="@drawable/image_button_selector"/>
+                android:src="@drawable/ic_camera" />
         </androidx.cardview.widget.CardView>
         <TextView
             android:id="@+id/plant_tag_tv"

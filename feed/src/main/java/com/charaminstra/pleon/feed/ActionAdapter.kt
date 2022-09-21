@@ -1,10 +1,11 @@
-package com.charaminstra.pleon.adapter
+package com.charaminstra.pleon.feed
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.charaminstra.pleon.databinding.ItemPlantFeedBinding
-import com.charaminstra.pleon.viewholder.ActionViewHolder
+import com.charaminstra.pleon.common.ActionObject
+import com.charaminstra.pleon.common.ActionType
+import com.charaminstra.pleon.feed.databinding.ItemPlantFilterBinding
 
 class ActionAdapter(): RecyclerView.Adapter<ActionViewHolder>() {
 
@@ -12,7 +13,7 @@ class ActionAdapter(): RecyclerView.Adapter<ActionViewHolder>() {
     var onItemClicked: (ActionType)-> Unit = {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActionViewHolder {
-        return ActionViewHolder((ItemPlantFeedBinding.inflate(LayoutInflater.from(parent.context), parent, false)))
+        return ActionViewHolder((ItemPlantFilterBinding.inflate(LayoutInflater.from(parent.context), parent, false)))
     }
 
     override fun getItemCount(): Int {

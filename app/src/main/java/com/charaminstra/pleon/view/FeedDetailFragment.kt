@@ -14,7 +14,6 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.charaminstra.pleon.R
-import com.charaminstra.pleon.adapter.ActionType
 import com.charaminstra.pleon.adapter.CommentsAdapter
 import com.charaminstra.pleon.databinding.FragmentFeedDetailBinding
 import com.charaminstra.pleon.viewmodel.FeedDetailViewModel
@@ -92,11 +91,11 @@ class FeedDetailFragment : Fragment() {
         viewModel.feedData.observe(viewLifecycleOwner, Observer {
             binding.feedContent.text = it.content
             binding.plantTagTv.text = resources.getString(R.string.plant_tag) + it.plant.name
-            for(i in ActionType.values()){
-                if(i.action == it.kind){
-                    binding.actionTagTv.text = binding.root.context.resources.getString(R.string.action_tag)+i.name
-                }
-            }
+//            for(i in ActionType.values()){
+//                if(i.action == it.kind){
+//                    binding.actionTagTv.text = binding.root.context.resources.getString(R.string.action_tag)+i.name
+//                }
+//            }
             if (it.image_url == null) {
                 binding.plantImage.visibility = View.GONE
             } else {
