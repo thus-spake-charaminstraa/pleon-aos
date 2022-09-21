@@ -18,10 +18,6 @@
     <string name="plant_detail_d_day_title">함께한지</string>
     <!--    trash-->
 
-
-    <string name="bottome_sheet_plant">식물 이름</string>
-    <string name="bottome_sheet_action">무엇을 해주셨나요?</string>
-
 <!--    trash-->
     <string name="plant_tag">\@</string>
     <string name="action_tag">#</string>
@@ -33,8 +29,7 @@
     <string name="dot_prune">가지치기</string>
     <string name="dot_fertillize">영양제</string>
     <string name="dot_repot">분갈이</string>
-    <string name="bottom_sheet_plant_msg">식물을 선택해주세요.</string>
-    <string name="bottom_sheet_action_msg">무엇을 해주셨는지 선택해주세요</string>
+
 <!--    trash-->
 
     <string name="item_more_edit">편집하기</string>
@@ -42,8 +37,6 @@
 
 
     <string name="comment_enter_btn">enter</string>
-
-
 
 
     <string name="no_plant_msg">식물을 등록해주세요.</string>

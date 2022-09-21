@@ -51,7 +51,7 @@ class FeedWriteFragment : Fragment() {
     private val plantsViewModel: PlantsViewModel by viewModels()
     private val feedWriteViewModel : FeedWriteViewModel by viewModels()
     private lateinit var navController: NavController
-    //private lateinit var plant_adapter: PlantAdapter
+    private lateinit var plant_adapter: FeedPlantAdapter
     private lateinit var action_adapter: ActionAdapter
     private val cal = Calendar.getInstance()
     private lateinit var dateFormat: SimpleDateFormat
@@ -82,7 +82,6 @@ class FeedWriteFragment : Fragment() {
         sheetBehavior = BottomSheetBehavior.from(binding.bottomSheet.root)
         sheetBehavior.isHideable=false
         sheetBehavior.isDraggable = false
-        sheetBehavior.setPeekHeight(60)
         sheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
         sheetBehavior.addBottomSheetCallback(BSCB)
 
@@ -179,9 +178,9 @@ class FeedWriteFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initList()
         observeViewModel()
-        //binding.bottomSheet.plantRecyclerview.adapter = plant_adapter
+        binding.bottomSheet.plantRecyclerview.adapter = plant_adapter
         binding.bottomSheet.actionRecyclerview.adapter= action_adapter
-        //binding.bottomSheet.plantRecyclerview.addOnItemTouchListener(recyclerListener)
+        binding.bottomSheet.plantRecyclerview.addOnItemTouchListener(recyclerListener)
         binding.bottomSheet.actionRecyclerview.addOnItemTouchListener(recyclerListener)
 
         binding.bottomSheet.nextBtn.setOnClickListener {
@@ -217,13 +216,12 @@ class FeedWriteFragment : Fragment() {
     }
 
     private fun initList() {
-//        plant_adapter = PlantAdapter()
-//        plant_adapter.setType("FEED_PLANT")
-//        plant_adapter.onItemClicked = { Id ->
-//            //plantId = Id
-//            feedWriteViewModel.plantId = Id
-//            feedWriteViewModel.getPlantName()
-//        }
+        plant_adapter = FeedPlantAdapter()
+        plant_adapter.onItemClicked = { Id ->
+            //plantId = Id
+            feedWriteViewModel.plantId = Id
+            feedWriteViewModel.getPlantName()
+        }
 
         action_adapter = ActionAdapter()
         action_adapter.onItemClicked = { actionType ->
@@ -247,9 +245,9 @@ class FeedWriteFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-//        plantsViewModel.plantsList.observe(viewLifecycleOwner, Observer {
-//            plant_adapter.refreshItems(it)
-//        })
+        plantsViewModel.plantsList.observe(viewLifecycleOwner, Observer {
+            plant_adapter.refreshItems(it)
+        })
         feedWriteViewModel.plantName.observe(viewLifecycleOwner, Observer {
             binding.plantTagTv.text = resources.getString(com.charaminstra.pleon.feed_common.R.string.plant_tag) + feedWriteViewModel.plantName.value
         })

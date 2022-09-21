@@ -149,7 +149,9 @@
         <entry key="feed/src/main/res/drawable/bg_noti_complete.xml" value="0.1465" />
         <entry key="feed/src/main/res/drawable/bg_noti_complete_select.xml" value="0.117" />
         <entry key="feed/src/main/res/drawable/bg_noti_later.xml" value="0.1465" />
+        <entry key="feed/src/main/res/drawable/bottom_sheet_bg.xml" value="0.1" />
         <entry key="feed/src/main/res/drawable/feed_write_btn_selector.xml" value="0.21" />
+        <entry key="feed/src/main/res/drawable/ic_action_air.xml" value="0.1" />
         <entry key="feed/src/main/res/drawable/ic_btn_feed_write_press.xml" value="0.1" />
         <entry key="feed/src/main/res/drawable/noti_bg.xml" value="0.2245" />
         <entry key="feed/src/main/res/drawable/noti_later_on.xml" value="0.1" />
@@ -158,8 +160,9 @@
         <entry key="feed/src/main/res/drawable/plant_select.xml" value="0.2545" />
         <entry key="feed/src/main/res/drawable/plant_unclick.xml" value="0.2535" />
         <entry key="feed/src/main/res/drawable/selector_noti_complete.xml" value="0.117" />
-        <entry key="feed/src/main/res/layout/bottom_sheet_layout.xml" value="0.20878623188405798" />
+        <entry key="feed/src/main/res/layout/bottom_sheet_layout.xml" value="0.1" />
         <entry key="feed/src/main/res/layout/fragment_feed.xml" value="0.20102651839178784" />
+        <entry key="feed/src/main/res/layout/fragment_feed_write.xml" value="0.10277777777777777" />
         <entry key="feed/src/main/res/layout/item_noti.xml" value="0.1" />
         <entry key="feed/src/main/res/layout/item_plant.xml" value="0.2640625" />
         <entry key="feed/src/main/res/layout/item_plant_feed.xml" value="0.7513399705819205" />
@@ -205,7 +208,7 @@
         <entry key="login/src/main/res/layout/fragment_welcome.xml" value="0.375" />
         <entry key="my/src/main/res/drawable/bg_edit_btn.xml" value="0.1" />
         <entry key="my/src/main/res/layout/fragment_my.xml" value="0.11059112548828126" />
-        <entry key="my/src/main/res/layout/fragment_my_edit.xml" value="0.2037735849056604" />
+        <entry key="my/src/main/res/layout/fragment_my_edit.xml" value="0.1" />
         <entry key="plant-ar/src/main/res/layout-ar/camera_fragmnet.xml" value="0.21875" />
         <entry key="plant-ar/src/main/res/layout/fragment_camera.xml" value="0.21770833333333334" />
         <entry key="plant-register/src/main/res/drawable/check_button.xml" value="0.1685" />

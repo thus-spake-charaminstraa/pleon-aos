@@ -21,4 +21,10 @@
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/main_green_color</item>
     </style>
+
+    <style name="BottomSheetTitle" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/black_sub_color</item>
+        <item name="android:letterSpacing">-0.02</item>
+    </style>
 </resources>
