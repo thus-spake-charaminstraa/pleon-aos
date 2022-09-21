@@ -24,6 +24,7 @@ class FeedFragment : Fragment() {
 
     private val plantsViewModel: PlantsViewModel by viewModels()
     private val feedViewModel: FeedViewModel by viewModels()
+    val pageSnap= PagerSnapHelper()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,18 +84,17 @@ class FeedFragment : Fragment() {
 //            bundle.putString("id", Id)
 //            navController.navigate(R.id.view_pager_fragment_to_feed_detail_fragment, bundle)
 //        }
-//        feedAdapter.onClickNoti = {notiId, button ->
-//            Log.i(TAG, "noti id in fragment >> $notiId ,, $button")
-//            when(button){
-//                NOTI_LATER -> {
-//                    feedViewModel.postNotiClick(notiId, "later")
-//                }
-//                NOTI_COMPLETE -> {
-//                    feedViewModel.postNotiClick(notiId, "complete")
-//                }
-//                else -> { }
-//            }
-//        }
+        notiAdapter.onClickNoti = { notiId, button ->
+            when(button){
+                NOTI_LATER -> {
+                    feedViewModel.postNotiClick(notiId, "later")
+                }
+                NOTI_COMPLETE -> {
+                    feedViewModel.postNotiClick(notiId, "complete")
+                }
+                else -> { }
+            }
+        }
     }
 
     private fun initListeners(){
@@ -113,7 +113,6 @@ class FeedFragment : Fragment() {
         feedViewModel.notiList.observe(viewLifecycleOwner, Observer {
             notiAdapter.refreshItems(it)
             // add page Snap
-            val pageSnap= PagerSnapHelper()
             pageSnap.attachToRecyclerView(binding.notiRecyclerview)
             binding.notiIndicator.attachToRecyclerView(binding.notiRecyclerview,pageSnap)
         })

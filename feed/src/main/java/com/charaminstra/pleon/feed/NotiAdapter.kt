@@ -12,7 +12,7 @@ import com.charaminstra.pleon.foundation.model.PlantDataObject
 class NotiAdapter(): RecyclerView.Adapter<NotiViewHolder>() {
 
     var viewItemList: List<NotiData> = listOf()
-    var onItemClicked: (String)-> Unit = {}
+    var onClickNoti: (String, String)-> Unit = { s1: String, s2: String -> }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotiViewHolder {
         return NotiViewHolder(
@@ -28,7 +28,7 @@ class NotiAdapter(): RecyclerView.Adapter<NotiViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: NotiViewHolder, position: Int) {
-        holder.bind(viewItemList[position],onItemClicked)
+        holder.bind(viewItemList[position],onClickNoti)
     }
 
     fun refreshItems(viewItemList : List<NotiData>) {

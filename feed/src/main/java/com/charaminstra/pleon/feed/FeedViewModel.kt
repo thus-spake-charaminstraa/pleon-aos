@@ -71,6 +71,7 @@ class FeedViewModel @Inject constructor(
             val data = notiRepository.postNotiAction(notiId, type)
             when (data.isSuccessful) {
                 true -> {
+                    getNotiList()
                     getFeedList(null)
                     Log.i(TAG,"SUCCESS -> "+ data.body().toString())
                 }

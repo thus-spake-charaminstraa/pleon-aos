@@ -13,6 +13,7 @@ data class NotiListResponse(
 )
 
 data class NotiData(
+    val id: String,
     val content: String?,
     val image_url: String?,
     val kind: String?,
