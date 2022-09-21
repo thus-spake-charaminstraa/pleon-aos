@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
 import com.charaminstra.pleon.common.PlantsViewModel
 import com.charaminstra.pleon.feed.databinding.FragmentFeedBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -43,7 +44,10 @@ class FeedFragment : Fragment() {
         initListeners()
         observeViewModel()
 
+        //noti recyclervieew
         binding.notiRecyclerview.adapter = notiAdapter
+
+
         binding.feedFilterRecyclerview.adapter = feedPlantAdapter
         binding.feedRecyclerview.adapter = feedAdapter
 //        binding.writeBtn.setOnClickListener {
@@ -108,6 +112,10 @@ class FeedFragment : Fragment() {
         })
         feedViewModel.notiList.observe(viewLifecycleOwner, Observer {
             notiAdapter.refreshItems(it)
+            // add page Snap
+            val pageSnap= PagerSnapHelper()
+            pageSnap.attachToRecyclerView(binding.notiRecyclerview)
+            binding.notiIndicator.attachToRecyclerView(binding.notiRecyclerview,pageSnap)
         })
 //        feedViewModel.feedCount.observe(viewLifecycleOwner, Observer{
 //            if(it == 0){
