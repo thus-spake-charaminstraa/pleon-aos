@@ -3,4 +3,5 @@
     <string name="feed_fragment_all_filter">all</string>
     <string name="noti_later_btn">Later</string>
     <string name="noti_complete_btn">Complete!</string>
+    <string name="from_pleon">From. PLeon</string>
 </resources>

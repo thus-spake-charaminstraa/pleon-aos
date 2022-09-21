@@ -141,17 +141,22 @@
         <entry key="common/src/main/res/layout/item_noti.xml" value="0.1" />
         <entry key="common/src/main/res/layout/item_plant_feed.xml" value="0.128419452887538" />
         <entry key="common/src/main/res/layout/item_plant_garden.xml" value="0.134375" />
+        <entry key="feed-common/src/main/res/drawable/tag_bg.xml" value="0.1" />
         <entry key="feed-common/src/main/res/layout/item_feed.xml" value="0.4234375" />
         <entry key="feed/src/main/res/drawable/bg_indicator.xml" value="0.1465" />
         <entry key="feed/src/main/res/drawable/bg_indicator_unselect.xml" value="0.1465" />
         <entry key="feed/src/main/res/drawable/bg_noti_complete.xml" value="0.1465" />
+        <entry key="feed/src/main/res/drawable/bg_noti_complete_select.xml" value="0.117" />
         <entry key="feed/src/main/res/drawable/bg_noti_later.xml" value="0.1465" />
         <entry key="feed/src/main/res/drawable/noti_bg.xml" value="0.2245" />
+        <entry key="feed/src/main/res/drawable/noti_later_on.xml" value="0.1" />
+        <entry key="feed/src/main/res/drawable/noti_later_selector.xml" value="0.1" />
         <entry key="feed/src/main/res/drawable/plant_bg.xml" value="0.2185" />
         <entry key="feed/src/main/res/drawable/plant_select.xml" value="0.2545" />
         <entry key="feed/src/main/res/drawable/plant_unclick.xml" value="0.2535" />
+        <entry key="feed/src/main/res/drawable/selector_noti_complete.xml" value="0.117" />
         <entry key="feed/src/main/res/layout/fragment_feed.xml" value="0.20102651839178784" />
-        <entry key="feed/src/main/res/layout/item_noti.xml" value="0.6841318766276042" />
+        <entry key="feed/src/main/res/layout/item_noti.xml" value="0.1" />
         <entry key="feed/src/main/res/layout/item_plant.xml" value="0.2640625" />
         <entry key="feed/src/main/res/layout/item_plant_feed.xml" value="0.7513399705819205" />
         <entry key="feed/src/main/res/layout/item_plant_filter.xml" value="0.1" />
@@ -174,7 +179,7 @@
         <entry key="garden/src/main/res/layout/calendar_day_layout.xml" value="1.0" />
         <entry key="garden/src/main/res/layout/calendar_day_legend.xml" value="0.20592705167173253" />
         <entry key="garden/src/main/res/layout/calendar_header.xml" value="0.20592705167173253" />
-        <entry key="garden/src/main/res/layout/fragment_garden.xml" value="0.165" />
+        <entry key="garden/src/main/res/layout/fragment_garden.xml" value="0.1" />
         <entry key="garden/src/main/res/layout/fragment_garden_host.xml" value="0.1281661600810537" />
         <entry key="garden/src/main/res/layout/fragment_plant_detail.xml" value="0.1" />
         <entry key="garden/src/main/res/layout/fragment_plant_edit.xml" value="0.20757825370675453" />
