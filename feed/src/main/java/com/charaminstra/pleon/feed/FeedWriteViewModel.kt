@@ -1,5 +1,6 @@
 package com.charaminstra.pleon.feed
 
+import android.graphics.Bitmap
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,6 +12,8 @@ import com.charaminstra.pleon.foundation.ImageRepository
 import com.charaminstra.pleon.foundation.PlantIdRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
 import java.io.InputStream
 import javax.inject.Inject
 
@@ -32,9 +35,6 @@ class FeedWriteViewModel @Inject constructor(
 
     var plantId : String? = null
     var plantAction : ActionType? = null
-
-    private val _actionPosition = MutableLiveData<Int>()
-    val actionPosition : LiveData<Int> = _actionPosition
 
     fun postFeed(date:String, content:String){
         Log.i(TAG,"\n plantId : "+plantId+"\n date: "+date+"\n kind : "+plantAction?.action!!+"\n content: "+content+"\n url: "+urlResponse.value)
@@ -86,9 +86,38 @@ class FeedWriteViewModel @Inject constructor(
         }
     }
 
-    fun setActionPostion(position: Int){
+    fun cameraToUrl(inputStream: InputStream){
         viewModelScope.launch {
-            _actionPosition.postValue(position)
+            val data =imageRepository.postImage(inputStream)
+            Log.i(TAG,"data -> $data")
+            when (data.isSuccessful) {
+                true -> {
+                    Log.i(TAG,"data.body -> "+data.body())
+                    _urlResponse.postValue(data.body()?.data?.url)
+                }
+                else -> {
+                    Log.i(TAG,"FAIL-> ")
+                }
+            }
+        }
+    }
+    fun galleryToUrl(bitmap: Bitmap){
+        viewModelScope.launch {
+            ByteArrayOutputStream().use { stream ->
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+                val inputStream = ByteArrayInputStream(stream.toByteArray())
+                val data = imageRepository.postImage(inputStream)
+                Log.i(TAG,"data -> $data")
+                when (data.isSuccessful) {
+                    true -> {
+                        Log.i(TAG,"data.body -> "+data.body())
+                        _urlResponse.postValue(data.body()?.data?.url)
+                    }
+                    else -> {
+                        Log.i(TAG,"FAIL-> ")
+                    }
+                }
+            }
         }
     }
 }

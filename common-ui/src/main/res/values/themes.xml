@@ -96,6 +96,10 @@
         <item name="android:textSize">13sp</item>
         <item name="android:textColor">@color/black_sub2_color</item>
     </style>
+    <style name="PlantSubGreenText" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/main_green_color</item>
+    </style>
 
 
 

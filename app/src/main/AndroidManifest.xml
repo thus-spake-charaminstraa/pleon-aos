@@ -15,7 +15,8 @@
         android:theme="@style/Theme.PLeon_AOS">
         <activity
             android:name="com.charaminstra.pleon.SplashActivity"
-            android:exported="true">
+            android:exported="true"
+            android:windowSoftInputMode="stateVisible|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

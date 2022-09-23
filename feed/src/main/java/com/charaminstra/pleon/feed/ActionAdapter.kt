@@ -23,23 +23,19 @@ class ActionAdapter(): RecyclerView.Adapter<ActionViewHolder>() {
         return viewItemList.size
     }
     override fun onBindViewHolder(holder: ActionViewHolder, position: Int) {
-        val binding = holder.binding
+        holder.bind(viewItemList[position])
         val item = viewItemList[position]
-        binding.actionName.text = item.actionType.toString()
         if(selectedPosition==position) {
             holder.binding.actionImg.isSelected = true
         }else{
             holder.binding.actionImg.isSelected = false
         }
         holder.itemView.setOnClickListener {
+                onItemClicked(item.actionType)
                 notifyItemChanged(selectedPosition)
                 notifyItemChanged(position)
                 selectedPosition=position
-
         }
-        Glide.with(binding.root).load(item.actionImage).into(binding.actionImg)
-        //holder.bind(viewItemList[position],selectedPosition,position, onItemClicked)
-
     }
 
     fun refreshItems(viewItemList : List<ActionObject>) {
