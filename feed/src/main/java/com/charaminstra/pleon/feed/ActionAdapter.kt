@@ -3,30 +3,48 @@ package com.charaminstra.pleon.feed
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.charaminstra.pleon.common.ActionObject
 import com.charaminstra.pleon.common.ActionType
-import com.charaminstra.pleon.feed.databinding.ItemPlantFilterBinding
+import com.charaminstra.pleon.feed.databinding.ItemActionBinding
 
 class ActionAdapter(): RecyclerView.Adapter<ActionViewHolder>() {
 
     var viewItemList: List<ActionObject> = listOf()
     var onItemClicked: (ActionType)-> Unit = {}
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActionViewHolder {
-        return ActionViewHolder((ItemPlantFilterBinding.inflate(LayoutInflater.from(parent.context), parent, false)))
-    }
+    var selectedPosition = 0
 
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActionViewHolder {
+        return ActionViewHolder((ItemActionBinding.inflate(LayoutInflater.from(parent.context), parent, false)))
+    }
     override fun getItemCount(): Int {
         return viewItemList.size
     }
-
     override fun onBindViewHolder(holder: ActionViewHolder, position: Int) {
-        holder.bind(viewItemList[position], onItemClicked)
+        val binding = holder.binding
+        val item = viewItemList[position]
+        binding.actionName.text = item.actionType.toString()
+        if(selectedPosition==position) {
+            holder.binding.actionImg.isSelected = true
+        }else{
+            holder.binding.actionImg.isSelected = false
+        }
+        holder.itemView.setOnClickListener {
+                notifyItemChanged(selectedPosition)
+                notifyItemChanged(position)
+                selectedPosition=position
+
+        }
+        Glide.with(binding.root).load(item.actionImage).into(binding.actionImg)
+        //holder.bind(viewItemList[position],selectedPosition,position, onItemClicked)
+
     }
 
     fun refreshItems(viewItemList : List<ActionObject>) {
         this.viewItemList = viewItemList
-        notifyDataSetChanged() // Andoid RecyclerView DiffUtil.
+        //notifyDataSetChanged() // Andoid RecyclerView DiffUtil.
     }
 
 }

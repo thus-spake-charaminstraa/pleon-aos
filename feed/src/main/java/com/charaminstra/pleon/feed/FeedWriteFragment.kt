@@ -19,9 +19,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.PopupMenu
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
@@ -64,7 +62,6 @@ class FeedWriteFragment : Fragment() {
         binding.feedWriteBackBtn.setOnClickListener {
             navController.popBackStack()
         }
-
         ActivityCompat.requestPermissions(
             requireActivity(),
             arrayOf(Manifest.permission.CAMERA),
@@ -131,7 +128,6 @@ class FeedWriteFragment : Fragment() {
                 BottomSheetBehavior.STATE_HIDDEN -> { }
             }
         }
-
         override fun onSlide(bottomSheet: View, slideOffset: Float) {}
     }
     val SOCL : View.OnClickListener = object : View.OnClickListener {
@@ -140,39 +136,36 @@ class FeedWriteFragment : Fragment() {
         }
     }
 
-    private val recyclerListener = object : RecyclerView.OnItemTouchListener {
-        override fun onTouchEvent(rv: RecyclerView, e: MotionEvent) {
-            //To change body of created functions use File | Settings | File Templates.
-        }
+//    private val recyclerListener = object : RecyclerView.OnItemTouchListener {
+//        override fun onTouchEvent(rv: RecyclerView, e: MotionEvent) {
+//            //To change body of created functions use File | Settings | File Templates.
+//        }
+//        override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
+//            if(e.action == MotionEvent.ACTION_MOVE){
+//            }
+//            else{
+//                var child = rv.findChildViewUnder(e.getX(), e.getY())
+//                if(child != null){
+//                    var position = rv.getChildAdapterPosition(child)
+//                    var view = rv.layoutManager?.findViewByPosition(position)
+//                    //view?.setBackgroundResource(com.charaminstra.pleon.plant_register.R.drawable.check_button)
+//                    for(i in 0..rv.adapter!!.itemCount){
+//                        var otherView = rv.layoutManager?.findViewByPosition(i)
+//                        if(otherView != view){
+//                            //otherView?.setBackgroundResource(R.color.transparent)
+//                        }
+//                        else{
+//                        }
+//                    }
+//                }
+//            }
+//            return false
+//        }
+//        override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {
+//            //To change body of created functions use File | Settings | File Templates.
+//        }
 
-        override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
-            if(e.action == MotionEvent.ACTION_MOVE){
-
-            }
-            else{
-                var child = rv.findChildViewUnder(e.getX(), e.getY())
-                if(child != null){
-                    var position = rv.getChildAdapterPosition(child)
-                    var view = rv.layoutManager?.findViewByPosition(position)
-                    //view?.setBackgroundResource(com.charaminstra.pleon.plant_register.R.drawable.check_button)
-                    for(i in 0..rv.adapter!!.itemCount){
-                        var otherView = rv.layoutManager?.findViewByPosition(i)
-                        if(otherView != view){
-                            //otherView?.setBackgroundResource(R.color.transparent)
-                        }
-                        else{
-
-                        }
-                    }
-                }
-            }
-            return false
-        }
-        override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {
-            //To change body of created functions use File | Settings | File Templates.
-        }
-
-    }
+//    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -180,22 +173,23 @@ class FeedWriteFragment : Fragment() {
         observeViewModel()
         binding.bottomSheet.plantRecyclerview.adapter = plant_adapter
         binding.bottomSheet.actionRecyclerview.adapter= action_adapter
-        binding.bottomSheet.plantRecyclerview.addOnItemTouchListener(recyclerListener)
-        binding.bottomSheet.actionRecyclerview.addOnItemTouchListener(recyclerListener)
+        //binding.bottomSheet.plantRecyclerview.addOnItemTouchListener(recyclerListener)
+        //binding.bottomSheet.actionRecyclerview.addOnItemTouchListener(recyclerListener)
+
 
         binding.bottomSheet.nextBtn.setOnClickListener {
-            if(feedWriteViewModel.plantId.isNullOrBlank()){
-                Toast.makeText(activity, R.string.bottom_sheet_plant_msg,Toast.LENGTH_SHORT).show()
-            }else if(feedWriteViewModel.plantAction == null){
-                Toast.makeText(activity, R.string.bottom_sheet_action_msg,Toast.LENGTH_SHORT).show()
-            }else{
+//            if(feedWriteViewModel.plantId.isNullOrBlank()){
+//                Toast.makeText(activity, R.string.bottom_sheet_plant_msg,Toast.LENGTH_SHORT).show()
+//            }else if(feedWriteViewModel.plantAction == null){
+//                Toast.makeText(activity, R.string.bottom_sheet_action_msg,Toast.LENGTH_SHORT).show()
+//            }else{
+                sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
                 binding.contentEdit.setText(feedWriteViewModel.plantName.value +
                         feedWriteViewModel.plantAction?.desc!!)
-                sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
                 binding.editTv.visibility = View.VISIBLE
                 binding.contentEdit.visibility = View.VISIBLE
                 binding.contentEdit.showKeyboard()
-            }
+//            }
         }
     }
 
@@ -230,18 +224,19 @@ class FeedWriteFragment : Fragment() {
         }
         action_adapter.refreshItems(
             listOf(
-                ActionObject(ActionType.물, R.drawable.ic_action_water),
-                ActionObject(ActionType.통풍, R.drawable.ic_action_air),
-                ActionObject(ActionType.분무, R.drawable.ic_action_spray),
-                ActionObject(ActionType.분갈이, R.drawable.ic_action_repot),
-                ActionObject(ActionType.가지치기, R.drawable.ic_action_prune),
-                ActionObject(ActionType.잎, R.drawable.ic_action_leaf),
-                ActionObject(ActionType.꽃, R.drawable.ic_action_flower),
-                ActionObject(ActionType.영양제, R.drawable.ic_action_fertilize),
-                ActionObject(ActionType.기타, R.drawable.ic_action_etc)
+                ActionObject(ActionType.오늘의모습, R.drawable.ic_today),
+                ActionObject(ActionType.물, R.drawable.ic_water),
+                ActionObject(ActionType.통풍, R.drawable.ic_air),
+                ActionObject(ActionType.분무, R.drawable.ic_spray),
+                ActionObject(ActionType.분갈이, R.drawable.ic_repot),
+                ActionObject(ActionType.가지치기, R.drawable.ic_prune),
+                ActionObject(ActionType.잎, R.drawable.ic_leaf),
+                ActionObject(ActionType.꽃, R.drawable.ic_flower),
+                ActionObject(ActionType.영양제, R.drawable.ic_nutrition),
+                ActionObject(ActionType.열매, R.drawable.ic_fruit),
+                ActionObject(ActionType.기타, R.drawable.ic_etc)
             )
         )
-
     }
 
     private fun observeViewModel() {
@@ -255,6 +250,10 @@ class FeedWriteFragment : Fragment() {
             if(it){
                 navController.popBackStack()
             }
+        })
+        feedWriteViewModel.actionPosition.observe(viewLifecycleOwner, Observer {
+//            Log.i("positino observe in fragment", it.toString())
+            //action_adapter.setPosition(it)
         })
     }
 

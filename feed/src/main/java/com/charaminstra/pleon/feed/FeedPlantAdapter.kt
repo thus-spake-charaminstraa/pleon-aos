@@ -4,18 +4,19 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.charaminstra.pleon.common.PlantCommonViewHolder
-import com.charaminstra.pleon.feed.databinding.ItemPlantFilterBinding
+import com.charaminstra.pleon.feed.databinding.ItemPlantBinding
 import com.charaminstra.pleon.foundation.model.PlantDataObject
 
-class FeedPlantAdapter(): RecyclerView.Adapter<PlantCommonViewHolder>() {
+class FeedPlantAdapter(): RecyclerView.Adapter<FeedPlantViewHolder>() {
 
     var viewItemList: List<PlantDataObject> = listOf()
 //    private lateinit var type: String
     var onItemClicked: (String)-> Unit = {}
+    var selectedPosition = 0
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlantCommonViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeedPlantViewHolder {
         return FeedPlantViewHolder(
-            ItemPlantFilterBinding.inflate(
+            ItemPlantBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent, false
             )
@@ -26,8 +27,19 @@ class FeedPlantAdapter(): RecyclerView.Adapter<PlantCommonViewHolder>() {
         return viewItemList.size
     }
 
-    override fun onBindViewHolder(holder: PlantCommonViewHolder, position: Int) {
-        holder.bind(viewItemList[position],onItemClicked)
+    override fun onBindViewHolder(holder: FeedPlantViewHolder, position: Int) {
+        holder.bind(viewItemList[position])
+        if(selectedPosition==position) {
+            holder.binding.root.isSelected = true
+        }else{
+            holder.binding.root.isSelected = false
+        }
+        holder.binding.plantFilterRoot.setOnClickListener {
+            notifyItemChanged(selectedPosition)
+            notifyItemChanged(position)
+            selectedPosition=position
+            onItemClicked(viewItemList[position].id!!)
+        }
     }
 
     fun refreshItems(viewItemList : List<PlantDataObject>) {

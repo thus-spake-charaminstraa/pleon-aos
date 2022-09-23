@@ -107,7 +107,5 @@
             android:src="@drawable/ic_camera"
             android:layout_marginBottom="30dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     <include android:id="@+id/bottom_sheet" layout="@layout/bottom_sheet_layout" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

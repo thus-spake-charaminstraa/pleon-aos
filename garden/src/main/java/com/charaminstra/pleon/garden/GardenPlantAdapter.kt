@@ -7,12 +7,12 @@ import com.charaminstra.pleon.common.PlantCommonViewHolder
 import com.charaminstra.pleon.foundation.model.PlantDataObject
 import com.charaminstra.pleon.garden.databinding.ItemGardenPlantBinding
 
-class GardenPlantAdapter(): RecyclerView.Adapter<PlantCommonViewHolder>() {
+class GardenPlantAdapter(): RecyclerView.Adapter<GardenPlantViewHolder>() {
 
     var viewItemList: List<PlantDataObject> = listOf()
     var onItemClicked: (String) -> Unit = {}
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlantCommonViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GardenPlantViewHolder {
         return GardenPlantViewHolder(
             ItemGardenPlantBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -25,7 +25,7 @@ class GardenPlantAdapter(): RecyclerView.Adapter<PlantCommonViewHolder>() {
         return viewItemList.size
     }
 
-    override fun onBindViewHolder(holder: PlantCommonViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: GardenPlantViewHolder, position: Int) {
         holder.bind(viewItemList[position], onItemClicked)
     }
 

@@ -3,9 +3,7 @@ package com.charaminstra.pleon.feed
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.charaminstra.pleon.common.PlantCommonViewHolder
 import com.charaminstra.pleon.feed.databinding.ItemNotiBinding
-import com.charaminstra.pleon.feed.databinding.ItemPlantFilterBinding
 import com.charaminstra.pleon.foundation.model.NotiData
 import com.charaminstra.pleon.foundation.model.PlantDataObject
 

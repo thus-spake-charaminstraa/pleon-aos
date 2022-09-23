@@ -33,6 +33,9 @@ class FeedWriteViewModel @Inject constructor(
     var plantId : String? = null
     var plantAction : ActionType? = null
 
+    private val _actionPosition = MutableLiveData<Int>()
+    val actionPosition : LiveData<Int> = _actionPosition
+
     fun postFeed(date:String, content:String){
         Log.i(TAG,"\n plantId : "+plantId+"\n date: "+date+"\n kind : "+plantAction?.action!!+"\n content: "+content+"\n url: "+urlResponse.value)
         viewModelScope.launch {
@@ -80,6 +83,12 @@ class FeedWriteViewModel @Inject constructor(
                     Log.i(TAG,"FAIL-> ")
                 }
             }
+        }
+    }
+
+    fun setActionPostion(position: Int){
+        viewModelScope.launch {
+            _actionPosition.postValue(position)
         }
     }
 }
