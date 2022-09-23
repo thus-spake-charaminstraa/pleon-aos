@@ -150,6 +150,7 @@
         <entry key="feed/src/main/res/layout/bottom_sheet_layout.xml" value="0.12107396149949341" />
         <entry key="feed/src/main/res/layout/fragment_feed.xml" value="0.1464226289517471" />
         <entry key="feed/src/main/res/layout/fragment_feed_write.xml" value="0.375" />
+        <entry key="feed/src/main/res/layout/item_action.xml" value="0.18206521739130435" />
         <entry key="feed/src/main/res/layout/item_plant.xml" value="0.2640625" />
         <entry key="feed/src/main/res/layout/item_plant_feed.xml" value="0.7513399705819205" />
         <entry key="feed/src/main/res/layout/item_plant_filter.xml" value="0.1" />
