@@ -1,47 +1,30 @@
 package com.charaminstra.pleon.feed
 
-import android.Manifest
 import android.app.Activity
-import android.app.DatePickerDialog
-import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
 import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
-import android.widget.*
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.charaminstra.pleon.common.*
+import com.charaminstra.pleon.common_ui.DateUtils
 import com.charaminstra.pleon.common_ui.ErrorToast
 import com.charaminstra.pleon.common_ui.PLeonDatePicker
 import com.charaminstra.pleon.common_ui.PopUpImageMenu
 import com.charaminstra.pleon.feed.databinding.FragmentFeedWriteBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import dagger.hilt.android.AndroidEntryPoint
-import java.io.ByteArrayInputStream
-import java.io.ByteArrayOutputStream
-import java.io.File
 import java.io.FileInputStream
-import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -55,7 +38,6 @@ class FeedWriteFragment : Fragment() {
     private lateinit var plant_adapter: FeedPlantAdapter
     private lateinit var action_adapter: ActionAdapter
     private val cal = Calendar.getInstance()
-    private lateinit var dateFormat: SimpleDateFormat
     private lateinit var sheetBehavior : BottomSheetBehavior<View>
     private lateinit var permissionMsg: ErrorToast
     lateinit var photoFile: PLeonImageFile
@@ -75,7 +57,6 @@ class FeedWriteFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dateFormat = SimpleDateFormat(resources.getString(com.charaminstra.pleon.common_ui.R.string.date_send_format))
         navController = this.findNavController()
 
         sheetBehavior = BottomSheetBehavior.from(binding.bottomSheet.root)
@@ -88,9 +69,13 @@ class FeedWriteFragment : Fragment() {
 
         binding.feedWritePlantTagTv.setOnClickListener(SOCL)
         binding.feedWriteActionTagTv.setOnClickListener(SOCL)
-        binding.feedWriteDate.text = dateFormat.format(cal.time).toString()
+        binding.feedWriteDate.text = DateUtils(requireContext()).todayToView(cal.time)
         binding.feedWriteDate.setOnClickListener {
-            PLeonDatePicker(requireContext()).start("날짜 선택")
+            val dlg=PLeonDatePicker(requireContext())
+            dlg.setOnOKClickedListener {
+                binding.feedWriteDate.text = dlg.date
+            }
+            dlg.start("날짜 선택")
         }
         binding.feedWriteImgAddBtn.setOnClickListener{
             val imageMenuDlg = PopUpImageMenu(requireContext())
@@ -116,7 +101,7 @@ class FeedWriteFragment : Fragment() {
         }
         binding.completeBtn.setOnClickListener {
             feedWriteViewModel.postFeed(
-                binding.feedWriteDate.text.toString(),
+                DateUtils(requireContext()).viewToSendServer(binding.feedWriteDate.text.toString()),
                 binding.feedWriteContent.text.toString()
             )
         }

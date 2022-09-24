@@ -1,4 +1,4 @@
-package com.charaminstra.pleon.common
+package com.charaminstra.pleon.common_ui
 
 import android.content.Context
 import android.content.res.Resources
@@ -16,5 +16,10 @@ class DateUtils(context: Context) {
     fun viewToSendServer(date: String):String{
         /*  2022.09.13 -> 2022-09-13 */
         return date.replace(".","-")
+    }
+    fun todayToView(date : Date):String{
+        /* -> 2022.09.13 */
+        dateFormat = SimpleDateFormat(resources.getString(R.string.date_view_format), Locale.ENGLISH)
+        return dateFormat.format(date)
     }
 }

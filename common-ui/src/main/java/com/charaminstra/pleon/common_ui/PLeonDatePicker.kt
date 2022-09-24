@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.text.format.DateUtils
 import android.view.LayoutInflater
 import android.view.Window
 import android.widget.Button
@@ -19,6 +20,8 @@ class PLeonDatePicker(val context: Context) {
     private lateinit var btnCancel : Button
     private lateinit var okListener : DialogOkClickedListener
 
+    lateinit var date: String
+
     fun start(title: String) {
         val binding = DialogDatepickerBinding.inflate(LayoutInflater.from(context))
         dlg.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT)) // background round 적용
@@ -31,6 +34,7 @@ class PLeonDatePicker(val context: Context) {
         btnOK = binding.plantAdoptDatePickerOkBtn
         btnOK.text = "확인"
         btnOK.setOnClickListener {
+            date = DateUtils(context).datePickerToView(binding.datePicker.date)
             okListener.onOKClicked()
             dlg.dismiss()
         }
