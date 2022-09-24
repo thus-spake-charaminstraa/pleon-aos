@@ -84,12 +84,11 @@ class FeedFragment : Fragment() {
         }
         feedAdapter = com.charaminstra.pleon.feed_common.FeedAdapter()
         notiAdapter = NotiAdapter()
-//        feedAdapter.onClickFeed = { Id ->
-//            Log.i(TAG, "feed id in fragment >> $Id")
-//            val bundle = Bundle()
-//            bundle.putString("id", Id)
-//            navController.navigate(R.id.view_pager_fragment_to_feed_detail_fragment, bundle)
-//        }
+        feedAdapter.onClickFeed = { Id ->
+            val bundle = Bundle()
+            bundle.putString("id", Id)
+            navController.navigate(R.id.feed_fragment_to_feed_detail_fragment, bundle)
+        }
         notiAdapter.onClickNoti = { notiId, button ->
             when(button){
                 NOTI_LATER -> {

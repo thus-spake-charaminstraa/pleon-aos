@@ -8,7 +8,7 @@ import com.charaminstra.pleon.databinding.ItemCommentBinding
 import com.charaminstra.pleon.foundation.model.CommentObject
 import com.charaminstra.pleon.viewholder.CommentViewHolder
 
-class CommentsAdapter(): RecyclerView.Adapter<CommentViewHolder>() {
+class _CommentsAdapter(): RecyclerView.Adapter<CommentViewHolder>() {
 
     private var viewItemList: List<CommentObject> = listOf()
 

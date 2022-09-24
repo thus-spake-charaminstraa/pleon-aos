@@ -1,4 +1,4 @@
-package com.charaminstra.pleon.view
+package com.charaminstra.pleon.feed_common
 
 import android.content.Context
 import android.os.Bundle
@@ -13,10 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.charaminstra.pleon.R
-import com.charaminstra.pleon.adapter.CommentsAdapter
-import com.charaminstra.pleon.databinding.FragmentFeedDetailBinding
-import com.charaminstra.pleon.viewmodel.FeedDetailViewModel
+import com.charaminstra.pleon.feed_common.databinding.FragmentFeedDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 
@@ -58,23 +55,23 @@ class FeedDetailFragment : Fragment() {
         observeViewModel()
         binding.commentsRecyclerview.adapter = commentsAdapter
 
-        binding.moreBtn.setOnClickListener{
-            val pop=PopupMenu(requireContext(),it)
-            pop.menuInflater.inflate(R.menu.more_menu, pop.menu)
-            pop.setOnMenuItemClickListener { item ->
-                when(item.itemId){
-                    //R.id.item_more_edit -> {
-                        //feed 수정
-                    //}
-                    R.id.item_more_delete -> {
-                        //feed 삭제
-                        viewModel.deleteFeed()
-                    }
-                }
-                false
-            }
-            pop.show()
-        }
+//        binding.moreBtn.setOnClickListener{
+//            val pop=PopupMenu(requireContext(),it)
+//            pop.menuInflater.inflate(R.menu.more_menu, pop.menu)
+//            pop.setOnMenuItemClickListener { item ->
+//                when(item.itemId){
+//                    //R.id.item_more_edit -> {
+//                        //feed 수정
+//                    //}
+//                    R.id.item_more_delete -> {
+//                        //feed 삭제
+//                        viewModel.deleteFeed()
+//                    }
+//                }
+//                false
+//            }
+//            pop.show()
+//        }
     }
 
     private fun initList(){

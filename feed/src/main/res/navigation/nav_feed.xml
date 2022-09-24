@@ -11,10 +11,18 @@
         <action
             android:id="@+id/feed_fragment_to_feed_write_fragment"
             app:destination="@id/feed_write_fragment"/>
+        <action
+            android:id="@+id/feed_fragment_to_feed_detail_fragment"
+            app:destination="@id/feed_detail_fragment"/>
     </fragment>
     <fragment
         android:id="@+id/feed_write_fragment"
         android:name="com.charaminstra.pleon.feed.FeedWriteFragment"
         tools:layout="@layout/fragment_feed_write">
+    </fragment>
+    <fragment
+        android:id="@+id/feed_detail_fragment"
+        android:name="com.charaminstra.pleon.feed_common.FeedDetailFragment"
+        tools:layout="@layout/fragment_feed_detail">
     </fragment>
 </navigation>

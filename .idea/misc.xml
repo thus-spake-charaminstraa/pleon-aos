@@ -143,7 +143,10 @@
         <entry key="common/src/main/res/layout/item_noti.xml" value="0.1" />
         <entry key="common/src/main/res/layout/item_plant_feed.xml" value="0.128419452887538" />
         <entry key="common/src/main/res/layout/item_plant_garden.xml" value="0.134375" />
+        <entry key="feed-common/src/main/res/drawable/ic_more.xml" value="0.1375" />
         <entry key="feed-common/src/main/res/drawable/tag_bg.xml" value="0.1" />
+        <entry key="feed-common/src/main/res/layout/fragment_feed_detail.xml" value="0.1" />
+        <entry key="feed-common/src/main/res/layout/item_comment.xml" value="0.1" />
         <entry key="feed-common/src/main/res/layout/item_feed.xml" value="0.4234375" />
         <entry key="feed/src/main/res/drawable/action_on.xml" value="0.1" />
         <entry key="feed/src/main/res/drawable/action_selector.xml" value="0.1995" />
