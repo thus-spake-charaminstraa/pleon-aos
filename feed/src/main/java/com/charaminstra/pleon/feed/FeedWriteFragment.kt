@@ -34,7 +34,6 @@ import java.util.*
 class FeedWriteFragment : Fragment() {
     private lateinit var binding : FragmentFeedWriteBinding
     private val TAG = javaClass.name
-    //private val plantsViewModel: PlantsViewModel by viewModels()
     private val feedWriteViewModel : FeedWriteViewModel by viewModels()
     private lateinit var navController: NavController
     private lateinit var plant_adapter: FeedPlantAdapter
@@ -152,18 +151,6 @@ class FeedWriteFragment : Fragment() {
             showKeyboard(binding.feedWriteContent)
         }
     }
-//            if(feedWriteViewModel.plantId.isNullOrBlank()){
-//                ErrorToast(requireContext()).showMsg(resources.getString(R.string.bottom_sheet_plant_msg),binding.bottomSheet.plantRecyclerview.y)
-//            }else if(feedWriteViewModel.plantAction == null){
-//                ErrorToast(requireContext()).showMsg(resources.getString(R.string.bottom_sheet_action_msg),binding.bottomSheet.actionRecyclerview.y)
-//            }else{
-//                sheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
-//                showKeyboard(binding.feedWriteContent, requireContext())
-//                //binding.feedWriteContent.setText(feedWriteViewModel.plantName.value + feedWriteViewModel.plantAction?.desc!!)
-//
-//            }
-//        }
-
 
     private fun initList() {
         plant_adapter = FeedPlantAdapter()
@@ -172,12 +159,15 @@ class FeedWriteFragment : Fragment() {
             feedWriteViewModel.plantId = Id
             feedWriteViewModel.getPlantName()
         }
-
+        //test
+        binding.feedWriteActionTagTv.text= resources.getString(com.charaminstra.pleon.feed_common.R.string.action_tag) + "오늘의모습"
+        feedWriteViewModel.plantAction = ActionType.오늘의모습
         action_adapter = ActionAdapter()
         action_adapter.onItemClicked = { actionType ->
             feedWriteViewModel.plantAction = actionType
             binding.feedWriteActionTagTv.text= resources.getString(com.charaminstra.pleon.feed_common.R.string.action_tag) + actionType.name
         }
+
         action_adapter.refreshItems(
             listOf(
                 ActionObject(ActionType.오늘의모습, R.drawable.ic_today),
