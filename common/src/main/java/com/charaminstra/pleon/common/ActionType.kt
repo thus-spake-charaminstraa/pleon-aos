@@ -9,8 +9,8 @@ enum class ActionType(val action: String, val desc: String){
     가지치기("prune", "(이)가 가지치기를 했습니다."),
     잎("leaf", "(이)가 새 잎이 돋았습니다."),
     꽃("flower", "(이)가 새 꽃이 피었습니다."),
-    영양제("fertilize", "(이)가 영양제를 먹었습니다."),
-    열매("fruit","열매를 "),
+    영양제("nutrition", "(이)가 영양제를 먹었습니다."),
+    열매("fruit","열매가 맺혔다"),
     기타("etc", "")
 }
 

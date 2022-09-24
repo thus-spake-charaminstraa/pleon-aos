@@ -32,6 +32,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.charaminstra.pleon.common.*
 import com.charaminstra.pleon.common_ui.ErrorToast
+import com.charaminstra.pleon.common_ui.PLeonDatePicker
 import com.charaminstra.pleon.common_ui.PopUpImageMenu
 import com.charaminstra.pleon.feed.databinding.FragmentFeedWriteBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -58,6 +59,7 @@ class FeedWriteFragment : Fragment() {
     private lateinit var sheetBehavior : BottomSheetBehavior<View>
     private lateinit var permissionMsg: ErrorToast
     lateinit var photoFile: PLeonImageFile
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -88,7 +90,7 @@ class FeedWriteFragment : Fragment() {
         binding.feedWriteActionTagTv.setOnClickListener(SOCL)
         binding.feedWriteDate.text = dateFormat.format(cal.time).toString()
         binding.feedWriteDate.setOnClickListener {
-            popUpCalendar(it as TextView)
+            PLeonDatePicker(requireContext()).start("날짜 선택")
         }
         binding.feedWriteImgAddBtn.setOnClickListener{
             val imageMenuDlg = PopUpImageMenu(requireContext())
@@ -175,22 +177,6 @@ class FeedWriteFragment : Fragment() {
 //                binding.contentEdit.showKeyboard()
 //            }
 //        }
-    }
-
-    fun popUpCalendar(view: TextView) {
-        val cal = Calendar.getInstance()
-        dateFormat = SimpleDateFormat(resources.getString(com.charaminstra.pleon.common_ui.R.string.date_send_format))
-        var datePickerDialog = DatePickerDialog(requireContext(),
-            com.charaminstra.pleon.common_ui.R.style.PleonDatePickerStyle,
-            { _, y, m, d ->
-                cal.set(y,m,d)
-                view.text = dateFormat.format(cal.time)
-            }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).apply {
-            datePicker.maxDate = cal.timeInMillis
-        }
-        datePickerDialog.show()
-        datePickerDialog.getButton(DatePickerDialog.BUTTON_NEGATIVE).setBackgroundColor(Color.BLACK)
-        datePickerDialog.getButton(DatePickerDialog.BUTTON_POSITIVE).setBackgroundColor(Color.BLACK)
     }
 
     private fun initList() {

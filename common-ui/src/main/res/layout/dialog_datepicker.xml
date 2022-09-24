@@ -1,90 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/plant_adopt_date_picker_dialog"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="312dp"
-    android:layout_height="wrap_content">
-
-    <com.ycuwq.datepicker.date.YearPicker
-        android:id="@+id/year_datepicker"
-        android:layout_width="0dp"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_bg"
+    android:elevation="15dp"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent">
+    <TextView
+        android:id="@+id/plant_adopt_date_picker_title"
+        android:layout_margin="30dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:itemHeightSpace="25dp"
-        app:itemTextColor="@color/black_sub_color"
-        app:itemTextSize="14sp"
-        app:selectedTextColor="@color/main_green_color"
-        app:selectedTextSize="14sp"
-        app:wheelCurtainBorderColor="@color/sub_green_color"
-        app:wheelCurtainColor="@color/sub_green_color"
-        app:layout_constraintBottom_toTopOf="@+id/plant_water_date_picker_btns"
-        app:layout_constraintEnd_toStartOf="@+id/month_datepicker"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="center"
+        style="@style/DialogTitleText"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-         />
-    <com.ycuwq.datepicker.date.MonthPicker
-        android:id="@+id/month_datepicker"
-        android:layout_width="0dp"
+        android:textColor="@color/black_sub_color"/>
+    <com.ycuwq.datepicker.date.DatePicker
+        android:id="@+id/plant_adopt_date_picker"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:itemHeightSpace="25dp"
-        app:itemTextColor="@color/black_sub_color"
-        app:itemTextSize="14sp"
-        app:selectedTextColor="@color/main_green_color"
-        app:selectedTextSize="14sp"
-        app:wheelCurtainBorderColor="@color/sub_green_color"
-        app:wheelCurtainColor="@color/sub_green_color"
-        app:layout_constraintEnd_toStartOf="@+id/day_datepicker"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/year_datepicker"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.ycuwq.datepicker.date.DayPicker
-        android:id="@+id/day_datepicker"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:itemHeightSpace="25dp"
-        app:itemTextColor="@color/black_sub_color"
-        app:itemTextSize="14sp"
-        app:selectedTextColor="@color/main_green_color"
-        app:selectedTextSize="14sp"
-        app:wheelCurtainBorderColor="@color/sub_green_color"
-        app:wheelCurtainColor="@color/sub_green_color"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/month_datepicker"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        android:paddingVertical="15dp"
+        app:layout_constraintTop_toBottomOf="@+id/plant_adopt_date_picker_title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/plant_adopt_date_picker_btns"
+        android:background="@color/white"
+        style="@style/PleonDatePickerStyle" />
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/line_color"
-        app:layout_constraintBottom_toTopOf="@+id/plant_water_date_picker_btns" />
-
+        app:layout_constraintBottom_toTopOf="@+id/plant_adopt_date_picker_btns" />
     <LinearLayout
-        android:id="@+id/plant_water_date_picker_btns"
+        android:id="@+id/plant_adopt_date_picker_btns"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent">
-
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/plant_water_date_picker_cancel_btn"
+            android:id="@+id/plant_adopt_date_picker_cancel_btn"
             style="@style/DialogButtonCancelText"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@null"
             android:text="@string/dialog_cancel_btn"
-            android:textColor="@color/black" />
-
+            android:textColor="@color/black_sub_color" />
         <View
             android:layout_width="1dp"
             android:layout_height="match_parent"
             android:background="@color/line_color"
-            app:layout_constraintBottom_toTopOf="@+id/plant_water_date_picker_btns" />
-
+            app:layout_constraintBottom_toTopOf="@+id/plant_adopt_date_picker_btns" />
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/plant_water_date_picker_ok_btn"
+            android:id="@+id/plant_adopt_date_picker_ok_btn"
             style="@style/DialogButtonOkText"
             android:layout_width="0dp"
             android:layout_height="match_parent"

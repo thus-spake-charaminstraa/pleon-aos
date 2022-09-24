@@ -132,6 +132,7 @@
         <entry key="common-ui/src/main/res/layout/dialog_datepicker.xml" value="0.38109756097560976" />
         <entry key="common-ui/src/main/res/layout/dialog_delete_layout.xml" value="0.20437956204379562" />
         <entry key="common-ui/src/main/res/layout/dialog_skip_layout.xml" value="0.25" />
+        <entry key="common-ui/src/main/res/layout/image_menu_layout.xml" value="0.1" />
         <entry key="common-ui/src/main/res/layout/item_feed.xml" value="0.1" />
         <entry key="common-ui/src/main/res/layout/item_plant_garden.xml" value="0.11347517730496454" />
         <entry key="common/src/main/res/drawable/ic_btn_feed_comment.xml" value="0.1945" />
