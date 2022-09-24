@@ -15,7 +15,6 @@ class ActionAdapter(): RecyclerView.Adapter<ActionViewHolder>() {
 
     var selectedPosition = 0
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActionViewHolder {
         return ActionViewHolder((ItemActionBinding.inflate(LayoutInflater.from(parent.context), parent, false)))
     }

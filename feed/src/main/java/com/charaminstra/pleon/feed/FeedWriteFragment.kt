@@ -32,7 +32,7 @@ import java.util.*
 class FeedWriteFragment : Fragment() {
     private lateinit var binding : FragmentFeedWriteBinding
     private val TAG = javaClass.name
-    private val plantsViewModel: PlantsViewModel by viewModels()
+    //private val plantsViewModel: PlantsViewModel by viewModels()
     private val feedWriteViewModel : FeedWriteViewModel by viewModels()
     private lateinit var navController: NavController
     private lateinit var plant_adapter: FeedPlantAdapter
@@ -48,10 +48,9 @@ class FeedWriteFragment : Fragment() {
         binding = FragmentFeedWriteBinding.inflate(layoutInflater)
         binding.feedWriteBackBtn.setOnClickListener {
             navController.popBackStack()
-        }
         /*카메라권한요청*/
         RequestPermission.requestPermission(requireActivity())
-    }
+    }}
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -145,24 +144,25 @@ class FeedWriteFragment : Fragment() {
         initList()
         observeViewModel()
         binding.bottomSheet.plantRecyclerview.adapter = plant_adapter
-        binding.bottomSheet.actionRecyclerview.adapter= action_adapter
+        binding.bottomSheet.actionRecyclerview.adapter = action_adapter
 
         binding.bottomSheet.nextBtn.setOnClickListener {
             sheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+            showKeyboard(binding.feedWriteContent, requireContext())
         }
+    }
 //            if(feedWriteViewModel.plantId.isNullOrBlank()){
-//                Toast.makeText(activity, R.string.bottom_sheet_plant_msg,Toast.LENGTH_SHORT).show()
+//                ErrorToast(requireContext()).showMsg(resources.getString(R.string.bottom_sheet_plant_msg),binding.bottomSheet.plantRecyclerview.y)
 //            }else if(feedWriteViewModel.plantAction == null){
-//                Toast.makeText(activity, R.string.bottom_sheet_action_msg,Toast.LENGTH_SHORT).show()
+//                ErrorToast(requireContext()).showMsg(resources.getString(R.string.bottom_sheet_action_msg),binding.bottomSheet.actionRecyclerview.y)
 //            }else{
-
-//                binding.contentEdit.setText(feedWriteViewModel.plantName.value + feedWriteViewModel.plantAction?.desc!!)
-//                binding.editTv.visibility = View.VISIBLE
-//                binding.contentEdit.visibility = View.VISIBLE
-//                binding.contentEdit.showKeyboard()
+//                sheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+//                showKeyboard(binding.feedWriteContent, requireContext())
+//                //binding.feedWriteContent.setText(feedWriteViewModel.plantName.value + feedWriteViewModel.plantAction?.desc!!)
+//
 //            }
 //        }
-    }
+
 
     private fun initList() {
         plant_adapter = FeedPlantAdapter()
@@ -195,7 +195,7 @@ class FeedWriteFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        plantsViewModel.plantsList.observe(viewLifecycleOwner, Observer {
+        feedWriteViewModel.plantsList.observe(viewLifecycleOwner, Observer {
             plant_adapter.refreshItems(it)
         })
         feedWriteViewModel.plantName.observe(viewLifecycleOwner, Observer {
@@ -211,7 +211,7 @@ class FeedWriteFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         //viewmodel update
-        plantsViewModel.loadData()
+        feedWriteViewModel.getPlantList()
     }
 
     // 갤러리 화면에서 이미지를 선택한 경우 현재 화면에 보여준다.

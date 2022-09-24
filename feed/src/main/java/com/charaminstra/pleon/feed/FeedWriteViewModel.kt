@@ -10,6 +10,8 @@ import com.charaminstra.pleon.common.ActionType
 import com.charaminstra.pleon.foundation.FeedRepository
 import com.charaminstra.pleon.foundation.ImageRepository
 import com.charaminstra.pleon.foundation.PlantIdRepository
+import com.charaminstra.pleon.foundation.PlantsRepository
+import com.charaminstra.pleon.foundation.model.PlantDataObject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.io.ByteArrayInputStream
@@ -21,7 +23,8 @@ import javax.inject.Inject
 class FeedWriteViewModel @Inject constructor(
     private val repository: FeedRepository,
     private val imageRepository: ImageRepository,
-    private val plantRepository: PlantIdRepository
+    private val plantRepository: PlantIdRepository,
+    private val plantsRepository: PlantsRepository
 ): ViewModel() {
     private val TAG = javaClass.name
     private val _postSuccess = MutableLiveData<Boolean>()
@@ -32,6 +35,9 @@ class FeedWriteViewModel @Inject constructor(
 
     private val _plantName = MutableLiveData<String>()
     val plantName : LiveData<String> = _plantName
+
+    private val _plantsList = MutableLiveData<List<PlantDataObject>>()
+    val plantsList : LiveData<List<PlantDataObject>> = _plantsList
 
     var plantId : String? = null
     var plantAction : ActionType? = null
@@ -53,18 +59,20 @@ class FeedWriteViewModel @Inject constructor(
         }
     }
 
-    fun postImage(stream: InputStream){
+    fun getPlantList(){
         viewModelScope.launch {
-            //val data =repository.postImage(uri, realPathFromURI!!)
-            val data =imageRepository.postImage(stream)
-            Log.i(TAG,"data -> $data")
+            val data = plantsRepository.getPlants()
+            Log.i(TAG, "data -> $data")
+            Log.i(TAG, "data.body -> "+data.body())
             when (data.isSuccessful) {
                 true -> {
-                    Log.i(TAG,"data.body -> "+data.body())
-                    _urlResponse.postValue(data.body()?.data?.url)
+                    _plantsList.postValue(data.body()?.data!!)
+                    plantId = data.body()?.data?.get(0)?.id
+                    _plantName.postValue(data.body()?.data?.get(0)?.name!!)
+                    Log.i(TAG,"SUCCESS -> "+ data.body().toString())
                 }
                 else -> {
-                    Log.i(TAG,"FAIL-> ")
+                    Log.i(TAG,"FAIL -> "+ data.body().toString())
                 }
             }
         }

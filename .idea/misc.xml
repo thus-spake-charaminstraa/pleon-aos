@@ -148,6 +148,9 @@
         <entry key="feed/src/main/res/drawable/action_on.xml" value="0.1" />
         <entry key="feed/src/main/res/drawable/action_selector.xml" value="0.1995" />
         <entry key="feed/src/main/res/drawable/bg_action_img.xml" value="0.167" />
+        <entry key="feed/src/main/res/drawable/bg_camera_btn.xml" value="0.1" />
+        <entry key="feed/src/main/res/drawable/bg_camera_btn_on.xml" value="0.1" />
+        <entry key="feed/src/main/res/drawable/bg_camera_btn_selector.xml" value="0.1" />
         <entry key="feed/src/main/res/drawable/bg_indicator.xml" value="0.1465" />
         <entry key="feed/src/main/res/drawable/bg_indicator_unselect.xml" value="0.1465" />
         <entry key="feed/src/main/res/drawable/bg_noti_complete.xml" value="0.1465" />
