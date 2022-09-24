@@ -13,8 +13,10 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.charaminstra.pleon.common.ActionType
 import com.charaminstra.pleon.common.showKeyboard
 import com.charaminstra.pleon.common_ui.DateUtils
+import com.charaminstra.pleon.common_ui.PLeonMsgDialog
 import com.charaminstra.pleon.feed_common.databinding.FragmentFeedDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -61,7 +63,17 @@ class FeedDetailFragment : Fragment() {
                     //}
                     R.id.item_more_delete -> {
                         //feed 삭제
-                        viewModel.deleteFeed()
+                        val dlg = PLeonMsgDialog(requireContext())
+                        dlg.setOnOKClickedListener {
+                            viewModel.deleteFeed()
+                        }
+                        dlg.start(
+                            resources.getString(R.string.feed_detail_skip_dialog_title),
+                            resources.getString(R.string.feed_detail_skip_dialog_desc),
+                            resources.getString(R.string.feed_detail_skip_dialog_cancel_btn),
+                            resources.getString(R.string.feed_detail_skip_dialog_delete_btn)
+                        )
+
                     }
                 }
                 false
@@ -83,11 +95,11 @@ class FeedDetailFragment : Fragment() {
         viewModel.feedData.observe(viewLifecycleOwner, Observer {
             binding.feedContent.text = it.content
             binding.plantTagTv.text = resources.getString(R.string.plant_tag) + it.plant.name
-//            for(i in ActionType.values()){
-//                if(i.action == it.kind){
-//                    binding.actionTagTv.text = binding.root.context.resources.getString(R.string.action_tag)+i.name
-//                }
-//            }
+            for(i in ActionType.values()){
+                if(i.action == it.kind){
+                    binding.actionTagTv.text = binding.root.context.resources.getString(R.string.action_tag)+i.name
+                }
+            }
             if (it.image_url == null) {
                 binding.plantImage.visibility = View.GONE
             } else {
