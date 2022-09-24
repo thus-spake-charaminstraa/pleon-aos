@@ -19,6 +19,9 @@
         <action
             android:id="@+id/plant_detail_to_plant_edit_fragment"
             app:destination="@id/plant_edit_fragment"/>
+        <action
+            android:id="@+id/plant_detail_fragment_to_feed_detail_fragment"
+            app:destination="@id/feed_detail_fragment"/>
     </fragment>
     <fragment
         android:id="@+id/plant_edit_fragment"
@@ -30,9 +33,9 @@
             app:destination="@+id/garden_fragment"
             app:popUpToInclusive="true" />
     </fragment>
-<!--    <action-->
-<!--        android:id="@+id/garden_fragment"-->
-<!--        app:popUpTo="@+id/view_pager_fragment"-->
-<!--        app:destination="@+id/view_pager_fragment"-->
-<!--        app:popUpToInclusive="true" />-->
+    <fragment
+        android:id="@+id/feed_detail_fragment"
+        android:name="com.charaminstra.pleon.feed_common.FeedDetailFragment"
+        tools:layout="@layout/fragment_feed_detail">
+    </fragment>
 </navigation>

@@ -156,7 +156,7 @@ class PlantDetailFragment : Fragment() {
         feedAdapter.onClickFeed = { feedId ->
             val bundle = Bundle()
             bundle.putString("id", feedId)
-//            navController.navigate(R.id.plant_detail_to_feed_detail_fragment,bundle)
+            navController.navigate(R.id.plant_detail_fragment_to_feed_detail_fragment,bundle)
         }
     }
 

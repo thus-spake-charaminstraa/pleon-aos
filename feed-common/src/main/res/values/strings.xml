@@ -1,6 +1,9 @@
 <resources>
-    <string name="date_send_format">yyyy-MM-dd</string>
-    <string name="date_view_format">yyyy.MM.dd</string>
     <string name="plant_tag">\@</string>
     <string name="action_tag">#</string>
+    <string name="comment_hint">댓글 작성</string>
+    <string name="comment_enter_btn">확인</string>
+    <string name="item_more_edit">편집하기</string>
+    <string name="item_more_delete">삭제하기</string>
+
 </resources>

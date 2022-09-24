@@ -13,18 +13,17 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.charaminstra.pleon.common.showKeyboard
+import com.charaminstra.pleon.common_ui.DateUtils
 import com.charaminstra.pleon.feed_common.databinding.FragmentFeedDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
-import java.text.SimpleDateFormat
 
 @AndroidEntryPoint
 class FeedDetailFragment : Fragment() {
 
     private val viewModel: FeedDetailViewModel by viewModels()
-    //private lateinit var feedId : String
     private lateinit var binding : FragmentFeedDetailBinding
     private lateinit var navController: NavController
-    private lateinit var dateFormat: SimpleDateFormat
     private lateinit var commentsAdapter: CommentsAdapter
 
     override fun onCreateView(
@@ -38,42 +37,38 @@ class FeedDetailFragment : Fragment() {
         binding.feedDetailBackBtn.setOnClickListener {
             navController.popBackStack()
         }
-        binding.commentEt.showKeyboard()
-        binding.commentEt.isCursorVisible = true
+        showKeyboard(binding.commentEt)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        dateFormat = SimpleDateFormat(resources.getString(com.charaminstra.pleon.common_ui.R.string.date_send_format))
 
         navController = this.findNavController()
-
 
         initList()
         initListeners()
         observeViewModel()
         binding.commentsRecyclerview.adapter = commentsAdapter
 
-//        binding.moreBtn.setOnClickListener{
-//            val pop=PopupMenu(requireContext(),it)
-//            pop.menuInflater.inflate(R.menu.more_menu, pop.menu)
-//            pop.setOnMenuItemClickListener { item ->
-//                when(item.itemId){
-//                    //R.id.item_more_edit -> {
-//                        //feed 수정
-//                    //}
-//                    R.id.item_more_delete -> {
-//                        //feed 삭제
-//                        viewModel.deleteFeed()
-//                    }
-//                }
-//                false
-//            }
-//            pop.show()
-//        }
+        binding.moreBtn.setOnClickListener{
+            val pop= PopupMenu(requireContext(),it)
+            pop.menuInflater.inflate(R.menu.more_menu, pop.menu)
+            pop.setOnMenuItemClickListener { item ->
+                when(item.itemId){
+                    //R.id.item_more_edit -> {
+                        //feed 수정
+                    //}
+                    R.id.item_more_delete -> {
+                        //feed 삭제
+                        viewModel.deleteFeed()
+                    }
+                }
+                false
+            }
+            pop.show()
+        }
     }
-
     private fun initList(){
         commentsAdapter = CommentsAdapter()
     }
@@ -101,10 +96,14 @@ class FeedDetailFragment : Fragment() {
                     .load(it.image_url)
                     .into(binding.plantImage)
             }
-            binding.feedDate.text = dateFormat.format(it.publish_date)
+            binding.feedDate.text = DateUtils(requireContext()).dateToView(it.publish_date)
             //user data
             binding.userName.text = it.user.nickname
             Glide.with(binding.root).load(it.user.thumbnail).into(binding.userImage)
+        })
+        //댓글 수
+        viewModel.commentsCount.observe(viewLifecycleOwner, Observer {
+            binding.feedCommentCount.text = it.toString()
         })
         viewModel.feedComments.observe(viewLifecycleOwner, Observer {
             commentsAdapter.refreshItems(it)
@@ -128,8 +127,9 @@ class FeedDetailFragment : Fragment() {
         viewModel.getCommentList()
     }
 
-    private fun View.showKeyboard() {
-        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    private fun showKeyboard(view: View) {
+        val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
+        view.requestFocus()
     }
 }

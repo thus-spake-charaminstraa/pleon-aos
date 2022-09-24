@@ -17,7 +17,7 @@ class DateUtils(context: Context) {
         /*  2022.09.13 -> 2022-09-13 */
         return date.replace(".","-")
     }
-    fun todayToView(date : Date):String{
+    fun dateToView(date : Date):String{
         /* -> 2022.09.13 */
         dateFormat = SimpleDateFormat(resources.getString(R.string.date_view_format), Locale.ENGLISH)
         return dateFormat.format(date)

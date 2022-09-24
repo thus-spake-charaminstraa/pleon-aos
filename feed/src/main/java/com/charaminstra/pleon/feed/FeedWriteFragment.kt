@@ -1,6 +1,7 @@
 package com.charaminstra.pleon.feed
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.net.Uri
@@ -9,6 +10,7 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -68,7 +70,7 @@ class FeedWriteFragment : Fragment() {
 
         binding.feedWritePlantTagTv.setOnClickListener(SOCL)
         binding.feedWriteActionTagTv.setOnClickListener(SOCL)
-        binding.feedWriteDate.text = DateUtils(requireContext()).todayToView(cal.time)
+        binding.feedWriteDate.text = DateUtils(requireContext()).dateToView(cal.time)
         binding.feedWriteDate.setOnClickListener {
             val dlg=PLeonDatePicker(requireContext())
             dlg.setOnOKClickedListener {
@@ -126,7 +128,6 @@ class FeedWriteFragment : Fragment() {
                 }
                 // 숨김 상태
                 BottomSheetBehavior.STATE_HIDDEN -> {
-                    showKeyboard(binding.feedWriteContent, requireContext())
                 }
             }
         }
@@ -148,7 +149,7 @@ class FeedWriteFragment : Fragment() {
 
         binding.bottomSheet.nextBtn.setOnClickListener {
             sheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
-            showKeyboard(binding.feedWriteContent, requireContext())
+            showKeyboard(binding.feedWriteContent)
         }
     }
 //            if(feedWriteViewModel.plantId.isNullOrBlank()){
@@ -263,6 +264,12 @@ class FeedWriteFragment : Fragment() {
         )
         intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
         startActivityForResult(intent, REQUEST_TAKE_PHOTO)
+    }
+
+    private fun showKeyboard(view: View) {
+        val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
+        view.requestFocus()
     }
 
 }

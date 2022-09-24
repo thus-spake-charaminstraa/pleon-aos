@@ -5,6 +5,7 @@ import android.view.View
 import com.bumptech.glide.Glide
 import com.charaminstra.pleon.common.ActionType
 import com.charaminstra.pleon.common.databinding.ItemFeedBinding
+import com.charaminstra.pleon.common_ui.DateUtils
 import com.charaminstra.pleon.foundation.model.ViewObject
 import java.text.SimpleDateFormat
 
@@ -14,7 +15,7 @@ class FeedItemViewHolder(
     private lateinit var dateFormat: SimpleDateFormat
 
     override fun bind(item: ViewObject, onClickFeed: (String) -> Unit)  {
-        dateFormat = SimpleDateFormat(binding.root.context.resources.getString(R.string.date_view_format))
+        dateFormat = SimpleDateFormat(binding.root.context.resources.getString(com.charaminstra.pleon.common.R.string.date_view_format))
         binding.feedContent.text = item.content
         binding.plantTagTv.text = binding.root.context.resources.getString(R.string.plant_tag)+ item.plant.name!!
         for(i in ActionType.values()){
