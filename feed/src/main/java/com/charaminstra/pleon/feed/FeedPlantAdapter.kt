@@ -10,7 +10,6 @@ import com.charaminstra.pleon.foundation.model.PlantDataObject
 class FeedPlantAdapter(): RecyclerView.Adapter<FeedPlantViewHolder>() {
 
     var viewItemList: List<PlantDataObject> = listOf()
-//    private lateinit var type: String
     var onItemClicked: (String)-> Unit = {}
     var selectedPosition = 0
 
@@ -40,6 +39,11 @@ class FeedPlantAdapter(): RecyclerView.Adapter<FeedPlantViewHolder>() {
             selectedPosition=position
             onItemClicked(viewItemList[position].id!!)
         }
+    }
+
+    fun refreshClick(){
+        notifyItemChanged(selectedPosition)
+        selectedPosition = -1
     }
 
     fun refreshItems(viewItemList : List<PlantDataObject>) {

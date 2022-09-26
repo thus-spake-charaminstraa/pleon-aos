@@ -40,6 +40,7 @@ class FeedFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentFeedBinding.inflate(layoutInflater)
+        binding.allFilter.isSelected = true
         return binding.root
     }
 
@@ -78,8 +79,9 @@ class FeedFragment : Fragment() {
 
     private fun initList() {
         feedPlantAdapter = FeedPlantAdapter()
-//        feedPlantAdapter.setType("FEED_PLANT")
+        feedPlantAdapter.selectedPosition = -1
         feedPlantAdapter.onItemClicked = { plantId ->
+            binding.allFilter.isSelected=false
             feedViewModel.getFeedList(plantId)
         }
         feedAdapter = com.charaminstra.pleon.feed_common.FeedAdapter()
@@ -104,6 +106,8 @@ class FeedFragment : Fragment() {
 
     private fun initListeners(){
         binding.allFilter.setOnClickListener {
+            binding.allFilter.isSelected=true
+            feedPlantAdapter.refreshClick()
             feedViewModel.getFeedList(null)
         }
     }

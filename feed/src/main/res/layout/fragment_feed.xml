@@ -62,7 +62,7 @@
                         android:layout_height="75dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="20dp"
-                        android:background="@drawable/plant_off"
+                        android:background="@drawable/plant_selector"
                         android:gravity="center"
                         android:text="@string/feed_fragment_all_filter"
                         app:layout_constraintLeft_toLeftOf="parent"
