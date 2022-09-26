@@ -2,6 +2,7 @@ package com.charaminstra.pleon.foundation
 
 import com.charaminstra.pleon.foundation.api.UserAPIService
 import com.charaminstra.pleon.foundation.api.PleonPreference
+import com.charaminstra.pleon.foundation.model.DeviceTokenRequestBody
 import com.charaminstra.pleon.foundation.model.UserRequestBody
 import com.charaminstra.pleon.foundation.model.UserCreateResponse
 import retrofit2.Response
@@ -17,4 +18,8 @@ class UserRepository @Inject constructor(private val service: UserAPIService, pr
     /* user data edit */
     suspend fun patchUserData(name: String, thumbnail: String)
     = service.patchUserData(prefs.getAccessToken(),UserRequestBody(name,thumbnail))
+
+    suspend fun postDeviceToken(deviceToken:String) = service.postDeviceToken(prefs.getAccessToken(),
+        DeviceTokenRequestBody(deviceToken)
+    )
 }
