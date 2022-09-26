@@ -91,10 +91,15 @@ class PhoneFragment : Fragment() {
             if(it){
                 /* 기존 회원 */
                 viewModel.postLogin()
-                startHomeActivity(requireContext())
             }else{
                 /* 신규 회원 */
                 navController.navigate(R.id.phone_fragment_to_nickname_fragment)
+            }
+        })
+        viewModel.setTokenSuccess.observe(this, Observer {
+            if(it){
+                startHomeActivity(requireContext())
+                activity?.finish()
             }
         })
     }

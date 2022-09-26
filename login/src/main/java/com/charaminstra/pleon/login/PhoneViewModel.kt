@@ -33,6 +33,9 @@ class PhoneViewModel @Inject constructor(
     private var _userExist = MutableLiveData<Boolean>()
     val userExist : LiveData<Boolean> = _userExist
 
+    private var _setTokenSuccess = MutableLiveData<Boolean>()
+    val setTokenSuccess : LiveData<Boolean> = _setTokenSuccess
+
     private val phoneNum = MutableLiveData<String>()
     fun setPhoneNum(phone: String){
         phoneNum.value = phone
@@ -84,10 +87,12 @@ class PhoneViewModel @Inject constructor(
                 true -> {
                     prefs.setRefreshToken(data.body()?.data?.token?.refresh_token)
                     prefs.setAccessToken(data.body()?.data?.token?.access_token)
-                    prefs.setName(data.body()?.data?.user?.nickname)
+                    _setTokenSuccess.postValue(true)
                     postDeviceToken()
+                    prefs.setName(data.body()?.data?.user?.nickname)
                 }
                 else -> {
+                    _setTokenSuccess.postValue(false)
                     Log.i(LOGIN_TAG,"FAIL -> $data")
                 }
             }

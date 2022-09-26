@@ -21,12 +21,12 @@ class UserCreateViewModel @Inject constructor(private val repository: UserReposi
         viewModelScope.launch {
             val data = repository.postNickname(name)
             Log.i(TAG,"data -> $data")
-            _userCreateSuccess.postValue(data.body()?.success)
             when (data.body()?.success) {
                 true -> {
                     prefs.setAccessToken(data.body()?.data?.token?.access_token)
                     prefs.setRefreshToken(data.body()?.data?.token?.refresh_token)
                     prefs.setName(data.body()?.data?.user?.nickname)
+                    _userCreateSuccess.postValue(data.body()?.success)
                     postDeviceToken()
                 }
                 else -> {
