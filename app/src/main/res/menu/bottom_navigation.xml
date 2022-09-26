@@ -4,12 +4,12 @@
         android:id="@+id/nav_feed"
         android:icon="@drawable/tab_selector_feed"
         android:title="@string/bottom_nav_feed" />
+<!--    <item-->
+<!--        android:id="@+id/chat"-->
+<!--        android:icon="@drawable/tab_selector_chat"-->
+<!--        android:title="@string/bottom_nav_chat" />-->
     <item
-        android:id="@+id/chat"
-        android:icon="@drawable/tab_selector_chat"
-        android:title="@string/bottom_nav_chat" />
-    <item
-        android:id="@+id/doctor"
+        android:id="@+id/nav_doctor"
         android:icon="@drawable/tab_selector_doctor"
         android:title="@string/bottom_nav_doctor" />
     <item

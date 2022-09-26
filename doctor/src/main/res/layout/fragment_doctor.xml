@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/sub_background_color"
     android:paddingHorizontal="20dp">
     <TextView
@@ -13,30 +15,19 @@
         android:paddingBottom="46dp"
         android:paddingHorizontal="30dp"
         style="@style/BubbleBlackText"
-        android:text="@string/welcome_fragment_bubble_txt"
+        android:text="@string/doctor_fragment_bubble_txt"
         android:background="@drawable/ic_bubble"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/welcome_img"
+        app:layout_constraintBottom_toTopOf="@+id/doctor_img"
         android:gravity="center" />
     <ImageView
-        android:id="@+id/welcome_img"
+        android:id="@+id/doctor_img"
         android:layout_width="127dp"
         android:layout_height="235dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="210dp"
-        android:src="@drawable/img_start"/>
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/start_btn"
-        android:layout_width="match_parent"
-        android:layout_height="52dp"
-        android:layout_marginVertical="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:background="@drawable/button_green_selector"
-        style="@style/LoginButtonText"
-        android:text="@string/welcome_fragment_btn" />
+        android:src="@drawable/img_doctor"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
