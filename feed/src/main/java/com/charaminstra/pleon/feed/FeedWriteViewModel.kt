@@ -11,6 +11,7 @@ import com.charaminstra.pleon.foundation.FeedRepository
 import com.charaminstra.pleon.foundation.ImageRepository
 import com.charaminstra.pleon.foundation.PlantIdRepository
 import com.charaminstra.pleon.foundation.PlantsRepository
+import com.charaminstra.pleon.foundation.model.ActionData
 import com.charaminstra.pleon.foundation.model.PlantDataObject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -39,13 +40,20 @@ class FeedWriteViewModel @Inject constructor(
     private val _plantsList = MutableLiveData<List<PlantDataObject>>()
     val plantsList : LiveData<List<PlantDataObject>> = _plantsList
 
+    private val _actionList = MutableLiveData<List<ActionData>>()
+    val actionList : LiveData<List<ActionData>> = _actionList
+
+//    private val _firstAction = MutableLiveData<ActionData>()
+//    val firstAction: LiveData<ActionData> = _firstAction
+
     var plantId : String? = null
-    var plantAction : ActionType? = null
+    var plantAction : ActionData? = null
+    //var plantAction : ActionType? = null
 
     fun postFeed(date:String, content:String){
-        Log.i(TAG,"\n plantId : "+plantId+"\n date: "+date+"\n kind : "+plantAction?.action!!+"\n content: "+content+"\n url: "+urlResponse.value)
+        Log.i(TAG,"\n plantId : "+plantId+"\n date: "+date+"\n kind : "+plantAction?.name_en!!+"\n content: "+content+"\n url: "+urlResponse.value)
         viewModelScope.launch {
-            val data = repository.postFeed(plantId!!, date, plantAction?.action!!, content, urlResponse.value)
+            val data = repository.postFeed(plantId!!, date, plantAction?.name_en!!, content, urlResponse.value)
             Log.i(TAG, "data -> $data")
             when (data.isSuccessful) {
                 true -> {
@@ -89,6 +97,19 @@ class FeedWriteViewModel @Inject constructor(
                 }
                 else -> {
                     Log.i(TAG,"FAIL-> ")
+                }
+            }
+        }
+    }
+
+    fun getActionList(){
+        viewModelScope.launch{
+            val data = repository.getAction()
+            Log.i(TAG,"action.data.body -> "+data.body())
+            when(data.isSuccessful){
+                true -> {
+                    plantAction = data.body()?.data?.get(0)
+                    _actionList.postValue(data.body()?.data!!)
                 }
             }
         }

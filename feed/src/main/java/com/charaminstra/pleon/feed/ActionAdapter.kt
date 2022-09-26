@@ -7,11 +7,12 @@ import com.bumptech.glide.Glide
 import com.charaminstra.pleon.common.ActionObject
 import com.charaminstra.pleon.common.ActionType
 import com.charaminstra.pleon.feed.databinding.ItemActionBinding
+import com.charaminstra.pleon.foundation.model.ActionData
 
 class ActionAdapter(): RecyclerView.Adapter<ActionViewHolder>() {
 
-    var viewItemList: List<ActionObject> = listOf()
-    var onItemClicked: (ActionType)-> Unit = {}
+    var viewItemList: List<ActionData> = listOf()
+    var onItemClicked: (ActionData)-> Unit = {}
 
     var selectedPosition = 0
 
@@ -30,16 +31,17 @@ class ActionAdapter(): RecyclerView.Adapter<ActionViewHolder>() {
             holder.binding.actionImg.isSelected = false
         }
         holder.itemView.setOnClickListener {
-                onItemClicked(item.actionType)
+//                onItemClicked(item.actionType)
+                onItemClicked(item)
                 notifyItemChanged(selectedPosition)
                 notifyItemChanged(position)
                 selectedPosition=position
         }
     }
 
-    fun refreshItems(viewItemList : List<ActionObject>) {
+    fun refreshItems(viewItemList : List<ActionData>) {
         this.viewItemList = viewItemList
-        //notifyDataSetChanged() // Andoid RecyclerView DiffUtil.
+        notifyDataSetChanged() // Andoid RecyclerView DiffUtil.
     }
 
 }

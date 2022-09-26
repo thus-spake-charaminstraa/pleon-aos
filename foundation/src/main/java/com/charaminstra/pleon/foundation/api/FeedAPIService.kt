@@ -39,8 +39,6 @@ interface FeedAPIService{
         @Path("id") id: String
     ): Response<FeedListResponse>
 
-//    @GET("feed")
-//    suspend fun getFeedIdAndDate(
-//
-//    )
+    @GET("feed/kind")
+    suspend fun getAction(): Response<ActionResponse>
 }
