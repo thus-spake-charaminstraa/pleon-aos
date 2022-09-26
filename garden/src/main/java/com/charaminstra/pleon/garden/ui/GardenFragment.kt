@@ -60,11 +60,6 @@ class GardenFragment : Fragment() {
         viewModel.plantsList.observe(viewLifecycleOwner, Observer {
             adapter.refreshItems(it)
         })
-//        plantsViewModel.plantsCount.observe(viewLifecycleOwner, Observer{
-//            if(it == 0) {
-//                binding.noPlantButton.visibility = View.VISIBLE
-//            }
-//        })
     }
 
     override fun onResume() {

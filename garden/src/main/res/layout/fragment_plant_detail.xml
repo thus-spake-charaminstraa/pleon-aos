@@ -263,12 +263,12 @@
                         android:layout_height="5dp"
                         android:layout_margin="1dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_dot_prune" />
+                        android:src="@drawable/ic_dot_nutrition" />
                     <TextView
                         android:layout_width="50dp"
                         android:gravity="center"
                         android:layout_height="wrap_content"
-                        android:text="@string/dot_prune"
+                        android:text="@string/dot_nutrition"
                         style="@style/CalendarLabelText"/>
                     <ImageView
                         android:id="@+id/dot5"
@@ -276,14 +276,14 @@
                         android:layout_height="5dp"
                         android:layout_margin="1dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_dot_fertilize" />
+                        android:src="@drawable/ic_dot_prune" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="10dp"
                         android:gravity="center"
                         android:layout_height="wrap_content"
-                        android:text="@string/dot_fertillize"
+                        android:text="@string/dot_prune"
                         style="@style/CalendarLabelText"/>
                     <ImageView
                         android:id="@+id/dot6"
@@ -291,14 +291,14 @@
                         android:layout_height="5dp"
                         android:layout_margin="1dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_dot_repot" />
+                        android:src="@drawable/ic_dot_etc" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="10dp"
                         android:gravity="center"
                         android:layout_height="wrap_content"
-                        android:text="@string/dot_repot"
+                        android:text="@string/dot_etc"
                         style="@style/CalendarLabelText"/>
                 </LinearLayout>
 

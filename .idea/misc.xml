@@ -212,6 +212,10 @@
         <entry key="garden/src/main/res/drawable/ic_btn_floating_add.xml" value="0.2345" />
         <entry key="garden/src/main/res/drawable/ic_btn_floating_add_press.xml" value="0.2345" />
         <entry key="garden/src/main/res/drawable/ic_dot_air.xml" value="0.1585" />
+        <entry key="garden/src/main/res/drawable/ic_dot_nutrition.xml" value="0.117" />
+        <entry key="garden/src/main/res/drawable/ic_dot_prune.xml" value="0.117" />
+        <entry key="garden/src/main/res/drawable/ic_dot_spray.xml" value="0.117" />
+        <entry key="garden/src/main/res/drawable/ic_dot_water.xml" value="0.117" />
         <entry key="garden/src/main/res/drawable/ic_left.xml" value="0.2745" />
         <entry key="garden/src/main/res/drawable/round_calendar_clickday.xml" value="0.1" />
         <entry key="garden/src/main/res/drawable/round_calendar_today.xml" value="0.171" />

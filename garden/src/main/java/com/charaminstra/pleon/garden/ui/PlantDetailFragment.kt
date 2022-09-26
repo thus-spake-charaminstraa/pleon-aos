@@ -1,4 +1,4 @@
-package com.charaminstra.pleon.garden
+package com.charaminstra.pleon.garden.ui
 
 import android.os.Bundle
 import android.util.Log
@@ -20,6 +20,8 @@ import com.charaminstra.pleon.calendar.MonthViewContainer
 import com.charaminstra.pleon.feed_common.FeedAdapter
 import com.charaminstra.pleon.garden.databinding.CalendarDayLayoutBinding
 import com.charaminstra.pleon.foundation.model.ScheduleDataObject
+import com.charaminstra.pleon.garden.PlantDetailViewModel
+import com.charaminstra.pleon.garden.R
 import com.charaminstra.pleon.garden.databinding.FragmentPlantDetailBinding
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
@@ -239,15 +241,15 @@ class PlantDetailFragment : Fragment() {
                                 } else if (k == "spray") {
                                     container.binding.dot3.visibility = View.VISIBLE
                                     container.binding.dot3.setImageResource(R.drawable.ic_dot_spray)
-                                } else if (k == "prune") {
+                                } else if (k == "nutrition") {
                                     container.binding.dot4.visibility = View.VISIBLE
-                                    container.binding.dot4.setImageResource(R.drawable.ic_dot_prune)
-                                } else if (k == "fertilize") {
+                                    container.binding.dot4.setImageResource(R.drawable.ic_dot_nutrition)
+                                } else if (k == "prune") {
                                     container.binding.dot5.visibility = View.VISIBLE
-                                    container.binding.dot5.setImageResource(R.drawable.ic_dot_fertilize)
-                                } else if (k == "repot") {
+                                    container.binding.dot5.setImageResource(R.drawable.ic_dot_prune)
+                                } else if (k == "etc") {
                                     container.binding.dot6.visibility = View.VISIBLE
-                                    container.binding.dot6.setImageResource(R.drawable.ic_dot_repot)
+                                    container.binding.dot6.setImageResource(R.drawable.ic_dot_etc)
                                 }
                             }
 

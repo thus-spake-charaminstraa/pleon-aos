@@ -14,7 +14,7 @@
     </fragment>
     <fragment
         android:id="@+id/plant_detail_fragment"
-        android:name="com.charaminstra.pleon.garden.PlantDetailFragment"
+        android:name="com.charaminstra.pleon.garden.ui.PlantDetailFragment"
         tools:layout="@layout/fragment_plant_detail">
         <action
             android:id="@+id/plant_detail_to_plant_edit_fragment"

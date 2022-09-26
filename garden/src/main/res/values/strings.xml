@@ -5,9 +5,9 @@
     <string name="dot_water">물</string>
     <string name="dot_air">통풍</string>
     <string name="dot_spray">분무</string>
+    <string name="dot_nutrition">영양제</string>
     <string name="dot_prune">가지치기</string>
-    <string name="dot_fertillize">영양제</string>
-    <string name="dot_repot">분갈이</string>
+    <string name="dot_etc">기타</string>
 
     <string name="plant_detail_title">상세정보</string>
 
