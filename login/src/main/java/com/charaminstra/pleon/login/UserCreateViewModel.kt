@@ -1,5 +1,6 @@
 package com.charaminstra.pleon.login
 
+import android.content.ContentValues
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -26,8 +27,24 @@ class UserCreateViewModel @Inject constructor(private val repository: UserReposi
                     prefs.setAccessToken(data.body()?.data?.token?.access_token)
                     prefs.setRefreshToken(data.body()?.data?.token?.refresh_token)
                     prefs.setName(data.body()?.data?.user?.nickname)
+                    postDeviceToken()
                 }
                 else -> {
+                }
+            }
+        }
+    }
+
+    fun postDeviceToken(){
+        viewModelScope.launch {
+            val data = repository.postDeviceToken()
+            Log.i(ContentValues.TAG,"post device token -> "+data.body())
+            when (data.isSuccessful) {
+                true -> {
+                    Log.i(ContentValues.TAG,"SUCCESS -> $data")
+                }
+                else -> {
+                    Log.i(ContentValues.TAG,"FAIL -> $data")
                 }
             }
         }

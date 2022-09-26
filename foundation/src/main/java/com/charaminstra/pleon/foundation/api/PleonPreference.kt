@@ -11,7 +11,8 @@ const val ACCESS_KEY = "access"
 const val REFRESH_KEY = "refresh"
 const val DEFAULT = "default"
 const val NAME = "name"
-const val IMAGE_URL = "url"
+
+const val DEVICE_KEY = "device"
 
 class PleonPreference @Inject constructor(@ApplicationContext context : Context){
 
@@ -45,6 +46,14 @@ class PleonPreference @Inject constructor(@ApplicationContext context : Context)
     }
     fun getRefreshToken(): String {
         return "Bearer "+prefs.getString(REFRESH_KEY, DEFAULT).toString()
+    }
+
+    fun setDeviceToken(str: String?) {
+        prefs.edit().putString(DEVICE_KEY, str).apply()
+        Log.d(DEVICE_KEY, "token set : "+ getDeviceToken() )
+    }
+    fun getDeviceToken(): String {
+        return "Bearer "+prefs.getString(DEVICE_KEY, DEFAULT).toString()
     }
 
     fun delete() {

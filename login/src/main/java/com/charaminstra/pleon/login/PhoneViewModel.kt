@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.charaminstra.pleon.foundation.AuthRepository
+import com.charaminstra.pleon.foundation.UserRepository
 import com.charaminstra.pleon.foundation.api.PleonPreference
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -16,7 +17,12 @@ const val CODE_TAG = "sms view model : code"
 const val LOGIN_TAG = "sms view model : login"
 
 @HiltViewModel
-class PhoneViewModel @Inject constructor(private val repository: AuthRepository, private val prefs: PleonPreference) : ViewModel() {
+class PhoneViewModel @Inject constructor(
+    private val repository: AuthRepository,
+    private val userRepository: UserRepository,
+    private val prefs: PleonPreference) : ViewModel() {
+
+    private val TAG = javaClass.name
 
     private var _phoneResponse = MutableLiveData<Boolean>()
     val phoneResponse : LiveData<Boolean> = _phoneResponse
@@ -79,9 +85,25 @@ class PhoneViewModel @Inject constructor(private val repository: AuthRepository,
                     prefs.setRefreshToken(data.body()?.data?.token?.refresh_token)
                     prefs.setAccessToken(data.body()?.data?.token?.access_token)
                     prefs.setName(data.body()?.data?.user?.nickname)
+                    postDeviceToken()
                 }
                 else -> {
                     Log.i(LOGIN_TAG,"FAIL -> $data")
+                }
+            }
+        }
+    }
+
+    private fun postDeviceToken(){
+        viewModelScope.launch {
+            val data = userRepository.postDeviceToken()
+            Log.i(TAG,"post device token -> "+data.body())
+            when (data.isSuccessful) {
+                true -> {
+                    Log.i(TAG,"SUCCESS -> $data")
+                }
+                else -> {
+                    Log.i(TAG,"FAIL -> $data")
                 }
             }
         }

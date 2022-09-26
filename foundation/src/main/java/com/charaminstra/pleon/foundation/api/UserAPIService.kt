@@ -20,12 +20,8 @@ interface UserAPIService{
 
     @POST("user/token")
     suspend fun postDeviceToken(
-        @Header("Authorization") deviceToken:String,
+        @Header("Authorization") accessToken:String,
         @Body deviceTokenRequestBody:DeviceTokenRequestBody
     ): Response<AuthResponse>
 
-    //    @GET("user")
-//    suspend fun getUserData(
-//        @Header("Authorization") verifyToken:String
-//    ): Response<UserDataResponse>
 }

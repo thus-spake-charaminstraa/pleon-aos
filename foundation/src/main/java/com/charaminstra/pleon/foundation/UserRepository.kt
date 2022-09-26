@@ -19,7 +19,7 @@ class UserRepository @Inject constructor(private val service: UserAPIService, pr
     suspend fun patchUserData(name: String, thumbnail: String)
     = service.patchUserData(prefs.getAccessToken(),UserRequestBody(name,thumbnail))
 
-    suspend fun postDeviceToken(deviceToken:String) = service.postDeviceToken(prefs.getAccessToken(),
-        DeviceTokenRequestBody(deviceToken)
+    suspend fun postDeviceToken() = service.postDeviceToken(prefs.getAccessToken(),
+        DeviceTokenRequestBody(prefs.getDeviceToken())
     )
 }
