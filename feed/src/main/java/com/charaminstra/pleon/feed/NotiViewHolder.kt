@@ -14,7 +14,7 @@ class NotiViewHolder (private val binding: ItemNotiBinding): RecyclerView.ViewHo
             onClickNoti(item.id, NOTI_LATER)
         }
         binding.notiCompleteBtn.setOnClickListener {
-            onClickNoti(item.id, NOTI_LATER)
+            onClickNoti(item.id, NOTI_COMPLETE)
         }
     }
 }

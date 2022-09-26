@@ -83,6 +83,7 @@ class FeedViewModel @Inject constructor(
     fun postNotiClick(notiId: String, type: String){
         viewModelScope.launch {
             val data = notiRepository.postNotiAction(notiId, type)
+            Log.i(TAG,"postnoticlick -> "+ notiId+"\n"+type)
             Log.i(TAG,"postnoticlick -> "+ data.body().toString())
             when (data.isSuccessful) {
                 true -> {
