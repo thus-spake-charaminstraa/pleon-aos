@@ -3,6 +3,7 @@ package com.charaminstra.pleon
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.charaminstra.pleon.databinding.ActivityHomeBinding
@@ -24,23 +25,11 @@ class HomeActivity : AppCompatActivity() {
         binding.bottomNavigation.itemIconTintList = null
 
         binding.bottomNavigation.setOnItemReselectedListener {  item ->
-            when (item.itemId) {
-                R.id.nav_feed -> {
-
-                }
-                R.id.chat -> {
-
-                }
-                R.id.doctor -> {
-
-                }
-                R.id.nav_garden -> {
-                    navController.navigate(R.id.nav_garden_init)
-                }
-                R.id.nav_my -> {
-
-                }
-            }
+            // 내비게이션의 startDestination
+            val navOptions = NavOptions.Builder()
+                .setPopUpTo(item.itemId, inclusive = true)
+                .build()
+            navController.navigate(item.itemId, null, navOptions)
         }
     }
 }
