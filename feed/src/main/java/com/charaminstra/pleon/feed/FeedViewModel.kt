@@ -20,8 +20,11 @@ class FeedViewModel @Inject constructor(
 ) : ViewModel() {
     private val TAG = javaClass.name
 
-    private val _feedList = MutableLiveData<List<ResultObject>>()
-    val feedList : LiveData<List<ResultObject>> = _feedList
+    private val _feedAllList = MutableLiveData<List<ResultObject>>()
+    val feedAllList : LiveData<List<ResultObject>> = _feedAllList
+
+    private val _feedFilterList = MutableLiveData<List<ResultObject>>()
+    val feedFilterList : LiveData<List<ResultObject>> = _feedFilterList
 
     private val _notiList = MutableLiveData<List<NotiData>>()
     val notiList : LiveData<List<NotiData>> = _notiList
@@ -29,19 +32,30 @@ class FeedViewModel @Inject constructor(
     private val _feedCount = MutableLiveData<Int>()
     val feedCount : LiveData<Int> = _feedCount
 
-//    private val _notiClickSuccess = MutableLiveData<Boolean>()
-//    val notiClickSuccess : LiveData<Boolean> = _notiClickSuccess
+    fun getFeedAllList(){
+        viewModelScope.launch {
+            val data = feedRepository.getOnlyFeed2(null, null)
+            when (data.isSuccessful) {
+                true -> {
+                    _feedAllList.postValue(data.body()?.data?.result)
+                    _feedCount.postValue(data.body()?.data?.result?.size)
+                    Log.i(TAG,"SUCCESS -> "+ data.body().toString())
+                }
+                else -> {
+                    Log.i(TAG,"FAIL -> "+ data.body().toString())
+                }
+            }
 
-//    var offset: Int = 0
+        }
+    }
 
-    fun getFeedList(plantId: String?){
+    fun getFeedFilterList(plantId: String?){
         viewModelScope.launch {
             val data = feedRepository.getOnlyFeed2(null, plantId)
             //val data = feedRepository.getFeedList(plant_Id)
             when (data.isSuccessful) {
                 true -> {
-                    _feedList.postValue(data.body()?.data?.result)
-                    _feedCount.postValue(data.body()?.data?.result?.size)
+                    _feedFilterList.postValue(data.body()?.data?.result)
                     Log.i(TAG,"SUCCESS -> "+ data.body().toString())
                 }
                 else -> {
@@ -69,10 +83,11 @@ class FeedViewModel @Inject constructor(
     fun postNotiClick(notiId: String, type: String){
         viewModelScope.launch {
             val data = notiRepository.postNotiAction(notiId, type)
+            Log.i(TAG,"postnoticlick -> "+ data.body().toString())
             when (data.isSuccessful) {
                 true -> {
                     getNotiList()
-                    getFeedList(null)
+                    getFeedAllList()
                     Log.i(TAG,"SUCCESS -> "+ data.body().toString())
                 }
                 else -> {

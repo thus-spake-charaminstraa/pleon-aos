@@ -159,9 +159,6 @@ class FeedWriteFragment : Fragment() {
             feedWriteViewModel.plantId = Id
             feedWriteViewModel.getPlantName()
         }
-        //test
-        //binding.feedWriteActionTagTv.text= resources.getString(com.charaminstra.pleon.feed_common.R.string.action_tag) + "오늘의모습"
-        //feedWriteViewModel.plantAction = ActionType.오늘의모습
         action_adapter = ActionAdapter()
         action_adapter.onItemClicked = { actionType ->
             feedWriteViewModel.plantAction = actionType
@@ -169,22 +166,6 @@ class FeedWriteFragment : Fragment() {
             binding.feedWriteActionTagTv.text= resources.getString(com.charaminstra.pleon.feed_common.R.string.action_tag) + feedWriteViewModel.plantAction!!.name_kr
         }
         feedWriteViewModel.getActionList()
-       // action_adapter.refreshItems(
-//            feedWriteViewModel.actionList
-//            listOf(
-//                ActionObject(ActionType.오늘의모습, R.drawable.ic_today),
-//                ActionObject(ActionType.물, R.drawable.ic_water),
-//                ActionObject(ActionType.통풍, R.drawable.ic_air),
-//                ActionObject(ActionType.분무, R.drawable.ic_spray),
-//                ActionObject(ActionType.분갈이, R.drawable.ic_repot),
-//                ActionObject(ActionType.가지치기, R.drawable.ic_prune),
-//                ActionObject(ActionType.잎, R.drawable.ic_leaf),
-//                ActionObject(ActionType.꽃, R.drawable.ic_flower),
-//                ActionObject(ActionType.영양제, R.drawable.ic_nutrition),
-//                ActionObject(ActionType.열매, R.drawable.ic_fruit),
-//                ActionObject(ActionType.기타, R.drawable.ic_etc)
-//            )
-  //      )
     }
 
     private fun observeViewModel() {

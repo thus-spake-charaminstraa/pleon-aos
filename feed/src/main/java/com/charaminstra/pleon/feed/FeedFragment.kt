@@ -73,7 +73,7 @@ class FeedFragment : Fragment() {
         super.onResume()
         //viewmodel update
         plantsViewModel.loadData()
-        feedViewModel.getFeedList(null)
+        feedViewModel.getFeedAllList()
         feedViewModel.getNotiList()
     }
 
@@ -81,8 +81,7 @@ class FeedFragment : Fragment() {
         feedPlantAdapter = FeedPlantAdapter()
         feedPlantAdapter.selectedPosition = -1
         feedPlantAdapter.onItemClicked = { plantId ->
-            binding.allFilter.isSelected=false
-            feedViewModel.getFeedList(plantId)
+            feedViewModel.getFeedFilterList(plantId)
         }
         feedAdapter = com.charaminstra.pleon.feed_common.FeedAdapter()
         notiAdapter = NotiAdapter()
@@ -106,9 +105,7 @@ class FeedFragment : Fragment() {
 
     private fun initListeners(){
         binding.allFilter.setOnClickListener {
-            binding.allFilter.isSelected=true
-            feedPlantAdapter.refreshClick()
-            feedViewModel.getFeedList(null)
+            feedViewModel.getFeedAllList()
         }
     }
 
@@ -116,7 +113,13 @@ class FeedFragment : Fragment() {
         plantsViewModel.plantsList.observe(viewLifecycleOwner, Observer {
             feedPlantAdapter.refreshItems(it)
         })
-        feedViewModel.feedList.observe(viewLifecycleOwner, Observer {
+        feedViewModel.feedAllList.observe(viewLifecycleOwner, Observer {
+            binding.allFilter.isSelected=true
+            feedPlantAdapter.refreshClick()
+            feedAdapter.refreshItems(it)
+        })
+        feedViewModel.feedFilterList.observe(viewLifecycleOwner, Observer {
+            binding.allFilter.isSelected=false
             feedAdapter.refreshItems(it)
         })
         feedViewModel.notiList.observe(viewLifecycleOwner, Observer {
