@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.charaminstra.pleon.foundation.FeedRepository
 import com.charaminstra.pleon.foundation.NotiRepository
 import com.charaminstra.pleon.foundation.model.NotiData
+import com.charaminstra.pleon.foundation.model.NotiViewTypeData
 import com.charaminstra.pleon.foundation.model.ResultObject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -26,8 +27,8 @@ class FeedViewModel @Inject constructor(
     private val _feedFilterList = MutableLiveData<List<ResultObject>>()
     val feedFilterList : LiveData<List<ResultObject>> = _feedFilterList
 
-    private val _notiList = MutableLiveData<List<NotiData>>()
-    val notiList : LiveData<List<NotiData>> = _notiList
+    private val _notiList = MutableLiveData<List<NotiViewTypeData>>()
+    val notiList : LiveData<List<NotiViewTypeData>> = _notiList
 
     private val _feedCount = MutableLiveData<Int>()
     val feedCount : LiveData<Int> = _feedCount

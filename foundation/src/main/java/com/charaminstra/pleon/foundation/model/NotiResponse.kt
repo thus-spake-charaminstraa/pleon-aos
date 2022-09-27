@@ -7,16 +7,19 @@ data class NotiResponse(
 )
 
 data class NotiListResponse(
-    val data: List<NotiData>,
+    val data: List<NotiViewTypeData>,
     val statusCode: Int?,
     val success: Boolean?
+)
+
+data class NotiViewTypeData(
+    val viewType: String,
+    val viewObject: NotiData
 )
 
 data class NotiData(
     val id: String,
     val content: String?,
-    val image_url: String?,
     val kind: String?,
     val plant_id: String?,
-    val publish_date: String?
 )

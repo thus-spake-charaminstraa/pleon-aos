@@ -197,7 +197,9 @@
         <entry key="feed/src/main/res/layout/fragment_feed.xml" value="0.20102651839178784" />
         <entry key="feed/src/main/res/layout/fragment_feed_write.xml" value="0.29836829836829837" />
         <entry key="feed/src/main/res/layout/item_action.xml" value="0.1" />
+        <entry key="feed/src/main/res/layout/item_default_noti.xml" value="0.17028985507246377" />
         <entry key="feed/src/main/res/layout/item_noti.xml" value="0.1" />
+        <entry key="feed/src/main/res/layout/item_one_btn_noti.xml" value="0.375" />
         <entry key="feed/src/main/res/layout/item_plant.xml" value="0.5421052631578948" />
         <entry key="feed/src/main/res/layout/item_plant_feed.xml" value="0.7513399705819205" />
         <entry key="feed/src/main/res/layout/item_plant_filter.xml" value="0.1" />

@@ -3,6 +3,7 @@
     <string name="feed_fragment_all_filter">all</string>
     <string name="noti_later_btn">Later</string>
     <string name="noti_complete_btn">Complete!</string>
+    <string name="noti_go_btn">GO!</string>
     <string name="from_pleon">From. PLeon</string>
 
     <string name="bottome_sheet_plant">식물 이름</string>

@@ -14,6 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.charaminstra.pleon.common.PlantsViewModel
 import com.charaminstra.pleon.feed.databinding.FragmentFeedBinding
+import com.charaminstra.pleon.feed.noti.NOTI_COMPLETE
+import com.charaminstra.pleon.feed.noti.NOTI_LATER
+import com.charaminstra.pleon.feed.noti.NotiAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

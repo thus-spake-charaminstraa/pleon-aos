@@ -1,14 +1,14 @@
-package com.charaminstra.pleon.feed
+package com.charaminstra.pleon.feed.noti
 
-import androidx.recyclerview.widget.RecyclerView
-import com.charaminstra.pleon.feed.databinding.ItemNotiBinding
+
+import com.charaminstra.pleon.feed.databinding.ItemTwoBtnNotiBinding
 import com.charaminstra.pleon.foundation.model.NotiData
 
 const val NOTI_LATER = "noti_later"
 const val NOTI_COMPLETE = "noti_complete"
 
-class NotiViewHolder (private val binding: ItemNotiBinding): RecyclerView.ViewHolder(binding.root) {
-    fun bind(item: NotiData, onClickNoti: (String, String) -> Unit) {
+class TwoBtnNotiViewHolder (private val binding: ItemTwoBtnNotiBinding): NotiCommonViewHolder(binding) {
+    override fun bind(item: NotiData, onClickNoti: (String, String) -> Unit) {
         binding.notiTv.text = item.content
         binding.notiLaterBtn.setOnClickListener {
             onClickNoti(item.id, NOTI_LATER)
