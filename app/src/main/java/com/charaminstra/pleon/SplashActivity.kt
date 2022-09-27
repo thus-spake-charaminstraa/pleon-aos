@@ -6,13 +6,13 @@ import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import com.charaminstra.pleon.foundation.api.DEFAULT
 import com.charaminstra.pleon.foundation.api.PleonPreference
 import com.charaminstra.pleon.login.startHomeActivity
 import com.charaminstra.pleon.login.ui.LoginActivity
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class SplashActivity : AppCompatActivity() {

@@ -63,4 +63,7 @@ dependencies {
     //nav
     api 'androidx.navigation:navigation-fragment-ktx:2.5.0'
     api 'androidx.navigation:navigation-ui-ktx:2.5.0'
+
+    //analytics
+    api 'com.google.firebase:firebase-analytics:17.2.1'
 }

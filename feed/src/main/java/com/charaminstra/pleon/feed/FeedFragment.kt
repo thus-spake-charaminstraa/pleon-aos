@@ -17,6 +17,7 @@ import com.charaminstra.pleon.feed.databinding.FragmentFeedBinding
 import com.charaminstra.pleon.feed.noti.NOTI_COMPLETE
 import com.charaminstra.pleon.feed.noti.NOTI_LATER
 import com.charaminstra.pleon.feed.noti.NotiAdapter
+import com.google.firebase.analytics.FirebaseAnalytics
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -31,11 +32,17 @@ class FeedFragment : Fragment() {
     private val feedViewModel: FeedViewModel by viewModels()
     val pageSnap= PagerSnapHelper()
 
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
     lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        firebaseAnalytics= FirebaseAnalytics.getInstance(requireContext())
+
+        val bundle = Bundle()
+        bundle.putString(FirebaseAnalytics.Param.METHOD," feed Fragment ")
+        firebaseAnalytics?.logEvent("FEED", bundle)
     }
 
     override fun onCreateView(

@@ -19,6 +19,7 @@ import com.charaminstra.pleon.login.databinding.FragmentPhoneBinding
 import com.charaminstra.pleon.common.showKeyboard
 import com.charaminstra.pleon.common_ui.ErrorToast
 import com.charaminstra.pleon.login.startHomeActivity
+import com.google.firebase.analytics.FirebaseAnalytics
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
