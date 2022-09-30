@@ -263,6 +263,8 @@
         <entry key="plant-register/src/main/res/layout/activity_plant_register.xml" value="0.1" />
         <entry key="plant-register/src/main/res/layout/fragment_plant_adopt.xml" value="0.1" />
         <entry key="plant-register/src/main/res/layout/fragment_plant_air.xml" value="0.2600732600732601" />
+        <entry key="plant-register/src/main/res/layout/fragment_plant_detection_result.xml" value="0.1320754716981132" />
+        <entry key="plant-register/src/main/res/layout/fragment_plant_detection_waiting.xml" value="0.12280701754385964" />
         <entry key="plant-register/src/main/res/layout/fragment_plant_light.xml" value="0.19707386551271888" />
         <entry key="plant-register/src/main/res/layout/fragment_plant_name.xml" value="0.1" />
         <entry key="plant-register/src/main/res/layout/fragment_plant_register.xml" value="0.25" />
@@ -270,6 +272,7 @@
         <entry key="plant-register/src/main/res/layout/fragment_plant_species.xml" value="0.3180437932248976" />
         <entry key="plant-register/src/main/res/layout/fragment_plant_thumbnail.xml" value="0.21421966552734378" />
         <entry key="plant-register/src/main/res/layout/item_plant_search.xml" value="0.10833333333333334" />
+        <entry key="plant-register/src/main/res/layout/plant_detection_waiting_fragment.xml" value="0.19882246376811594" />
         <entry key="plant-register/src/main/res/menu/air_menu.xml" value="0.1" />
         <entry key="plant-register/src/main/res/menu/bright_menu.xml" value="0.1" />
         <entry key="plant-register/src/main/res/menu/image_menu.xml" value="0.1" />

@@ -66,7 +66,6 @@
         android:inputType="textNoSuggestions"
         android:hint="@string/plant_species_fragment_hint" />
     <TextView
-        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
@@ -81,7 +80,6 @@
         android:text="@string/plant_species_fragment_image_search_help" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:visibility="gone"
         android:id="@+id/image_search_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

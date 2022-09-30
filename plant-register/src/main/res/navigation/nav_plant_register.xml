@@ -22,6 +22,29 @@
             android:id="@+id/plant_species_fragment_to_plant_name_fragment"
             app:destination="@id/plant_name_fragment">
         </action>
+        <action
+            android:id="@+id/plant_species_fragment_to_plant_detection_waiting_fragment"
+            app:destination="@id/plant_detection_waiting_fragment">
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/plant_detection_waiting_fragment"
+        android:name="com.charaminstra.pleon.plant_register.ui.PlantDetectionWaitingFragment"
+        tools:layout="@layout/fragment_plant_detection_waiting">
+        <action
+            android:id="@+id/plant_species_fragment_to_plant_detection_result_fragment"
+            app:destination="@id/plant_detection_result_fragment">
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/plant_detection_result_fragment"
+        android:name="com.charaminstra.pleon.plant_register.ui.PlantDetectionResultFragment"
+        tools:layout="@layout/fragment_plant_detection_result">
+        <action
+            android:id="@+id/plant_detection_result_return"
+            app:popUpTo="@+id/plant_species_fragment"
+            app:destination="@+id/plant_species_fragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/plant_name_fragment"

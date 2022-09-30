@@ -39,6 +39,10 @@ class PlantSpeciesFragment : Fragment() {
             navController.popBackStack()
         }
 
+        binding.imageSearchButton.setOnClickListener {
+            navController.navigate(R.id.plant_species_fragment_to_plant_detection_waiting_fragment)
+        }
+
         initList()
         observeViewModel()
         searchViewModel.getPlantSpecies()
