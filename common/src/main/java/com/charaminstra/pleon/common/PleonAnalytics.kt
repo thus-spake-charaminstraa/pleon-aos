@@ -35,3 +35,6 @@ const val ACCOUNT_REGISTER_CLICK = "new_user_register_btn_click"
 //plant register
 const val PLANT_THUMBNAIL_VIEW = "plant_thumbnail_view"
 const val PLANT_REGISTER_CLICK = "plant_register_btn_click"
+
+//my fragment
+const val LOGOUT_BTN_CLICK = "logout_btn_click"

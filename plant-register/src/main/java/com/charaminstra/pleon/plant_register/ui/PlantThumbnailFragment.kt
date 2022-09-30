@@ -37,6 +37,8 @@ class PlantThumbnailFragment : Fragment() {
         /*카메라권한요청*/
         RequestPermission.requestPermission(requireActivity())
 
+        firebaseAnalytics= FirebaseAnalytics.getInstance(requireContext())
+
         // logging
         val loggingBundle = Bundle()
         loggingBundle.putString(CLASS_NAME, TAG)
