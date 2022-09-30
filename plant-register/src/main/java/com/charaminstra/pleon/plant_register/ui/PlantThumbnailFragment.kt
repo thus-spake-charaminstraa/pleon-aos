@@ -19,9 +19,13 @@ import com.charaminstra.pleon.common_ui.*
 import com.charaminstra.pleon.plant_register.PlantRegisterViewModel
 import com.charaminstra.pleon.plant_register.R
 import com.charaminstra.pleon.plant_register.databinding.FragmentPlantThumbnailBinding
+import com.google.firebase.analytics.FirebaseAnalytics
 import java.io.FileInputStream
 
 class PlantThumbnailFragment : Fragment() {
+    private val TAG = javaClass.name
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
+
     private lateinit var binding: FragmentPlantThumbnailBinding
     private val viewModel: PlantRegisterViewModel by activityViewModels()
 
@@ -32,6 +36,11 @@ class PlantThumbnailFragment : Fragment() {
         super.onCreate(savedInstanceState)
         /*카메라권한요청*/
         RequestPermission.requestPermission(requireActivity())
+
+        // logging
+        val loggingBundle = Bundle()
+        loggingBundle.putString(CLASS_NAME, TAG)
+        firebaseAnalytics.logEvent(PLANT_THUMBNAIL_VIEW , loggingBundle)
     }
 
     override fun onCreateView(

@@ -10,13 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.charaminstra.pleon.common_ui.ErrorToast
 import com.charaminstra.pleon.common.AirType
+import com.charaminstra.pleon.common.CLASS_NAME
+import com.charaminstra.pleon.common.FEED_ITEM_CLICK
+import com.charaminstra.pleon.common.PLANT_REGISTER_CLICK
 import com.charaminstra.pleon.plant_register.PlantRegisterViewModel
 import com.charaminstra.pleon.plant_register.R
 import com.charaminstra.pleon.plant_register.databinding.FragmentPlantAirBinding
+import com.google.firebase.analytics.FirebaseAnalytics
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class PlantAirFragment : Fragment() {
+    private val TAG = javaClass.name
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
+
     private val viewModel: PlantRegisterViewModel by activityViewModels()
     private lateinit var binding: FragmentPlantAirBinding
     private var isChecking: Boolean = false
@@ -24,6 +31,8 @@ class PlantAirFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= FragmentPlantAirBinding.inflate(layoutInflater)
+
+        firebaseAnalytics= FirebaseAnalytics.getInstance(requireContext())
     }
 
     override fun onCreateView(
@@ -42,6 +51,11 @@ class PlantAirFragment : Fragment() {
                 ErrorToast(requireContext()).showMsg(resources.getString(R.string.plant_air_fragment_error),binding.airThreeBtn.y+binding.airThreeBtn.height)
             }else{
                 viewModel.postPlant()
+
+                // logging
+                val loggingBundle = Bundle()
+                loggingBundle.putString(CLASS_NAME, TAG)
+                firebaseAnalytics.logEvent(PLANT_REGISTER_CLICK , loggingBundle)
             }
         }
         return binding.root
