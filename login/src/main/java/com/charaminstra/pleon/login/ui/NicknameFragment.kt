@@ -19,10 +19,14 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.charaminstra.pleon.common.ACCOUNT_REGISTER_CLICK
+import com.charaminstra.pleon.common.CLASS_NAME
+import com.charaminstra.pleon.common.PLANT_ITEM_CLICK
 import com.charaminstra.pleon.common.showKeyboard
 import com.charaminstra.pleon.login.R
 import com.charaminstra.pleon.login.UserCreateViewModel
 import com.charaminstra.pleon.login.databinding.FragmentNicknameBinding
+import com.google.firebase.analytics.FirebaseAnalytics
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
@@ -33,12 +37,17 @@ const val FROM_LOGIN_TO_PLANT_REGISTER = 1001
 @AndroidEntryPoint
 class NicknameFragment : Fragment() {
     private val TAG = javaClass.simpleName
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
+
     private lateinit var binding : FragmentNicknameBinding
     private val viewModel: UserCreateViewModel by viewModels()
     private lateinit var navController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = FragmentNicknameBinding.inflate(layoutInflater)
+
+        firebaseAnalytics= FirebaseAnalytics.getInstance(requireContext())
+
         /* auto keyboard set*/
         showKeyboard(binding.nicknameEt,requireContext())
         binding.nicknameEt.requestFocus()
@@ -69,6 +78,11 @@ class NicknameFragment : Fragment() {
     private fun initListeners(){
         binding.nicknameRegisterBtn.setOnClickListener {
             viewModel.userCreate(binding.nicknameEt.text.toString())
+
+            // logging
+            val loggingBundle = Bundle()
+            loggingBundle.putString(CLASS_NAME, TAG)
+            firebaseAnalytics.logEvent(ACCOUNT_REGISTER_CLICK ,loggingBundle)
         }
     }
 

@@ -28,3 +28,6 @@ const val PLANT_ITEM_CLICK = "plant_item_click"
 
 //plant detail fragment
 const val CALENDAR_ITEM_CLICK = "calendar_item_click"
+
+//nick name fragment
+const val ACCOUNT_REGISTER_CLICK = "new_user_register_btn_click"
