@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.charaminstra.pleon.common.CLASS_NAME
 import com.charaminstra.pleon.common.LOGOUT_BTN_CLICK
+import com.charaminstra.pleon.common.MY_VIEW
 import com.charaminstra.pleon.common.PLANT_REGISTER_CLICK
 import com.charaminstra.pleon.my.databinding.FragmentMyBinding
 import com.google.firebase.analytics.FirebaseAnalytics
@@ -29,6 +30,11 @@ class MyFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         firebaseAnalytics= FirebaseAnalytics.getInstance(requireContext())
+
+        // logging
+        val loggingBundle = Bundle()
+        loggingBundle.putString(CLASS_NAME, TAG)
+        firebaseAnalytics.logEvent(MY_VIEW , loggingBundle)
     }
 
     override fun onCreateView(

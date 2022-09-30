@@ -37,4 +37,5 @@ const val PLANT_THUMBNAIL_VIEW = "plant_thumbnail_view"
 const val PLANT_REGISTER_CLICK = "plant_register_btn_click"
 
 //my fragment
+const val MY_VIEW = "my_view"
 const val LOGOUT_BTN_CLICK = "logout_btn_click"
