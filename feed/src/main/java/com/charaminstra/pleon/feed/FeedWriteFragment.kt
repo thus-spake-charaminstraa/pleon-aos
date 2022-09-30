@@ -25,6 +25,7 @@ import com.charaminstra.pleon.common_ui.PLeonDatePicker
 import com.charaminstra.pleon.common_ui.PopUpImageMenu
 import com.charaminstra.pleon.feed.databinding.FragmentFeedWriteBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.firebase.analytics.FirebaseAnalytics
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.FileInputStream
 import java.util.*
@@ -40,12 +41,13 @@ class FeedWriteFragment : Fragment() {
     private lateinit var action_adapter: ActionAdapter
     private val cal = Calendar.getInstance()
     private lateinit var sheetBehavior : BottomSheetBehavior<View>
-    private lateinit var permissionMsg: ErrorToast
     lateinit var photoFile: PLeonImageFile
 
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        firebaseAnalytics= FirebaseAnalytics.getInstance(requireContext())
         binding = FragmentFeedWriteBinding.inflate(layoutInflater)
         binding.feedWriteBackBtn.setOnClickListener {
             navController.popBackStack()
@@ -104,6 +106,11 @@ class FeedWriteFragment : Fragment() {
                 DateUtils(requireContext()).viewToSendServer(binding.feedWriteDate.text.toString()),
                 binding.feedWriteContent.text.toString()
             )
+
+            // logging
+            val bundle = Bundle()
+            bundle.putString(CLASS_NAME, TAG)
+            firebaseAnalytics.logEvent(FEED_WRITE_COMPLETE_BTN_CLICK, bundle)
         }
         return binding.root
     }
@@ -134,6 +141,11 @@ class FeedWriteFragment : Fragment() {
     }
     val SOCL : View.OnClickListener = object : View.OnClickListener {
         override fun onClick(p0: View?) {
+            // logging
+            val bundle = Bundle()
+            bundle.putString(CLASS_NAME, TAG)
+            firebaseAnalytics.logEvent(BOTTOM_SHEET_UP, bundle)
+
             hideKeyboard(binding.feedWriteContent, requireContext())
             sheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
         }
@@ -149,6 +161,11 @@ class FeedWriteFragment : Fragment() {
         binding.bottomSheet.nextBtn.setOnClickListener {
             sheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
             showKeyboard(binding.feedWriteContent)
+
+            // logging
+            val bundle = Bundle()
+            bundle.putString(CLASS_NAME, TAG)
+            firebaseAnalytics.logEvent(BOTTOM_SHEET_NEXT_BTN_CLICK, bundle)
         }
     }
 
