@@ -107,6 +107,11 @@ class FeedFragment : Fragment() {
             val bundle = Bundle()
             bundle.putString("id", Id)
             navController.navigate(R.id.feed_fragment_to_feed_detail_fragment, bundle)
+
+            // logging
+            val loggingBundle = Bundle()
+            loggingBundle.putString(CLASS_NAME, TAG)
+            firebaseAnalytics.logEvent(FEED_ITEM_CLICK , loggingBundle)
         }
         notiAdapter.onClickNoti = { notiId, button ->
             when(button){

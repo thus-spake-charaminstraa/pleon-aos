@@ -17,12 +17,16 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.charaminstra.pleon.calendar.MonthViewContainer
+import com.charaminstra.pleon.common.CALENDAR_ITEM_CLICK
+import com.charaminstra.pleon.common.CLASS_NAME
+import com.charaminstra.pleon.common.FEED_ITEM_CLICK
 import com.charaminstra.pleon.feed_common.FeedAdapter
 import com.charaminstra.pleon.garden.databinding.CalendarDayLayoutBinding
 import com.charaminstra.pleon.foundation.model.ScheduleDataObject
 import com.charaminstra.pleon.garden.PlantDetailViewModel
 import com.charaminstra.pleon.garden.R
 import com.charaminstra.pleon.garden.databinding.FragmentPlantDetailBinding
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
 import com.kizitonwose.calendarview.model.DayOwner
@@ -45,8 +49,11 @@ import java.util.*
 @AndroidEntryPoint
 class PlantDetailFragment : Fragment() {
     private val TAG = javaClass.name
-    private val today = LocalDate.now()
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
+
     private val viewModel: PlantDetailViewModel by viewModels()
+
+    private val today = LocalDate.now()
     private lateinit var feedAdapter: FeedAdapter
     private lateinit var binding : FragmentPlantDetailBinding
     private var selectedDate: LocalDate? = null
@@ -56,6 +63,8 @@ class PlantDetailFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        firebaseAnalytics= FirebaseAnalytics.getInstance(requireContext())
+
         dateFormat = SimpleDateFormat(resources.getString(com.charaminstra.pleon.common_ui.R.string.date_send_format))
         navController = this.findNavController()
         binding = FragmentPlantDetailBinding.inflate(layoutInflater)
@@ -138,9 +147,8 @@ class PlantDetailFragment : Fragment() {
         binding.calendarView.monthScrollListener = { month ->
             val title = "${monthTitleFormatter.format(month.yearMonth)} ${month.yearMonth.year}"
             Log.i(TAG,"get schedule"+month.yearMonth.year +"년"+ month.yearMonth.monthValue+"월")
-           viewModel.getSchedule(month.yearMonth.year,month.yearMonth.monthValue)
+            viewModel.getSchedule(month.yearMonth.year,month.yearMonth.monthValue)
             binding.calendarMonth.text = title
-
         }
         setCalendarView()
 
@@ -154,11 +162,16 @@ class PlantDetailFragment : Fragment() {
     }
 
     private fun initList() {
-        feedAdapter = com.charaminstra.pleon.feed_common.FeedAdapter()
+        feedAdapter = FeedAdapter()
         feedAdapter.onClickFeed = { feedId ->
             val bundle = Bundle()
             bundle.putString("id", feedId)
             navController.navigate(R.id.plant_detail_fragment_to_feed_detail_fragment,bundle)
+
+            // logging
+            val loggingBundle = Bundle()
+            loggingBundle.putString(CLASS_NAME, TAG)
+            firebaseAnalytics.logEvent(FEED_ITEM_CLICK , loggingBundle)
         }
     }
 
@@ -178,7 +191,6 @@ class PlantDetailFragment : Fragment() {
         viewModel.scheduleData.observe(viewLifecycleOwner, Observer {
             scheduleList = it
             setCalendarView()
-            //binding.calendarView.notify
         })
         viewModel.feedList.observe(viewLifecycleOwner, Observer {
             feedAdapter.refreshItems(it)
@@ -219,6 +231,11 @@ class PlantDetailFragment : Fragment() {
 
                     /* day click */
                     container.binding.root.setOnClickListener {
+                        // logging
+                        val loggingBundle = Bundle()
+                        loggingBundle.putString(CLASS_NAME, TAG)
+                        firebaseAnalytics.logEvent(CALENDAR_ITEM_CLICK , loggingBundle)
+
                         viewModel.getFeed(day.date.toString())
                         selectDate(day.date)
                     }

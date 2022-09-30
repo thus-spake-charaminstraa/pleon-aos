@@ -4,6 +4,7 @@ package com.charaminstra.pleon.common
 const val CLASS_NAME = "class_name"
 
 
+const val FEED_ITEM_CLICK = "feed_item_click"
 
 //feed fragment
 const val FEED_VIEW = "feed_view"
@@ -24,3 +25,6 @@ const val DOCTOR_VIEW = "doctor_view"
 const val GARDEN_VIEW = "garden_view"
 const val PLANT_REGISTER_BTN_CLICK = "plant_register_btn_click"
 const val PLANT_ITEM_CLICK = "plant_item_click"
+
+//plant detail fragment
+const val CALENDAR_ITEM_CLICK = "calendar_item_click"

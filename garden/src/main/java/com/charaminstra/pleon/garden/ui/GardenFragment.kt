@@ -35,9 +35,9 @@ class GardenFragment : Fragment() {
         firebaseAnalytics= FirebaseAnalytics.getInstance(requireContext())
 
         // logging
-        val bundle = Bundle()
-        bundle.putString(CLASS_NAME, TAG)
-        firebaseAnalytics.logEvent(GARDEN_VIEW , bundle)
+        val loggingBundle = Bundle()
+        loggingBundle.putString(CLASS_NAME, TAG)
+        firebaseAnalytics.logEvent(GARDEN_VIEW , loggingBundle)
     }
 
     override fun onCreateView(
