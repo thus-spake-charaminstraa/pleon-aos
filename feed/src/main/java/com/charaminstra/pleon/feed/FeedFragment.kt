@@ -12,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
-import com.charaminstra.pleon.common.PlantsViewModel
+import com.charaminstra.pleon.common.*
 import com.charaminstra.pleon.feed.databinding.FragmentFeedBinding
 import com.charaminstra.pleon.feed.noti.NOTI_COMPLETE
 import com.charaminstra.pleon.feed.noti.NOTI_LATER
@@ -22,6 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class FeedFragment : Fragment() {
+    private val TAG = javaClass.name
     private lateinit var binding : FragmentFeedBinding
 
     private lateinit var feedPlantAdapter: FeedPlantAdapter
@@ -40,9 +41,10 @@ class FeedFragment : Fragment() {
 
         firebaseAnalytics= FirebaseAnalytics.getInstance(requireContext())
 
+        // logging
         val bundle = Bundle()
-        bundle.putString(FirebaseAnalytics.Param.METHOD," feed Fragment ")
-        firebaseAnalytics?.logEvent("FEED", bundle)
+        bundle.putString(CLASS_NAME, TAG)
+        firebaseAnalytics.logEvent(FEED_VIEW, bundle)
     }
 
     override fun onCreateView(
@@ -69,6 +71,12 @@ class FeedFragment : Fragment() {
         binding.feedFilterRecyclerview.adapter = feedPlantAdapter
         binding.feedRecyclerview.adapter = feedAdapter
         binding.feedAddBtn.setOnClickListener {
+
+            // logging
+            val bundle = Bundle()
+            bundle.putString(CLASS_NAME, TAG)
+            firebaseAnalytics.logEvent(FEED_WRITE_BTN_CLICK, bundle)
+
             navController.navigate(R.id.feed_fragment_to_feed_write_fragment)
         }
         binding.feedRecyclerview.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
@@ -103,9 +111,19 @@ class FeedFragment : Fragment() {
         notiAdapter.onClickNoti = { notiId, button ->
             when(button){
                 NOTI_LATER -> {
+                    // logging
+                    val bundle = Bundle()
+                    bundle.putString(CLASS_NAME, TAG)
+                    firebaseAnalytics.logEvent(NOTI_LATER_BTN_CLCIK, bundle)
+
                     feedViewModel.postNotiClick(notiId, "later")
                 }
                 NOTI_COMPLETE -> {
+                    // logging
+                    val bundle = Bundle()
+                    bundle.putString(CLASS_NAME, TAG)
+                    firebaseAnalytics.logEvent(NOTI_COMPLETE_BTN_CLCIK, bundle)
+
                     feedViewModel.postNotiClick(notiId, "complete")
                 }
                 else -> { }
@@ -131,6 +149,11 @@ class FeedFragment : Fragment() {
         feedViewModel.feedFilterList.observe(viewLifecycleOwner, Observer {
             binding.allFilter.isSelected=false
             feedAdapter.refreshItems(it)
+
+            // logging
+            val bundle = Bundle()
+            bundle.putString(CLASS_NAME, TAG)
+            firebaseAnalytics.logEvent(FEED_FILTER_BTN_CLICK, bundle)
         })
         feedViewModel.notiList.observe(viewLifecycleOwner, Observer {
             notiAdapter.refreshItems(it)
@@ -138,13 +161,6 @@ class FeedFragment : Fragment() {
             pageSnap.attachToRecyclerView(binding.notiRecyclerview)
             binding.notiIndicator.attachToRecyclerView(binding.notiRecyclerview,pageSnap)
         })
-//        feedViewModel.feedCount.observe(viewLifecycleOwner, Observer{
-//            if(it == 0){
-//                binding.noFeedTv.visibility = View.VISIBLE
-//            }else{
-//                binding.noFeedTv.visibility = View.GONE
-//            }
-//        })
 //        plantsViewModel.plantsCount.observe(viewLifecycleOwner, Observer{
 //            if(it == 0) {
 //                binding.noFeedTv.visibility = View.GONE

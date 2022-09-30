@@ -30,16 +30,12 @@ class FeedViewModel @Inject constructor(
     private val _notiList = MutableLiveData<List<NotiViewTypeData>>()
     val notiList : LiveData<List<NotiViewTypeData>> = _notiList
 
-    private val _feedCount = MutableLiveData<Int>()
-    val feedCount : LiveData<Int> = _feedCount
-
     fun getFeedAllList(){
         viewModelScope.launch {
             val data = feedRepository.getOnlyFeed2(null, null)
             when (data.isSuccessful) {
                 true -> {
                     _feedAllList.postValue(data.body()?.data?.result)
-                    _feedCount.postValue(data.body()?.data?.result?.size)
                     Log.i(TAG,"SUCCESS -> "+ data.body().toString())
                 }
                 else -> {
