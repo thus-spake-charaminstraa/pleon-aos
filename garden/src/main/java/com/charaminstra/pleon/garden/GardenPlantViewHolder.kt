@@ -17,6 +17,9 @@ class GardenPlantViewHolder(
         binding.root.setOnClickListener {
             onItemClicked(item.id!!)
         }
+        Glide.with(binding.root)
+            .load(item.mood?.icon_uri)
+            .into(binding.gardenMoodIcon)
+        binding.gardenMoodTv.text=item.mood?.mood
     }
-
 }

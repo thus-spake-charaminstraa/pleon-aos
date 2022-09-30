@@ -184,7 +184,10 @@ class PlantDetailFragment : Fragment() {
                 .into(binding.plantDetailImage)
             binding.plantDetailSpecies.text = it.species
             binding.plantDetailAdoptDay.text = dateFormat.format(it.adopt_date) + " 입양"
-            //binding.plantMood.text = it.mood
+            binding.plantDetailMoodTv.text = it.mood?.mood
+            Glide.with(binding.root)
+                .load(it.mood?.icon_uri)
+                .into(binding.plantDetailMoodIcon)
             binding.plantDetailDday.text = "함께한지 "+it.d_day.toString() + "일째"
 
         })

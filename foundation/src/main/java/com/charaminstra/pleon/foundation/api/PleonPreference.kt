@@ -53,7 +53,7 @@ class PleonPreference @Inject constructor(@ApplicationContext context : Context)
         Log.d(DEVICE_KEY, "token set : "+ getDeviceToken() )
     }
     fun getDeviceToken(): String {
-        return "Bearer "+prefs.getString(DEVICE_KEY, DEFAULT).toString()
+        return prefs.getString(DEVICE_KEY, DEFAULT).toString()
     }
 
     fun delete() {

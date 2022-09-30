@@ -226,7 +226,7 @@
         <entry key="garden/src/main/res/layout/fragment_garden_host.xml" value="0.1281661600810537" />
         <entry key="garden/src/main/res/layout/fragment_plant_detail.xml" value="0.1" />
         <entry key="garden/src/main/res/layout/fragment_plant_edit.xml" value="0.20757825370675453" />
-        <entry key="garden/src/main/res/layout/item_garden_plant.xml" value="0.55" />
+        <entry key="garden/src/main/res/layout/item_garden_plant.xml" value="0.20408163265306123" />
         <entry key="garden/src/main/res/layout/item_plant_garden.xml" value="0.13500506585612967" />
         <entry key="garden/src/main/res/layout/item_spinner.xml" value="0.13500506585612967" />
         <entry key="login/src/main/res/drawable/cursor_drawble.xml" value="0.1" />

@@ -11,5 +11,11 @@ data class PlantDataObject(
     val thumbnail: String?,
     val light: String?,
     val air: String?,
-    val d_day: Int?
+    val d_day: Int?,
+    val mood: MoodObject?
+)
+
+data class MoodObject(
+    val mood: String,
+    val icon_uri: String,
 )
