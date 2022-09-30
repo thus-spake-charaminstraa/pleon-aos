@@ -19,19 +19,19 @@ class NotiAdapter(): RecyclerView.Adapter<NotiCommonViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotiCommonViewHolder {
         return when(viewType){
-            NotiViewType.twoBtn.ordinal -> TwoBtnNotiViewHolder(
+            NotiViewType.TWO_BTN.ordinal -> TwoBtnNotiViewHolder(
                 ItemTwoBtnNotiBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent, false
                 )
             )
-            NotiViewType.oneBtn.ordinal -> OneBtnNotiViewHolder(
+            NotiViewType.ONE_BTN.ordinal -> OneBtnNotiViewHolder(
                     ItemOneBtnNotiBinding.inflate(
                         LayoutInflater.from(parent.context),
                         parent, false
                 )
             )
-            NotiViewType.default.ordinal -> DefaultNotiViewHolder(
+            NotiViewType.DEFAULT.ordinal -> DefaultNotiViewHolder(
                 ItemDefaultNotiBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent, false
