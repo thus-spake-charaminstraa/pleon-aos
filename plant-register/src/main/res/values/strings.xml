@@ -5,14 +5,14 @@
     <string name="plant_detection_label_msg">\u0020입니다.</string>
 
     <!--    button  -->
-    <string name="plant_register_skip_btn">건너뛰기</string>
+    <string name="plant_register_skip_btn">그만두기</string>
     <string name="plant_register_next_btn">다음</string>
 
     <!--    dialog  -->
-    <string name="plant_register_skip_dialog_title">건너뛰기</string>
-    <string name="plant_register_skip_dialog_desc">식물 등록을 건너 뛰겠습니까?</string>
+    <string name="plant_register_skip_dialog_title">그만두기</string>
+    <string name="plant_register_skip_dialog_desc">식물 등록을 그만두시겠습니까?</string>
     <string name="plant_register_skip_dialog_cancel_btn">취소</string>
-    <string name="plant_register_skip_dialog_skip_btn">건너뛰기</string>
+    <string name="plant_register_skip_dialog_skip_btn">그만두기</string>
 
     <!--    plant thumbnail fragment-->
     <string name="plant_thumbnail_title">반려식물의 예쁜 모습이 담긴\n사진을 설정해주세요 :)</string>
