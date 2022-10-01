@@ -5,6 +5,7 @@ data class PlantDetectionRequestBody(
 )
 
 data class PlantDetectionResponseBody(
+    val success: Boolean?,
     val image_url: String?,
     val category: String?,
     val score: String?,

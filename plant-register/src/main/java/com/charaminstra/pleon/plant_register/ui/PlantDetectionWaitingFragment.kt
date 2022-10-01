@@ -38,6 +38,8 @@ class PlantDetectionWaitingFragment : Fragment() {
         viewModel.plantDetectionSuccess.observe(viewLifecycleOwner, Observer{
             if(it){
                 navController.navigate(R.id.plant_detection_waiting_fragment_to_plant_detection_result_fragment)
+            }else{
+                navController.navigate(R.id.plant_detection_waiting_fragment_to_plant_detection_error_fragment)
             }
         })
     }

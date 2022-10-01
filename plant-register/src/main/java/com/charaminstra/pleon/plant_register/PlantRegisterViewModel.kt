@@ -103,14 +103,12 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
             when(data.isSuccessful){
                 true -> {
                     Log.i(TAG,"plant detection data ->"+data.body().toString())
-                    val species = data.body()?.species
-                    val score = data.body()?.score
-                    if(species == null){
+                    if(data.body()?.success == false){
                         _plantDetectionSuccess.postValue(false)
                     }else{
                         _plantDetectionSuccess.postValue(true)
-                        _plantDetectionResultLabel.value= species.name
-                        _plantDetectionResultPercent.value= score!!
+                        _plantDetectionResultLabel.value= data.body()?.species?.name
+                        _plantDetectionResultPercent.value= data.body()?.score!!
                     }
                 }else -> {
                     Log.i(TAG,"plant detection error")
