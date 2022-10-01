@@ -107,10 +107,13 @@ class FeedWriteFragment : Fragment() {
                 binding.feedWriteContent.text.toString()
             )
 
+            hideKeyboard(binding.feedWriteContent)
+
             // logging
             val bundle = Bundle()
             bundle.putString(CLASS_NAME, TAG)
             firebaseAnalytics.logEvent(FEED_WRITE_COMPLETE_BTN_CLICK, bundle)
+
         }
         return binding.root
     }
@@ -146,7 +149,7 @@ class FeedWriteFragment : Fragment() {
             bundle.putString(CLASS_NAME, TAG)
             firebaseAnalytics.logEvent(BOTTOM_SHEET_UP, bundle)
 
-            hideKeyboard(binding.feedWriteContent, requireContext())
+            hideKeyboard(binding.feedWriteContent)
             sheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
         }
     }
@@ -264,6 +267,11 @@ class FeedWriteFragment : Fragment() {
         val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
         view.requestFocus()
+    }
+
+    private fun hideKeyboard(view: View) {
+        val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view.windowToken, 0);
     }
 
 }
