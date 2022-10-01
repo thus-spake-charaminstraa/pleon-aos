@@ -19,6 +19,16 @@ class ErrorToast(val context: Context) {
         }
     }
 
+    fun showMsgCenter(message: String){
+        binding.toastText.text = message
+        Toast(context).apply {
+            setGravity(Gravity.CENTER, 0, 0)
+            duration = Toast.LENGTH_SHORT
+            view = binding.root
+            show()
+        }
+    }
+
     fun showCameraPermission() {
         binding.toastText.text = context.resources.getString(R.string.camera_permission_msg)
         // use the application extension function

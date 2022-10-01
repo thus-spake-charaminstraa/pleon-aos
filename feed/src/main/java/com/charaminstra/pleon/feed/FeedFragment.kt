@@ -1,6 +1,9 @@
 package com.charaminstra.pleon.feed
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,8 +16,10 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.charaminstra.pleon.common.*
+import com.charaminstra.pleon.common_ui.ErrorToast
 import com.charaminstra.pleon.feed.databinding.FragmentFeedBinding
 import com.charaminstra.pleon.feed.noti.NOTI_COMPLETE
+import com.charaminstra.pleon.feed.noti.NOTI_GO
 import com.charaminstra.pleon.feed.noti.NOTI_LATER
 import com.charaminstra.pleon.feed.noti.NotiAdapter
 import com.google.firebase.analytics.FirebaseAnalytics
@@ -71,20 +76,18 @@ class FeedFragment : Fragment() {
         binding.feedFilterRecyclerview.adapter = feedPlantAdapter
         binding.feedRecyclerview.adapter = feedAdapter
         binding.feedAddBtn.setOnClickListener {
+            if(plantsViewModel.plantsCount.value == 0){
+                ErrorToast(requireContext()).showMsgCenter(resources.getString(R.string.feed_write_error_msg))
+            }else{
+                // logging
+                val bundle = Bundle()
+                bundle.putString(CLASS_NAME, TAG)
+                firebaseAnalytics.logEvent(FEED_WRITE_BTN_CLICK, bundle)
 
-            // logging
-            val bundle = Bundle()
-            bundle.putString(CLASS_NAME, TAG)
-            firebaseAnalytics.logEvent(FEED_WRITE_BTN_CLICK, bundle)
-
-            navController.navigate(R.id.feed_fragment_to_feed_write_fragment)
+                navController.navigate(R.id.feed_fragment_to_feed_write_fragment)
+            }
         }
         binding.feedRecyclerview.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
-//        binding.noPlantButton.setOnClickListener {
-//            val intent = Intent(context, PlantRegisterActivity::class.java)
-//            intent.putExtra("from", "main")
-//            startActivity(intent)
-//        }
     }
 
     override fun onResume() {
@@ -131,6 +134,9 @@ class FeedFragment : Fragment() {
 
                     feedViewModel.postNotiClick(notiId, "complete")
                 }
+                NOTI_GO -> {
+                    startPlantRegisterActivity(requireContext())
+                }
                 else -> { }
             }
         }
@@ -166,13 +172,18 @@ class FeedFragment : Fragment() {
             pageSnap.attachToRecyclerView(binding.notiRecyclerview)
             binding.notiIndicator.attachToRecyclerView(binding.notiRecyclerview,pageSnap)
         })
-//        plantsViewModel.plantsCount.observe(viewLifecycleOwner, Observer{
-//            if(it == 0) {
-//                binding.noFeedTv.visibility = View.GONE
-//                binding.noPlantButton.visibility = View.VISIBLE
-//            }else{
-//                binding.noPlantButton.visibility = View.GONE
-//            }
-//        })
+    }
+
+    fun startPlantRegisterActivity(context: Context) {
+        val intent = Intent(
+            context,
+            Class.forName("com.charaminstra.pleon.plant_register.ui.PlantRegisterActivity")
+        )
+        startActivity(intent)
+
+        // logging
+        val loggingBundle = Bundle()
+        loggingBundle.putString(CLASS_NAME, TAG)
+        firebaseAnalytics.logEvent(PLANT_REGISTER_BTN_CLICK  , loggingBundle)
     }
 }

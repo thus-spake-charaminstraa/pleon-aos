@@ -12,4 +12,6 @@
     <string name="bottom_sheet_action_msg">무엇을 해주셨는지 선택해주세요</string>
 
     <string name="feed_write_hint">피드 내용을 작성해주세요 :)</string>
+
+    <string name="feed_write_error_msg">식물을 등록해야 피드를 작성할 수 있습니다.</string>
 </resources>
