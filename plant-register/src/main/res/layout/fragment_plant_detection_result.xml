@@ -14,7 +14,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
     <TextView
-        android:id="@+id/plant_detection_result_tv"
+        android:id="@+id/plant_detection_result_percent"
         style="@style/ModelWaitingText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,7 +22,17 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="20dp"
-        android:text="@string/plant_detection_waiting" />
+        tools:text="99% 확률로"/>
+    <TextView
+        android:id="@+id/plant_detection_result_label"
+        style="@style/ModelWaitingText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/plant_detection_result_percent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="8dp"
+        tools:text="로즈마리 입니다." />
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/air_next_btn"
         android:layout_width="match_parent"

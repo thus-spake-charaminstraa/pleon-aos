@@ -83,4 +83,10 @@ object NetWorkModule {
     fun provideNotiApiService(retrofit: Retrofit): NotiAPIService {
         return retrofit.create(NotiAPIService::class.java)
     }
+
+    @Provides
+    @Singleton
+    fun provideInferenceApiService(retrofit: Retrofit): InferenceAPIService {
+        return retrofit.create(InferenceAPIService::class.java)
+    }
 }

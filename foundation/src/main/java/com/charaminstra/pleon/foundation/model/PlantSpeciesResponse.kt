@@ -6,5 +6,5 @@ data class PlantSpeciesResponse(
 
 data class PlantSpeciesDataObject(
     val id: String,
-    val name: String
+    val name: String,
 )

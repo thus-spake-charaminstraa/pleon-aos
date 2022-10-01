@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.charaminstra.pleon.foundation.ImageRepository
+import com.charaminstra.pleon.foundation.InferenceRepository
 import com.charaminstra.pleon.foundation.PlantIdRepository
 import com.charaminstra.pleon.foundation.model.PlantDataObject
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,20 +19,22 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PlantRegisterViewModel @Inject constructor(private val repository: PlantIdRepository,
-                                                 private val imageRepository: ImageRepository) : ViewModel() {
+                                                 private val imageRepository: ImageRepository,
+                                                 private val inferenceRepository: InferenceRepository) : ViewModel() {
 
     private val TAG = javaClass.name
+
     private val _plantRegisterSuccess = MutableLiveData<Boolean>()
     val plantRegisterSuccess : LiveData<Boolean> = _plantRegisterSuccess
 
+    private val _plantDetectionSuccess = MutableLiveData<Boolean>()
+    val plantDetectionSuccess : LiveData<Boolean> = _plantDetectionSuccess
+
+    private val _plantDetectionResultLabel = MutableLiveData<String>()
+    val plantDetectionResultLabel : LiveData<String> = _plantDetectionResultLabel
+
     private val _data = MutableLiveData<PlantDataObject>()
     val data: LiveData<PlantDataObject> = _data
-
-    private val _patchSuccess = MutableLiveData<Boolean>()
-    val patchSuccess: LiveData<Boolean> = _patchSuccess
-
-    private val _deleteSuccess = MutableLiveData<Boolean>()
-    val deleteSuccess: LiveData<Boolean> = _deleteSuccess
 
     val name = MutableLiveData<String>()
     val species = MutableLiveData<String>()
@@ -39,9 +42,12 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
     val adopt_date = MutableLiveData<String>()
     val light = MutableLiveData<String>()
     val air = MutableLiveData<String>()
-    //val thumbnail = MutableLiveData<String>()
-    private val _urlResponse = MutableLiveData<String?>()
-    val urlResponse : LiveData<String?> = _urlResponse
+
+    private val _thumbnailUrlResponse = MutableLiveData<String?>()
+    val thumbnailUrlResponse : LiveData<String?> = _thumbnailUrlResponse
+
+    private val _plantDetectionUrlResponse = MutableLiveData<String?>()
+    val plantDetectionUrlResponse : LiveData<String?> = _plantDetectionUrlResponse
 
     fun getName(): LiveData<String> {
         return name
@@ -79,6 +85,29 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
     fun setAir(value: String) {
         air.value = value
     }
+    fun warmingPlantDetectionModel(){
+        viewModelScope.launch {
+            inferenceRepository.warmingPlantDetection()
+        }
+    }
+
+    fun postPlantDetectionModel(){
+        viewModelScope.launch {
+            val data = inferenceRepository.postPlantDetection(plantDetectionUrlResponse.value.toString())
+            Log.i(TAG,"plant detection data -> $data")
+            when(data.isSuccessful){
+                true -> {
+                    Log.i(TAG,"plant detection data ->"+data.body().toString())
+                    _plantDetectionSuccess.postValue(true)
+                    _plantDetectionResultLabel.value=data.body()?.species?.name
+                    //_plantDetectionResultLabel.value=data.body()?.score
+                }else -> {
+
+                }
+            }
+        }
+    }
+
     fun cameraToUrl(inputStream: InputStream){
         viewModelScope.launch {
             val data =imageRepository.postImage(inputStream)
@@ -86,7 +115,8 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
             when (data.isSuccessful) {
                 true -> {
                     Log.i(TAG,"data.body -> "+data.body())
-                    _urlResponse.postValue(data.body()?.data?.url)
+                    _thumbnailUrlResponse.postValue(data.body()?.data?.url)
+                    _plantDetectionUrlResponse.postValue(data.body()?.data?.url)
                 }
                 else -> {
                     Log.i(TAG,"FAIL-> ")
@@ -104,7 +134,8 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
                 when (data.isSuccessful) {
                     true -> {
                         Log.i(TAG,"data.body -> "+data.body())
-                        _urlResponse.postValue(data.body()?.data?.url)
+                        _thumbnailUrlResponse.postValue(data.body()?.data?.url)
+                        _plantDetectionUrlResponse.postValue(data.body()?.data?.url)
                     }
                     else -> {
                         Log.i(TAG,"FAIL-> ")
@@ -114,7 +145,7 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
         }
     }
     fun setUrl(url: String){
-        _urlResponse.value = url
+        _thumbnailUrlResponse.value = url
     }
 
     fun postPlant(){
@@ -124,11 +155,11 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
                 getSpecies().value.toString(),
                 getWater_date().value.toString(),
                 getAdopt_date().value.toString(),
-                urlResponse.value.toString(),
+                thumbnailUrlResponse.value.toString(),
                 getLight().value.toString(),
                 getAir().value.toString())
             Log.i("plant post:: ","\n"+getName().value.toString()+"\n"+getSpecies().value.toString()+"\n"+ getWater_date().value.toString()+"\n"+getAdopt_date().value.toString()+"\n"+
-                    urlResponse.value.toString()+"\n"+getLight().value.toString()+"\n"+getAir().value.toString())
+                    thumbnailUrlResponse.value.toString()+"\n"+getLight().value.toString()+"\n"+getAir().value.toString())
             _plantRegisterSuccess.postValue(data.body()?.success)
             Log.i(TAG,"DATA -> $data"+"\n"+data)
             Log.i(TAG,"DATA.body -> $data"+"\n"+data.body())
@@ -149,46 +180,5 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
                 }
             }
         }
-    }
-
-    fun patchData(id: String,
-                  name: String,
-                  adopt_date: String){
-        viewModelScope.launch {
-            val data = repository.patchPlantId(id,name,adopt_date,
-                urlResponse.value.toString(),
-                getLight().value.toString(),
-                getAir().value.toString())
-            Log.i(TAG, "patch DATA"+data.body())
-            when (data.isSuccessful) {
-                true -> {
-                    _patchSuccess.postValue(data.body()?.success)
-                    Log.i(TAG,"SUCCESS -> "+ data.body().toString())
-                }
-                else -> {
-                    Log.i(TAG,"FAIL -> "+ data.body().toString())
-                }
-            }
-        }
-    }
-
-    fun deleteData(id: String){
-        viewModelScope.launch {
-            val data = repository.deletePlantId(id)
-            Log.i(TAG, "delete DATA"+data.body())
-            when (data.isSuccessful) {
-                true -> {
-                    _deleteSuccess.postValue(data.body()?.success)
-                    Log.i(TAG,"SUCCESS -> "+ data.body().toString())
-                }
-                else -> {
-                    Log.i(TAG,"FAIL -> "+ data.body().toString())
-                }
-            }
-        }
-    }
-
-    fun setNoImg(){
-        _urlResponse.postValue(null)
     }
 }

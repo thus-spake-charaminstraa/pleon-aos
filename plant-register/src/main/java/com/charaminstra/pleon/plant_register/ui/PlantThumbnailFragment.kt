@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.FileProvider
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.charaminstra.pleon.common.*
@@ -34,6 +35,9 @@ class PlantThumbnailFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        viewModel.warmingPlantDetectionModel()
+
         /*카메라권한요청*/
         RequestPermission.requestPermission(requireActivity())
 
@@ -50,6 +54,7 @@ class PlantThumbnailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentPlantThumbnailBinding.inflate(layoutInflater)
+        //initObservers()
         permissionMsg = ErrorToast(requireContext())
         val navController = this.findNavController()
 
@@ -84,19 +89,19 @@ class PlantThumbnailFragment : Fragment() {
             )
         }
         binding.plantRegisterNextBtn.setOnClickListener {
-            if (viewModel.urlResponse.value.isNullOrBlank()) {
+            if (viewModel.thumbnailUrlResponse.value.isNullOrBlank()) {
                 ErrorToast(requireContext()).showMsg(
                     resources.getString(R.string.plant_thumbnail_fragment_error),
                     binding.plantThumbnailAddImg.y
                 )
             } else {
-                navController.navigate(R.id.plant_thumbnail_fragment_to_plant_species_fragment)
+                navController.navigate(R.id.plant_thumbnail_fragment_to_plant_detection_waiting_fragment)
             }
         }
         return binding.root
     }
 //    private fun initObservers(){
-//        viewModel.urlResponse.observe(viewLifecycleOwner, Observer{
+//        viewModel.thumbnailUrlResponse.observe(viewLifecycleOwner, Observer{
 //            Glide.with(this).load(it).into(binding.plantThumbnailImg)
 //        })
 //    }
@@ -127,6 +132,13 @@ class PlantThumbnailFragment : Fragment() {
                     binding.plantThumbnailAddImg.y
                 )
             }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if(!viewModel.thumbnailUrlResponse.value.isNullOrBlank()){
+            Glide.with(this).load(viewModel.thumbnailUrlResponse.value).into(binding.plantThumbnailImg)
         }
     }
     private fun openGallery() {
