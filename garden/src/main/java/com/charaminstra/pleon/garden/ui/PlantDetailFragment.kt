@@ -289,7 +289,7 @@ class PlantDetailFragment : Fragment() {
                             /* 선택한 날짜의 글씨색과 배경 */
                             selectedDate -> {
                                 container.binding.calendarDayText.setTextColor(resources.getColor(
-                                    com.charaminstra.pleon.common_ui.R.color.white))
+                                    com.charaminstra.pleon.common_ui.R.color.main_green_color))
                                 container.binding.calendarDayRoot.setBackgroundResource(R.drawable.round_calendar_clickday)
                             }
                             /* 그 외의의 글씨색과 배경 */
