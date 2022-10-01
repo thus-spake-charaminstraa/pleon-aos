@@ -1,12 +1,9 @@
 package com.charaminstra.pleon.plant_register.ui
 
-import android.R.attr.mimeType
-import android.R.attr.orientation
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -18,9 +15,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.request.target.Target
-import com.bumptech.glide.signature.MediaStoreSignature
 import com.charaminstra.pleon.common.*
 import com.charaminstra.pleon.common_ui.*
 import com.charaminstra.pleon.plant_register.PlantRegisterViewModel
@@ -122,13 +116,13 @@ class PlantThumbnailFragment : Fragment() {
                 activity?.contentResolver?.openInputStream(uri).let {
                     bitmap = BitmapFactory.decodeStream(it)
                     binding.plantThumbnailImg.setImageBitmap(bitmap)
-                    viewModel.galleryToUrl(bitmap)
+                    viewModel.thumbnailGalleryToUrl(bitmap)
                     viewModel.imgType = "gallery"
                 }
             }
             REQUEST_TAKE_PHOTO -> {
                 Glide.with(this).load(photoFile.currentPhotoPath).into(binding.plantThumbnailImg)
-                viewModel.cameraToUrl(FileInputStream(photoFile.currentPhotoPath))
+                viewModel.thumbnailCameraToUrl(FileInputStream(photoFile.currentPhotoPath))
                 viewModel.imgType = "photo"
             }
             else -> {

@@ -43,6 +43,7 @@ class PlantDetectionResultFragment : Fragment() {
         Glide.with(requireContext()).load(viewModel.plantDetectionUrlResponse.value).into(binding.plantDetectionResultImg)
 
         binding.plantDetectionResultOkBtn.setOnClickListener {
+            viewModel.clearPlantDetectionUrl()
             navController.navigate(R.id.plant_detection_result_return)
         }
 

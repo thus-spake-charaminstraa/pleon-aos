@@ -25,7 +25,9 @@
         </action>
         <action
             android:id="@+id/plant_species_fragment_to_plant_detection_waiting_fragment"
-            app:destination="@id/plant_detection_waiting_fragment">
+            app:destination="@id/plant_detection_waiting_fragment"
+            app:popUpTo="@+id/plant_species_fragment"
+            app:popUpToInclusive="true">
         </action>
     </fragment>
     <fragment
@@ -34,11 +36,15 @@
         tools:layout="@layout/fragment_plant_detection_waiting">
         <action
             android:id="@+id/plant_detection_waiting_fragment_to_plant_detection_result_fragment"
-            app:destination="@id/plant_detection_result_fragment">
+            app:destination="@id/plant_detection_result_fragment"
+            app:popUpTo="@+id/plant_detection_waiting_fragment"
+            app:popUpToInclusive="true">
         </action>
         <action
             android:id="@+id/plant_detection_waiting_fragment_to_plant_detection_error_fragment"
-            app:destination="@id/plant_detection_error_fragment">
+            app:destination="@id/plant_detection_error_fragment"
+            app:popUpTo="@+id/plant_detection_waiting_fragment"
+            app:popUpToInclusive="true">
         </action>
     </fragment>
     <fragment
@@ -47,9 +53,9 @@
         tools:layout="@layout/fragment_plant_detection_error">
         <action
             android:id="@+id/plant_detection_error_return"
-            app:popUpTo="@+id/plant_detection_waiting_fragment"
             app:destination="@+id/plant_species_fragment"
-            app:popUpToInclusive="true" />
+            app:popUpTo="@+id/plant_detection_error_fragment"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/plant_detection_result_fragment"
@@ -57,9 +63,9 @@
         tools:layout="@layout/fragment_plant_detection_result">
         <action
             android:id="@+id/plant_detection_result_return"
-            app:popUpTo="@+id/plant_detection_waiting_fragment"
             app:destination="@+id/plant_species_fragment"
-            app:popUpToInclusive="true" />
+            app:popUpTo="@+id/plant_detection_result_fragment"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/plant_name_fragment"

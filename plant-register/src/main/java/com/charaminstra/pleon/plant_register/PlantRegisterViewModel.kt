@@ -96,6 +96,10 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
         }
     }
 
+    fun clearPlantDetectionUrl(){
+        _plantDetectionUrlResponse.value = null
+    }
+
     fun clearPlantDetectionSuccess(){
         _plantDetectionSuccess.value = null
     }
@@ -108,12 +112,8 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
                 true -> {
                     Log.i(TAG,"plant detection data ->"+data.body().toString())
                     if(data.body()?.success == false){
-                        //_plantDetectionSuccess.value = false
                         _plantDetectionSuccess.postValue(false)
                     }else{
-//                        _plantDetectionSuccess.value = true
-//                        _plantDetectionResultLabel.value= data.body()?.species?.name
-//                        _plantDetectionResultPercent.value= data.body()?.score!!
                         _plantDetectionSuccess.postValue(true)
                         _plantDetectionResultLabel.postValue(data.body()?.species?.name)
                         _plantDetectionResultPercent.postValue(data.body()?.score!!)
@@ -125,7 +125,7 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
         }
     }
 
-    fun cameraToUrl(inputStream: InputStream){
+    fun thumbnailCameraToUrl(inputStream: InputStream){
         viewModelScope.launch {
             val data =imageRepository.postImage(inputStream)
             Log.i(TAG,"data -> $data")
@@ -141,7 +141,7 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
             }
         }
     }
-    fun galleryToUrl(bitmap: Bitmap){
+    fun thumbnailGalleryToUrl(bitmap: Bitmap){
         viewModelScope.launch {
             ByteArrayOutputStream().use { stream ->
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
@@ -161,6 +161,42 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
             }
         }
     }
+
+    fun speciesCameraToUrl(inputStream: InputStream){
+        viewModelScope.launch {
+            val data =imageRepository.postImage(inputStream)
+            Log.i(TAG,"data -> $data")
+            when (data.isSuccessful) {
+                true -> {
+                    Log.i(TAG,"data.body -> "+data.body())
+                    _plantDetectionUrlResponse.value = data.body()?.data?.url
+                }
+                else -> {
+                    Log.i(TAG,"FAIL-> ")
+                }
+            }
+        }
+    }
+    fun speciesGalleryToUrl(bitmap: Bitmap){
+        viewModelScope.launch {
+            ByteArrayOutputStream().use { stream ->
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+                val inputStream = ByteArrayInputStream(stream.toByteArray())
+                val data = imageRepository.postImage(inputStream)
+                Log.i(TAG,"data -> $data")
+                when (data.isSuccessful) {
+                    true -> {
+                        Log.i(TAG,"data.body -> "+data.body())
+                        _plantDetectionUrlResponse.value = data.body()?.data?.url
+                    }
+                    else -> {
+                        Log.i(TAG,"FAIL-> ")
+                    }
+                }
+            }
+        }
+    }
+
     fun setUrl(url: String){
         _thumbnailUrlResponse.value = url
     }

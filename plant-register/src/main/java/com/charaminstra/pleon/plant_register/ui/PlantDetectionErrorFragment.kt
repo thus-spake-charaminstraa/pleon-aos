@@ -29,6 +29,7 @@ class PlantDetectionErrorFragment : Fragment() {
         binding = FragmentPlantDetectionErrorBinding.inflate(layoutInflater)
         navController = this.findNavController()
         binding.plantDetectionErrorOkBtn.setOnClickListener {
+            viewModel.clearPlantDetectionUrl()
             navController.navigate(R.id.plant_detection_error_return)
         }
         return binding.root
