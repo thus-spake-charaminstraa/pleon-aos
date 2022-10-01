@@ -1,6 +1,7 @@
 package com.charaminstra.pleon.plant_register.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +23,7 @@ class PlantDetectionWaitingFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
     }
 
     override fun onCreateView(
@@ -29,18 +31,26 @@ class PlantDetectionWaitingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         navController = this.findNavController()
-        initObservers()
         viewModel.postPlantDetectionModel()
         return inflater.inflate(R.layout.fragment_plant_detection_waiting, container, false)
     }
 
-    private fun initObservers(){
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         viewModel.plantDetectionSuccess.observe(viewLifecycleOwner, Observer{
-            if(it){
+            if(it == true ){
                 navController.navigate(R.id.plant_detection_waiting_fragment_to_plant_detection_result_fragment)
-            }else{
+                viewModel.clearPlantDetectionSuccess()
+            }else if(it == false){
                 navController.navigate(R.id.plant_detection_waiting_fragment_to_plant_detection_error_fragment)
+                viewModel.clearPlantDetectionSuccess()
+            }else{
+
             }
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
     }
 }

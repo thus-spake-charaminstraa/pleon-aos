@@ -11,7 +11,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class PlantRegisterActivity : AppCompatActivity() {
 
-    private val viewModel: PlantRegisterViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_plant_register)

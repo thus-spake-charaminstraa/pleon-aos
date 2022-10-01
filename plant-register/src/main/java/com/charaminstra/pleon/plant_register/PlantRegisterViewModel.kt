@@ -27,8 +27,8 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
     private val _plantRegisterSuccess = MutableLiveData<Boolean>()
     val plantRegisterSuccess : LiveData<Boolean> = _plantRegisterSuccess
 
-    private val _plantDetectionSuccess = MutableLiveData<Boolean>()
-    val plantDetectionSuccess : LiveData<Boolean> = _plantDetectionSuccess
+    private val _plantDetectionSuccess = MutableLiveData<Boolean?>()
+    val plantDetectionSuccess : LiveData<Boolean?> = _plantDetectionSuccess
 
     private val _plantDetectionResultLabel = MutableLiveData<String>()
     val plantDetectionResultLabel : LiveData<String> = _plantDetectionResultLabel
@@ -96,6 +96,10 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
         }
     }
 
+    fun clearPlantDetectionSuccess(){
+        _plantDetectionSuccess.value = null
+    }
+
     fun postPlantDetectionModel(){
         viewModelScope.launch {
             val data = inferenceRepository.postPlantDetection(plantDetectionUrlResponse.value.toString())
@@ -104,11 +108,15 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
                 true -> {
                     Log.i(TAG,"plant detection data ->"+data.body().toString())
                     if(data.body()?.success == false){
+                        //_plantDetectionSuccess.value = false
                         _plantDetectionSuccess.postValue(false)
                     }else{
+//                        _plantDetectionSuccess.value = true
+//                        _plantDetectionResultLabel.value= data.body()?.species?.name
+//                        _plantDetectionResultPercent.value= data.body()?.score!!
                         _plantDetectionSuccess.postValue(true)
-                        _plantDetectionResultLabel.value= data.body()?.species?.name
-                        _plantDetectionResultPercent.value= data.body()?.score!!
+                        _plantDetectionResultLabel.postValue(data.body()?.species?.name)
+                        _plantDetectionResultPercent.postValue(data.body()?.score!!)
                     }
                 }else -> {
                     Log.i(TAG,"plant detection error")

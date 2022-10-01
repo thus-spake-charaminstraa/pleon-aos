@@ -100,8 +100,13 @@
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/main_green_color</item>
     </style>
-
-
+    <style name="ModelWaitingText" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/black_sub_color</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:lineSpacingExtra">7sp</item>
+        <item name="android:gravity">center</item>
+    </style>
 
 
 <!--    trash-->
@@ -129,10 +134,5 @@
         <item name="android:textSize">17dp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/black</item>
-    </style>
-
-    <style name="ModelWaitingText" parent="@android:style/Widget.TextView">
-        <item name="android:textSize">12sp</item>
-        <item name="android:textColor">@color/black_sub_color</item>
     </style>
 </resources>
