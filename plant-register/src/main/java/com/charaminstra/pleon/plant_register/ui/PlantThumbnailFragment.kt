@@ -1,20 +1,26 @@
 package com.charaminstra.pleon.plant_register.ui
 
+import android.R.attr.mimeType
+import android.R.attr.orientation
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.FileProvider
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.target.Target
+import com.bumptech.glide.signature.MediaStoreSignature
 import com.charaminstra.pleon.common.*
 import com.charaminstra.pleon.common_ui.*
 import com.charaminstra.pleon.plant_register.PlantRegisterViewModel
@@ -22,6 +28,7 @@ import com.charaminstra.pleon.plant_register.R
 import com.charaminstra.pleon.plant_register.databinding.FragmentPlantThumbnailBinding
 import com.google.firebase.analytics.FirebaseAnalytics
 import java.io.FileInputStream
+
 
 class PlantThumbnailFragment : Fragment() {
     private val TAG = javaClass.name
@@ -32,6 +39,7 @@ class PlantThumbnailFragment : Fragment() {
 
     private lateinit var permissionMsg: ErrorToast
     lateinit var photoFile: PLeonImageFile
+    lateinit var bitmap : Bitmap
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -100,11 +108,6 @@ class PlantThumbnailFragment : Fragment() {
         }
         return binding.root
     }
-//    private fun initObservers(){
-//        viewModel.thumbnailUrlResponse.observe(viewLifecycleOwner, Observer{
-//            Glide.with(this).load(it).into(binding.plantThumbnailImg)
-//        })
-//    }
 
     // 갤러리 화면에서 이미지를 선택한 경우 현재 화면에 보여준다.
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -117,14 +120,16 @@ class PlantThumbnailFragment : Fragment() {
                 data ?: return
                 val uri = data.data as Uri
                 activity?.contentResolver?.openInputStream(uri).let {
-                    val bitmap = BitmapFactory.decodeStream(it)
+                    bitmap = BitmapFactory.decodeStream(it)
                     binding.plantThumbnailImg.setImageBitmap(bitmap)
                     viewModel.galleryToUrl(bitmap)
+                    viewModel.imgType = "gallery"
                 }
             }
             REQUEST_TAKE_PHOTO -> {
                 Glide.with(this).load(photoFile.currentPhotoPath).into(binding.plantThumbnailImg)
                 viewModel.cameraToUrl(FileInputStream(photoFile.currentPhotoPath))
+                viewModel.imgType = "photo"
             }
             else -> {
                 ErrorToast(requireContext()).showMsg(
@@ -137,8 +142,10 @@ class PlantThumbnailFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        if(!viewModel.thumbnailUrlResponse.value.isNullOrBlank()){
-            Glide.with(this).load(viewModel.thumbnailUrlResponse.value).into(binding.plantThumbnailImg)
+        if(viewModel.imgType == "gallery"){
+            binding.plantThumbnailImg.setImageBitmap(bitmap)
+        }else if(viewModel.imgType == "photo"){
+            Glide.with(this).load(photoFile.currentPhotoPath).into(binding.plantThumbnailImg)
         }
     }
     private fun openGallery() {

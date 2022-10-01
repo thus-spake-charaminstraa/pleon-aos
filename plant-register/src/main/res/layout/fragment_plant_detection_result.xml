@@ -34,7 +34,7 @@
         android:layout_marginTop="8dp"
         tools:text="로즈마리 입니다." />
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/air_next_btn"
+        android:id="@+id/plant_detection_result_ok_btn"
         android:layout_width="match_parent"
         android:layout_height="52dp"
         android:layout_marginVertical="20dp"

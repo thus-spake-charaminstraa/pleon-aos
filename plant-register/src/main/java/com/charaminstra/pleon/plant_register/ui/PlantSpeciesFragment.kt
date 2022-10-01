@@ -35,6 +35,10 @@ class PlantSpeciesFragment : Fragment() {
         binding = FragmentPlantSpeciesBinding.inflate(layoutInflater)
         val navController = this.findNavController()
 
+        if(!viewModel.plantDetectionResultLabel.value.isNullOrBlank()){
+            binding.plantSpeciesEt.setText(viewModel.plantDetectionResultLabel.value)
+        }
+
         binding.plantSpeciesBackBtn.setOnClickListener {
             navController.popBackStack()
         }

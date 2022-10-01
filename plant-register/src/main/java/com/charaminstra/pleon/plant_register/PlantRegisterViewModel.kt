@@ -33,6 +33,9 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
     private val _plantDetectionResultLabel = MutableLiveData<String>()
     val plantDetectionResultLabel : LiveData<String> = _plantDetectionResultLabel
 
+    private val _plantDetectionResultPercent= MutableLiveData<String>()
+    val plantDetectionResultPercent : LiveData<String> = _plantDetectionResultPercent
+
     private val _data = MutableLiveData<PlantDataObject>()
     val data: LiveData<PlantDataObject> = _data
 
@@ -48,6 +51,8 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
 
     private val _plantDetectionUrlResponse = MutableLiveData<String?>()
     val plantDetectionUrlResponse : LiveData<String?> = _plantDetectionUrlResponse
+
+    var imgType : String? = null
 
     fun getName(): LiveData<String> {
         return name
@@ -98,11 +103,17 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
             when(data.isSuccessful){
                 true -> {
                     Log.i(TAG,"plant detection data ->"+data.body().toString())
-                    _plantDetectionSuccess.postValue(true)
-                    _plantDetectionResultLabel.value=data.body()?.species?.name
-                    //_plantDetectionResultLabel.value=data.body()?.score
+                    val species = data.body()?.species
+                    val score = data.body()?.score
+                    if(species == null){
+                        _plantDetectionSuccess.postValue(false)
+                    }else{
+                        _plantDetectionSuccess.postValue(true)
+                        _plantDetectionResultLabel.value= species.name
+                        _plantDetectionResultPercent.value= score!!
+                    }
                 }else -> {
-
+                    Log.i(TAG,"plant detection error")
                 }
             }
         }
@@ -115,8 +126,8 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
             when (data.isSuccessful) {
                 true -> {
                     Log.i(TAG,"data.body -> "+data.body())
-                    _thumbnailUrlResponse.postValue(data.body()?.data?.url)
-                    _plantDetectionUrlResponse.postValue(data.body()?.data?.url)
+                    _thumbnailUrlResponse.value = data.body()?.data?.url
+                    _plantDetectionUrlResponse.value = data.body()?.data?.url
                 }
                 else -> {
                     Log.i(TAG,"FAIL-> ")
@@ -134,8 +145,8 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
                 when (data.isSuccessful) {
                     true -> {
                         Log.i(TAG,"data.body -> "+data.body())
-                        _thumbnailUrlResponse.postValue(data.body()?.data?.url)
-                        _plantDetectionUrlResponse.postValue(data.body()?.data?.url)
+                        _thumbnailUrlResponse.value = data.body()?.data?.url
+                        _plantDetectionUrlResponse.value = data.body()?.data?.url
                     }
                     else -> {
                         Log.i(TAG,"FAIL-> ")
