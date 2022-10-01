@@ -19,10 +19,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.charaminstra.pleon.common.PLeonImageFile
-import com.charaminstra.pleon.common.REQUEST_GALLERY
-import com.charaminstra.pleon.common.REQUEST_TAKE_PHOTO
-import com.charaminstra.pleon.common.RequestPermission
+import com.charaminstra.pleon.common.*
 import com.charaminstra.pleon.common_ui.ErrorToast
 import com.charaminstra.pleon.common_ui.PLeonMsgDialog
 import com.charaminstra.pleon.common_ui.PopUpImageMenu
@@ -31,11 +28,14 @@ import com.charaminstra.pleon.plant_register.PlantSearchAdapter
 import com.charaminstra.pleon.plant_register.PlantSearchViewModel
 import com.charaminstra.pleon.plant_register.R
 import com.charaminstra.pleon.plant_register.databinding.FragmentPlantSpeciesBinding
+import com.google.firebase.analytics.FirebaseAnalytics
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.FileInputStream
 
 @AndroidEntryPoint
 class PlantSpeciesFragment : Fragment() {
+    private val TAG = javaClass.name
+
     private lateinit var binding: FragmentPlantSpeciesBinding
     private lateinit var adapter: PlantSearchAdapter
     private val searchViewModel: PlantSearchViewModel by viewModels()
@@ -43,10 +43,23 @@ class PlantSpeciesFragment : Fragment() {
     lateinit var photoFile: PLeonImageFile
     lateinit var navController: NavController
 
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        firebaseAnalytics= FirebaseAnalytics.getInstance(requireContext())
+
+        // logging
+        val bundle = Bundle()
+        bundle.putString(CLASS_NAME, TAG)
+        firebaseAnalytics.logEvent(PLANT_SPECIES_VIEW, bundle)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         binding = FragmentPlantSpeciesBinding.inflate(layoutInflater)
         navController = this.findNavController()
 
@@ -67,12 +80,15 @@ class PlantSpeciesFragment : Fragment() {
                     ErrorToast(requireContext()).showCameraPermission()
                 }
             }
-
             imageMenuDlg.setOnGalleryClickedListener {
                 openGallery()
             }
             imageMenuDlg.start()
-//            navController.navigate(R.id.plant_species_fragment_to_plant_detection_waiting_fragment)
+
+            // logging
+            val bundle = Bundle()
+            bundle.putString(CLASS_NAME, TAG)
+            firebaseAnalytics.logEvent(PLANT_SPECIES_IMG_SEARCH_BTN_CLICK, bundle)
         }
 
         initList()
@@ -159,6 +175,10 @@ class PlantSpeciesFragment : Fragment() {
             binding.plantSpeciesEt.setText(name)
             binding.plantSpeciesRecyclerview.visibility = View.GONE
 
+            // logging
+            val bundle = Bundle()
+            bundle.putString(CLASS_NAME, TAG)
+            firebaseAnalytics.logEvent(PLANT_SPECIES_SEARCH_ITEM_CLICK, bundle)
         }
     }
 

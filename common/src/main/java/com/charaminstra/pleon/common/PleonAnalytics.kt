@@ -39,3 +39,8 @@ const val PLANT_REGISTER_CLICK = "plant_register_btn_click"
 //my fragment
 const val MY_VIEW = "my_view"
 const val LOGOUT_BTN_CLICK = "logout_btn_click"
+
+//plant species fragment
+const val PLANT_SPECIES_VIEW = "plant_species_view"
+const val PLANT_SPECIES_SEARCH_ITEM_CLICK = "plant_species_search_item_click"
+const val PLANT_SPECIES_IMG_SEARCH_BTN_CLICK = "plant_species_img_search_btn_click"
