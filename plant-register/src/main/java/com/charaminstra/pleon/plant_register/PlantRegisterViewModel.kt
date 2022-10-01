@@ -133,7 +133,7 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
                 true -> {
                     Log.i(TAG,"data.body -> "+data.body())
                     _thumbnailUrlResponse.value = data.body()?.data?.url
-                    _plantDetectionUrlResponse.value = data.body()?.data?.url
+                    //_plantDetectionUrlResponse.value = data.body()?.data?.url
                 }
                 else -> {
                     Log.i(TAG,"FAIL-> ")
@@ -152,7 +152,7 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
                     true -> {
                         Log.i(TAG,"data.body -> "+data.body())
                         _thumbnailUrlResponse.value = data.body()?.data?.url
-                        _plantDetectionUrlResponse.value = data.body()?.data?.url
+                        //_plantDetectionUrlResponse.value = data.body()?.data?.url
                     }
                     else -> {
                         Log.i(TAG,"FAIL-> ")
@@ -160,6 +160,10 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
                 }
             }
         }
+    }
+
+    fun thumbnailToSpecies(){
+        _plantDetectionUrlResponse.value = thumbnailUrlResponse.value
     }
 
     fun speciesCameraToUrl(inputStream: InputStream){

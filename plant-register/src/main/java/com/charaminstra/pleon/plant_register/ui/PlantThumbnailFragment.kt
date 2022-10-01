@@ -97,6 +97,7 @@ class PlantThumbnailFragment : Fragment() {
                     binding.plantThumbnailAddImg.y
                 )
             } else {
+                viewModel.thumbnailToSpecies()
                 navController.navigate(R.id.plant_thumbnail_fragment_to_plant_detection_waiting_fragment)
             }
         }
