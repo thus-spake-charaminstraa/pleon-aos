@@ -107,6 +107,13 @@
         <item name="android:lineSpacingExtra">7sp</item>
         <item name="android:gravity">center</item>
     </style>
+    <style name="ModelResultText" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/black_sub_color</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:lineSpacingExtra">7sp</item>
+        <item name="android:gravity">center</item>
+    </style>
 
 
 <!--    trash-->

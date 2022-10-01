@@ -1,6 +1,8 @@
 <resources>
     <string name="plant_detection_waiting">식물 식별중...</string>
     <string name="plant_detection_error_msg">식별된 종이 없어요.\n종을 검색하여 직접 입력해주시거나\n다시 촬영해보세요.</string>
+    <string name="plant_detection_percent_msg">% 확률로</string>
+    <string name="plant_detection_label_msg">\u0020입니다.</string>
 
     <!--    button  -->
     <string name="plant_register_skip_btn">건너뛰기</string>

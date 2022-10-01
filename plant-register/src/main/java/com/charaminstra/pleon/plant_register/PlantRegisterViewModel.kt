@@ -33,8 +33,8 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
     private val _plantDetectionResultLabel = MutableLiveData<String>()
     val plantDetectionResultLabel : LiveData<String> = _plantDetectionResultLabel
 
-    private val _plantDetectionResultPercent= MutableLiveData<String>()
-    val plantDetectionResultPercent : LiveData<String> = _plantDetectionResultPercent
+    private val _plantDetectionResultPercent= MutableLiveData<Float>()
+    val plantDetectionResultPercent : LiveData<Float> = _plantDetectionResultPercent
 
     private val _data = MutableLiveData<PlantDataObject>()
     val data: LiveData<PlantDataObject> = _data

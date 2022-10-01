@@ -8,6 +8,6 @@ data class PlantDetectionResponseBody(
     val success: Boolean?,
     val image_url: String?,
     val category: String?,
-    val score: String?,
+    val score: Float?,
     val species: PlantSpeciesDataObject?
 )
