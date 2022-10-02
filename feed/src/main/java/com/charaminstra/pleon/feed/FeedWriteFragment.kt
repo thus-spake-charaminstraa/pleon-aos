@@ -184,6 +184,7 @@ class FeedWriteFragment : Fragment() {
             feedWriteViewModel.plantAction = actionType
             binding.feedWriteActionTagTv.text = actionType.name_kr
             binding.feedWriteActionTagTv.text= resources.getString(com.charaminstra.pleon.feed_common.R.string.action_tag) + feedWriteViewModel.plantAction!!.name_kr
+            binding.feedWriteContent.setText(feedWriteViewModel.plantAction?.auto_content!!)
         }
         feedWriteViewModel.getActionList()
     }

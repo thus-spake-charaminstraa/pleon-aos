@@ -9,7 +9,8 @@ data class ActionResponse(
 data class ActionData(
     val name_kr: String,
     val name_en: String,
-    val icon_uri: String
+    val icon_uri: String,
+    val auto_content: String?
 )
 
 
