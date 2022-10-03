@@ -17,7 +17,6 @@ class QPlantChooseFragment : Fragment() {
     private lateinit var binding : FragmentQPlantChooseBinding
     private lateinit var doctorPlantAdapter : DoctorPlantAdapter
     private val plantsViewModel: PlantsViewModel by viewModels()
-    private val viewModel: DoctorViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

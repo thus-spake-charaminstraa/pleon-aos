@@ -8,10 +8,8 @@
 
     <application>
         <activity
-            android:name=".DoctorActivity"
-            android:exported="false"
-            android:label="@string/title_activity_doctor"
-            android:theme="@style/Theme.PLeon_AOS.NoActionBar" />
+            android:name=".ReceiptActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

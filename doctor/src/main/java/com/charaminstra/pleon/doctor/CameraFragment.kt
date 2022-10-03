@@ -10,19 +10,19 @@ import androidx.camera.core.CameraSelector
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
-import com.charaminstra.pleon.doctor.databinding.FragmentDoctorCameraOneBinding
+import com.charaminstra.pleon.doctor.databinding.FragmentCameraBinding
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-class DoctorCameraOneFragment : Fragment() {
-    private lateinit var binding: FragmentDoctorCameraOneBinding
+class CameraFragment : Fragment() {
+    private lateinit var binding: FragmentCameraBinding
 
     private lateinit var cameraExecutor: ExecutorService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = FragmentDoctorCameraOneBinding.inflate(layoutInflater)
+        binding = FragmentCameraBinding.inflate(layoutInflater)
 
         startCamera()
         binding.imageCaptureButton.setOnClickListener {

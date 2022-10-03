@@ -18,8 +18,6 @@ class DoctorFragment : Fragment() {
     private lateinit var firebaseAnalytics: FirebaseAnalytics
     private lateinit var binding : FragmentDoctorBinding
 
-    private lateinit var viewModel: DoctorViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         firebaseAnalytics= FirebaseAnalytics.getInstance(requireContext())
@@ -36,9 +34,8 @@ class DoctorFragment : Fragment() {
         val navController = this.findNavController()
         binding = FragmentDoctorBinding.inflate(inflater, container, false)
         binding.doctorNextBtn.setOnClickListener {
-            val intent = Intent(requireContext(), DoctorActivity::class.java)
+            val intent = Intent(requireContext(), ReceiptActivity::class.java)
             startActivity(intent)
-            //navController.navigate(R.id.doctor_fragment_to_q_plant_register_fragment)
         }
         return binding.root
     }

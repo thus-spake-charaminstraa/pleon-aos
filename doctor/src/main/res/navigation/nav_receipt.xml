@@ -18,10 +18,10 @@
         tools:layout="@layout/fragment_q_plant_choose">
         <action
             android:id="@+id/q_plant_choose_fragment_to_camera_fragment"
-            app:destination="@+id/doctor_camera_one_fragment"/>
+            app:destination="@+id/camera_fragment"/>
     </fragment>
     <fragment
-        android:id="@+id/doctor_camera_one_fragment"
-        android:name="com.charaminstra.pleon.doctor.DoctorCameraOneFragment"
-        tools:layout="@layout/fragment_doctor_camera_one" />
+        android:id="@+id/camera_fragment"
+        android:name="com.charaminstra.pleon.doctor.CameraFragment"
+        tools:layout="@layout/fragment_camera" />
 </navigation>

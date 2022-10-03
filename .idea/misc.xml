@@ -155,6 +155,7 @@
         <entry key="common/src/main/res/layout/item_plant_garden.xml" value="0.134375" />
         <entry key="doctor/src/main/res/drawable/plant_on.xml" value="0.2295" />
         <entry key="doctor/src/main/res/layout/activity_doctor.xml" value="0.2164855072463768" />
+        <entry key="doctor/src/main/res/layout/activity_receipt.xml" value="0.4234375" />
         <entry key="doctor/src/main/res/layout/content_doctor.xml" value="0.2164855072463768" />
         <entry key="doctor/src/main/res/layout/fragment_doctor.xml" value="0.26197916666666665" />
         <entry key="doctor/src/main/res/layout/fragment_doctor_camera_one.xml" value="0.2557291666666667" />
