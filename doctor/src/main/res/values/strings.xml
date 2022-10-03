@@ -1,3 +1,4 @@
 <resources>
-    <string name="doctor_fragment_bubble_txt">Dr.PLeon 입니다. \n 식물 진단 기능을 개발중이에요 :)</string>
+    <string name="doctor_fragment_bubble_txt">반려식물이 아픈가요?\nDr.PLeon의 진단을 받아보세요!</string>
+    <string name="doctor_fragment_next_btn">접수하기</string>
 </resources>

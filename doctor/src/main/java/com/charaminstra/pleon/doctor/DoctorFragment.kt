@@ -9,12 +9,14 @@ import android.view.ViewGroup
 import com.charaminstra.pleon.common.CLASS_NAME
 import com.charaminstra.pleon.common.DOCTOR_VIEW
 import com.charaminstra.pleon.common.FEED_WRITE_COMPLETE_BTN_CLICK
+import com.charaminstra.pleon.doctor.databinding.FragmentDoctorBinding
 import com.google.firebase.analytics.FirebaseAnalytics
 
 class DoctorFragment : Fragment() {
 
     private val TAG = javaClass.name
     private lateinit var firebaseAnalytics: FirebaseAnalytics
+    private lateinit var binding : FragmentDoctorBinding
 
     private lateinit var viewModel: DoctorViewModel
 
@@ -31,7 +33,9 @@ class DoctorFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_doctor, container, false)
+        binding = FragmentDoctorBinding.inflate(inflater, container, false)
+
+        return binding.root
     }
 
 }
