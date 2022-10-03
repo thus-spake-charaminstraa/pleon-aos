@@ -7,5 +7,21 @@
     <fragment
         android:id="@+id/doctor_fragment"
         android:name="com.charaminstra.pleon.doctor.DoctorFragment"
-        tools:layout="@layout/fragment_doctor" />
+        tools:layout="@layout/fragment_doctor" >
+        <action
+            android:id="@+id/doctor_fragment_to_q_plant_register_fragment"
+            app:destination="@+id/q_plant_register_fragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/q_plant_register_fragment"
+        android:name="com.charaminstra.pleon.doctor.QPlantRegisterFragment"
+        tools:layout="@layout/fragment_q_plant_register">
+        <action
+            android:id="@+id/q_plant_register_fragment_to_q_plant_choose_fragment"
+            app:destination="@+id/q_plant_choose_fragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/q_plant_choose_fragment"
+        android:name="com.charaminstra.pleon.doctor.QPlantChooseFragment"
+        tools:layout="@layout/fragment_q_plant_choose" />
 </navigation>

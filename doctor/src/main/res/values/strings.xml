@@ -1,4 +1,11 @@
 <resources>
     <string name="doctor_fragment_bubble_txt">반려식물이 아픈가요?\nDr.PLeon의 진단을 받아보세요!</string>
     <string name="doctor_fragment_next_btn">접수하기</string>
+
+    <string name="q_plant_register_fragment_title">PLEON에 등록되어있는\n반려식물인가요?</string>
+    <string name="q_plant_register_fragment_1">예</string>
+    <string name="q_plant_register_fragment_2">아니오</string>
+
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

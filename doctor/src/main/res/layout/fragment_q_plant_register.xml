@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/sub_background_color"
+    android:paddingHorizontal="20dp"
+    android:paddingBottom="65dp">
+    <ImageView
+        android:id="@+id/q_plant_register_back_btn"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:paddingVertical="5dp"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:scaleType="fitStart"
+        android:layout_marginTop="14dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_arrow_back" />
+    <TextView
+        android:id="@+id/q_plant_register_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textColor="#2d2d2d"
+        style="@style/LoginTitleText"
+        android:letterSpacing="-0.02"
+        android:lineSpacingExtra="8sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/q_plant_register_back_btn"
+        tools:text="@string/q_plant_register_fragment_title"
+        android:text="@string/q_plant_register_fragment_title"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/q_plant_register_title"
+        app:layout_constraintBottom_toTopOf="@+id/q_plant_register_btn"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/plant_register_q1"
+            android:layout_width="250dp"
+            android:layout_height="66dp"
+            android:background="@drawable/plant_selector"
+            tools:text="@string/q_plant_register_fragment_1"
+            android:text="@string/q_plant_register_fragment_1"
+            />
+        <TextView
+            android:id="@+id/plant_register_q2"
+            android:layout_width="250dp"
+            android:layout_height="66dp"
+            android:background="@drawable/plant_selector"
+            tools:text="@string/q_plant_register_fragment_2"
+            android:text="@string/q_plant_register_fragment_2"
+            />
+    </LinearLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/q_plant_register_btn"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginVertical="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:background="@drawable/button_green_selector"
+        style="@style/LoginButtonText"
+        android:text="@string/next_btn" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
