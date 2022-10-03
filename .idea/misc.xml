@@ -154,7 +154,10 @@
         <entry key="common/src/main/res/layout/item_plant_feed.xml" value="0.128419452887538" />
         <entry key="common/src/main/res/layout/item_plant_garden.xml" value="0.134375" />
         <entry key="doctor/src/main/res/drawable/plant_on.xml" value="0.2295" />
+        <entry key="doctor/src/main/res/layout/activity_doctor.xml" value="0.2164855072463768" />
+        <entry key="doctor/src/main/res/layout/content_doctor.xml" value="0.2164855072463768" />
         <entry key="doctor/src/main/res/layout/fragment_doctor.xml" value="0.26197916666666665" />
+        <entry key="doctor/src/main/res/layout/fragment_doctor_camera_one.xml" value="0.2557291666666667" />
         <entry key="doctor/src/main/res/layout/fragment_q_plant_choose.xml" value="0.335" />
         <entry key="doctor/src/main/res/layout/fragment_q_plant_register.xml" value="0.2852760736196319" />
         <entry key="doctor/src/main/res/layout/item_doctor_plant.xml" value="0.2625" />

@@ -1,5 +1,6 @@
 package com.charaminstra.pleon.doctor
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -35,7 +36,9 @@ class DoctorFragment : Fragment() {
         val navController = this.findNavController()
         binding = FragmentDoctorBinding.inflate(inflater, container, false)
         binding.doctorNextBtn.setOnClickListener {
-            navController.navigate(R.id.doctor_fragment_to_q_plant_register_fragment)
+            val intent = Intent(requireContext(), DoctorActivity::class.java)
+            startActivity(intent)
+            //navController.navigate(R.id.doctor_fragment_to_q_plant_register_fragment)
         }
         return binding.root
     }

@@ -32,6 +32,9 @@ class QPlantChooseFragment : Fragment() {
         binding.qPlantChooseBackBtn.setOnClickListener{
             navController.popBackStack()
         }
+        binding.qPlantChooseNextBtn.setOnClickListener {
+            navController.navigate(R.id.q_plant_choose_fragment_to_camera_fragment)
+        }
         return binding.root
     }
 

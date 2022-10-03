@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/q_plant_register_fragment">
+    <fragment
+        android:id="@+id/q_plant_register_fragment"
+        android:name="com.charaminstra.pleon.doctor.QPlantRegisterFragment"
+        tools:layout="@layout/fragment_q_plant_register">
+        <action
+            android:id="@+id/q_plant_register_fragment_to_q_plant_choose_fragment"
+            app:destination="@+id/q_plant_choose_fragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/q_plant_choose_fragment"
+        android:name="com.charaminstra.pleon.doctor.QPlantChooseFragment"
+        tools:layout="@layout/fragment_q_plant_choose">
+        <action
+            android:id="@+id/q_plant_choose_fragment_to_camera_fragment"
+            app:destination="@+id/doctor_camera_one_fragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/doctor_camera_one_fragment"
+        android:name="com.charaminstra.pleon.doctor.DoctorCameraOneFragment"
+        tools:layout="@layout/fragment_doctor_camera_one" />
+</navigation>

@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/sub_background_color"
-    android:paddingHorizontal="20dp"
-    android:paddingBottom="65dp">
+    android:paddingHorizontal="20dp">
     <ImageView
         android:id="@+id/q_plant_register_back_btn"
         app:layout_constraintTop_toTopOf="parent"
