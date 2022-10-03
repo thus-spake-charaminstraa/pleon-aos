@@ -135,6 +135,7 @@
         <entry key="common-ui/src/main/res/drawable/ic_user.xml" value="0.422" />
         <entry key="common-ui/src/main/res/drawable/input.xml" value="0.182" />
         <entry key="common-ui/src/main/res/drawable/plant_off.xml" value="0.1" />
+        <entry key="common-ui/src/main/res/drawable/plant_selector.xml" value="0.2295" />
         <entry key="common-ui/src/main/res/drawable/round_click_selector.xml" value="0.2345" />
         <entry key="common-ui/src/main/res/drawable/round_shape.xml" value="0.129" />
         <entry key="common-ui/src/main/res/drawable/round_transparent.xml" value="0.1" />
@@ -152,9 +153,11 @@
         <entry key="common/src/main/res/layout/item_noti.xml" value="0.1" />
         <entry key="common/src/main/res/layout/item_plant_feed.xml" value="0.128419452887538" />
         <entry key="common/src/main/res/layout/item_plant_garden.xml" value="0.134375" />
+        <entry key="doctor/src/main/res/drawable/plant_on.xml" value="0.2295" />
         <entry key="doctor/src/main/res/layout/fragment_doctor.xml" value="0.26197916666666665" />
-        <entry key="doctor/src/main/res/layout/fragment_q_plant_choose.xml" value="0.1" />
-        <entry key="doctor/src/main/res/layout/fragment_q_plant_register.xml" value="0.335" />
+        <entry key="doctor/src/main/res/layout/fragment_q_plant_choose.xml" value="0.335" />
+        <entry key="doctor/src/main/res/layout/fragment_q_plant_register.xml" value="0.2852760736196319" />
+        <entry key="doctor/src/main/res/layout/item_doctor_plant.xml" value="0.2625" />
         <entry key="feed-common/src/main/res/drawable/comment_rounded_corner_edittext.xml" value="0.311" />
         <entry key="feed-common/src/main/res/drawable/ic_more.xml" value="0.1375" />
         <entry key="feed-common/src/main/res/drawable/tag_bg.xml" value="0.1" />
@@ -198,7 +201,7 @@
         <entry key="feed/src/main/res/drawable/selector_noti_complete.xml" value="0.117" />
         <entry key="feed/src/main/res/layout/bottom_sheet_layout.xml" value="0.1" />
         <entry key="feed/src/main/res/layout/fragment_feed.xml" value="0.20102651839178784" />
-        <entry key="feed/src/main/res/layout/fragment_feed_write.xml" value="0.29836829836829837" />
+        <entry key="feed/src/main/res/layout/fragment_feed_write.xml" value="0.22981366459627328" />
         <entry key="feed/src/main/res/layout/item_action.xml" value="0.1" />
         <entry key="feed/src/main/res/layout/item_default_noti.xml" value="0.17028985507246377" />
         <entry key="feed/src/main/res/layout/item_noti.xml" value="0.1" />

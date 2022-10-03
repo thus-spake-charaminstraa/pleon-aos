@@ -1,2 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="DoctorChooseText" parent="@android:style/Widget.Button">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/black_sub_color</item>
+    </style>
 </resources>

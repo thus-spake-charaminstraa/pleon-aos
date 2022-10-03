@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="120dp"
+    android:layout_height="160dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="12dp"
+    android:layout_gravity="center"
+    android:background="@drawable/choose_selector"
+    android:id="@+id/doctor_plant_root">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/doctor_plant_img"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:src="@drawable/img_logo"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:textSize="14sp"
+        tools:text="바질이"
+        android:textColor="@color/black_sub_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/doctor_plant_img"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/doctor_plant_name"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
