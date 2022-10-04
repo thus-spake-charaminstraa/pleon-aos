@@ -6,6 +6,9 @@
     <color name="black_sub_color">#3a3a3a</color>
     <color name="black_sub2_color">#8d8d97</color>
     <color name="border_color">#f3f3f3</color>
+    <color name="black_80">#CC000000</color>
+    <color name="white_80">#CCFFFFFF</color>
+
 
     <color name="button_click_color">#173A3A3A</color>
     <color name="image_click_color">#943A3A3A</color>

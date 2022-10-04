@@ -8,6 +8,8 @@
 
     <string name="q_plant_choose_fragment_title">어떤 식물을\n진단하실건가요?</string>
 
+    <string name="camera_help_1">식물 전체가 나오게 찍어주세요.</string>
+    <string name="camera_help_2">문제가 있어보이는 부위를 가까이에서 찍어주세요.</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
