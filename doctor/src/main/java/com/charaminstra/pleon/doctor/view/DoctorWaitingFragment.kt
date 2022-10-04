@@ -5,15 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.charaminstra.pleon.doctor.DoctorViewModel
 import com.charaminstra.pleon.doctor.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class DoctorWaitingFragment : Fragment() {
     private val TAG = javaClass.name
-    //private val viewModel: PlantRegisterViewModel by activityViewModels()
+    private val viewModel: DoctorViewModel by activityViewModels()
     lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
