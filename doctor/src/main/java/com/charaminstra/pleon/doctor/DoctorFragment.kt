@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.charaminstra.pleon.common.CLASS_NAME
 import com.charaminstra.pleon.common.DOCTOR_VIEW
 import com.charaminstra.pleon.doctor.databinding.FragmentDoctorBinding
+import com.charaminstra.pleon.doctor.view.DoctorActivity
 import com.google.firebase.analytics.FirebaseAnalytics
 
 class DoctorFragment : Fragment() {
@@ -34,7 +35,7 @@ class DoctorFragment : Fragment() {
         val navController = this.findNavController()
         binding = FragmentDoctorBinding.inflate(inflater, container, false)
         binding.doctorNextBtn.setOnClickListener {
-            val intent = Intent(requireContext(), ReceiptActivity::class.java)
+            val intent = Intent(requireContext(), DoctorActivity::class.java)
             startActivity(intent)
         }
         return binding.root

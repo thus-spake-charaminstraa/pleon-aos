@@ -1,7 +1,6 @@
-package com.charaminstra.pleon.doctor
+package com.charaminstra.pleon.doctor.view
 
 import android.Manifest
-import android.app.Activity
 import android.content.ContentValues
 import android.content.pm.PackageManager
 import android.os.Build
@@ -43,7 +42,8 @@ class CameraFragment : Fragment() {
             startCamera()
         } else {
             ActivityCompat.requestPermissions(
-                requireActivity(), REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS)
+                requireActivity(), REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS
+            )
         }
 
         binding.imageCaptureButton.setOnClickListener {

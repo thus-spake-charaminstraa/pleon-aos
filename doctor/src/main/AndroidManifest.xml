@@ -8,7 +8,7 @@
 
     <application>
         <activity
-            android:name=".ReceiptActivity"
+            android:name=".view.DoctorActivity"
             android:exported="false" />
     </application>
 

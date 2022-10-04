@@ -1,4 +1,4 @@
-package com.charaminstra.pleon.doctor
+package com.charaminstra.pleon.doctor.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,6 +9,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.charaminstra.pleon.common.PlantsViewModel
+import com.charaminstra.pleon.doctor.DoctorPlantAdapter
+import com.charaminstra.pleon.doctor.R
 import com.charaminstra.pleon.doctor.databinding.FragmentQPlantChooseBinding
 import dagger.hilt.android.AndroidEntryPoint
 

@@ -1,4 +1,4 @@
-package com.charaminstra.pleon.doctor
+package com.charaminstra.pleon.doctor.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.charaminstra.pleon.doctor.R
 import com.charaminstra.pleon.doctor.databinding.FragmentQPlantRegisterBinding
 import dagger.hilt.android.AndroidEntryPoint
 

@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/q_plant_register_fragment"
-        android:name="com.charaminstra.pleon.doctor.QPlantRegisterFragment"
+        android:name="com.charaminstra.pleon.doctor.view.QPlantRegisterFragment"
         tools:layout="@layout/fragment_q_plant_register">
         <action
             android:id="@+id/q_plant_register_fragment_to_q_plant_choose_fragment"
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/q_plant_choose_fragment"
-        android:name="com.charaminstra.pleon.doctor.QPlantChooseFragment"
+        android:name="com.charaminstra.pleon.doctor.view.QPlantChooseFragment"
         tools:layout="@layout/fragment_q_plant_choose">
         <action
             android:id="@+id/q_plant_choose_fragment_to_camera_fragment"
@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/camera_fragment"
-        android:name="com.charaminstra.pleon.doctor.CameraFragment"
+        android:name="com.charaminstra.pleon.doctor.view.CameraFragment"
         tools:layout="@layout/fragment_camera" >
         <action
             android:id="@+id/camera_fragment_to_doctor_waiting_fragment"
@@ -32,7 +32,7 @@
     </fragment>
     <fragment
         android:id="@+id/doctor_waiting_fragment"
-        android:name="com.charaminstra.pleon.doctor.DoctorWaitingFragment"
+        android:name="com.charaminstra.pleon.doctor.view.DoctorWaitingFragment"
         tools:layout="@layout/fragment_doctor_waiting" >
         <action
             android:id="@+id/doctor_waiting_fragment_to_prescription_fragment"
@@ -40,6 +40,6 @@
     </fragment>
     <fragment
         android:id="@+id/prescription_fragment"
-        android:name="com.charaminstra.pleon.doctor.PrescriptionFragment"
+        android:name="com.charaminstra.pleon.doctor.view.PrescriptionFragment"
         tools:layout="@layout/fragment_prescription" />
 </navigation>

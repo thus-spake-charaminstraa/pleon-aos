@@ -12,4 +12,12 @@ class InferenceRepository @Inject constructor(private val service: InferenceAPIS
     suspend fun postPlantDetection(image_url: String) = service.postPlantDetection(
         PlantDetectionRequestBody(image_url)
     )
+
+    suspend fun warmingPlantDoctor() = service.warmingPlantDoctor(
+        "warming"
+    )
+
+    suspend fun postPlantDoctor(image_url: String) = service.postPlantDoctor(
+        PlantDetectionRequestBody(image_url)
+    )
 }
