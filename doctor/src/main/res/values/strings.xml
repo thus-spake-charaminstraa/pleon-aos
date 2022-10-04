@@ -11,5 +11,17 @@
     <string name="camera_help_1">식물 전체가 나오게 찍어주세요.</string>
     <string name="camera_help_2">문제가 있어보이는 부위를 가까이에서 찍어주세요.</string>
 
+    <string name="doctor_waiting">잎 진단중...</string>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="prescription_fragment_title">처방전</string>
+
+    <string name="prescription_doctor_title">당당 의료진</string>
+    <string name="prescription_doctor_name">PLeon</string>
+    <string name="prescription_patient_title">환자</string>
+
+    <string name="prescription_symptom_title">증상</string>
+    <string name="prescription_cause_title">예상 원인</string>
+    <string name="prescription_solution_title">Solution</string>
 </resources>

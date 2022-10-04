@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/q_plant_register_fragment">
+<!--    app:startDestination="@id/prescription_fragment">-->
+
     <fragment
         android:id="@+id/q_plant_register_fragment"
         android:name="com.charaminstra.pleon.doctor.QPlantRegisterFragment"
@@ -23,5 +25,21 @@
     <fragment
         android:id="@+id/camera_fragment"
         android:name="com.charaminstra.pleon.doctor.CameraFragment"
-        tools:layout="@layout/fragment_camera" />
+        tools:layout="@layout/fragment_camera" >
+        <action
+            android:id="@+id/camera_fragment_to_doctor_waiting_fragment"
+            app:destination="@+id/doctor_waiting_fragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/doctor_waiting_fragment"
+        android:name="com.charaminstra.pleon.doctor.DoctorWaitingFragment"
+        tools:layout="@layout/fragment_doctor_waiting" >
+        <action
+            android:id="@+id/doctor_waiting_fragment_to_prescription_fragment"
+            app:destination="@+id/prescription_fragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/prescription_fragment"
+        android:name="com.charaminstra.pleon.doctor.PrescriptionFragment"
+        tools:layout="@layout/fragment_prescription" />
 </navigation>
