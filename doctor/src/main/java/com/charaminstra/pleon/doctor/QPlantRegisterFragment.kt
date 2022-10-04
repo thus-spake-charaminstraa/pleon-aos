@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.charaminstra.pleon.doctor.databinding.FragmentDoctorBinding
 import com.charaminstra.pleon.doctor.databinding.FragmentQPlantRegisterBinding
 import dagger.hilt.android.AndroidEntryPoint
 
