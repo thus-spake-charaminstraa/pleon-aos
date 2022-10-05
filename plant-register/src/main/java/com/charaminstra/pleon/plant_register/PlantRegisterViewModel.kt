@@ -1,6 +1,7 @@
 package com.charaminstra.pleon.plant_register
 
 import android.graphics.Bitmap
+import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -125,6 +126,12 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
         }
     }
 
+//    fun uriToUrl(uri: Uri){
+//        viewModelScope.launch {
+//            val data = imageRepository.
+//        }
+//    }
+
     fun thumbnailCameraToUrl(inputStream: InputStream){
         viewModelScope.launch {
             val data =imageRepository.postImage(inputStream)
@@ -144,7 +151,7 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
     fun thumbnailGalleryToUrl(bitmap: Bitmap){
         viewModelScope.launch {
             ByteArrayOutputStream().use { stream ->
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 75, stream)
                 val inputStream = ByteArrayInputStream(stream.toByteArray())
                 val data = imageRepository.postImage(inputStream)
                 Log.i(TAG,"data -> $data")
