@@ -1,11 +1,15 @@
 package com.charaminstra.pleon.doctor
 
+import android.graphics.Bitmap
 import android.util.Log
 import androidx.lifecycle.*
 import com.charaminstra.pleon.foundation.ImageRepository
 import com.charaminstra.pleon.foundation.InferenceRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
+import java.io.InputStream
 import javax.inject.Inject
 
 @HiltViewModel
@@ -14,6 +18,8 @@ class DoctorViewModel @Inject constructor(private val imageRepository: ImageRepo
     :ViewModel(){
 
     private val TAG = javaClass.name
+
+    var currentIdx = 1
 
     private val _firstImgUrlResponse = MutableLiveData<String?>()
     val firstImgUrlResponse : LiveData<String?> = _firstImgUrlResponse
@@ -24,13 +30,31 @@ class DoctorViewModel @Inject constructor(private val imageRepository: ImageRepo
     private val _plantDoctorSuccess = MutableLiveData<Boolean?>()
     val plantDoctorSuccess : LiveData<Boolean?> = _plantDoctorSuccess
 
-    fun firstImgToUrl(){
+    fun imgToUrl(inputStream: InputStream){
+        viewModelScope.launch {
+            val data =imageRepository.postImage(inputStream)
+            Log.i(TAG,"data -> $data")
+            when (data.isSuccessful) {
+                true -> {
+                    Log.i(TAG,"data.body -> "+data.body())
+                    if(currentIdx == 1){
+                        _firstImgUrlResponse.value = data.body()?.data?.url
+                        currentIdx += 1
+                    }else if(currentIdx == 2){
+                        _secondImgUrlResponse.value = data.body()?.data?.url
+                    }
 
+                }
+                else -> {
+                    Log.i(TAG,"FAIL-> ")
+                }
+            }
+        }
     }
 
-    fun secondImgToUrl(){
-
-    }
+//    fun secondImgToUrl(){
+//
+//    }
 
     fun postPlantDoctorModel(){
         viewModelScope.launch {

@@ -19,15 +19,24 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
+import com.charaminstra.pleon.doctor.DoctorViewModel
+import com.charaminstra.pleon.doctor.R
 import com.charaminstra.pleon.doctor.databinding.FragmentCameraBinding
+import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
+@AndroidEntryPoint
 class CameraFragment : Fragment() {
     private lateinit var binding: FragmentCameraBinding
+    private val viewModel : DoctorViewModel by activityViewModels()
 
+    private lateinit var navController : NavController
     private var imageCapture: ImageCapture? = null
 
     private lateinit var cameraExecutor: ExecutorService
@@ -36,6 +45,9 @@ class CameraFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         binding = FragmentCameraBinding.inflate(layoutInflater)
+        initObserver()
+        viewModel.currentIdx = 1
+        navController = this.findNavController()
 
         // Request camera permissions
         if (allPermissionsGranted()) {
@@ -98,9 +110,11 @@ class CameraFragment : Fragment() {
                     Log.e(TAG, "Photo capture failed: ${exc.message}", exc)
                 }
 
-                override fun
-                        onImageSaved(output: ImageCapture.OutputFileResults){
+                override fun onImageSaved(output: ImageCapture.OutputFileResults){
                     val msg = "Photo capture succeeded: ${output.savedUri}"
+                    val uri  = output.savedUri
+                    val inputStream = activity?.contentResolver?.openInputStream(uri!!)
+                    viewModel.imgToUrl(inputStream!!)
                     Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
                     Log.d(TAG, msg)
                 }
@@ -151,6 +165,17 @@ class CameraFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         cameraExecutor.shutdown()
+    }
+
+    private fun initObserver(){
+        viewModel.firstImgUrlResponse.observe(this) {
+            binding.cameraFirstFin.setImageDrawable(resources.getDrawable(R.drawable.ic_shoot_first_complete))
+            binding.cameraSecondFin.setImageDrawable(resources.getDrawable(R.drawable.ic_shoot_second_ing))
+            binding.cameraHelpTv.text = resources.getString(R.string.camera_help_2)
+        }
+        viewModel.secondImgUrlResponse.observe(this, {
+            navController.navigate(R.id.camera_fragment_to_doctor_waiting_fragment)
+        })
     }
 
 
