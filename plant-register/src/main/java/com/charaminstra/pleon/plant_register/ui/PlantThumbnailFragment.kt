@@ -17,6 +17,7 @@ import android.view.ViewGroup
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.charaminstra.pleon.common.*
@@ -35,6 +36,7 @@ class PlantThumbnailFragment : Fragment() {
 
     private lateinit var binding: FragmentPlantThumbnailBinding
     private val viewModel: PlantRegisterViewModel by activityViewModels()
+    private lateinit var navController: NavController
 
     private lateinit var permissionMsg: ErrorToast
     lateinit var photoFile: PLeonImageFile
@@ -62,9 +64,10 @@ class PlantThumbnailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentPlantThumbnailBinding.inflate(layoutInflater)
-        //initObservers()
+        initObservers()
+        initListeners()
         permissionMsg = ErrorToast(requireContext())
-        val navController = this.findNavController()
+        navController = this.findNavController()
 
         binding.plantThumbnailBackBtn.setOnClickListener {
             activity?.finish()
@@ -95,17 +98,6 @@ class PlantThumbnailFragment : Fragment() {
                 resources.getString(R.string.plant_register_skip_dialog_cancel_btn),
                 resources.getString(R.string.plant_register_skip_dialog_skip_btn)
             )
-        }
-        binding.plantRegisterNextBtn.setOnClickListener {
-            if (viewModel.thumbnailUrlResponse.value.isNullOrBlank()) {
-                ErrorToast(requireContext()).showMsg(
-                    resources.getString(R.string.plant_thumbnail_fragment_error),
-                    binding.plantThumbnailAddImg.y
-                )
-            } else {
-                viewModel.thumbnailToSpecies()
-                navController.navigate(R.id.plant_thumbnail_fragment_to_plant_detection_waiting_fragment)
-            }
         }
         return binding.root
     }
@@ -141,9 +133,10 @@ class PlantThumbnailFragment : Fragment() {
 
                 val rotateBitmap = Bitmap.createBitmap(bitmap, 0, 0 ,bitmap.width, bitmap.height, matrix, true)
 
-                binding.plantThumbnailImg.rotation = orientation.toFloat()
+                //binding.plantThumbnailImg.rotation = orientation.toFloat()
                 binding.plantThumbnailImg.setImageBitmap(rotateBitmap)
-                viewModel.thumbnailGalleryToUrl(rotateBitmap)
+                viewModel.bitmap = rotateBitmap
+//
                 viewModel.imgType = "gallery"
 
 //                activity?.contentResolver?.openInputStream(uri).let {
@@ -155,8 +148,9 @@ class PlantThumbnailFragment : Fragment() {
             }
             REQUEST_TAKE_PHOTO -> {
                 //performCrop()
+
                 Glide.with(this).load(photoFile.currentPhotoPath).into(binding.plantThumbnailImg)
-                viewModel.thumbnailCameraToUrl(FileInputStream(photoFile.currentPhotoPath))
+                viewModel.inputStream = FileInputStream(photoFile.currentPhotoPath)
                 viewModel.imgType = "photo"
             }
             else -> {
@@ -170,10 +164,34 @@ class PlantThumbnailFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        if(viewModel.imgType == "gallery"){
-            binding.plantThumbnailImg.setImageBitmap(bitmap)
-        }else if(viewModel.imgType == "photo"){
-            Glide.with(this).load(photoFile.currentPhotoPath).into(binding.plantThumbnailImg)
+//        if(viewModel.imgType == "gallery"){
+//            binding.plantThumbnailImg.setImageBitmap(bitmap)
+//        }else if(viewModel.imgType == "photo"){
+//            Glide.with(this).load(photoFile.currentPhotoPath).into(binding.plantThumbnailImg)
+//        }
+    }
+
+    private fun initObservers(){
+        viewModel.thumbnailUrlResponse.observe(viewLifecycleOwner) {
+            viewModel.thumbnailToSpecies()
+            navController.navigate(R.id.plant_thumbnail_fragment_to_plant_detection_waiting_fragment)
+            //Glide.with(this).load(it).into((binding.plantThumbnailImg))
+        }
+    }
+
+    private fun initListeners(){
+        binding.plantRegisterNextBtn.setOnClickListener {
+            if (viewModel.thumbnailUrlResponse.value.isNullOrBlank()) {
+                ErrorToast(requireContext()).showMsg(
+                    resources.getString(R.string.plant_thumbnail_fragment_error),
+                    binding.plantThumbnailAddImg.y
+                )
+            }
+            else if(viewModel.imgType == "gallery"){
+                viewModel.thumbnailGalleryToUrl()
+            }else if(viewModel.imgType == "camera"){
+                viewModel.thumbnailCameraToUrl()
+            }
         }
     }
 

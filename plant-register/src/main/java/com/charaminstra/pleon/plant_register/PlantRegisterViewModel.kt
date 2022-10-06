@@ -132,7 +132,8 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
 //        }
 //    }
 
-    fun thumbnailCameraToUrl(inputStream: InputStream){
+    lateinit var inputStream: InputStream
+    fun thumbnailCameraToUrl(){
         viewModelScope.launch {
             val data =imageRepository.postImage(inputStream)
             Log.i(TAG,"data -> $data")
@@ -148,7 +149,9 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
             }
         }
     }
-    fun thumbnailGalleryToUrl(bitmap: Bitmap){
+
+    lateinit var bitmap: Bitmap
+    fun thumbnailGalleryToUrl(){
         viewModelScope.launch {
             ByteArrayOutputStream().use { stream ->
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 75, stream)
