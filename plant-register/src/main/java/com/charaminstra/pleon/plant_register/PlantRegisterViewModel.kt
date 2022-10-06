@@ -25,6 +25,8 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
 
     private val TAG = javaClass.name
 
+    var nextStep = false
+
     private val _plantRegisterSuccess = MutableLiveData<Boolean>()
     val plantRegisterSuccess : LiveData<Boolean> = _plantRegisterSuccess
 
@@ -132,6 +134,8 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
 //        }
 //    }
 
+    var move=false
+
     lateinit var inputStream: InputStream
     fun thumbnailCameraToUrl(){
         viewModelScope.launch {
@@ -140,7 +144,7 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
             when (data.isSuccessful) {
                 true -> {
                     Log.i(TAG,"data.body -> "+data.body())
-                    _thumbnailUrlResponse.value = data.body()?.data?.url
+                    _thumbnailUrlResponse.postValue(data.body()?.data?.url)
                     //_plantDetectionUrlResponse.value = data.body()?.data?.url
                 }
                 else -> {
@@ -161,7 +165,7 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
                 when (data.isSuccessful) {
                     true -> {
                         Log.i(TAG,"data.body -> "+data.body())
-                        _thumbnailUrlResponse.value = data.body()?.data?.url
+                        _thumbnailUrlResponse.postValue(data.body()?.data?.url)
                         //_plantDetectionUrlResponse.value = data.body()?.data?.url
                     }
                     else -> {
@@ -173,7 +177,10 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
     }
 
     fun thumbnailToSpecies(){
+
         _plantDetectionUrlResponse.value = thumbnailUrlResponse.value
+        Log.i(TAG,"thumbnailUrlResponse.value"+thumbnailUrlResponse.value )
+        Log.i(TAG,"plantDetectionUrlResponse.value"+plantDetectionUrlResponse.value )
     }
 
     fun speciesCameraToUrl(inputStream: InputStream){

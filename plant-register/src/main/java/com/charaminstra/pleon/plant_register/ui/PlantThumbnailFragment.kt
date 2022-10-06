@@ -17,9 +17,11 @@ import android.view.ViewGroup
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.certified.customprogressindicatorlibrary.CustomProgressIndicator
 import com.charaminstra.pleon.common.*
 import com.charaminstra.pleon.common_ui.*
 import com.charaminstra.pleon.plant_register.PlantRegisterViewModel
@@ -43,6 +45,10 @@ class PlantThumbnailFragment : Fragment() {
     var cameraUri: Uri? = null
     lateinit var bitmap : Bitmap
 
+
+
+    lateinit var indicator: CustomProgressIndicator
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -64,6 +70,8 @@ class PlantThumbnailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentPlantThumbnailBinding.inflate(layoutInflater)
+        setIndicator()
+
         initObservers()
         initListeners()
         permissionMsg = ErrorToast(requireContext())
@@ -133,25 +141,18 @@ class PlantThumbnailFragment : Fragment() {
 
                 val rotateBitmap = Bitmap.createBitmap(bitmap, 0, 0 ,bitmap.width, bitmap.height, matrix, true)
 
-                //binding.plantThumbnailImg.rotation = orientation.toFloat()
                 binding.plantThumbnailImg.setImageBitmap(rotateBitmap)
                 viewModel.bitmap = rotateBitmap
 //
                 viewModel.imgType = "gallery"
 
-//                activity?.contentResolver?.openInputStream(uri).let {
-//                    bitmap = BitmapFactory.decodeStream(it)
-//                    binding.plantThumbnailImg.setImageBitmap(bitmap)
-//                    viewModel.thumbnailGalleryToUrl(bitmap)
-//                    viewModel.imgType = "gallery"
-//                }
             }
             REQUEST_TAKE_PHOTO -> {
                 //performCrop()
 
                 Glide.with(this).load(photoFile.currentPhotoPath).into(binding.plantThumbnailImg)
                 viewModel.inputStream = FileInputStream(photoFile.currentPhotoPath)
-                viewModel.imgType = "photo"
+                viewModel.imgType = "camera"
             }
             else -> {
                 ErrorToast(requireContext()).showMsg(
@@ -162,37 +163,63 @@ class PlantThumbnailFragment : Fragment() {
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+        indicator.stopAnimation()
+    }
+
     override fun onResume() {
         super.onResume()
-//        if(viewModel.imgType == "gallery"){
-//            binding.plantThumbnailImg.setImageBitmap(bitmap)
-//        }else if(viewModel.imgType == "photo"){
-//            Glide.with(this).load(photoFile.currentPhotoPath).into(binding.plantThumbnailImg)
-//        }
+
+        //Glide.with(this).load(viewModel.thumbnailUrlResponse.value).into(binding.plantThumbnailImg)
+        if(viewModel.imgType == "gallery"){
+            binding.plantThumbnailImg.setImageBitmap(bitmap)
+        }else if(viewModel.imgType == "camera"){
+            Glide.with(this).load(photoFile.currentPhotoPath).into(binding.plantThumbnailImg)
+        }
     }
 
     private fun initObservers(){
-        viewModel.thumbnailUrlResponse.observe(viewLifecycleOwner) {
+        viewModel.thumbnailUrlResponse.observe(viewLifecycleOwner, Observer {
             viewModel.thumbnailToSpecies()
-            navController.navigate(R.id.plant_thumbnail_fragment_to_plant_detection_waiting_fragment)
-            //Glide.with(this).load(it).into((binding.plantThumbnailImg))
-        }
+            indicator.stopAnimation()
+            if(viewModel.nextStep){
+                navController.navigate(R.id.plant_thumbnail_fragment_to_plant_detection_waiting_fragment)
+            }else{}
+        })
     }
+
+            //Glide.with(this).load(it).into((binding.plantThumbnailImg))
+
 
     private fun initListeners(){
         binding.plantRegisterNextBtn.setOnClickListener {
-            if (viewModel.thumbnailUrlResponse.value.isNullOrBlank()) {
-                ErrorToast(requireContext()).showMsg(
-                    resources.getString(R.string.plant_thumbnail_fragment_error),
-                    binding.plantThumbnailAddImg.y
-                )
-            }
-            else if(viewModel.imgType == "gallery"){
+            viewModel.nextStep = true
+           if(viewModel.imgType == "gallery"){
                 viewModel.thumbnailGalleryToUrl()
+                indicator.apply {
+                    visibility = View.VISIBLE
+                    startAnimation()
+                }
             }else if(viewModel.imgType == "camera"){
                 viewModel.thumbnailCameraToUrl()
-            }
+                indicator.apply {
+                    visibility = View.VISIBLE
+                    startAnimation()
+                }
+            }else{}
         }
+    }
+
+
+
+    fun setIndicator(){
+        indicator = binding.indicator
+        indicator.setProgressIndicatorColor("#8d8d97")
+        indicator.setTrackColor("#35c97a")
+        indicator.setImageResource(com.charaminstra.pleon.common_ui.R.drawable.img_logo)
+        indicator.setText("loading ... ")
+        indicator.setTextSize(15.0F)
     }
 
 

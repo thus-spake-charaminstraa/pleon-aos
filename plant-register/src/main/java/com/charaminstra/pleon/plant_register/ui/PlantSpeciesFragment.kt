@@ -68,6 +68,8 @@ class PlantSpeciesFragment : Fragment() {
         }
 
         binding.plantSpeciesBackBtn.setOnClickListener {
+            viewModel.clearPlantDetectionUrl()
+            viewModel.nextStep = false
             navController.popBackStack()
         }
 
