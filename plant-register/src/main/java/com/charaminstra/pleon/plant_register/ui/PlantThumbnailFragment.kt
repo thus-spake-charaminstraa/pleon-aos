@@ -1,16 +1,13 @@
 package com.charaminstra.pleon.plant_register.ui
 
 import android.app.Activity
-import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
-import android.media.ExifInterface
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +17,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.bumptech.glide.Glide
 import com.certified.customprogressindicatorlibrary.CustomProgressIndicator
 import com.charaminstra.pleon.common.*
 import com.charaminstra.pleon.common_ui.*
@@ -29,23 +25,16 @@ import com.charaminstra.pleon.plant_register.R
 import com.charaminstra.pleon.plant_register.databinding.FragmentPlantThumbnailBinding
 import com.charaminstra.pleon.plant_register.getOrientation
 import com.google.firebase.analytics.FirebaseAnalytics
-import java.io.FileInputStream
-
 
 class PlantThumbnailFragment : Fragment() {
     private val TAG = javaClass.name
     private lateinit var firebaseAnalytics: FirebaseAnalytics
-
     private lateinit var binding: FragmentPlantThumbnailBinding
     private val viewModel: PlantRegisterViewModel by activityViewModels()
     private lateinit var navController: NavController
-
     private lateinit var permissionMsg: ErrorToast
     lateinit var photoFile: PLeonImageFile
     var cameraUri: Uri? = null
-    lateinit var bitmap : Bitmap
-
-
 
     lateinit var indicator: CustomProgressIndicator
 
@@ -122,13 +111,9 @@ class PlantThumbnailFragment : Fragment() {
             }
             REQUEST_GALLERY -> {
                 data ?: return
-                val uri = data.data as Uri
-                cameraUri = uri
-                //performCrop()
-                val inputStream = activity?.contentResolver?.openInputStream(cameraUri!!)
-
-                bitmap = BitmapFactory.decodeStream(inputStream)
-
+                cameraUri = data.data as Uri
+                val inputStream = requireContext().contentResolver?.openInputStream(cameraUri!!)
+                val bitmap = BitmapFactory.decodeStream(inputStream)
                 val orientation = getOrientation(requireContext(), cameraUri!!)
                 val matrix = Matrix()
                 when(orientation){
@@ -136,23 +121,22 @@ class PlantThumbnailFragment : Fragment() {
                     180 -> matrix.postRotate(180F)
                     270 -> matrix.postRotate(270F)
                 }
-
-                Log.i("matrix rotate : ",matrix.toString())
-
                 val rotateBitmap = Bitmap.createBitmap(bitmap, 0, 0 ,bitmap.width, bitmap.height, matrix, true)
-
-                binding.plantThumbnailImg.setImageBitmap(rotateBitmap)
-                viewModel.bitmap = rotateBitmap
-//
-                viewModel.imgType = "gallery"
+                viewModel.setBitmap(rotateBitmap)
 
             }
             REQUEST_TAKE_PHOTO -> {
-                //performCrop()
-
-                Glide.with(this).load(photoFile.currentPhotoPath).into(binding.plantThumbnailImg)
-                viewModel.inputStream = FileInputStream(photoFile.currentPhotoPath)
-                viewModel.imgType = "camera"
+                val inputStream = requireContext().contentResolver?.openInputStream(cameraUri!!)
+                val bitmap = BitmapFactory.decodeStream(inputStream)
+                val orientation = getOrientation(requireContext(), cameraUri!!)
+                val matrix = Matrix()
+                when(orientation){
+                    90 -> matrix.postRotate(90F)
+                    180 -> matrix.postRotate(180F)
+                    270 -> matrix.postRotate(270F)
+                }
+                val rotateBitmap = Bitmap.createBitmap(bitmap, 0, 0 ,bitmap.width, bitmap.height, matrix, true)
+                viewModel.setBitmap(rotateBitmap)
             }
             else -> {
                 ErrorToast(requireContext()).showMsg(
@@ -168,49 +152,30 @@ class PlantThumbnailFragment : Fragment() {
         indicator.stopAnimation()
     }
 
-    override fun onResume() {
-        super.onResume()
-
-        //Glide.with(this).load(viewModel.thumbnailUrlResponse.value).into(binding.plantThumbnailImg)
-        if(viewModel.imgType == "gallery"){
-            binding.plantThumbnailImg.setImageBitmap(bitmap)
-        }else if(viewModel.imgType == "camera"){
-            Glide.with(this).load(photoFile.currentPhotoPath).into(binding.plantThumbnailImg)
-        }
-    }
-
     private fun initObservers(){
         viewModel.thumbnailUrlResponse.observe(viewLifecycleOwner, Observer {
             viewModel.thumbnailToSpecies()
             indicator.stopAnimation()
-            if(viewModel.nextStep){
+            if(viewModel.thumbnailNextStep){
                 navController.navigate(R.id.plant_thumbnail_fragment_to_plant_detection_waiting_fragment)
+                viewModel.thumbnailNextStep = false
             }else{}
+        })
+        viewModel.thumbnailBitmap.observe(viewLifecycleOwner, Observer{
+            binding.plantThumbnailImg.setImageBitmap(it)
         })
     }
 
-            //Glide.with(this).load(it).into((binding.plantThumbnailImg))
-
-
     private fun initListeners(){
         binding.plantRegisterNextBtn.setOnClickListener {
-            viewModel.nextStep = true
-           if(viewModel.imgType == "gallery"){
-                viewModel.thumbnailGalleryToUrl()
-                indicator.apply {
-                    visibility = View.VISIBLE
-                    startAnimation()
-                }
-            }else if(viewModel.imgType == "camera"){
-                viewModel.thumbnailCameraToUrl()
-                indicator.apply {
-                    visibility = View.VISIBLE
-                    startAnimation()
-                }
-            }else{}
+            viewModel.thumbnailNextStep = true
+            viewModel.thumbnailBitmapToUrl()
+            indicator.apply {
+                visibility = View.VISIBLE
+                startAnimation()
+            }
         }
     }
-
 
 
     fun setIndicator(){
@@ -240,31 +205,5 @@ class PlantThumbnailFragment : Fragment() {
         )
         intent.putExtra(MediaStore.EXTRA_OUTPUT, cameraUri)
         startActivityForResult(intent, REQUEST_TAKE_PHOTO)
-    }
-
-    private fun performCrop() {
-        // take care of exceptions
-        try {
-            // call the standard crop action intent (the user device may not
-            // support it)
-            val cropIntent = Intent("com.android.camera.action.CROP")
-            // indicate image type and Uri
-            cropIntent.setDataAndType(cameraUri, "image/*")
-            // set crop properties
-            cropIntent.putExtra("crop", "true")
-            // indicate aspect of desired crop
-            cropIntent.putExtra("aspectX", 1)
-            cropIntent.putExtra("aspectY", 1)
-            // indicate output X and Y
-            cropIntent.putExtra("outputX", 256)
-            cropIntent.putExtra("outputY", 256)
-            // retrieve data on return
-            cropIntent.putExtra("return-data", true)
-
-            // start the activity - we handle returning in onActivityResult
-            startActivityForResult(cropIntent, REQUEST_CROP)
-        } // respond to users whose devices do not support the crop action
-        catch (anfe: ActivityNotFoundException) {
-        }
     }
 }

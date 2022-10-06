@@ -6,7 +6,6 @@ import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -37,13 +36,10 @@ class PlantDetectionResultFragment : Fragment() {
         binding = FragmentPlantDetectionResultBinding.inflate(layoutInflater)
         navController = this.findNavController()
 
-
-
         initObservers()
         Glide.with(requireContext()).load(viewModel.plantDetectionUrlResponse.value).into(binding.plantDetectionResultImg)
 
         binding.plantDetectionResultOkBtn.setOnClickListener {
-            viewModel.clearPlantDetectionUrl()
             navController.navigate(R.id.plant_detection_result_return)
         }
 

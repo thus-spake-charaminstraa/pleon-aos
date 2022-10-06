@@ -27,3 +27,7 @@ fun getOrientation(context: Context, uri: Uri): Int {
     }
     return 0
 }
+
+fun rotateBitmap(){
+
+}
