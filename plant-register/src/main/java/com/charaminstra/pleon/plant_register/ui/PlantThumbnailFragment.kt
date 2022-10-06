@@ -129,7 +129,7 @@ class PlantThumbnailFragment : Fragment() {
 
                 bitmap = BitmapFactory.decodeStream(inputStream)
 
-                val orientation = getOrientation(requireContext(), cameraUri)
+                val orientation = getOrientation(requireContext(), cameraUri!!)
                 val matrix = Matrix()
                 when(orientation){
                     90 -> matrix.postRotate(90F)
@@ -176,6 +176,8 @@ class PlantThumbnailFragment : Fragment() {
             Glide.with(this).load(photoFile.currentPhotoPath).into(binding.plantThumbnailImg)
         }
     }
+
+
     private fun openGallery() {
         val intent = Intent()
         intent.type = "image/*"
