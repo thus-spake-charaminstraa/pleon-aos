@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.setPadding
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -14,7 +13,6 @@ import com.bumptech.glide.Glide
 import com.charaminstra.pleon.common.CLASS_NAME
 import com.charaminstra.pleon.common.LOGOUT_BTN_CLICK
 import com.charaminstra.pleon.common.MY_VIEW
-import com.charaminstra.pleon.common.PLANT_REGISTER_CLICK
 import com.charaminstra.pleon.my.databinding.FragmentMyBinding
 import com.google.firebase.analytics.FirebaseAnalytics
 import dagger.hilt.android.AndroidEntryPoint

@@ -112,13 +112,16 @@ class FeedWriteFragment : Fragment() {
         }
         binding.completeBtn.setOnClickListener {
             hideKeyboard(binding.feedWriteContent)
-            if(feedWriteViewModel.imgBitmap.value != null){
+            if(binding.feedWriteContent.text.isNullOrBlank()){
+                ErrorToast(requireContext()).showMsgCenter(binding.feedWriteContent.hint.toString())
+            }else if(feedWriteViewModel.imgBitmap.value != null){
                 indicator.apply {
                     visibility = View.VISIBLE
                     startAnimation()
                 }
                 feedWriteViewModel.imgBitmapToUrl()
             }else{
+                indicator.stopAnimation()
                 feedWriteViewModel.postFeed(
                     DateUtils(requireContext()).viewToSendServer(binding.feedWriteDate.text.toString()),
                     binding.feedWriteContent.text.toString()

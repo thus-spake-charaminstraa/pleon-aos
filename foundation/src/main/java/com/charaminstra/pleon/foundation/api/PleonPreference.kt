@@ -33,13 +33,6 @@ class PleonPreference @Inject constructor(@ApplicationContext context : Context)
     fun getAccessToken(): String {
         return "Bearer "+prefs.getString(ACCESS_KEY, DEFAULT).toString()
     }
-    fun setName(str: String?) {
-        prefs.edit().putString(NAME, str).apply()
-        Log.d(NAME, "name set : "+ getName() )
-    }
-    fun getName(): String {
-        return prefs.getString(NAME, DEFAULT).toString()
-    }
     fun setRefreshToken(str: String?) {
         prefs.edit().putString(REFRESH_KEY, str).apply()
         Log.d(REFRESH_KEY, "token set : "+ getRefreshToken() )

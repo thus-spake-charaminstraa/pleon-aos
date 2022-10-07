@@ -89,7 +89,6 @@ class PhoneViewModel @Inject constructor(
                     prefs.setAccessToken(data.body()?.data?.token?.access_token)
                     _setTokenSuccess.postValue(true)
                     postDeviceToken()
-                    prefs.setName(data.body()?.data?.user?.nickname)
                 }
                 else -> {
                     _setTokenSuccess.postValue(false)
