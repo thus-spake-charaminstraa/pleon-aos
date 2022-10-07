@@ -2,7 +2,9 @@ package com.charaminstra.pleon.garden.ui
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Matrix
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -17,6 +19,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.certified.customprogressindicatorlibrary.CustomProgressIndicator
 import com.charaminstra.pleon.common.*
 import com.charaminstra.pleon.common_ui.DateUtils
 import com.charaminstra.pleon.common_ui.PLeonMsgDialog
@@ -25,6 +28,7 @@ import com.charaminstra.pleon.common_ui.PopUpImageMenu
 import com.charaminstra.pleon.garden.PlantEditViewModel
 import com.charaminstra.pleon.garden.R
 import com.charaminstra.pleon.garden.databinding.FragmentPlantEditBinding
+import com.charaminstra.pleon.plant_register.getOrientation
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.FileInputStream
 import java.text.SimpleDateFormat
@@ -39,6 +43,8 @@ class PlantEditFragment : Fragment() {
     private lateinit var dateFormat: SimpleDateFormat
     lateinit var photoFile: PLeonImageFile
     private lateinit var permissionMsg: ErrorToast
+    lateinit var plantImgUri: Uri
+    lateinit var indicator: CustomProgressIndicator
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         /*카메라권한요청*/
@@ -50,6 +56,7 @@ class PlantEditFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentPlantEditBinding.inflate(layoutInflater)
+        setIndicator()
         permissionMsg = ErrorToast(requireContext())
         binding.plantEditBackBtn.setOnClickListener {
             navController.popBackStack()
@@ -78,6 +85,11 @@ class PlantEditFragment : Fragment() {
         return binding.root
     }
 
+    override fun onPause() {
+        super.onPause()
+        indicator.stopAnimation()
+    }
+
     // 갤러리 화면에서 이미지를 선택한 경우 현재 화면에 보여준다.
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -87,16 +99,31 @@ class PlantEditFragment : Fragment() {
         when (requestCode) {
             REQUEST_GALLERY -> {
                 data ?: return
-                val uri = data.data as Uri
-                activity?.contentResolver?.openInputStream(uri).let {
-                    val bitmap = BitmapFactory.decodeStream(it)
-                    binding.plantEditImg.setImageBitmap(bitmap)
-                    viewModel.galleryToUrl(bitmap)
+                plantImgUri = data.data as Uri
+                val inputStream = requireContext().contentResolver?.openInputStream(plantImgUri!!)
+                val bitmap = BitmapFactory.decodeStream(inputStream)
+                val orientation = getOrientation(requireContext(), plantImgUri!!)
+                val matrix = Matrix()
+                when(orientation){
+                    90 -> matrix.postRotate(90F)
+                    180 -> matrix.postRotate(180F)
+                    270 -> matrix.postRotate(270F)
                 }
+                val rotateBitmap = Bitmap.createBitmap(bitmap, 0, 0 ,bitmap.width, bitmap.height, matrix, true)
+                viewModel.setBitmap(rotateBitmap)
             }
             REQUEST_TAKE_PHOTO -> {
-                Glide.with(this).load(photoFile.currentPhotoPath).into(binding.plantEditImg)
-                viewModel.cameraToUrl(FileInputStream(photoFile.currentPhotoPath))
+                val inputStream = requireContext().contentResolver?.openInputStream(plantImgUri!!)
+                val bitmap = BitmapFactory.decodeStream(inputStream)
+                val orientation = getOrientation(requireContext(), plantImgUri!!)
+                val matrix = Matrix()
+                when(orientation){
+                    90 -> matrix.postRotate(90F)
+                    180 -> matrix.postRotate(180F)
+                    270 -> matrix.postRotate(270F)
+                }
+                val rotateBitmap = Bitmap.createBitmap(bitmap, 0, 0 ,bitmap.width, bitmap.height, matrix, true)
+                viewModel.setBitmap(rotateBitmap)
             }
             else -> {
                 ErrorToast(requireContext()).showMsg(
@@ -115,12 +142,12 @@ class PlantEditFragment : Fragment() {
     private fun openCamera() {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         photoFile = PLeonImageFile(requireActivity())
-        val uri = FileProvider.getUriForFile(
+        plantImgUri = FileProvider.getUriForFile(
             requireContext(),
             "com.charaminstra.pleon.fileprovider",
             photoFile.create()
         )
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
+        intent.putExtra(MediaStore.EXTRA_OUTPUT,  plantImgUri)
         startActivityForResult(intent, REQUEST_TAKE_PHOTO)
     }
 
@@ -174,6 +201,9 @@ class PlantEditFragment : Fragment() {
     }
 
     private fun initObservers(){
+        viewModel.plantImgBitmap.observe(viewLifecycleOwner, Observer {
+            binding.plantEditImg.setImageBitmap(it)
+        })
         viewModel.plantData.observe(viewLifecycleOwner, Observer { it ->
             Glide.with(binding.root)
                 .load(it.thumbnail)
@@ -206,9 +236,20 @@ class PlantEditFragment : Fragment() {
         })
         viewModel.deleteSuccess.observe(viewLifecycleOwner, Observer{
             if(it){
-                //navController.navigate(com.charaminstra.pleon.R.id.plant_edit_fragment_delete)
+                navController.navigate(R.id.plant_edit_fragment_delete)
             }else{
                 Toast.makeText(requireContext(),"삭제에 실패하였습니다.",Toast.LENGTH_SHORT)
+            }
+        })
+        viewModel.urlResponse.observe(viewLifecycleOwner, Observer {
+            if(viewModel.plantImgEdit){
+                viewModel.patchData(
+                    id,
+                    binding.plantNameInput.text.toString(),
+                    DateUtils(requireContext()).viewToSendServer(binding.adoptDayInput.text.toString()))
+                navController.popBackStack()
+            }else{
+
             }
         })
     }
@@ -260,6 +301,13 @@ class PlantEditFragment : Fragment() {
         binding.completeBtn.setOnClickListener{
             if(binding.plantNameInput.text.isNullOrEmpty()){
                 ErrorToast(requireContext()).showMsg(resources.getString(R.string.plant_edit_fragment_name_error),binding.plantNameInput.y)
+            }else if(viewModel.plantImgBitmap.value != null){
+                indicator.apply {
+                    visibility = View.VISIBLE
+                    startAnimation()
+                }
+                viewModel.plantImgBitmapToUrl()
+                viewModel.plantImgEdit = true
             }else{
                 viewModel.patchData(
                     id,
@@ -280,5 +328,14 @@ class PlantEditFragment : Fragment() {
                 resources.getString(com.charaminstra.pleon.common_ui.R.string.dialog_delete_btn)
             )
         }
+    }
+
+    fun setIndicator(){
+        indicator = binding.indicator
+        indicator.setProgressIndicatorColor("#8d8d97")
+        indicator.setTrackColor("#35c97a")
+        indicator.setImageResource(com.charaminstra.pleon.common_ui.R.drawable.img_logo)
+        indicator.setText("loading ... ")
+        indicator.setTextSize(15.0F)
     }
 }
