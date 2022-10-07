@@ -6,7 +6,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.charaminstra.pleon.common.ActionType
 import com.charaminstra.pleon.foundation.FeedRepository
 import com.charaminstra.pleon.foundation.ImageRepository
 import com.charaminstra.pleon.foundation.PlantIdRepository
@@ -17,7 +16,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
-import java.io.InputStream
 import javax.inject.Inject
 
 @HiltViewModel
@@ -43,12 +41,42 @@ class FeedWriteViewModel @Inject constructor(
     private val _actionList = MutableLiveData<List<ActionData>>()
     val actionList : LiveData<List<ActionData>> = _actionList
 
-//    private val _firstAction = MutableLiveData<ActionData>()
-//    val firstAction: LiveData<ActionData> = _firstAction
-
     var plantId : String? = null
     var plantAction : ActionData? = null
     //var plantAction : ActionType? = null
+
+    private val _imgBitmap = MutableLiveData<Bitmap?>()
+    var imgBitmap : LiveData<Bitmap?> = _imgBitmap
+
+    fun setBitmap(bitmap: Bitmap){
+        viewModelScope.launch {
+            _imgBitmap.value = bitmap
+        }
+    }
+
+    fun clearBitmap(){
+        _imgBitmap.value = null
+    }
+
+    fun imgBitmapToUrl(){
+        viewModelScope.launch {
+            ByteArrayOutputStream().use { stream ->
+                imgBitmap.value?.compress(Bitmap.CompressFormat.JPEG, 70, stream)
+                val inputStream = ByteArrayInputStream(stream.toByteArray())
+                val data = imageRepository.postImage(inputStream)
+                Log.i(TAG,"data -> $data")
+                when (data.isSuccessful) {
+                    true -> {
+                        Log.i(TAG,"data.body -> "+data.body())
+                        _urlResponse.postValue(data.body()?.data?.url)
+                    }
+                    else -> {
+                        Log.i(TAG,"FAIL-> ")
+                    }
+                }
+            }
+        }
+    }
 
     fun postFeed(date:String, content:String){
         Log.i(TAG,"\n plantId : "+plantId+"\n date: "+date+"\n kind : "+plantAction?.name_en!!+"\n content: "+content+"\n url: "+urlResponse.value)
@@ -110,41 +138,6 @@ class FeedWriteViewModel @Inject constructor(
                 true -> {
                     plantAction = data.body()?.data?.get(0)
                     _actionList.postValue(data.body()?.data!!)
-                }
-            }
-        }
-    }
-
-    fun cameraToUrl(inputStream: InputStream){
-        viewModelScope.launch {
-            val data =imageRepository.postImage(inputStream)
-            Log.i(TAG,"data -> $data")
-            when (data.isSuccessful) {
-                true -> {
-                    Log.i(TAG,"data.body -> "+data.body())
-                    _urlResponse.postValue(data.body()?.data?.url)
-                }
-                else -> {
-                    Log.i(TAG,"FAIL-> ")
-                }
-            }
-        }
-    }
-    fun galleryToUrl(bitmap: Bitmap){
-        viewModelScope.launch {
-            ByteArrayOutputStream().use { stream ->
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
-                val inputStream = ByteArrayInputStream(stream.toByteArray())
-                val data = imageRepository.postImage(inputStream)
-                Log.i(TAG,"data -> $data")
-                when (data.isSuccessful) {
-                    true -> {
-                        Log.i(TAG,"data.body -> "+data.body())
-                        _urlResponse.postValue(data.body()?.data?.url)
-                    }
-                    else -> {
-                        Log.i(TAG,"FAIL-> ")
-                    }
                 }
             }
         }

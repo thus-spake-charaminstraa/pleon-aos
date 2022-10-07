@@ -3,7 +3,9 @@ package com.charaminstra.pleon.feed
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Matrix
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -18,12 +20,14 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.certified.customprogressindicatorlibrary.CustomProgressIndicator
 import com.charaminstra.pleon.common.*
 import com.charaminstra.pleon.common_ui.DateUtils
 import com.charaminstra.pleon.common_ui.ErrorToast
 import com.charaminstra.pleon.common_ui.PLeonDatePicker
 import com.charaminstra.pleon.common_ui.PopUpImageMenu
 import com.charaminstra.pleon.feed.databinding.FragmentFeedWriteBinding
+import com.charaminstra.pleon.plant_register.getOrientation
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.firebase.analytics.FirebaseAnalytics
 import dagger.hilt.android.AndroidEntryPoint
@@ -42,6 +46,8 @@ class FeedWriteFragment : Fragment() {
     private val cal = Calendar.getInstance()
     private lateinit var sheetBehavior : BottomSheetBehavior<View>
     lateinit var photoFile: PLeonImageFile
+    lateinit var imgUri: Uri
+    lateinit var indicator: CustomProgressIndicator
 
     private lateinit var firebaseAnalytics: FirebaseAnalytics
 
@@ -49,6 +55,7 @@ class FeedWriteFragment : Fragment() {
         super.onCreate(savedInstanceState)
         firebaseAnalytics= FirebaseAnalytics.getInstance(requireContext())
         binding = FragmentFeedWriteBinding.inflate(layoutInflater)
+        setIndicator()
         binding.feedWriteBackBtn.setOnClickListener {
             navController.popBackStack()
         /*카메라권한요청*/
@@ -80,6 +87,7 @@ class FeedWriteFragment : Fragment() {
             dlg.start("날짜 선택")
         }
         binding.feedWriteImgAddBtn.setOnClickListener{
+            hideKeyboard(binding.feedWriteContent)
             val imageMenuDlg = PopUpImageMenu(requireContext())
             imageMenuDlg.setOnCameraClickedListener {
                 if (RequestPermission.checkPermission(requireActivity())) {
@@ -88,7 +96,6 @@ class FeedWriteFragment : Fragment() {
                     ErrorToast(requireContext()).showCameraPermission()
                 }
             }
-
             imageMenuDlg.setOnGalleryClickedListener {
                 openGallery()
             }
@@ -97,23 +104,30 @@ class FeedWriteFragment : Fragment() {
         //사진 x
         binding.feedWriteImgDeleteBtn.setOnClickListener{
             binding.feedWriteImg.setImageBitmap(null)
+            feedWriteViewModel.clearBitmap()
+
             binding.feedWriteImgRoot.visibility = View.GONE
             binding.feedWriteImgDeleteBtn.visibility = View.GONE
             binding.feedWriteImgAddBtn.visibility= View.VISIBLE
         }
         binding.completeBtn.setOnClickListener {
-            feedWriteViewModel.postFeed(
-                DateUtils(requireContext()).viewToSendServer(binding.feedWriteDate.text.toString()),
-                binding.feedWriteContent.text.toString()
-            )
-
             hideKeyboard(binding.feedWriteContent)
-
+            if(feedWriteViewModel.imgBitmap.value != null){
+                indicator.apply {
+                    visibility = View.VISIBLE
+                    startAnimation()
+                }
+                feedWriteViewModel.imgBitmapToUrl()
+            }else{
+                feedWriteViewModel.postFeed(
+                    DateUtils(requireContext()).viewToSendServer(binding.feedWriteDate.text.toString()),
+                    binding.feedWriteContent.text.toString()
+                )
+            }
             // logging
             val bundle = Bundle()
             bundle.putString(CLASS_NAME, TAG)
             firebaseAnalytics.logEvent(FEED_WRITE_COMPLETE_BTN_CLICK, bundle)
-
         }
         return binding.root
     }
@@ -205,6 +219,15 @@ class FeedWriteFragment : Fragment() {
             binding.feedWriteActionTagTv.text= resources.getString(com.charaminstra.pleon.feed_common.R.string.action_tag) + feedWriteViewModel.plantAction!!.name_kr
             action_adapter.refreshItems(it)
         })
+        feedWriteViewModel.imgBitmap.observe(viewLifecycleOwner, Observer{
+            binding.feedWriteImg.setImageBitmap(it)
+        })
+        feedWriteViewModel.urlResponse.observe(viewLifecycleOwner,Observer{
+            feedWriteViewModel.postFeed(
+                DateUtils(requireContext()).viewToSendServer(binding.feedWriteDate.text.toString()),
+                binding.feedWriteContent.text.toString()
+            )
+        })
     }
 
     override fun onResume() {
@@ -222,20 +245,36 @@ class FeedWriteFragment : Fragment() {
         when (requestCode) {
             REQUEST_GALLERY -> {
                 data ?: return
-                val uri = data.data as Uri
-                activity?.contentResolver?.openInputStream(uri).let {
-                    val bitmap = BitmapFactory.decodeStream(it)
-                    binding.feedWriteImgRoot.visibility = View.VISIBLE
-                    binding.feedWriteImgDeleteBtn.visibility = View.VISIBLE
-                    binding.feedWriteImg.setImageBitmap(bitmap)
-                    feedWriteViewModel.galleryToUrl(bitmap)
+                imgUri = data.data as Uri
+                val inputStream = requireContext().contentResolver?.openInputStream(imgUri!!)
+                val bitmap = BitmapFactory.decodeStream(inputStream)
+                val orientation = getOrientation(requireContext(),imgUri!!)
+                val matrix = Matrix()
+                when(orientation){
+                    90 -> matrix.postRotate(90F)
+                    180 -> matrix.postRotate(180F)
+                    270 -> matrix.postRotate(270F)
                 }
+                val rotateBitmap = Bitmap.createBitmap(bitmap, 0, 0 ,bitmap.width, bitmap.height, matrix, true)
+                feedWriteViewModel.setBitmap(rotateBitmap)
+                binding.feedWriteImgRoot.visibility = View.VISIBLE
+                binding.feedWriteImgDeleteBtn.visibility = View.VISIBLE
             }
             REQUEST_TAKE_PHOTO -> {
                 binding.feedWriteImgRoot.visibility = View.VISIBLE
                 binding.feedWriteImgDeleteBtn.visibility = View.VISIBLE
-                Glide.with(this).load(photoFile.currentPhotoPath).into(binding.feedWriteImg)
-                feedWriteViewModel.cameraToUrl(FileInputStream(photoFile.currentPhotoPath))
+                val inputStream = requireContext().contentResolver?.openInputStream(imgUri!!)
+                val bitmap = BitmapFactory.decodeStream(inputStream)
+                val orientation = getOrientation(requireContext(),imgUri!!)
+                val matrix = Matrix()
+                when(orientation){
+                    90 -> matrix.postRotate(90F)
+                    180 -> matrix.postRotate(180F)
+                    270 -> matrix.postRotate(270F)
+                }
+                val rotateBitmap = Bitmap.createBitmap(bitmap, 0, 0 ,bitmap.width, bitmap.height, matrix, true)
+                feedWriteViewModel.setBitmap(rotateBitmap)
+                feedWriteViewModel.setBitmap(rotateBitmap)
             }
             else -> {
                 ErrorToast(requireContext()).showMsg(
@@ -255,12 +294,12 @@ class FeedWriteFragment : Fragment() {
     private fun openCamera() {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         photoFile = PLeonImageFile(requireActivity())
-        val uri = FileProvider.getUriForFile(
+        imgUri = FileProvider.getUriForFile(
             requireContext(),
             "com.charaminstra.pleon.fileprovider",
             photoFile.create()
         )
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, imgUri)
         startActivityForResult(intent, REQUEST_TAKE_PHOTO)
     }
 
@@ -273,6 +312,15 @@ class FeedWriteFragment : Fragment() {
     private fun hideKeyboard(view: View) {
         val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view.windowToken, 0);
+    }
+
+    private fun setIndicator(){
+        indicator = binding.indicator
+        indicator.setProgressIndicatorColor("#8d8d97")
+        indicator.setTrackColor("#35c97a")
+        indicator.setImageResource(com.charaminstra.pleon.common_ui.R.drawable.img_logo)
+        indicator.setText("loading ... ")
+        indicator.setTextSize(15.0F)
     }
 
 }

@@ -25,7 +25,6 @@ import kotlin.math.roundToInt
 class PlantDetectionResultFragment : Fragment() {
 
     private val TAG = javaClass.name
-
     private lateinit var binding: FragmentPlantDetectionResultBinding
     private val viewModel: PlantRegisterViewModel by activityViewModels()
     lateinit var navController : NavController
@@ -42,8 +41,6 @@ class PlantDetectionResultFragment : Fragment() {
         binding.plantDetectionResultOkBtn.setOnClickListener {
             navController.navigate(R.id.plant_detection_result_return)
         }
-
-
         return binding.root
     }
 
