@@ -16,6 +16,7 @@
         <activity
             android:name=".ui.PlantRegisterActivity"
             android:windowSoftInputMode="stateVisible|adjustResize"
-            android:exported="true" />
+            android:exported="true">
+        </activity>
     </application>
 </manifest>

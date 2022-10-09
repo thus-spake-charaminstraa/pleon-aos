@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 
 const val REQUEST_GALLERY = 2000
 const val REQUEST_TAKE_PHOTO = 3000
+const val REQUEST_CROP = 4000
 const val PERMISSION = 1000
 
 object RequestPermission: AppCompatActivity() {

@@ -14,7 +14,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
-import java.io.InputStream
 import javax.inject.Inject
 
 @HiltViewModel
@@ -33,6 +32,8 @@ class MyViewModel @Inject constructor(
 
     private val _urlResponse = MutableLiveData<String?>()
     val urlResponse : LiveData<String?> = _urlResponse
+
+    var imgEdit = false
 
     fun getUserData(){
         viewModelScope.launch {
@@ -67,25 +68,20 @@ class MyViewModel @Inject constructor(
             }
         }
     }
-    fun cameraToUrl(inputStream: InputStream){
+
+    private val _imgBitmap = MutableLiveData<Bitmap?>()
+    var imgBitmap : LiveData<Bitmap?> = _imgBitmap
+
+    fun setBitmap(bitmap: Bitmap){
         viewModelScope.launch {
-            val data =imageRepository.postImage(inputStream)
-            Log.i(TAG,"data -> $data")
-            when (data.isSuccessful) {
-                true -> {
-                    Log.i(TAG,"data.body -> "+data.body())
-                    _urlResponse.postValue(data.body()?.data?.url)
-                }
-                else -> {
-                    Log.i(TAG,"FAIL-> ")
-                }
-            }
+            _imgBitmap.value = bitmap
         }
     }
-    fun galleryToUrl(bitmap: Bitmap){
+
+    fun myBitmapToUrl(){
         viewModelScope.launch {
             ByteArrayOutputStream().use { stream ->
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+                imgBitmap.value?.compress(Bitmap.CompressFormat.JPEG, 70, stream)
                 val inputStream = ByteArrayInputStream(stream.toByteArray())
                 val data = imageRepository.postImage(inputStream)
                 Log.i(TAG,"data -> $data")

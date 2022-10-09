@@ -1,6 +1,10 @@
 package com.charaminstra.pleon.plant_register
 
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Matrix
+import android.media.ExifInterface
+import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -14,6 +18,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
+import java.io.IOException
 import java.io.InputStream
 import javax.inject.Inject
 
@@ -23,6 +28,9 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
                                                  private val inferenceRepository: InferenceRepository) : ViewModel() {
 
     private val TAG = javaClass.name
+
+    var thumbnailNextStep = false
+    var speciesNextStep = false
 
     private val _plantRegisterSuccess = MutableLiveData<Boolean>()
     val plantRegisterSuccess : LiveData<Boolean> = _plantRegisterSuccess
@@ -36,23 +44,21 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
     private val _plantDetectionResultPercent= MutableLiveData<Float>()
     val plantDetectionResultPercent : LiveData<Float> = _plantDetectionResultPercent
 
-    private val _data = MutableLiveData<PlantDataObject>()
-    val data: LiveData<PlantDataObject> = _data
-
     val name = MutableLiveData<String>()
-    val species = MutableLiveData<String>()
-    val water_date = MutableLiveData<String>()
-    val adopt_date = MutableLiveData<String>()
-    val light = MutableLiveData<String>()
-    val air = MutableLiveData<String>()
+    private val species = MutableLiveData<String>()
+    private val water_date = MutableLiveData<String>()
+    private val adopt_date = MutableLiveData<String>()
+    private val light = MutableLiveData<String>()
+    private val air = MutableLiveData<String>()
+
+    private val _thumbnailBitmap = MutableLiveData<Bitmap?>()
+    var thumbnailBitmap : LiveData<Bitmap?> = _thumbnailBitmap
 
     private val _thumbnailUrlResponse = MutableLiveData<String?>()
     val thumbnailUrlResponse : LiveData<String?> = _thumbnailUrlResponse
 
     private val _plantDetectionUrlResponse = MutableLiveData<String?>()
     val plantDetectionUrlResponse : LiveData<String?> = _plantDetectionUrlResponse
-
-    var imgType : String? = null
 
     fun getName(): LiveData<String> {
         return name
@@ -96,10 +102,6 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
         }
     }
 
-    fun clearPlantDetectionUrl(){
-        _plantDetectionUrlResponse.value = null
-    }
-
     fun clearPlantDetectionSuccess(){
         _plantDetectionSuccess.value = null
     }
@@ -125,34 +127,23 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
         }
     }
 
-    fun thumbnailCameraToUrl(inputStream: InputStream){
+    fun setBitmap(bitmap: Bitmap){
         viewModelScope.launch {
-            val data =imageRepository.postImage(inputStream)
-            Log.i(TAG,"data -> $data")
-            when (data.isSuccessful) {
-                true -> {
-                    Log.i(TAG,"data.body -> "+data.body())
-                    _thumbnailUrlResponse.value = data.body()?.data?.url
-                    //_plantDetectionUrlResponse.value = data.body()?.data?.url
-                }
-                else -> {
-                    Log.i(TAG,"FAIL-> ")
-                }
-            }
+            _thumbnailBitmap.value = bitmap
         }
     }
-    fun thumbnailGalleryToUrl(bitmap: Bitmap){
+
+    fun thumbnailBitmapToUrl(){
         viewModelScope.launch {
             ByteArrayOutputStream().use { stream ->
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+                thumbnailBitmap.value?.compress(Bitmap.CompressFormat.JPEG, 70, stream)
                 val inputStream = ByteArrayInputStream(stream.toByteArray())
                 val data = imageRepository.postImage(inputStream)
                 Log.i(TAG,"data -> $data")
                 when (data.isSuccessful) {
                     true -> {
                         Log.i(TAG,"data.body -> "+data.body())
-                        _thumbnailUrlResponse.value = data.body()?.data?.url
-                        //_plantDetectionUrlResponse.value = data.body()?.data?.url
+                        _thumbnailUrlResponse.postValue(data.body()?.data?.url)
                     }
                     else -> {
                         Log.i(TAG,"FAIL-> ")
@@ -166,32 +157,17 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
         _plantDetectionUrlResponse.value = thumbnailUrlResponse.value
     }
 
-    fun speciesCameraToUrl(inputStream: InputStream){
-        viewModelScope.launch {
-            val data =imageRepository.postImage(inputStream)
-            Log.i(TAG,"data -> $data")
-            when (data.isSuccessful) {
-                true -> {
-                    Log.i(TAG,"data.body -> "+data.body())
-                    _plantDetectionUrlResponse.value = data.body()?.data?.url
-                }
-                else -> {
-                    Log.i(TAG,"FAIL-> ")
-                }
-            }
-        }
-    }
-    fun speciesGalleryToUrl(bitmap: Bitmap){
+    fun speciesBitmapToUrl(bitmap: Bitmap){
         viewModelScope.launch {
             ByteArrayOutputStream().use { stream ->
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 70, stream)
                 val inputStream = ByteArrayInputStream(stream.toByteArray())
                 val data = imageRepository.postImage(inputStream)
                 Log.i(TAG,"data -> $data")
                 when (data.isSuccessful) {
                     true -> {
                         Log.i(TAG,"data.body -> "+data.body())
-                        _plantDetectionUrlResponse.value = data.body()?.data?.url
+                        _plantDetectionUrlResponse.postValue(data.body()?.data?.url)
                     }
                     else -> {
                         Log.i(TAG,"FAIL-> ")
@@ -201,9 +177,6 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
         }
     }
 
-    fun setUrl(url: String){
-        _thumbnailUrlResponse.value = url
-    }
 
     fun postPlant(){
         viewModelScope.launch {
@@ -220,22 +193,6 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
             _plantRegisterSuccess.postValue(data.body()?.success)
             Log.i(TAG,"DATA -> $data"+"\n"+data)
             Log.i(TAG,"DATA.body -> $data"+"\n"+data.body())
-        }
-    }
-
-    fun loadData(id: String){
-        viewModelScope.launch {
-            val data = repository.getPlantId(id)
-            when (data.isSuccessful) {
-                true -> {
-                    _data.postValue(data.body()?.data!!)
-                    setUrl(data.body()?.data?.thumbnail!!)
-                    Log.i(TAG,"SUCCESS -> "+ data.body().toString())
-                }
-                else -> {
-                    Log.i(TAG,"FAIL -> "+ data.body().toString())
-                }
-            }
         }
     }
 }

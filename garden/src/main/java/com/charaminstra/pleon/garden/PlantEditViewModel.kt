@@ -36,36 +36,9 @@ class PlantEditViewModel @Inject constructor(
     val deleteSuccess: LiveData<Boolean> = _deleteSuccess
 
     val name = MutableLiveData<String>()
-    val species = MutableLiveData<String>()
-    val water_date = MutableLiveData<String>()
-    val adopt_date = MutableLiveData<String>()
     val light = MutableLiveData<String>()
     val air = MutableLiveData<String>()
 
-    fun getName(): LiveData<String> {
-        return name
-    }
-    fun setName(value: String) {
-        name.value = value
-    }
-    fun getSpecies(): LiveData<String> {
-        return species
-    }
-    fun setSpecies(value: String) {
-        species.value = value
-    }
-    fun getWater_date(): LiveData<String> {
-        return water_date
-    }
-    fun setWater_date(value: String) {
-        water_date.value = value
-    }
-    fun getAdopt_date(): LiveData<String> {
-        return adopt_date
-    }
-    fun setAdopt_date(value: String) {
-        adopt_date.value = value
-    }
     fun getLight(): LiveData<String> {
         return light
     }
@@ -95,25 +68,21 @@ class PlantEditViewModel @Inject constructor(
         }
     }
 
-    fun cameraToUrl(inputStream: InputStream){
+    private val _plantImgBitmap = MutableLiveData<Bitmap?>()
+    var plantImgBitmap : LiveData<Bitmap?> = _plantImgBitmap
+
+    fun setBitmap(bitmap: Bitmap){
         viewModelScope.launch {
-            val data =imageRepository.postImage(inputStream)
-            Log.i(TAG,"data -> $data")
-            when (data.isSuccessful) {
-                true -> {
-                    Log.i(TAG,"data.body -> "+data.body())
-                    _urlResponse.postValue(data.body()?.data?.url)
-                }
-                else -> {
-                    Log.i(TAG,"FAIL-> ")
-                }
-            }
+            _plantImgBitmap.value = bitmap
         }
     }
-    fun galleryToUrl(bitmap: Bitmap){
+
+    var plantImgEdit = false
+
+    fun plantImgBitmapToUrl(){
         viewModelScope.launch {
             ByteArrayOutputStream().use { stream ->
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+                plantImgBitmap.value?.compress(Bitmap.CompressFormat.JPEG, 70, stream)
                 val inputStream = ByteArrayInputStream(stream.toByteArray())
                 val data = imageRepository.postImage(inputStream)
                 Log.i(TAG,"data -> $data")
@@ -129,6 +98,7 @@ class PlantEditViewModel @Inject constructor(
             }
         }
     }
+
     fun patchData(id: String,
                   name: String,
                   adopt_date: String){

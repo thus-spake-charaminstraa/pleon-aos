@@ -2,7 +2,9 @@ package com.charaminstra.pleon.plant_register.ui
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Matrix
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -23,14 +25,11 @@ import com.charaminstra.pleon.common.*
 import com.charaminstra.pleon.common_ui.ErrorToast
 import com.charaminstra.pleon.common_ui.PLeonMsgDialog
 import com.charaminstra.pleon.common_ui.PopUpImageMenu
-import com.charaminstra.pleon.plant_register.PlantRegisterViewModel
-import com.charaminstra.pleon.plant_register.PlantSearchAdapter
-import com.charaminstra.pleon.plant_register.PlantSearchViewModel
+import com.charaminstra.pleon.plant_register.*
 import com.charaminstra.pleon.plant_register.R
 import com.charaminstra.pleon.plant_register.databinding.FragmentPlantSpeciesBinding
 import com.google.firebase.analytics.FirebaseAnalytics
 import dagger.hilt.android.AndroidEntryPoint
-import java.io.FileInputStream
 
 @AndroidEntryPoint
 class PlantSpeciesFragment : Fragment() {
@@ -42,6 +41,7 @@ class PlantSpeciesFragment : Fragment() {
     private val viewModel: PlantRegisterViewModel by activityViewModels()
     lateinit var photoFile: PLeonImageFile
     lateinit var navController: NavController
+    var cameraUri: Uri? = null
 
     private lateinit var firebaseAnalytics: FirebaseAnalytics
 
@@ -72,6 +72,7 @@ class PlantSpeciesFragment : Fragment() {
         }
 
         binding.imageSearchButton.setOnClickListener {
+            viewModel.speciesNextStep = true
             val imageMenuDlg = PopUpImageMenu(requireContext())
             imageMenuDlg.setOnCameraClickedListener {
                 if (RequestPermission.checkPermission(requireActivity())) {
@@ -150,14 +151,31 @@ class PlantSpeciesFragment : Fragment() {
         when (requestCode) {
             REQUEST_GALLERY -> {
                 data ?: return
-                val uri = data.data as Uri
-                activity?.contentResolver?.openInputStream(uri).let {
-                    val bitmap = BitmapFactory.decodeStream(it)
-                    viewModel.speciesGalleryToUrl(bitmap)
+                cameraUri = data.data as Uri
+                val inputStream = requireContext().contentResolver?.openInputStream(cameraUri!!)
+                val bitmap = BitmapFactory.decodeStream(inputStream)
+                val orientation = getOrientation(requireContext(), cameraUri!!)
+                val matrix = Matrix()
+                when(orientation){
+                    90 -> matrix.postRotate(90F)
+                    180 -> matrix.postRotate(180F)
+                    270 -> matrix.postRotate(270F)
                 }
+                val rotateBitmap = Bitmap.createBitmap(bitmap, 0, 0 ,bitmap.width, bitmap.height, matrix, true)
+                viewModel.speciesBitmapToUrl(rotateBitmap)
             }
             REQUEST_TAKE_PHOTO -> {
-                viewModel.speciesCameraToUrl(FileInputStream(photoFile.currentPhotoPath))
+                val inputStream = requireContext().contentResolver?.openInputStream(cameraUri!!)
+                val bitmap = BitmapFactory.decodeStream(inputStream)
+                val orientation = getOrientation(requireContext(), cameraUri!!)
+                val matrix = Matrix()
+                when(orientation){
+                    90 -> matrix.postRotate(90F)
+                    180 -> matrix.postRotate(180F)
+                    270 -> matrix.postRotate(270F)
+                }
+                val rotateBitmap = Bitmap.createBitmap(bitmap, 0, 0 ,bitmap.width, bitmap.height, matrix, true)
+                viewModel.speciesBitmapToUrl(rotateBitmap)
             }
             else -> {
                 ErrorToast(requireContext()).showMsg(
@@ -190,10 +208,9 @@ class PlantSpeciesFragment : Fragment() {
             adapter.refreshItems(it)
         })
         viewModel.plantDetectionUrlResponse.observe(viewLifecycleOwner, Observer{
-            if(it == null){
-
-            }else{
+            if(viewModel.speciesNextStep){
                 navController.navigate(R.id.plant_species_fragment_to_plant_detection_waiting_fragment)
+                viewModel.speciesNextStep = false
             }
 
         })
