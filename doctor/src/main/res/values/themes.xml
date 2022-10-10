@@ -36,4 +36,15 @@
         <item name="android:letterSpacing">-0.01</item>
         <item name="android:gravity">left</item>
     </style>
+
+    <style name="PrescriptionCauseNumText" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@color/error_text_color</item>
+        <item name="android:letterSpacing">-0.01</item>
+    </style>
+    <style name="PrescriptionSolutionNumText" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@color/main_green_color</item>
+        <item name="android:letterSpacing">-0.01</item>
+    </style>
 </resources>

@@ -151,10 +151,15 @@
         <entry key="common/src/main/res/layout/item_noti.xml" value="0.1" />
         <entry key="common/src/main/res/layout/item_plant_feed.xml" value="0.128419452887538" />
         <entry key="common/src/main/res/layout/item_plant_garden.xml" value="0.134375" />
+        <entry key="doctor/src/main/res/drawable/bg_cause_num.xml" value="0.221" />
+        <entry key="doctor/src/main/res/drawable/bg_solution_num.xml" value="0.191" />
+        <entry key="doctor/src/main/res/drawable/bg_solution_txt.xml" value="0.183" />
         <entry key="doctor/src/main/res/layout/fragment_camera.xml" value="0.1" />
         <entry key="doctor/src/main/res/layout/fragment_doctor.xml" value="0.26197916666666665" />
         <entry key="doctor/src/main/res/layout/fragment_prescription.xml" value="0.4628748575846354" />
         <entry key="doctor/src/main/res/layout/fragment_q_plant_choose.xml" value="0.24739583333333334" />
+        <entry key="doctor/src/main/res/layout/item_cause.xml" value="0.7566539923954373" />
+        <entry key="doctor/src/main/res/layout/item_solution.xml" value="0.45" />
         <entry key="feed-common/src/main/res/drawable/comment_rounded_corner_edittext.xml" value="0.311" />
         <entry key="feed-common/src/main/res/drawable/ic_more.xml" value="0.1375" />
         <entry key="feed-common/src/main/res/drawable/tag_bg.xml" value="0.1" />
