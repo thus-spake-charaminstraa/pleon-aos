@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:padding="18dp"
-    android:background="@drawable/bg_cause_txt">
+    android:background="@drawable/bg_cause">
     <TextView
         android:id="@+id/cause_num"
         android:layout_width="22dp"

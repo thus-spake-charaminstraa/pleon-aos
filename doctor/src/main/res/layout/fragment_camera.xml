@@ -30,7 +30,7 @@
         android:id="@+id/camera_help_tv"
         android:layout_width="280dp"
         android:layout_height="36dp"
-        android:background="@drawable/bg_help_txt"
+        android:background="@drawable/bg_help"
         style="@style/CameraHelpText"
         android:text="@string/camera_help_1"
         android:layout_marginBottom="20dp"
