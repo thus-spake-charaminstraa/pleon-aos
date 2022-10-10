@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.charaminstra.pleon.doctor.DoctorViewModel
 import com.charaminstra.pleon.doctor.R
 import com.charaminstra.pleon.doctor.databinding.FragmentQPlantRegisterBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -13,6 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class QPlantRegisterFragment : Fragment() {
     private lateinit var binding : FragmentQPlantRegisterBinding
+    private val viewModel : DoctorViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,6 +35,7 @@ class QPlantRegisterFragment : Fragment() {
             binding.plantRegisterQ1.isSelected=false
         }
         binding.qPlantRegisterNextBtn.setOnClickListener {
+            viewModel.warmingPlantDoctorModel()
             navController.navigate(R.id.q_plant_register_fragment_to_q_plant_choose_fragment)
         }
         return binding.root

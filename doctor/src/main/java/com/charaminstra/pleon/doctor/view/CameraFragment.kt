@@ -173,9 +173,9 @@ class CameraFragment : Fragment() {
             binding.cameraSecondFin.setImageDrawable(resources.getDrawable(R.drawable.ic_shoot_second_ing))
             binding.cameraHelpTv.text = resources.getString(R.string.camera_help_2)
         }
-        viewModel.secondImgUrlResponse.observe(this, {
+        viewModel.secondImgUrlResponse.observe(this) {
             navController.navigate(R.id.camera_fragment_to_doctor_waiting_fragment)
-        })
+        }
     }
 
 

@@ -5,6 +5,8 @@ import android.util.Log
 import androidx.lifecycle.*
 import com.charaminstra.pleon.foundation.ImageRepository
 import com.charaminstra.pleon.foundation.InferenceRepository
+import com.charaminstra.pleon.foundation.model.CauseObject
+import com.charaminstra.pleon.foundation.model.SymptomObject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.io.ByteArrayInputStream
@@ -30,6 +32,12 @@ class DoctorViewModel @Inject constructor(private val imageRepository: ImageRepo
     private val _plantDoctorSuccess = MutableLiveData<Boolean?>()
     val plantDoctorSuccess : LiveData<Boolean?> = _plantDoctorSuccess
 
+    private val _symptomsList = MutableLiveData<List<SymptomObject>>()
+    val symptomsList : LiveData<List<SymptomObject>> = _symptomsList
+
+    private val _causesList = MutableLiveData<List<CauseObject>>()
+    val causesList : LiveData<List<CauseObject>> = _causesList
+
     fun imgToUrl(inputStream: InputStream){
         viewModelScope.launch {
             val data =imageRepository.postImage(inputStream)
@@ -53,20 +61,20 @@ class DoctorViewModel @Inject constructor(private val imageRepository: ImageRepo
     }
     fun postPlantDoctorModel(){
         viewModelScope.launch {
-            val data = inferenceRepository.postPlantDetection(firstImgUrlResponse.value.toString())
-            Log.i(TAG,"plant detection data -> $data")
+            val data = inferenceRepository.postPlantDoctor(firstImgUrlResponse.value.toString(),secondImgUrlResponse.value.toString())
+            Log.i(TAG,"plant doctor data -> $data")
             when(data.isSuccessful){
                 true -> {
-                    Log.i(TAG,"plant detection data ->"+data.body().toString())
+                    Log.i(TAG,"plant doctor data ->"+data.body().toString())
                     if(data.body()?.success == false){
                         _plantDoctorSuccess.postValue(false)
                     }else{
                         _plantDoctorSuccess.postValue(true)
-//                        _plantDetectionResultLabel.postValue(data.body()?.species?.name)
-//                        _plantDetectionResultPercent.postValue(data.body()?.score!!)
+                        _symptomsList.postValue(data.body()?.data?.symptoms)
+                        _causesList.postValue(data.body()?.data?.causes)
                     }
                 }else -> {
-                Log.i(TAG,"plant detection error")
+                    Log.i(TAG,"plant doctor error")
             }
             }
         }
