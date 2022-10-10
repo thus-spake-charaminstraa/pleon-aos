@@ -2,6 +2,7 @@ package com.charaminstra.pleon.foundation
 
 import com.charaminstra.pleon.foundation.api.InferenceAPIService
 import com.charaminstra.pleon.foundation.model.PlantDetectionRequestBody
+import com.charaminstra.pleon.foundation.model.PlantDoctorRequestBody
 import javax.inject.Inject
 
 class InferenceRepository @Inject constructor(private val service: InferenceAPIService)  {
@@ -17,7 +18,7 @@ class InferenceRepository @Inject constructor(private val service: InferenceAPIS
         "warming"
     )
 
-    suspend fun postPlantDoctor(image_url: String) = service.postPlantDoctor(
-        PlantDetectionRequestBody(image_url)
+    suspend fun postPlantDoctor(image_url_first: String,image_url_second: String) = service.postPlantDoctor(
+        PlantDoctorRequestBody(listOf(image_url_first,image_url_second))
     )
 }

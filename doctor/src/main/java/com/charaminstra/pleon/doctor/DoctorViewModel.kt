@@ -51,11 +51,6 @@ class DoctorViewModel @Inject constructor(private val imageRepository: ImageRepo
             }
         }
     }
-
-//    fun secondImgToUrl(){
-//
-//    }
-
     fun postPlantDoctorModel(){
         viewModelScope.launch {
             val data = inferenceRepository.postPlantDetection(firstImgUrlResponse.value.toString())
