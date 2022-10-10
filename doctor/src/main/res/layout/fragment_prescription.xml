@@ -204,13 +204,13 @@
                     android:text="@string/prescription_cause_title"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-                <include android:id="@+id/causeTv1" layout="@layout/item_cause"
+                <include android:id="@+id/cause1" layout="@layout/item_cause"
                     app:layout_constraintTop_toBottomOf="@+id/cause_title"
                     app:layout_constraintLeft_toLeftOf="parent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-                <include android:id="@+id/causeTv2" layout="@layout/item_cause"
-                    app:layout_constraintTop_toBottomOf="@+id/causeTv1"
+                <include android:id="@+id/cause2" layout="@layout/item_cause"
+                    app:layout_constraintTop_toBottomOf="@+id/cause1"
                     app:layout_constraintLeft_toLeftOf="parent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -232,14 +232,14 @@
                     android:text="@string/prescription_solution_title"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-                <include android:id="@+id/solutionTv1" layout="@layout/item_solution"
+                <include android:id="@+id/solution1" layout="@layout/item_solution"
                     app:layout_constraintTop_toBottomOf="@+id/solution_title"
                     app:layout_constraintLeft_toLeftOf="parent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-                <include android:id="@+id/solutionTv2" layout="@layout/item_solution"
+                <include android:id="@+id/solution2" layout="@layout/item_solution"
                     android:layout_marginTop="10dp"
-                    app:layout_constraintTop_toBottomOf="@+id/solutionTv1"
+                    app:layout_constraintTop_toBottomOf="@+id/solution1"
                     app:layout_constraintLeft_toLeftOf="parent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
