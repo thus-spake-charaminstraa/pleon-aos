@@ -1,6 +1,7 @@
 package com.charaminstra.pleon.doctor.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import com.charaminstra.pleon.doctor.databinding.FragmentPrescriptionBinding
 import com.charaminstra.pleon.doctor.databinding.FragmentQPlantRegisterBinding
 
 class PrescriptionFragment : Fragment() {
+    private val TAG = javaClass.name
     private lateinit var binding : FragmentPrescriptionBinding
     private val viewModel : DoctorViewModel by activityViewModels()
 
@@ -25,6 +27,11 @@ class PrescriptionFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentPrescriptionBinding.inflate(inflater, container, false)
+        if(viewModel.plantDoctorSuccess.value == true){
+        }else if(viewModel.plantDoctorSuccess.value == false){
+            binding.prescriptionResult.visibility = View.GONE
+            binding.prescriptionNoResult.root.visibility = View.VISIBLE
+        }
 
         initObservers()
         return binding.root
@@ -32,6 +39,7 @@ class PrescriptionFragment : Fragment() {
 
     private fun initObservers(){
         viewModel.causesList.observe(viewLifecycleOwner){
+            Log.i(TAG,"cause"+it[0].cause_ko)
             if(it.size == 1){
                 binding.cause2.root.visibility = View.GONE
                 binding.cause1.causeNum.text = "1"

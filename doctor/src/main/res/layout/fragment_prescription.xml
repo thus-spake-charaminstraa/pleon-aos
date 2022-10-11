@@ -6,17 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/sub_background_color"
     android:paddingHorizontal="20dp">
-    <ImageView
-        android:id="@+id/prescription_back_btn"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        app:layout_constraintTop_toTopOf="@+id/prescription_title"
-        app:layout_constraintBottom_toBottomOf="@+id/prescription_title"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:paddingVertical="5dp"
-        android:scaleType="fitStart"
-        android:background="@android:color/transparent"
-        android:src="@drawable/ic_arrow_back" />
     <TextView
         android:id="@+id/prescription_title"
         android:layout_width="wrap_content"
@@ -28,113 +17,132 @@
         app:layout_constraintTop_toTopOf="parent"
         android:text="@string/prescription_fragment_title"
         style="@style/MainTitleText"/>
+    <!--    doctor name-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/doctor_root"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/bg_prescription_name"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="15dp"
+        app:layout_constraintEnd_toStartOf="@+id/patient_bg"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/prescription_title">
+
+        <ImageView
+            android:id="@+id/prescription_doctor_img"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_img_doctor"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/prescription_doctor_title"
+            style="@style/PrescriptionPersonTitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:text="@string/prescription_doctor_title"
+            app:layout_constraintBottom_toTopOf="@+id/prescription_doctor_name"
+            app:layout_constraintLeft_toRightOf="@+id/prescription_doctor_img"
+            app:layout_constraintTop_toTopOf="@+id/prescription_doctor_img" />
+
+        <TextView
+            android:id="@+id/prescription_doctor_name"
+            style="@style/PrescriptionPersonNameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/prescription_doctor_name"
+            app:layout_constraintBottom_toBottomOf="@+id/prescription_doctor_img"
+            app:layout_constraintLeft_toLeftOf="@+id/prescription_doctor_title"
+            app:layout_constraintTop_toBottomOf="@+id/prescription_doctor_title" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--    patient name-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/patient_bg"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_prescription_name"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/doctor_root"
+        app:layout_constraintTop_toTopOf="@+id/doctor_root">
+
+        <ImageView
+            android:id="@+id/prescription_patient_img"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_img_patient"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/prescription_patient_title"
+            style="@style/PrescriptionPersonTitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:text="@string/prescription_patient_title"
+            app:layout_constraintBottom_toTopOf="@+id/prescription_patient_name"
+            app:layout_constraintLeft_toRightOf="@+id/prescription_patient_img"
+            app:layout_constraintTop_toTopOf="@+id/prescription_patient_img" />
+
+        <TextView
+            android:id="@+id/prescription_patient_name"
+            style="@style/PrescriptionPersonNameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/prescription_patient_img"
+            app:layout_constraintLeft_toLeftOf="@+id/prescription_patient_title"
+            app:layout_constraintTop_toBottomOf="@+id/prescription_patient_title"
+            tools:text="로제" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <include
+        android:visibility="gone"
+        android:id="@+id/prescription_no_result" layout="@layout/prescription_no_result"
+        app:layout_constraintBottom_toTopOf="@+id/prescription_complete_btn"
+        app:layout_constraintTop_toBottomOf="@+id/doctor_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/prescription_complete_btn"
+        app:layout_constraintTop_toBottomOf="@+id/doctor_root"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <ScrollView
+        android:id="@+id/prescription_result"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="26dp"
         android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/prescription_complete_btn"
-        app:layout_constraintTop_toBottomOf="@+id/prescription_title">
+        app:layout_constraintTop_toBottomOf="@+id/doctor_root">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <!--    doctor name-->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/doctor_root"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:paddingVertical="15dp"
-                android:paddingHorizontal="15dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/bg_prescription_name"
-                app:layout_constraintEnd_toStartOf="@+id/patient_bg"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                >
-
-                <ImageView
-                    android:id="@+id/prescription_doctor_img"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/ic_img_doctor"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/prescription_doctor_title"
-                    style="@style/PrescriptionPersonTitleText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:text="@string/prescription_doctor_title"
-                    app:layout_constraintBottom_toTopOf="@+id/prescription_doctor_name"
-                    app:layout_constraintLeft_toRightOf="@+id/prescription_doctor_img"
-                    app:layout_constraintTop_toTopOf="@+id/prescription_doctor_img" />
-
-                <TextView
-                    android:id="@+id/prescription_doctor_name"
-                    style="@style/PrescriptionPersonNameText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/prescription_doctor_name"
-                    app:layout_constraintBottom_toBottomOf="@+id/prescription_doctor_img"
-                    app:layout_constraintLeft_toLeftOf="@+id/prescription_doctor_title"
-                    app:layout_constraintTop_toBottomOf="@+id/prescription_doctor_title" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <!--    patient name-->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/patient_bg"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:paddingVertical="15dp"
-                android:paddingHorizontal="15dp"
-                android:background="@drawable/bg_prescription_name"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/doctor_root"
-                app:layout_constraintTop_toTopOf="@+id/doctor_root">
-
-                <ImageView
-                    android:id="@+id/prescription_patient_img"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/ic_img_patient"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/prescription_patient_title"
-                    style="@style/PrescriptionPersonTitleText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:text="@string/prescription_patient_title"
-                    app:layout_constraintBottom_toTopOf="@+id/prescription_patient_name"
-                    app:layout_constraintLeft_toRightOf="@+id/prescription_patient_img"
-                    app:layout_constraintTop_toTopOf="@+id/prescription_patient_img" />
-
-                <TextView
-                    android:id="@+id/prescription_patient_name"
-                    style="@style/PrescriptionPersonNameText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="로제"
-                    app:layout_constraintBottom_toBottomOf="@+id/prescription_patient_img"
-                    app:layout_constraintLeft_toLeftOf="@+id/prescription_patient_title"
-                    app:layout_constraintTop_toBottomOf="@+id/prescription_patient_title" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
             <!--    symptom-->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/symptom_root"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                app:layout_constraintTop_toBottomOf="@+id/doctor_root">
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent">
                 <TextView
                     android:id="@+id/symptom_title"
                     android:layout_width="wrap_content"
