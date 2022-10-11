@@ -14,7 +14,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
@@ -47,6 +49,11 @@ class CameraFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            // Handle the back button event
+            activity?.finish()
+        }
 
         binding = FragmentCameraBinding.inflate(layoutInflater)
         initObserver()

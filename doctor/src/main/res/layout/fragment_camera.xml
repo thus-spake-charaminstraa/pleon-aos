@@ -10,8 +10,8 @@
         android:layout_height="match_parent"/>
     <ImageView
         android:id="@+id/camera_first_fin"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:src="@drawable/ic_shoot_first_ing"
         android:layout_marginBottom="5dp"
         app:layout_constraintLeft_toLeftOf="@id/camera_help_tv"
@@ -19,10 +19,10 @@
         />
     <ImageView
         android:id="@+id/camera_second_fin"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:src="@drawable/ic_shoot_second_not"
-        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
         app:layout_constraintLeft_toRightOf="@+id/camera_first_fin"
         app:layout_constraintBottom_toBottomOf="@+id/camera_first_fin"
         />
