@@ -42,7 +42,9 @@ class DoctorViewModel @Inject constructor(private val imageRepository: ImageRepo
     val causesList : LiveData<List<CauseObject>> = _causesList
 
     var plantId : String? = null
-    var plantName : String? = null
+
+    private val _plantName = MutableLiveData<String?>()
+    val plantName : LiveData<String?> = _plantName
 
     fun imgToUrl(inputStream: InputStream){
         viewModelScope.launch {
@@ -66,7 +68,8 @@ class DoctorViewModel @Inject constructor(private val imageRepository: ImageRepo
     }
     fun postPlantDoctorModel(){
         viewModelScope.launch {
-            val data = inferenceRepository.postPlantDoctor(firstImgUrlResponse.value.toString(),secondImgUrlResponse.value.toString(),plantId!!)
+            Log.i(TAG,plantId.toString())
+            val data = inferenceRepository.postPlantDoctor(firstImgUrlResponse.value.toString(),secondImgUrlResponse.value.toString(),plantId)
             Log.i(TAG,"plant doctor data -> $data")
             when(data.isSuccessful){
                 true -> {
@@ -75,13 +78,13 @@ class DoctorViewModel @Inject constructor(private val imageRepository: ImageRepo
                         _plantDoctorSuccess.postValue(false)
                     }else{
                         _plantDoctorSuccess.postValue(true)
-                        plantName = data.body()?.data?.plant?.name
                         _symptomsList.postValue(data.body()?.data?.symptoms)
                         _causesList.postValue(data.body()?.data?.causes)
+                        _plantName.postValue(data.body()?.data?.plant?.name)
                     }
                 }else -> {
                     Log.i(TAG,"plant doctor error")
-            }
+                }
             }
         }
     }

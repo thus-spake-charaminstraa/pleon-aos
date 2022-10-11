@@ -40,7 +40,6 @@ class QPlantRegisterFragment : Fragment() {
             if(binding.plantRegisterQ1.isSelected){
                 navController.navigate(R.id.q_plant_register_fragment_to_q_plant_choose_fragment)
             }else if(binding.plantRegisterQ2.isSelected){
-                viewModel.plantName = ""
                 navController.navigate(R.id.q_plant_register_fragment_to_camera_fragment)
             }else{
                 ErrorToast(requireContext()).showMsgUp(resources.getString(R.string.question_error_msg),binding.qPlantRegisterNextBtn.y)
