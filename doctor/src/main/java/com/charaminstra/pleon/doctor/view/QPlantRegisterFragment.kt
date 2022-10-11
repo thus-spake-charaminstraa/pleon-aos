@@ -34,6 +34,7 @@ class QPlantRegisterFragment : Fragment() {
         binding.plantRegisterQ2.setOnClickListener {
             it.isSelected = true
             binding.plantRegisterQ1.isSelected=false
+            ErrorToast(requireContext()).showMsgUp(resources.getString(R.string.no_register_error_msg),binding.qPlantRegisterNextBtn.y)
         }
         binding.qPlantRegisterNextBtn.setOnClickListener {
             viewModel.warmingPlantDoctorModel()
