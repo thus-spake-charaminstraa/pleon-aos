@@ -3,6 +3,9 @@ package com.charaminstra.pleon.doctor.view
 import android.Manifest
 import android.content.ContentValues
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Matrix
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
@@ -25,6 +28,7 @@ import androidx.navigation.fragment.findNavController
 import com.charaminstra.pleon.doctor.DoctorViewModel
 import com.charaminstra.pleon.doctor.R
 import com.charaminstra.pleon.doctor.databinding.FragmentCameraBinding
+import com.charaminstra.pleon.plant_register.getOrientation
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
@@ -74,11 +78,8 @@ class CameraFragment : Fragment() {
     }
 
     private fun takePhoto() {
-        Log.i(TAG,"take photo start")
         // Get a stable reference of the modifiable image capture use case
         val imageCapture = imageCapture ?: return
-
-        Log.i(TAG,"\ntake photo imageCapture : \n"+imageCapture.toString())
 
         // Create time stamped name and MediaStore entry.
         val name = SimpleDateFormat(FILENAME_FORMAT, Locale.US)
@@ -114,7 +115,17 @@ class CameraFragment : Fragment() {
                     val msg = "Photo capture succeeded: ${output.savedUri}"
                     val uri  = output.savedUri
                     val inputStream = activity?.contentResolver?.openInputStream(uri!!)
-                    viewModel.imgToUrl(inputStream!!)
+                    val bitmap = BitmapFactory.decodeStream(inputStream)
+                    val orientation = getOrientation(requireContext(),uri!!)
+                    val matrix = Matrix()
+                    when(orientation){
+                        90 -> matrix.postRotate(90F)
+                        180 -> matrix.postRotate(180F)
+                        270 -> matrix.postRotate(270F)
+                    }
+                    val rotateBitmap = Bitmap.createBitmap(bitmap, 0, 0 ,bitmap.width, bitmap.height, matrix, true)
+                    //feedWriteViewModel.setBitmap(rotateBitmap)
+                    viewModel.imgToUrl(rotateBitmap)
                     Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
                     Log.d(TAG, msg)
                 }

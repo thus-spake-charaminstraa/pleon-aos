@@ -25,7 +25,7 @@ class QPlantRegisterFragment : Fragment() {
         binding = FragmentQPlantRegisterBinding.inflate(inflater, container, false)
         val navController = this.findNavController()
         binding.qPlantRegisterBackBtn.setOnClickListener{
-            navController.popBackStack()
+            activity?.finish()
         }
         binding.plantRegisterQ1.setOnClickListener {
             it.isSelected = true
