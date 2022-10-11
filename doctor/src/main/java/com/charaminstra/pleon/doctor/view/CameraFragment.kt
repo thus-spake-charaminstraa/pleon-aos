@@ -120,6 +120,7 @@ class CameraFragment : Fragment() {
 
                 override fun onImageSaved(output: ImageCapture.OutputFileResults){
                     val msg = "Photo capture succeeded: ${output.savedUri}"
+                    Log.i(TAG,msg)
                     val uri  = output.savedUri
                     val inputStream = activity?.contentResolver?.openInputStream(uri!!)
                     val bitmap = BitmapFactory.decodeStream(inputStream)
@@ -131,10 +132,7 @@ class CameraFragment : Fragment() {
                         270 -> matrix.postRotate(270F)
                     }
                     val rotateBitmap = Bitmap.createBitmap(bitmap, 0, 0 ,bitmap.width, bitmap.height, matrix, true)
-                    //feedWriteViewModel.setBitmap(rotateBitmap)
                     viewModel.imgToUrl(rotateBitmap)
-                    Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
-                    Log.d(TAG, msg)
                 }
             }
         )
