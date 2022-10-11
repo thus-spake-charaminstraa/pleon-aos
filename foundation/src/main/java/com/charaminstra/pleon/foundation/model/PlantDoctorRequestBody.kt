@@ -1,7 +1,8 @@
 package com.charaminstra.pleon.foundation.model
 
 data class PlantDoctorRequestBody(
-    val image_urls: List<String>?
+    val image_urls: List<String>?,
+    val plant_id: String?
 )
 
 data class PlantDoctorResponseBody(
@@ -12,7 +13,8 @@ data class PlantDoctorResponseBody(
 
 data class PlantDoctorData(
     val symptoms: List<SymptomObject>,
-    val causes: List<CauseObject>
+    val causes: List<CauseObject>,
+    val plant: PlantDataObject
 )
 
 data class SymptomObject(

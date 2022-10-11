@@ -30,6 +30,7 @@ class PrescriptionFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentPrescriptionBinding.inflate(inflater, container, false)
+        binding.prescriptionPatientName.text = viewModel.plantName
         if(viewModel.plantDoctorSuccess.value == true){
             initList()
             binding.causeRecyclerview.adapter = causeAdapter
