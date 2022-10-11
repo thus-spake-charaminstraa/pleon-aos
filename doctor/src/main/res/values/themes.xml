@@ -32,7 +32,7 @@
     <style name="PrescriptionSymptomDescText" parent="@android:style/Widget.TextView">
         <item name="android:textSize">13sp</item>
         <item name="android:textColor">@color/black_sub_color</item>
-        <item name="android:lineSpacingExtra">15sp</item>
+        <item name="android:lineSpacingExtra">10sp</item>
         <item name="android:letterSpacing">-0.01</item>
         <item name="android:gravity">left</item>
     </style>

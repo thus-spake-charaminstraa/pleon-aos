@@ -212,17 +212,24 @@
                     android:text="@string/prescription_cause_title"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-                <include android:id="@+id/cause1" layout="@layout/item_cause"
-                    app:layout_constraintTop_toBottomOf="@+id/cause_title"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-                <include android:id="@+id/cause2" layout="@layout/item_cause"
-                    app:layout_constraintTop_toBottomOf="@+id/cause1"
-                    app:layout_constraintLeft_toLeftOf="parent"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/cause_recyclerview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"/>
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@+id/cause_title"
+                    app:layout_constraintLeft_toLeftOf="parent"/>
+<!--                <include android:id="@+id/cause1" layout="@layout/item_cause"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/cause_title"-->
+<!--                    app:layout_constraintLeft_toLeftOf="parent"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content" />-->
+<!--                <include android:id="@+id/cause2" layout="@layout/item_cause"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/cause1"-->
+<!--                    app:layout_constraintLeft_toLeftOf="parent"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="10dp"/>-->
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <!--    solution -->

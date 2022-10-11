@@ -37,13 +37,6 @@ class DoctorWaitingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.plantDoctorSuccess.observe(viewLifecycleOwner, Observer{
             navController.navigate(R.id.doctor_waiting_fragment_to_prescription_fragment)
-//            if(it == true ){
-//                navController.navigate(R.id.doctor_waiting_fragment_to_prescription_fragment)
-//            }
         })
-    }
-
-    override fun onResume() {
-        super.onResume()
     }
 }
