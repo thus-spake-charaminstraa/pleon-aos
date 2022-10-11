@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.charaminstra.pleon.common_ui.ErrorToast
 import com.charaminstra.pleon.doctor.DoctorViewModel
 import com.charaminstra.pleon.doctor.R
 import com.charaminstra.pleon.doctor.databinding.FragmentQPlantRegisterBinding
@@ -36,7 +37,13 @@ class QPlantRegisterFragment : Fragment() {
         }
         binding.qPlantRegisterNextBtn.setOnClickListener {
             viewModel.warmingPlantDoctorModel()
-            navController.navigate(R.id.q_plant_register_fragment_to_q_plant_choose_fragment)
+            if(binding.plantRegisterQ1.isSelected){
+                navController.navigate(R.id.q_plant_register_fragment_to_q_plant_choose_fragment)
+            }else if(binding.plantRegisterQ2.isSelected){
+                navController.navigate(R.id.q_plant_register_fragment_to_camera_fragment)
+            }else{
+                ErrorToast(requireContext()).showMsgUp(resources.getString(R.string.question_error_msg),binding.qPlantRegisterNextBtn.y)
+            }
         }
         return binding.root
     }

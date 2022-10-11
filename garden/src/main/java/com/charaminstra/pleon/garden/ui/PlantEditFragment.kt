@@ -30,7 +30,6 @@ import com.charaminstra.pleon.garden.R
 import com.charaminstra.pleon.garden.databinding.FragmentPlantEditBinding
 import com.charaminstra.pleon.plant_register.getOrientation
 import dagger.hilt.android.AndroidEntryPoint
-import java.io.FileInputStream
 import java.text.SimpleDateFormat
 
 @AndroidEntryPoint
@@ -126,7 +125,7 @@ class PlantEditFragment : Fragment() {
                 viewModel.setBitmap(rotateBitmap)
             }
             else -> {
-                ErrorToast(requireContext()).showMsg(
+                ErrorToast(requireContext()).showMsgDown(
                     resources.getString(com.charaminstra.pleon.common_ui.R.string.image_error),
                     binding.plantEditAddImg.y
                 )
@@ -300,7 +299,7 @@ class PlantEditFragment : Fragment() {
         }
         binding.completeBtn.setOnClickListener{
             if(binding.plantNameInput.text.isNullOrEmpty()){
-                ErrorToast(requireContext()).showMsg(resources.getString(R.string.plant_edit_fragment_name_error),binding.plantNameInput.y)
+                ErrorToast(requireContext()).showMsgDown(resources.getString(R.string.plant_edit_fragment_name_error),binding.plantNameInput.y)
             }else if(viewModel.plantImgBitmap.value != null){
                 indicator.apply {
                     visibility = View.VISIBLE

@@ -19,7 +19,6 @@ import com.charaminstra.pleon.login.databinding.FragmentPhoneBinding
 import com.charaminstra.pleon.common.showKeyboard
 import com.charaminstra.pleon.common_ui.ErrorToast
 import com.charaminstra.pleon.login.startHomeActivity
-import com.google.firebase.analytics.FirebaseAnalytics
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -83,7 +82,7 @@ class PhoneFragment : Fragment() {
             if(it){
 
             }else{
-                ErrorToast(requireContext()).showMsg(resources.getString(com.charaminstra.pleon.common_ui.R.string.code_error_msg),binding.codeEt.y)
+                ErrorToast(requireContext()).showMsgDown(resources.getString(com.charaminstra.pleon.common_ui.R.string.code_error_msg),binding.codeEt.y)
                 binding.codeEt.setTextColor(resources.getColor(com.charaminstra.pleon.common_ui.R.color.error_text_color))
             }
         })

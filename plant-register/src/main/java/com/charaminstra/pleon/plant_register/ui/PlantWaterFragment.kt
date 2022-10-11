@@ -71,7 +71,7 @@ class PlantWaterFragment : Fragment() {
 
         binding.plantWaterNextBtn.setOnClickListener {
             if(binding.plantWaterEt.text.isNullOrBlank()){
-                ErrorToast(requireContext()).showMsg(resources.getString(R.string.plant_water_fragment_error),binding.plantWaterEt.y)
+                ErrorToast(requireContext()).showMsgDown(resources.getString(R.string.plant_water_fragment_error),binding.plantWaterEt.y)
             }else{
                 viewModel.setWater_date(DateUtils(requireContext()).viewToSendServer(binding.plantWaterEt.text.toString()))
                 navController.navigate((R.id.plant_water_fragment_to_plant_light_fragment))

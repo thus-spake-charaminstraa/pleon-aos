@@ -139,7 +139,7 @@ class PlantThumbnailFragment : Fragment() {
                 viewModel.setBitmap(rotateBitmap)
             }
             else -> {
-                ErrorToast(requireContext()).showMsg(
+                ErrorToast(requireContext()).showMsgDown(
                     resources.getString(com.charaminstra.pleon.common_ui.R.string.image_error),
                     binding.plantThumbnailAddImg.y
                 )

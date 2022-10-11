@@ -39,7 +39,9 @@ class PrescriptionFragment : Fragment() {
             binding.prescriptionResult.visibility = View.GONE
             binding.prescriptionNoResult.root.visibility = View.VISIBLE
         }
-
+        binding.prescriptionCompleteBtn.setOnClickListener {
+            activity?.finish()
+        }
         initObservers()
         return binding.root
     }

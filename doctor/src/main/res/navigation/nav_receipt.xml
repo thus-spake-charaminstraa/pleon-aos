@@ -4,8 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/q_plant_register_fragment">
-<!--    app:startDestination="@id/prescription_fragment">-->
-
     <fragment
         android:id="@+id/q_plant_register_fragment"
         android:name="com.charaminstra.pleon.doctor.view.QPlantRegisterFragment"
@@ -13,6 +11,9 @@
         <action
             android:id="@+id/q_plant_register_fragment_to_q_plant_choose_fragment"
             app:destination="@+id/q_plant_choose_fragment"/>
+        <action
+            android:id="@+id/q_plant_register_fragment_to_camera_fragment"
+            app:destination="@+id/camera_fragment"/>
     </fragment>
     <fragment
         android:id="@+id/q_plant_choose_fragment"

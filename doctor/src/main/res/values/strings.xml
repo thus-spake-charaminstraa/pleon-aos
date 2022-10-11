@@ -26,4 +26,6 @@
     <string name="prescription_solution_title">Solution</string>
 
     <string name="plant_doctor_error_msg">식별된 증상이 없어요.</string>
+
+    <string name="question_error_msg">하나를 선택해주세요.</string>
 </resources>

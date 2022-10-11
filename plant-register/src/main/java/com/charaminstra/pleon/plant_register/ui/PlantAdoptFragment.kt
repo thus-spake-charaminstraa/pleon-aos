@@ -65,7 +65,7 @@ class PlantAdoptFragment : Fragment() {
 
         binding.plantAdoptNextBtn.setOnClickListener {
             if(binding.plantAdoptEt.text.isNullOrBlank()){
-                ErrorToast(requireContext()).showMsg(resources.getString(R.string.plant_adopt_fragment_error),binding.plantAdoptEt.y)
+                ErrorToast(requireContext()).showMsgDown(resources.getString(R.string.plant_adopt_fragment_error),binding.plantAdoptEt.y)
             }else{
                 viewModel.setAdopt_date(DateUtils(requireContext()).viewToSendServer(binding.plantAdoptEt.text.toString()))
                 navController.navigate(R.id.plant_adopt_fragment_to_plant_water_fragment)

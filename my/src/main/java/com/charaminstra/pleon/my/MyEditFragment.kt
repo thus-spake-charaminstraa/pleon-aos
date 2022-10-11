@@ -76,7 +76,7 @@ class MyEditFragment : Fragment() {
     private fun initListeners(){
         binding.myEditCompleteBtn.setOnClickListener {
             if(binding.userNameInput.text.isNullOrEmpty()){
-                ErrorToast(requireContext()).showMsg(resources.getString(R.string.my_edit_fragment_name_error),binding.userNameInput.y)
+                ErrorToast(requireContext()).showMsgDown(resources.getString(R.string.my_edit_fragment_name_error),binding.userNameInput.y)
             }else if(viewModel.imgBitmap.value != null){
                 indicator.apply {
                     visibility = View.VISIBLE
@@ -166,7 +166,7 @@ class MyEditFragment : Fragment() {
                 viewModel.setBitmap(rotateBitmap)
             }
             else -> {
-                ErrorToast(requireContext()).showMsg(
+                ErrorToast(requireContext()).showMsgDown(
                     resources.getString(com.charaminstra.pleon.common_ui.R.string.image_error),
                     binding.editUserImage.y
                 )
