@@ -18,7 +18,7 @@ data class PlantDoctorData(
 data class SymptomObject(
     val symptom: String,
     val symptom_en: String,
-    val symptom_kr: String,
+    val symptom_ko: String,
     val image_url: String
 )
 

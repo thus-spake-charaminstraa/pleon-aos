@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import com.charaminstra.pleon.doctor.CauseAdapter
 import com.charaminstra.pleon.doctor.DoctorViewModel
 import com.charaminstra.pleon.doctor.SolutionAdapter
+import com.charaminstra.pleon.doctor.SymptomAdapter
 import com.charaminstra.pleon.doctor.databinding.FragmentPrescriptionBinding
 
 class PrescriptionFragment : Fragment() {
@@ -16,6 +17,7 @@ class PrescriptionFragment : Fragment() {
     private lateinit var binding : FragmentPrescriptionBinding
     private lateinit var causeAdapter: CauseAdapter
     private lateinit var solutionAdapter: SolutionAdapter
+    private lateinit var symptomAdapter: SymptomAdapter
     private val viewModel : DoctorViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +34,7 @@ class PrescriptionFragment : Fragment() {
             initList()
             binding.causeRecyclerview.adapter = causeAdapter
             binding.solutionRecyclerview.adapter = solutionAdapter
+            binding.symptomRecyclerview.adapter = symptomAdapter
         }else if(viewModel.plantDoctorSuccess.value == false){
             binding.prescriptionResult.visibility = View.GONE
             binding.prescriptionNoResult.root.visibility = View.VISIBLE
@@ -44,12 +47,16 @@ class PrescriptionFragment : Fragment() {
     private fun initList(){
         causeAdapter = CauseAdapter()
         solutionAdapter = SolutionAdapter()
+        symptomAdapter = SymptomAdapter()
     }
 
     private fun initObservers(){
         viewModel.causesList.observe(viewLifecycleOwner){
             causeAdapter.setItemList(it)
             solutionAdapter.setItemList(it)
+        }
+        viewModel.symptomsList.observe(viewLifecycleOwner){
+            symptomAdapter.setItemList(it)
         }
     }
 
