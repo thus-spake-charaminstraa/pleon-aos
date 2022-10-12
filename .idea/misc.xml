@@ -114,6 +114,9 @@
         <entry key="camera/src/main/res/layout/fragment_camera.xml" value="0.1" />
         <entry key="camera/src/main/res/layout/fragment_my.xml" value="0.1" />
         <entry key="common-ui/src/main/res/drawable/bg_plant_detail.xml" value="0.167" />
+        <entry key="common-ui/src/main/res/drawable/bg_prescription_name.xml" value="0.145" />
+        <entry key="common-ui/src/main/res/drawable/bg_solution_num.xml" value="0.171" />
+        <entry key="common-ui/src/main/res/drawable/bg_solution_txt.xml" value="0.1005" />
         <entry key="common-ui/src/main/res/drawable/button.xml" value="0.182" />
         <entry key="common-ui/src/main/res/drawable/button_green_selector.xml" value="0.2345" />
         <entry key="common-ui/src/main/res/drawable/button_grey.xml" value="0.224" />
@@ -131,6 +134,8 @@
         <entry key="common-ui/src/main/res/drawable/ic_arrow_back.xml" value="0.1" />
         <entry key="common-ui/src/main/res/drawable/ic_bubble.xml" value="0.1" />
         <entry key="common-ui/src/main/res/drawable/ic_camera_active.xml" value="0.1195" />
+        <entry key="common-ui/src/main/res/drawable/ic_img_doctor.xml" value="0.145" />
+        <entry key="common-ui/src/main/res/drawable/ic_img_patient.xml" value="0.145" />
         <entry key="common-ui/src/main/res/drawable/ic_search.xml" value="0.1205" />
         <entry key="common-ui/src/main/res/drawable/ic_user.xml" value="0.422" />
         <entry key="common-ui/src/main/res/drawable/input.xml" value="0.182" />
@@ -145,6 +150,7 @@
         <entry key="common-ui/src/main/res/layout/dialog_skip_layout.xml" value="0.25" />
         <entry key="common-ui/src/main/res/layout/item_feed.xml" value="0.1" />
         <entry key="common-ui/src/main/res/layout/item_plant_garden.xml" value="0.11347517730496454" />
+        <entry key="common-ui/src/main/res/layout/item_solution.xml" value="0.33559782608695654" />
         <entry key="common/src/main/res/drawable/ic_btn_feed_comment.xml" value="0.1945" />
         <entry key="common/src/main/res/drawable/tag_bg.xml" value="0.281" />
         <entry key="common/src/main/res/layout/item_feed.xml" value="0.5546623794212219" />
@@ -157,10 +163,10 @@
         <entry key="doctor/src/main/res/drawable/bg_solution_txt.xml" value="0.183" />
         <entry key="doctor/src/main/res/layout/fragment_camera.xml" value="0.45" />
         <entry key="doctor/src/main/res/layout/fragment_doctor.xml" value="0.26197916666666665" />
-        <entry key="doctor/src/main/res/layout/fragment_prescription.xml" value="0.4628748575846354" />
+        <entry key="doctor/src/main/res/layout/fragment_prescription.xml" value="0.23059866962305986" />
         <entry key="doctor/src/main/res/layout/fragment_q_plant_choose.xml" value="0.24739583333333334" />
         <entry key="doctor/src/main/res/layout/item_cause.xml" value="0.7566539923954373" />
-        <entry key="doctor/src/main/res/layout/item_solution.xml" value="0.45" />
+        <entry key="doctor/src/main/res/layout/item_solution.xml" value="0.38386308068459657" />
         <entry key="feed-common/src/main/res/drawable/comment_rounded_corner_edittext.xml" value="0.311" />
         <entry key="feed-common/src/main/res/drawable/ic_more.xml" value="0.1375" />
         <entry key="feed-common/src/main/res/drawable/tag_bg.xml" value="0.1" />
@@ -168,6 +174,7 @@
         <entry key="feed-common/src/main/res/layout/item_comment.xml" value="0.1" />
         <entry key="feed-common/src/main/res/layout/item_doctor_feed.xml" value="0.2791666666666667" />
         <entry key="feed-common/src/main/res/layout/item_feed.xml" value="0.22327790973871733" />
+        <entry key="feed-common/src/main/res/layout/item_feed_doctor.xml" value="0.335" />
         <entry key="feed-common/src/main/res/menu/bottom_navigation.xml" value="0.4234375" />
         <entry key="feed-common/src/main/res/menu/more_menu.xml" value="0.2518518518518518" />
         <entry key="feed/src/main/res/drawable/action_on.xml" value="0.1" />

@@ -29,13 +29,7 @@
         <item name="android:letterSpacing">-0.01</item>
         <item name="android:gravity">left</item>
     </style>
-    <style name="PrescriptionSymptomDescText" parent="@android:style/Widget.TextView">
-        <item name="android:textSize">13sp</item>
-        <item name="android:textColor">@color/black_sub_color</item>
-        <item name="android:lineSpacingExtra">10sp</item>
-        <item name="android:letterSpacing">-0.01</item>
-        <item name="android:gravity">left</item>
-    </style>
+
 
     <style name="PrescriptionCauseNumText" parent="@android:style/Widget.TextView">
         <item name="android:textSize">11sp</item>
@@ -46,5 +40,12 @@
         <item name="android:textSize">11sp</item>
         <item name="android:textColor">@color/main_green_color</item>
         <item name="android:letterSpacing">-0.01</item>
+    </style>
+    <style name="PrescriptionDescText" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/black_sub_color</item>
+        <item name="android:lineSpacingExtra">10sp</item>
+        <item name="android:letterSpacing">-0.01</item>
+        <item name="android:gravity">left</item>
     </style>
 </resources>

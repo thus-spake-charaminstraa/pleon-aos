@@ -29,6 +29,8 @@ data class ViewObject(
     val plant: PlantDataObject,
     val user: UserDataObject,
     val comments: List<CommentObject>?,
+    val symptoms: List<SymptomObject>?,
+    val causes: List<CauseObject>?
 )
 
 data class FeedObject(

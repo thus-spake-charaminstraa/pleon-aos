@@ -26,4 +26,14 @@
 
     <string name="edit_btn">편집</string>
     <string name="delete_btn">삭제</string>
+
+    <string name="prescription_fragment_title">처방전</string>
+
+    <string name="prescription_doctor_title">당당 의료진</string>
+    <string name="prescription_doctor_name">PLeon</string>
+    <string name="prescription_patient_title">환자</string>
+
+    <string name="prescription_symptom_title">증상</string>
+    <string name="prescription_cause_title">예상 원인</string>
+    <string name="prescription_solution_title">Solution</string>
 </resources>
