@@ -170,7 +170,9 @@ class PlantDetailFragment : Fragment() {
                 bundle.putString("id", Id)
                 navController.navigate(R.id.plant_detail_fragment_to_feed_detail_fragment, bundle)
             }else if(ViewType == FeedViewType.diagnosis.ordinal){
-
+                val bundle = Bundle()
+                bundle.putString("id", Id)
+                navController.navigate(R.id.plant_detail_fragment_to_feed_doctor_detail_fragment, bundle)
             }
 
             // logging

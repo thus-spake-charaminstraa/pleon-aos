@@ -6,18 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import com.charaminstra.pleon.doctor.CauseAdapter
+import com.charaminstra.pleon.feed_common.CauseAdapter
 import com.charaminstra.pleon.doctor.DoctorViewModel
-import com.charaminstra.pleon.doctor.SolutionAdapter
-import com.charaminstra.pleon.doctor.SymptomAdapter
+import com.charaminstra.pleon.feed_common.SolutionAdapter
+import com.charaminstra.pleon.feed_common.SymptomAdapter
 import com.charaminstra.pleon.doctor.databinding.FragmentPrescriptionBinding
 
 class PrescriptionFragment : Fragment() {
     private val TAG = javaClass.name
     private lateinit var binding : FragmentPrescriptionBinding
-    private lateinit var causeAdapter: CauseAdapter
-    private lateinit var solutionAdapter: SolutionAdapter
-    private lateinit var symptomAdapter: SymptomAdapter
+    private lateinit var causeAdapter: com.charaminstra.pleon.feed_common.CauseAdapter
+    private lateinit var solutionAdapter: com.charaminstra.pleon.feed_common.SolutionAdapter
+    private lateinit var symptomAdapter: com.charaminstra.pleon.feed_common.SymptomAdapter
     private val viewModel : DoctorViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,9 +47,9 @@ class PrescriptionFragment : Fragment() {
     }
 
     private fun initList(){
-        causeAdapter = CauseAdapter()
-        solutionAdapter = SolutionAdapter()
-        symptomAdapter = SymptomAdapter()
+        causeAdapter = com.charaminstra.pleon.feed_common.CauseAdapter()
+        solutionAdapter = com.charaminstra.pleon.feed_common.SolutionAdapter()
+        symptomAdapter = com.charaminstra.pleon.feed_common.SymptomAdapter()
     }
 
     private fun initObservers(){

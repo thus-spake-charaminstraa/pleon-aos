@@ -171,6 +171,8 @@
         <entry key="feed-common/src/main/res/drawable/ic_more.xml" value="0.1375" />
         <entry key="feed-common/src/main/res/drawable/tag_bg.xml" value="0.1" />
         <entry key="feed-common/src/main/res/layout/fragment_feed_detail.xml" value="0.55" />
+        <entry key="feed-common/src/main/res/layout/fragment_feed_doctor_detail.xml" value="0.192481884057971" />
+        <entry key="feed-common/src/main/res/layout/item_cause.xml" value="0.12314814814814815" />
         <entry key="feed-common/src/main/res/layout/item_comment.xml" value="0.1" />
         <entry key="feed-common/src/main/res/layout/item_doctor_feed.xml" value="0.2791666666666667" />
         <entry key="feed-common/src/main/res/layout/item_feed.xml" value="0.22327790973871733" />

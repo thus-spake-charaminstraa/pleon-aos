@@ -1,7 +1,7 @@
-package com.charaminstra.pleon.doctor
+package com.charaminstra.pleon.feed_common
 
 import androidx.recyclerview.widget.RecyclerView
-import com.charaminstra.pleon.doctor.databinding.ItemCauseBinding
+import com.charaminstra.pleon.feed_common.databinding.ItemCauseBinding
 import com.charaminstra.pleon.foundation.model.CauseObject
 
 class CauseViewHolder(val binding: ItemCauseBinding): RecyclerView.ViewHolder(binding.root) {

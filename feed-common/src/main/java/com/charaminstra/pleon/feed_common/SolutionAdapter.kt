@@ -1,4 +1,4 @@
-package com.charaminstra.pleon.doctor
+package com.charaminstra.pleon.feed_common
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -22,6 +22,7 @@ class SolutionAdapter(): RecyclerView.Adapter<SolutionViewHolder>() {
 
     fun setItemList(viewItemList : List<CauseObject>) {
         this.viewItemList = viewItemList
+        notifyDataSetChanged()
     }
 
 }

@@ -12,4 +12,6 @@
     <string name="feed_detail_skip_dialog_cancel_btn">취소</string>
     <string name="feed_detail_skip_dialog_delete_btn">삭제하기</string>
 
+    <string name="doctor_pleon_name">Dr.PLeon</string>
+
 </resources>

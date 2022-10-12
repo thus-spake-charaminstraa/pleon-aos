@@ -1,10 +1,9 @@
-package com.charaminstra.pleon.doctor
+package com.charaminstra.pleon.feed_common
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.charaminstra.pleon.doctor.databinding.ItemSymptomBinding
-import com.charaminstra.pleon.foundation.model.ActionData
+import com.charaminstra.pleon.feed_common.databinding.ItemSymptomBinding
 import com.charaminstra.pleon.foundation.model.SymptomObject
 
 class SymptomAdapter(): RecyclerView.Adapter<SymptomViewHolder>() {
@@ -23,6 +22,7 @@ class SymptomAdapter(): RecyclerView.Adapter<SymptomViewHolder>() {
 
     fun setItemList(viewItemList : List<SymptomObject>) {
         this.viewItemList = viewItemList
+        notifyDataSetChanged()
     }
 
 }

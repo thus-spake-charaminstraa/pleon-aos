@@ -1,4 +1,4 @@
-package com.charaminstra.pleon.doctor
+package com.charaminstra.pleon.feed_common
 
 import androidx.recyclerview.widget.RecyclerView
 import com.charaminstra.pleon.common_ui.databinding.ItemSolutionBinding
