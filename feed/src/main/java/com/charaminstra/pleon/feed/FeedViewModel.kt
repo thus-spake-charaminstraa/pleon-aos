@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.charaminstra.pleon.foundation.FeedRepository
 import com.charaminstra.pleon.foundation.NotiRepository
-import com.charaminstra.pleon.foundation.model.NotiData
 import com.charaminstra.pleon.foundation.model.NotiViewTypeData
 import com.charaminstra.pleon.foundation.model.ResultObject
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -32,7 +31,7 @@ class FeedViewModel @Inject constructor(
 
     fun getFeedAllList(){
         viewModelScope.launch {
-            val data = feedRepository.getOnlyFeed2(null, null)
+            val data = feedRepository.getFeed(null, null, null)
             when (data.isSuccessful) {
                 true -> {
                     _feedAllList.postValue(data.body()?.data?.result)
@@ -48,8 +47,7 @@ class FeedViewModel @Inject constructor(
 
     fun getFeedFilterList(plantId: String?){
         viewModelScope.launch {
-            val data = feedRepository.getOnlyFeed2(null, plantId)
-            //val data = feedRepository.getFeedList(plant_Id)
+            val data = feedRepository.getFeed(null, plantId, null)
             when (data.isSuccessful) {
                 true -> {
                     _feedFilterList.postValue(data.body()?.data?.result)

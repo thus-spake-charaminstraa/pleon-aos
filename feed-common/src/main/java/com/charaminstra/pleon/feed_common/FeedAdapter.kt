@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.charaminstra.pleon.common.databinding.ItemFeedBinding
+import com.charaminstra.pleon.feed_common.databinding.ItemFeedDoctorBinding
 import com.charaminstra.pleon.foundation.model.ResultObject
 
 class FeedAdapter(): RecyclerView.Adapter<FeedCommonViewHolder>() {
@@ -18,7 +19,7 @@ class FeedAdapter(): RecyclerView.Adapter<FeedCommonViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeedCommonViewHolder {
         return when(viewType){
             FeedViewType.feed.ordinal -> FeedItemViewHolder(ItemFeedBinding.inflate(LayoutInflater.from(parent.context), parent, false))
-            //FeedViewType.noti.ordinal -> NotiItemViewHolder(ItemNotiBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+            FeedViewType.diagnosis.ordinal -> FeedDoctorItemViewHolder(ItemFeedDoctorBinding.inflate(LayoutInflater.from(parent.context), parent, false))
             else -> throw IllegalArgumentException("Unknown view type")
         }
     }
