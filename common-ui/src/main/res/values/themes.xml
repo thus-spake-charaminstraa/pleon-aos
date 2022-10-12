@@ -48,7 +48,7 @@
 
 <!--    //-->
     <style name="FeedPrescriptionTitleText" parent="@android:style/Widget.TextView">
-        <item name="android:textSize">9sp</item>
+        <item name="android:textSize">11sp</item>
         <item name="android:textColor">@color/black_sub2_color</item>
         <item name="android:letterSpacing">-0.02</item>
         <item name="android:gravity">left</item>

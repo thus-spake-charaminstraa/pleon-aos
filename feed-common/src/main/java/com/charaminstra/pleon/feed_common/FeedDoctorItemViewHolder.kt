@@ -10,18 +10,36 @@ class FeedDoctorItemViewHolder(
     private lateinit var dateFormat: SimpleDateFormat
 
     override fun bind(item: ViewObject,viewType:Int, onClickFeed: (Int, String) -> Unit)  {
-        binding.prescriptionPatientName.text = item.plant.name
-        binding.solutionNum.text = 1.toString()
-        binding.solutionTxt.text = item.causes?.get(0)?.guide
+        binding.plantTagTv.text = "@"+item.plant.name
 
         dateFormat = SimpleDateFormat(binding.root.context.resources.getString(com.charaminstra.pleon.common.R.string.date_view_format))
 
         binding.feedDate.text = dateFormat.format(item.created_at)
 
+        var symptomList = ""
+        for (i in item.symptoms?.indices!!){
+            if(i == item.symptoms?.size?.minus(1)){
+                symptomList += item.symptoms?.get(i)?.symptom_ko
+            }else{
+                symptomList += item.symptoms?.get(i)?.symptom_ko+"    "
+            }
+        }
+        binding.symptomTxt.text = symptomList
+
+        var solutionList = ""
+        for (i in item.causes?.indices!!){
+            if(i == item.causes?.size?.minus(1)){
+                solutionList += item.causes?.get(i)?.guide
+            }else{
+                solutionList += item.causes?.get(i)?.guide+"\n"
+            }
+
+        }
+        binding.solutionTxt.text = solutionList
+
         binding.root.setOnClickListener {
             onClickFeed(viewType, item.id)
         }
-
         //comment
 //        val count = item.comments?.size
 //        if(count == 0) {
@@ -32,8 +50,5 @@ class FeedDoctorItemViewHolder(
 //            binding.feedCommentCount.visibility = View.VISIBLE
 //            binding.feedCommentCount.text = count.toString()
 //        }
-
-
     }
-
 }
