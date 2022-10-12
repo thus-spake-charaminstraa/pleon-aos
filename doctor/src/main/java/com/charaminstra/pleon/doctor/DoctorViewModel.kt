@@ -82,6 +82,7 @@ class DoctorViewModel @Inject constructor(private val imageRepository: ImageRepo
                     Log.i(TAG,"plant doctor data ->"+data.body().toString())
                     if(data.body()?.success == false){
                         _plantDoctorSuccess.postValue(false)
+                        _plantName.postValue(data.body()?.data?.plant?.name)
                     }else{
                         _plantDoctorSuccess.postValue(true)
                         _symptomsList.postValue(data.body()?.data?.symptoms)

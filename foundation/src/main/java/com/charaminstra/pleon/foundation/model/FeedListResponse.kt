@@ -30,7 +30,8 @@ data class ViewObject(
     val user: UserDataObject,
     val comments: List<CommentObject>?,
     val symptoms: List<SymptomObject>?,
-    val causes: List<CauseObject>?
+    val causes: List<CauseObject>?,
+    val created_at: Date,
 )
 
 data class FeedObject(

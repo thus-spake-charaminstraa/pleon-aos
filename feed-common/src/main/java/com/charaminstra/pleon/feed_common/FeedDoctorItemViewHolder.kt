@@ -9,33 +9,18 @@ class FeedDoctorItemViewHolder(
 ): FeedCommonViewHolder(binding){
     private lateinit var dateFormat: SimpleDateFormat
 
-    override fun bind(item: ViewObject, onClickFeed: (String) -> Unit)  {
+    override fun bind(item: ViewObject,viewType:Int, onClickFeed: (Int, String) -> Unit)  {
         binding.prescriptionPatientName.text = item.plant.name
         binding.solutionNum.text = 1.toString()
         binding.solutionTxt.text = item.causes?.get(0)?.guide
-        //binding.solutionPreview.text = item.causes?.get(0)?.guide
-   //     binding.symptomRecyclerview.adapter =
-//        Glide.with(binding.root).load(item.image_url).into(binding.symptomImg)
-//        binding.symptomTxt.text = item.symptoms.symptom_ko
-        //dateFormat = SimpleDateFormat(binding.root.context.resources.getString(com.charaminstra.pleon.common.R.string.date_view_format))
-//        binding.feedContent.text = item.content
-//        binding.plantTagTv.text = binding.root.context.resources.getString(R.string.plant_tag)+ item.plant.name!!
-//        for(i in ActionType.values()){
-//            if(i.action == item.kind){
-//                binding.actionTagTv.text = binding.root.context.resources.getString(R.string.action_tag)+i.name
-//            }
-//        }
-//        if(item.image_url != null) {
-//            binding.plantImage.visibility = View.VISIBLE
-//            Glide.with(binding.root).load(item.image_url).into(binding.plantImage)
-//        }else{
-//            binding.plantImage.visibility = View.GONE
-//        }
-        //binding.feedDate.text = dateFormat.format(item.publish_date)
 
-        //user data
-//        binding.userName.text = item.user.nickname
-//        Glide.with(binding.root).load(item.user.thumbnail).into(binding.userImage)
+        dateFormat = SimpleDateFormat(binding.root.context.resources.getString(com.charaminstra.pleon.common.R.string.date_view_format))
+
+        binding.feedDate.text = dateFormat.format(item.created_at)
+
+        binding.root.setOnClickListener {
+            onClickFeed(viewType, item.id)
+        }
 
         //comment
 //        val count = item.comments?.size
@@ -48,10 +33,7 @@ class FeedDoctorItemViewHolder(
 //            binding.feedCommentCount.text = count.toString()
 //        }
 
-//        binding.root.setOnClickListener {
-//            Log.i("feed id in feed viewholder", item.id)
-//            onClickFeed(item.id)
-//        }
+
     }
 
 }

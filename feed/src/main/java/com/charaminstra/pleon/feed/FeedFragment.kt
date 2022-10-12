@@ -22,6 +22,7 @@ import com.charaminstra.pleon.feed.noti.NOTI_COMPLETE
 import com.charaminstra.pleon.feed.noti.NOTI_GO
 import com.charaminstra.pleon.feed.noti.NOTI_LATER
 import com.charaminstra.pleon.feed.noti.NotiAdapter
+import com.charaminstra.pleon.feed_common.FeedViewType
 import com.google.firebase.analytics.FirebaseAnalytics
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -72,7 +73,6 @@ class FeedFragment : Fragment() {
         //noti recyclervieew
         binding.notiRecyclerview.adapter = notiAdapter
 
-
         binding.feedFilterRecyclerview.adapter = feedPlantAdapter
         binding.feedRecyclerview.adapter = feedAdapter
         binding.feedAddBtn.setOnClickListener {
@@ -106,10 +106,14 @@ class FeedFragment : Fragment() {
         }
         feedAdapter = com.charaminstra.pleon.feed_common.FeedAdapter()
         notiAdapter = NotiAdapter()
-        feedAdapter.onClickFeed = { Id ->
-            val bundle = Bundle()
-            bundle.putString("id", Id)
-            navController.navigate(R.id.feed_fragment_to_feed_detail_fragment, bundle)
+        feedAdapter.onClickFeed = { ViewType, Id ->
+            if(ViewType == FeedViewType.feed.ordinal){
+                val bundle = Bundle()
+                bundle.putString("id", Id)
+                navController.navigate(R.id.feed_fragment_to_feed_detail_fragment, bundle)
+            }else if(ViewType == FeedViewType.diagnosis.ordinal){
+
+            }
 
             // logging
             val loggingBundle = Bundle()
