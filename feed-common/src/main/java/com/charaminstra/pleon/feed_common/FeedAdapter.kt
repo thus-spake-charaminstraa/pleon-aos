@@ -18,8 +18,8 @@ class FeedAdapter(): RecyclerView.Adapter<FeedCommonViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeedCommonViewHolder {
         return when(viewType){
-            FeedViewType.feed.ordinal -> FeedItemViewHolder(ItemFeedBinding.inflate(LayoutInflater.from(parent.context), parent, false))
-            FeedViewType.diagnosis.ordinal -> FeedDoctorItemViewHolder(ItemFeedDoctorBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+            FeedViewType.FEED.ordinal -> FeedItemViewHolder(ItemFeedBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+            FeedViewType.DIAGNOSIS.ordinal -> FeedDoctorItemViewHolder(ItemFeedDoctorBinding.inflate(LayoutInflater.from(parent.context), parent, false))
             else -> throw IllegalArgumentException("Unknown view type")
         }
     }

@@ -107,11 +107,11 @@ class FeedFragment : Fragment() {
         feedAdapter = com.charaminstra.pleon.feed_common.FeedAdapter()
         notiAdapter = NotiAdapter()
         feedAdapter.onClickFeed = { ViewType, Id ->
-            if(ViewType == FeedViewType.feed.ordinal){
+            if(ViewType == FeedViewType.FEED.ordinal){
                 val bundle = Bundle()
                 bundle.putString("id", Id)
                 navController.navigate(R.id.feed_fragment_to_feed_detail_fragment, bundle)
-            }else if(ViewType == FeedViewType.diagnosis.ordinal){
+            }else if(ViewType == FeedViewType.DIAGNOSIS.ordinal){
                 val bundle = Bundle()
                 bundle.putString("id", Id)
                 navController.navigate(R.id.feed_fragment_to_feed_doctor_detail_fragment, bundle)

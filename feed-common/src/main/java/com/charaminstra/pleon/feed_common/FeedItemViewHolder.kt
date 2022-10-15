@@ -17,7 +17,7 @@ class FeedItemViewHolder(
     override fun bind(item: ViewObject, viewType:Int, onClickFeed: (Int, String) -> Unit)  {
         dateFormat = SimpleDateFormat(binding.root.context.resources.getString(com.charaminstra.pleon.common.R.string.date_view_format))
         binding.feedContent.text = item.content
-        binding.plantTagTv.text = binding.root.context.resources.getString(R.string.plant_tag)+ item.plant.name!!
+        binding.plantTagTv.text = binding.root.context.resources.getString(R.string.plant_tag)+ item.plant?.name!!
         for(i in ActionType.values()){
             if(i.action == item.kind){
                 binding.actionTagTv.text = binding.root.context.resources.getString(R.string.action_tag)+i.name
