@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.charaminstra.pleon.common.showKeyboard
 import com.charaminstra.pleon.common_ui.DateUtils
 import com.charaminstra.pleon.common_ui.ErrorToast
+import com.charaminstra.pleon.common_ui.PLeonDatePicker
 import com.charaminstra.pleon.common_ui.PLeonMsgDialog
 import com.charaminstra.pleon.plant_register.PlantRegisterViewModel
 import com.charaminstra.pleon.plant_register.R
@@ -39,16 +40,11 @@ class PlantAdoptFragment : Fragment() {
 
         /* date picker */
         binding.plantAdoptEt.setOnClickListener {
-            binding.plantAdoptDatePickerDialog.visibility=View.VISIBLE
-
-            binding.root.setBackgroundColor(resources.getColor(com.charaminstra.pleon.common_ui.R.color.black_sub_color))
-            binding.plantAdoptBtns.visibility = View.GONE
-        }
-        binding.plantAdoptDatePickerCancelBtn.setOnClickListener {
-            binding.plantAdoptDatePickerDialog.visibility=View.GONE
-
-            binding.root.setBackgroundColor(resources.getColor(com.charaminstra.pleon.common_ui.R.color.white))
-            binding.plantAdoptBtns.visibility = View.VISIBLE
+            val dlg= PLeonDatePicker(requireContext())
+            dlg.setOnOKClickedListener {
+                binding.plantAdoptEt.setText(dlg.date)
+            }
+            dlg.start(resources.getString(com.charaminstra.pleon.common_ui.R.string.date_picker_title))
         }
         //확인 버튼
         binding.plantAdoptDatePickerOkBtn.setOnClickListener {

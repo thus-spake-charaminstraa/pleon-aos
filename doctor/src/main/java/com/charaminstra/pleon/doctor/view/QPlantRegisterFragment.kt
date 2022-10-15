@@ -49,5 +49,4 @@ class QPlantRegisterFragment : Fragment() {
         }
         return binding.root
     }
-
 }

@@ -82,7 +82,8 @@ class FeedWriteFragment : Fragment() {
             dlg.setOnOKClickedListener {
                 binding.feedWriteDate.text = dlg.date
             }
-            dlg.start("날짜 선택")
+            dlg.start(resources.getString(com.charaminstra.pleon.common_ui.R.string.date_picker_title))
+            hideKeyboard(binding.feedWriteContent)
         }
         binding.feedWriteImgAddBtn.setOnClickListener{
             hideKeyboard(binding.feedWriteContent)

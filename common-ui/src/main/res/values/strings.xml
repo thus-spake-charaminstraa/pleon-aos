@@ -36,4 +36,7 @@
     <string name="prescription_symptom_title">증상</string>
     <string name="prescription_cause_title">예상 원인</string>
     <string name="prescription_solution_title">Solution</string>
+
+
+    <string name="date_picker_title">날짜선택</string>
 </resources>
