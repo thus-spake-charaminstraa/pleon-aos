@@ -13,7 +13,7 @@
             app:destination="@+id/q_plant_choose_fragment"/>
         <action
             android:id="@+id/q_plant_register_fragment_to_camera_fragment"
-            app:destination="@+id/camera_fragment"/>
+            app:destination="@+id/permissions_fragment"/>
     </fragment>
     <fragment
         android:id="@+id/q_plant_choose_fragment"
@@ -21,12 +21,27 @@
         tools:layout="@layout/fragment_q_plant_choose">
         <action
             android:id="@+id/q_plant_choose_fragment_to_camera_fragment"
-            app:destination="@+id/camera_fragment"/>
+            app:destination="@+id/permissions_fragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/permissions_fragment"
+        android:name="com.charaminstra.pleon.doctor.view.PermissionsFragment"
+        android:label="PermissionsFragment" >
+        <action
+            android:id="@+id/action_permissions_to_camera"
+            app:destination="@id/camera_fragment"
+            app:popUpTo="@id/permissions_fragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/camera_fragment"
         android:name="com.charaminstra.pleon.doctor.view.CameraFragment"
         tools:layout="@layout/fragment_camera" >
+        <action
+            android:id="@+id/action_camera_to_permissions"
+            app:destination="@id/permissions_fragment"
+            app:popUpTo="@id/camera_fragment"
+            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/camera_fragment_to_doctor_waiting_fragment"
             app:destination="@+id/doctor_waiting_fragment"/>
