@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="waiting_desc1">반려식물과의 채팅 기능을 개발중이에요</string>
-    <string name="waiting_desc2">조금만 기다려주세요</string>
+    <string name="chat_fragment_bubble_txt">반려식물과의 채팅 기능을 개발중이에요.\n조금만 기다려주세요.</string>
 </resources>
