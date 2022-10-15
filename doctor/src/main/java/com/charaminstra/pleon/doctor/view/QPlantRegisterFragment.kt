@@ -38,6 +38,7 @@ class QPlantRegisterFragment : Fragment() {
         }
         binding.qPlantRegisterNextBtn.setOnClickListener {
             viewModel.warmingPlantDoctorModel()
+            viewModel.warmingPlantDetectionModel()
             if(binding.plantRegisterQ1.isSelected){
                 navController.navigate(R.id.q_plant_register_fragment_to_q_plant_choose_fragment)
             }else if(binding.plantRegisterQ2.isSelected){

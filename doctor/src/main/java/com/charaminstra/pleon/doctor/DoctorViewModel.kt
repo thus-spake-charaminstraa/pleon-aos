@@ -96,6 +96,12 @@ class DoctorViewModel @Inject constructor(private val imageRepository: ImageRepo
         }
     }
 
+    fun warmingPlantDetectionModel(){
+        viewModelScope.launch {
+            inferenceRepository.warmingPlantDetection()
+        }
+    }
+
     fun warmingPlantDoctorModel(){
         viewModelScope.launch {
             inferenceRepository.warmingPlantDoctor()
