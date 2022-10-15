@@ -1,6 +1,7 @@
 <resources>
     <string name="plant_tag">\@</string>
     <string name="action_tag">#</string>
+    <string name="doctor_action_tag">#처방전</string>
     <string name="comment_hint">댓글 작성</string>
     <string name="comment_enter_btn">확인</string>
     <string name="item_more_edit">편집하기</string>

@@ -67,7 +67,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/user_name"
                 app:layout_constraintLeft_toLeftOf="@+id/user_name"
                 app:layout_constraintBottom_toBottomOf="@+id/user_image"/>
-
             <ImageView
                 android:id="@+id/plant_image"
                 android:layout_width="match_parent"
