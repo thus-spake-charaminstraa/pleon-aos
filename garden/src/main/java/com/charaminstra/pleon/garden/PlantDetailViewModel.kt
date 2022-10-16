@@ -1,25 +1,18 @@
 package com.charaminstra.pleon.garden
 
-import android.graphics.Bitmap
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.charaminstra.pleon.foundation.FeedRepository
-import com.charaminstra.pleon.foundation.ImageRepository
 import com.charaminstra.pleon.foundation.PlantIdRepository
 import com.charaminstra.pleon.foundation.ScheduleRepository
-import com.charaminstra.pleon.foundation.model.FeedObject
 import com.charaminstra.pleon.foundation.model.PlantDataObject
 import com.charaminstra.pleon.foundation.model.ResultObject
 import com.charaminstra.pleon.foundation.model.ScheduleDataObject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import java.io.ByteArrayInputStream
-import java.io.ByteArrayOutputStream
-import java.io.InputStream
-import java.time.LocalDate
 import javax.inject.Inject
 
 @HiltViewModel
@@ -67,7 +60,7 @@ class PlantDetailViewModel @Inject constructor(
 
     fun getFeed(date: String?){
         viewModelScope.launch {
-            val data = feedRepository.getOnlyFeed(offset, plantId.value.toString(), date)
+            val data = feedRepository.getFeed(offset, plantId.value.toString(), date)
             Log.i(TAG, "data -> $data")
             Log.i(TAG, "data.body -> "+data.body())
             when (data.isSuccessful) {

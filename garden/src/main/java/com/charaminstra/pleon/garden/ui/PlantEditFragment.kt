@@ -21,16 +21,12 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.certified.customprogressindicatorlibrary.CustomProgressIndicator
 import com.charaminstra.pleon.common.*
-import com.charaminstra.pleon.common_ui.DateUtils
-import com.charaminstra.pleon.common_ui.PLeonMsgDialog
-import com.charaminstra.pleon.common_ui.ErrorToast
-import com.charaminstra.pleon.common_ui.PopUpImageMenu
+import com.charaminstra.pleon.common_ui.*
 import com.charaminstra.pleon.garden.PlantEditViewModel
 import com.charaminstra.pleon.garden.R
 import com.charaminstra.pleon.garden.databinding.FragmentPlantEditBinding
 import com.charaminstra.pleon.plant_register.getOrientation
 import dagger.hilt.android.AndroidEntryPoint
-import java.io.FileInputStream
 import java.text.SimpleDateFormat
 
 @AndroidEntryPoint
@@ -69,7 +65,12 @@ class PlantEditFragment : Fragment() {
 
         binding.speciesInput.isEnabled=false
         binding.adoptDayInput.setOnClickListener {
-            popUpCalendar()
+            val dlg= PLeonDatePicker(requireContext())
+            dlg.setOnOKClickedListener {
+                binding.adoptDayInput.text = dlg.date
+            }
+            dlg.start(resources.getString(com.charaminstra.pleon.common_ui.R.string.date_picker_title))
+            //popUpCalendar()
         }
         navController = this.findNavController()
 
@@ -126,7 +127,7 @@ class PlantEditFragment : Fragment() {
                 viewModel.setBitmap(rotateBitmap)
             }
             else -> {
-                ErrorToast(requireContext()).showMsg(
+                ErrorToast(requireContext()).showMsgDown(
                     resources.getString(com.charaminstra.pleon.common_ui.R.string.image_error),
                     binding.plantEditAddImg.y
                 )
@@ -149,55 +150,6 @@ class PlantEditFragment : Fragment() {
         )
         intent.putExtra(MediaStore.EXTRA_OUTPUT,  plantImgUri)
         startActivityForResult(intent, REQUEST_TAKE_PHOTO)
-    }
-
-    fun popUpCalendar() {
-        binding.plantEditDatePickerDialog.visibility=View.VISIBLE
-
-        binding.root.setBackgroundColor(resources.getColor(com.charaminstra.pleon.common_ui.R.color.black_sub_color))
-        binding.plantEditBtns.visibility = View.GONE
-
-        binding.plantEditAddImg.visibility = View.GONE
-        binding.plantEditImg.visibility = View.GONE
-        binding.speciesInput.visibility = View.GONE
-        binding.plantNameInput.visibility = View.GONE
-        binding.adoptDayInput.visibility = View.GONE
-        binding.airInput.visibility = View.GONE
-        binding.lightInput.visibility = View.GONE
-
-        binding.plantEditDatePickerCancelBtn.setOnClickListener {
-            binding.plantEditDatePickerDialog.visibility=View.GONE
-
-            binding.root.setBackgroundColor(resources.getColor(com.charaminstra.pleon.common_ui.R.color.white))
-            binding.plantEditBtns.visibility = View.VISIBLE
-
-            binding.plantEditAddImg.visibility = View.VISIBLE
-            binding.plantEditImg.visibility = View.VISIBLE
-            binding.speciesInput.visibility = View.VISIBLE
-            binding.plantNameInput.visibility = View.VISIBLE
-            binding.adoptDayInput.visibility = View.VISIBLE
-            binding.airInput.visibility = View.VISIBLE
-            binding.lightInput.visibility = View.VISIBLE
-        }
-        //확인 버튼
-        binding.plantEditDatePickerOkBtn.setOnClickListener {
-            binding.adoptDayInput.setText(DateUtils(requireContext()).datePickerToView(binding.plantEditDatePicker.date))
-
-            binding.plantEditDatePickerDialog.visibility=View.GONE
-            binding.root.setBackgroundColor(resources.getColor(com.charaminstra.pleon.common_ui.R.color.white))
-            binding.plantEditBtns.visibility = View.VISIBLE
-
-            binding.root.setBackgroundColor(resources.getColor(com.charaminstra.pleon.common_ui.R.color.white))
-            binding.completeBtn.isClickable = true
-
-            binding.plantEditAddImg.visibility = View.VISIBLE
-            binding.plantEditImg.visibility = View.VISIBLE
-            binding.speciesInput.visibility = View.VISIBLE
-            binding.plantNameInput.visibility = View.VISIBLE
-            binding.adoptDayInput.visibility = View.VISIBLE
-            binding.airInput.visibility = View.VISIBLE
-            binding.lightInput.visibility = View.VISIBLE
-        }
     }
 
     private fun initObservers(){
@@ -300,7 +252,7 @@ class PlantEditFragment : Fragment() {
         }
         binding.completeBtn.setOnClickListener{
             if(binding.plantNameInput.text.isNullOrEmpty()){
-                ErrorToast(requireContext()).showMsg(resources.getString(R.string.plant_edit_fragment_name_error),binding.plantNameInput.y)
+                ErrorToast(requireContext()).showMsgDown(resources.getString(R.string.plant_edit_fragment_name_error),binding.plantNameInput.y)
             }else if(viewModel.plantImgBitmap.value != null){
                 indicator.apply {
                     visibility = View.VISIBLE
@@ -338,4 +290,5 @@ class PlantEditFragment : Fragment() {
         indicator.setText("loading ... ")
         indicator.setTextSize(15.0F)
     }
+
 }

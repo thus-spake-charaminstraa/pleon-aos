@@ -39,4 +39,10 @@ interface PlantAPIService {
     suspend fun getPlantSpecies(
         @Header("Authorization") accessToken:String
     ): Response<PlantSpeciesResponse>
+
+    @GET("plant/diagnosis/{id}")
+    suspend fun getPlantDiagnosis(
+        @Header("Authorization") accessToken:String,
+        @Path("id") id: String
+    ): Response<PlantDoctorResponseBody>
 }

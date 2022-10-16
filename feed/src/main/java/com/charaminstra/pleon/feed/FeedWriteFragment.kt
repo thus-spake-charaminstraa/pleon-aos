@@ -19,7 +19,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.bumptech.glide.Glide
 import com.certified.customprogressindicatorlibrary.CustomProgressIndicator
 import com.charaminstra.pleon.common.*
 import com.charaminstra.pleon.common_ui.DateUtils
@@ -31,7 +30,6 @@ import com.charaminstra.pleon.plant_register.getOrientation
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.firebase.analytics.FirebaseAnalytics
 import dagger.hilt.android.AndroidEntryPoint
-import java.io.FileInputStream
 import java.util.*
 
 
@@ -84,7 +82,8 @@ class FeedWriteFragment : Fragment() {
             dlg.setOnOKClickedListener {
                 binding.feedWriteDate.text = dlg.date
             }
-            dlg.start("날짜 선택")
+            dlg.start(resources.getString(com.charaminstra.pleon.common_ui.R.string.date_picker_title))
+            hideKeyboard(binding.feedWriteContent)
         }
         binding.feedWriteImgAddBtn.setOnClickListener{
             hideKeyboard(binding.feedWriteContent)
@@ -280,7 +279,7 @@ class FeedWriteFragment : Fragment() {
                 feedWriteViewModel.setBitmap(rotateBitmap)
             }
             else -> {
-                ErrorToast(requireContext()).showMsg(
+                ErrorToast(requireContext()).showMsgDown(
                     resources.getString(com.charaminstra.pleon.common_ui.R.string.image_error),
                     binding.feedWriteImg.y
                 )

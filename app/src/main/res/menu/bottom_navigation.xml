@@ -4,10 +4,6 @@
         android:id="@+id/nav_feed"
         android:icon="@drawable/tab_selector_feed"
         android:title="@string/bottom_nav_feed" />
-<!--    <item-->
-<!--        android:id="@+id/chat"-->
-<!--        android:icon="@drawable/tab_selector_chat"-->
-<!--        android:title="@string/bottom_nav_chat" />-->
     <item
         android:id="@+id/nav_doctor"
         android:icon="@drawable/tab_selector_doctor"
@@ -16,6 +12,10 @@
         android:id="@+id/nav_garden"
         android:icon="@drawable/tab_selector_garden"
         android:title="@string/bottom_nav_garden" />
+    <item
+        android:id="@+id/nav_chat"
+        android:icon="@drawable/tab_selector_chat"
+        android:title="@string/bottom_nav_chat" />
     <item
         android:id="@+id/nav_my"
         android:icon="@drawable/tab_selector_my"

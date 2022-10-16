@@ -21,8 +21,6 @@ class PlantsViewModel @Inject constructor(
 
     private val _plantsCount = MutableLiveData<Int>()
     val plantsCount : LiveData<Int> = _plantsCount
-//
-    //fun getData() = plantsList
 
     init {
         loadData()

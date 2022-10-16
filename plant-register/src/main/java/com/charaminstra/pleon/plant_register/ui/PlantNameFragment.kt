@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.charaminstra.pleon.common.showKeyboard
@@ -45,7 +44,7 @@ class PlantNameFragment : Fragment() {
             //test
             //navController.navigate(R.id.plant_name_fragment_to_plant_adopt_fragment)
             if(binding.plantNameEt.text.isNullOrBlank()){
-                ErrorToast(requireContext()).showMsg(resources.getString(R.string.plant_name_fragment_error),binding.plantNameEt.y)
+                ErrorToast(requireContext()).showMsgDown(resources.getString(R.string.plant_name_fragment_error),binding.plantNameEt.y)
             }else{
                 viewModel.setName(binding.plantNameEt.text.toString())
                 navController.navigate(R.id.plant_name_fragment_to_plant_adopt_fragment)

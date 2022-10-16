@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <androidx.camera.view.PreviewView
+        android:id="@+id/viewFinder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    <ImageView
+        android:id="@+id/camera_first_fin"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ic_shoot_first_ing"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintLeft_toLeftOf="@id/camera_help_tv"
+        app:layout_constraintBottom_toTopOf="@id/camera_help_tv"
+        />
+    <ImageView
+        android:id="@+id/camera_second_fin"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ic_shoot_second_not"
+        android:layout_marginStart="5dp"
+        app:layout_constraintLeft_toRightOf="@+id/camera_first_fin"
+        app:layout_constraintBottom_toBottomOf="@+id/camera_first_fin"
+        />
+    <TextView
+        android:id="@+id/camera_help_tv"
+        android:layout_width="280dp"
+        android:layout_height="36dp"
+        android:background="@drawable/bg_help"
+        style="@style/CameraHelpText"
+        android:text="@string/camera_help_1"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/camera_btn_bg"/>
+    <View
+        android:id="@+id/camera_btn_bg"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/white_80"/>
+    <ImageButton
+        android:id="@+id/image_capture_button"
+        android:layout_width="66dp"
+        android:layout_height="66dp"
+        android:elevation="2dp"
+        android:background="@null"
+        android:src="@drawable/ic_btn_shoot"
+        app:layout_constraintTop_toTopOf="@+id/camera_btn_bg"
+        app:layout_constraintBottom_toBottomOf="@+id/camera_btn_bg"
+        app:layout_constraintLeft_toLeftOf="@+id/camera_btn_bg"
+        app:layout_constraintRight_toRightOf="@+id/camera_btn_bg" />
+</androidx.constraintlayout.widget.ConstraintLayout>

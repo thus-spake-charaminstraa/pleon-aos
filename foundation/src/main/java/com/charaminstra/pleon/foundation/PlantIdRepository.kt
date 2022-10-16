@@ -34,4 +34,6 @@ class PlantIdRepository @Inject constructor(private val service: PlantAPIService
     )
 
     suspend fun deletePlantId(id: String) = service.deletePlantId(prefs.getAccessToken(),id)
+
+    suspend fun getPlantDiagnosis(id: String) = service.getPlantDiagnosis(prefs.getAccessToken(),id)
 }

@@ -1,22 +1,23 @@
 package com.charaminstra.pleon.doctor
 
-import androidx.lifecycle.ViewModelProvider
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.charaminstra.pleon.common.CLASS_NAME
 import com.charaminstra.pleon.common.DOCTOR_VIEW
-import com.charaminstra.pleon.common.FEED_WRITE_COMPLETE_BTN_CLICK
+import com.charaminstra.pleon.doctor.databinding.FragmentDoctorBinding
+import com.charaminstra.pleon.doctor.view.DoctorActivity
 import com.google.firebase.analytics.FirebaseAnalytics
 
 class DoctorFragment : Fragment() {
 
     private val TAG = javaClass.name
     private lateinit var firebaseAnalytics: FirebaseAnalytics
-
-    private lateinit var viewModel: DoctorViewModel
+    private lateinit var binding : FragmentDoctorBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +32,13 @@ class DoctorFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_doctor, container, false)
+        val navController = this.findNavController()
+        binding = FragmentDoctorBinding.inflate(inflater, container, false)
+        binding.doctorNextBtn.setOnClickListener {
+            val intent = Intent(requireContext(), DoctorActivity::class.java)
+            startActivity(intent)
+        }
+        return binding.root
     }
 
 }

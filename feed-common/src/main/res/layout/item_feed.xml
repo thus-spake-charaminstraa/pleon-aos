@@ -40,7 +40,6 @@
         app:layout_constraintTop_toBottomOf="@+id/user_image"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
-
     <TextView
         android:id="@+id/feed_content"
         android:layout_width="0dp"

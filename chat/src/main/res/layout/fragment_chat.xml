@@ -4,39 +4,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#FCFCFC">
-<!--    <ImageView-->
-<!--        android:id="@+id/waiting_img"-->
-<!--        android:layout_width="150dp"-->
-<!--        android:layout_height="150dp"-->
-<!--        app:layout_constraintLeft_toLeftOf="parent"-->
-<!--        app:layout_constraintRight_toRightOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        android:src="@drawable/img_main" />-->
-<!--    <TextView-->
-<!--        android:id="@+id/waiting_tv1"-->
-<!--        android:gravity="center"-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintLeft_toLeftOf="parent"-->
-<!--        app:layout_constraintRight_toRightOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/waiting_img"-->
-<!--        android:textColor="@color/waiting_color"-->
-<!--        android:textStyle="bold"-->
-<!--        android:textSize="18dp"-->
-<!--        android:text="@string/waiting_desc1" />-->
-<!--    <TextView-->
-<!--        android:id="@+id/waiting_tv2"-->
-<!--        android:gravity="center"-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintLeft_toLeftOf="parent"-->
-<!--        app:layout_constraintRight_toRightOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/waiting_tv1"-->
-<!--        android:textColor="@color/waiting_color"-->
-<!--        android:textSize="16dp"-->
-<!--        android:text="@string/waiting_desc2" />-->
+    android:background="@color/sub_background_color">
+    <TextView
+        android:id="@+id/doctor_bubble_tv"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="23dp"
+        android:paddingBottom="46dp"
+        android:paddingHorizontal="30dp"
+        style="@style/BubbleBlackText"
+        android:text="@string/chat_fragment_bubble_txt"
+        android:background="@drawable/ic_bubble"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/waiting_img"
+        android:gravity="center" />
+    <ImageView
+        android:id="@+id/waiting_img"
+        android:layout_width="127dp"
+        android:layout_height="235dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:src="@drawable/img_start" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -94,7 +94,7 @@ class FeedDetailFragment : Fragment() {
     private fun observeViewModel() {
         viewModel.feedData.observe(viewLifecycleOwner, Observer {
             binding.feedContent.text = it.content
-            binding.plantTagTv.text = resources.getString(R.string.plant_tag) + it.plant.name
+            binding.plantTagTv.text = resources.getString(R.string.plant_tag) + it.plant?.name
             for(i in ActionType.values()){
                 if(i.action == it.kind){
                     binding.actionTagTv.text = binding.root.context.resources.getString(R.string.action_tag)+i.name

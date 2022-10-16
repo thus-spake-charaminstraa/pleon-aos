@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/solution_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_solution_txt"
+    android:layout_marginTop="10dp"
+    android:padding="18dp">
+
+    <TextView
+        android:id="@+id/solution_num"
+        style="@style/PrescriptionSolutionNumText"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:background="@drawable/bg_solution_num"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/solution_txt"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="1" />
+
+    <TextView
+        android:id="@+id/solution_txt"
+        style="@style/PrescriptionDescText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/solution_num"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="잎 끝의 갈변" />
+</androidx.constraintlayout.widget.ConstraintLayout>

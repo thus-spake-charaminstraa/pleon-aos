@@ -9,10 +9,20 @@ import com.charaminstra.pleon.common_ui.databinding.CustomToastErrorLayoutBindin
 class ErrorToast(val context: Context) {
     val binding = CustomToastErrorLayoutBinding.inflate(LayoutInflater.from(context))
 
-    fun showMsg(message: String, relativeLocation: Float) {
+    fun showMsgDown(message: String, relativeLocation: Float) {
         binding.toastText.text = message
         Toast(context).apply {
             setGravity(Gravity.TOP, 0, relativeLocation.toInt()+150)
+            duration = Toast.LENGTH_SHORT
+            view = binding.root
+            show()
+        }
+    }
+
+    fun showMsgUp(message: String, relativeLocation: Float) {
+        binding.toastText.text = message
+        Toast(context).apply {
+            setGravity(Gravity.TOP, 0, relativeLocation.toInt()-250)
             duration = Toast.LENGTH_SHORT
             view = binding.root
             show()

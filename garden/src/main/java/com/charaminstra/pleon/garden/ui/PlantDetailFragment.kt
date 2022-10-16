@@ -21,6 +21,7 @@ import com.charaminstra.pleon.common.CALENDAR_ITEM_CLICK
 import com.charaminstra.pleon.common.CLASS_NAME
 import com.charaminstra.pleon.common.FEED_ITEM_CLICK
 import com.charaminstra.pleon.feed_common.FeedAdapter
+import com.charaminstra.pleon.feed_common.FeedViewType
 import com.charaminstra.pleon.garden.databinding.CalendarDayLayoutBinding
 import com.charaminstra.pleon.foundation.model.ScheduleDataObject
 import com.charaminstra.pleon.garden.PlantDetailViewModel
@@ -163,10 +164,16 @@ class PlantDetailFragment : Fragment() {
 
     private fun initList() {
         feedAdapter = FeedAdapter()
-        feedAdapter.onClickFeed = { feedId ->
-            val bundle = Bundle()
-            bundle.putString("id", feedId)
-            navController.navigate(R.id.plant_detail_fragment_to_feed_detail_fragment,bundle)
+        feedAdapter.onClickFeed = { ViewType, Id ->
+            if(ViewType == FeedViewType.FEED.ordinal){
+                val bundle = Bundle()
+                bundle.putString("id", Id)
+                navController.navigate(R.id.plant_detail_fragment_to_feed_detail_fragment, bundle)
+            }else if(ViewType == FeedViewType.DIAGNOSIS.ordinal){
+                val bundle = Bundle()
+                bundle.putString("id", Id)
+                navController.navigate(R.id.plant_detail_fragment_to_feed_doctor_detail_fragment, bundle)
+            }
 
             // logging
             val loggingBundle = Bundle()

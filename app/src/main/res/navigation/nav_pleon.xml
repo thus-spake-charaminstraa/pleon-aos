@@ -8,10 +8,6 @@
     <include app:graph="@navigation/nav_garden"/>
     <include app:graph="@navigation/nav_doctor"/>
     <include app:graph="@navigation/nav_feed"/>
+    <include app:graph="@navigation/nav_chat"/>
     <include app:graph="@navigation/nav_my"/>
-<!--    <action-->
-<!--        android:id="@+id/nav_garden_init"-->
-<!--        app:popUpTo="@+id/garden_fragment"-->
-<!--        app:destination="@+id/nav_garden"-->
-<!--        app:popUpToInclusive="true" />-->
 </navigation>

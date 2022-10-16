@@ -8,5 +8,6 @@ abstract class FeedCommonViewHolder(
     binding: ViewBinding
 ): RecyclerView.ViewHolder(binding.root) {
     abstract fun bind(viewObject: ViewObject,
-                      onClickFeed: (String) -> Unit)
+                      viewType: Int,
+                      onClickFeed: (Int, String) -> Unit)
 }

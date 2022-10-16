@@ -19,6 +19,12 @@ object NetWorkModule {
 
     @Provides
     @Singleton
+    fun provideRequestHttpLoggingInterceptor() : HttpLoggingInterceptor {
+        return HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
+    }
+
+    @Provides
+    @Singleton
     fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(HttpLoggingInterceptor())

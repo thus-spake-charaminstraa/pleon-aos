@@ -26,9 +26,12 @@ data class ViewObject(
     val kind: String,
     val content: String,
     val image_url: String?,
-    val plant: PlantDataObject,
+    val plant: PlantDataObject?,
     val user: UserDataObject,
     val comments: List<CommentObject>?,
+    val symptoms: List<SymptomObject>?,
+    val causes: List<CauseObject>?,
+    val created_at: Date,
 )
 
 data class FeedObject(

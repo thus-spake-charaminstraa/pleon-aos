@@ -11,7 +11,6 @@ import androidx.navigation.fragment.findNavController
 import com.charaminstra.pleon.common_ui.ErrorToast
 import com.charaminstra.pleon.common.AirType
 import com.charaminstra.pleon.common.CLASS_NAME
-import com.charaminstra.pleon.common.FEED_ITEM_CLICK
 import com.charaminstra.pleon.common.PLANT_REGISTER_CLICK
 import com.charaminstra.pleon.plant_register.PlantRegisterViewModel
 import com.charaminstra.pleon.plant_register.R
@@ -48,7 +47,7 @@ class PlantAirFragment : Fragment() {
         buttonCheck()
         binding.airNextBtn.setOnClickListener {
             if(!isChecking){
-                ErrorToast(requireContext()).showMsg(resources.getString(R.string.plant_air_fragment_error),binding.airThreeBtn.y+binding.airThreeBtn.height)
+                ErrorToast(requireContext()).showMsgDown(resources.getString(R.string.plant_air_fragment_error),binding.airThreeBtn.y+binding.airThreeBtn.height)
             }else{
                 viewModel.postPlant()
 
@@ -98,7 +97,7 @@ class PlantAirFragment : Fragment() {
             if(it){
                 activity?.finish()
             }else{
-                ErrorToast(requireContext()).showMsg(resources.getString(R.string.post_plant_error),binding.airThreeBtn.y+binding.airThreeBtn.height)
+                ErrorToast(requireContext()).showMsgDown(resources.getString(R.string.post_plant_error),binding.airThreeBtn.y+binding.airThreeBtn.height)
             }
         })
     }

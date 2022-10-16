@@ -36,7 +36,7 @@ class PlantLightFragment : Fragment() {
         buttonCheck()
         binding.lightNextBtn.setOnClickListener {
             if(!isChecking){
-                ErrorToast(requireContext()).showMsg(resources.getString(R.string.plant_light_fragment_error),binding.lightThreeBtn.y+binding.lightThreeBtn.height)
+                ErrorToast(requireContext()).showMsgDown(resources.getString(R.string.plant_light_fragment_error),binding.lightThreeBtn.y+binding.lightThreeBtn.height)
             }else{
                 navController.navigate(R.id.plant_light_fragment_to_plant_air_fragment)
             }

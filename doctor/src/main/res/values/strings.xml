@@ -1,3 +1,23 @@
 <resources>
-    <string name="doctor_fragment_bubble_txt">Dr.PLeon 입니다. \n 식물 진단 기능을 개발중이에요 :)</string>
+    <string name="doctor_fragment_bubble_txt">반려식물이 아픈가요?\nDr.PLeon의 진단을 받아보세요!</string>
+    <string name="doctor_fragment_next_btn">접수하기</string>
+
+    <string name="q_plant_register_fragment_title">PLEON에 등록되어있는\n반려식물인가요?</string>
+    <string name="q_plant_register_fragment_1">예</string>
+    <string name="q_plant_register_fragment_2">아니오</string>
+
+    <string name="q_plant_choose_fragment_title">어떤 식물을\n진단하실건가요?</string>
+
+    <string name="camera_help_1">식물 전체가 나오게 찍어주세요.</string>
+    <string name="camera_help_2">문제가 있어보이는 부위를 가까이에서 찍어주세요.</string>
+
+    <string name="doctor_waiting">잎 진단중...</string>
+
+
+    <string name="plant_doctor_error_msg">식별된 증상이 없어요.</string>
+
+    <string name="question_error_msg">하나를 선택해주세요.</string>
+    <string name="no_register_error_msg">등록되지 않은 식물은 기록이 되지 않습니다.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

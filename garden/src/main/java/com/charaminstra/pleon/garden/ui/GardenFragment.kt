@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.charaminstra.pleon.common.*
+import com.charaminstra.pleon.common_ui.ErrorToast
 import com.charaminstra.pleon.garden.GardenPlantAdapter
 import com.charaminstra.pleon.garden.R
 import com.charaminstra.pleon.garden.databinding.FragmentGardenBinding
@@ -46,7 +47,11 @@ class GardenFragment : Fragment() {
     ): View? {
         binding = FragmentGardenBinding.inflate(layoutInflater)
         binding.gardenAddBtn.setOnClickListener {
-            startPlantRegisterActivity(requireContext())
+            if(viewModel.plantsCount.value!! < LIMIT_PLANT_COUNT){
+                startPlantRegisterActivity(requireContext())
+            }else{
+                ErrorToast(requireContext()).showMsgCenter(resources.getString(R.string.limit_plant_register_msg))
+            }
         }
         return binding.root
     }
@@ -95,5 +100,9 @@ class GardenFragment : Fragment() {
         val loggingBundle = Bundle()
         loggingBundle.putString(CLASS_NAME, TAG)
         firebaseAnalytics.logEvent(PLANT_REGISTER_BTN_CLICK  , loggingBundle)
+    }
+
+    companion object{
+        private const val LIMIT_PLANT_COUNT = 6
     }
 }

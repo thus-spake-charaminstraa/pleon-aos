@@ -1,6 +1,7 @@
 <resources>
     <string name="plant_tag">\@</string>
     <string name="action_tag">#</string>
+    <string name="doctor_action_tag">#처방전</string>
     <string name="comment_hint">댓글 작성</string>
     <string name="comment_enter_btn">확인</string>
     <string name="item_more_edit">편집하기</string>
@@ -11,5 +12,7 @@
     <string name="feed_detail_skip_dialog_desc">피드를 삭제하시겠습니까?</string>
     <string name="feed_detail_skip_dialog_cancel_btn">취소</string>
     <string name="feed_detail_skip_dialog_delete_btn">삭제하기</string>
+
+    <string name="doctor_pleon_name">Dr.PLeon</string>
 
 </resources>

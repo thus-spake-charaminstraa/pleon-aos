@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/q_plant_register_fragment">
+    <fragment
+        android:id="@+id/q_plant_register_fragment"
+        android:name="com.charaminstra.pleon.doctor.view.QPlantRegisterFragment"
+        tools:layout="@layout/fragment_q_plant_register">
+        <action
+            android:id="@+id/q_plant_register_fragment_to_q_plant_choose_fragment"
+            app:destination="@+id/q_plant_choose_fragment"/>
+        <action
+            android:id="@+id/q_plant_register_fragment_to_camera_fragment"
+            app:destination="@+id/permissions_fragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/q_plant_choose_fragment"
+        android:name="com.charaminstra.pleon.doctor.view.QPlantChooseFragment"
+        tools:layout="@layout/fragment_q_plant_choose">
+        <action
+            android:id="@+id/q_plant_choose_fragment_to_camera_fragment"
+            app:destination="@+id/permissions_fragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/permissions_fragment"
+        android:name="com.charaminstra.pleon.doctor.view.PermissionsFragment"
+        android:label="PermissionsFragment" >
+        <action
+            android:id="@+id/action_permissions_to_camera"
+            app:destination="@id/camera_fragment"
+            app:popUpTo="@id/permissions_fragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/camera_fragment"
+        android:name="com.charaminstra.pleon.doctor.view.CameraFragment"
+        tools:layout="@layout/fragment_camera" >
+        <action
+            android:id="@+id/action_camera_to_permissions"
+            app:destination="@id/permissions_fragment"
+            app:popUpTo="@id/camera_fragment"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/camera_fragment_to_doctor_waiting_fragment"
+            app:destination="@+id/doctor_waiting_fragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/doctor_waiting_fragment"
+        android:name="com.charaminstra.pleon.doctor.view.DoctorWaitingFragment"
+        tools:layout="@layout/fragment_doctor_waiting" >
+        <action
+            android:id="@+id/doctor_waiting_fragment_to_prescription_fragment"
+            app:destination="@+id/prescription_fragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/prescription_fragment"
+        android:name="com.charaminstra.pleon.doctor.view.PrescriptionFragment"
+        tools:layout="@layout/fragment_prescription" />
+</navigation>

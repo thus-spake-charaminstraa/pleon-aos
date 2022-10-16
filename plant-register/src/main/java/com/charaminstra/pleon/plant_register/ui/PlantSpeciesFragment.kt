@@ -120,7 +120,7 @@ class PlantSpeciesFragment : Fragment() {
 
         binding.plantSpeciesNextBtn.setOnClickListener {
             if(binding.plantSpeciesEt.text.isNullOrBlank()){
-                ErrorToast(requireContext()).showMsg(resources.getString(R.string.plant_species_fragment_error),binding.plantSpeciesEt.y)
+                ErrorToast(requireContext()).showMsgDown(resources.getString(R.string.plant_species_fragment_error),binding.plantSpeciesEt.y)
             }else{
                 viewModel.setSpecies(binding.plantSpeciesEt.text.toString())
                 navController.navigate(R.id.plant_species_fragment_to_plant_name_fragment)
@@ -178,7 +178,7 @@ class PlantSpeciesFragment : Fragment() {
                 viewModel.speciesBitmapToUrl(rotateBitmap)
             }
             else -> {
-                ErrorToast(requireContext()).showMsg(
+                ErrorToast(requireContext()).showMsgDown(
                     resources.getString(com.charaminstra.pleon.common_ui.R.string.image_error),
                     binding.plantSpeciesEt.y
                 )
