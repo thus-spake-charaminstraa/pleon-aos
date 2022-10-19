@@ -7,7 +7,7 @@ import com.charaminstra.pleon.foundation.model.ViewObject
 abstract class FeedCommonViewHolder(
     binding: ViewBinding
 ): RecyclerView.ViewHolder(binding.root) {
-    abstract fun bind(viewObject: ViewObject,
+    abstract fun bind(viewObject: ViewObject?,
                       viewType: Int,
                       onClickFeed: (Int, String) -> Unit)
 }

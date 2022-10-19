@@ -29,8 +29,8 @@ class PlantDetailViewModel @Inject constructor(
     private val _scheduleData = MutableLiveData<List<ScheduleDataObject>>()
     val scheduleData : LiveData<List<ScheduleDataObject>> = _scheduleData
 
-    private val _feedList = MutableLiveData<List<ResultObject>>()
-    val feedList : LiveData<List<ResultObject>> = _feedList
+    private val _feedList = MutableLiveData<ArrayList<ResultObject>>()
+    val feedList : LiveData<ArrayList<ResultObject>> = _feedList
 
     private val _plantId = MutableLiveData<String>()
     val plantId : LiveData<String> = _plantId

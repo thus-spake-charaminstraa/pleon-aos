@@ -9,14 +9,14 @@ data class FeedListResponse(
 )
 
 data class FeedDataObject(
- val result: List<ResultObject>,
+ val result: ArrayList<ResultObject>,
  val count: Int,
  val next_offset: Int
 )
 
 data class ResultObject(
     val viewType: String,
-    val viewObject: ViewObject
+    val viewObject: ViewObject?
 )
 
 data class ViewObject(

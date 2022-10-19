@@ -5,11 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.charaminstra.pleon.common.databinding.ItemFeedBinding
 import com.charaminstra.pleon.feed_common.databinding.ItemFeedDoctorBinding
+import com.charaminstra.pleon.feed_common.databinding.ItemFeedLoadingBinding
 import com.charaminstra.pleon.foundation.model.ResultObject
+import com.charaminstra.pleon.foundation.model.ViewObject
 
 class FeedAdapter(): RecyclerView.Adapter<FeedCommonViewHolder>() {
 
-    var viewItemList: List<ResultObject> = listOf()
+    var viewItemList = ArrayList<ResultObject>()
     var onClickFeed: (Int, String)-> Unit = { i: Int, s: String -> }
 
     override fun getItemViewType(position: Int): Int {
@@ -20,6 +22,7 @@ class FeedAdapter(): RecyclerView.Adapter<FeedCommonViewHolder>() {
         return when(viewType){
             FeedViewType.FEED.ordinal -> FeedItemViewHolder(ItemFeedBinding.inflate(LayoutInflater.from(parent.context), parent, false))
             FeedViewType.DIAGNOSIS.ordinal -> FeedDoctorItemViewHolder(ItemFeedDoctorBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+            FeedViewType.LOADING.ordinal -> LoadingItemViewHolder(ItemFeedLoadingBinding.inflate(LayoutInflater.from(parent.context),parent,false))
             else -> throw IllegalArgumentException("Unknown view type")
         }
     }
@@ -31,8 +34,17 @@ class FeedAdapter(): RecyclerView.Adapter<FeedCommonViewHolder>() {
         holder.bind(viewItemList[position].viewObject, getItemViewType(position), onClickFeed)
     }
 
-    fun refreshItems(viewItemList : List<ResultObject>) {
+    fun refreshItems(viewItemList : ArrayList<ResultObject>) {
         this.viewItemList = viewItemList
         notifyDataSetChanged() // Andoid RecyclerView DiffUtil.
+    }
+
+    fun addLoading(){
+        this.viewItemList.add(ResultObject("LOADING", null))
+        notifyDataSetChanged()
+    }
+
+    fun deleteLoading(){
+        this.viewItemList.removeLast()
     }
 }

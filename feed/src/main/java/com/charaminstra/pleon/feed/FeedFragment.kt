@@ -15,6 +15,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.Recycler
 import com.charaminstra.pleon.common.*
 import com.charaminstra.pleon.common_ui.ErrorToast
 import com.charaminstra.pleon.feed.databinding.FragmentFeedBinding
@@ -41,6 +43,8 @@ class FeedFragment : Fragment() {
 
     private lateinit var firebaseAnalytics: FirebaseAnalytics
     lateinit var navController: NavController
+
+    private var isLoading = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -88,6 +92,19 @@ class FeedFragment : Fragment() {
             }
         }
         binding.feedRecyclerview.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
+
+        binding.feedRecyclerview.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                if(!isLoading){
+                    if((recyclerView.layoutManager as LinearLayoutManager?)!!.findLastCompletelyVisibleItemPosition() == binding.feedRecyclerview.adapter?.itemCount!! - 1){
+                        isLoading = true
+                        feedAdapter.addLoading()
+                    }
+                }
+            }
+        })
     }
 
     override fun onResume() {

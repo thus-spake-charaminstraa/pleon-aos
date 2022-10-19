@@ -9,8 +9,8 @@ class FeedDoctorItemViewHolder(
 ): FeedCommonViewHolder(binding){
     private lateinit var dateFormat: SimpleDateFormat
 
-    override fun bind(item: ViewObject,viewType:Int, onClickFeed: (Int, String) -> Unit)  {
-        binding.plantTagTv.text = binding.root.context.resources.getString(R.string.plant_tag)+item.plant?.name!!
+    override fun bind(item: ViewObject?,viewType:Int, onClickFeed: (Int, String) -> Unit)  {
+        binding.plantTagTv.text = binding.root.context.resources.getString(R.string.plant_tag)+item?.plant?.name!!
 
         dateFormat = SimpleDateFormat(binding.root.context.resources.getString(com.charaminstra.pleon.common.R.string.date_view_format))
 

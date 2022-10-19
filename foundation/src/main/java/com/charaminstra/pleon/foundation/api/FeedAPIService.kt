@@ -14,8 +14,9 @@ interface FeedAPIService{
 
     /*get feed*/
     @GET("feed/list")
-    suspend fun getOnlyFeed(
+    suspend fun getFeedList(
         @Header("Authorization") accessToken:String,
+        @Query("limit") limit:Int?,
         @Query("offset") offset:Int?,
         @Query("plant_id")  plantId:String?,
         @Query("publish_date") date:String?

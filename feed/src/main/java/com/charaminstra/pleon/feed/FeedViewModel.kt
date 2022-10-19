@@ -20,18 +20,20 @@ class FeedViewModel @Inject constructor(
 ) : ViewModel() {
     private val TAG = javaClass.name
 
-    private val _feedAllList = MutableLiveData<List<ResultObject>>()
-    val feedAllList : LiveData<List<ResultObject>> = _feedAllList
+    private val _feedAllList = MutableLiveData<ArrayList<ResultObject>>()
+    val feedAllList : LiveData<ArrayList<ResultObject>> = _feedAllList
 
-    private val _feedFilterList = MutableLiveData<List<ResultObject>>()
-    val feedFilterList : LiveData<List<ResultObject>> = _feedFilterList
+    private val _feedFilterList = MutableLiveData<ArrayList<ResultObject>>()
+    val feedFilterList : LiveData<ArrayList<ResultObject>> = _feedFilterList
 
     private val _notiList = MutableLiveData<List<NotiViewTypeData>>()
     val notiList : LiveData<List<NotiViewTypeData>> = _notiList
 
+    var offset = 0
+
     fun getFeedAllList(){
         viewModelScope.launch {
-            val data = feedRepository.getFeed(null, null, null)
+            val data = feedRepository.getFeed(offset, null, null)
             when (data.isSuccessful) {
                 true -> {
                     _feedAllList.postValue(data.body()?.data?.result)
