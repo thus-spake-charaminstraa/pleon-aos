@@ -37,13 +37,13 @@ class FeedViewModel @Inject constructor(
             when (data.isSuccessful) {
                 true -> {
                     _feedAllList.postValue(data.body()?.data?.result)
+                    offset = data.body()?.data?.next_offset!!
                     Log.i(TAG,"SUCCESS -> "+ data.body().toString())
                 }
                 else -> {
                     Log.i(TAG,"FAIL -> "+ data.body().toString())
                 }
             }
-
         }
     }
 

@@ -7,7 +7,6 @@ import com.charaminstra.pleon.common.databinding.ItemFeedBinding
 import com.charaminstra.pleon.feed_common.databinding.ItemFeedDoctorBinding
 import com.charaminstra.pleon.feed_common.databinding.ItemFeedLoadingBinding
 import com.charaminstra.pleon.foundation.model.ResultObject
-import com.charaminstra.pleon.foundation.model.ViewObject
 
 class FeedAdapter(): RecyclerView.Adapter<FeedCommonViewHolder>() {
 
@@ -35,16 +34,12 @@ class FeedAdapter(): RecyclerView.Adapter<FeedCommonViewHolder>() {
     }
 
     fun refreshItems(viewItemList : ArrayList<ResultObject>) {
-        this.viewItemList = viewItemList
+        viewItemList.add(ResultObject("LOADING", null))
+        this.viewItemList.addAll(viewItemList)
         notifyDataSetChanged() // Andoid RecyclerView DiffUtil.
     }
 
-    fun addLoading(){
-        this.viewItemList.add(ResultObject("LOADING", null))
-        notifyDataSetChanged()
-    }
-
     fun deleteLoading(){
-        this.viewItemList.removeLast()
+        viewItemList.removeAt(viewItemList.lastIndex)
     }
 }

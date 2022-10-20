@@ -3,7 +3,7 @@ package com.charaminstra.pleon.feed
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.Gravity
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,8 +15,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.Recycler
 import com.charaminstra.pleon.common.*
 import com.charaminstra.pleon.common_ui.ErrorToast
 import com.charaminstra.pleon.feed.databinding.FragmentFeedBinding
@@ -43,8 +41,6 @@ class FeedFragment : Fragment() {
 
     private lateinit var firebaseAnalytics: FirebaseAnalytics
     lateinit var navController: NavController
-
-    private var isLoading = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -93,26 +89,26 @@ class FeedFragment : Fragment() {
         }
         binding.feedRecyclerview.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
 
-        binding.feedRecyclerview.addOnScrollListener(object : RecyclerView.OnScrollListener(){
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-
-                if(!isLoading){
-                    if((recyclerView.layoutManager as LinearLayoutManager?)!!.findLastCompletelyVisibleItemPosition() == binding.feedRecyclerview.adapter?.itemCount!! - 1){
-                        isLoading = true
-                        feedAdapter.addLoading()
-                    }
-                }
-            }
-        })
+        initScrollListener()
     }
 
     override fun onResume() {
         super.onResume()
         //viewmodel update
         plantsViewModel.loadData()
+        feedViewModel.offset = 0
         feedViewModel.getFeedAllList()
         feedViewModel.getNotiList()
+    }
+
+    private fun initScrollListener(){
+        binding.scroll.setOnScrollChangeListener { v, a, b, c, d ->
+            if(!binding.scroll.canScrollVertically(1)){
+                    Log.i(TAG,"offset delete")
+                    feedAdapter.deleteLoading()
+                    feedViewModel.getFeedAllList()
+            }
+        }
     }
 
     private fun initList() {
