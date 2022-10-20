@@ -9,5 +9,3 @@ abstract class PlantCommonViewHolder(
 ): RecyclerView.ViewHolder(binding.root) {
     abstract fun bind(viewObject: PlantDataObject, onItemClicked: (String) -> Unit)
 }
-
-
