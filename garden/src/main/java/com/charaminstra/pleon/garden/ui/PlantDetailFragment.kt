@@ -157,7 +157,7 @@ class PlantDetailFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.getFeed(null)
+        viewModel.getFeed(today.toString())
         viewModel.getPlantData()
         setCalendarView()
     }
