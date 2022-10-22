@@ -49,7 +49,7 @@ class FeedViewModel @Inject constructor(
 
     fun getFeedFilterList(plantId: String?){
         viewModelScope.launch {
-            val data = feedRepository.getFeed(null, plantId, null)
+            val data = feedRepository.getFeed(offset, plantId, null)
             when (data.isSuccessful) {
                 true -> {
                     _feedFilterList.postValue(data.body()?.data?.result)

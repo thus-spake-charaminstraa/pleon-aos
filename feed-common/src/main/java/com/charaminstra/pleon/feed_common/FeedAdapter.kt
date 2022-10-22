@@ -33,6 +33,11 @@ class FeedAdapter(): RecyclerView.Adapter<FeedCommonViewHolder>() {
         holder.bind(viewItemList[position].viewObject, getItemViewType(position), onClickFeed)
     }
 
+    fun initItems(viewItemList : ArrayList<ResultObject>){
+        this.viewItemList=viewItemList
+        notifyDataSetChanged()
+    }
+
     fun refreshItems(viewItemList : ArrayList<ResultObject>) {
         viewItemList.add(ResultObject("LOADING", null))
         this.viewItemList.addAll(viewItemList)

@@ -203,7 +203,8 @@ class PlantDetailFragment : Fragment() {
             setCalendarView()
         })
         viewModel.feedList.observe(viewLifecycleOwner, Observer {
-            feedAdapter.refreshItems(it)
+            viewModel.offsetClear()
+            feedAdapter.initItems(it)
         })
     }
 
@@ -246,12 +247,13 @@ class PlantDetailFragment : Fragment() {
                         loggingBundle.putString(CLASS_NAME, TAG)
                         firebaseAnalytics.logEvent(CALENDAR_ITEM_CLICK , loggingBundle)
 
+                        Log.i(TAG,"day"+day.date.toString())
                         viewModel.getFeed(day.date.toString())
                         selectDate(day.date)
                     }
 
-                    Log.i("day", day.toString())
-                    Log.i("day.date", day.date.toString())
+//                    Log.i("day", day.toString())
+//                    Log.i("day.date", day.date.toString())
                     //Log.i("scheduleList",scheduleList.toString())
 
                     /* dot 표시 */

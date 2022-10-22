@@ -35,7 +35,7 @@ class PlantDetailViewModel @Inject constructor(
     private val _plantId = MutableLiveData<String>()
     val plantId : LiveData<String> = _plantId
 
-    var offset: Int = 0
+    var offset = 0
 
     fun setPlantId(id: String){
          viewModelScope.launch {
@@ -58,6 +58,10 @@ class PlantDetailViewModel @Inject constructor(
         }
     }
 
+    fun offsetClear(){
+        offset = 0
+    }
+
     fun getFeed(date: String?){
         viewModelScope.launch {
             val data = feedRepository.getFeed(offset, plantId.value.toString(), date)
@@ -65,6 +69,7 @@ class PlantDetailViewModel @Inject constructor(
             Log.i(TAG, "data.body -> "+data.body())
             when (data.isSuccessful) {
                 true -> {
+                    offset = data.body()?.data?.next_offset!!
                     _feedList.postValue(data.body()?.data?.result)
                     Log.i(TAG,"SUCCESS -> "+ data.body().toString())
                 }

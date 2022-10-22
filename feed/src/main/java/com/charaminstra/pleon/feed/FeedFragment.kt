@@ -97,6 +97,7 @@ class FeedFragment : Fragment() {
         //viewmodel update
         plantsViewModel.loadData()
         feedViewModel.offset = 0
+        feedAdapter.viewItemList.clear()
         feedViewModel.getFeedAllList()
         feedViewModel.getNotiList()
     }
@@ -178,6 +179,8 @@ class FeedFragment : Fragment() {
         })
         feedViewModel.feedFilterList.observe(viewLifecycleOwner, Observer {
             binding.allFilter.isSelected=false
+            feedViewModel.offset = 0
+            feedAdapter.viewItemList.clear()
             feedAdapter.refreshItems(it)
 
             // logging
