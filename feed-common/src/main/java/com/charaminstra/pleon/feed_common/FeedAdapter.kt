@@ -1,5 +1,6 @@
 package com.charaminstra.pleon.feed_common
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -38,13 +39,25 @@ class FeedAdapter(): RecyclerView.Adapter<FeedCommonViewHolder>() {
         notifyDataSetChanged()
     }
 
-    fun refreshItems(viewItemList : ArrayList<ResultObject>) {
+    fun addItemsAndLoading(viewItemList : ArrayList<ResultObject>) {
         viewItemList.add(ResultObject("LOADING", null))
         this.viewItemList.addAll(viewItemList)
         notifyDataSetChanged() // Andoid RecyclerView DiffUtil.
     }
 
+    fun addFinalItems(viewItemList : ArrayList<ResultObject>) {
+        this.viewItemList.addAll(viewItemList)
+        notifyDataSetChanged() // Andoid RecyclerView DiffUtil.
+    }
+
+//    fun refreshItems(viewItemList : ArrayList<ResultObject>) {
+//        this.viewItemList.addAll(viewItemList)
+//        notifyDataSetChanged() // Andoid RecyclerView DiffUtil.
+//    }
+
     fun deleteLoading(){
-        viewItemList.removeAt(viewItemList.lastIndex)
+        if(viewItemList[viewItemList.lastIndex].viewType == "LOADING"){
+            viewItemList.removeAt(viewItemList.lastIndex)
+        }
     }
 }

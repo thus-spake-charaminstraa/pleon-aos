@@ -97,6 +97,7 @@ class FeedFragment : Fragment() {
         //viewmodel update
         plantsViewModel.loadData()
         feedViewModel.offset = 0
+        feedViewModel.plantId = null
         feedAdapter.viewItemList.clear()
         feedViewModel.getFeedAllList()
         feedViewModel.getNotiList()
@@ -105,9 +106,9 @@ class FeedFragment : Fragment() {
     private fun initScrollListener(){
         binding.scroll.setOnScrollChangeListener { v, a, b, c, d ->
             if(!binding.scroll.canScrollVertically(1)){
-                    Log.i(TAG,"offset delete")
-                    feedAdapter.deleteLoading()
-                    feedViewModel.getFeedAllList()
+                Log.i(TAG,"delete!!!")
+                feedAdapter.deleteLoading()
+                feedViewModel.getFeedAllList()
             }
         }
     }
@@ -116,7 +117,11 @@ class FeedFragment : Fragment() {
         feedPlantAdapter = FeedPlantAdapter()
         feedPlantAdapter.selectedPosition = -1
         feedPlantAdapter.onItemClicked = { plantId ->
-            feedViewModel.getFeedFilterList(plantId)
+            binding.allFilter.isSelected=false
+            feedViewModel.offset = 0
+            feedAdapter.viewItemList.clear()
+            feedViewModel.plantId = plantId
+            feedViewModel.getFeedAllList()
         }
         feedAdapter = com.charaminstra.pleon.feed_common.FeedAdapter()
         notiAdapter = NotiAdapter()
@@ -164,7 +169,12 @@ class FeedFragment : Fragment() {
 
     private fun initListeners(){
         binding.allFilter.setOnClickListener {
+            feedViewModel.plantId = null
+            feedViewModel.offset = 0
+            feedAdapter.viewItemList.clear()
             feedViewModel.getFeedAllList()
+            binding.allFilter.isSelected=true
+            feedPlantAdapter.refreshClick()
         }
     }
 
@@ -173,20 +183,11 @@ class FeedFragment : Fragment() {
             feedPlantAdapter.refreshItems(it)
         })
         feedViewModel.feedAllList.observe(viewLifecycleOwner, Observer {
-            binding.allFilter.isSelected=true
-            feedPlantAdapter.refreshClick()
-            feedAdapter.refreshItems(it)
-        })
-        feedViewModel.feedFilterList.observe(viewLifecycleOwner, Observer {
-            binding.allFilter.isSelected=false
-            feedViewModel.offset = 0
-            feedAdapter.viewItemList.clear()
-            feedAdapter.refreshItems(it)
-
-            // logging
-            val bundle = Bundle()
-            bundle.putString(CLASS_NAME, TAG)
-            firebaseAnalytics.logEvent(FEED_FILTER_BTN_CLICK, bundle)
+            if(feedViewModel.isLast.value == false){
+                feedAdapter.addItemsAndLoading(it)
+            }else{
+                feedAdapter.addFinalItems(it)
+            }
         })
         feedViewModel.notiList.observe(viewLifecycleOwner, Observer {
             notiAdapter.refreshItems(it)

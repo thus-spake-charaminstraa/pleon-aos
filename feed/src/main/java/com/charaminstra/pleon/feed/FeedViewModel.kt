@@ -29,13 +29,17 @@ class FeedViewModel @Inject constructor(
     private val _notiList = MutableLiveData<List<NotiViewTypeData>>()
     val notiList : LiveData<List<NotiViewTypeData>> = _notiList
 
+    private val _isLast = MutableLiveData<Boolean>()
+    val isLast : LiveData<Boolean> = _isLast
+
     var offset = 0
 
     fun getFeedAllList(){
         viewModelScope.launch {
-            val data = feedRepository.getFeed(offset, null, null)
+            val data = feedRepository.getFeed(offset, plantId, null)
             when (data.isSuccessful) {
                 true -> {
+                    _isLast.postValue(data.body()?.data?.isLast)
                     _feedAllList.postValue(data.body()?.data?.result)
                     offset = data.body()?.data?.next_offset!!
                     Log.i(TAG,"SUCCESS -> "+ data.body().toString())
@@ -47,21 +51,24 @@ class FeedViewModel @Inject constructor(
         }
     }
 
-    fun getFeedFilterList(plantId: String?){
-        viewModelScope.launch {
-            val data = feedRepository.getFeed(offset, plantId, null)
-            when (data.isSuccessful) {
-                true -> {
-                    _feedFilterList.postValue(data.body()?.data?.result)
-                    Log.i(TAG,"SUCCESS -> "+ data.body().toString())
-                }
-                else -> {
-                    Log.i(TAG,"FAIL -> "+ data.body().toString())
-                }
-            }
+    var plantId: String? = null
 
-        }
-    }
+//    fun getFeedFilterList(){
+//        viewModelScope.launch {
+//            val data = feedRepository.getFeed(offset, plantId, null)
+//            when (data.isSuccessful) {
+//                true -> {
+//                    _feedFilterList.postValue(data.body()?.data?.result)
+//                    offset = data.body()?.data?.next_offset!!
+//                    Log.i(TAG,"SUCCESS -> "+ data.body().toString())
+//                }
+//                else -> {
+//                    Log.i(TAG,"FAIL -> "+ data.body().toString())
+//                }
+//            }
+//
+//        }
+//    }
 
     fun getNotiList(){
         viewModelScope.launch {
