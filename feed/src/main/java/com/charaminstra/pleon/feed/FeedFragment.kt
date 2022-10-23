@@ -98,7 +98,7 @@ class FeedFragment : Fragment() {
         plantsViewModel.loadData()
         feedViewModel.offset = 0
         feedViewModel.plantId = null
-        feedAdapter.viewItemList.clear()
+        feedAdapter.clearItems()
         feedViewModel.getFeedAllList()
         feedViewModel.getNotiList()
     }
@@ -149,7 +149,8 @@ class FeedFragment : Fragment() {
                     bundle.putString(CLASS_NAME, TAG)
                     firebaseAnalytics.logEvent(NOTI_LATER_BTN_CLCIK, bundle)
 
-                    feedViewModel.postNotiClick(notiId, "later")
+                    feedAdapter.clearItems()
+                    feedViewModel.postNotiClick(notiId, "LATER")
                 }
                 NOTI_COMPLETE -> {
                     // logging
@@ -157,7 +158,8 @@ class FeedFragment : Fragment() {
                     bundle.putString(CLASS_NAME, TAG)
                     firebaseAnalytics.logEvent(NOTI_COMPLETE_BTN_CLCIK, bundle)
 
-                    feedViewModel.postNotiClick(notiId, "complete")
+                    feedAdapter.clearItems()
+                    feedViewModel.postNotiClick(notiId, "COMPLETE")
                 }
                 NOTI_GO -> {
                     startPlantRegisterActivity(requireContext())

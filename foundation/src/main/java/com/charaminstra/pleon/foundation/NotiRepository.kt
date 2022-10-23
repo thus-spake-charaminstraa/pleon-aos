@@ -11,5 +11,5 @@ class NotiRepository @Inject constructor(private val service: NotiAPIService, pr
     suspend fun getNotiList() = service.getNoti(prefs.getAccessToken())
 
     suspend fun postNotiAction(notiId: String, type: String)
-    = service.postNotiAction(prefs.getAccessToken(),notiId, NotiRequestBody(type))
+    = service.postNotiAction(prefs.getAccessToken(), NotiRequestBody(notiId, type))
 }

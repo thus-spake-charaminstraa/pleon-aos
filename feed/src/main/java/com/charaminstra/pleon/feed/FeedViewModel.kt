@@ -33,6 +33,7 @@ class FeedViewModel @Inject constructor(
     val isLast : LiveData<Boolean> = _isLast
 
     var offset = 0
+    var plantId: String? = null
 
     fun getFeedAllList(){
         viewModelScope.launch {
@@ -50,8 +51,6 @@ class FeedViewModel @Inject constructor(
             }
         }
     }
-
-    var plantId: String? = null
 
 //    fun getFeedFilterList(){
 //        viewModelScope.launch {
@@ -84,6 +83,11 @@ class FeedViewModel @Inject constructor(
         }
     }
 
+    fun clearFeedSetting(){
+        offset = 0
+        plantId = null
+    }
+
     fun postNotiClick(notiId: String, type: String){
         viewModelScope.launch {
             val data = notiRepository.postNotiAction(notiId, type)
@@ -92,6 +96,7 @@ class FeedViewModel @Inject constructor(
             when (data.isSuccessful) {
                 true -> {
                     getNotiList()
+                    clearFeedSetting()
                     getFeedAllList()
                     Log.i(TAG,"SUCCESS -> "+ data.body().toString())
                 }

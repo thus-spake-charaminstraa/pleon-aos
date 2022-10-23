@@ -39,6 +39,10 @@ class FeedAdapter(): RecyclerView.Adapter<FeedCommonViewHolder>() {
         notifyDataSetChanged()
     }
 
+    fun clearItems(){
+        viewItemList.clear()
+    }
+
     fun addItemsAndLoading(viewItemList : ArrayList<ResultObject>) {
         viewItemList.add(ResultObject("LOADING", null))
         this.viewItemList.addAll(viewItemList)
