@@ -8,7 +8,7 @@ import retrofit2.http.Header
 import retrofit2.http.Query
 
 interface ScheduleAPIService {
-    @GET("schedule")
+    @GET("feed/calendar")
     suspend fun getSchedule(
         @Header("Authorization") accessToken: String,
         @Query("plant_id") plantId: String,

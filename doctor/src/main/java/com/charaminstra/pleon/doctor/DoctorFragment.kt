@@ -6,8 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
 import com.charaminstra.pleon.common.CLASS_NAME
+import com.charaminstra.pleon.common.DOCTOR_START_BTN_CLICK
 import com.charaminstra.pleon.common.DOCTOR_VIEW
 import com.charaminstra.pleon.doctor.databinding.FragmentDoctorBinding
 import com.charaminstra.pleon.doctor.view.DoctorActivity
@@ -32,9 +32,13 @@ class DoctorFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val navController = this.findNavController()
         binding = FragmentDoctorBinding.inflate(inflater, container, false)
         binding.doctorNextBtn.setOnClickListener {
+            // logging
+            val bundle = Bundle()
+            bundle.putString(CLASS_NAME, TAG)
+            firebaseAnalytics.logEvent(DOCTOR_START_BTN_CLICK , bundle)
+
             val intent = Intent(requireContext(), DoctorActivity::class.java)
             startActivity(intent)
         }

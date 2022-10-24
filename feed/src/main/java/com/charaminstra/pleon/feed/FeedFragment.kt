@@ -122,6 +122,11 @@ class FeedFragment : Fragment() {
             feedAdapter.viewItemList.clear()
             feedViewModel.plantId = plantId
             feedViewModel.getFeedAllList()
+
+            // logging
+            val loggingBundle = Bundle()
+            loggingBundle.putString(CLASS_NAME, TAG)
+            firebaseAnalytics.logEvent(FEED_FILTER_BTN_CLICK , loggingBundle)
         }
         feedAdapter = com.charaminstra.pleon.feed_common.FeedAdapter()
         notiAdapter = NotiAdapter()

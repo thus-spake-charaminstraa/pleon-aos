@@ -6,14 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import com.charaminstra.pleon.feed_common.CauseAdapter
+import com.charaminstra.pleon.common.CLASS_NAME
+import com.charaminstra.pleon.common.DOCTOR_PRESCRIPTION_COMPLETE_CLICK
 import com.charaminstra.pleon.doctor.DoctorViewModel
-import com.charaminstra.pleon.feed_common.SolutionAdapter
-import com.charaminstra.pleon.feed_common.SymptomAdapter
 import com.charaminstra.pleon.doctor.databinding.FragmentPrescriptionBinding
+import com.google.firebase.analytics.FirebaseAnalytics
 
 class PrescriptionFragment : Fragment() {
     private val TAG = javaClass.name
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
     private lateinit var binding : FragmentPrescriptionBinding
     private lateinit var causeAdapter: com.charaminstra.pleon.feed_common.CauseAdapter
     private lateinit var solutionAdapter: com.charaminstra.pleon.feed_common.SolutionAdapter
@@ -22,7 +23,7 @@ class PrescriptionFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        firebaseAnalytics= FirebaseAnalytics.getInstance(requireContext())
     }
 
     override fun onCreateView(
@@ -40,6 +41,11 @@ class PrescriptionFragment : Fragment() {
             binding.prescriptionNoResult.root.visibility = View.VISIBLE
         }
         binding.prescriptionCompleteBtn.setOnClickListener {
+            // logging
+            val bundle = Bundle()
+            bundle.putString(CLASS_NAME, TAG)
+            firebaseAnalytics.logEvent(DOCTOR_PRESCRIPTION_COMPLETE_CLICK , bundle)
+
             activity?.finish()
         }
         initObservers()

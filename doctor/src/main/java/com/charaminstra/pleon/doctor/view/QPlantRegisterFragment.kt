@@ -7,16 +7,27 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.charaminstra.pleon.common.CLASS_NAME
+import com.charaminstra.pleon.common.DOCTOR_NO_REGISTER_PLANT_CLICK
+import com.charaminstra.pleon.common.DOCTOR_REGISTER_PLANT_CLICK
 import com.charaminstra.pleon.common_ui.ErrorToast
 import com.charaminstra.pleon.doctor.DoctorViewModel
 import com.charaminstra.pleon.doctor.R
 import com.charaminstra.pleon.doctor.databinding.FragmentQPlantRegisterBinding
+import com.google.firebase.analytics.FirebaseAnalytics
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class QPlantRegisterFragment : Fragment() {
+    private val TAG = javaClass.name
     private lateinit var binding : FragmentQPlantRegisterBinding
     private val viewModel : DoctorViewModel by activityViewModels()
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        firebaseAnalytics= FirebaseAnalytics.getInstance(requireContext())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,8 +51,18 @@ class QPlantRegisterFragment : Fragment() {
             viewModel.warmingPlantDoctorModel()
             viewModel.warmingPlantDetectionModel()
             if(binding.plantRegisterQ1.isSelected){
+                // logging
+                val bundle = Bundle()
+                bundle.putString(CLASS_NAME, TAG)
+                firebaseAnalytics.logEvent(DOCTOR_NO_REGISTER_PLANT_CLICK , bundle)
+
                 navController.navigate(R.id.q_plant_register_fragment_to_q_plant_choose_fragment)
             }else if(binding.plantRegisterQ2.isSelected){
+                // logging
+                val bundle = Bundle()
+                bundle.putString(CLASS_NAME, TAG)
+                firebaseAnalytics.logEvent(DOCTOR_REGISTER_PLANT_CLICK , bundle)
+
                 navController.navigate(R.id.q_plant_register_fragment_to_camera_fragment)
             }else{
                 ErrorToast(requireContext()).showMsgUp(resources.getString(R.string.question_error_msg),binding.qPlantRegisterNextBtn.y)
