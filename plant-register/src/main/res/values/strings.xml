@@ -19,6 +19,13 @@
 
     <string name="plant_thumbnail_fragment_error">식물의 사진을 등록해주세요.</string>
 
+    <!--    plant detection result fragment-->
+    <string name="plant_detection_difficulty_title">관리 난이도</string>
+
+    <string name="plant_detection_benefit_title">효과</string>
+
+    <string name="plant_detection_tip_title">TIP</string>
+
     <!--    plant species fragment-->
     <string name="plant_species_fragment_title">반려식물의 종을\n입력해주세요 !</string>
     <string name="plant_species_fragment_search_hint">종 검색하기</string>
