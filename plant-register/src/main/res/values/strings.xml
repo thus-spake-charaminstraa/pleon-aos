@@ -8,6 +8,8 @@
     <string name="plant_detection_normal">Normal</string>
     <string name="plant_detection_hard">Hard</string>
 
+    <string name="plant_detection_info_error">정보가 없습니다.</string>
+
     <!--    button  -->
     <string name="plant_register_skip_btn">그만두기</string>
     <string name="plant_register_next_btn">다음</string>

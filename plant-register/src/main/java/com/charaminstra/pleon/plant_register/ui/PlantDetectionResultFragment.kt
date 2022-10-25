@@ -54,10 +54,18 @@ class PlantDetectionResultFragment : Fragment() {
                 it.roundToInt().toString() + resources.getString(R.string.plant_detection_percent_msg)
         })
         viewModel.plantDetectionResultBenefit.observe(viewLifecycleOwner, Observer {
-            binding.plantDetectionResultBenefitDesc.text = it
+            if(it==""){
+                binding.plantDetectionResultBenefitDesc.text = resources.getString(R.string.plant_detection_info_error)
+            }else{
+                binding.plantDetectionResultBenefitDesc.text = it
+            }
         })
         viewModel.plantDetectionResultTip.observe(viewLifecycleOwner, Observer {
-            binding.plantDetectionResultTipDesc.text = it
+            if(it==""){
+                binding.plantDetectionResultTipDesc.text = resources.getString(R.string.plant_detection_info_error)
+            }else{
+                binding.plantDetectionResultTipDesc.text = it
+            }
         })
         viewModel.plantDetectionResultDifficulty.observe(viewLifecycleOwner, Observer {
             if(it == "easy"){
