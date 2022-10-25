@@ -5,12 +5,19 @@
         <item name="android:lineSpacingExtra">5sp</item>
         <item name="android:letterSpacing">-0.02</item>
     </style>
-
     <style name="PlantDetectionTitleText" parent="@android:style/Widget.TextView">
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">13sp</item>
         <item name="android:textColor">@color/black_sub_color</item>
         <item name="android:lineSpacingExtra">14sp</item>
         <item name="android:letterSpacing">-0.01</item>
         <item name="android:gravity">left</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="PlantDetectionSubText" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/black_sub_color</item>
+        <item name="android:lineSpacingExtra">11sp</item>
+        <item name="android:letterSpacing">-0.01</item>
+        <item name="android:gravity">center</item>
     </style>
 </resources>

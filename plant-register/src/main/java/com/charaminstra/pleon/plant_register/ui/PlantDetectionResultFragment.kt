@@ -19,6 +19,7 @@ import com.charaminstra.pleon.plant_register.PlantRegisterViewModel
 import com.charaminstra.pleon.plant_register.R
 import com.charaminstra.pleon.plant_register.databinding.FragmentPlantDetectionResultBinding
 import dagger.hilt.android.AndroidEntryPoint
+import java.lang.reflect.Type
 import kotlin.math.roundToInt
 
 @AndroidEntryPoint
@@ -51,6 +52,27 @@ class PlantDetectionResultFragment : Fragment() {
         viewModel.plantDetectionResultPercent.observe(viewLifecycleOwner, Observer {
             binding.plantDetectionResultPercent.text =
                 it.roundToInt().toString() + resources.getString(R.string.plant_detection_percent_msg)
+        })
+        viewModel.plantDetectionResultBenefit.observe(viewLifecycleOwner, Observer {
+            binding.plantDetectionResultBenefitDesc.text = it
+        })
+        viewModel.plantDetectionResultTip.observe(viewLifecycleOwner, Observer {
+            binding.plantDetectionResultTipDesc.text = it
+        })
+        viewModel.plantDetectionResultDifficulty.observe(viewLifecycleOwner, Observer {
+            if(it == "easy"){
+                binding.plantDetectionResultDifficultyEasy.background = resources.getDrawable(R.drawable.bg_difficulty_on)
+                binding.plantDetectionResultDifficultyEasy.setTextColor(resources.getColor(com.charaminstra.pleon.common_ui.R.color.main_green_color))
+                binding.plantDetectionResultDifficultyEasy.setTypeface(null,Typeface.BOLD)
+            }else if(it == "normal"){
+                binding.plantDetectionResultDifficultyNormal.background = resources.getDrawable(R.drawable.bg_difficulty_on)
+                binding.plantDetectionResultDifficultyNormal.setTextColor(resources.getColor(com.charaminstra.pleon.common_ui.R.color.main_green_color))
+                binding.plantDetectionResultDifficultyNormal.setTypeface(null,Typeface.BOLD)
+            }else if(it == "hard"){
+                binding.plantDetectionResultDifficultyHard.background = resources.getDrawable(R.drawable.bg_difficulty_on)
+                binding.plantDetectionResultDifficultyHard.setTextColor(resources.getColor(com.charaminstra.pleon.common_ui.R.color.main_green_color))
+                binding.plantDetectionResultDifficultyHard.setTypeface(null,Typeface.BOLD)
+            }
         })
     }
 

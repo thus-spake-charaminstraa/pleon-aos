@@ -44,6 +44,15 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
     private val _plantDetectionResultPercent= MutableLiveData<Float>()
     val plantDetectionResultPercent : LiveData<Float> = _plantDetectionResultPercent
 
+    private val _plantDetectionResultDifficulty = MutableLiveData<String>()
+    val plantDetectionResultDifficulty : LiveData<String> = _plantDetectionResultDifficulty
+
+    private val _plantDetectionResultBenefit = MutableLiveData<String>()
+    val plantDetectionResultBenefit : LiveData<String> = _plantDetectionResultBenefit
+
+    private val _plantDetectionResultTip = MutableLiveData<String>()
+    val plantDetectionResultTip : LiveData<String> = _plantDetectionResultTip
+
     val name = MutableLiveData<String>()
     private val species = MutableLiveData<String>()
     private val water_date = MutableLiveData<String>()
@@ -119,6 +128,9 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
                         _plantDetectionSuccess.postValue(true)
                         _plantDetectionResultLabel.postValue(data.body()?.species?.name)
                         _plantDetectionResultPercent.postValue(data.body()?.score!!)
+                        _plantDetectionResultDifficulty.postValue(data.body()?.species?.managing_difficulty)
+                        _plantDetectionResultBenefit.postValue(data.body()?.species?.benefit)
+                        _plantDetectionResultTip.postValue(data.body()?.species?.tip)
                     }
                 }else -> {
                     Log.i(TAG,"plant detection error")
