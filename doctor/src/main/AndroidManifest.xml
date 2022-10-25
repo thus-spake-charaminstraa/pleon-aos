@@ -12,6 +12,7 @@
     <application>
         <activity
             android:name=".view.DoctorActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
     </application>
 

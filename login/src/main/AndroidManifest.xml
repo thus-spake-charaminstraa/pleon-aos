@@ -11,6 +11,7 @@
 
         <activity
             android:name=".ui.LoginActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateVisible|adjustResize"
             android:exported="false" />
     </application>
