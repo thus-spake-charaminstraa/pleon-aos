@@ -17,7 +17,7 @@
     <string name="plant_doctor_error_msg">식별된 증상이 없어요.</string>
 
     <string name="question_error_msg">하나를 선택해주세요.</string>
-    <string name="no_register_error_msg">등록되지 않은 식물은 기록이 되지 않습니다.</string>
+    <string name="no_register_info">등록되지 않은 식물은 기록이 되지 않습니다.</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="no_register_error_msg">식물을 등록하지 않았습니다.</string>
 </resources>

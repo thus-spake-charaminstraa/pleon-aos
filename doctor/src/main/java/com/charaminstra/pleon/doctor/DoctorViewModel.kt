@@ -43,6 +43,9 @@ class DoctorViewModel @Inject constructor(private val imageRepository: ImageRepo
     private val _causesList = MutableLiveData<List<CauseObject>>()
     val causesList : LiveData<List<CauseObject>> = _causesList
 
+    private val _plantsCount = MutableLiveData<Int>()
+    val plantsCount : LiveData<Int> = _plantsCount
+
     var plantId : String? = null
 
     private val _plantName = MutableLiveData<String?>()
@@ -115,8 +118,11 @@ class DoctorViewModel @Inject constructor(private val imageRepository: ImageRepo
             Log.i(TAG, "data.body -> "+data.body())
             when (data.isSuccessful) {
                 true -> {
+                    _plantsCount.postValue(data.body()?.data?.size)
                     _plantsList.postValue(data.body()?.data!!)
-                    plantId = data.body()?.data?.get(0)?.id
+                    if(data.body()?.data?.size!! > 0 ){
+                        plantId = data.body()?.data?.get(0)?.id
+                    }
                     Log.i(TAG,"SUCCESS -> "+ data.body().toString())
                 }
                 else -> {

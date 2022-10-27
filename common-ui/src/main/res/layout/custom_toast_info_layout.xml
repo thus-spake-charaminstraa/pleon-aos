@@ -7,18 +7,18 @@
     android:paddingHorizontal="12dp"
     android:gravity="center"
     android:id="@+id/toast_container"
-    android:background="@drawable/msg_error_background">
+    android:background="@drawable/msg_info_background">
     <ImageView
         android:id="@+id/custom_toast_image"
         android:layout_width="14dp"
         android:layout_height="14dp"
-        android:src="@drawable/ic_toast_error" />
+        android:src="@drawable/ic_toast_info" />
     <TextView
         android:id="@+id/toast_text"
-        android:background="@drawable/msg_error_background"
+        android:background="@drawable/msg_info_background"
         android:text="@string/code_error_msg"
         android:gravity="center_vertical"
-        style="@style/CodeErrorText"
+        style="@style/CodeInfoText"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:layout_marginLeft="4dp"/>

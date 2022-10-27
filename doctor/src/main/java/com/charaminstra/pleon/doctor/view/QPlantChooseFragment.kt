@@ -46,7 +46,7 @@ class QPlantChooseFragment : Fragment() {
 
         initList()
         initObservers()
-        viewModel.getPlantList()
+//        viewModel.getPlantList()
         binding.doctorPlantRecyclerview.adapter = doctorPlantAdapter
 
     }

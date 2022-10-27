@@ -26,6 +26,10 @@
         <item name="android:textSize">13dp</item>
         <item name="android:textColor">@color/error_text_color</item>
     </style>
+    <style name="CodeInfoText" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">13dp</item>
+        <item name="android:textColor">@color/main_green_color</item>
+    </style>
 
     <style name="SearchText" parent="@android:style/Widget.TextView">
         <item name="android:textSize">15dp</item>
