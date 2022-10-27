@@ -23,6 +23,9 @@ class FeedViewModel @Inject constructor(
     private val _feedAllList = MutableLiveData<ArrayList<ResultObject>>()
     val feedAllList : LiveData<ArrayList<ResultObject>> = _feedAllList
 
+    private val _feedCount = MutableLiveData<Int>()
+    val feedCount : LiveData<Int> = _feedCount
+
     private val _feedFilterList = MutableLiveData<ArrayList<ResultObject>>()
     val feedFilterList : LiveData<ArrayList<ResultObject>> = _feedFilterList
 
@@ -40,6 +43,7 @@ class FeedViewModel @Inject constructor(
             val data = feedRepository.getFeed(offset, plantId, null)
             when (data.isSuccessful) {
                 true -> {
+                    _feedCount.postValue(data.body()?.data?.result?.size)
                     _isLast.postValue(data.body()?.data?.isLast)
                     _feedAllList.postValue(data.body()?.data?.result)
                     offset = data.body()?.data?.next_offset!!

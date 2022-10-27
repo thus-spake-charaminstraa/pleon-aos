@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
@@ -117,7 +118,7 @@ class FeedFragment : Fragment() {
         feedPlantAdapter = FeedPlantAdapter()
         feedPlantAdapter.selectedPosition = -1
         feedPlantAdapter.onItemClicked = { plantId ->
-            binding.allFilter.isSelected=false
+            binding.allFilter.isSelected = false
             feedViewModel.offset = 0
             feedAdapter.viewItemList.clear()
             feedViewModel.plantId = plantId
@@ -201,6 +202,20 @@ class FeedFragment : Fragment() {
             // add page Snap
             pageSnap.attachToRecyclerView(binding.notiRecyclerview)
             binding.notiIndicator.attachToRecyclerView(binding.notiRecyclerview,pageSnap)
+        })
+        plantsViewModel.plantsCount.observe(viewLifecycleOwner, Observer {
+            if(it==0){
+                binding.filterScroll.isVisible = false
+            }else{
+                binding.filterScroll.isVisible = true
+            }
+        })
+        feedViewModel.feedCount.observe(viewLifecycleOwner, Observer {
+            if(it==0){
+                binding.noFeedMsg.visibility = View.VISIBLE
+            }else{
+                binding.noFeedMsg.visibility = View.GONE
+            }
         })
     }
 
