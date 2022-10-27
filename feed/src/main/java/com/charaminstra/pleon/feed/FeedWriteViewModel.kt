@@ -32,9 +32,6 @@ class FeedWriteViewModel @Inject constructor(
     private val _urlResponse = MutableLiveData<String?>()
     val urlResponse : LiveData<String?> = _urlResponse
 
-//    private val _plantName = MutableLiveData<String>()
-//    val plantName : LiveData<String> = _plantName
-
     private val _plantsList = MutableLiveData<List<PlantDataObject>>()
     val plantsList : LiveData<List<PlantDataObject>> = _plantsList
 
@@ -44,7 +41,6 @@ class FeedWriteViewModel @Inject constructor(
     var plantId : String? = null
     var plantAction : ActionData? = null
     var plantName : String? = null
-    //var plantAction : ActionType? = null
 
     private val _imgBitmap = MutableLiveData<Bitmap?>()
     var imgBitmap : LiveData<Bitmap?> = _imgBitmap
