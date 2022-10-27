@@ -44,7 +44,6 @@ class QPlantRegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initObservers()
         viewModel.getPlantList()
 
         val navController = this.findNavController()
@@ -87,10 +86,5 @@ class QPlantRegisterFragment : Fragment() {
                 ErrorToast(requireContext()).showMsgUp(resources.getString(R.string.question_error_msg),binding.qPlantRegisterNextBtn.y)
             }
         }
-    }
-
-    private fun initObservers(){
-        viewModel.plantsCount.observe(viewLifecycleOwner, Observer {
-        })
     }
 }
