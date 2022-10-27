@@ -200,14 +200,13 @@ class FeedWriteFragment : Fragment() {
             binding.feedWriteContent.setText(feedWriteViewModel.plantAction?.auto_content!!)
         }
         feedWriteViewModel.getActionList()
+        feedWriteViewModel.getPlantList()
     }
 
     private fun observeViewModel() {
         feedWriteViewModel.plantsList.observe(viewLifecycleOwner, Observer {
             plant_adapter.refreshItems(it)
-        })
-        feedWriteViewModel.plantName.observe(viewLifecycleOwner, Observer {
-            binding.feedWritePlantTagTv.text = resources.getString(com.charaminstra.pleon.feed_common.R.string.plant_tag) + feedWriteViewModel.plantName.value
+            binding.feedWritePlantTagTv.text = resources.getString(com.charaminstra.pleon.feed_common.R.string.plant_tag) + feedWriteViewModel.plantName
         })
         feedWriteViewModel.postSuccess.observe(viewLifecycleOwner, Observer{
             if(it){
@@ -227,12 +226,6 @@ class FeedWriteFragment : Fragment() {
                 binding.feedWriteContent.text.toString()
             )
         })
-    }
-
-    override fun onResume() {
-        super.onResume()
-        //viewmodel update
-        feedWriteViewModel.getPlantList()
     }
 
     // 갤러리 화면에서 이미지를 선택한 경우 현재 화면에 보여준다.
