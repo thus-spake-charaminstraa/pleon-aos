@@ -3,14 +3,13 @@ package com.charaminstra.pleon.feed
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.charaminstra.pleon.common.PlantCommonViewHolder
 import com.charaminstra.pleon.feed.databinding.ItemPlantBinding
 import com.charaminstra.pleon.foundation.model.PlantDataObject
 
 class FeedPlantAdapter(): RecyclerView.Adapter<FeedPlantViewHolder>() {
 
     var viewItemList: List<PlantDataObject> = listOf()
-    var onItemClicked: (String)-> Unit = {}
+    var onItemClicked: (String, String) -> Unit = { s: String, s1: String -> }
     var selectedPosition = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeedPlantViewHolder {
@@ -37,9 +36,10 @@ class FeedPlantAdapter(): RecyclerView.Adapter<FeedPlantViewHolder>() {
             notifyItemChanged(selectedPosition)
             notifyItemChanged(position)
             selectedPosition=position
-            onItemClicked(viewItemList[position].id!!)
+            onItemClicked(viewItemList[position].id!!,viewItemList[position].name!!)
         }
     }
+
 
     fun refreshClick(){
         notifyItemChanged(selectedPosition)

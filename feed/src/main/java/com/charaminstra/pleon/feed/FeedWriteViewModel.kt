@@ -114,22 +114,6 @@ class FeedWriteViewModel @Inject constructor(
         }
     }
 
-    fun getPlantName(){
-        viewModelScope.launch {
-            val data = plantRepository.getPlantId(plantId!!)
-            Log.i(TAG,"data -> $data")
-            when (data.isSuccessful) {
-                true -> {
-                    Log.i(TAG,"data.body -> "+data.body())
-                    _plantName.postValue(data.body()?.data?.name!!)
-                }
-                else -> {
-                    Log.i(TAG,"FAIL-> ")
-                }
-            }
-        }
-    }
-
     fun getActionList(){
         viewModelScope.launch{
             val data = repository.getAction()

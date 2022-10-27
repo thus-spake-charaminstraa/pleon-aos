@@ -67,8 +67,6 @@ class FeedWriteFragment : Fragment() {
         navController = this.findNavController()
 
         sheetBehavior = BottomSheetBehavior.from(binding.bottomSheet.root)
-        //test
-        //sheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
         sheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
 
         binding.feedWriteImgRoot.visibility = View.GONE
@@ -190,10 +188,9 @@ class FeedWriteFragment : Fragment() {
 
     private fun initList() {
         plant_adapter = FeedPlantAdapter()
-        plant_adapter.onItemClicked = { Id ->
-            //plantId = Id
-            feedWriteViewModel.plantId = Id
-            feedWriteViewModel.getPlantName()
+        plant_adapter.onItemClicked = { id, name ->
+            feedWriteViewModel.plantId = id
+            binding.feedWritePlantTagTv.text= resources.getString(com.charaminstra.pleon.feed_common.R.string.plant_tag) + name
         }
         action_adapter = ActionAdapter()
         action_adapter.onItemClicked = { actionType ->

@@ -117,7 +117,7 @@ class FeedFragment : Fragment() {
     private fun initList() {
         feedPlantAdapter = FeedPlantAdapter()
         feedPlantAdapter.selectedPosition = -1
-        feedPlantAdapter.onItemClicked = { plantId ->
+        feedPlantAdapter.onItemClicked = { plantId, name ->
             binding.allFilter.isSelected = false
             feedViewModel.offset = 0
             feedAdapter.viewItemList.clear()
