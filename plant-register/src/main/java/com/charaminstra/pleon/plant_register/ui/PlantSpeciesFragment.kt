@@ -225,12 +225,12 @@ class PlantSpeciesFragment : Fragment() {
     private fun openCamera() {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         photoFile = PLeonImageFile(requireActivity())
-        val uri = FileProvider.getUriForFile(
+        cameraUri = FileProvider.getUriForFile(
             requireContext(),
             "com.charaminstra.pleon.fileprovider",
             photoFile.create()
         )
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, cameraUri)
         startActivityForResult(intent, REQUEST_TAKE_PHOTO)
     }
 }
