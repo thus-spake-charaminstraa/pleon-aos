@@ -63,6 +63,7 @@ class QPlantRegisterFragment : Fragment() {
         binding.plantRegisterQ2.setOnClickListener {
             it.isSelected = true
             binding.plantRegisterQ1.isSelected=false
+            viewModel.plantId = null
             InfoToast(requireContext()).showMsgUp(resources.getString(R.string.no_register_info),binding.qPlantRegisterNextBtn.y)
         }
         binding.qPlantRegisterNextBtn.setOnClickListener {
