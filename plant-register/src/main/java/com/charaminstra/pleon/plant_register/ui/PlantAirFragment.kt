@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.charaminstra.pleon.common_ui.ErrorToast
 import com.charaminstra.pleon.common.AirType
 import com.charaminstra.pleon.common.CLASS_NAME
-import com.charaminstra.pleon.common.PLANT_REGISTER_CLICK
+import com.charaminstra.pleon.common.PLANT_REGISTER_COMPLETE_BTN_CLICK
 import com.charaminstra.pleon.plant_register.PlantRegisterViewModel
 import com.charaminstra.pleon.plant_register.R
 import com.charaminstra.pleon.plant_register.databinding.FragmentPlantAirBinding
@@ -54,7 +54,7 @@ class PlantAirFragment : Fragment() {
                 // logging
                 val loggingBundle = Bundle()
                 loggingBundle.putString(CLASS_NAME, TAG)
-                firebaseAnalytics.logEvent(PLANT_REGISTER_CLICK , loggingBundle)
+                firebaseAnalytics.logEvent(PLANT_REGISTER_COMPLETE_BTN_CLICK , loggingBundle)
             }
         }
         return binding.root
