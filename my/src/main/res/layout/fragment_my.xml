@@ -49,6 +49,19 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/user_name"/>
+    <TextView
+        android:id="@+id/comment_switch_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="식물 댓글 알람"
+        app:layout_constraintTop_toBottomOf="@+id/edit_btn"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+    <ToggleButton
+        android:layout_width="32dp"
+        android:layout_height="20dp"
+        android:background="@drawable/selector_toggle"
+        app:layout_constraintTop_toTopOf="@+id/comment_switch_title"
+        app:layout_constraintRight_toRightOf="parent"/>
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/logout_btn"
         android:layout_width="wrap_content"
