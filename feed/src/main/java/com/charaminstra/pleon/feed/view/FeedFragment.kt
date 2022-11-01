@@ -1,4 +1,4 @@
-package com.charaminstra.pleon.feed
+package com.charaminstra.pleon.feed.view
 
 import android.content.Context
 import android.content.Intent
@@ -18,6 +18,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.charaminstra.pleon.common.*
 import com.charaminstra.pleon.common_ui.ErrorToast
+import com.charaminstra.pleon.feed.FeedPlantAdapter
+import com.charaminstra.pleon.feed.FeedViewModel
+import com.charaminstra.pleon.feed.R
 import com.charaminstra.pleon.feed.databinding.FragmentFeedBinding
 import com.charaminstra.pleon.feed.noti.NOTI_COMPLETE
 import com.charaminstra.pleon.feed.noti.NOTI_GO
@@ -91,6 +94,10 @@ class FeedFragment : Fragment() {
         binding.feedRecyclerview.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
 
         initScrollListener()
+
+        binding.notiListBtn.setOnClickListener{
+            navController.navigate(R.id.feed_fragment_to_noti_fragment)
+        }
     }
 
     override fun onResume() {
