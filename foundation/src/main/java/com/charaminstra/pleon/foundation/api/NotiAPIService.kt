@@ -9,7 +9,7 @@ interface NotiAPIService{
     @GET("noti/feed")
     suspend fun getNoti(
         @Header("Authorization") accessToken:String,
-    ): Response<NotiListResponse>
+    ): Response<GuideListResponse>
 
 //    @POST("noti/{id}")
 //    suspend fun postNotiAction(
@@ -22,5 +22,5 @@ interface NotiAPIService{
     suspend fun postNotiAction(
         @Header("Authorization") accessToken:String,
         @Body noti: NotiRequestBody
-    ): Response<NotiResponse>
+    ): Response<GuideResponse>
 }

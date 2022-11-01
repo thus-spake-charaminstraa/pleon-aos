@@ -1,23 +1,23 @@
 package com.charaminstra.pleon.foundation.model
 
-data class NotiResponse(
-    val data: NotiData?,
+data class GuideResponse(
+    val data: GuideData?,
     val statusCode: Int?,
     val success: Boolean?
 )
 
-data class NotiListResponse(
-    val data: List<NotiViewTypeData>,
+data class GuideListResponse(
+    val data: List<GuideViewTypeData>,
     val statusCode: Int?,
     val success: Boolean?
 )
 
-data class NotiViewTypeData(
+data class GuideViewTypeData(
     val viewType: String,
-    val viewObject: NotiData
+    val viewObject: GuideData
 )
 
-data class NotiData(
+data class GuideData(
     val id: String,
     val content: String?,
     val kind: String?,

@@ -27,7 +27,7 @@ import com.charaminstra.pleon.common_ui.PLeonDatePicker
 import com.charaminstra.pleon.common_ui.PopUpImageMenu
 import com.charaminstra.pleon.feed.ActionAdapter
 import com.charaminstra.pleon.feed.FeedPlantAdapter
-import com.charaminstra.pleon.feed.FeedWriteViewModel
+import com.charaminstra.pleon.feed.viewmodel.FeedWriteViewModel
 import com.charaminstra.pleon.feed.databinding.FragmentFeedWriteBinding
 import com.charaminstra.pleon.plant_register.getOrientation
 import com.google.android.material.bottomsheet.BottomSheetBehavior

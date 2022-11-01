@@ -1,4 +1,4 @@
-package com.charaminstra.pleon.feed
+package com.charaminstra.pleon.feed.viewmodel
 
 import android.graphics.Bitmap
 import android.util.Log

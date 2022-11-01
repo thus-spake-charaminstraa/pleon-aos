@@ -1,14 +1,14 @@
-package com.charaminstra.pleon.feed.noti
+package com.charaminstra.pleon.feed.guide
 
 
 import com.charaminstra.pleon.feed.databinding.ItemTwoBtnNotiBinding
-import com.charaminstra.pleon.foundation.model.NotiData
+import com.charaminstra.pleon.foundation.model.GuideData
 
 const val NOTI_LATER = "noti_later"
 const val NOTI_COMPLETE = "noti_complete"
 
-class TwoBtnNotiViewHolder (private val binding: ItemTwoBtnNotiBinding): NotiCommonViewHolder(binding) {
-    override fun bind(item: NotiData, onClickNoti: (String, String) -> Unit) {
+class TwoBtnNotiViewHolder (private val binding: ItemTwoBtnNotiBinding): GuideCommonViewHolder(binding) {
+    override fun bind(item: GuideData, onClickNoti: (String, String) -> Unit) {
         binding.notiTv.text = item.content
         binding.notiLaterBtn.setOnClickListener {
             onClickNoti(item.id, NOTI_LATER)

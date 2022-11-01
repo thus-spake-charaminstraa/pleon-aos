@@ -1,4 +1,4 @@
-package com.charaminstra.pleon.feed
+package com.charaminstra.pleon.feed.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.charaminstra.pleon.foundation.FeedRepository
 import com.charaminstra.pleon.foundation.NotiRepository
-import com.charaminstra.pleon.foundation.model.NotiViewTypeData
+import com.charaminstra.pleon.foundation.model.GuideViewTypeData
 import com.charaminstra.pleon.foundation.model.ResultObject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -29,8 +29,8 @@ class FeedViewModel @Inject constructor(
     private val _feedFilterList = MutableLiveData<ArrayList<ResultObject>>()
     val feedFilterList : LiveData<ArrayList<ResultObject>> = _feedFilterList
 
-    private val _notiList = MutableLiveData<List<NotiViewTypeData>>()
-    val notiList : LiveData<List<NotiViewTypeData>> = _notiList
+    private val _notiList = MutableLiveData<List<GuideViewTypeData>>()
+    val notiList : LiveData<List<GuideViewTypeData>> = _notiList
 
     private val _isLast = MutableLiveData<Boolean>()
     val isLast : LiveData<Boolean> = _isLast

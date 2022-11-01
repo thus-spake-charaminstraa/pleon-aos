@@ -19,13 +19,13 @@ import androidx.recyclerview.widget.PagerSnapHelper
 import com.charaminstra.pleon.common.*
 import com.charaminstra.pleon.common_ui.ErrorToast
 import com.charaminstra.pleon.feed.FeedPlantAdapter
-import com.charaminstra.pleon.feed.FeedViewModel
+import com.charaminstra.pleon.feed.viewmodel.FeedViewModel
 import com.charaminstra.pleon.feed.R
 import com.charaminstra.pleon.feed.databinding.FragmentFeedBinding
-import com.charaminstra.pleon.feed.noti.NOTI_COMPLETE
-import com.charaminstra.pleon.feed.noti.NOTI_GO
-import com.charaminstra.pleon.feed.noti.NOTI_LATER
-import com.charaminstra.pleon.feed.noti.NotiAdapter
+import com.charaminstra.pleon.feed.guide.NOTI_COMPLETE
+import com.charaminstra.pleon.feed.guide.NOTI_GO
+import com.charaminstra.pleon.feed.guide.NOTI_LATER
+import com.charaminstra.pleon.feed.guide.GuideAdapter
 import com.charaminstra.pleon.feed_common.FeedViewType
 import com.google.firebase.analytics.FirebaseAnalytics
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,7 +36,7 @@ class FeedFragment : Fragment() {
     private lateinit var binding : FragmentFeedBinding
 
     private lateinit var feedPlantAdapter: FeedPlantAdapter
-    private lateinit var notiAdapter: NotiAdapter
+    private lateinit var notiAdapter: GuideAdapter
     private lateinit var feedAdapter: com.charaminstra.pleon.feed_common.FeedAdapter
 
     private val plantsViewModel: PlantsViewModel by viewModels()
@@ -137,7 +137,7 @@ class FeedFragment : Fragment() {
             firebaseAnalytics.logEvent(FEED_FILTER_BTN_CLICK , loggingBundle)
         }
         feedAdapter = com.charaminstra.pleon.feed_common.FeedAdapter()
-        notiAdapter = NotiAdapter()
+        notiAdapter = GuideAdapter()
         feedAdapter.onClickFeed = { ViewType, Id ->
             if(ViewType == FeedViewType.FEED.ordinal){
                 val bundle = Bundle()
