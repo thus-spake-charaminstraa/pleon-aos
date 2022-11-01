@@ -75,7 +75,7 @@ class FeedViewModel @Inject constructor(
 
     fun getNotiList(){
         viewModelScope.launch {
-            val data = notiRepository.getNotiList()
+            val data = notiRepository.getGuideList()
             when(data.isSuccessful){
                 true -> {
                     _notiList.postValue(data.body()?.data)
