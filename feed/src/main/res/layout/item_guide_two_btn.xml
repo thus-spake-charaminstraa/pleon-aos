@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="240dp"
-    android:background="@drawable/bg_noti"
+    android:background="@drawable/bg_guide"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <ImageView
         android:layout_width="128dp"

@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginHorizontal="5dp"
+    android:background="@drawable/bg_noti_item"
+    android:paddingHorizontal="10dp"
+    android:paddingVertical="3dp"
     android:layout_marginBottom="15dp">
     <TextView
         android:id="@+id/noti_title"
@@ -12,5 +14,23 @@
         android:layout_height="wrap_content"
         tools:text = "dddd"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"/>
+<!--    <TextView-->
+<!--        android:id="@+id/noti_content"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        tools:text = "dddd"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/noti_title"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"/>-->
+    <ImageView
+        android:id="@+id/noti_image"
+        tools:src="@drawable/img_logo"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
