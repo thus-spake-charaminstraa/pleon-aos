@@ -21,6 +21,6 @@ interface NotiAPIService{
     @POST("plant/guide/manage")
     suspend fun postNotiAction(
         @Header("Authorization") accessToken:String,
-        @Body noti: NotiRequestBody
+        @Body noti: GuideRequestBody
     ): Response<GuideResponse>
 }
