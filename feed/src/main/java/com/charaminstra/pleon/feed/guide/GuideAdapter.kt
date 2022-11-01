@@ -3,9 +3,7 @@ package com.charaminstra.pleon.feed.guide
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.charaminstra.pleon.feed.databinding.ItemDefaultNotiBinding
-import com.charaminstra.pleon.feed.databinding.ItemOneBtnNotiBinding
-import com.charaminstra.pleon.feed.databinding.ItemTwoBtnNotiBinding
+import com.charaminstra.pleon.feed.databinding.*
 import com.charaminstra.pleon.foundation.model.GuideViewTypeData
 
 class GuideAdapter(): RecyclerView.Adapter<GuideCommonViewHolder>() {
@@ -20,19 +18,19 @@ class GuideAdapter(): RecyclerView.Adapter<GuideCommonViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GuideCommonViewHolder {
         return when(viewType){
             GuideViewType.TWO_BTN.ordinal -> TwoBtnNotiViewHolder(
-                ItemTwoBtnNotiBinding.inflate(
+                ItemGuideTwoBtnBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent, false
                 )
             )
             GuideViewType.ONE_BTN.ordinal -> OneBtnNotiViewHolder(
-                    ItemOneBtnNotiBinding.inflate(
+                    ItemGuideOneBtnBinding.inflate(
                         LayoutInflater.from(parent.context),
                         parent, false
                 )
             )
             GuideViewType.DEFAULT.ordinal -> DefaultNotiViewHolder(
-                ItemDefaultNotiBinding.inflate(
+                ItemGuideDefaultBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent, false
                 )

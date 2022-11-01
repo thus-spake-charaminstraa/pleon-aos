@@ -19,14 +19,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            adapter="@{adapter}"-->
-<!--            submitList="@{viewModel.weatherModelList}"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:paddingBottom="30dp"-->
-<!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-<!--            app:layout_constrainedHeight="true" />-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/noti_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="30dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constrainedHeight="true" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

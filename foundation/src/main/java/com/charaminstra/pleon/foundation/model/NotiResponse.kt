@@ -19,4 +19,5 @@ data class NotiData(
     val content: String?,
     val feedContent: String?,
     val feedImageUrl: String?,
+    val text: String?,
 )
