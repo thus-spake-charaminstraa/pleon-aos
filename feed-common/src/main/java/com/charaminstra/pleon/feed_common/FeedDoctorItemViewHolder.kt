@@ -1,54 +1,66 @@
 package com.charaminstra.pleon.feed_common
 
+import android.os.Bundle
+import android.view.View
+import androidx.navigation.findNavController
+import com.charaminstra.pleon.common.CLASS_NAME
+import com.charaminstra.pleon.common.FEED_ITEM_CLICK
 import com.charaminstra.pleon.feed_common.databinding.ItemFeedDoctorBinding
 import com.charaminstra.pleon.common.FeedViewObject
-import java.text.SimpleDateFormat
+import com.charaminstra.pleon.feed.view.FeedFragmentDirections
+import com.google.firebase.analytics.FirebaseAnalytics
 
 class FeedDoctorItemViewHolder(
     private val binding: ItemFeedDoctorBinding
 ): FeedCommonViewHolder(binding){
-    private lateinit var dateFormat: SimpleDateFormat
+    private val TAG = javaClass.name
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
-    override fun bind(item: FeedViewObject?, viewType:Int, onClickFeed: (Int, String) -> Unit)  {
-        binding.plantTagTv.text = binding.root.context.resources.getString(R.string.plant_tag)+item?.plant?.name!!
+    init {
+        binding.setClickListener {
+            binding.feed?.id?.let { feedId ->
+                navigateToFeedDetail(feedId, it)
+            }
+        }
+    }
 
-        //dateFormat = SimpleDateFormat(binding.root.context.resources.getString(com.charaminstra.pleon.common.R.string.date_view_format))
+    private fun navigateToFeedDetail(
+        feedId: String,
+        view: View
+    ) {
+        val direction =
+            FeedFragmentDirections.feedFragmentToFeedDoctorDetailFragment(
+                feedId
+            )
+        view.findNavController().navigate(direction)
+    }
 
-        //binding.feedDate.text = dateFormat.format(item.created_at)
+    override fun bind(item: FeedViewObject?)  {
+        binding.apply {
+            feed = item
+            executePendingBindings()
+        }
+        //binding.plantTagTv.text = binding.root.context.resources.getString(R.string.plant_tag)+item?.plant?.name!!
 
         var symptomList = ""
-        for (i in item.symptoms?.indices!!){
-            if(i == item.symptoms?.size?.minus(1)){
-                symptomList += item.symptoms?.get(i)?.symptom_ko
+        for (i in item?.symptoms?.indices!!){
+            if(i == item?.symptoms?.size?.minus(1)){
+                symptomList += item?.symptoms?.get(i)?.symptom_ko
             }else{
-                symptomList += item.symptoms?.get(i)?.symptom_ko+"    "
+                symptomList += item?.symptoms?.get(i)?.symptom_ko+"    "
             }
         }
         binding.symptomTxt.text = symptomList
 
         var solutionList = ""
-        for (i in item.causes?.indices!!){
+        for (i in item?.causes?.indices!!){
             if(i == item.causes?.size?.minus(1)){
-                solutionList += item.causes?.get(i)?.guide
+                solutionList += item?.causes?.get(i)?.guide
             }else{
-                solutionList += item.causes?.get(i)?.guide+"\n"
+                solutionList += item?.causes?.get(i)?.guide+"\n"
             }
 
         }
         binding.solutionTxt.text = solutionList
-
-        binding.root.setOnClickListener {
-            onClickFeed(viewType, item.id)
-        }
-        //comment
-//        val count = item.comments?.size
-//        if(count == 0) {
-//            binding.icComment.visibility = View.GONE
-//            binding.feedCommentCount.visibility = View.GONE
-//        }else{
-//            binding.icComment.visibility = View.VISIBLE
-//            binding.feedCommentCount.visibility = View.VISIBLE
-//            binding.feedCommentCount.text = count.toString()
-//        }
     }
 }

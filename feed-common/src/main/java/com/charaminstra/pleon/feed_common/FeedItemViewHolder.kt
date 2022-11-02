@@ -1,14 +1,20 @@
 package com.charaminstra.pleon.feed_common
 
+import android.os.Bundle
 import android.view.View
 import androidx.navigation.findNavController
+import com.charaminstra.pleon.common.CLASS_NAME
+import com.charaminstra.pleon.common.FEED_ITEM_CLICK
 import com.charaminstra.pleon.feed_common.databinding.ItemFeedBinding
 import com.charaminstra.pleon.common.FeedViewObject
 import com.charaminstra.pleon.feed.view.FeedFragmentDirections
+import com.google.firebase.analytics.FirebaseAnalytics
 
 class FeedItemViewHolder(
     private val binding: ItemFeedBinding
 ): FeedCommonViewHolder(binding){
+    private val TAG = javaClass.name
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     init {
         binding.setClickListener {
@@ -29,7 +35,7 @@ class FeedItemViewHolder(
         view.findNavController().navigate(direction)
     }
 
-    override fun bind(item: FeedViewObject?, viewType:Int, onClickFeed: (Int, String) -> Unit)  {
+    override fun bind(item: FeedViewObject?)  {
         binding.apply {
             feed = item
             executePendingBindings()

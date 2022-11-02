@@ -6,7 +6,6 @@ import com.charaminstra.pleon.common.FeedViewObject
 class LoadingItemViewHolder(
     private val binding: ItemFeedLoadingBinding
 ): FeedCommonViewHolder(binding){
-    override fun bind(item: FeedViewObject?, viewType:Int, onClickFeed: (Int, String) -> Unit)  {
-
+    override fun bind(item: FeedViewObject?)  {
     }
 }
