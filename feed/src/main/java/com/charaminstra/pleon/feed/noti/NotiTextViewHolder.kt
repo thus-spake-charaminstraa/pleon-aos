@@ -1,9 +1,7 @@
 package com.charaminstra.pleon.feed.noti
 
-import android.util.Log
 import android.view.View
 import androidx.navigation.findNavController
-import com.bumptech.glide.Glide
 import com.charaminstra.pleon.feed.databinding.ItemNotiTextBinding
 import com.charaminstra.pleon.feed.view.NotiFragmentDirections
 import com.charaminstra.pleon.foundation.model.NotiData
@@ -12,8 +10,7 @@ import com.charaminstra.pleon.foundation.model.NotiData
 class NotiTextViewHolder (private val binding: ItemNotiTextBinding): NotiCommonViewHolder(binding) {
     init {
         binding.setClickListener {
-            Log.i("youla","click")
-            binding.feedId?.let { feedId ->
+            binding.noti?.feed_id?.let { feedId ->
                 navigateToFeed(feedId, it)
             }
         }

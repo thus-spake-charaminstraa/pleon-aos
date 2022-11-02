@@ -33,9 +33,9 @@ class FeedDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentFeedDetailBinding.inflate(layoutInflater)
-        arguments?.getString("id")?.let {
-            viewModel.feedId = it
-        }
+//        arguments?.getString("id")?.let {
+//            viewModel.feedId = it
+//        }
         binding.feedDetailBackBtn.setOnClickListener {
             navController.popBackStack()
         }

@@ -8,9 +8,6 @@
             name="clickListener"
             type="android.view.View.OnClickListener"/>
         <variable
-            name="feedId"
-            type="String" />
-        <variable
             name="noti"
             type="com.charaminstra.pleon.foundation.model.NotiData" />
     </data>
