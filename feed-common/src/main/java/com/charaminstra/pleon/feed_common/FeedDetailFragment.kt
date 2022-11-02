@@ -1,7 +1,9 @@
 package com.charaminstra.pleon.feed_common
 
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -31,10 +33,9 @@ class FeedDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentFeedDetailBinding.inflate(layoutInflater)
-//        arguments?.getString("id")?.let {
-//            viewModel.feedId = it
-//        }
+        binding = FragmentFeedDetailBinding.inflate(layoutInflater).also {
+        }
+
         binding.feedDetailBackBtn.setOnClickListener {
             navController.popBackStack()
         }
@@ -92,19 +93,15 @@ class FeedDetailFragment : Fragment() {
 
     private fun observeViewModel() {
         viewModel.feedData.observe(viewLifecycleOwner, Observer {
+            Log.i("youla",it.toString())
             binding.apply {
                 feed = it
             }
-            binding.feedContent.text = it.content
             if (it.image_url == null) {
                 binding.plantImage.visibility = View.GONE
             } else {
                 binding.plantImage.visibility = View.VISIBLE
-                Glide.with(binding.root)
-                    .load(it.image_url)
-                    .into(binding.plantImage)
             }
-            //binding.feedDate.text = DateUtils(requireContext()).dateToView(it.publish_date)
         })
         //댓글 수
         viewModel.commentsCount.observe(viewLifecycleOwner, Observer {

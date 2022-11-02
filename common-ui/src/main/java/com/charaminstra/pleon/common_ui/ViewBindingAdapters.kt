@@ -1,5 +1,6 @@
 package com.charaminstra.pleon.common_ui
 
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
@@ -36,6 +37,10 @@ fun bindActionTag(view: TextView, resId: Int?) {
 
 @BindingAdapter("date")
 fun bindDate(view: TextView, date: Date?) {
-    val dateFormat = SimpleDateFormat(view.resources.getString(R.string.date_view_format))
-    view.text = dateFormat.format(date)
+    date?.let {
+        val dateFormat = SimpleDateFormat(view.resources.getString(R.string.date_view_format))
+        view.text = dateFormat.format(date)
+    }
+    Log.i("BindingAdapter",date.toString())
+
 }

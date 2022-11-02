@@ -26,6 +26,7 @@ class FeedDetailViewModel @Inject constructor(
     private val _feedComments = MutableLiveData<List<CommentObject>>()
     val feedComments : LiveData<List<CommentObject>> = _feedComments
 
+
     private val _feedDeleteSuccess = MutableLiveData<Boolean>()
     val feedDeleteSuccess : LiveData<Boolean> = _feedDeleteSuccess
 
@@ -37,10 +38,13 @@ class FeedDetailViewModel @Inject constructor(
 
     //var feedId: String? = null
 
+    init {
+        loadFeed()
+    }
 
     fun loadFeed(){
         viewModelScope.launch {
-            val data = feedRepository.getFeedId(feedId!!)
+            val data = feedRepository.getFeedId(feedId)
             when (data.isSuccessful) {
                 true -> {
                     _feedData.postValue(data.body()?.data!!)

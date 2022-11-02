@@ -120,6 +120,7 @@ class FeedWriteViewModel @Inject constructor(
                     plantAction = data.body()?.data?.get(0)
                     _actionList.postValue(data.body()?.data!!)
                 }
+                else -> {}
             }
         }
     }
