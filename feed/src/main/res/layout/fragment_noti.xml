@@ -3,18 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-<!--        <variable-->
-<!--            name="viewModel"-->
-<!--            type="org.soma.weatherviewer.home.list.WeatherListViewModel" />-->
-
-<!--        <variable-->
-<!--            name="adapter"-->
-<!--            type="org.soma.weatherviewer.home.WeatherAdapter" />-->
-
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
