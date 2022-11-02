@@ -30,6 +30,9 @@
         android:id="@+id/feed_detail_fragment"
         android:name="com.charaminstra.pleon.feed_common.FeedDetailFragment"
         tools:layout="@layout/fragment_feed_detail">
+        <argument
+            android:name="feedId"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/feed_doctor_detail_fragment"
@@ -40,5 +43,8 @@
         android:id="@+id/noti_fragment"
         android:name="com.charaminstra.pleon.feed.view.NotiFragment"
         tools:layout="@layout/fragment_noti">
+        <action
+            android:id="@+id/action_noti_fragment_to_feed_detail_fragment"
+            app:destination="@id/feed_detail_fragment"/>
     </fragment>
 </navigation>

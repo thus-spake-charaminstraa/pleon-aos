@@ -8,6 +8,7 @@ import com.charaminstra.pleon.foundation.model.GuideData
 import com.charaminstra.pleon.foundation.model.NotiData
 
 abstract class NotiCommonViewHolder (binding: ViewBinding): RecyclerView.ViewHolder(binding.root) {
+
     open fun bind(viewObject: NotiData) {}
 }
 

@@ -9,10 +9,10 @@ data class FeedListResponse(
 )
 
 data class FeedDataObject(
- val result: ArrayList<ResultObject>,
- val count: Int,
- val next_offset: Int,
- val isLast: Boolean,
+     val result: ArrayList<ResultObject>,
+     val count: Int,
+     val next_offset: Int,
+     val isLast: Boolean,
 )
 
 data class ResultObject(
