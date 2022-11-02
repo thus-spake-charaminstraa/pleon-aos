@@ -20,4 +20,6 @@ data class NotiData(
     val feedContent: String?,
     val feedImageUrl: String?,
     val text: String?,
+    val comment: CommentObject?,
+    val plant: PlantDataObject?
 )

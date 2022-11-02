@@ -6,24 +6,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/bg_noti_item"
     android:paddingHorizontal="10dp"
-    android:paddingVertical="3dp"
-    android:layout_marginBottom="15dp">
-    <TextView
-        android:id="@+id/noti_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text = "dddd"
+    android:paddingVertical="8dp"
+    android:layout_marginBottom="10dp">
+    <ImageView
+        android:id="@+id/noti_author_thumbnail"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:scaleType="centerCrop"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"/>
-<!--    <TextView-->
-<!--        android:id="@+id/noti_content"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        tools:text = "dddd"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/noti_title"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintLeft_toLeftOf="parent"/>-->
+    <TextView
+        android:id="@+id/noti_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text = "dddd"
+        style="@style/NotiTitleText"
+        android:layout_marginLeft="10dp"
+        app:layout_constraintTop_toTopOf="@+id/noti_author_thumbnail"
+        app:layout_constraintLeft_toRightOf="@+id/noti_author_thumbnail" />
+    <TextView
+        android:id="@+id/comment_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text = "dddd"
+        style="@style/NotiCommentText"
+        app:layout_constraintTop_toBottomOf="@+id/noti_title"
+        app:layout_constraintLeft_toLeftOf="@+id/noti_title"/>
     <ImageView
         android:id="@+id/noti_image"
         tools:src="@drawable/img_logo"

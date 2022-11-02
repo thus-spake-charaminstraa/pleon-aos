@@ -4,13 +4,14 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginHorizontal="5dp"
-    android:layout_marginBottom="15dp">
+    android:paddingVertical="5dp"
+    android:layout_marginBottom="10dp">
     <TextView
         android:id="@+id/noti_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text = "dddd"
+        tools:text = "2022.11.01"
+        style="@style/NotiDateText"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
