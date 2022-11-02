@@ -12,9 +12,9 @@ class FeedDoctorItemViewHolder(
     override fun bind(item: FeedViewObject?, viewType:Int, onClickFeed: (Int, String) -> Unit)  {
         binding.plantTagTv.text = binding.root.context.resources.getString(R.string.plant_tag)+item?.plant?.name!!
 
-        dateFormat = SimpleDateFormat(binding.root.context.resources.getString(com.charaminstra.pleon.common.R.string.date_view_format))
+        //dateFormat = SimpleDateFormat(binding.root.context.resources.getString(com.charaminstra.pleon.common.R.string.date_view_format))
 
-        binding.feedDate.text = dateFormat.format(item.created_at)
+        //binding.feedDate.text = dateFormat.format(item.created_at)
 
         var symptomList = ""
         for (i in item.symptoms?.indices!!){

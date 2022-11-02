@@ -44,7 +44,8 @@
             style="@style/FeedDateText"
             app:layout_constraintTop_toBottomOf="@+id/user_name"
             app:layout_constraintLeft_toLeftOf="@+id/user_name"
-            app:layout_constraintBottom_toBottomOf="@+id/user_image"/>
+            app:layout_constraintBottom_toBottomOf="@+id/user_image"
+            app:date="@{feed.publish_date}"/>
         <ImageView
             android:id="@+id/plant_image"
             android:layout_width="match_parent"

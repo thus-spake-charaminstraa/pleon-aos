@@ -4,6 +4,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import java.text.SimpleDateFormat
+import java.util.*
 
 @BindingAdapter("imgUrl")
 fun bindImgUrl(view: ImageView, imgUrl: String?) {
@@ -30,4 +32,10 @@ fun bindActionTag(view: TextView, resId: Int?) {
     resId?.let {
         view.text = "#"+view.context.getString(it)
     }
+}
+
+@BindingAdapter("date")
+fun bindDate(view: TextView, date: Date) {
+    val dateFormat = SimpleDateFormat(view.resources.getString(R.string.date_view_format))
+        view.text = dateFormat.format(date)
 }
