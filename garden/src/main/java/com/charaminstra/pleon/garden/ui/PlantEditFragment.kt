@@ -188,7 +188,7 @@ class PlantEditFragment : Fragment() {
         })
         viewModel.deleteSuccess.observe(viewLifecycleOwner, Observer{
             if(it){
-                navController.navigate(R.id.plant_edit_fragment_delete)
+                navController.navigate(com.charaminstra.pleon.feed_common.R.id.plant_edit_fragment_delete)
             }else{
                 Toast.makeText(requireContext(),"삭제에 실패하였습니다.",Toast.LENGTH_SHORT)
             }
@@ -271,7 +271,7 @@ class PlantEditFragment : Fragment() {
             val dlg = PLeonMsgDialog(requireContext())
             dlg.setOnOKClickedListener {
                 viewModel.deleteData(id)
-                navController.navigate(R.id.plant_edit_fragment_delete)
+                navController.navigate(com.charaminstra.pleon.feed_common.R.id.plant_edit_fragment_delete)
             }
             dlg.start(
                 resources.getString(com.charaminstra.pleon.common_ui.R.string.dialog_title),

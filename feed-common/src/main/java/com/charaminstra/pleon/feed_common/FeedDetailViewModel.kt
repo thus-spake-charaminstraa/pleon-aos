@@ -26,7 +26,6 @@ class FeedDetailViewModel @Inject constructor(
     private val _feedComments = MutableLiveData<List<CommentObject>>()
     val feedComments : LiveData<List<CommentObject>> = _feedComments
 
-
     private val _feedDeleteSuccess = MutableLiveData<Boolean>()
     val feedDeleteSuccess : LiveData<Boolean> = _feedDeleteSuccess
 
@@ -35,8 +34,6 @@ class FeedDetailViewModel @Inject constructor(
 
     private val _commentsCount = MutableLiveData<Int>()
     val commentsCount : LiveData<Int> = _commentsCount
-
-    //var feedId: String? = null
 
     init {
         loadFeed()
@@ -48,7 +45,6 @@ class FeedDetailViewModel @Inject constructor(
             when (data.isSuccessful) {
                 true -> {
                     _feedData.postValue(data.body()?.data!!)
-                    //_feedComments.postValue(data.body()?.data?.comments!!)
                     Log.i(TAG,"SUCCESS -> "+ data.body().toString())
                 }
                 else -> {

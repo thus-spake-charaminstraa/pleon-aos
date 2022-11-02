@@ -1,13 +1,11 @@
 package com.charaminstra.pleon.feed_common
 
-import android.os.Bundle
 import android.view.View
 import androidx.navigation.findNavController
-import com.charaminstra.pleon.common.CLASS_NAME
-import com.charaminstra.pleon.common.FEED_ITEM_CLICK
 import com.charaminstra.pleon.feed_common.databinding.ItemFeedBinding
 import com.charaminstra.pleon.common.FeedViewObject
 import com.charaminstra.pleon.feed.view.FeedFragmentDirections
+import com.charaminstra.pleon.garden.ui.PlantDetailFragmentDirections
 import com.google.firebase.analytics.FirebaseAnalytics
 
 class FeedItemViewHolder(
@@ -15,6 +13,7 @@ class FeedItemViewHolder(
 ): FeedCommonViewHolder(binding){
     private val TAG = javaClass.name
     private lateinit var firebaseAnalytics: FirebaseAnalytics
+    private lateinit var fromView : String
 
     init {
         binding.setClickListener {
@@ -28,14 +27,24 @@ class FeedItemViewHolder(
         feedId: String,
         view: View
     ) {
-        val direction =
-            FeedFragmentDirections.feedFragmentToFeedDetailFragment(
-                feedId
-            )
-        view.findNavController().navigate(direction)
+        when(fromView){
+            "FEED" -> {
+                val direction = FeedFragmentDirections.feedFragmentToFeedDetailFragment(
+                    feedId
+                )
+                view.findNavController().navigate(direction)
+            }
+            "GARDEN" -> {
+                val direction = PlantDetailFragmentDirections.plantDetailFragmentToFeedDetailFragment(
+                    feedId
+                )
+                view.findNavController().navigate(direction)
+            }
+        }
     }
 
-    override fun bind(item: FeedViewObject?)  {
+    override fun bind(item: FeedViewObject?, fromView: String)  {
+        this.fromView = fromView
         binding.apply {
             feed = item
             executePendingBindings()

@@ -40,10 +40,16 @@
         android:id="@+id/feed_detail_fragment"
         android:name="com.charaminstra.pleon.feed_common.FeedDetailFragment"
         tools:layout="@layout/fragment_feed_detail">
+        <argument
+            android:name="feedId"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/feed_doctor_detail_fragment"
         android:name="com.charaminstra.pleon.feed_common.FeedDoctorDetailFragment"
         tools:layout="@layout/fragment_feed_doctor_detail">
+        <argument
+            android:name="feedId"
+            app:argType="string" />
     </fragment>
 </navigation>

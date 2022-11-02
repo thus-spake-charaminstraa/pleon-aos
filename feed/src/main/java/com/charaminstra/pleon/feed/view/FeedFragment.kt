@@ -137,6 +137,7 @@ class FeedFragment : Fragment() {
             firebaseAnalytics.logEvent(FEED_FILTER_BTN_CLICK , loggingBundle)
         }
         feedAdapter = com.charaminstra.pleon.feed_common.FeedAdapter()
+        feedAdapter.fromView = "FEED"
         notiAdapter = GuideAdapter()
 //        feedAdapter.onClickFeed = { ViewType, Id ->
 //            if(ViewType == FeedViewType.FEED.ordinal){

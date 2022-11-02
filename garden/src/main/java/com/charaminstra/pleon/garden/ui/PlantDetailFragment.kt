@@ -19,9 +19,7 @@ import com.bumptech.glide.Glide
 import com.charaminstra.pleon.calendar.MonthViewContainer
 import com.charaminstra.pleon.common.CALENDAR_ITEM_CLICK
 import com.charaminstra.pleon.common.CLASS_NAME
-import com.charaminstra.pleon.common.FEED_ITEM_CLICK
 import com.charaminstra.pleon.feed_common.FeedAdapter
-import com.charaminstra.pleon.feed_common.FeedViewType
 import com.charaminstra.pleon.garden.databinding.CalendarDayLayoutBinding
 import com.charaminstra.pleon.foundation.model.ScheduleDataObject
 import com.charaminstra.pleon.garden.PlantDetailViewModel
@@ -76,7 +74,7 @@ class PlantDetailFragment : Fragment() {
             binding.plantDetailEditBtn.setOnClickListener {
                 val bundle = Bundle()
                 bundle.putString("id",id)
-                navController.navigate(R.id.plant_detail_to_plant_edit_fragment,bundle)
+                navController.navigate(com.charaminstra.pleon.feed_common.R.id.plant_detail_to_plant_edit_fragment,bundle)
             }
         }
     }
@@ -164,6 +162,7 @@ class PlantDetailFragment : Fragment() {
 
     private fun initList() {
         feedAdapter = FeedAdapter()
+        feedAdapter.fromView = "GARDEN"
 //        feedAdapter.onClickFeed = { ViewType, Id ->
 //            if(ViewType == FeedViewType.FEED.ordinal){
 //                val bundle = Bundle()
