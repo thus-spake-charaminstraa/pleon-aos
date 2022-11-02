@@ -3,10 +3,9 @@ package com.charaminstra.pleon.feed_common
 import android.util.Log
 import androidx.lifecycle.*
 import com.charaminstra.pleon.foundation.CommentRepository
-import com.charaminstra.pleon.foundation.FeedRepository
+import com.charaminstra.pleon.common.FeedRepository
 import com.charaminstra.pleon.foundation.model.CommentObject
-import com.charaminstra.pleon.foundation.model.FeedObject
-import com.charaminstra.pleon.foundation.model.ViewObject
+import com.charaminstra.pleon.common.FeedViewObject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -19,10 +18,10 @@ class FeedDetailViewModel @Inject constructor(
 ): ViewModel() {
     private val TAG = javaClass.name
 
-    val feedId: String = savedStateHandle.get<String>("feedId")!!
+    var feedId: String = savedStateHandle.get<String>("feedId")!!
 
-    private val _feedData = MutableLiveData<ViewObject>()
-    val feedData : LiveData<ViewObject> = _feedData
+    private val _feedData = MutableLiveData<FeedViewObject>()
+    val feedData : LiveData<FeedViewObject> = _feedData
 
     private val _feedComments = MutableLiveData<List<CommentObject>>()
     val feedComments : LiveData<List<CommentObject>> = _feedComments

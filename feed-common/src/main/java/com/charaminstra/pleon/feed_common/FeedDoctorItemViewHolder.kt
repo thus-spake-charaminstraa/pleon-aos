@@ -1,7 +1,7 @@
 package com.charaminstra.pleon.feed_common
 
 import com.charaminstra.pleon.feed_common.databinding.ItemFeedDoctorBinding
-import com.charaminstra.pleon.foundation.model.ViewObject
+import com.charaminstra.pleon.common.FeedViewObject
 import java.text.SimpleDateFormat
 
 class FeedDoctorItemViewHolder(
@@ -9,7 +9,7 @@ class FeedDoctorItemViewHolder(
 ): FeedCommonViewHolder(binding){
     private lateinit var dateFormat: SimpleDateFormat
 
-    override fun bind(item: ViewObject?,viewType:Int, onClickFeed: (Int, String) -> Unit)  {
+    override fun bind(item: FeedViewObject?, viewType:Int, onClickFeed: (Int, String) -> Unit)  {
         binding.plantTagTv.text = binding.root.context.resources.getString(R.string.plant_tag)+item?.plant?.name!!
 
         dateFormat = SimpleDateFormat(binding.root.context.resources.getString(com.charaminstra.pleon.common.R.string.date_view_format))

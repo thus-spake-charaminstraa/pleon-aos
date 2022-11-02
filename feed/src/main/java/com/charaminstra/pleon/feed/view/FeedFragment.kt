@@ -88,7 +88,7 @@ class FeedFragment : Fragment() {
                 bundle.putString(CLASS_NAME, TAG)
                 firebaseAnalytics.logEvent(FEED_WRITE_BTN_CLICK, bundle)
 
-                navController.navigate(R.id.feed_fragment_to_feed_write_fragment)
+                navController.navigate(com.charaminstra.pleon.feed_common.R.id.feed_fragment_to_feed_write_fragment)
             }
         }
         binding.feedRecyclerview.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
@@ -96,7 +96,7 @@ class FeedFragment : Fragment() {
         initScrollListener()
 
         binding.notiListBtn.setOnClickListener{
-            navController.navigate(R.id.feed_fragment_to_noti_fragment)
+            navController.navigate(com.charaminstra.pleon.feed_common.R.id.feed_fragment_to_noti_fragment)
         }
     }
 
@@ -142,11 +142,11 @@ class FeedFragment : Fragment() {
             if(ViewType == FeedViewType.FEED.ordinal){
                 val bundle = Bundle()
                 bundle.putString("id", Id)
-                navController.navigate(R.id.feed_fragment_to_feed_detail_fragment, bundle)
+                navController.navigate(com.charaminstra.pleon.feed_common.R.id.feed_fragment_to_feed_detail_fragment, bundle)
             }else if(ViewType == FeedViewType.DIAGNOSIS.ordinal){
                 val bundle = Bundle()
                 bundle.putString("id", Id)
-                navController.navigate(R.id.feed_fragment_to_feed_doctor_detail_fragment, bundle)
+                navController.navigate(com.charaminstra.pleon.feed_common.R.id.feed_fragment_to_feed_doctor_detail_fragment, bundle)
             }
 
             // logging

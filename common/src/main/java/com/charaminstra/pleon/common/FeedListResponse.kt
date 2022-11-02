@@ -1,5 +1,6 @@
-package com.charaminstra.pleon.foundation.model
+package com.charaminstra.pleon.common
 
+import com.charaminstra.pleon.foundation.model.*
 import java.util.*
 
 data class FeedListResponse(
@@ -9,22 +10,22 @@ data class FeedListResponse(
 )
 
 data class FeedDataObject(
-     val result: ArrayList<ResultObject>,
-     val count: Int,
-     val next_offset: Int,
-     val isLast: Boolean,
+    val result: ArrayList<ResultObject>,
+    val count: Int,
+    val next_offset: Int,
+    val isLast: Boolean,
 )
 
 data class ResultObject(
     val viewType: String,
-    val viewObject: ViewObject?
+    val viewObject: FeedViewObject?
 )
 
-data class ViewObject(
+data class FeedViewObject(
     val id: String,
     val plant_id: String,
     val publish_date: Date,
-    val kind: String,
+    val kind: ActionType,
     val content: String,
     val image_url: String?,
     val plant: PlantDataObject?,
@@ -33,15 +34,4 @@ data class ViewObject(
     val symptoms: List<SymptomObject>?,
     val causes: List<CauseObject>?,
     val created_at: Date,
-)
-
-data class FeedObject(
-    val id: String,
-    val plant_id: String,
-    val publish_date: Date,
-    val kind: String,
-    val content: String,
-    val image_url: String?,
-    val plant: PlantDataObject,
-    val comments: List<CommentObject>?,
 )

@@ -1,6 +1,18 @@
 <resources>
     <string name="date_send_format">yyyy-MM-dd</string>
     <string name="date_view_format">yyyy.MM.dd</string>
-    <string name="plant_tag">\@</string>
+<!--    <string name="plant_tag">\@</string>-->
     <string name="action_tag">#</string>
+
+    <string name="today">today</string>
+    <string name="water">water</string>
+    <string name="air">air</string>
+    <string name="spray">spray</string>
+    <string name="repot">repot</string>
+    <string name="prune">prune</string>
+    <string name="leaf">leaf</string>
+    <string name="flower">flower</string>
+    <string name="nutrition">nutrition</string>
+    <string name="fruit">fruit</string>
+    <string name="etc">etc</string>
 </resources>

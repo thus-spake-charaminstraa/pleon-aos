@@ -1,4 +1,4 @@
-package com.charaminstra.pleon.foundation.api
+package com.charaminstra.pleon.common
 
 import com.charaminstra.pleon.foundation.model.*
 import retrofit2.Response

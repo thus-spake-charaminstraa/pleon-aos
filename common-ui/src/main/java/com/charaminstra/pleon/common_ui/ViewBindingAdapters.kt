@@ -1,6 +1,7 @@
 package com.charaminstra.pleon.common_ui
 
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 
@@ -17,4 +18,16 @@ fun bindCircleImgUrl(view: ImageView, imgUrl: String?) {
         .load(imgUrl)
         .circleCrop()
         .into(view)
+}
+
+@BindingAdapter("plantTag")
+fun bindPlantTag(view: TextView, plantName: String) {
+    view.text = "@"+plantName
+}
+
+@BindingAdapter("actionTag")
+fun bindActionTag(view: TextView, resId: Int?) {
+    resId?.let {
+        view.text = "#"+view.context.getString(it)
+    }
 }

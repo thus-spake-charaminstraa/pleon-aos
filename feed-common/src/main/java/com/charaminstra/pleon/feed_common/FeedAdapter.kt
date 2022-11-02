@@ -1,13 +1,12 @@
 package com.charaminstra.pleon.feed_common
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.charaminstra.pleon.common.databinding.ItemFeedBinding
+import com.charaminstra.pleon.feed_common.databinding.ItemFeedBinding
 import com.charaminstra.pleon.feed_common.databinding.ItemFeedDoctorBinding
 import com.charaminstra.pleon.feed_common.databinding.ItemFeedLoadingBinding
-import com.charaminstra.pleon.foundation.model.ResultObject
+import com.charaminstra.pleon.common.ResultObject
 
 class FeedAdapter(): RecyclerView.Adapter<FeedCommonViewHolder>() {
 

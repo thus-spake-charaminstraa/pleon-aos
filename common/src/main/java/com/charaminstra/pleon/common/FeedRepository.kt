@@ -1,6 +1,5 @@
-package com.charaminstra.pleon.foundation
+package com.charaminstra.pleon.common
 
-import com.charaminstra.pleon.foundation.api.FeedAPIService
 import com.charaminstra.pleon.foundation.api.PleonPreference
 import com.charaminstra.pleon.foundation.model.FeedRequestBody
 import javax.inject.Inject
