@@ -96,12 +96,6 @@ class FeedDetailFragment : Fragment() {
                 feed = it
             }
             binding.feedContent.text = it.content
-            //binding.plantTagTv.text = resources.getString(R.string.plant_tag) + it.plant?.name
-//            for(i in ActionType.values()){
-//                if(i.action == it.kind){
-//                    binding.actionTagTv.text = binding.root.context.resources.getString(R.string.action_tag)+i.name
-//                }
-//            }
             if (it.image_url == null) {
                 binding.plantImage.visibility = View.GONE
             } else {
@@ -110,10 +104,7 @@ class FeedDetailFragment : Fragment() {
                     .load(it.image_url)
                     .into(binding.plantImage)
             }
-            binding.feedDate.text = DateUtils(requireContext()).dateToView(it.publish_date)
-            //user data
-            binding.userName.text = it.user.nickname
-            Glide.with(binding.root).load(it.user.thumbnail).into(binding.userImage)
+            //binding.feedDate.text = DateUtils(requireContext()).dateToView(it.publish_date)
         })
         //댓글 수
         viewModel.commentsCount.observe(viewLifecycleOwner, Observer {

@@ -35,7 +35,7 @@ fun bindActionTag(view: TextView, resId: Int?) {
 }
 
 @BindingAdapter("date")
-fun bindDate(view: TextView, date: Date) {
+fun bindDate(view: TextView, date: Date?) {
     val dateFormat = SimpleDateFormat(view.resources.getString(R.string.date_view_format))
-        view.text = dateFormat.format(date)
+    view.text = dateFormat.format(date)
 }
