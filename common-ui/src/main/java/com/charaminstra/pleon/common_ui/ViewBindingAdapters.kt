@@ -23,7 +23,7 @@ fun bindCircleImgUrl(view: ImageView, imgUrl: String?) {
 }
 
 @BindingAdapter("plantTag")
-fun bindPlantTag(view: TextView, plantName: String) {
+fun bindPlantTag(view: TextView, plantName: String?) {
     view.text = "@"+plantName
 }
 
