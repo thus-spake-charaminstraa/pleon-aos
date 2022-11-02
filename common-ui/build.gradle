@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -49,5 +50,8 @@ dependencies {
 
     //
     api "com.github.certified84:CustomProgressIndicator:1.0.1"
+
+    //glide
+    api 'com.github.bumptech.glide:glide:4.12.0'
 
 }
