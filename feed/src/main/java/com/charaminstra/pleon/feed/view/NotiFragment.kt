@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.charaminstra.pleon.feed.databinding.FragmentNotiBinding
 import com.charaminstra.pleon.feed.noti.NotiAdapter
 import com.charaminstra.pleon.feed.viewmodel.NotiViewModel
@@ -27,6 +28,10 @@ class NotiFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentNotiBinding.inflate(layoutInflater)
+
+        binding.notiBackBtn.setOnClickListener {
+            this.findNavController().popBackStack()
+        }
 
         val adapter = NotiAdapter()
         binding.notiRecyclerview.adapter = adapter

@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/sub_background_color"
-        android:padding="20dp">
+        android:paddingHorizontal="20dp">
 
         <ImageView
             android:id="@+id/noti_back_btn"
