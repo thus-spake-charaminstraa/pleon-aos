@@ -34,7 +34,6 @@ class FeedDetailFragment : Fragment() {
         binding.feedDetailBackBtn.setOnClickListener {
             navController.popBackStack()
         }
-        showKeyboard(binding.commentEt)
         return binding.root
     }
 
@@ -123,9 +122,7 @@ class FeedDetailFragment : Fragment() {
         viewModel.getCommentList()
     }
 
-    private fun showKeyboard(view: View) {
-        val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
-        view.requestFocus()
+    override fun onDestroy() {
+        super.onDestroy()
     }
 }
