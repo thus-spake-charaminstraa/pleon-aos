@@ -31,8 +31,6 @@ class MyFragment : Fragment() {
         super.onCreate(savedInstanceState)
         firebaseAnalytics= FirebaseAnalytics.getInstance(requireContext())
 
-        viewModel.getUserData()
-
         // logging
         val loggingBundle = Bundle()
         loggingBundle.putString(CLASS_NAME, TAG)
@@ -105,7 +103,7 @@ class MyFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        //viewModel.getUserData()
+        viewModel.getUserData()
     }
 }
 

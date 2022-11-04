@@ -35,9 +35,11 @@
             android:id="@+id/noti_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="25dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="60dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toBottomOf="@+id/noti_title"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constrainedHeight="true" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
