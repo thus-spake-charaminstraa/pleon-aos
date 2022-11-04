@@ -6,6 +6,6 @@ data class UserRequestBody (
 )
 
 data class UserPushSettingRequestBody (
-    val comment_push_noti : Boolean?,
-    val guide_push_noti: Boolean?
+    val comment_push_noti : Boolean,
+    val guide_push_noti: Boolean
 )
