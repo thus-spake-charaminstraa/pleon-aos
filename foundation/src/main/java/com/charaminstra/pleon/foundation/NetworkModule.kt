@@ -70,12 +70,6 @@ object NetWorkModule {
 
     @Provides
     @Singleton
-    fun provideFeedApiService(retrofit: Retrofit): FeedAPIService {
-        return retrofit.create(FeedAPIService::class.java)
-    }
-
-    @Provides
-    @Singleton
     fun provideCalendarApiService(retrofit: Retrofit): ScheduleAPIService {
         return retrofit.create(ScheduleAPIService::class.java)
     }

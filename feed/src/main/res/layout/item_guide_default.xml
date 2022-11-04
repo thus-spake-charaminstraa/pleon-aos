@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="240dp"
-    android:background="@drawable/bg_noti"
+    android:background="@drawable/bg_guide"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <ImageView
         android:layout_width="128dp"
@@ -29,42 +29,10 @@
             android:id="@+id/pleon_tv"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="15dp"
             style="@style/FromStyle"
             android:text="@string/from_pleon"
             app:layout_constraintTop_toBottomOf="@+id/noti_tv"
             app:layout_constraintLeft_toLeftOf="@+id/noti_tv"/>
-        <TextView
-            android:id="@+id/noti_later_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:paddingHorizontal="14dp"
-            android:paddingVertical="7dp"
-            android:background="@drawable/noti_later_selector"
-            style="@style/NotiLaterBtn"
-            android:text="@string/noti_later_btn"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@+id/pleon_tv"
-            app:layout_constraintLeft_toLeftOf="@+id/noti_tv"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-        <TextView
-            android:id="@+id/noti_complete_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/NotiCompleteBtn"
-            android:layout_marginLeft="7dp"
-            android:paddingHorizontal="14dp"
-            android:paddingVertical="7dp"
-            android:background="@drawable/noti_complete_selector"
-            android:text="@string/noti_complete_btn"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            app:layout_constraintLeft_toRightOf="@+id/noti_later_btn"
-            app:layout_constraintTop_toTopOf="@+id/noti_later_btn"
-            app:layout_constraintBottom_toBottomOf="@+id/noti_later_btn"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

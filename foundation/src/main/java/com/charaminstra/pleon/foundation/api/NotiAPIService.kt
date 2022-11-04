@@ -6,21 +6,21 @@ import retrofit2.http.*
 
 interface NotiAPIService{
 
+    //guide in feed
     @GET("noti/feed")
-    suspend fun getNoti(
+    suspend fun getGuideList(
         @Header("Authorization") accessToken:String,
-    ): Response<NotiListResponse>
-
-//    @POST("noti/{id}")
-//    suspend fun postNotiAction(
-//        @Header("Authorization") accessToken:String,
-//        @Path("id") id:String,
-//        @Body noti: NotiRequestBody
-//    ): Response<NotiResponse>
+    ): Response<GuideListResponse>
 
     @POST("plant/guide/manage")
     suspend fun postNotiAction(
         @Header("Authorization") accessToken:String,
-        @Body noti: NotiRequestBody
-    ): Response<NotiResponse>
+        @Body noti: GuideRequestBody
+    ): Response<GuideResponse>
+
+    //notification
+    @GET("noti/list")
+    suspend fun getNotiList(
+        @Header("Authorization") accessToken:String,
+    ): Response<NotiListResponse>
 }

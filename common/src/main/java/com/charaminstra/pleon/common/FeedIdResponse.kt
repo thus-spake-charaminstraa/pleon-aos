@@ -1,8 +1,8 @@
-package com.charaminstra.pleon.foundation.model
+package com.charaminstra.pleon.common
 
 data class FeedIdResponse(
     val success: Boolean?,
     val statusCode: Int?,
-    val data: ViewObject?
+    val data: FeedViewObject?
 )
 

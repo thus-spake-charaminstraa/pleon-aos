@@ -1,4 +1,4 @@
-package com.charaminstra.pleon.feed
+package com.charaminstra.pleon.feed.viewmodel
 
 import android.graphics.Bitmap
 import android.util.Log
@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.charaminstra.pleon.foundation.FeedRepository
+import com.charaminstra.pleon.common.FeedRepository
 import com.charaminstra.pleon.foundation.ImageRepository
 import com.charaminstra.pleon.foundation.PlantIdRepository
 import com.charaminstra.pleon.foundation.PlantsRepository
@@ -120,6 +120,7 @@ class FeedWriteViewModel @Inject constructor(
                     plantAction = data.body()?.data?.get(0)
                     _actionList.postValue(data.body()?.data!!)
                 }
+                else -> {}
             }
         }
     }

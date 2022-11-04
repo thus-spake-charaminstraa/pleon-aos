@@ -1,14 +1,14 @@
-package com.charaminstra.pleon.feed
+package com.charaminstra.pleon.feed.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.charaminstra.pleon.foundation.FeedRepository
+import com.charaminstra.pleon.common.FeedRepository
 import com.charaminstra.pleon.foundation.NotiRepository
-import com.charaminstra.pleon.foundation.model.NotiViewTypeData
-import com.charaminstra.pleon.foundation.model.ResultObject
+import com.charaminstra.pleon.foundation.model.GuideViewTypeData
+import com.charaminstra.pleon.common.ResultObject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -29,8 +29,8 @@ class FeedViewModel @Inject constructor(
     private val _feedFilterList = MutableLiveData<ArrayList<ResultObject>>()
     val feedFilterList : LiveData<ArrayList<ResultObject>> = _feedFilterList
 
-    private val _notiList = MutableLiveData<List<NotiViewTypeData>>()
-    val notiList : LiveData<List<NotiViewTypeData>> = _notiList
+    private val _notiList = MutableLiveData<List<GuideViewTypeData>>()
+    val notiList : LiveData<List<GuideViewTypeData>> = _notiList
 
     private val _isLast = MutableLiveData<Boolean>()
     val isLast : LiveData<Boolean> = _isLast
@@ -75,7 +75,7 @@ class FeedViewModel @Inject constructor(
 
     fun getNotiList(){
         viewModelScope.launch {
-            val data = notiRepository.getNotiList()
+            val data = notiRepository.getGuideList()
             when(data.isSuccessful){
                 true -> {
                     _notiList.postValue(data.body()?.data)

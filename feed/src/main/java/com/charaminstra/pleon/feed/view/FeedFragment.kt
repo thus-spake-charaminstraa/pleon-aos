@@ -1,4 +1,4 @@
-package com.charaminstra.pleon.feed
+package com.charaminstra.pleon.feed.view
 
 import android.content.Context
 import android.content.Intent
@@ -18,11 +18,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.charaminstra.pleon.common.*
 import com.charaminstra.pleon.common_ui.ErrorToast
+import com.charaminstra.pleon.feed.FeedPlantAdapter
+import com.charaminstra.pleon.feed.viewmodel.FeedViewModel
+import com.charaminstra.pleon.feed.R
 import com.charaminstra.pleon.feed.databinding.FragmentFeedBinding
-import com.charaminstra.pleon.feed.noti.NOTI_COMPLETE
-import com.charaminstra.pleon.feed.noti.NOTI_GO
-import com.charaminstra.pleon.feed.noti.NOTI_LATER
-import com.charaminstra.pleon.feed.noti.NotiAdapter
+import com.charaminstra.pleon.feed.guide.NOTI_COMPLETE
+import com.charaminstra.pleon.feed.guide.NOTI_GO
+import com.charaminstra.pleon.feed.guide.NOTI_LATER
+import com.charaminstra.pleon.feed.guide.GuideAdapter
 import com.charaminstra.pleon.feed_common.FeedViewType
 import com.google.firebase.analytics.FirebaseAnalytics
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,7 +36,7 @@ class FeedFragment : Fragment() {
     private lateinit var binding : FragmentFeedBinding
 
     private lateinit var feedPlantAdapter: FeedPlantAdapter
-    private lateinit var notiAdapter: NotiAdapter
+    private lateinit var notiAdapter: GuideAdapter
     private lateinit var feedAdapter: com.charaminstra.pleon.feed_common.FeedAdapter
 
     private val plantsViewModel: PlantsViewModel by viewModels()
@@ -85,12 +88,16 @@ class FeedFragment : Fragment() {
                 bundle.putString(CLASS_NAME, TAG)
                 firebaseAnalytics.logEvent(FEED_WRITE_BTN_CLICK, bundle)
 
-                navController.navigate(R.id.feed_fragment_to_feed_write_fragment)
+                navController.navigate(com.charaminstra.pleon.feed_common.R.id.feed_fragment_to_feed_write_fragment)
             }
         }
         binding.feedRecyclerview.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
 
         initScrollListener()
+
+        binding.notiListBtn.setOnClickListener{
+            navController.navigate(com.charaminstra.pleon.feed_common.R.id.feed_fragment_to_noti_fragment)
+        }
     }
 
     override fun onResume() {
@@ -130,23 +137,24 @@ class FeedFragment : Fragment() {
             firebaseAnalytics.logEvent(FEED_FILTER_BTN_CLICK , loggingBundle)
         }
         feedAdapter = com.charaminstra.pleon.feed_common.FeedAdapter()
-        notiAdapter = NotiAdapter()
-        feedAdapter.onClickFeed = { ViewType, Id ->
-            if(ViewType == FeedViewType.FEED.ordinal){
-                val bundle = Bundle()
-                bundle.putString("id", Id)
-                navController.navigate(R.id.feed_fragment_to_feed_detail_fragment, bundle)
-            }else if(ViewType == FeedViewType.DIAGNOSIS.ordinal){
-                val bundle = Bundle()
-                bundle.putString("id", Id)
-                navController.navigate(R.id.feed_fragment_to_feed_doctor_detail_fragment, bundle)
-            }
-
-            // logging
-            val loggingBundle = Bundle()
-            loggingBundle.putString(CLASS_NAME, TAG)
-            firebaseAnalytics.logEvent(FEED_ITEM_CLICK , loggingBundle)
-        }
+        feedAdapter.fromView = "FEED"
+        notiAdapter = GuideAdapter()
+//        feedAdapter.onClickFeed = { ViewType, Id ->
+//            if(ViewType == FeedViewType.FEED.ordinal){
+//                val bundle = Bundle()
+//                bundle.putString("id", Id)
+//                navController.navigate(com.charaminstra.pleon.feed_common.R.id.feed_fragment_to_feed_detail_fragment, bundle)
+//            }else if(ViewType == FeedViewType.DIAGNOSIS.ordinal){
+//                val bundle = Bundle()
+//                bundle.putString("id", Id)
+//                navController.navigate(com.charaminstra.pleon.feed_common.R.id.feed_fragment_to_feed_doctor_detail_fragment, bundle)
+//            }
+//
+//            // logging
+//            val loggingBundle = Bundle()
+//            loggingBundle.putString(CLASS_NAME, TAG)
+//            firebaseAnalytics.logEvent(FEED_ITEM_CLICK , loggingBundle)
+//        }
         notiAdapter.onClickNoti = { notiId, button ->
             when(button){
                 NOTI_LATER -> {

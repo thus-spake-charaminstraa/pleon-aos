@@ -1,28 +1,27 @@
 package com.charaminstra.pleon.feed_common
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.charaminstra.pleon.foundation.CommentRepository
-import com.charaminstra.pleon.foundation.FeedRepository
+import com.charaminstra.pleon.common.FeedRepository
 import com.charaminstra.pleon.foundation.model.CommentObject
-import com.charaminstra.pleon.foundation.model.FeedObject
-import com.charaminstra.pleon.foundation.model.ViewObject
+import com.charaminstra.pleon.common.FeedViewObject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class FeedDetailViewModel @Inject constructor(
+    savedStateHandle: SavedStateHandle,
     private val feedRepository: FeedRepository,
     private val commentRepository: CommentRepository
 ): ViewModel() {
     private val TAG = javaClass.name
 
-    private val _feedData = MutableLiveData<ViewObject>()
-    val feedData : LiveData<ViewObject> = _feedData
+    var feedId: String = savedStateHandle.get<String>("feedId")!!
+
+    private val _feedData = MutableLiveData<FeedViewObject>()
+    val feedData : LiveData<FeedViewObject> = _feedData
 
     private val _feedComments = MutableLiveData<List<CommentObject>>()
     val feedComments : LiveData<List<CommentObject>> = _feedComments
@@ -36,16 +35,16 @@ class FeedDetailViewModel @Inject constructor(
     private val _commentsCount = MutableLiveData<Int>()
     val commentsCount : LiveData<Int> = _commentsCount
 
-    var feedId: String? = null
-
+    init {
+        loadFeed()
+    }
 
     fun loadFeed(){
         viewModelScope.launch {
-            val data = feedRepository.getFeedId(feedId!!)
+            val data = feedRepository.getFeedId(feedId)
             when (data.isSuccessful) {
                 true -> {
                     _feedData.postValue(data.body()?.data!!)
-                    //_feedComments.postValue(data.body()?.data?.comments!!)
                     Log.i(TAG,"SUCCESS -> "+ data.body().toString())
                 }
                 else -> {
