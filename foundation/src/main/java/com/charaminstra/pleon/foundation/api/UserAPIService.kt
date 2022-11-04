@@ -18,6 +18,12 @@ interface UserAPIService{
         @Body userRequestBody: UserRequestBody
     ): Response<AuthResponse>
 
+    @PATCH("user")
+    suspend fun patchUserPushSetting(
+        @Header("Authorization") accessToken:String,
+        @Body userRequestBody: UserPushSettingRequestBody
+    ): Response<AuthResponse>
+
     @POST("user/token")
     suspend fun postDeviceToken(
         @Header("Authorization") accessToken:String,
