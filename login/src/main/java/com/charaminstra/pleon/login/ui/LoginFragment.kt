@@ -16,7 +16,7 @@ class LoginFragment : Fragment() {
     ): View? {
         val binding = FragmentLoginBinding.inflate(inflater, container, false)
         val navController = this.findNavController()
-        binding.loginBtn.setOnClickListener {
+        binding.phoneLoginBtn.setOnClickListener {
             navController.navigate(R.id.login_fragment_to_phone_fragment)
         }
         return binding.root
