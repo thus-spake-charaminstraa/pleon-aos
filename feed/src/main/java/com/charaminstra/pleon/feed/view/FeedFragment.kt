@@ -26,7 +26,6 @@ import com.charaminstra.pleon.feed.guide.NOTI_COMPLETE
 import com.charaminstra.pleon.feed.guide.NOTI_GO
 import com.charaminstra.pleon.feed.guide.NOTI_LATER
 import com.charaminstra.pleon.feed.guide.GuideAdapter
-import com.charaminstra.pleon.feed_common.FeedViewType
 import com.google.firebase.analytics.FirebaseAnalytics
 import dagger.hilt.android.AndroidEntryPoint
 

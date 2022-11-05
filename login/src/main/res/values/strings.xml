@@ -19,5 +19,9 @@
 
 
     <string name="welcome_fragment_btn">시작하기</string>
+
+    <string name="login_fragment_kakao">카카오 계정으로 로그인</string>
+    <string name="login_fragment_phone">휴대폰 번호로 로그인</string>
+
     <string name="welcome_fragment_bubble_txt">안녕하세요!\n당신의 반려식물 케어를 도와줄 PLeon입니다 :)</string>
 </resources>
