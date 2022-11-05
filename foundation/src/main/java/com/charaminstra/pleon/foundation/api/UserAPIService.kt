@@ -7,10 +7,18 @@ import retrofit2.http.*
 interface UserAPIService{
     /* create user */
     @POST("user")
-    suspend fun postName(
+    suspend fun postPhoneName(
         @Header("Authorization") verifyToken:String,
         @Body userRequestBody: UserRequestBody
     ): Response<UserCreateResponse>
+
+    @POST("user/kakao")
+    suspend fun postKakaoName(
+        @Header("Authorization") verifyToken:String,
+        @Body userRequestBody: UserRequestBody
+    ): Response<UserCreateResponse>
+
+
 
     @PATCH("user")
     suspend fun patchUserData(

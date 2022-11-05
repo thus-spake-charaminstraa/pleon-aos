@@ -6,31 +6,45 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.charaminstra.pleon.login.AuthViewModel
 import com.charaminstra.pleon.login.R
 import com.charaminstra.pleon.login.databinding.FragmentLoginBinding
+import com.charaminstra.pleon.login.startHomeActivity
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.user.UserApiClient
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
     private val TAG = javaClass.name
+    private val viewModel: AuthViewModel by viewModels()
+    private lateinit var navController: NavController
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentLoginBinding.inflate(inflater, container, false)
-        val navController = this.findNavController()
+        navController = this.findNavController()
+        initObservers()
+
         binding.phoneLoginBtn.setOnClickListener {
             navController.navigate(R.id.login_fragment_to_phone_fragment)
         }
 
         val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
+            Log.e(TAG, "카카오계정 token"+ token.toString())
+            Log.e(TAG, "카카오계정 error"+error.toString())
             if (error != null) {
                 Log.e(TAG, "카카오계정으로 로그인 실패", error)
             } else if (token != null) {
                 Log.i(TAG, "카카오계정으로 로그인 성공 ${token.accessToken}")
+                viewModel.postKakaoToken(token.accessToken)
             }
         }
 
@@ -60,5 +74,29 @@ class LoginFragment : Fragment() {
         return binding.root
     }
 
+    private fun initObservers(){
+        viewModel.success.observe(viewLifecycleOwner, Observer {
+            if(!it){
+            }
+        })
+        viewModel.userExist.observe(viewLifecycleOwner, Observer {
+            if(it){
+                /* 기존 회원 */
+                viewModel.postLogin()
+            }else{
+                /* 신규 회원 */
+                val direction = LoginFragmentDirections.loginFragmentToNicknameFragment(
+                    "kakao"
+                )
+                navController.navigate(direction)
+            }
+        })
+        viewModel.setTokenSuccess.observe(viewLifecycleOwner, Observer {
+            if(it){
+                startHomeActivity(requireContext())
+                activity?.finish()
+            }
+        })
+    }
 
 }

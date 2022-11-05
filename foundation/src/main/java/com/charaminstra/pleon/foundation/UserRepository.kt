@@ -10,9 +10,15 @@ import retrofit2.Response
 import javax.inject.Inject
 
 class UserRepository @Inject constructor(private val service: UserAPIService, private val prefs: PleonPreference){
-    /* user create */
-    suspend fun postNickname(name: String): Response<UserCreateResponse>{
-        return service.postName(prefs.getVerifyToken(), UserRequestBody(name,null)
+    /* phone user create */
+    suspend fun postPhoneNickname(name: String): Response<UserCreateResponse>{
+        return service.postPhoneName(prefs.getVerifyToken(), UserRequestBody(name,null)
+        )
+    }
+
+    /* kakao user create */
+    suspend fun postKakaoNickname(name: String): Response<UserCreateResponse>{
+        return service.postKakaoName(prefs.getVerifyToken(), UserRequestBody(name,null)
         )
     }
 
