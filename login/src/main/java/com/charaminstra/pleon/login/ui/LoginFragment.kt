@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -15,6 +16,7 @@ import com.charaminstra.pleon.common.ACCOUNT_REGISTER_CLICK
 import com.charaminstra.pleon.common.CLASS_NAME
 import com.charaminstra.pleon.common.KAKAO_LOGIN_BTN_CLICK
 import com.charaminstra.pleon.common.PHONE_LOGIN_BTN_CLICK
+import com.charaminstra.pleon.common_ui.ErrorToast
 import com.charaminstra.pleon.login.AuthViewModel
 import com.charaminstra.pleon.login.R
 import com.charaminstra.pleon.login.databinding.FragmentLoginBinding
@@ -105,6 +107,9 @@ class LoginFragment : Fragment() {
     private fun initObservers(){
         viewModel.success.observe(viewLifecycleOwner, Observer {
             if(!it){
+                indicator.stopAnimation()
+                indicator.visibility = View.GONE
+                ErrorToast(requireContext()).showMsgUp(resources.getString(R.string.login_fail_msg),binding.kakaoLoginBtn.y)
             }
         })
         viewModel.userExist.observe(viewLifecycleOwner, Observer {
