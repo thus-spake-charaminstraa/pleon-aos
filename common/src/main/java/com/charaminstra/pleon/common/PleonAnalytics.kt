@@ -32,8 +32,12 @@ const val PLANT_ITEM_CLICK = "plant_item_click"
 //plant detail fragment
 const val CALENDAR_ITEM_CLICK = "calendar_item_click"
 
+//login fragment
+const val KAKAO_LOGIN_BTN_CLICK = "kakao_login_btn_click"
 //nick name fragment
 const val ACCOUNT_REGISTER_CLICK = "new_user_register_btn_click"
+const val ACCOUNT_PHONE_REGISTER_CLICK = "new_user_(phone)_register_btn_click"
+const val ACCOUNT_KAKAO_REGISTER_CLICK = "new_user_(kakao)_register_btn_click"
 
 //plant register
 const val PLANT_THUMBNAIL_VIEW = "plant_thumbnail_view"

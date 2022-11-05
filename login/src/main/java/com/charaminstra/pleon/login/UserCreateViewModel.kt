@@ -15,41 +15,43 @@ class UserCreateViewModel @Inject constructor(
     private val repository: UserRepository,
     private val prefs: PleonPreference) : ViewModel() {
 
-    var loginMethod: String = savedStateHandle.get<String>("loginMethod")!!
-
     private val TAG = javaClass.simpleName
     private var _userCreateSuccess = MutableLiveData<Boolean?>()
     val userCreateSuccess : LiveData<Boolean?> = _userCreateSuccess
 
-    fun userCreate(name: String){
+    fun userPhoneCreate(name: String){
         viewModelScope.launch {
-            if(loginMethod == "phone"){
-                val data = repository.postPhoneNickname(name)
-                Log.i(TAG,"data -> $data")
-                when (data.body()?.success) {
-                    true -> {
-                        prefs.setAccessToken(data.body()?.data?.token?.access_token)
-                        prefs.setRefreshToken(data.body()?.data?.token?.refresh_token)
-                        _userCreateSuccess.postValue(data.body()?.success)
-                        postDeviceToken()
-                    }
-                    else -> {}
+            val data = repository.postPhoneNickname(name)
+            Log.i(TAG,"data -> $data")
+            when (data.body()?.success) {
+                true -> {
+                    prefs.setAccessToken(data.body()?.data?.token?.access_token)
+                    prefs.setRefreshToken(data.body()?.data?.token?.refresh_token)
+                    _userCreateSuccess.postValue(data.body()?.success)
+                    postDeviceToken()
                 }
-            }else if(loginMethod == "kakao"){
-                val data = repository.postKakaoNickname(name)
-                Log.i(TAG,"data -> $data")
-                when (data.body()?.success) {
-                    true -> {
-                        prefs.setAccessToken(data.body()?.data?.token?.access_token)
-                        prefs.setRefreshToken(data.body()?.data?.token?.refresh_token)
-                        _userCreateSuccess.postValue(data.body()?.success)
-                        postDeviceToken()
-                    }
-                    else -> {}
-                }
+                else -> {}
             }
         }
     }
+
+    fun userKakaoCreate(name: String){
+        viewModelScope.launch {
+            val data = repository.postKakaoNickname(name)
+            Log.i(TAG,"data -> $data")
+            when (data.body()?.success) {
+                true -> {
+                    prefs.setAccessToken(data.body()?.data?.token?.access_token)
+                    prefs.setRefreshToken(data.body()?.data?.token?.refresh_token)
+                    _userCreateSuccess.postValue(data.body()?.success)
+                    postDeviceToken()
+                }
+                else -> {}
+            }
+        }
+    }
+
+
 
     fun postDeviceToken(){
         viewModelScope.launch {

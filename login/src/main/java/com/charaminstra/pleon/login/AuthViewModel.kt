@@ -84,7 +84,7 @@ class AuthViewModel @Inject constructor(
     fun postKakaoToken(token:String){
         viewModelScope.launch {
             val data = repository.postKakaoToken(token)
-            Log.i("kakaotoken","data -> $data"+"\n"+data)
+            Log.i("kakaotoken","data -> $data"+"\n")
             when(data.isSuccessful){
                 true -> {
                     _success.postValue(data.body()?.success)

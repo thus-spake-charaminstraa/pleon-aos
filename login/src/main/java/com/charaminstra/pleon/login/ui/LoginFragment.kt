@@ -10,10 +10,15 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.certified.customprogressindicatorlibrary.CustomProgressIndicator
+import com.charaminstra.pleon.common.ACCOUNT_REGISTER_CLICK
+import com.charaminstra.pleon.common.CLASS_NAME
+import com.charaminstra.pleon.common.KAKAO_LOGIN_BTN_CLICK
 import com.charaminstra.pleon.login.AuthViewModel
 import com.charaminstra.pleon.login.R
 import com.charaminstra.pleon.login.databinding.FragmentLoginBinding
 import com.charaminstra.pleon.login.startHomeActivity
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
@@ -25,13 +30,18 @@ class LoginFragment : Fragment() {
     private val TAG = javaClass.name
     private val viewModel: AuthViewModel by viewModels()
     private lateinit var navController: NavController
+    private lateinit var binding : FragmentLoginBinding
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
+    lateinit var indicator: CustomProgressIndicator
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentLoginBinding.inflate(inflater, container, false)
+        binding = FragmentLoginBinding.inflate(inflater, container, false)
+        firebaseAnalytics= FirebaseAnalytics.getInstance(requireContext())
         navController = this.findNavController()
         initObservers()
+        setIndicator()
 
         binding.phoneLoginBtn.setOnClickListener {
             navController.navigate(R.id.login_fragment_to_phone_fragment)
@@ -45,10 +55,19 @@ class LoginFragment : Fragment() {
             } else if (token != null) {
                 Log.i(TAG, "카카오계정으로 로그인 성공 ${token.accessToken}")
                 viewModel.postKakaoToken(token.accessToken)
+                indicator.apply {
+                    visibility = View.VISIBLE
+                    startAnimation()
+                }
             }
         }
 
         binding.kakaoLoginBtn.setOnClickListener {
+            // logging
+            val loggingBundle = Bundle()
+            loggingBundle.putString(CLASS_NAME, TAG)
+            firebaseAnalytics.logEvent(KAKAO_LOGIN_BTN_CLICK ,loggingBundle)
+
             // 카카오톡이 설치되어 있으면 카카오톡으로 로그인, 아니면 카카오계정으로 로그인
             if (UserApiClient.instance.isKakaoTalkLoginAvailable(context!!)) {
                 UserApiClient.instance.loginWithKakaoTalk(context!!) { token, error ->
@@ -65,6 +84,11 @@ class LoginFragment : Fragment() {
                         UserApiClient.instance.loginWithKakaoAccount(context!!, callback = callback)
                     } else if (token != null) {
                         Log.i(TAG, "카카오톡으로 로그인 성공 ${token.accessToken}")
+                        viewModel.postKakaoToken(token.accessToken)
+                        indicator.apply {
+                            visibility = View.VISIBLE
+                            startAnimation()
+                        }
                     }
                 }
             } else {
@@ -97,6 +121,20 @@ class LoginFragment : Fragment() {
                 activity?.finish()
             }
         })
+    }
+
+    fun setIndicator(){
+        indicator = binding.indicator
+        indicator.setProgressIndicatorColor("#8d8d97")
+        indicator.setTrackColor("#35c97a")
+        indicator.setImageResource(com.charaminstra.pleon.common_ui.R.drawable.img_logo)
+        indicator.setText("loading ... ")
+        indicator.setTextSize(15.0F)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        indicator.stopAnimation()
     }
 
 }
