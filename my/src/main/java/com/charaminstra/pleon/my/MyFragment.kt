@@ -11,9 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.charaminstra.pleon.common.CLASS_NAME
-import com.charaminstra.pleon.common.LOGOUT_BTN_CLICK
-import com.charaminstra.pleon.common.MY_VIEW
+import com.charaminstra.pleon.common.*
 import com.charaminstra.pleon.my.databinding.FragmentMyBinding
 import com.google.firebase.analytics.FirebaseAnalytics
 import dagger.hilt.android.AndroidEntryPoint
@@ -57,10 +55,20 @@ class MyFragment : Fragment() {
         binding.commentSwitchBtn.setOnClickListener {
             viewModel.setCommentSetting(binding.commentSwitchBtn.isChecked)
             viewModel.postPushSetting()
+
+            // logging
+            val loggingBundle = Bundle()
+            loggingBundle.putString(CLASS_NAME, TAG)
+            firebaseAnalytics.logEvent(COMMENT_SWITCH_BTN_CLICK , loggingBundle)
         }
         binding.guideSwitchBtn.setOnClickListener {
             viewModel.setGuideSetting(binding.guideSwitchBtn.isChecked)
             viewModel.postPushSetting()
+
+            // logging
+            val loggingBundle = Bundle()
+            loggingBundle.putString(CLASS_NAME, TAG)
+            firebaseAnalytics.logEvent(GUIDE_SWITCH_BTN_CLICK , loggingBundle)
         }
 
         binding.editBtn.setOnClickListener {

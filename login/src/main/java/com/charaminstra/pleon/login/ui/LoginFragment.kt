@@ -14,6 +14,7 @@ import com.certified.customprogressindicatorlibrary.CustomProgressIndicator
 import com.charaminstra.pleon.common.ACCOUNT_REGISTER_CLICK
 import com.charaminstra.pleon.common.CLASS_NAME
 import com.charaminstra.pleon.common.KAKAO_LOGIN_BTN_CLICK
+import com.charaminstra.pleon.common.PHONE_LOGIN_BTN_CLICK
 import com.charaminstra.pleon.login.AuthViewModel
 import com.charaminstra.pleon.login.R
 import com.charaminstra.pleon.login.databinding.FragmentLoginBinding
@@ -45,6 +46,10 @@ class LoginFragment : Fragment() {
 
         binding.phoneLoginBtn.setOnClickListener {
             navController.navigate(R.id.login_fragment_to_phone_fragment)
+            // logging
+            val loggingBundle = Bundle()
+            loggingBundle.putString(CLASS_NAME, TAG)
+            firebaseAnalytics.logEvent(PHONE_LOGIN_BTN_CLICK ,loggingBundle)
         }
 
         val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
@@ -63,11 +68,6 @@ class LoginFragment : Fragment() {
         }
 
         binding.kakaoLoginBtn.setOnClickListener {
-            // logging
-            val loggingBundle = Bundle()
-            loggingBundle.putString(CLASS_NAME, TAG)
-            firebaseAnalytics.logEvent(KAKAO_LOGIN_BTN_CLICK ,loggingBundle)
-
             // 카카오톡이 설치되어 있으면 카카오톡으로 로그인, 아니면 카카오계정으로 로그인
             if (UserApiClient.instance.isKakaoTalkLoginAvailable(context!!)) {
                 UserApiClient.instance.loginWithKakaoTalk(context!!) { token, error ->
@@ -94,6 +94,10 @@ class LoginFragment : Fragment() {
             } else {
                 UserApiClient.instance.loginWithKakaoAccount(context!!, callback = callback)
             }
+            // logging
+            val loggingBundle = Bundle()
+            loggingBundle.putString(CLASS_NAME, TAG)
+            firebaseAnalytics.logEvent(KAKAO_LOGIN_BTN_CLICK ,loggingBundle)
         }
         return binding.root
     }

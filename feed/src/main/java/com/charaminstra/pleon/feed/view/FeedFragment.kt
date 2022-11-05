@@ -96,6 +96,11 @@ class FeedFragment : Fragment() {
 
         binding.notiListBtn.setOnClickListener{
             navController.navigate(com.charaminstra.pleon.feed_common.R.id.feed_fragment_to_noti_fragment)
+
+            // logging
+            val bundle = Bundle()
+            bundle.putString(CLASS_NAME, TAG)
+            firebaseAnalytics.logEvent(NOTI_LIST_BTN_CLICK, bundle)
         }
     }
 
