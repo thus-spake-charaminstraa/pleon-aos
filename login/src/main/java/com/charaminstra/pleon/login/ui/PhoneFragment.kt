@@ -87,7 +87,6 @@ class PhoneFragment : Fragment() {
             }
         })
         viewModel.userExist.observe(this, Observer {
-            Log.i(TAG,"user exist : $it")
             if(it){
                 /* 기존 회원 */
                 viewModel.postLogin()

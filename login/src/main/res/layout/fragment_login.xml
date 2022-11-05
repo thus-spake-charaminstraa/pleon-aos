@@ -51,11 +51,5 @@
             android:background="@drawable/button_phone_login_selector"
             style="@style/PhoneButtonText"
             android:text="@string/login_fragment_phone" />
-        <com.certified.customprogressindicatorlibrary.CustomProgressIndicator
-            android:id="@+id/indicator"
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:elevation="4dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
