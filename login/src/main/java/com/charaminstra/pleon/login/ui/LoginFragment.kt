@@ -19,6 +19,9 @@ class LoginFragment : Fragment() {
         binding.phoneLoginBtn.setOnClickListener {
             navController.navigate(R.id.login_fragment_to_phone_fragment)
         }
+        binding.kakaoLoginBtn.setOnClickListener {
+
+        }
         return binding.root
     }
 }
