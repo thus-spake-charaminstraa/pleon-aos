@@ -18,8 +18,6 @@ interface UserAPIService{
         @Body userRequestBody: UserRequestBody
     ): Response<UserCreateResponse>
 
-
-
     @PATCH("user")
     suspend fun patchUserData(
         @Header("Authorization") accessToken:String,
@@ -36,6 +34,12 @@ interface UserAPIService{
     suspend fun postDeviceToken(
         @Header("Authorization") accessToken:String,
         @Body deviceTokenRequestBody:DeviceTokenRequestBody
+    ): Response<AuthResponse>
+
+    @DELETE("user/{id}/token/{token}")
+    suspend fun deleteDeviceToken(
+        @Header("Authorization") accessToken:String,
+        @Path("token") token: String,
     ): Response<AuthResponse>
 
 }

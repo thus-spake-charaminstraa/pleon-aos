@@ -67,6 +67,7 @@ class MyFragment : Fragment() {
             navController.navigate(R.id.my_fragment_to_my_edit_fragment)
         }
         binding.logoutBtn.setOnClickListener{
+            viewModel.deleteDeviceTokenServer()
             viewModel.deletePreference()
             val intent = Intent(
                 context,

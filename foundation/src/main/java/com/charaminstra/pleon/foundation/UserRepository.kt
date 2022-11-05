@@ -38,4 +38,9 @@ class UserRepository @Inject constructor(private val service: UserAPIService, pr
     suspend fun postDeviceToken() = service.postDeviceToken(prefs.getAccessToken(),
         DeviceTokenRequestBody(prefs.getDeviceToken())
     )
+
+    suspend fun deleteDeviceToken() = service.deleteDeviceToken(
+        prefs.getAccessToken(),
+        prefs.getDeviceToken()
+    )
 }
