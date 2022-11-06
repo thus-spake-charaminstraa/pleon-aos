@@ -16,6 +16,7 @@ import com.charaminstra.pleon.common.*
 import com.charaminstra.pleon.login.R
 import com.charaminstra.pleon.login.UserCreateViewModel
 import com.charaminstra.pleon.login.databinding.FragmentNicknameBinding
+import com.charaminstra.pleon.login.startHomeActivity
 import com.google.firebase.analytics.FirebaseAnalytics
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -106,7 +107,8 @@ class NicknameFragment : Fragment() {
 
         when (requestCode) {
             FROM_LOGIN_TO_PLANT_REGISTER -> {
-                navController.navigate(R.id.nickname_fragment_to_welcome_fragment)
+                //navController.navigate(R.id.nickname_fragment_to_welcome_fragment)
+                startHomeActivity(requireContext())
             }
         }
     }
