@@ -318,5 +318,10 @@ class FeedWriteFragment : Fragment() {
         indicator.setTextSize(15.0F)
     }
 
+    override fun onPause() {
+        super.onPause()
+        indicator.stopAnimation()
+    }
+
 }
 
