@@ -107,8 +107,7 @@ class NicknameFragment : Fragment() {
 
         when (requestCode) {
             FROM_LOGIN_TO_PLANT_REGISTER -> {
-                //navController.navigate(R.id.nickname_fragment_to_welcome_fragment)
-                startHomeActivity(requireContext())
+                navController.navigate(R.id.nickname_fragment_to_welcome_fragment)
             }
         }
     }

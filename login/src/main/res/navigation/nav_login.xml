@@ -31,16 +31,13 @@
         <argument
             android:name="loginMethod"
             app:argType="string" />
-<!--        <action-->
-<!--            android:id="@+id/nickname_fragment_to_welcome_fragment"-->
-<!--            app:destination="@+id/welcome_fragment"/>-->
+        <action
+            android:id="@+id/nickname_fragment_to_welcome_fragment"
+            app:destination="@+id/welcome_fragment"/>
     </fragment>
-
-<!--    <fragment-->
-<!--        android:id="@+id/welcome_fragment"-->
-<!--        android:name="com.charaminstra.pleon.login.ui.WelcomeFragment"-->
-<!--        tools:layout="@layout/fragment_welcome">-->
-<!--    </fragment>-->
-
-
+    <fragment
+        android:id="@+id/welcome_fragment"
+        android:name="com.charaminstra.pleon.login.ui.WelcomeFragment"
+        tools:layout="@layout/fragment_welcome">
+    </fragment>
 </navigation>
