@@ -11,16 +11,14 @@ class OnboardingPagerAdapter() : RecyclerView.Adapter<OnboardingPagerAdapter.Pag
         val image = itemView.findViewById<ImageView>(R.id.image)
     }
 
-    val OnboardingImage = arrayOf(R.drawable.onboarding1,R.drawable.onboarding2,R.drawable.onboarding3,R.drawable.onboarding4,R.drawable.onboarding5)
+    private val OnboardingImage = arrayOf(R.drawable.onboarding1,R.drawable.onboarding2,R.drawable.onboarding3,R.drawable.onboarding4,R.drawable.onboarding5)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PagerViewHolder = PagerViewHolder((parent))
-
 
     override fun onBindViewHolder(holder: PagerViewHolder, position: Int) {
        holder.image.setImageResource(OnboardingImage[position])
     }
 
     override fun getItemCount(): Int =  OnboardingImage.size
-
 
 }

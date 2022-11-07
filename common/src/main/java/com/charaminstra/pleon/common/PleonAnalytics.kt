@@ -39,6 +39,7 @@ const val CALENDAR_ITEM_CLICK = "calendar_item_click"
 //login fragment
 const val KAKAO_LOGIN_BTN_CLICK = "kakao_login_btn_click"
 const val PHONE_LOGIN_BTN_CLICK = "phone_login_btn_click"
+const val LOIGN_ONBOARDING_SLIDE = "login_onboarding_sliding"
 
 //nick name fragment
 const val ACCOUNT_REGISTER_CLICK = "new_user_register_btn_click"

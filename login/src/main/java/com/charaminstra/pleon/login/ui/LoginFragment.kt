@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.charaminstra.pleon.common.CLASS_NAME
 import com.charaminstra.pleon.common.KAKAO_LOGIN_BTN_CLICK
 import com.charaminstra.pleon.common.PHONE_LOGIN_BTN_CLICK
@@ -26,6 +27,7 @@ import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.user.UserApiClient
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
@@ -47,6 +49,14 @@ class LoginFragment : Fragment() {
 
         val adapter = OnboardingPagerAdapter()
         binding.loginViewpager.adapter = adapter
+        binding.loginViewpager.registerOnPageChangeCallback(object : OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                // logging
+                val loggingBundle = Bundle()
+                loggingBundle.putString(CLASS_NAME, TAG)
+                firebaseAnalytics.logEvent(PHONE_LOGIN_BTN_CLICK ,loggingBundle)
+            }
+        })
         binding.loginIndicator.setViewPager(binding.loginViewpager)
 
         binding.phoneLoginBtn.setOnClickListener {
@@ -56,6 +66,7 @@ class LoginFragment : Fragment() {
             loggingBundle.putString(CLASS_NAME, TAG)
             firebaseAnalytics.logEvent(PHONE_LOGIN_BTN_CLICK ,loggingBundle)
         }
+
 
         val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
             Log.e(TAG, "카카오계정 token"+ token.toString())
