@@ -59,4 +59,7 @@ dependencies {
 
     //kakao login
     implementation "com.kakao.sdk:v2-user:2.11.2" // 카카오 로그인
+
+    //circle indicator
+    implementation 'me.relex:circleindicator:2.1.6'
 }

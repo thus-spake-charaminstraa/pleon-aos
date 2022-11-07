@@ -1,11 +1,6 @@
 package com.charaminstra.pleon.login.ui
 
-import android.graphics.Typeface
 import android.os.Bundle
-import android.text.Spannable
-import android.text.SpannableString
-import android.text.style.ForegroundColorSpan
-import android.text.style.StyleSpan
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +16,7 @@ import com.charaminstra.pleon.common.PHONE_LOGIN_BTN_CLICK
 import com.charaminstra.pleon.common_ui.ErrorToast
 import com.charaminstra.pleon.common_ui.InfoToast
 import com.charaminstra.pleon.login.AuthViewModel
+import com.charaminstra.pleon.login.OnboardingPagerAdapter
 import com.charaminstra.pleon.login.R
 import com.charaminstra.pleon.login.databinding.FragmentLoginBinding
 import com.charaminstra.pleon.login.startHomeActivity
@@ -48,20 +44,10 @@ class LoginFragment : Fragment() {
         navController = this.findNavController()
         initObservers()
 
-        //spannable
-        val foregroundSpan = ForegroundColorSpan(resources.getColor(com.charaminstra.pleon.common_ui.R.color.main_green_color))
-        val string = SpannableString(binding.welcomeTv.text)
-        string.setSpan(
-            foregroundSpan,
-            24,29, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        val styleSpan = StyleSpan(Typeface.BOLD)
-        string.setSpan(
-            styleSpan,
-            24,29, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        binding.welcomeTv.text = string
-//        binding.startBtn.setOnClickListener {
-//            startHomeActivity(requireContext())
-//        }
+
+        val adapter = OnboardingPagerAdapter()
+        binding.loginViewpager.adapter = adapter
+        binding.loginIndicator.setViewPager(binding.loginViewpager)
 
         binding.phoneLoginBtn.setOnClickListener {
             navController.navigate(R.id.login_fragment_to_phone_fragment)
