@@ -3,6 +3,8 @@ package com.charaminstra.pleon.common
 import com.google.gson.annotations.SerializedName
 
 enum class ActionType(val resId : Int?){
+    @SerializedName("event")
+    EVENT(R.string.event),
     @SerializedName("today")
     TODAY(R.string.today),
     @SerializedName("water")

@@ -46,7 +46,6 @@ class LoginFragment : Fragment() {
         navController = this.findNavController()
         initObservers()
 
-
         val adapter = OnboardingPagerAdapter()
         binding.loginViewpager.adapter = adapter
         binding.loginViewpager.registerOnPageChangeCallback(object : OnPageChangeCallback() {

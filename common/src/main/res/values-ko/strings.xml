@@ -11,4 +11,5 @@
     <string name="nutrition">영양제</string>
     <string name="fruit">열매</string>
     <string name="etc">기타</string>
+    <string name="event">이벤트</string>
 </resources>
