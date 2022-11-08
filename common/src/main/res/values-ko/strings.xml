@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="today">오늘의모습</string>
+    <string name="water">물</string>
+    <string name="air">통풍</string>
+    <string name="spray">분무</string>
+    <string name="repot">분갈이</string>
+    <string name="prune">가지치기</string>
+    <string name="leaf">잎</string>
+    <string name="flower">꽃</string>
+    <string name="nutrition">영양제</string>
+    <string name="fruit">열매</string>
+    <string name="etc">기타</string>
+</resources>

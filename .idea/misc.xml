@@ -192,7 +192,9 @@
         <entry key="feed/src/main/res/drawable/bg_indicator_unselect.xml" value="0.1465" />
         <entry key="feed/src/main/res/drawable/bg_noti_complete.xml" value="0.1465" />
         <entry key="feed/src/main/res/drawable/bg_noti_complete_select.xml" value="0.117" />
+        <entry key="feed/src/main/res/drawable/bg_noti_item.xml" value="0.1485" />
         <entry key="feed/src/main/res/drawable/bg_noti_later.xml" value="0.1465" />
+        <entry key="feed/src/main/res/drawable/bg_noti_preview.xml" value="0.1485" />
         <entry key="feed/src/main/res/drawable/bottom_sheet_bg.xml" value="0.1" />
         <entry key="feed/src/main/res/drawable/feed_write_btn_selector.xml" value="0.21" />
         <entry key="feed/src/main/res/drawable/ic_action_air.xml" value="0.1" />
@@ -221,6 +223,9 @@
         <entry key="feed/src/main/res/layout/item_action.xml" value="0.1" />
         <entry key="feed/src/main/res/layout/item_default_noti.xml" value="0.17028985507246377" />
         <entry key="feed/src/main/res/layout/item_noti.xml" value="0.1" />
+        <entry key="feed/src/main/res/layout/item_noti_date.xml" value="0.375" />
+        <entry key="feed/src/main/res/layout/item_noti_image.xml" value="0.13576494427558258" />
+        <entry key="feed/src/main/res/layout/item_noti_text.xml" value="0.13576494427558258" />
         <entry key="feed/src/main/res/layout/item_one_btn_noti.xml" value="0.375" />
         <entry key="feed/src/main/res/layout/item_plant.xml" value="0.5421052631578948" />
         <entry key="feed/src/main/res/layout/item_plant_feed.xml" value="0.7513399705819205" />

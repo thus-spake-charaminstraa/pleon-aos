@@ -50,9 +50,6 @@ class FeedDoctorDetailFragment : Fragment() {
         binding.feedCauseRecyclerview.adapter = causeAdapter
         binding.feedSolutionRecyclerview.adapter = solutionAdapter
         binding.feedSymptomRecyclerview.adapter = symptomAdapter
-        arguments?.getString("id")?.let {
-            viewModel.getDiagnosis(it)
-        }
 
     }
     private fun initList(){

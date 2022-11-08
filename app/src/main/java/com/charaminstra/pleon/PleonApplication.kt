@@ -8,6 +8,5 @@ import dagger.hilt.android.HiltAndroidApp
 class PleonApplication: Application() {
     override fun onCreate() {
         super.onCreate()
-
     }
 }

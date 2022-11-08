@@ -1,11 +1,5 @@
 package com.charaminstra.pleon.foundation.model
 
-data class NotiResponse(
-    val data: NotiData?,
-    val statusCode: Int?,
-    val success: Boolean?
-)
-
 data class NotiListResponse(
     val data: List<NotiViewTypeData>,
     val statusCode: Int?,
@@ -19,7 +13,13 @@ data class NotiViewTypeData(
 
 data class NotiData(
     val id: String,
-    val content: String?,
-    val kind: String?,
     val plant_id: String?,
+    val feed_id: String?,
+    val comment_id: String?,
+    val content: String?,
+    val feedContent: String?,
+    val feedImageUrl: String?,
+    val text: String?,
+    val comment: CommentObject?,
+    val plant: PlantDataObject?
 )

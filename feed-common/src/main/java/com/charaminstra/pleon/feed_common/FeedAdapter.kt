@@ -1,18 +1,17 @@
 package com.charaminstra.pleon.feed_common
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.charaminstra.pleon.common.databinding.ItemFeedBinding
+import com.charaminstra.pleon.feed_common.databinding.ItemFeedBinding
 import com.charaminstra.pleon.feed_common.databinding.ItemFeedDoctorBinding
 import com.charaminstra.pleon.feed_common.databinding.ItemFeedLoadingBinding
-import com.charaminstra.pleon.foundation.model.ResultObject
+import com.charaminstra.pleon.common.ResultObject
 
 class FeedAdapter(): RecyclerView.Adapter<FeedCommonViewHolder>() {
 
+    var fromView = ""
     var viewItemList = ArrayList<ResultObject>()
-    var onClickFeed: (Int, String)-> Unit = { i: Int, s: String -> }
 
     override fun getItemViewType(position: Int): Int {
         return FeedViewType.valueOf(viewItemList[position].viewType).ordinal
@@ -31,7 +30,7 @@ class FeedAdapter(): RecyclerView.Adapter<FeedCommonViewHolder>() {
         return viewItemList.size
     }
     override fun onBindViewHolder(holder: FeedCommonViewHolder, position: Int) {
-        holder.bind(viewItemList[position].viewObject, getItemViewType(position), onClickFeed)
+        holder.bind(viewItemList[position].viewObject, fromView)
     }
 
     fun initItems(viewItemList : ArrayList<ResultObject>){

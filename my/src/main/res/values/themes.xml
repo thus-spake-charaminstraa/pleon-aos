@@ -11,4 +11,10 @@
         <item name="android:lineSpacingExtra">10sp</item>
         <item name="android:textColor">#727d8a</item>
     </style>
+    <style name="ToggleText" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">15sp</item>
+        <item name="android:letterSpacing">-0.01</item>
+        <item name="android:lineSpacingExtra">7sp</item>
+        <item name="android:textColor">@color/black_sub_color</item>
+    </style>
 </resources>

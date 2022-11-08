@@ -5,11 +5,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.charaminstra.pleon.foundation.FeedRepository
+import com.charaminstra.pleon.common.FeedRepository
 import com.charaminstra.pleon.foundation.PlantIdRepository
 import com.charaminstra.pleon.foundation.ScheduleRepository
 import com.charaminstra.pleon.foundation.model.PlantDataObject
-import com.charaminstra.pleon.foundation.model.ResultObject
+import com.charaminstra.pleon.common.ResultObject
 import com.charaminstra.pleon.foundation.model.ScheduleDataObject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

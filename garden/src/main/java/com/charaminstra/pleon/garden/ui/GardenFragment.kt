@@ -68,7 +68,7 @@ class GardenFragment : Fragment() {
         adapter.onItemClicked = { plantId ->
             val bundle = Bundle()
             bundle.putString("id", plantId)
-            navController.navigate(R.id.garden_fragment_to_plant_detail_fragment, bundle)
+            navController.navigate(com.charaminstra.pleon.feed_common.R.id.garden_fragment_to_plant_detail_fragment, bundle)
 
             // logging
             val loggingBundle = Bundle()

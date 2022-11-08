@@ -2,10 +2,7 @@ package com.charaminstra.pleon.foundation
 
 import com.charaminstra.pleon.foundation.api.AuthAPIService
 import com.charaminstra.pleon.foundation.api.PleonPreference
-import com.charaminstra.pleon.foundation.model.LoginResponse
-import com.charaminstra.pleon.foundation.model.SmsCodeRequestBody
-import com.charaminstra.pleon.foundation.model.SmsRequestBody
-import com.charaminstra.pleon.foundation.model.SmsResponse
+import com.charaminstra.pleon.foundation.model.*
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -22,5 +19,10 @@ class AuthRepository @Inject constructor(private val service: AuthAPIService, pr
 
     suspend fun postLogin() : Response<LoginResponse> {
         return service.postLogin(prefs.getVerifyToken())
+    }
+
+    /* kakao */
+    suspend fun postKakaoToken(kakaoToken : String): Response<SmsResponse> {
+        return service.postKakaoToken(KaKaoRequestBody(kakaoToken))
     }
 }

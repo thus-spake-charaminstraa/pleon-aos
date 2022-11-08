@@ -5,5 +5,8 @@
     <string name="user_name_title">닉네임</string>
     <string name="logout_btn">로그아웃</string>
 
+    <string name="toggle_comment">식물 댓글 알람</string>
+    <string name="toggle_guide">PLeon 가이드 알람</string>
+
     <string name="my_edit_fragment_name_error">닉네임을 적어주세요.</string>
 </resources>

@@ -1,0 +1,12 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="KakaoButtonText" parent="@android:style/Widget.Button">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/kakao_text_color</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+    <style name="PhoneButtonText" parent="@android:style/Widget.Button">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black_sub_color</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+</resources>
