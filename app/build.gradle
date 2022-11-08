@@ -14,8 +14,8 @@ android {
         applicationId "com.charaminstra.pleon"
         minSdk 26
         targetSdk 31
-        versionCode 13
-        versionName "1.4"
+        versionCode 14
+        versionName "1.41"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
