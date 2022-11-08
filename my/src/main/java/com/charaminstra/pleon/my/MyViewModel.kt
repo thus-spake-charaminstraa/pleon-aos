@@ -33,6 +33,16 @@ class MyViewModel @Inject constructor(
     private val _urlResponse = MutableLiveData<String?>()
     val urlResponse : LiveData<String?> = _urlResponse
 
+    private val _commentPushSetting =  MutableLiveData<Boolean>()
+    var commentPushSetting : LiveData<Boolean> = _commentPushSetting
+
+    private val _guidePushSetting =  MutableLiveData<Boolean>()
+    val guidePushSetting : LiveData<Boolean> = _guidePushSetting
+
+    init {
+        getUserData()
+    }
+
     var imgEdit = false
 
     fun getUserData(){
@@ -42,7 +52,38 @@ class MyViewModel @Inject constructor(
                 true -> {
                     _userName.postValue(data.body()?.data?.nickname!!)
                     _urlResponse.postValue(data.body()?.data?.thumbnail!!)
+                    _commentPushSetting.postValue(data.body()?.data?.comment_push_noti)
+                    _guidePushSetting.postValue(data.body()?.data?.guide_push_noti)
                     Log.i(TAG,"SUCCESS -> "+ data.body().toString())
+                }
+                else -> {
+                    Log.i(TAG,"FAIL -> "+ data.body().toString())
+                }
+            }
+        }
+    }
+
+    fun setCommentSetting(check: Boolean){
+        viewModelScope.launch {
+            _commentPushSetting.value = check
+        }
+    }
+
+    fun setGuideSetting(check: Boolean){
+        viewModelScope.launch {
+            _guidePushSetting.value = check
+        }
+    }
+
+    fun postPushSetting(){
+        viewModelScope.launch {
+            val data = userRepository.patchUserPushSetting(
+                commentPushSetting.value!!, guidePushSetting.value!!
+            )
+            when(data.isSuccessful){
+                true ->{
+                    _commentPushSetting.postValue(data.body()?.data?.comment_push_noti)
+                    _guidePushSetting.postValue(data.body()?.data?.guide_push_noti)
                 }
                 else -> {
                     Log.i(TAG,"FAIL -> "+ data.body().toString())
@@ -100,5 +141,20 @@ class MyViewModel @Inject constructor(
 
     fun deletePreference(){
         prefs.delete()
+    }
+
+    fun deleteDeviceTokenServer(){
+        viewModelScope.launch {
+            val data = userRepository.deleteDeviceToken()
+            Log.i(TAG, "delete token DATA"+data.body())
+            when (data.isSuccessful) {
+                true -> {
+                    Log.i(TAG,"SUCCESS -> "+ data.body().toString())
+                }
+                else -> {
+                    Log.i(TAG,"FAIL -> "+ data.body().toString())
+                }
+            }
+        }
     }
 }

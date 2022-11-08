@@ -15,7 +15,7 @@ android {
         minSdk 26
         targetSdk 31
         versionCode 12
-        versionName "1.35"
+        versionName "1.4"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -42,7 +42,6 @@ android {
         dataBinding = true
     }
 }
-
 
 dependencies {
     implementation project(path: ':login')
@@ -85,7 +84,4 @@ dependencies {
     //calendar
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
     implementation 'com.github.kizitonwose:CalendarView:1.0.4'
-
-    //other calendar
-//    implementation 'com.github.mahimrocky:EventCalender:v1.0.0'
 }

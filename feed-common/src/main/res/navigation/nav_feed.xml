@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_feed"
+    app:startDestination="@id/feed_fragment">
+    <fragment
+        android:id="@+id/feed_fragment"
+        android:name="com.charaminstra.pleon.feed.view.FeedFragment"
+        tools:layout="@layout/fragment_feed">
+        <action
+            android:id="@+id/feed_fragment_to_noti_fragment"
+            app:destination="@id/noti_fragment"/>
+        <action
+            android:id="@+id/feed_fragment_to_feed_write_fragment"
+            app:destination="@id/feed_write_fragment"/>
+        <action
+            android:id="@+id/feed_fragment_to_feed_detail_fragment"
+            app:destination="@id/feed_detail_fragment"/>
+        <action
+            android:id="@+id/feed_fragment_to_feed_doctor_detail_fragment"
+            app:destination="@id/feed_doctor_detail_fragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/feed_write_fragment"
+        android:name="com.charaminstra.pleon.feed.view.FeedWriteFragment"
+        tools:layout="@layout/fragment_feed_write">
+    </fragment>
+    <fragment
+        android:id="@+id/feed_detail_fragment"
+        android:name="com.charaminstra.pleon.feed_common.FeedDetailFragment"
+        tools:layout="@layout/fragment_feed_detail">
+        <argument
+            android:name="feedId"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/feed_doctor_detail_fragment"
+        android:name="com.charaminstra.pleon.feed_common.FeedDoctorDetailFragment"
+        tools:layout="@layout/fragment_feed_doctor_detail">
+        <argument
+            android:name="feedId"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/noti_fragment"
+        android:name="com.charaminstra.pleon.feed.view.NotiFragment"
+        tools:layout="@layout/fragment_noti">
+        <action
+            android:id="@+id/action_noti_fragment_to_feed_detail_fragment"
+            app:destination="@id/feed_detail_fragment"/>
+    </fragment>
+    <action
+        android:id="@+id/action_feed_fragment_to_feed_detail_fragment"
+        app:destination="@id/feed_detail_fragment"/>
+</navigation>

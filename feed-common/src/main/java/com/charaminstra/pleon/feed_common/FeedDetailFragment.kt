@@ -12,10 +12,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.bumptech.glide.Glide
-import com.charaminstra.pleon.common.ActionType
-import com.charaminstra.pleon.common.showKeyboard
-import com.charaminstra.pleon.common_ui.DateUtils
 import com.charaminstra.pleon.common_ui.PLeonMsgDialog
 import com.charaminstra.pleon.feed_common.databinding.FragmentFeedDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,14 +28,12 @@ class FeedDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentFeedDetailBinding.inflate(layoutInflater)
-        arguments?.getString("id")?.let {
-            viewModel.feedId = it
+        binding = FragmentFeedDetailBinding.inflate(layoutInflater).also {
         }
+
         binding.feedDetailBackBtn.setOnClickListener {
             navController.popBackStack()
         }
-        showKeyboard(binding.commentEt)
         return binding.root
     }
 
@@ -93,25 +87,14 @@ class FeedDetailFragment : Fragment() {
 
     private fun observeViewModel() {
         viewModel.feedData.observe(viewLifecycleOwner, Observer {
-            binding.feedContent.text = it.content
-            binding.plantTagTv.text = resources.getString(R.string.plant_tag) + it.plant?.name
-            for(i in ActionType.values()){
-                if(i.action == it.kind){
-                    binding.actionTagTv.text = binding.root.context.resources.getString(R.string.action_tag)+i.name
-                }
+            binding.apply {
+                feed = it
             }
             if (it.image_url == null) {
                 binding.plantImage.visibility = View.GONE
             } else {
                 binding.plantImage.visibility = View.VISIBLE
-                Glide.with(binding.root)
-                    .load(it.image_url)
-                    .into(binding.plantImage)
             }
-            binding.feedDate.text = DateUtils(requireContext()).dateToView(it.publish_date)
-            //user data
-            binding.userName.text = it.user.nickname
-            Glide.with(binding.root).load(it.user.thumbnail).into(binding.userImage)
         })
         //댓글 수
         viewModel.commentsCount.observe(viewLifecycleOwner, Observer {
@@ -139,9 +122,7 @@ class FeedDetailFragment : Fragment() {
         viewModel.getCommentList()
     }
 
-    private fun showKeyboard(view: View) {
-        val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
-        view.requestFocus()
+    override fun onDestroy() {
+        super.onDestroy()
     }
 }

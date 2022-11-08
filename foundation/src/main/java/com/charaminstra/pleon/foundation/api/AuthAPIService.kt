@@ -28,4 +28,10 @@ interface AuthAPIService {
     suspend fun postLogin(
         @Header("Authorization") verifyToken:String,
     ): Response<LoginResponse>
+
+    /* kakao login*/
+    @POST("auth/verify-kakao")
+    suspend fun postKakaoToken(
+        @Body kaKaoRequestBody: KaKaoRequestBody
+    ): Response<SmsResponse>
 }

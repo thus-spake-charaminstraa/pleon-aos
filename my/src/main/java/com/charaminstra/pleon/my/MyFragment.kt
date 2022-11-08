@@ -8,11 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.charaminstra.pleon.common.CLASS_NAME
-import com.charaminstra.pleon.common.LOGOUT_BTN_CLICK
-import com.charaminstra.pleon.common.MY_VIEW
+import com.charaminstra.pleon.common.*
 import com.charaminstra.pleon.my.databinding.FragmentMyBinding
 import com.google.firebase.analytics.FirebaseAnalytics
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,6 +23,7 @@ class MyFragment : Fragment() {
 
     private val viewModel: MyViewModel by viewModels()
     private lateinit var binding : FragmentMyBinding
+    private lateinit var navController : NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,13 +39,43 @@ class MyFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentMyBinding.inflate(inflater, container, false)
+        initObservers()
+        navController = this.findNavController()
 
-        val navController = this.findNavController()
+        binding = FragmentMyBinding.inflate(inflater, container, false).also {
+            it.viewModel = viewModel
+        }
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.commentSwitchBtn.setOnClickListener {
+            viewModel.setCommentSetting(binding.commentSwitchBtn.isChecked)
+            viewModel.postPushSetting()
+
+            // logging
+            val loggingBundle = Bundle()
+            loggingBundle.putString(CLASS_NAME, TAG)
+            firebaseAnalytics.logEvent(COMMENT_SWITCH_BTN_CLICK , loggingBundle)
+        }
+        binding.guideSwitchBtn.setOnClickListener {
+            viewModel.setGuideSetting(binding.guideSwitchBtn.isChecked)
+            viewModel.postPushSetting()
+
+            // logging
+            val loggingBundle = Bundle()
+            loggingBundle.putString(CLASS_NAME, TAG)
+            firebaseAnalytics.logEvent(GUIDE_SWITCH_BTN_CLICK , loggingBundle)
+        }
+
         binding.editBtn.setOnClickListener {
             navController.navigate(R.id.my_fragment_to_my_edit_fragment)
         }
         binding.logoutBtn.setOnClickListener{
+            viewModel.deleteDeviceTokenServer()
             viewModel.deletePreference()
             val intent = Intent(
                 context,
@@ -59,13 +89,6 @@ class MyFragment : Fragment() {
             loggingBundle.putString(CLASS_NAME, TAG)
             firebaseAnalytics.logEvent(LOGOUT_BTN_CLICK , loggingBundle)
         }
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        initObservers()
     }
 
     private fun initObservers(){
@@ -78,6 +101,12 @@ class MyFragment : Fragment() {
             Glide.with(binding.root)
                 .load(it)
                 .into(binding.userImg)
+        })
+        viewModel.commentPushSetting.observe(viewLifecycleOwner, Observer {
+            binding.commentSwitchBtn.isChecked = it
+        })
+        viewModel.guidePushSetting.observe(viewLifecycleOwner, Observer {
+            binding.guideSwitchBtn.isChecked = it
         })
     }
 

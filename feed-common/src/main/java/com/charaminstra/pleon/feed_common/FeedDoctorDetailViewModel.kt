@@ -1,10 +1,7 @@
 package com.charaminstra.pleon.feed_common
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.charaminstra.pleon.foundation.PlantIdRepository
 import com.charaminstra.pleon.foundation.model.CauseObject
 import com.charaminstra.pleon.foundation.model.SymptomObject
@@ -15,9 +12,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FeedDoctorDetailViewModel @Inject constructor(
+    savedStateHandle: SavedStateHandle,
     private val plantRepository: PlantIdRepository
 ): ViewModel(){
     private val TAG = javaClass.name
+
+    var feedId: String = savedStateHandle.get<String>("feedId")!!
 
     private val _symptomsList = MutableLiveData<List<SymptomObject>>()
     val symptomsList : LiveData<List<SymptomObject>> = _symptomsList
@@ -31,9 +31,13 @@ class FeedDoctorDetailViewModel @Inject constructor(
     private val _plantName = MutableLiveData<String?>()
     val plantName : LiveData<String?> = _plantName
 
-    fun getDiagnosis(id: String){
+    init {
+        getDiagnosis()
+    }
+
+    fun getDiagnosis(){
         viewModelScope.launch {
-            val data = plantRepository.getPlantDiagnosis(id)
+            val data = plantRepository.getPlantDiagnosis(feedId!!)
             when(data.isSuccessful){
                 true -> {
                     Log.i(TAG,"data ->"+data.body().toString())

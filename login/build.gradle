@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'dagger.hilt.android.plugin'
     id 'kotlin-kapt'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -55,4 +56,10 @@ dependencies {
     //hilt
     implementation "com.google.dagger:hilt-android:2.42"
     kapt "com.google.dagger:hilt-android-compiler:2.42"
+
+    //kakao login
+    implementation "com.kakao.sdk:v2-user:2.11.2" // 카카오 로그인
+
+    //circle indicator
+    implementation 'me.relex:circleindicator:2.1.6'
 }

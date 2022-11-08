@@ -27,8 +27,10 @@ object NetWorkModule {
     @Singleton
     fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
-            .addInterceptor(HttpLoggingInterceptor())
-            .connectTimeout(5000, TimeUnit.MILLISECONDS)
+            .addInterceptor(provideRequestHttpLoggingInterceptor())
+            .connectTimeout(20,TimeUnit.SECONDS)
+            .readTimeout(20,TimeUnit.SECONDS)
+            .writeTimeout(20,TimeUnit.SECONDS)
             .build()
     }
 
@@ -64,12 +66,6 @@ object NetWorkModule {
     @Singleton
     fun provideImageApiService(retrofit: Retrofit): ImageAPIService {
         return retrofit.create(ImageAPIService::class.java)
-    }
-
-    @Provides
-    @Singleton
-    fun provideFeedApiService(retrofit: Retrofit): FeedAPIService {
-        return retrofit.create(FeedAPIService::class.java)
     }
 
     @Provides
