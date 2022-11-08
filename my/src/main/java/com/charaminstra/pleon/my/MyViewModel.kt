@@ -143,18 +143,18 @@ class MyViewModel @Inject constructor(
         prefs.delete()
     }
 
-    fun deleteDeviceTokenServer(){
-        viewModelScope.launch {
-            val data = userRepository.deleteDeviceToken()
-            Log.i(TAG, "delete token DATA"+data.body())
-            when (data.isSuccessful) {
-                true -> {
-                    Log.i(TAG,"SUCCESS -> "+ data.body().toString())
-                }
-                else -> {
-                    Log.i(TAG,"FAIL -> "+ data.body().toString())
-                }
-            }
-        }
-    }
+//    fun deleteDeviceTokenServer(){
+//        viewModelScope.launch {
+//            val data = userRepository.deleteDeviceToken()
+//            Log.i(TAG, "delete token DATA"+data.body())
+//            when (data.isSuccessful) {
+//                true -> {
+//                    Log.i(TAG,"SUCCESS -> "+ data.body().toString())
+//                }
+//                else -> {
+//                    Log.i(TAG,"FAIL -> "+ data.body().toString())
+//                }
+//            }
+//        }
+//    }
 }
