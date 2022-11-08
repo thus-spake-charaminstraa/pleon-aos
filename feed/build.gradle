@@ -59,4 +59,8 @@ dependencies {
 
     //circle indicator
     implementation 'me.relex:circleindicator:2.1.6'
+
+    //lottie
+    def lottieVersion = "5.2.0"
+    implementation "com.airbnb.android:lottie:$lottieVersion"
 }
