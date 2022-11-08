@@ -21,15 +21,16 @@
             android:id="@+id/noti_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="26dp"
+            android:paddingHorizontal="26dp"
             style="@style/NotiContentStyle"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"/>
+            app:layout_constraintLeft_toLeftOf="parent" />
         <TextView
             android:id="@+id/pleon_tv"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            android:paddingHorizontal="26dp"
             style="@style/FromStyle"
             android:text="@string/from_pleon"
             app:layout_constraintTop_toBottomOf="@+id/noti_tv"

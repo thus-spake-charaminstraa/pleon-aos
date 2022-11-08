@@ -9,6 +9,7 @@ import android.graphics.Matrix
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -197,6 +198,7 @@ class FeedWriteFragment : Fragment() {
         }
         action_adapter = ActionAdapter()
         action_adapter.onItemClicked = { actionType ->
+            Log.i("action type", actionType.toString())
             feedWriteViewModel.plantAction = actionType
             binding.feedWriteActionTagTv.text = actionType.name_kr
             binding.feedWriteActionTagTv.text= resources.getString(com.charaminstra.pleon.feed_common.R.string.action_tag) + feedWriteViewModel.plantAction!!.name_kr
@@ -218,6 +220,7 @@ class FeedWriteFragment : Fragment() {
         })
         feedWriteViewModel.actionList.observe(viewLifecycleOwner, Observer {
             binding.feedWriteActionTagTv.text= resources.getString(com.charaminstra.pleon.feed_common.R.string.action_tag) + feedWriteViewModel.plantAction!!.name_kr
+            binding.feedWriteContent.setText(feedWriteViewModel.plantAction?.auto_content!!)
             action_adapter.refreshItems(it)
         })
         feedWriteViewModel.imgBitmap.observe(viewLifecycleOwner, Observer{
