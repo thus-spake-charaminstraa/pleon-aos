@@ -90,6 +90,7 @@ class AuthViewModel @Inject constructor(
                     _success.postValue(data.body()?.success)
                     prefs.setVerifyToken(data.body()?.data?.verify_token)
                     _userExist.postValue(data.body()?.data?.isExist!!)
+                    postDeviceToken()
                 }
                 else -> {
                     _success.postValue(false)
@@ -107,10 +108,26 @@ class AuthViewModel @Inject constructor(
                     prefs.setRefreshToken(data.body()?.data?.token?.refresh_token)
                     prefs.setAccessToken(data.body()?.data?.token?.access_token)
                     _setTokenSuccess.postValue(true)
+                    postDeviceToken()
                 }
                 else -> {
                     _setTokenSuccess.postValue(false)
                     Log.i(LOGIN_TAG,"FAIL -> $data")
+                }
+            }
+        }
+    }
+
+    private fun postDeviceToken(){
+        viewModelScope.launch {
+            val data = userRepository.postDeviceToken()
+            Log.i(TAG,"post device token -> "+data.body())
+            when (data.isSuccessful) {
+                true -> {
+                    Log.i(TAG,"SUCCESS -> $data")
+                }
+                else -> {
+                    Log.i(TAG,"FAIL -> $data")
                 }
             }
         }
