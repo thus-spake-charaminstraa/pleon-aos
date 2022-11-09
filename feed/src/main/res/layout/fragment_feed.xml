@@ -4,12 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <com.airbnb.lottie.LottieAnimationView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:lottie_url="https://assets4.lottiefiles.com/packages/lf20_qeOcB1IyPk.json"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"/>
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scroll"
         android:fillViewport="true"
@@ -121,6 +115,13 @@
                 android:paddingBottom="50dp"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/celebrate"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:lottie_url="https://assets5.lottiefiles.com/packages/lf20_ky24lkyk.json"
+        app:lottie_autoPlay="false"
+        app:lottie_loop="false"/>
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/feed_add_btn"
         android:layout_width="65dp"
