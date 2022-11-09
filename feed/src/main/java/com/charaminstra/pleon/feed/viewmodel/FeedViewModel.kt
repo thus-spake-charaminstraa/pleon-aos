@@ -35,6 +35,9 @@ class FeedViewModel @Inject constructor(
     private val _isLast = MutableLiveData<Boolean>()
     val isLast : LiveData<Boolean> = _isLast
 
+    private val _notiCompleteSuccess = MutableLiveData<Boolean>()
+    val notiCompleteSuccess : LiveData<Boolean> = _notiCompleteSuccess
+
     var offset = 0
     var plantId: String? = null
 

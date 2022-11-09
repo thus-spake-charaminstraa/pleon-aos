@@ -3,6 +3,7 @@ package com.charaminstra.pleon.feed.view
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Vibrator
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -161,6 +162,8 @@ class FeedFragment : Fragment() {
                     firebaseAnalytics.logEvent(NOTI_COMPLETE_BTN_CLCIK, bundle)
 
                     binding.celebrate.playAnimation()
+                    val vibrator = requireContext().getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+                    vibrator.vibrate(100) // 200 ms
 
                     feedAdapter.clearItems()
                     feedViewModel.postNotiClick(notiId, "COMPLETE")
@@ -171,6 +174,11 @@ class FeedFragment : Fragment() {
                 else -> { }
             }
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        binding.celebrate.cancelAnimation()
     }
 
     private fun initListeners(){
