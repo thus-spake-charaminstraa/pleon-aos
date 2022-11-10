@@ -1,7 +1,6 @@
 package com.charaminstra.pleon.feed_common
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,8 +8,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.charaminstra.pleon.common.CLASS_NAME
+import com.charaminstra.pleon.common.FEED_DOCTOR_DETAIL_VIEW
 import com.charaminstra.pleon.common_ui.DateUtils
 import com.charaminstra.pleon.feed_common.databinding.FragmentFeedDoctorDetailBinding
+import com.google.firebase.analytics.FirebaseAnalytics
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,8 +26,16 @@ class FeedDoctorDetailFragment : Fragment() {
     private lateinit var symptomAdapter: SymptomAdapter
     lateinit var navController: NavController
 
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        firebaseAnalytics= FirebaseAnalytics.getInstance(requireContext())
+
+        // logging
+        val bundle = Bundle()
+        bundle.putString(CLASS_NAME, TAG)
+        firebaseAnalytics.logEvent(FEED_DOCTOR_DETAIL_VIEW, bundle)
 
     }
 

@@ -1,28 +1,43 @@
 package com.charaminstra.pleon.feed_common
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import android.widget.PopupMenu
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.charaminstra.pleon.common.CLASS_NAME
+import com.charaminstra.pleon.common.COMMENT_WRITE_COMPLETE_BTN_CLICK
+import com.charaminstra.pleon.common.FEED_DETAIL_VIEW
 import com.charaminstra.pleon.common_ui.PLeonMsgDialog
 import com.charaminstra.pleon.feed_common.databinding.FragmentFeedDetailBinding
+import com.google.firebase.analytics.FirebaseAnalytics
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class FeedDetailFragment : Fragment() {
+    private val TAG = javaClass.name
 
     private val viewModel: FeedDetailViewModel by viewModels()
     private lateinit var binding : FragmentFeedDetailBinding
     private lateinit var navController: NavController
     private lateinit var commentsAdapter: CommentsAdapter
+
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        firebaseAnalytics= FirebaseAnalytics.getInstance(requireContext())
+
+        // logging
+        val bundle = Bundle()
+        bundle.putString(CLASS_NAME, TAG)
+        firebaseAnalytics.logEvent(FEED_DETAIL_VIEW, bundle)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -82,6 +97,10 @@ class FeedDetailFragment : Fragment() {
     private fun initListeners(){
         binding.commentEnterBtn.setOnClickListener {
             viewModel.postComment(binding.commentEt.text.toString())
+            // logging
+            val bundle = Bundle()
+            bundle.putString(CLASS_NAME, TAG)
+            firebaseAnalytics.logEvent(COMMENT_WRITE_COMPLETE_BTN_CLICK, bundle)
         }
     }
 

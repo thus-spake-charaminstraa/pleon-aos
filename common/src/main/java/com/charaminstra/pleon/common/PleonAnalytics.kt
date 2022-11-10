@@ -21,6 +21,11 @@ const val BOTTOM_SHEET_NEXT_BTN_CLICK= "bottom_sheet_next_btn_click"
 const val BOTTOM_SHEET_UP = "tag_click_bottom_sheet_up"
 const val FEED_WRITE_COMPLETE_BTN_CLICK = "feed_write_complete_btn_click"
 
+//feed detail fragment
+const val FEED_DETAIL_VIEW = "feed_detail_view"
+const val FEED_DOCTOR_DETAIL_VIEW = "feed_doctor_detail_view"
+const val COMMENT_WRITE_COMPLETE_BTN_CLICK = "comment_write_complete_btn_click"
+
 //doctor fragment
 const val DOCTOR_VIEW = "doctor_view"
 const val DOCTOR_START_BTN_CLICK = "doctor_start_btn_click"
