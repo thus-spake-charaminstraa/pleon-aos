@@ -73,23 +73,13 @@ class NicknameFragment : Fragment() {
             // logging
             val loggingBundle = Bundle()
             loggingBundle.putString(CLASS_NAME, TAG)
-            firebaseAnalytics.logEvent(ACCOUNT_REGISTER_CLICK ,loggingBundle)
+            firebaseAnalytics.logEvent(ACCOUNT_REGISTER_CLICK+loginMethod,loggingBundle)
 
             if(loginMethod == "phone"){
                 viewModel.userPhoneCreate(binding.nicknameEt.text.toString())
 
-                // logging
-                val loggingBundle = Bundle()
-                loggingBundle.putString(CLASS_NAME, TAG)
-                firebaseAnalytics.logEvent(ACCOUNT_PHONE_REGISTER_CLICK ,loggingBundle)
-
             }else if(loginMethod == "kakao"){
                 viewModel.userKakaoCreate(binding.nicknameEt.text.toString())
-
-                // logging
-                val loggingBundle = Bundle()
-                loggingBundle.putString(CLASS_NAME, TAG)
-                firebaseAnalytics.logEvent(ACCOUNT_KAKAO_REGISTER_CLICK ,loggingBundle)
             }
         }
     }

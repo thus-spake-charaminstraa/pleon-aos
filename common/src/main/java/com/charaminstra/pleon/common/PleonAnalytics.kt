@@ -42,7 +42,7 @@ const val PHONE_LOGIN_BTN_CLICK = "phone_login_btn_click"
 const val LOIGN_ONBOARDING_SLIDE = "login_onboarding_sliding"
 
 //nick name fragment
-const val ACCOUNT_REGISTER_CLICK = "new_user_register_btn_click"
+const val ACCOUNT_REGISTER_CLICK = "new_user_register_btn_click_"
 const val ACCOUNT_PHONE_REGISTER_CLICK = "new_user_(phone)_register_btn_click"
 const val ACCOUNT_KAKAO_REGISTER_CLICK = "new_user_(kakao)_register_btn_click"
 

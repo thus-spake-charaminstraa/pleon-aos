@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.charaminstra.pleon.common.CLASS_NAME
 import com.charaminstra.pleon.common.KAKAO_LOGIN_BTN_CLICK
+import com.charaminstra.pleon.common.LOIGN_ONBOARDING_SLIDE
 import com.charaminstra.pleon.common.PHONE_LOGIN_BTN_CLICK
 import com.charaminstra.pleon.common_ui.ErrorToast
 import com.charaminstra.pleon.common_ui.InfoToast
@@ -50,10 +51,12 @@ class LoginFragment : Fragment() {
         binding.loginViewpager.adapter = adapter
         binding.loginViewpager.registerOnPageChangeCallback(object : OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
-                // logging
-                val loggingBundle = Bundle()
-                loggingBundle.putString(CLASS_NAME, TAG)
-                firebaseAnalytics.logEvent(PHONE_LOGIN_BTN_CLICK ,loggingBundle)
+                if(position != 0) {
+                    // logging
+                    val loggingBundle = Bundle()
+                    loggingBundle.putString(CLASS_NAME, TAG)
+                    firebaseAnalytics.logEvent(LOIGN_ONBOARDING_SLIDE ,loggingBundle)
+                }
             }
         })
         binding.loginIndicator.setViewPager(binding.loginViewpager)
