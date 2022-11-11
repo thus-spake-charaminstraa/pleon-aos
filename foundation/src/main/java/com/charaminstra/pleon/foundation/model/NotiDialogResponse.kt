@@ -14,5 +14,6 @@ data class NotiDialogData(
 data class NotiDialogText(
     val name: String?,
     val title: String?,
-    val content: String?
+    val content: String?,
+    val button: Boolean?,
 )

@@ -13,6 +13,10 @@
     <string name="dialog_cancel_btn">취소</string>
     <string name="dialog_ok_btn">확인</string>
 
+    <string name="dialog_noti_today_stop_btn">오늘 그만 보기</string>
+    <string name="dialog_noti_close_btn">닫기</string>
+    <string name="dialog_noti_go_btn">GO !</string>
+
     <string name="code_error_msg">인증번호가 일치하지 않습니다.</string>
 
     <string name="camera_permission_msg">카메라 권한 설정이 필요합니다.</string>

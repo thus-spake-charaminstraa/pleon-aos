@@ -19,10 +19,66 @@
         app:layout_constraintTop_toTopOf="parent" />
     <TextView
         android:id="@+id/noti_dialog_desc"
-        android:layout_width="wrap_content"
+        style="@style/PleonNotiDialogDescStyle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/noti_dialog_title"
         />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/noti_go_btn"
+        style="@style/LoginButtonText"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="20dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_green_selector"
+        android:paddingVertical="5dp"
+        android:text="@string/dialog_noti_go_btn"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/noti_dialog_desc" />
+
+    <View
+        android:id="@+id/noti_dialog_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/line_color"
+        app:layout_constraintTop_toBottomOf="@+id/noti_go_btn" />
+    <View
+        android:id="@+id/noti_dialog_btn_line"
+        android:layout_width="1dp"
+        android:layout_height="55dp"
+        android:background="@color/line_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/noti_dialog_today_stop_btn"
+        style="@style/DialogButtonCancelText"
+        android:layout_width="145dp"
+        android:layout_height="55dp"
+        android:background="@null"
+        android:gravity="center"
+        android:text="@string/dialog_noti_today_stop_btn"
+        android:textColor="@color/black_sub_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/noti_dialog_btn_line"
+        app:layout_constraintTop_toBottomOf="@+id/noti_dialog_line" />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/noti_dialog_close_btn"
+        style="@style/DialogButtonOkText"
+        android:layout_width="145dp"
+        android:layout_height="55dp"
+        android:background="@null"
+        android:gravity="center"
+        android:text="@string/dialog_noti_close_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/noti_dialog_btn_line"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/noti_dialog_line" />
 </androidx.constraintlayout.widget.ConstraintLayout>

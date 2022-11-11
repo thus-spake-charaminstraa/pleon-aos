@@ -52,6 +52,7 @@ class FeedFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         firebaseAnalytics= FirebaseAnalytics.getInstance(requireContext())
+        navController = findNavController()
 
         notiDialog = PLeonNotiDialog(requireContext())
 
@@ -73,7 +74,6 @@ class FeedFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        navController = findNavController()
         initList()
         initListeners()
         observeViewModel()
@@ -97,6 +97,19 @@ class FeedFragment : Fragment() {
                 navController.navigate(com.charaminstra.pleon.feed_common.R.id.feed_fragment_to_feed_write_fragment)
             }
         }
+
+        //noti dialog
+        notiDialog.setOnGoBtnClickedListener {
+            if(plantsViewModel.plantsCount.value == 0){
+                ErrorToast(requireContext()).showMsgCenter(resources.getString(R.string.feed_write_error_msg))
+            }else{
+                navController.navigate(com.charaminstra.pleon.feed_common.R.id.feed_fragment_to_feed_write_fragment)
+            }
+        }
+        notiDialog.setOnTodayStopClickedListener {
+
+        }
+
         binding.feedRecyclerview.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
 
         initScrollListener()
@@ -231,7 +244,9 @@ class FeedFragment : Fragment() {
         })
         feedViewModel.notiDialogIsExist.observe(viewLifecycleOwner, Observer {
             if(it){
-                notiDialog.start(feedViewModel.notiDialogTitle!!,feedViewModel.notiDialogContent!!)
+                notiDialog.start(feedViewModel.notiDialogTitle!!,
+                    feedViewModel.notiDialogContent!!,
+                    feedViewModel.notiDialogButton!!)
             }
         })
     }
