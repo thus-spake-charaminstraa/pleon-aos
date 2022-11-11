@@ -23,4 +23,10 @@ interface NotiAPIService{
     suspend fun getNotiList(
         @Header("Authorization") accessToken:String,
     ): Response<NotiListResponse>
+
+    //noti dialog in feed
+    @GET("noti/feed-modal")
+    suspend fun getNotiDialog(
+        @Header("Authorization") accessToken:String,
+    ): Response<NotiDialogResponse>
 }

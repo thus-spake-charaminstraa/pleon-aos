@@ -38,6 +38,12 @@ class FeedViewModel @Inject constructor(
     private val _notiCompleteSuccess = MutableLiveData<Boolean>()
     val notiCompleteSuccess : LiveData<Boolean> = _notiCompleteSuccess
 
+    private val _notiDialogIsExist = MutableLiveData<Boolean>()
+    val notiDialogIsExist : LiveData<Boolean> = _notiDialogIsExist
+
+    var notiDialogTitle : String? = null
+    var notiDialogContent : String? = null
+
     var offset = 0
     var plantId: String? = null
 
@@ -105,6 +111,26 @@ class FeedViewModel @Inject constructor(
                     getNotiList()
                     clearFeedSetting()
                     getFeedAllList()
+                    Log.i(TAG,"SUCCESS -> "+ data.body().toString())
+                }
+                else -> {
+                    Log.i(TAG,"FAIL -> "+ data.body().toString())
+                }
+            }
+        }
+    }
+
+    fun getNotiDialog(){
+        viewModelScope.launch {
+            val data = notiRepository.getNotiDialog()
+            when (data.isSuccessful) {
+                true -> {
+                    var isExist = data.body()?.data?.isExist
+                    _notiDialogIsExist.postValue(isExist)
+                    if(isExist == true){
+                        notiDialogTitle = data.body()?.data?.notices?.get(0)?.title
+                        notiDialogContent = data.body()?.data?.notices?.get(0)?.content
+                    }
                     Log.i(TAG,"SUCCESS -> "+ data.body().toString())
                 }
                 else -> {

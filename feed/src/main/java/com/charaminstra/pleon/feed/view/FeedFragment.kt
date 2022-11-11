@@ -67,8 +67,6 @@ class FeedFragment : Fragment() {
     ): View? {
         binding = FragmentFeedBinding.inflate(layoutInflater)
         binding.allFilter.isSelected = true
-
-        notiDialog.start("이벤트","testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest")
         return binding.root
     }
 
@@ -79,6 +77,8 @@ class FeedFragment : Fragment() {
         initList()
         initListeners()
         observeViewModel()
+
+        feedViewModel.getNotiDialog()
 
         //noti recyclervieew
         binding.notiRecyclerview.adapter = notiAdapter
@@ -227,6 +227,11 @@ class FeedFragment : Fragment() {
                 binding.noFeedMsg.visibility = View.VISIBLE
             }else{
                 binding.noFeedMsg.visibility = View.GONE
+            }
+        })
+        feedViewModel.notiDialogIsExist.observe(viewLifecycleOwner, Observer {
+            if(it){
+                notiDialog.start(feedViewModel.notiDialogTitle!!,feedViewModel.notiDialogContent!!)
             }
         })
     }
