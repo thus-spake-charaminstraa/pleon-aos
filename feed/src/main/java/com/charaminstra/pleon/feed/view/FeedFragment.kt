@@ -185,6 +185,9 @@ class FeedFragment : Fragment() {
                     bundle.putString(CLASS_NAME, TAG)
                     firebaseAnalytics.logEvent(NOTI_LATER_BTN_CLCIK, bundle)
 
+                    val vibrator = requireContext().getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+                    vibrator.vibrate(100) // 200 ms
+
                     binding.laterEffect.visibility = View.VISIBLE
                     binding.laterEffect.playAnimation()
                     val handler = Handler()
