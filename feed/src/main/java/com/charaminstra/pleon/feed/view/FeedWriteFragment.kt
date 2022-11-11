@@ -85,10 +85,8 @@ class FeedWriteFragment : Fragment() {
                 binding.feedWriteDate.text = dlg.date
             }
             dlg.start(resources.getString(com.charaminstra.pleon.common_ui.R.string.date_picker_title))
-            hideKeyboard(binding.feedWriteContent)
         }
         binding.feedWriteImgAddBtn.setOnClickListener{
-            hideKeyboard(binding.feedWriteContent)
             val imageMenuDlg = PopUpImageMenu(requireContext())
             imageMenuDlg.setOnCameraClickedListener {
                 if (RequestPermission.checkPermission(requireActivity())) {
@@ -112,7 +110,6 @@ class FeedWriteFragment : Fragment() {
             binding.feedWriteImgAddBtn.visibility= View.VISIBLE
         }
         binding.completeBtn.setOnClickListener {
-            hideKeyboard(binding.feedWriteContent)
             if(binding.feedWriteContent.text.isNullOrBlank()){
                 ErrorToast(requireContext()).showMsgCenter(binding.feedWriteContent.hint.toString())
             }else if(feedWriteViewModel.imgBitmap.value != null){
@@ -135,6 +132,11 @@ class FeedWriteFragment : Fragment() {
         }
         return binding.root
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+    }
+
     val BSCB : BottomSheetBehavior.BottomSheetCallback = object : BottomSheetBehavior.BottomSheetCallback() {
         override fun onStateChanged(bottomSheet: View, newState: Int) {
             // newState = 상태값
@@ -167,7 +169,6 @@ class FeedWriteFragment : Fragment() {
             bundle.putString(CLASS_NAME, TAG)
             firebaseAnalytics.logEvent(BOTTOM_SHEET_UP, bundle)
 
-            hideKeyboard(binding.feedWriteContent)
             sheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
         }
     }
@@ -181,7 +182,6 @@ class FeedWriteFragment : Fragment() {
 
         binding.bottomSheet.nextBtn.setOnClickListener {
             sheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
-            showKeyboard(binding.feedWriteContent)
 
             // logging
             val bundle = Bundle()
@@ -299,17 +299,6 @@ class FeedWriteFragment : Fragment() {
         )
         intent.putExtra(MediaStore.EXTRA_OUTPUT, imgUri)
         startActivityForResult(intent, REQUEST_TAKE_PHOTO)
-    }
-
-    private fun showKeyboard(view: View) {
-        val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
-        view.requestFocus()
-    }
-
-    private fun hideKeyboard(view: View) {
-        val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(view.windowToken, 0);
     }
 
     private fun setIndicator(){
