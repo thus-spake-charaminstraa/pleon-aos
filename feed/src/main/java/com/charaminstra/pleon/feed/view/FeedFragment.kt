@@ -78,6 +78,7 @@ class FeedFragment : Fragment() {
         observeViewModel()
 
         feedViewModel.getNotiDialog()
+        feedViewModel.getNotiNew()
 
         //noti recyclervieew
         binding.notiRecyclerview.adapter = notiAdapter
@@ -99,6 +100,11 @@ class FeedFragment : Fragment() {
 
         //noti dialog
         notiDialog.setOnGoBtnClickedListener {
+            // logging
+            val bundle = Bundle()
+            bundle.putString(CLASS_NAME, TAG)
+            firebaseAnalytics.logEvent(NOTI_DIALOG_GO_BTN_CLICK, bundle)
+
             if(plantsViewModel.plantsCount.value == 0){
                 ErrorToast(requireContext()).showMsgCenter(resources.getString(R.string.feed_write_error_msg))
             }else{
@@ -107,6 +113,11 @@ class FeedFragment : Fragment() {
         }
         notiDialog.setOnTodayStopClickedListener {
             feedViewModel.postNotiTodayStop()
+
+            // logging
+            val bundle = Bundle()
+            bundle.putString(CLASS_NAME, TAG)
+            firebaseAnalytics.logEvent(NOTI_DIALOG_TODAY_STOP, bundle)
         }
 
         binding.feedRecyclerview.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
@@ -246,6 +257,13 @@ class FeedFragment : Fragment() {
                 notiDialog.start(feedViewModel.notiDialogTitle!!,
                     feedViewModel.notiDialogContent!!,
                     feedViewModel.notiDialogButton!!)
+            }
+        })
+        feedViewModel.notiNew.observe(viewLifecycleOwner, Observer {
+            if(it){
+                binding.notiListBtn.setImageResource(R.drawable.ic_alarm_on)
+            }else{
+                binding.notiListBtn.setImageResource(R.drawable.ic_alarm_off)
             }
         })
     }

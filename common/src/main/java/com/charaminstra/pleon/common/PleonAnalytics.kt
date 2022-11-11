@@ -16,6 +16,10 @@ const val NOTI_LIST_BTN_CLICK = "comment_list_btn_click"
 
 const val NOTI_VIEW = "noti_view"
 
+
+const val NOTI_DIALOG_TODAY_STOP = "noti_dialog_today_stop"
+const val NOTI_DIALOG_GO_BTN_CLICK = "noti_dialog_go_btn_click"
+
 //feed write fragment
 const val BOTTOM_SHEET_NEXT_BTN_CLICK= "bottom_sheet_next_btn_click"
 const val BOTTOM_SHEET_UP = "tag_click_bottom_sheet_up"

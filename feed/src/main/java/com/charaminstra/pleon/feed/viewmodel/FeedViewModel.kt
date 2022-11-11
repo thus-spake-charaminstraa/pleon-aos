@@ -41,6 +41,9 @@ class FeedViewModel @Inject constructor(
     private val _notiDialogIsExist = MutableLiveData<Boolean>()
     val notiDialogIsExist : LiveData<Boolean> = _notiDialogIsExist
 
+    private val _notiNew = MutableLiveData<Boolean>()
+    val notiNew : LiveData<Boolean> = _notiNew
+
     var notiDialogTitle : String? = null
     var notiDialogContent : String? = null
     var notiDialogButton : Boolean?= null
@@ -148,6 +151,21 @@ class FeedViewModel @Inject constructor(
             when (data.isSuccessful) {
                 true -> {
                     _notiDialogIsExist.postValue(false)
+                    Log.i(TAG,"SUCCESS -> "+ data.body().toString())
+                }
+                else -> {
+                    Log.i(TAG,"FAIL -> "+ data.body().toString())
+                }
+            }
+        }
+    }
+
+    fun getNotiNew(){
+        viewModelScope.launch {
+            val data = notiRepository.getNotiNew()
+            when (data.isSuccessful) {
+                true -> {
+                    _notiNew.postValue(data.body()?.data)
                     Log.i(TAG,"SUCCESS -> "+ data.body().toString())
                 }
                 else -> {

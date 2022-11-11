@@ -34,4 +34,9 @@ interface NotiAPIService{
     suspend fun postNotiTodayStop(
         @Header("Authorization") accessToken:String,
     ): Response<NotiDialogResponse>
+
+    @GET("noti/list/new")
+    suspend fun getNotiNew(
+        @Header("Authorization") accessToken:String,
+    ): Response<NotiNewResponse>
 }

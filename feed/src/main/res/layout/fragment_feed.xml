@@ -23,8 +23,8 @@
                 app:layout_constraintTop_toTopOf="parent" />
             <ImageView
                 android:id="@+id/noti_list_btn"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:layout_margin="16dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_alarm_off"

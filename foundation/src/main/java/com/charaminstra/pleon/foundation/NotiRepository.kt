@@ -16,4 +16,6 @@ class NotiRepository @Inject constructor(private val service: NotiAPIService, pr
     suspend fun getNotiDialog() = service.getNotiDialog(prefs.getAccessToken())
 
     suspend fun postNotiTodayStop() = service.postNotiTodayStop(prefs.getAccessToken())
+
+    suspend fun getNotiNew() = service.getNotiNew(prefs.getAccessToken())
 }

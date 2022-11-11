@@ -17,3 +17,9 @@ data class NotiDialogText(
     val content: String?,
     val button: Boolean?,
 )
+
+data class NotiNewResponse(
+    val data:  Boolean?,
+    val statusCode: Int?,
+    val success: Boolean?
+)
