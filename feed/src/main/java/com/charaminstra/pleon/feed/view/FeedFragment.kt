@@ -1,8 +1,10 @@
 package com.charaminstra.pleon.feed.view
 
+import android.animation.Animator
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.os.Vibrator
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -66,6 +68,8 @@ class FeedFragment : Fragment() {
     ): View? {
         binding = FragmentFeedBinding.inflate(layoutInflater)
         binding.allFilter.isSelected = true
+        binding.completeEffect.cancelAnimation()
+        binding.laterEffect.cancelAnimation()
         return binding.root
     }
 
@@ -181,6 +185,14 @@ class FeedFragment : Fragment() {
                     bundle.putString(CLASS_NAME, TAG)
                     firebaseAnalytics.logEvent(NOTI_LATER_BTN_CLCIK, bundle)
 
+                    binding.laterEffect.visibility = View.VISIBLE
+                    binding.laterEffect.playAnimation()
+                    val handler = Handler()
+                    handler.postDelayed({
+                        binding.laterEffect.pauseAnimation()
+                        binding.laterEffect.visibility = View.GONE
+                    },2000 )
+
                     feedAdapter.clearItems()
                     feedViewModel.postNotiClick(notiId, "LATER")
                 }
@@ -190,7 +202,7 @@ class FeedFragment : Fragment() {
                     bundle.putString(CLASS_NAME, TAG)
                     firebaseAnalytics.logEvent(NOTI_COMPLETE_BTN_CLCIK, bundle)
 
-                    binding.celebrate.playAnimation()
+                    binding.completeEffect.playAnimation()
                     val vibrator = requireContext().getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
                     vibrator.vibrate(100) // 200 ms
 
@@ -207,7 +219,8 @@ class FeedFragment : Fragment() {
 
     override fun onPause() {
         super.onPause()
-        binding.celebrate.cancelAnimation()
+        binding.completeEffect.cancelAnimation()
+        binding.laterEffect.cancelAnimation()
     }
 
     private fun initListeners(){

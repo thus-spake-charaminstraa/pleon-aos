@@ -116,12 +116,20 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/celebrate"
+        android:id="@+id/complete_effect"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:lottie_url="https://assets5.lottiefiles.com/packages/lf20_ky24lkyk.json"
         app:lottie_autoPlay="false"
         app:lottie_loop="false"/>
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/later_effect"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:lottie_rawRes="@raw/later_effect"
+        app:lottie_repeatCount="1"
+        app:lottie_loop="true"/>
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/feed_add_btn"
         android:layout_width="65dp"
