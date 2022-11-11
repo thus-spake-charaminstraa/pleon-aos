@@ -151,9 +151,9 @@
 
 <!--    noti dialog-->
     <style name="PleonNotiDialogDescStyle">
-        <item name="android:textSize">15sp</item>
+        <item name="android:textSize">13sp</item>
         <item name="android:textColor">@color/black_sub_color</item>
-        <item name="android:lineSpacingExtra">3sp</item>
+        <item name="android:lineSpacingExtra">2sp</item>
     </style>
 
 

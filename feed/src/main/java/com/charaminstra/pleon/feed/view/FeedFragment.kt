@@ -256,7 +256,8 @@ class FeedFragment : Fragment() {
             if(it){
                 notiDialog.start(feedViewModel.notiDialogTitle!!,
                     feedViewModel.notiDialogContent!!,
-                    feedViewModel.notiDialogButton!!)
+                    feedViewModel.notiDialogButton!!,
+                    feedViewModel.notiImgUrl!!)
             }
         })
         feedViewModel.notiNew.observe(viewLifecycleOwner, Observer {

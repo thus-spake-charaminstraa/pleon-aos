@@ -16,6 +16,7 @@ data class NotiDialogText(
     val title: String?,
     val content: String?,
     val button: Boolean?,
+    val image_url: String?,
 )
 
 data class NotiNewResponse(

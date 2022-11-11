@@ -47,6 +47,7 @@ class FeedViewModel @Inject constructor(
     var notiDialogTitle : String? = null
     var notiDialogContent : String? = null
     var notiDialogButton : Boolean?= null
+    var notiImgUrl : String?= null
 
     var offset = 0
     var plantId: String? = null
@@ -132,6 +133,7 @@ class FeedViewModel @Inject constructor(
                     var isExist = data.body()?.data?.isExist
                     _notiDialogIsExist.postValue(isExist)
                     if(isExist == true){
+                        notiImgUrl = data.body()?.data?.notices?.get(0)?.image_url
                         notiDialogButton = data.body()?.data?.notices?.get(0)?.button
                         notiDialogTitle = data.body()?.data?.notices?.get(0)?.title
                         notiDialogContent = data.body()?.data?.notices?.get(0)?.content

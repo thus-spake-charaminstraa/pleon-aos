@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.Window
+import com.bumptech.glide.Glide
 import com.charaminstra.pleon.common_ui.databinding.DialogNotiLayoutBinding
 
 class PLeonNotiDialog(val context: Context){
@@ -14,13 +15,14 @@ class PLeonNotiDialog(val context: Context){
     private lateinit var goBtnListener : DialogGoBtnClickedListener
     private lateinit var todayStopListener : DialogTodayStopClickedListener
 
-    fun start(title: String, content: String, button: Boolean) {
+    fun start(title: String, content: String, button: Boolean, imgUrl: String) {
         val binding = DialogNotiLayoutBinding.inflate(LayoutInflater.from(context))
         if(button){
             binding.notiGoBtn.visibility = View.VISIBLE
         }else{
             binding.notiGoBtn.visibility = View.GONE
         }
+        Glide.with(binding.root).load(imgUrl).into(binding.image)
         binding.notiDialogTitle.text = title
         binding.notiDialogDesc.text = content
         dlg.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT)) // background round 적용
