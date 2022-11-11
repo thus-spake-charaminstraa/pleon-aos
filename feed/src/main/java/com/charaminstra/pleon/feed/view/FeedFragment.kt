@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.charaminstra.pleon.common.*
 import com.charaminstra.pleon.common_ui.ErrorToast
+import com.charaminstra.pleon.common_ui.PLeonNotiDialog
 import com.charaminstra.pleon.feed.FeedPlantAdapter
 import com.charaminstra.pleon.feed.viewmodel.FeedViewModel
 import com.charaminstra.pleon.feed.R
@@ -45,11 +46,14 @@ class FeedFragment : Fragment() {
 
     private lateinit var firebaseAnalytics: FirebaseAnalytics
     lateinit var navController: NavController
+    lateinit var notiDialog : PLeonNotiDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         firebaseAnalytics= FirebaseAnalytics.getInstance(requireContext())
+
+        notiDialog = PLeonNotiDialog(requireContext())
 
         // logging
         val bundle = Bundle()
@@ -63,6 +67,8 @@ class FeedFragment : Fragment() {
     ): View? {
         binding = FragmentFeedBinding.inflate(layoutInflater)
         binding.allFilter.isSelected = true
+
+        notiDialog.start("이벤트","testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest")
         return binding.root
     }
 
