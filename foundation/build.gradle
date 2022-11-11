@@ -51,4 +51,5 @@ dependencies {
     kapt "com.google.dagger:hilt-android-compiler:2.42"
 
     implementation "com.squareup.okhttp3:logging-interceptor:4.7.2"
+    implementation "com.squareup.okhttp3:okhttp-urlconnection:4.9.1"
 }

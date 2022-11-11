@@ -29,4 +29,9 @@ interface NotiAPIService{
     suspend fun getNotiDialog(
         @Header("Authorization") accessToken:String,
     ): Response<NotiDialogResponse>
+
+    @POST("noti/feed-modal/one-day")
+    suspend fun postNotiTodayStop(
+        @Header("Authorization") accessToken:String,
+    ): Response<NotiDialogResponse>
 }

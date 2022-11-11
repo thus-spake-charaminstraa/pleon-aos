@@ -54,8 +54,6 @@ class FeedFragment : Fragment() {
         firebaseAnalytics= FirebaseAnalytics.getInstance(requireContext())
         navController = findNavController()
 
-        notiDialog = PLeonNotiDialog(requireContext())
-
         // logging
         val bundle = Bundle()
         bundle.putString(CLASS_NAME, TAG)
@@ -73,6 +71,7 @@ class FeedFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        notiDialog = PLeonNotiDialog(requireContext())
 
         initList()
         initListeners()
@@ -107,7 +106,7 @@ class FeedFragment : Fragment() {
             }
         }
         notiDialog.setOnTodayStopClickedListener {
-
+            feedViewModel.postNotiTodayStop()
         }
 
         binding.feedRecyclerview.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))

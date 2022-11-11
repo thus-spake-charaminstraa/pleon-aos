@@ -24,7 +24,6 @@ class PLeonNotiDialog(val context: Context){
         binding.notiDialogTitle.text = title
         binding.notiDialogDesc.text = content
         dlg.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT)) // background round 적용
-        dlg.requestWindowFeature(Window.FEATURE_NO_TITLE)   //타이틀바 제거
 
         dlg.setContentView(binding.root)     //다이얼로그에 사용할 xml 파일을 불러옴
 
@@ -32,11 +31,10 @@ class PLeonNotiDialog(val context: Context){
             goBtnListener.onGoBtnClicked()
             dlg.dismiss()
         }
-//
-//        binding.galleryBtn.setOnClickListener{
-//            galleryListener.onGalleryClicked()
-//            dlg.dismiss()
-//        }
+        binding.notiDialogTodayStopBtn.setOnClickListener {
+            todayStopListener.onTodayStopClicked()
+            dlg.dismiss()
+        }
 
         binding.notiDialogCloseBtn.setOnClickListener {
             dlg.dismiss()

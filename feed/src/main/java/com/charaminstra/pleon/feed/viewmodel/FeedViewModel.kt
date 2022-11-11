@@ -141,4 +141,19 @@ class FeedViewModel @Inject constructor(
             }
         }
     }
+
+    fun postNotiTodayStop(){
+        viewModelScope.launch {
+            val data = notiRepository.postNotiTodayStop()
+            when (data.isSuccessful) {
+                true -> {
+                    _notiDialogIsExist.postValue(false)
+                    Log.i(TAG,"SUCCESS -> "+ data.body().toString())
+                }
+                else -> {
+                    Log.i(TAG,"FAIL -> "+ data.body().toString())
+                }
+            }
+        }
+    }
 }
