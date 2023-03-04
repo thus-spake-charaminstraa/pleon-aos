@@ -119,7 +119,7 @@
         android:id="@+id/complete_effect"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:lottie_url="https://assets5.lottiefiles.com/packages/lf20_ky24lkyk.json"
+        app:lottie_url="https://assets1.lottiefiles.com/packages/lf20_nxsyeqbd.json"
         app:lottie_autoPlay="false"
         app:lottie_loop="false"/>
     <com.airbnb.lottie.LottieAnimationView
