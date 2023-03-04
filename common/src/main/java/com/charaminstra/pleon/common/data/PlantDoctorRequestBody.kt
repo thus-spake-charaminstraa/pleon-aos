@@ -8,15 +8,15 @@ data class PlantDoctorRequestBody(
 )
 
 data class PlantDoctorResponseBody(
-    val success: Boolean,
+    val success: Boolean?,
     val statusCode: Int?,
     val data: PlantDoctorData?
 )
 
 data class PlantDoctorData(
-    val symptoms: List<SymptomObject>,
-    val causes: List<CauseObject>,
-    val plant: PlantDataObject,
+    val symptoms: List<SymptomObject>?,
+    val causes: List<CauseObject>?,
+    val plant: PlantDataObject?,
     val created_at: Date?,
 )
 

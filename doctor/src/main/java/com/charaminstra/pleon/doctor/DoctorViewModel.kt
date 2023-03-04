@@ -38,11 +38,11 @@ class DoctorViewModel @Inject constructor(private val imageRepository: ImageRepo
     private val _plantDoctorSuccess = MutableLiveData<Boolean?>()
     val plantDoctorSuccess : LiveData<Boolean?> = _plantDoctorSuccess
 
-    private val _symptomsList = MutableLiveData<List<SymptomObject>>()
-    val symptomsList : LiveData<List<SymptomObject>> = _symptomsList
+    private val _symptomsList = MutableLiveData<List<SymptomObject>?>()
+    val symptomsList : LiveData<List<SymptomObject>?> = _symptomsList
 
-    private val _causesList = MutableLiveData<List<CauseObject>>()
-    val causesList : LiveData<List<CauseObject>> = _causesList
+    private val _causesList = MutableLiveData<List<CauseObject>?>()
+    val causesList : LiveData<List<CauseObject>?> = _causesList
 
     private val _plantsCount = MutableLiveData<Int>()
     val plantsCount : LiveData<Int> = _plantsCount
@@ -78,22 +78,22 @@ class DoctorViewModel @Inject constructor(private val imageRepository: ImageRepo
     }
     fun postPlantDoctorModel(){
         viewModelScope.launch {
-            Log.i(TAG,plantId.toString())
             val data = inferenceRepository.postPlantDoctor(firstImgUrlResponse.value.toString(),secondImgUrlResponse.value.toString(),plantId)
             Log.i(TAG,"plant doctor data -> $data")
-            when(data.isSuccessful){
+            when(data.body() != null && data.isSuccessful){
                 true -> {
-                    Log.i(TAG,"plant doctor data ->"+data.body().toString())
+                    Log.i(TAG,"plant doctor data body SUCCESS")
                     if(data.body()?.success == false){
                         _plantDoctorSuccess.postValue(false)
-                        _plantName.postValue(data.body()?.data?.plant?.name)
+                        _plantName.postValue(data.body()?.data?.plant?.name!!)
                     }else{
                         _plantDoctorSuccess.postValue(true)
                         _symptomsList.postValue(data.body()?.data?.symptoms)
                         _causesList.postValue(data.body()?.data?.causes)
-                        _plantName.postValue(data.body()?.data?.plant?.name)
+                        _plantName.postValue(data.body()?.data?.plant?.name!!)
                     }
                 }else -> {
+                    _plantDoctorSuccess.postValue(false)
                     Log.i(TAG,"plant doctor error")
                 }
             }
@@ -102,7 +102,15 @@ class DoctorViewModel @Inject constructor(private val imageRepository: ImageRepo
 
     fun warmingPlantDetectionModel(){
         viewModelScope.launch {
-            inferenceRepository.warmingPlantDetection()
+            val data = inferenceRepository.warmingPlantDetection()
+            when(data.isSuccessful){
+                true -> {
+                }
+                false -> {
+                    _plantDoctorSuccess.postValue(false)
+                    Log.i(TAG,"plant doctor warming error")
+                }
+            }
         }
     }
 

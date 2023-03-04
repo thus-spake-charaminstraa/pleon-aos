@@ -38,14 +38,14 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
     private val _plantDetectionResultPercent= MutableLiveData<Float>()
     val plantDetectionResultPercent : LiveData<Float> = _plantDetectionResultPercent
 
-    private val _plantDetectionResultDifficulty = MutableLiveData<String>()
-    val plantDetectionResultDifficulty : LiveData<String> = _plantDetectionResultDifficulty
+    private val _plantDetectionResultDifficulty = MutableLiveData<String?>()
+    val plantDetectionResultDifficulty : LiveData<String?> = _plantDetectionResultDifficulty
 
-    private val _plantDetectionResultBenefit = MutableLiveData<String>()
-    val plantDetectionResultBenefit : LiveData<String> = _plantDetectionResultBenefit
+    private val _plantDetectionResultBenefit = MutableLiveData<String?>()
+    val plantDetectionResultBenefit : LiveData<String?> = _plantDetectionResultBenefit
 
-    private val _plantDetectionResultTip = MutableLiveData<String>()
-    val plantDetectionResultTip : LiveData<String> = _plantDetectionResultTip
+    private val _plantDetectionResultTip = MutableLiveData<String?>()
+    val plantDetectionResultTip : LiveData<String?> = _plantDetectionResultTip
 
     val name = MutableLiveData<String>()
     private val species = MutableLiveData<String>()
@@ -101,7 +101,14 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
     }
     fun warmingPlantDetectionModel(){
         viewModelScope.launch {
-            inferenceRepository.warmingPlantDetection()
+            val data = inferenceRepository.warmingPlantDetection()
+            when(data.isSuccessful){
+                true -> {}
+                false -> {
+                    _plantDetectionSuccess.postValue(false)
+                    Log.i(TAG,"plant doctor warming error")
+                }
+            }
         }
     }
 
@@ -127,6 +134,7 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
                         _plantDetectionResultTip.postValue(data.body()?.species?.tip)
                     }
                 }else -> {
+                    _plantDetectionSuccess.postValue(false)
                     Log.i(TAG,"plant detection error")
                 }
             }
@@ -182,7 +190,6 @@ class PlantRegisterViewModel @Inject constructor(private val repository: PlantId
             }
         }
     }
-
 
     fun postPlant(){
         viewModelScope.launch {

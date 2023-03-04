@@ -31,7 +31,7 @@ class PlantDetectionWaitingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.plantDetectionSuccess.observe(viewLifecycleOwner, Observer{
-            if(it == true ){
+            if(it == true){
                 navController.navigate(R.id.plant_detection_waiting_fragment_to_plant_detection_result_fragment)
                 viewModel.clearPlantDetectionSuccess()
             }else if(it == false){

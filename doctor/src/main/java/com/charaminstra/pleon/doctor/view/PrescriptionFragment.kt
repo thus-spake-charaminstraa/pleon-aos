@@ -60,11 +60,11 @@ class PrescriptionFragment : Fragment() {
 
     private fun initObservers(){
         viewModel.causesList.observe(viewLifecycleOwner){
-            causeAdapter.setItemList(it)
+            causeAdapter.setItemList(it!!)
             solutionAdapter.setItemList(it)
         }
         viewModel.symptomsList.observe(viewLifecycleOwner){
-            symptomAdapter.setItemList(it)
+            symptomAdapter.setItemList(it!!)
         }
         viewModel.plantName.observe(viewLifecycleOwner){
             binding.prescriptionPatientName.text = it

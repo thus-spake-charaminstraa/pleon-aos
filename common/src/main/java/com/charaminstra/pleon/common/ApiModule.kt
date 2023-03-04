@@ -1,8 +1,6 @@
 package com.charaminstra.pleon.common
 
-import com.charaminstra.pleon.common.api.FeedAPIService
-import com.charaminstra.pleon.common.api.AuthAPIService
-import com.charaminstra.pleon.common.api.UserAPIService
+import com.charaminstra.pleon.common.api.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,8 +20,8 @@ object ApiModule {
 
     @Provides
     @Singleton
-    fun provideImageApiService(retrofit: Retrofit): com.charaminstra.pleon.common.api.ImageAPIService {
-        return retrofit.create(com.charaminstra.pleon.common.api.ImageAPIService::class.java)
+    fun provideImageApiService(retrofit: Retrofit): ImageAPIService {
+        return retrofit.create(ImageAPIService::class.java)
     }
 
     @Provides
@@ -40,31 +38,31 @@ object ApiModule {
 
     @Provides
     @Singleton
-    fun provideCommentApiService(retrofit: Retrofit): com.charaminstra.pleon.common.api.CommentAPIService {
-        return retrofit.create(com.charaminstra.pleon.common.api.CommentAPIService::class.java)
+    fun provideCommentApiService(retrofit: Retrofit): CommentAPIService {
+        return retrofit.create(CommentAPIService::class.java)
     }
 
     @Provides
     @Singleton
-    fun provideNotiApiService(retrofit: Retrofit): com.charaminstra.pleon.common.api.NotiAPIService {
-        return retrofit.create(com.charaminstra.pleon.common.api.NotiAPIService::class.java)
+    fun provideNotiApiService(retrofit: Retrofit): NotiAPIService {
+        return retrofit.create(NotiAPIService::class.java)
     }
 
     @Provides
     @Singleton
-    fun providePlantApiService(retrofit: Retrofit): com.charaminstra.pleon.common.api.PlantAPIService {
-        return retrofit.create(com.charaminstra.pleon.common.api.PlantAPIService::class.java)
+    fun providePlantApiService(retrofit: Retrofit): PlantAPIService {
+        return retrofit.create(PlantAPIService::class.java)
     }
 
     @Provides
     @Singleton
-    fun provideCalendarApiService(retrofit: Retrofit): com.charaminstra.pleon.common.api.ScheduleAPIService {
-        return retrofit.create(com.charaminstra.pleon.common.api.ScheduleAPIService::class.java)
+    fun provideCalendarApiService(retrofit: Retrofit): ScheduleAPIService {
+        return retrofit.create(ScheduleAPIService::class.java)
     }
 
     @Provides
     @Singleton
-    fun provideInferenceApiService(retrofit: Retrofit): com.charaminstra.pleon.common.api.InferenceAPIService {
-        return retrofit.create(com.charaminstra.pleon.common.api.InferenceAPIService::class.java)
+    fun provideInferenceApiService(retrofit: Retrofit): InferenceAPIService {
+        return retrofit.create(InferenceAPIService::class.java)
     }
 }
