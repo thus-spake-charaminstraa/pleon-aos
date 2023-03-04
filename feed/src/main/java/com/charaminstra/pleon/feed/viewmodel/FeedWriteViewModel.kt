@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.charaminstra.pleon.common.data.ActionData
 import com.charaminstra.pleon.common.repository.FeedRepository
-import com.charaminstra.pleon.foundation.ImageRepository
+import com.charaminstra.pleon.common.repository.ImageRepository
 import com.charaminstra.pleon.foundation.PlantIdRepository
 import com.charaminstra.pleon.foundation.PlantsRepository
 import com.charaminstra.pleon.foundation.model.PlantDataObject

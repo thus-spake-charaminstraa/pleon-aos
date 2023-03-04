@@ -1,4 +1,4 @@
-package com.charaminstra.pleon.foundation.api
+package com.charaminstra.pleon.common.api
 
 import com.charaminstra.pleon.foundation.model.ImageUrlResponse
 import okhttp3.MultipartBody

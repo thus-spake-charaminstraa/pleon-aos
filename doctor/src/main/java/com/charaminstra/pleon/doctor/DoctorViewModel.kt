@@ -3,7 +3,7 @@ package com.charaminstra.pleon.doctor
 import android.graphics.Bitmap
 import android.util.Log
 import androidx.lifecycle.*
-import com.charaminstra.pleon.foundation.ImageRepository
+import com.charaminstra.pleon.common.repository.ImageRepository
 import com.charaminstra.pleon.foundation.InferenceRepository
 import com.charaminstra.pleon.foundation.PlantsRepository
 import com.charaminstra.pleon.foundation.model.CauseObject

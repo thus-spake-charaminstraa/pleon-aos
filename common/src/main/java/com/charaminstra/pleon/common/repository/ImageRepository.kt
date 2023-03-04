@@ -1,6 +1,5 @@
-package com.charaminstra.pleon.foundation
+package com.charaminstra.pleon.common.repository
 
-import com.charaminstra.pleon.foundation.api.ImageAPIService
 import com.charaminstra.pleon.foundation.model.ImageUrlResponse
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -9,7 +8,7 @@ import retrofit2.Response
 import java.io.InputStream
 import javax.inject.Inject
 
-class ImageRepository @Inject constructor(private val service: ImageAPIService) {
+class ImageRepository @Inject constructor(private val service: com.charaminstra.pleon.common.api.ImageAPIService) {
     suspend fun postImage(stream: InputStream): Response<ImageUrlResponse> {
         val body = stream.readBytes().toRequestBody("image/*".toMediaTypeOrNull())
         val part = MultipartBody.Part.createFormData(

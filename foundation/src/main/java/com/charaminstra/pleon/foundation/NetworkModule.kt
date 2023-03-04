@@ -67,12 +67,6 @@ object NetWorkModule {
 
     @Provides
     @Singleton
-    fun provideImageApiService(retrofit: Retrofit): ImageAPIService {
-        return retrofit.create(ImageAPIService::class.java)
-    }
-
-    @Provides
-    @Singleton
     fun provideCalendarApiService(retrofit: Retrofit): ScheduleAPIService {
         return retrofit.create(ScheduleAPIService::class.java)
     }
