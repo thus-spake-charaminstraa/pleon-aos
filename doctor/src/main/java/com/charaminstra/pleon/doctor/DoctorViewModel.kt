@@ -3,12 +3,12 @@ package com.charaminstra.pleon.doctor
 import android.graphics.Bitmap
 import android.util.Log
 import androidx.lifecycle.*
+import com.charaminstra.pleon.common.data.CauseObject
+import com.charaminstra.pleon.common.data.PlantDataObject
+import com.charaminstra.pleon.common.data.SymptomObject
 import com.charaminstra.pleon.common.repository.ImageRepository
-import com.charaminstra.pleon.foundation.InferenceRepository
-import com.charaminstra.pleon.foundation.PlantsRepository
-import com.charaminstra.pleon.foundation.model.CauseObject
-import com.charaminstra.pleon.foundation.model.PlantDataObject
-import com.charaminstra.pleon.foundation.model.SymptomObject
+import com.charaminstra.pleon.common.repository.InferenceRepository
+import com.charaminstra.pleon.common.repository.PlantsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.io.ByteArrayInputStream
@@ -18,7 +18,8 @@ import javax.inject.Inject
 @HiltViewModel
 class DoctorViewModel @Inject constructor(private val imageRepository: ImageRepository,
                                           private val inferenceRepository: InferenceRepository,
-                                          private val plantsRepository: PlantsRepository)
+                                          private val plantsRepository: PlantsRepository
+)
     :ViewModel(){
 
     private val TAG = javaClass.name

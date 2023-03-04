@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.charaminstra.pleon.feed_common.databinding.ItemCommentBinding
-import com.charaminstra.pleon.foundation.model.CommentObject
+import com.charaminstra.pleon.common.data.CommentObject
 
 class CommentsAdapter(): RecyclerView.Adapter<CommentViewHolder>() {
 

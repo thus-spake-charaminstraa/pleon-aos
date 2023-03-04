@@ -5,8 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.charaminstra.pleon.foundation.AuthRepository
-import com.charaminstra.pleon.foundation.UserRepository
+import com.charaminstra.pleon.common.repository.AuthRepository
+import com.charaminstra.pleon.common.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

@@ -2,9 +2,9 @@ package com.charaminstra.pleon.feed_common
 
 import android.util.Log
 import androidx.lifecycle.*
-import com.charaminstra.pleon.foundation.PlantIdRepository
-import com.charaminstra.pleon.foundation.model.CauseObject
-import com.charaminstra.pleon.foundation.model.SymptomObject
+import com.charaminstra.pleon.common.data.CauseObject
+import com.charaminstra.pleon.common.data.SymptomObject
+import com.charaminstra.pleon.common.repository.PlantIdRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.util.*

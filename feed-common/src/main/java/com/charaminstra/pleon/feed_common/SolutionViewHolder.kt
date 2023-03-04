@@ -1,8 +1,8 @@
 package com.charaminstra.pleon.feed_common
 
 import androidx.recyclerview.widget.RecyclerView
+import com.charaminstra.pleon.common.data.CauseObject
 import com.charaminstra.pleon.feed_common.databinding.ItemSolutionBinding
-import com.charaminstra.pleon.foundation.model.CauseObject
 
 class SolutionViewHolder(val binding: ItemSolutionBinding): RecyclerView.ViewHolder(binding.root) {
     fun bind(item: CauseObject, position: Int) {

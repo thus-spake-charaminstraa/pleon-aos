@@ -1,7 +1,7 @@
 package com.charaminstra.pleon.feed.guide
 
 import com.charaminstra.pleon.feed.databinding.ItemGuideOneBtnBinding
-import com.charaminstra.pleon.foundation.model.GuideData
+import com.charaminstra.pleon.common.data.GuideData
 
 const val NOTI_GO = "NOTI_GO"
 

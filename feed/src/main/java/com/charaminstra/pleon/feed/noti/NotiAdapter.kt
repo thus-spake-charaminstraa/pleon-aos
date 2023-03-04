@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.charaminstra.pleon.feed.databinding.*
-import com.charaminstra.pleon.foundation.model.NotiViewTypeData
+import com.charaminstra.pleon.common.data.NotiViewTypeData
 
 enum class NotiViewType{
     DATE, TEXT, IMAGE

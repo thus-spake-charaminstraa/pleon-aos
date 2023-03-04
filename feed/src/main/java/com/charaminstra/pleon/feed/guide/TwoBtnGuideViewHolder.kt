@@ -2,7 +2,7 @@ package com.charaminstra.pleon.feed.guide
 
 
 import com.charaminstra.pleon.feed.databinding.ItemGuideTwoBtnBinding
-import com.charaminstra.pleon.foundation.model.GuideData
+import com.charaminstra.pleon.common.data.GuideData
 
 const val NOTI_LATER = "noti_later"
 const val NOTI_COMPLETE = "noti_complete"

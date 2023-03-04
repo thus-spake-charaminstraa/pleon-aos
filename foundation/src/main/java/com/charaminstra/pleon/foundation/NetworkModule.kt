@@ -46,46 +46,4 @@ object NetWorkModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
-
-    @Provides
-    @Singleton
-    fun provideUserApiService(retrofit: Retrofit): UserAPIService {
-        return retrofit.create(UserAPIService::class.java)
-    }
-
-    @Provides
-    @Singleton
-    fun provideAuthApiService(retrofit: Retrofit): AuthAPIService {
-        return retrofit.create(AuthAPIService::class.java)
-    }
-
-    @Provides
-    @Singleton
-    fun providePlantApiService(retrofit: Retrofit): PlantAPIService {
-        return retrofit.create(PlantAPIService::class.java)
-    }
-
-    @Provides
-    @Singleton
-    fun provideCalendarApiService(retrofit: Retrofit): ScheduleAPIService {
-        return retrofit.create(ScheduleAPIService::class.java)
-    }
-
-    @Provides
-    @Singleton
-    fun provideCommentApiService(retrofit: Retrofit): CommentAPIService {
-        return retrofit.create(CommentAPIService::class.java)
-    }
-
-    @Provides
-    @Singleton
-    fun provideNotiApiService(retrofit: Retrofit): NotiAPIService {
-        return retrofit.create(NotiAPIService::class.java)
-    }
-
-    @Provides
-    @Singleton
-    fun provideInferenceApiService(retrofit: Retrofit): InferenceAPIService {
-        return retrofit.create(InferenceAPIService::class.java)
-    }
 }

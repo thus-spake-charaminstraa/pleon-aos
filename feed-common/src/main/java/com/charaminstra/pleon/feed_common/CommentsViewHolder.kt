@@ -1,10 +1,9 @@
 package com.charaminstra.pleon.feed_common
 
-import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.charaminstra.pleon.feed_common.databinding.ItemCommentBinding
-import com.charaminstra.pleon.foundation.model.CommentObject
+import com.charaminstra.pleon.common.data.CommentObject
 
 class CommentViewHolder(
     private val binding: ItemCommentBinding

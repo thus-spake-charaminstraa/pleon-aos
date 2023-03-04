@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.charaminstra.pleon.feed.databinding.ItemPlantBinding
-import com.charaminstra.pleon.foundation.model.PlantDataObject
+import com.charaminstra.pleon.common.data.PlantDataObject
 
 class FeedPlantAdapter(): RecyclerView.Adapter<FeedPlantViewHolder>() {
 

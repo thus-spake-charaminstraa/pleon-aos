@@ -2,7 +2,7 @@ package com.charaminstra.pleon.common
 
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
-import com.charaminstra.pleon.foundation.model.PlantDataObject
+import com.charaminstra.pleon.common.data.PlantDataObject
 
 abstract class PlantCommonViewHolder(
     binding: ViewBinding,

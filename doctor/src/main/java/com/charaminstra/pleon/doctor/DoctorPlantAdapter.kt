@@ -3,7 +3,7 @@ package com.charaminstra.pleon.doctor
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.charaminstra.pleon.foundation.model.PlantDataObject
+import com.charaminstra.pleon.common.data.PlantDataObject
 import com.charaminstra.pleon.doctor.databinding.ItemDoctorPlantBinding
 
 class DoctorPlantAdapter(): RecyclerView.Adapter<DoctorPlantViewHolder>() {

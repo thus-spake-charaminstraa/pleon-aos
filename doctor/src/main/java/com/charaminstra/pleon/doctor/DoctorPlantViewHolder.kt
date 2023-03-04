@@ -2,9 +2,8 @@ package com.charaminstra.pleon.doctor
 
 import com.bumptech.glide.Glide
 import com.charaminstra.pleon.common.PlantCommonViewHolder
+import com.charaminstra.pleon.common.data.PlantDataObject
 import com.charaminstra.pleon.doctor.databinding.ItemDoctorPlantBinding
-import com.charaminstra.pleon.foundation.model.PlantDataObject
-import dagger.hilt.android.lifecycle.HiltViewModel
 
 class DoctorPlantViewHolder(
     val binding: ItemDoctorPlantBinding

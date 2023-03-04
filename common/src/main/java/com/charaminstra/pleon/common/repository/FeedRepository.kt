@@ -1,7 +1,7 @@
 package com.charaminstra.pleon.common.repository
 
 import com.charaminstra.pleon.common.api.FeedAPIService
-import com.charaminstra.pleon.foundation.api.PleonPreference
+import com.charaminstra.pleon.common.api.PleonPreference
 import com.charaminstra.pleon.common.data.FeedRequestBody
 import javax.inject.Inject
 

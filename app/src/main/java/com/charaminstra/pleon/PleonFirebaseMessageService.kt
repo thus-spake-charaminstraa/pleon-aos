@@ -1,7 +1,7 @@
 package com.charaminstra.pleon
 
 import android.util.Log
-import com.charaminstra.pleon.foundation.api.PleonPreference
+import com.charaminstra.pleon.common.api.PleonPreference
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 

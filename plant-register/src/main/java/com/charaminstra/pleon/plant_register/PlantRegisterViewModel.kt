@@ -7,8 +7,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.charaminstra.pleon.common.repository.ImageRepository
-import com.charaminstra.pleon.foundation.InferenceRepository
-import com.charaminstra.pleon.foundation.PlantIdRepository
+import com.charaminstra.pleon.common.repository.InferenceRepository
+import com.charaminstra.pleon.common.repository.PlantIdRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.io.ByteArrayInputStream
@@ -18,7 +18,8 @@ import javax.inject.Inject
 @HiltViewModel
 class PlantRegisterViewModel @Inject constructor(private val repository: PlantIdRepository,
                                                  private val imageRepository: ImageRepository,
-                                                 private val inferenceRepository: InferenceRepository) : ViewModel() {
+                                                 private val inferenceRepository: InferenceRepository
+) : ViewModel() {
 
     private val TAG = javaClass.name
 

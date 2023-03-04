@@ -5,15 +5,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.charaminstra.pleon.foundation.PlantsRepository
-import com.charaminstra.pleon.foundation.model.PlantDataObject
+import com.charaminstra.pleon.common.repository.PlantsRepository
+import com.charaminstra.pleon.common.data.PlantDataObject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class PlantsViewModel @Inject constructor(
-    private val repository: PlantsRepository) : ViewModel() {
+    private val repository: PlantsRepository
+) : ViewModel() {
     private val TAG = javaClass.name
 
     private val _plantsList = MutableLiveData<List<PlantDataObject>>()

@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.charaminstra.pleon.feed.databinding.*
-import com.charaminstra.pleon.foundation.model.GuideViewTypeData
+import com.charaminstra.pleon.common.data.GuideViewTypeData
 
 class GuideAdapter(): RecyclerView.Adapter<GuideCommonViewHolder>() {
 

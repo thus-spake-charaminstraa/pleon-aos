@@ -2,8 +2,8 @@ package com.charaminstra.pleon.feed_common
 
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.charaminstra.pleon.common.data.SymptomObject
 import com.charaminstra.pleon.feed_common.databinding.ItemSymptomBinding
-import com.charaminstra.pleon.foundation.model.SymptomObject
 
 class SymptomViewHolder(val binding: ItemSymptomBinding): RecyclerView.ViewHolder(binding.root) {
     fun bind(item: SymptomObject, position: Int) {

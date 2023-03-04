@@ -3,7 +3,7 @@ package com.charaminstra.pleon.feed
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.charaminstra.pleon.feed.databinding.ItemPlantBinding
-import com.charaminstra.pleon.foundation.model.PlantDataObject
+import com.charaminstra.pleon.common.data.PlantDataObject
 
 class FeedPlantViewHolder(val binding: ItemPlantBinding): RecyclerView.ViewHolder(binding.root){
     fun bind(item: PlantDataObject) {

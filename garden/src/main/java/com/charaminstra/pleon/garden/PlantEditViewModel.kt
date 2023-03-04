@@ -6,9 +6,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.charaminstra.pleon.common.data.PlantDataObject
 import com.charaminstra.pleon.common.repository.ImageRepository
-import com.charaminstra.pleon.foundation.PlantIdRepository
-import com.charaminstra.pleon.foundation.model.PlantDataObject
+import com.charaminstra.pleon.common.repository.PlantIdRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.io.ByteArrayInputStream

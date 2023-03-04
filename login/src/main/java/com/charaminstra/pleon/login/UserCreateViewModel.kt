@@ -3,8 +3,8 @@ package com.charaminstra.pleon.login
 import android.content.ContentValues
 import android.util.Log
 import androidx.lifecycle.*
-import com.charaminstra.pleon.foundation.UserRepository
-import com.charaminstra.pleon.foundation.api.PleonPreference
+import com.charaminstra.pleon.common.repository.UserRepository
+import com.charaminstra.pleon.common.api.PleonPreference
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -13,7 +13,8 @@ import javax.inject.Inject
 class UserCreateViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     private val repository: UserRepository,
-    private val prefs: PleonPreference) : ViewModel() {
+    private val prefs: PleonPreference
+) : ViewModel() {
 
     private val TAG = javaClass.simpleName
     private var _userCreateSuccess = MutableLiveData<Boolean?>()

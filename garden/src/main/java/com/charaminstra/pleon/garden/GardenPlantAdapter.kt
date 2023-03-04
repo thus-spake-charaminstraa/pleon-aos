@@ -3,8 +3,7 @@ package com.charaminstra.pleon.garden
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.charaminstra.pleon.common.PlantCommonViewHolder
-import com.charaminstra.pleon.foundation.model.PlantDataObject
+import com.charaminstra.pleon.common.data.PlantDataObject
 import com.charaminstra.pleon.garden.databinding.ItemGardenPlantBinding
 
 class GardenPlantAdapter(): RecyclerView.Adapter<GardenPlantViewHolder>() {

@@ -2,10 +2,9 @@ package com.charaminstra.pleon.feed.noti
 
 import android.view.View
 import androidx.navigation.findNavController
-import com.bumptech.glide.Glide
 import com.charaminstra.pleon.feed.databinding.ItemNotiImageBinding
 import com.charaminstra.pleon.feed.view.NotiFragmentDirections
-import com.charaminstra.pleon.foundation.model.NotiData
+import com.charaminstra.pleon.common.data.NotiData
 
 
 class NotiImageViewHolder (private val binding: ItemNotiImageBinding): NotiCommonViewHolder(binding) {

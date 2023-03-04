@@ -6,10 +6,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.charaminstra.pleon.foundation.AuthRepository
+import com.charaminstra.pleon.common.repository.AuthRepository
 import com.charaminstra.pleon.common.repository.ImageRepository
-import com.charaminstra.pleon.foundation.UserRepository
-import com.charaminstra.pleon.foundation.api.PleonPreference
+import com.charaminstra.pleon.common.repository.UserRepository
+import com.charaminstra.pleon.common.api.PleonPreference
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.io.ByteArrayInputStream

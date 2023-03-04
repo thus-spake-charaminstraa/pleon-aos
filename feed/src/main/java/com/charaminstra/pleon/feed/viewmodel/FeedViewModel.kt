@@ -6,8 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.charaminstra.pleon.common.repository.FeedRepository
-import com.charaminstra.pleon.foundation.NotiRepository
-import com.charaminstra.pleon.foundation.model.GuideViewTypeData
+import com.charaminstra.pleon.common.repository.NotiRepository
+import com.charaminstra.pleon.common.data.GuideViewTypeData
 import com.charaminstra.pleon.common.ResultObject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

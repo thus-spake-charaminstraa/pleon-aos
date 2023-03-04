@@ -3,7 +3,7 @@ package com.charaminstra.pleon.plant_register
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.charaminstra.pleon.foundation.model.PlantSpeciesDataObject
+import com.charaminstra.pleon.common.data.PlantSpeciesDataObject
 import com.charaminstra.pleon.plant_register.databinding.ItemPlantSearchBinding
 
 class PlantSearchAdapter() : RecyclerView.Adapter<PlantSearchViewHolder>() {

@@ -4,7 +4,7 @@ import android.view.View
 import androidx.navigation.findNavController
 import com.charaminstra.pleon.feed.databinding.ItemNotiTextBinding
 import com.charaminstra.pleon.feed.view.NotiFragmentDirections
-import com.charaminstra.pleon.foundation.model.NotiData
+import com.charaminstra.pleon.common.data.NotiData
 
 
 class NotiTextViewHolder (private val binding: ItemNotiTextBinding): NotiCommonViewHolder(binding) {

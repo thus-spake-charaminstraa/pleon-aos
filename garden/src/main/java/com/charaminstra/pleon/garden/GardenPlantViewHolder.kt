@@ -2,7 +2,7 @@ package com.charaminstra.pleon.garden
 
 import com.bumptech.glide.Glide
 import com.charaminstra.pleon.common.PlantCommonViewHolder
-import com.charaminstra.pleon.foundation.model.PlantDataObject
+import com.charaminstra.pleon.common.data.PlantDataObject
 import com.charaminstra.pleon.garden.databinding.ItemGardenPlantBinding
 
 class GardenPlantViewHolder(
