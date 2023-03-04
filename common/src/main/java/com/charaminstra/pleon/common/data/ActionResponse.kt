@@ -1,4 +1,4 @@
-package com.charaminstra.pleon.foundation.model
+package com.charaminstra.pleon.common.data
 
 data class ActionResponse(
     val success: Boolean?,

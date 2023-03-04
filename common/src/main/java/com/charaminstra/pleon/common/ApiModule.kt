@@ -1,5 +1,6 @@
 package com.charaminstra.pleon.common
 
+import com.charaminstra.pleon.common.api.FeedAPIService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

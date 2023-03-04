@@ -3,7 +3,7 @@ package com.charaminstra.pleon.feed_common
 import android.util.Log
 import androidx.lifecycle.*
 import com.charaminstra.pleon.foundation.CommentRepository
-import com.charaminstra.pleon.common.FeedRepository
+import com.charaminstra.pleon.common.repository.FeedRepository
 import com.charaminstra.pleon.foundation.model.CommentObject
 import com.charaminstra.pleon.common.FeedViewObject
 import dagger.hilt.android.lifecycle.HiltViewModel

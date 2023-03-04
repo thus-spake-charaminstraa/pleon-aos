@@ -1,4 +1,6 @@
-package com.charaminstra.pleon.common
+package com.charaminstra.pleon.common.data
+
+import com.charaminstra.pleon.common.FeedViewObject
 
 data class FeedIdResponse(
     val success: Boolean?,

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/nav_feed"
+        android:id="@id/nav_feed"
         android:icon="@drawable/tab_selector_feed"
         android:title="@string/bottom_nav_feed" />
     <item
-        android:id="@+id/nav_doctor"
+        android:id="@id/nav_doctor"
         android:icon="@drawable/tab_selector_doctor"
         android:title="@string/bottom_nav_doctor" />
     <item
-        android:id="@+id/nav_garden"
+        android:id="@id/nav_garden"
         android:icon="@drawable/tab_selector_garden"
         android:title="@string/bottom_nav_garden" />
 <!--    <item-->
@@ -17,7 +17,7 @@
 <!--        android:icon="@drawable/tab_selector_chat"-->
 <!--        android:title="@string/bottom_nav_chat" />-->
     <item
-        android:id="@+id/nav_my"
+        android:id="@id/nav_my"
         android:icon="@drawable/tab_selector_my"
         android:title="@string/bottom_nav_my" />
 </menu>

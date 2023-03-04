@@ -1,4 +1,4 @@
-package com.charaminstra.pleon.foundation.model
+package com.charaminstra.pleon.common.data
 
 data class FeedRequestBody(
     val plant_id: String,
