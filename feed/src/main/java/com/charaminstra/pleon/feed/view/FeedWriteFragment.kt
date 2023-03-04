@@ -1,7 +1,6 @@
 package com.charaminstra.pleon.feed.view
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -13,7 +12,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -22,10 +20,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.certified.customprogressindicatorlibrary.CustomProgressIndicator
 import com.charaminstra.pleon.common.*
-import com.charaminstra.pleon.common_ui.DateUtils
-import com.charaminstra.pleon.common_ui.ErrorToast
-import com.charaminstra.pleon.common_ui.PLeonDatePicker
-import com.charaminstra.pleon.common_ui.PopUpImageMenu
+import com.charaminstra.pleon.common_ui.*
 import com.charaminstra.pleon.feed.ActionAdapter
 import com.charaminstra.pleon.feed.FeedPlantAdapter
 import com.charaminstra.pleon.feed.viewmodel.FeedWriteViewModel

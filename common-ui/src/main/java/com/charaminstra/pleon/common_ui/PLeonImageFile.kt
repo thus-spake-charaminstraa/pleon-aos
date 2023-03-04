@@ -1,4 +1,4 @@
-package com.charaminstra.pleon.common
+package com.charaminstra.pleon.common_ui
 
 import android.app.Activity
 import android.os.Environment

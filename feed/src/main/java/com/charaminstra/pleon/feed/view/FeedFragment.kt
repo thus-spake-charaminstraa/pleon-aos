@@ -1,6 +1,5 @@
 package com.charaminstra.pleon.feed.view
 
-import android.animation.Animator
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -22,6 +21,7 @@ import androidx.recyclerview.widget.PagerSnapHelper
 import com.charaminstra.pleon.common.*
 import com.charaminstra.pleon.common_ui.ErrorToast
 import com.charaminstra.pleon.common_ui.PLeonNotiDialog
+import com.charaminstra.pleon.common.PlantsViewModel
 import com.charaminstra.pleon.feed.FeedPlantAdapter
 import com.charaminstra.pleon.feed.viewmodel.FeedViewModel
 import com.charaminstra.pleon.feed.R

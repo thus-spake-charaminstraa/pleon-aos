@@ -19,10 +19,10 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.certified.customprogressindicatorlibrary.CustomProgressIndicator
-import com.charaminstra.pleon.common.PLeonImageFile
-import com.charaminstra.pleon.common.REQUEST_GALLERY
-import com.charaminstra.pleon.common.REQUEST_TAKE_PHOTO
-import com.charaminstra.pleon.common.RequestPermission
+import com.charaminstra.pleon.common_ui.PLeonImageFile
+import com.charaminstra.pleon.common_ui.REQUEST_GALLERY
+import com.charaminstra.pleon.common_ui.REQUEST_TAKE_PHOTO
+import com.charaminstra.pleon.common_ui.RequestPermission
 import com.charaminstra.pleon.common_ui.ErrorToast
 import com.charaminstra.pleon.common_ui.PopUpImageMenu
 import com.charaminstra.pleon.my.databinding.FragmentMyEditBinding

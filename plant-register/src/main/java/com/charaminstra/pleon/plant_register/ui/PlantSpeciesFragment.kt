@@ -22,9 +22,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.charaminstra.pleon.common.*
-import com.charaminstra.pleon.common_ui.ErrorToast
-import com.charaminstra.pleon.common_ui.PLeonMsgDialog
-import com.charaminstra.pleon.common_ui.PopUpImageMenu
+import com.charaminstra.pleon.common_ui.*
 import com.charaminstra.pleon.plant_register.*
 import com.charaminstra.pleon.plant_register.R
 import com.charaminstra.pleon.plant_register.databinding.FragmentPlantSpeciesBinding
