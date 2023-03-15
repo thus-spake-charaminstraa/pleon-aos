@@ -179,37 +179,10 @@ class FeedFragment : Fragment() {
         notiAdapter.onClickNoti = { notiId, button ->
             when(button){
                 NOTI_LATER -> {
-                    // logging
-                    val bundle = Bundle()
-                    bundle.putString(CLASS_NAME, TAG)
-                    firebaseAnalytics.logEvent(NOTI_LATER_BTN_CLCIK, bundle)
-
-                    val vibrator = requireContext().getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-                    vibrator.vibrate(100) // 200 ms
-
-                    binding.laterEffect.visibility = View.VISIBLE
-                    binding.laterEffect.playAnimation()
-                    val handler = Handler()
-                    handler.postDelayed({
-                        binding.laterEffect.pauseAnimation()
-                        binding.laterEffect.visibility = View.GONE
-                    },2000 )
-
-                    feedAdapter.clearItems()
-                    feedViewModel.postNotiClick(notiId, "LATER")
+                    onNotiLater(notiId)
                 }
                 NOTI_COMPLETE -> {
-                    // logging
-                    val bundle = Bundle()
-                    bundle.putString(CLASS_NAME, TAG)
-                    firebaseAnalytics.logEvent(NOTI_COMPLETE_BTN_CLCIK, bundle)
-
-                    binding.completeEffect.playAnimation()
-                    val vibrator = requireContext().getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-                    vibrator.vibrate(100) // 200 ms
-
-                    feedAdapter.clearItems()
-                    feedViewModel.postNotiClick(notiId, "COMPLETE")
+                    onNotiCompleted(notiId)
                 }
                 NOTI_GO -> {
                     startPlantRegisterActivity(requireContext())
@@ -283,5 +256,40 @@ class FeedFragment : Fragment() {
         val loggingBundle = Bundle()
         loggingBundle.putString(CLASS_NAME, TAG)
         firebaseAnalytics.logEvent(PLANT_REGISTER_BTN_CLICK  , loggingBundle)
+    }
+
+    private fun onNotiCompleted(notiId: String) {
+        // logging
+        val bundle = Bundle()
+        bundle.putString(CLASS_NAME, TAG)
+        firebaseAnalytics.logEvent(NOTI_COMPLETE_BTN_CLCIK, bundle)
+
+        binding.completeEffect.playAnimation()
+        val vibrator = requireContext().getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        vibrator.vibrate(100) // 200 ms
+
+        feedAdapter.clearItems()
+        feedViewModel.postNotiClick(notiId, "COMPLETE")
+    }
+
+    private fun onNotiLater(notiId: String) {
+        // logging
+        val bundle = Bundle()
+        bundle.putString(CLASS_NAME, TAG)
+        firebaseAnalytics.logEvent(NOTI_LATER_BTN_CLCIK, bundle)
+
+        val vibrator = requireContext().getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        vibrator.vibrate(100) // 200 ms
+
+        binding.laterEffect.visibility = View.VISIBLE
+        binding.laterEffect.playAnimation()
+        val handler = Handler()
+        handler.postDelayed({
+            binding.laterEffect.pauseAnimation()
+            binding.laterEffect.visibility = View.GONE
+        },2000 )
+
+        feedAdapter.clearItems()
+        feedViewModel.postNotiClick(notiId, "LATER")
     }
 }
