@@ -82,14 +82,14 @@ class FeedFragment : Fragment() {
         observeViewModel()
 
         feedViewModel.getNotiDialog()
-        feedViewModel.getNotiNew()
+        feedViewModel.getNotiExist()
 
         //noti recyclervieew
         binding.notiRecyclerview.adapter = notiAdapter
 
         binding.feedFilterRecyclerview.adapter = feedPlantAdapter
         binding.feedRecyclerview.adapter = feedAdapter
-        binding.feedAddBtn.setOnClickListener {
+        binding.addFeedBtn.setOnClickListener {
             if(plantsViewModel.plantsCount.value == 0){
                 ErrorToast(requireContext()).showMsgCenter(resources.getString(R.string.feed_write_error_msg))
             }else{
@@ -98,11 +98,11 @@ class FeedFragment : Fragment() {
                 bundle.putString(CLASS_NAME, TAG)
                 firebaseAnalytics.logEvent(FEED_WRITE_BTN_CLICK, bundle)
 
-                navController.navigate(com.charaminstra.pleon.feed_common.R.id.feed_fragment_to_feed_write_fragment)
+                navigateToFeedWritePage()
             }
         }
 
-        //noti dialog
+        //noti event dialog
         notiDialog.setOnGoBtnClickedListener {
             // logging
             val bundle = Bundle()
@@ -112,7 +112,7 @@ class FeedFragment : Fragment() {
             if(plantsViewModel.plantsCount.value == 0){
                 ErrorToast(requireContext()).showMsgCenter(resources.getString(R.string.feed_write_error_msg))
             }else{
-                navController.navigate(com.charaminstra.pleon.feed_common.R.id.feed_fragment_to_feed_write_fragment)
+                navigateToFeedWritePage()
             }
         }
         notiDialog.setOnTodayStopClickedListener {
@@ -270,13 +270,13 @@ class FeedFragment : Fragment() {
                     feedViewModel.notiImgUrl!!)
             }
         })
-        feedViewModel.notiNew.observe(viewLifecycleOwner, Observer {
-            if(it){
-                binding.notiListBtn.setImageResource(R.drawable.ic_alarm_on)
-            }else{
-                binding.notiListBtn.setImageResource(R.drawable.ic_alarm_off)
-            }
+        feedViewModel.hasNoti.observe(viewLifecycleOwner, Observer {
+            binding.hasNoti = it
         })
+    }
+
+    private fun navigateToFeedWritePage() {
+        navController.navigate(com.charaminstra.pleon.feed_common.R.id.feed_fragment_to_feed_write_fragment)
     }
 
     fun startPlantRegisterActivity(context: Context) {
