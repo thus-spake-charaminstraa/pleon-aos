@@ -242,6 +242,7 @@ class FeedFragment : Fragment() {
             feedPlantAdapter.refreshItems(it)
         })
         feedViewModel.feedAllList.observe(viewLifecycleOwner, Observer {
+            binding.hasFeed = !it.isNullOrEmpty()
             if(feedViewModel.isLast.value == false){
                 feedAdapter.addItemsAndLoading(it)
             }else{
@@ -259,13 +260,6 @@ class FeedFragment : Fragment() {
                 binding.filterScroll.isVisible = false
             }else{
                 binding.filterScroll.isVisible = true
-            }
-        })
-        feedViewModel.feedCount.observe(viewLifecycleOwner, Observer {
-            if(it==0){
-                binding.noFeedMsg.visibility = View.VISIBLE
-            }else{
-                binding.noFeedMsg.visibility = View.GONE
             }
         })
         feedViewModel.notiDialogIsExist.observe(viewLifecycleOwner, Observer {
