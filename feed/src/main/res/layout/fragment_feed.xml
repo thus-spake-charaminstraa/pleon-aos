@@ -12,6 +12,10 @@
             type="boolean" />
 
         <variable
+            name="hasPlant"
+            type="boolean" />
+
+        <variable
             name="hasNoti"
             type="boolean" />
 
@@ -87,6 +91,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
+                    android:visibility="@{hasPlant ? View.VISIBLE : View.GONE}"
                     app:layout_constraintLeft_toLeftOf="@+id/feed_title"
                     app:layout_constraintTop_toBottomOf="@id/feed_title"
                     app:layout_constraintBottom_toTopOf="@+id/feed_recyclerview">
