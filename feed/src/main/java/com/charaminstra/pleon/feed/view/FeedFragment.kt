@@ -20,7 +20,7 @@ import androidx.recyclerview.widget.PagerSnapHelper
 import com.charaminstra.pleon.common.*
 import com.charaminstra.pleon.common_ui.ErrorToast
 import com.charaminstra.pleon.common_ui.PLeonNotiDialog
-import com.charaminstra.pleon.common.PlantsViewModel
+import com.charaminstra.pleon.feed_common.PlantsViewModel
 import com.charaminstra.pleon.feed.FeedPlantAdapter
 import com.charaminstra.pleon.feed.viewmodel.FeedViewModel
 import com.charaminstra.pleon.feed.R
@@ -29,6 +29,7 @@ import com.charaminstra.pleon.feed.guide.NOTI_COMPLETE
 import com.charaminstra.pleon.feed.guide.NOTI_GO
 import com.charaminstra.pleon.feed.guide.NOTI_LATER
 import com.charaminstra.pleon.feed.guide.GuideAdapter
+import com.charaminstra.pleon.feed_common.FeedAdapter
 import com.google.firebase.analytics.FirebaseAnalytics
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -38,12 +39,12 @@ class FeedFragment : Fragment() {
     private lateinit var binding : FragmentFeedBinding
 
     private lateinit var feedPlantAdapter: FeedPlantAdapter
-    private lateinit var notiAdapter: GuideAdapter
-    private lateinit var feedAdapter: com.charaminstra.pleon.feed_common.FeedAdapter
+    private lateinit var guideAdapter: GuideAdapter
+    private lateinit var feedAdapter: FeedAdapter
 
     private val plantsViewModel: PlantsViewModel by viewModels()
     private val feedViewModel: FeedViewModel by viewModels()
-    val pageSnap= PagerSnapHelper()
+    private val pageSnap= PagerSnapHelper()
 
     private lateinit var firebaseAnalytics: FirebaseAnalytics
     lateinit var navController: NavController
@@ -83,8 +84,8 @@ class FeedFragment : Fragment() {
         feedViewModel.getNotiDialog()
         feedViewModel.getNotiExist()
 
-        //noti recyclervieew
-        binding.notiRecyclerview.adapter = notiAdapter
+        //guide recyclervieew
+        binding.guideRecyclerview.adapter = guideAdapter
 
         binding.feedFilterRecyclerview.adapter = feedPlantAdapter
         binding.feedRecyclerview.adapter = feedAdapter
@@ -115,7 +116,7 @@ class FeedFragment : Fragment() {
             }
         }
         notiDialog.setOnTodayStopClickedListener {
-            feedViewModel.postNotiTodayStop()
+            feedViewModel.postNotiDialogTodayStop()
 
             // logging
             val bundle = Bundle()
@@ -145,7 +146,7 @@ class FeedFragment : Fragment() {
         feedViewModel.plantId = null
         feedAdapter.clearItems()
         feedViewModel.getFeedAllList()
-        feedViewModel.getNotiList()
+        feedViewModel.getGuideList()
     }
 
     private fun initScrollListener(){
@@ -173,16 +174,16 @@ class FeedFragment : Fragment() {
             loggingBundle.putString(CLASS_NAME, TAG)
             firebaseAnalytics.logEvent(FEED_FILTER_BTN_CLICK , loggingBundle)
         }
-        feedAdapter = com.charaminstra.pleon.feed_common.FeedAdapter()
+        feedAdapter = FeedAdapter()
         feedAdapter.fromView = "FEED"
-        notiAdapter = GuideAdapter()
-        notiAdapter.onClickNoti = { notiId, button ->
+        guideAdapter = GuideAdapter()
+        guideAdapter.onClickNoti = { guideId, button ->
             when(button){
                 NOTI_LATER -> {
-                    onNotiLater(notiId)
+                    onNotiLater(guideId)
                 }
                 NOTI_COMPLETE -> {
-                    onNotiCompleted(notiId)
+                    onNotiCompleted(guideId)
                 }
                 NOTI_GO -> {
                     startPlantRegisterActivity(requireContext())
@@ -222,11 +223,11 @@ class FeedFragment : Fragment() {
                 feedAdapter.addFinalItems(it)
             }
         })
-        feedViewModel.notiList.observe(viewLifecycleOwner, Observer {
-            notiAdapter.refreshItems(it)
+        feedViewModel.guideList.observe(viewLifecycleOwner, Observer {
+            guideAdapter.refreshItems(it)
             // add page Snap
-            pageSnap.attachToRecyclerView(binding.notiRecyclerview)
-            binding.notiIndicator.attachToRecyclerView(binding.notiRecyclerview,pageSnap)
+            pageSnap.attachToRecyclerView(binding.guideRecyclerview)
+            binding.notiIndicator.attachToRecyclerView(binding.guideRecyclerview,pageSnap)
         })
         feedViewModel.notiDialogIsExist.observe(viewLifecycleOwner, Observer {
             if(it){
@@ -258,7 +259,7 @@ class FeedFragment : Fragment() {
         firebaseAnalytics.logEvent(PLANT_REGISTER_BTN_CLICK  , loggingBundle)
     }
 
-    private fun onNotiCompleted(notiId: String) {
+    private fun onNotiCompleted(guideId: String) {
         // logging
         val bundle = Bundle()
         bundle.putString(CLASS_NAME, TAG)
@@ -269,10 +270,10 @@ class FeedFragment : Fragment() {
         vibrator.vibrate(100) // 200 ms
 
         feedAdapter.clearItems()
-        feedViewModel.postNotiClick(notiId, "COMPLETE")
+        feedViewModel.postGuideClick(guideId, "COMPLETE")
     }
 
-    private fun onNotiLater(notiId: String) {
+    private fun onNotiLater(guideId: String) {
         // logging
         val bundle = Bundle()
         bundle.putString(CLASS_NAME, TAG)
@@ -290,6 +291,6 @@ class FeedFragment : Fragment() {
         },2000 )
 
         feedAdapter.clearItems()
-        feedViewModel.postNotiClick(notiId, "LATER")
+        feedViewModel.postGuideClick(guideId, "LATER")
     }
 }
