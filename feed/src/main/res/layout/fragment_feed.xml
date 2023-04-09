@@ -11,6 +11,14 @@
             name="hasFeed"
             type="boolean" />
 
+        <variable
+            name="hasPlant"
+            type="boolean" />
+
+        <variable
+            name="hasNoti"
+            type="boolean" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,7 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/noti_recyclerview"
+                    android:id="@+id/guide_recyclerview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -39,9 +47,9 @@
                     android:layout_height="35dp"
                     android:layout_margin="16dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/ic_alarm_off"
-                    app:layout_constraintTop_toTopOf="@+id/noti_recyclerview"
-                    app:layout_constraintRight_toRightOf="@+id/noti_recyclerview"/>
+                    android:src="@{hasNoti ? @drawable/ic_alarm_on : @drawable/ic_alarm_off}"
+                    app:layout_constraintTop_toTopOf="@+id/guide_recyclerview"
+                    app:layout_constraintRight_toRightOf="@+id/guide_recyclerview"/>
                 <me.relex.circleindicator.CircleIndicator2
                     android:id="@+id/noti_indicator"
                     android:layout_width="match_parent"
@@ -56,7 +64,7 @@
                     app:ci_gravity="center"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/noti_recyclerview"/>
+                    app:layout_constraintTop_toBottomOf="@+id/guide_recyclerview"/>
                 <TextView
                     android:id="@+id/feed_title"
                     android:layout_width="match_parent"
@@ -83,6 +91,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
+                    android:visibility="@{hasPlant ? View.VISIBLE : View.GONE}"
                     app:layout_constraintLeft_toLeftOf="@+id/feed_title"
                     app:layout_constraintTop_toBottomOf="@id/feed_title"
                     app:layout_constraintBottom_toTopOf="@+id/feed_recyclerview">
@@ -143,7 +152,7 @@
             app:lottie_repeatCount="1"
             app:lottie_loop="true"/>
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/feed_add_btn"
+            android:id="@+id/add_feed_btn"
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:elevation="2dp"

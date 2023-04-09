@@ -1,4 +1,4 @@
-package com.charaminstra.pleon.common
+package com.charaminstra.pleon.feed_common
 
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding

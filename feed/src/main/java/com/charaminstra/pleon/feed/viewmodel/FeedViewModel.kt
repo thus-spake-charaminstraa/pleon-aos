@@ -26,20 +26,17 @@ class FeedViewModel @Inject constructor(
     private val _feedFilterList = MutableLiveData<ArrayList<ResultObject>>()
     val feedFilterList : LiveData<ArrayList<ResultObject>> = _feedFilterList
 
-    private val _notiList = MutableLiveData<List<GuideViewTypeData>>()
-    val notiList : LiveData<List<GuideViewTypeData>> = _notiList
+    private val _guideList = MutableLiveData<List<GuideViewTypeData>>()
+    val guideList : LiveData<List<GuideViewTypeData>> = _guideList
 
     private val _isLast = MutableLiveData<Boolean>()
     val isLast : LiveData<Boolean> = _isLast
 
-    private val _notiCompleteSuccess = MutableLiveData<Boolean>()
-    val notiCompleteSuccess : LiveData<Boolean> = _notiCompleteSuccess
-
     private val _notiDialogIsExist = MutableLiveData<Boolean>()
     val notiDialogIsExist : LiveData<Boolean> = _notiDialogIsExist
 
-    private val _notiNew = MutableLiveData<Boolean>()
-    val notiNew : LiveData<Boolean> = _notiNew
+    private val _hasNoti = MutableLiveData<Boolean>()
+    val hasNoti : LiveData<Boolean> = _hasNoti
 
     var notiDialogTitle : String? = null
     var notiDialogContent : String? = null
@@ -83,12 +80,12 @@ class FeedViewModel @Inject constructor(
 //        }
 //    }
 
-    fun getNotiList(){
+    fun getGuideList(){
         viewModelScope.launch {
             val data = notiRepository.getGuideList()
             when(data.isSuccessful){
                 true -> {
-                    _notiList.postValue(data.body()?.data)
+                    _guideList.postValue(data.body()?.data)
                     Log.i(TAG,"SUCCESS -> "+ data.body().toString())
                 }else -> {
                     Log.i(TAG,"FAIL -> "+ data.body().toString())
@@ -102,14 +99,12 @@ class FeedViewModel @Inject constructor(
         plantId = null
     }
 
-    fun postNotiClick(notiId: String, type: String){
+    fun postGuideClick(notiId: String, type: String){
         viewModelScope.launch {
-            val data = notiRepository.postNotiAction(notiId, type)
-            Log.i(TAG,"postnoticlick -> "+ notiId+"\n"+type)
-            Log.i(TAG,"postnoticlick -> "+ data.body().toString())
+            val data = notiRepository.postGuideAction(notiId, type)
             when (data.isSuccessful) {
                 true -> {
-                    getNotiList()
+                    getGuideList()
                     clearFeedSetting()
                     getFeedAllList()
                     Log.i(TAG,"SUCCESS -> "+ data.body().toString())
@@ -121,6 +116,22 @@ class FeedViewModel @Inject constructor(
         }
     }
 
+    fun getNotiExist(){
+        viewModelScope.launch {
+            val data = notiRepository.getNotiNew()
+            when (data.isSuccessful) {
+                true -> {
+                    _hasNoti.postValue(data.body()?.data)
+                    Log.i(TAG,"SUCCESS -> "+ data.body().toString())
+                }
+                else -> {
+                    Log.i(TAG,"FAIL -> "+ data.body().toString())
+                }
+            }
+        }
+    }
+
+    //noti dialog
     fun getNotiDialog(){
         viewModelScope.launch {
             val data = notiRepository.getNotiDialog()
@@ -143,27 +154,12 @@ class FeedViewModel @Inject constructor(
         }
     }
 
-    fun postNotiTodayStop(){
+    fun postNotiDialogTodayStop(){
         viewModelScope.launch {
-            val data = notiRepository.postNotiTodayStop()
+            val data = notiRepository.postNotiDialogTodayStop()
             when (data.isSuccessful) {
                 true -> {
                     _notiDialogIsExist.postValue(false)
-                    Log.i(TAG,"SUCCESS -> "+ data.body().toString())
-                }
-                else -> {
-                    Log.i(TAG,"FAIL -> "+ data.body().toString())
-                }
-            }
-        }
-    }
-
-    fun getNotiNew(){
-        viewModelScope.launch {
-            val data = notiRepository.getNotiNew()
-            when (data.isSuccessful) {
-                true -> {
-                    _notiNew.postValue(data.body()?.data)
                     Log.i(TAG,"SUCCESS -> "+ data.body().toString())
                 }
                 else -> {
