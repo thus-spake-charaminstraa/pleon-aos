@@ -31,7 +31,7 @@
             android:layout_height="match_parent">
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/guide_recyclerview"
                     android:layout_width="match_parent"
@@ -93,8 +93,7 @@
                     android:layout_marginLeft="16dp"
                     android:visibility="@{hasPlant ? View.VISIBLE : View.GONE}"
                     app:layout_constraintLeft_toLeftOf="@+id/feed_title"
-                    app:layout_constraintTop_toBottomOf="@id/feed_title"
-                    app:layout_constraintBottom_toTopOf="@+id/feed_recyclerview">
+                    app:layout_constraintTop_toBottomOf="@id/feed_title">
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -128,21 +127,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:overScrollMode="never"
-                    android:nestedScrollingEnabled="false"
+                    android:nestedScrollingEnabled="true"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/filter_scroll"
                     android:paddingBottom="50dp"/>
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/complete_effect"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:lottie_autoPlay="false"
+                    app:lottie_loop="false"
+                    app:lottie_url="https://assets1.lottiefiles.com/packages/lf20_nxsyeqbd.json"
+                    tools:layout_editor_absoluteX="4dp" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/complete_effect"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:lottie_url="https://assets1.lottiefiles.com/packages/lf20_nxsyeqbd.json"
-            app:lottie_autoPlay="false"
-            app:lottie_loop="false"/>
+
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/later_effect"
             android:visibility="gone"

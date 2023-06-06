@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Vibrator
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -67,9 +66,13 @@ class FeedFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentFeedBinding.inflate(layoutInflater)
-        binding.allFilter.isSelected = true
+        //binding.allFilter.isSelected = true
         binding.completeEffect.cancelAnimation()
         binding.laterEffect.cancelAnimation()
+
+        plantsViewModel.loadData()
+        feedViewModel.initFeedList()
+        feedViewModel.getGuideList()
         return binding.root
     }
 
@@ -141,33 +144,22 @@ class FeedFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         //viewmodel update
-        plantsViewModel.loadData()
-        feedViewModel.offset = 0
-        feedViewModel.plantId = null
-        feedAdapter.clearItems()
-        feedViewModel.getFeedAllList()
-        feedViewModel.getGuideList()
     }
 
     private fun initScrollListener(){
         binding.scroll.setOnScrollChangeListener { v, a, b, c, d ->
-            if(!binding.scroll.canScrollVertically(1)){
-                Log.i(TAG,"delete!!!")
-                feedAdapter.deleteLoading()
-                feedViewModel.getFeedAllList()
+            if(!binding.scroll.canScrollVertically(1) and (feedViewModel.isLast.value == false)){
+                feedViewModel.nextFeedList()
             }
         }
     }
 
     private fun initList() {
         feedPlantAdapter = FeedPlantAdapter()
-        feedPlantAdapter.selectedPosition = -1
         feedPlantAdapter.onItemClicked = { plantId, name ->
             binding.allFilter.isSelected = false
-            feedViewModel.offset = 0
-            feedAdapter.viewItemList.clear()
             feedViewModel.plantId = plantId
-            feedViewModel.getFeedAllList()
+            feedViewModel.initFeedList()
 
             // logging
             val loggingBundle = Bundle()
@@ -202,9 +194,7 @@ class FeedFragment : Fragment() {
     private fun initListeners(){
         binding.allFilter.setOnClickListener {
             feedViewModel.plantId = null
-            feedViewModel.offset = 0
-            feedAdapter.viewItemList.clear()
-            feedViewModel.getFeedAllList()
+            feedViewModel.initFeedList()
             binding.allFilter.isSelected=true
             feedPlantAdapter.refreshClick()
         }
@@ -215,13 +205,9 @@ class FeedFragment : Fragment() {
             binding.hasPlant = !it.isNullOrEmpty()
             feedPlantAdapter.refreshItems(it)
         })
-        feedViewModel.feedAllList.observe(viewLifecycleOwner, Observer {
-            binding.hasFeed = !it.isNullOrEmpty()
-            if(feedViewModel.isLast.value == false){
-                feedAdapter.addItemsAndLoading(it)
-            }else{
-                feedAdapter.addFinalItems(it)
-            }
+        feedViewModel.feedList.observe(viewLifecycleOwner, Observer {
+            binding.hasFeed = !it.result.isNullOrEmpty()
+            feedAdapter.initItems(it.result!!)
         })
         feedViewModel.guideList.observe(viewLifecycleOwner, Observer {
             guideAdapter.refreshItems(it)
@@ -230,7 +216,7 @@ class FeedFragment : Fragment() {
             binding.notiIndicator.attachToRecyclerView(binding.guideRecyclerview,pageSnap)
         })
         feedViewModel.notiDialogIsExist.observe(viewLifecycleOwner, Observer {
-            if(it){
+            if(it!!){
                 notiDialog.start(feedViewModel.notiDialogTitle!!,
                     feedViewModel.notiDialogContent!!,
                     feedViewModel.notiDialogButton!!,
@@ -238,7 +224,9 @@ class FeedFragment : Fragment() {
             }
         })
         feedViewModel.hasNoti.observe(viewLifecycleOwner, Observer {
-            binding.hasNoti = it
+            if (it != null) {
+                binding.hasNoti = it
+            }
         })
     }
 

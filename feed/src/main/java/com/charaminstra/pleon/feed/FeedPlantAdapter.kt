@@ -10,7 +10,7 @@ class FeedPlantAdapter(): RecyclerView.Adapter<FeedPlantViewHolder>() {
 
     var viewItemList: List<PlantDataObject> = listOf()
     var onItemClicked: (String, String) -> Unit = { s: String, s1: String -> }
-    var selectedPosition = 0
+    var selectedPosition = -1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeedPlantViewHolder {
         return FeedPlantViewHolder(
@@ -40,7 +40,6 @@ class FeedPlantAdapter(): RecyclerView.Adapter<FeedPlantViewHolder>() {
         }
     }
 
-
     fun refreshClick(){
         notifyItemChanged(selectedPosition)
         selectedPosition = -1
@@ -50,9 +49,4 @@ class FeedPlantAdapter(): RecyclerView.Adapter<FeedPlantViewHolder>() {
         this.viewItemList = viewItemList
         notifyDataSetChanged() // Andoid RecyclerView DiffUtil.
     }
-
-//    fun setType(type: String) {
-//        this.type = type
-//    }
-
 }

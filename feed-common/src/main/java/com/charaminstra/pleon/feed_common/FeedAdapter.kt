@@ -5,13 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.charaminstra.pleon.feed_common.databinding.ItemFeedBinding
 import com.charaminstra.pleon.feed_common.databinding.ItemFeedDoctorBinding
-import com.charaminstra.pleon.feed_common.databinding.ItemFeedLoadingBinding
 import com.charaminstra.pleon.common.ResultObject
 
 class FeedAdapter(): RecyclerView.Adapter<FeedCommonViewHolder>() {
 
     var fromView = ""
-    var viewItemList = ArrayList<ResultObject>()
+    var viewItemList = mutableListOf<ResultObject>()
 
     override fun getItemViewType(position: Int): Int {
         return FeedViewType.valueOf(viewItemList[position].viewType).ordinal
@@ -21,7 +20,6 @@ class FeedAdapter(): RecyclerView.Adapter<FeedCommonViewHolder>() {
         return when(viewType){
             FeedViewType.FEED.ordinal -> FeedItemViewHolder(ItemFeedBinding.inflate(LayoutInflater.from(parent.context), parent, false))
             FeedViewType.DIAGNOSIS.ordinal -> FeedDoctorItemViewHolder(ItemFeedDoctorBinding.inflate(LayoutInflater.from(parent.context), parent, false))
-            FeedViewType.LOADING.ordinal -> LoadingItemViewHolder(ItemFeedLoadingBinding.inflate(LayoutInflater.from(parent.context),parent,false))
             else -> throw IllegalArgumentException("Unknown view type")
         }
     }
@@ -33,34 +31,13 @@ class FeedAdapter(): RecyclerView.Adapter<FeedCommonViewHolder>() {
         holder.bind(viewItemList[position].viewObject, fromView)
     }
 
-    fun initItems(viewItemList : ArrayList<ResultObject>){
-        this.viewItemList=viewItemList
+    fun initItems(viewItemList : List<ResultObject>){
+        this.viewItemList.clear()
+        this.viewItemList.addAll(viewItemList)
         notifyDataSetChanged()
     }
 
     fun clearItems(){
         viewItemList.clear()
-    }
-
-    fun addItemsAndLoading(viewItemList : ArrayList<ResultObject>) {
-        viewItemList.add(ResultObject("LOADING", null))
-        this.viewItemList.addAll(viewItemList)
-        notifyDataSetChanged() // Andoid RecyclerView DiffUtil.
-    }
-
-    fun addFinalItems(viewItemList : ArrayList<ResultObject>) {
-        this.viewItemList.addAll(viewItemList)
-        notifyDataSetChanged() // Andoid RecyclerView DiffUtil.
-    }
-
-//    fun refreshItems(viewItemList : ArrayList<ResultObject>) {
-//        this.viewItemList.addAll(viewItemList)
-//        notifyDataSetChanged() // Andoid RecyclerView DiffUtil.
-//    }
-
-    fun deleteLoading(){
-        if(viewItemList[viewItemList.lastIndex].viewType == "LOADING"){
-            viewItemList.removeAt(viewItemList.lastIndex)
-        }
     }
 }

@@ -201,7 +201,7 @@ class PlantDetailFragment : Fragment() {
         })
         viewModel.feedList.observe(viewLifecycleOwner, Observer {
             viewModel.offsetClear()
-            feedAdapter.initItems(it)
+            feedAdapter.initItems(it!!)
         })
     }
 

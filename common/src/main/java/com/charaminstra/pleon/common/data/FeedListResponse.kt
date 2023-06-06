@@ -10,7 +10,7 @@ data class FeedListResponse(
 )
 
 data class FeedDataObject(
-    val result: ArrayList<ResultObject>,
+    var result: List<ResultObject>?,
     val count: Int,
     val next_offset: Int,
     val isLast: Boolean,

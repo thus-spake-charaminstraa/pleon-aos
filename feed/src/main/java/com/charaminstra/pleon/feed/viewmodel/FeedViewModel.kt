@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.charaminstra.pleon.common.FeedDataObject
 import com.charaminstra.pleon.common.repository.FeedRepository
 import com.charaminstra.pleon.common.repository.NotiRepository
 import com.charaminstra.pleon.common.data.GuideViewTypeData
@@ -20,11 +21,8 @@ class FeedViewModel @Inject constructor(
 ) : ViewModel() {
     private val TAG = javaClass.name
 
-    private val _feedAllList = MutableLiveData<ArrayList<ResultObject>>()
-    val feedAllList : LiveData<ArrayList<ResultObject>> = _feedAllList
-
-    private val _feedFilterList = MutableLiveData<ArrayList<ResultObject>>()
-    val feedFilterList : LiveData<ArrayList<ResultObject>> = _feedFilterList
+    private val _feedList = MutableLiveData<FeedDataObject>()
+    val feedList : LiveData<FeedDataObject> = _feedList
 
     private val _guideList = MutableLiveData<List<GuideViewTypeData>>()
     val guideList : LiveData<List<GuideViewTypeData>> = _guideList
@@ -32,29 +30,26 @@ class FeedViewModel @Inject constructor(
     private val _isLast = MutableLiveData<Boolean>()
     val isLast : LiveData<Boolean> = _isLast
 
-    private val _notiDialogIsExist = MutableLiveData<Boolean>()
-    val notiDialogIsExist : LiveData<Boolean> = _notiDialogIsExist
+    private val _notiDialogIsExist = MutableLiveData<Boolean?>()
+    val notiDialogIsExist : LiveData<Boolean?> = _notiDialogIsExist
 
-    private val _hasNoti = MutableLiveData<Boolean>()
-    val hasNoti : LiveData<Boolean> = _hasNoti
+    private val _hasNoti = MutableLiveData<Boolean?>()
+    val hasNoti : LiveData<Boolean?> = _hasNoti
 
     var notiDialogTitle : String? = null
     var notiDialogContent : String? = null
     var notiDialogButton : Boolean?= null
     var notiImgUrl : String?= null
 
-    var offset = 0
     var plantId: String? = null
 
-    fun getFeedAllList(){
+    fun initFeedList(){
         viewModelScope.launch {
-            val data = feedRepository.getFeed(offset, plantId, null)
+            val data = feedRepository.getFeed(0, plantId, null)
             when (data.isSuccessful) {
                 true -> {
+                    _feedList.postValue(data.body()?.data)
                     _isLast.postValue(data.body()?.data?.isLast)
-                    _feedAllList.postValue(data.body()?.data?.result)
-                    offset = data.body()?.data?.next_offset!!
-                    Log.i(TAG,"SUCCESS -> "+ data.body().toString())
                 }
                 else -> {
                     Log.i(TAG,"FAIL -> "+ data.body().toString())
@@ -63,22 +58,24 @@ class FeedViewModel @Inject constructor(
         }
     }
 
-//    fun getFeedFilterList(){
-//        viewModelScope.launch {
-//            val data = feedRepository.getFeed(offset, plantId, null)
-//            when (data.isSuccessful) {
-//                true -> {
-//                    _feedFilterList.postValue(data.body()?.data?.result)
-//                    offset = data.body()?.data?.next_offset!!
-//                    Log.i(TAG,"SUCCESS -> "+ data.body().toString())
-//                }
-//                else -> {
-//                    Log.i(TAG,"FAIL -> "+ data.body().toString())
-//                }
-//            }
-//
-//        }
-//    }
+    fun nextFeedList(){
+        viewModelScope.launch {
+            val currentFeedList = _feedList.value
+            val data = feedRepository.getFeed(currentFeedList?.next_offset, plantId, null)
+            when (data.isSuccessful) {
+                true -> {
+                    val nextList = data.body()?.data
+                    val mergedFeedList = currentFeedList?.result?.toMutableList()?.apply { nextList?.result?.let { addAll(it) } }
+                    nextList?.result = mergedFeedList
+                    _feedList.postValue(nextList!!)
+                    _isLast.postValue(data.body()?.data?.isLast)
+                }
+                else -> {
+                    Log.i(TAG,"FAIL -> "+ data.body().toString())
+                }
+            }
+        }
+    }
 
     fun getGuideList(){
         viewModelScope.launch {
@@ -94,19 +91,13 @@ class FeedViewModel @Inject constructor(
         }
     }
 
-    fun clearFeedSetting(){
-        offset = 0
-        plantId = null
-    }
-
     fun postGuideClick(notiId: String, type: String){
         viewModelScope.launch {
             val data = notiRepository.postGuideAction(notiId, type)
             when (data.isSuccessful) {
                 true -> {
                     getGuideList()
-                    clearFeedSetting()
-                    getFeedAllList()
+                    initFeedList()
                     Log.i(TAG,"SUCCESS -> "+ data.body().toString())
                 }
                 else -> {
