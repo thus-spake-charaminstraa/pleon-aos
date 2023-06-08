@@ -15,7 +15,46 @@ task clean(type: Delete) {
 }
 
 ext {
+    // sdk version
     compileSdkVersion = 31
     targetSdkVersion = 31
     minSdkVersion = 26
+
+    // hilt version
+    hiltVersion = "2.42"
+
+    // navigation version
+    navVersion = "2.5.0"
+
+    // test library
+    junitVersion = "4.13.2"
+    junitTestVersion = "1.1.3"
+    espressoCoreVersion = "3.4.0"
+
+    // In 'common-ui' module
+    materialVersion = "1.6.1"
+    // glide version
+    glideVersion = "4.12.0"
+    // circleImage version
+    circleImageVersion = "3.1.0"
+    //recyclerview version
+    recyclerviewVersion = "1.2.1"
+    // cardview version
+    cardviewVersion = "1.0.0"
+    // circleindicator version
+    circleindicatorVersion = "2.1.6"
+    // custom indicator version
+    customindicatorVersion = "1.0.1"
+    // datepicker version
+    datepickerVersion = "1.3.3"
+
+    // In 'common' module
+    firebaseAnalyticsVersion = "17.2.1"
+    constraintlayoutVersion ="2.1.4"
+    appcompatVersion = "1.4.2"
+    livedataVersion = "2.5.1"
+    viewmodelVersion = "2.5.1"
+    legacysupportVersion = "1.0.0"
+    coreVersion = "1.7.0"
+
 }
