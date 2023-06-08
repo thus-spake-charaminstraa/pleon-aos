@@ -13,3 +13,8 @@ plugins {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext {
+    sdkVersion = 31
+    minSdkVersion = 26
+}
