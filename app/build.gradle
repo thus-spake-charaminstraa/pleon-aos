@@ -49,7 +49,6 @@ dependencies {
     implementation project(path: ':plant-register')
     implementation project(path: ':feed')
     implementation project(path: ':garden')
-    implementation project(path: ':chat')
     implementation project(path: ':doctor')
     implementation project(path: ':my')
 
