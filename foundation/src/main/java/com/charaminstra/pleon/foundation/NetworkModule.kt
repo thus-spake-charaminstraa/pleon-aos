@@ -1,6 +1,6 @@
 package com.charaminstra.pleon.foundation.api
 
-import com.charaminstra.pleon.foundation.pleon_url
+import com.charaminstra.pleon.foundation.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,7 +20,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetWorkModule {
-    private const val BASE_URL = pleon_url
+    private const val BASE_URL = BuildConfig.PLEON_BASE_URL
 
     @Provides
     @Singleton

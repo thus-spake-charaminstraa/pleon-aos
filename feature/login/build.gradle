@@ -13,6 +13,10 @@ android {
         minSdk rootProject.ext.minSdkVersion
         targetSdk rootProject.ext.targetSdkVersion
 
+        def localProperties = new Properties()
+        localProperties.load(new FileInputStream(rootProject.file("local.properties")))
+        buildConfigField("String", "KAKAO_NATIVE_APP_KEY", localProperties['KAKAO_NATIVE_APP_KEY'])
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
