@@ -36,6 +36,7 @@ android {
 }
 
 dependencies {
+    implementation project(path: ':domain')
     api project(path: ':foundation')
 
     implementation "androidx.constraintlayout:constraintlayout:$constraintlayoutVersion"
