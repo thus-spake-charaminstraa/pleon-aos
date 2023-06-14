@@ -25,6 +25,7 @@ import com.charaminstra.pleon.feed.ActionAdapter
 import com.charaminstra.pleon.feed.FeedPlantAdapter
 import com.charaminstra.pleon.feed.viewmodel.FeedWriteViewModel
 import com.charaminstra.pleon.feed.databinding.FragmentFeedWriteBinding
+import com.charaminstra.pleon.feed_common.PlantsViewModel
 import com.charaminstra.pleon.plant_register.getOrientation
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.firebase.analytics.FirebaseAnalytics
@@ -37,6 +38,7 @@ class FeedWriteFragment : Fragment() {
     private lateinit var binding : FragmentFeedWriteBinding
     private val TAG = javaClass.name
     private val feedWriteViewModel : FeedWriteViewModel by viewModels()
+    private val plantsViewModel: PlantsViewModel by viewModels()
     private lateinit var navController: NavController
     private lateinit var plant_adapter: FeedPlantAdapter
     private lateinit var action_adapter: ActionAdapter
@@ -200,12 +202,16 @@ class FeedWriteFragment : Fragment() {
             binding.feedWriteContent.setText(feedWriteViewModel.plantAction?.auto_content!!)
         }
         feedWriteViewModel.getActionList()
-        feedWriteViewModel.getPlantList()
+        plantsViewModel.loadData()
     }
 
     private fun observeViewModel() {
-        feedWriteViewModel.plantsList.observe(viewLifecycleOwner, Observer {
+        plantsViewModel.plantsList.observe(viewLifecycleOwner, Observer {
             plant_adapter.refreshItems(it)
+
+            // 첫번째 item 자동 선택
+            feedWriteViewModel.plantId = it[0].plantId
+            feedWriteViewModel.plantName = it[0].plantName
             binding.feedWritePlantTagTv.text = resources.getString(com.charaminstra.pleon.feed_common.R.string.plant_tag) + feedWriteViewModel.plantName
         })
         feedWriteViewModel.postSuccess.observe(viewLifecycleOwner, Observer{

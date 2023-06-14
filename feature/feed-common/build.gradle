@@ -39,6 +39,7 @@ android {
 dependencies {
     api project(path: ':common-ui')
     api project(path: ':common')
+    api project(path: ':domain')
 
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.test.ext:junit:$junitTestVersion"

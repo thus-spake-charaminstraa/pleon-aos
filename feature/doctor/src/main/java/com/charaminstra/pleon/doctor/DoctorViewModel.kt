@@ -4,7 +4,6 @@ import android.graphics.Bitmap
 import android.util.Log
 import androidx.lifecycle.*
 import com.charaminstra.pleon.common.data.CauseObject
-import com.charaminstra.pleon.common.data.PlantDataObject
 import com.charaminstra.pleon.common.data.SymptomObject
 import com.charaminstra.pleon.common.repository.ImageRepository
 import com.charaminstra.pleon.common.repository.InferenceRepository
@@ -17,17 +16,13 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DoctorViewModel @Inject constructor(private val imageRepository: ImageRepository,
-                                          private val inferenceRepository: InferenceRepository,
-                                          private val plantsRepository: PlantsRepository
+                                          private val inferenceRepository: InferenceRepository
 )
     :ViewModel(){
 
     private val TAG = javaClass.name
 
     var currentIdx = 1
-
-    private val _plantsList = MutableLiveData<List<PlantDataObject>>()
-    val plantsList : LiveData<List<PlantDataObject>> = _plantsList
 
     private val _firstImgUrlResponse = MutableLiveData<String?>()
     val firstImgUrlResponse : LiveData<String?> = _firstImgUrlResponse
@@ -43,9 +38,6 @@ class DoctorViewModel @Inject constructor(private val imageRepository: ImageRepo
 
     private val _causesList = MutableLiveData<List<CauseObject>?>()
     val causesList : LiveData<List<CauseObject>?> = _causesList
-
-    private val _plantsCount = MutableLiveData<Int>()
-    val plantsCount : LiveData<Int> = _plantsCount
 
     var plantId : String? = null
 
@@ -117,27 +109,6 @@ class DoctorViewModel @Inject constructor(private val imageRepository: ImageRepo
     fun warmingPlantDoctorModel(){
         viewModelScope.launch {
             inferenceRepository.warmingPlantDoctor()
-        }
-    }
-
-    fun getPlantList(){
-        viewModelScope.launch {
-            val data = plantsRepository.getPlants()
-            Log.i(TAG, "data -> $data")
-            Log.i(TAG, "data.body -> "+data.body())
-            when (data.isSuccessful) {
-                true -> {
-                    _plantsCount.postValue(data.body()?.data?.size)
-                    _plantsList.postValue(data.body()?.data!!)
-                    if(data.body()?.data?.size!! > 0 ){
-                        plantId = data.body()?.data?.get(0)?.id
-                    }
-                    Log.i(TAG,"SUCCESS -> "+ data.body().toString())
-                }
-                else -> {
-                    Log.i(TAG,"FAIL -> "+ data.body().toString())
-                }
-            }
         }
     }
 }

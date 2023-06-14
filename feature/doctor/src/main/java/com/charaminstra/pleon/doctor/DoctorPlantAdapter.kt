@@ -3,12 +3,12 @@ package com.charaminstra.pleon.doctor
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.charaminstra.pleon.common.data.PlantDataObject
 import com.charaminstra.pleon.doctor.databinding.ItemDoctorPlantBinding
+import com.charaminstra.pleon.domain.model.Plant
 
 class DoctorPlantAdapter(): RecyclerView.Adapter<DoctorPlantViewHolder>() {
 
-    var viewItemList: List<PlantDataObject> = listOf()
+    var viewItemList: List<Plant> = listOf()
     var onItemClicked: (String) -> Unit = {}
     var selectedPosition = 0
 
@@ -36,11 +36,11 @@ class DoctorPlantAdapter(): RecyclerView.Adapter<DoctorPlantViewHolder>() {
             notifyItemChanged(selectedPosition)
             notifyItemChanged(position)
             selectedPosition=position
-            onItemClicked(viewItemList[position].id!!)
+            onItemClicked(viewItemList[position].plantId!!)
         }
     }
 
-    fun refreshItems(viewItemList: List<PlantDataObject>) {
+    fun refreshItems(viewItemList: List<Plant>) {
         this.viewItemList = viewItemList
         notifyDataSetChanged() // Andoid RecyclerView DiffUtil.
     }

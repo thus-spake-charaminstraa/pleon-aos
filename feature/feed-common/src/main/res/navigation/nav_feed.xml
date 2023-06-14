@@ -23,7 +23,7 @@
     </fragment>
     <fragment
         android:id="@+id/feed_write_fragment"
-        android:name="FeedWriteFragment"
+        android:name="com.charaminstra.pleon.feed.view.FeedWriteFragment"
         tools:layout="@layout/fragment_feed_write">
     </fragment>
     <fragment

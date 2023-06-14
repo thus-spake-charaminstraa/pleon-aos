@@ -13,5 +13,5 @@ interface ScheduleAPIService {
         @Query("plant_id") plantId: String,
         @Query("year") year: Int,
         @Query("month") month: Int
-    ): Response<com.charaminstra.pleon.common.data.ScheduleResponse>
+    ): Response<ScheduleResponse>
 }

@@ -4,11 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.charaminstra.pleon.feed.databinding.ItemPlantBinding
-import com.charaminstra.pleon.common.data.PlantDataObject
+import com.charaminstra.pleon.domain.model.Plant
 
 class FeedPlantAdapter(): RecyclerView.Adapter<FeedPlantViewHolder>() {
 
-    var viewItemList: List<PlantDataObject> = listOf()
+    var viewItemList: List<Plant> = listOf()
     var onItemClicked: (String, String) -> Unit = { s: String, s1: String -> }
     var selectedPosition = -1
 
@@ -36,7 +36,7 @@ class FeedPlantAdapter(): RecyclerView.Adapter<FeedPlantViewHolder>() {
             notifyItemChanged(selectedPosition)
             notifyItemChanged(position)
             selectedPosition=position
-            onItemClicked(viewItemList[position].id!!,viewItemList[position].name!!)
+            onItemClicked(viewItemList[position].plantId!!,viewItemList[position].plantName!!)
         }
     }
 
@@ -45,7 +45,7 @@ class FeedPlantAdapter(): RecyclerView.Adapter<FeedPlantViewHolder>() {
         selectedPosition = -1
     }
 
-    fun refreshItems(viewItemList : List<PlantDataObject>) {
+    fun refreshItems(viewItemList : List<Plant>) {
         this.viewItemList = viewItemList
         notifyDataSetChanged() // Andoid RecyclerView DiffUtil.
     }

@@ -9,9 +9,6 @@ import androidx.lifecycle.viewModelScope
 import com.charaminstra.pleon.common.data.ActionData
 import com.charaminstra.pleon.common.repository.FeedRepository
 import com.charaminstra.pleon.common.repository.ImageRepository
-import com.charaminstra.pleon.common.repository.PlantIdRepository
-import com.charaminstra.pleon.common.repository.PlantsRepository
-import com.charaminstra.pleon.common.data.PlantDataObject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.io.ByteArrayInputStream
@@ -22,8 +19,6 @@ import javax.inject.Inject
 class FeedWriteViewModel @Inject constructor(
     private val repository: FeedRepository,
     private val imageRepository: ImageRepository,
-    private val plantRepository: PlantIdRepository,
-    private val plantsRepository: PlantsRepository
 ): ViewModel() {
     private val TAG = javaClass.name
     private val _postSuccess = MutableLiveData<Boolean>()
@@ -31,9 +26,6 @@ class FeedWriteViewModel @Inject constructor(
 
     private val _urlResponse = MutableLiveData<String?>()
     val urlResponse : LiveData<String?> = _urlResponse
-
-    private val _plantsList = MutableLiveData<List<PlantDataObject>>()
-    val plantsList : LiveData<List<PlantDataObject>> = _plantsList
 
     private val _actionList = MutableLiveData<List<ActionData>>()
     val actionList : LiveData<List<ActionData>> = _actionList
@@ -87,25 +79,6 @@ class FeedWriteViewModel @Inject constructor(
                 }
                 else -> {
                     Log.i(TAG,"FAIL -> "+ data.errorBody())
-                }
-            }
-        }
-    }
-
-    fun getPlantList(){
-        viewModelScope.launch {
-            val data = plantsRepository.getPlants()
-            Log.i(TAG, "data -> $data")
-            Log.i(TAG, "data.body -> "+data.body())
-            when (data.isSuccessful) {
-                true -> {
-                    _plantsList.postValue(data.body()?.data!!)
-                    plantId = data.body()?.data?.get(0)?.id
-                    plantName=data.body()?.data?.get(0)?.name!!
-                    Log.i(TAG,"SUCCESS -> "+ data.body().toString())
-                }
-                else -> {
-                    Log.i(TAG,"FAIL -> "+ data.body().toString())
                 }
             }
         }
