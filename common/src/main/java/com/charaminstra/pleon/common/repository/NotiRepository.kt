@@ -2,7 +2,7 @@ package com.charaminstra.pleon.common.repository
 
 import com.charaminstra.pleon.common.api.NotiAPIService
 import com.charaminstra.pleon.common.api.PleonPreference
-import com.charaminstra.pleon.common.data.GuideRequestBody
+import com.charaminstra.pleon.common.model.GuideRequestBody
 import javax.inject.Inject
 
 class NotiRepository @Inject constructor(private val service: NotiAPIService, private val prefs: PleonPreference)  {

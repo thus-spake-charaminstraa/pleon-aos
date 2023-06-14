@@ -3,7 +3,7 @@ package com.charaminstra.pleon.feed
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.charaminstra.pleon.common.data.ActionData
+import com.charaminstra.pleon.common.model.ActionData
 import com.charaminstra.pleon.feed.databinding.ItemActionBinding
 
 class ActionAdapter(): RecyclerView.Adapter<ActionViewHolder>() {

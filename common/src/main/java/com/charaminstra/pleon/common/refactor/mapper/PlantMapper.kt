@@ -1,6 +1,6 @@
 package com.charaminstra.pleon.common.refactor.mapper
 
-import com.charaminstra.pleon.common.data.PlantDataObject
+import com.charaminstra.pleon.common.model.PlantDataObject
 import com.charaminstra.pleon.domain.model.Plant
 
 object PlantMapper{

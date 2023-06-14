@@ -21,7 +21,7 @@ import com.charaminstra.pleon.common.CALENDAR_ITEM_CLICK
 import com.charaminstra.pleon.common.CLASS_NAME
 import com.charaminstra.pleon.feed_common.FeedAdapter
 import com.charaminstra.pleon.garden.databinding.CalendarDayLayoutBinding
-import com.charaminstra.pleon.common.data.ScheduleDataObject
+import com.charaminstra.pleon.common.model.ScheduleDataObject
 import com.charaminstra.pleon.garden.PlantDetailViewModel
 import com.charaminstra.pleon.garden.R
 import com.charaminstra.pleon.garden.databinding.FragmentPlantDetailBinding

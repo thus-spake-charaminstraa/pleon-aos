@@ -2,10 +2,10 @@ package com.charaminstra.pleon.common.repository
 
 import com.charaminstra.pleon.common.api.UserAPIService
 import com.charaminstra.pleon.common.api.PleonPreference
-import com.charaminstra.pleon.common.data.DeviceTokenRequestBody
-import com.charaminstra.pleon.common.data.UserRequestBody
-import com.charaminstra.pleon.common.data.UserCreateResponse
-import com.charaminstra.pleon.common.data.UserPushSettingRequestBody
+import com.charaminstra.pleon.common.model.DeviceTokenRequestBody
+import com.charaminstra.pleon.common.model.UserRequestBody
+import com.charaminstra.pleon.common.model.UserCreateResponse
+import com.charaminstra.pleon.common.model.UserPushSettingRequestBody
 import retrofit2.Response
 import javax.inject.Inject
 

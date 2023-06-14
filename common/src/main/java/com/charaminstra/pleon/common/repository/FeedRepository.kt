@@ -2,7 +2,7 @@ package com.charaminstra.pleon.common.repository
 
 import com.charaminstra.pleon.common.api.FeedAPIService
 import com.charaminstra.pleon.common.api.PleonPreference
-import com.charaminstra.pleon.common.data.FeedRequestBody
+import com.charaminstra.pleon.common.model.FeedRequestBody
 import javax.inject.Inject
 
 class FeedRepository @Inject constructor(private val service: FeedAPIService, private val prefs: PleonPreference){

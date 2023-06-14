@@ -2,9 +2,9 @@ package com.charaminstra.pleon.common.repository
 
 import com.charaminstra.pleon.common.api.PlantAPIService
 import com.charaminstra.pleon.common.api.PleonPreference
-import com.charaminstra.pleon.common.data.PlantEditRequestBody
-import com.charaminstra.pleon.common.data.PlantRegisterRequestBody
-import com.charaminstra.pleon.common.data.PlantResponse
+import com.charaminstra.pleon.common.model.PlantEditRequestBody
+import com.charaminstra.pleon.common.model.PlantRegisterRequestBody
+import com.charaminstra.pleon.common.model.PlantResponse
 import retrofit2.Response
 import javax.inject.Inject
 

@@ -1,4 +1,4 @@
-package com.charaminstra.pleon.common.data
+package com.charaminstra.pleon.common.model
 
 data class LoginResponse(
     val success: Boolean?,

@@ -1,6 +1,6 @@
 package com.charaminstra.pleon.common.api
 
-import com.charaminstra.pleon.common.data.*
+import com.charaminstra.pleon.common.model.*
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET

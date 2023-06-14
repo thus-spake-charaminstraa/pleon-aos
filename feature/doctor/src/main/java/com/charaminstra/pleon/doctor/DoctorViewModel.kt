@@ -3,11 +3,10 @@ package com.charaminstra.pleon.doctor
 import android.graphics.Bitmap
 import android.util.Log
 import androidx.lifecycle.*
-import com.charaminstra.pleon.common.data.CauseObject
-import com.charaminstra.pleon.common.data.SymptomObject
+import com.charaminstra.pleon.common.model.CauseObject
+import com.charaminstra.pleon.common.model.SymptomObject
 import com.charaminstra.pleon.common.repository.ImageRepository
 import com.charaminstra.pleon.common.repository.InferenceRepository
-import com.charaminstra.pleon.common.repository.PlantsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.io.ByteArrayInputStream

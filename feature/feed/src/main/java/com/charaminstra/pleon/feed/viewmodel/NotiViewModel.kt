@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.charaminstra.pleon.common.repository.NotiRepository
-import com.charaminstra.pleon.common.data.NotiViewTypeData
+import com.charaminstra.pleon.common.model.NotiViewTypeData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

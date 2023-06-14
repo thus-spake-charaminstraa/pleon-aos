@@ -3,7 +3,7 @@ package com.charaminstra.pleon.feed_common
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.charaminstra.pleon.feed_common.databinding.ItemCommentBinding
-import com.charaminstra.pleon.common.data.CommentObject
+import com.charaminstra.pleon.common.model.CommentObject
 
 class CommentViewHolder(
     private val binding: ItemCommentBinding

@@ -1,6 +1,6 @@
 package com.charaminstra.pleon.common.api
 
-import com.charaminstra.pleon.common.data.ScheduleResponse
+import com.charaminstra.pleon.common.model.ScheduleResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Header

@@ -1,8 +1,8 @@
 package com.charaminstra.pleon.common.api
 
-import com.charaminstra.pleon.common.data.CommentPostResponse
-import com.charaminstra.pleon.common.data.CommentRequestBody
-import com.charaminstra.pleon.common.data.CommentResponse
+import com.charaminstra.pleon.common.model.CommentPostResponse
+import com.charaminstra.pleon.common.model.CommentRequestBody
+import com.charaminstra.pleon.common.model.CommentResponse
 import retrofit2.Response
 import retrofit2.http.*
 

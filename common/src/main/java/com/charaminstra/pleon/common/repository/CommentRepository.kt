@@ -2,7 +2,7 @@ package com.charaminstra.pleon.common.repository
 
 import com.charaminstra.pleon.common.api.CommentAPIService
 import com.charaminstra.pleon.common.api.PleonPreference
-import com.charaminstra.pleon.common.data.CommentRequestBody
+import com.charaminstra.pleon.common.model.CommentRequestBody
 import javax.inject.Inject
 
 class CommentRepository @Inject constructor(private val service: CommentAPIService, private val prefs: PleonPreference)  {

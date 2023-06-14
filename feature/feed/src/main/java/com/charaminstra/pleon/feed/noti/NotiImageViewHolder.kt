@@ -3,7 +3,7 @@ package com.charaminstra.pleon.feed.noti
 import android.view.View
 import androidx.navigation.findNavController
 import com.charaminstra.pleon.feed.databinding.ItemNotiImageBinding
-import com.charaminstra.pleon.common.data.NotiData
+import com.charaminstra.pleon.common.model.NotiData
 
 
 class NotiImageViewHolder (private val binding: ItemNotiImageBinding): NotiCommonViewHolder(binding) {

@@ -9,7 +9,7 @@
             type="android.view.View.OnClickListener"/>
         <variable
             name="noti"
-            type="com.charaminstra.pleon.common.data.NotiData" />
+            type="com.charaminstra.pleon.common.model.NotiData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

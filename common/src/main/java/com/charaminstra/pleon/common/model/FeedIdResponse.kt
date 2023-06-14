@@ -1,4 +1,4 @@
-package com.charaminstra.pleon.common.data
+package com.charaminstra.pleon.common.model
 
 import com.charaminstra.pleon.common.FeedViewObject
 

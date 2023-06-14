@@ -2,7 +2,7 @@ package com.charaminstra.pleon.feed
 
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.charaminstra.pleon.common.data.ActionData
+import com.charaminstra.pleon.common.model.ActionData
 import com.charaminstra.pleon.feed.databinding.ItemActionBinding
 
 class ActionViewHolder(val binding: ItemActionBinding): RecyclerView.ViewHolder(binding.root) {

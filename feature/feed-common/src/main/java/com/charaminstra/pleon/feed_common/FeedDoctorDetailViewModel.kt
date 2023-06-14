@@ -2,8 +2,8 @@ package com.charaminstra.pleon.feed_common
 
 import android.util.Log
 import androidx.lifecycle.*
-import com.charaminstra.pleon.common.data.CauseObject
-import com.charaminstra.pleon.common.data.SymptomObject
+import com.charaminstra.pleon.common.model.CauseObject
+import com.charaminstra.pleon.common.model.SymptomObject
 import com.charaminstra.pleon.common.repository.PlantIdRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -19,11 +19,11 @@ class FeedDoctorDetailViewModel @Inject constructor(
 
     var feedId: String = savedStateHandle.get<String>("feedId")!!
 
-    private val _symptomsList = MutableLiveData<List<SymptomObject>>()
-    val symptomsList : LiveData<List<SymptomObject>> = _symptomsList
+    private val _symptomsList = MutableLiveData<List<SymptomObject>?>()
+    val symptomsList : LiveData<List<SymptomObject>?> = _symptomsList
 
-    private val _causesList = MutableLiveData<List<CauseObject>>()
-    val causesList : LiveData<List<CauseObject>> = _causesList
+    private val _causesList = MutableLiveData<List<CauseObject>?>()
+    val causesList : LiveData<List<CauseObject>?> = _causesList
 
     private val _date = MutableLiveData<Date?>()
     val date : LiveData<Date?> = _date

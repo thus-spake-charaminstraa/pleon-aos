@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.charaminstra.pleon.common.data.ActionData
+import com.charaminstra.pleon.common.model.ActionData
 import com.charaminstra.pleon.common.repository.FeedRepository
 import com.charaminstra.pleon.common.repository.ImageRepository
 import dagger.hilt.android.lifecycle.HiltViewModel

@@ -1,7 +1,7 @@
 package com.charaminstra.pleon.common.api
 
-import com.charaminstra.pleon.common.data.PlantDoctorRequestBody
-import com.charaminstra.pleon.common.data.PlantDoctorResponseBody
+import com.charaminstra.pleon.common.model.PlantDoctorRequestBody
+import com.charaminstra.pleon.common.model.PlantDoctorResponseBody
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -14,8 +14,8 @@ interface InferenceAPIService {
 
     @POST("inference/plant-detection")
     suspend fun postPlantDetection(
-        @Body plantDetectionRequestBody: com.charaminstra.pleon.common.data.PlantDetectionRequestBody
-    ) : Response<com.charaminstra.pleon.common.data.PlantDetectionResponseBody>
+        @Body plantDetectionRequestBody: com.charaminstra.pleon.common.model.PlantDetectionRequestBody
+    ) : Response<com.charaminstra.pleon.common.model.PlantDetectionResponseBody>
 
     //    plant doctor
     @POST("inference/plant-doctor/warming")

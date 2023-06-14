@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.*
 import com.charaminstra.pleon.common.repository.CommentRepository
 import com.charaminstra.pleon.common.repository.FeedRepository
-import com.charaminstra.pleon.common.data.CommentObject
+import com.charaminstra.pleon.common.model.CommentObject
 import com.charaminstra.pleon.common.FeedViewObject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

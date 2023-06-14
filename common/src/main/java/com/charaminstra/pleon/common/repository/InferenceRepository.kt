@@ -1,6 +1,6 @@
 package com.charaminstra.pleon.common.repository
 
-import com.charaminstra.pleon.common.data.PlantDoctorRequestBody
+import com.charaminstra.pleon.common.model.PlantDoctorRequestBody
 import javax.inject.Inject
 
 class InferenceRepository @Inject constructor(private val service: com.charaminstra.pleon.common.api.InferenceAPIService)  {
@@ -9,7 +9,7 @@ class InferenceRepository @Inject constructor(private val service: com.charamins
     )
 
     suspend fun postPlantDetection(image_url: String) = service.postPlantDetection(
-        com.charaminstra.pleon.common.data.PlantDetectionRequestBody(image_url)
+        com.charaminstra.pleon.common.model.PlantDetectionRequestBody(image_url)
     )
 
     suspend fun warmingPlantDoctor() = service.warmingPlantDoctor(

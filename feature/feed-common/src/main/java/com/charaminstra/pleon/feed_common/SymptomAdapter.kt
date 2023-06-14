@@ -3,7 +3,7 @@ package com.charaminstra.pleon.feed_common
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.charaminstra.pleon.common.data.SymptomObject
+import com.charaminstra.pleon.common.model.SymptomObject
 import com.charaminstra.pleon.feed_common.databinding.ItemSymptomBinding
 
 class SymptomAdapter(): RecyclerView.Adapter<SymptomViewHolder>() {

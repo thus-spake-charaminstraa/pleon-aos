@@ -1,9 +1,9 @@
 package com.charaminstra.pleon.common.api
 
-import com.charaminstra.pleon.common.data.FeedIdResponse
+import com.charaminstra.pleon.common.model.FeedIdResponse
 import com.charaminstra.pleon.common.FeedListResponse
-import com.charaminstra.pleon.common.data.ActionResponse
-import com.charaminstra.pleon.common.data.FeedRequestBody
+import com.charaminstra.pleon.common.model.ActionResponse
+import com.charaminstra.pleon.common.model.FeedRequestBody
 import retrofit2.Response
 import retrofit2.http.*
 

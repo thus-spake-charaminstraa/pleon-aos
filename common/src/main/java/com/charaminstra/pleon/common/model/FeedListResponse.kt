@@ -1,6 +1,6 @@
 package com.charaminstra.pleon.common
 
-import com.charaminstra.pleon.common.data.*
+import com.charaminstra.pleon.common.model.*
 import java.util.*
 
 data class FeedListResponse(
