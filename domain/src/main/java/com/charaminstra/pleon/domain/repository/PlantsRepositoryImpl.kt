@@ -1,10 +1,9 @@
-package com.charaminstra.pleon.common.refactor.repositoryimpl
+package com.charaminstra.pleon.domain.repository
 
 import com.charaminstra.pleon.common.api.PlantAPIService
 import com.charaminstra.pleon.common.api.PleonPreference
-import com.charaminstra.pleon.common.refactor.mapper.toDomain
+import com.charaminstra.pleon.domain.mapper.toDomain
 import com.charaminstra.pleon.domain.model.Plant
-import com.charaminstra.pleon.domain.repository.PlantsRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

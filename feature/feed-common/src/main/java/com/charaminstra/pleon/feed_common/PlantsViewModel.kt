@@ -1,11 +1,9 @@
 package com.charaminstra.pleon.feed_common
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.charaminstra.pleon.common.repository.PlantsRepository
 import com.charaminstra.pleon.domain.model.Plant
 import com.charaminstra.pleon.domain.usecase.GetPlantListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

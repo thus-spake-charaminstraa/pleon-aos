@@ -1,4 +1,4 @@
-package com.charaminstra.pleon.common.refactor.mapper
+package com.charaminstra.pleon.domain.mapper
 
 import com.charaminstra.pleon.common.model.PlantDataObject
 import com.charaminstra.pleon.domain.model.Plant

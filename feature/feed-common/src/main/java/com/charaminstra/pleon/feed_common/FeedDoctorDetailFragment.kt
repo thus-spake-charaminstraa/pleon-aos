@@ -70,11 +70,11 @@ class FeedDoctorDetailFragment : Fragment() {
 
     private fun initObservers(){
         viewModel.causesList.observe(viewLifecycleOwner){
-            causeAdapter.setItemList(it)
+            causeAdapter.setItemList(it!!)
             solutionAdapter.setItemList(it)
         }
         viewModel.symptomsList.observe(viewLifecycleOwner){
-            symptomAdapter.setItemList(it)
+            symptomAdapter.setItemList(it!!)
         }
         viewModel.date.observe(viewLifecycleOwner){
             binding.feedDate.text = DateUtils(requireContext()).dateToView(it!!)

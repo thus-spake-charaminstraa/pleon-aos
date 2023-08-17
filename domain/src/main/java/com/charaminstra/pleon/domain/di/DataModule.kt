@@ -1,6 +1,6 @@
-package com.charaminstra.pleon.common.di
+package com.charaminstra.pleon.domain.di
 
-import com.charaminstra.pleon.common.refactor.repositoryimpl.PlantsRepositoryImpl
+import com.charaminstra.pleon.domain.repository.PlantsRepositoryImpl
 import com.charaminstra.pleon.domain.repository.PlantsRepository
 import dagger.Binds
 import dagger.Module
